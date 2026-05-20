@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?xml version="1.0" encoding="UTF-8"?><html xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="topic-type" content="concept">
+<meta name="helpsystempath" content="https://help.autodesk.com/view/ARCHDESK/2022/ENU/">
+<meta name="product" content="ARCHDESK">
+<meta name="release" content="2022">
+<meta name="book" content="GeneralUser">
+<meta name="component" content="AutoCAD-Architecture">
+<meta name="created" content="23/3/2021">
+<meta name="applies-to" content="BLDSYS=2022">
+<meta name="user-comments" content="disable">
+<meta name="contextid" content="AECID_AECCHANGEDISPLAYTABSTATUS">
+<meta name="contextid" content="AECT_IDH_DISPLAY_SYSTEM">
+<meta name="experiencelevel" content="novice">
+<meta name="audience" content="user">
+<meta name="modified" content="06/01/2021">
+<meta name="topicid" content="GUID-6C92CA39-53A5-4A22-9493-6E2033558CB6">
+<meta name="language" content="ENU">
+<title>About Display System</title>
+
+	<link rel="stylesheet" type="text/css" href="/view/clientframework/client.css">
+	<script type="text/javascript" src="/view/clientframework/client.js"><!--filler--></script>
+</head>
+<body id="GUID-6C92CA39-53A5-4A22-9493-6E2033558CB6">
+<div class="head">
+<div class="head-block">
+<div class="button-info"><span id="infoline">&nbsp;</span></div>
+<div class="ancestry">&nbsp;</div>
+<div class="head-text"><h1>About Display System</h1></div>
+</div>
+</div>
+
+<div class="body conbody">
+<div class="section" id="GUID-6C92CA39-53A5-4A22-9493-6E2033558CB6__GUID-CBFA9872-F3FC-4075-9399-451083587DD8">
+<p class="p" id="GUID-6C92CA39-53A5-4A22-9493-6E2033558CB6__WS73099CC142F4875525502E10EA1D370AE-7D58"> The display system in <span class="ph msgph prodname">AutoCAD Architecture 2022 toolset</span> is designed so that you only have to draw an architectural object once. The appearance of that object then changes automatically to meet the display requirements of different types of drawings, view directions, or levels of detail. </p>
+
+</div>
+<div class="section" id="GUID-6C92CA39-53A5-4A22-9493-6E2033558CB6__WS73099CC142F4875525502E10EA1D370AE-7D57">
+<h2 class="title sectiontitle">Display Properties and Display Components</h2>
+
+</div>
+<div class="section" id="GUID-6C92CA39-53A5-4A22-9493-6E2033558CB6__GUID-7B07B0DE-4D9F-43DA-976C-B451C36637DA">
+<p class="p" id="GUID-6C92CA39-53A5-4A22-9493-6E2033558CB6__WS73099CC142F4875525502E10EA1D370AE-7D56">The view-dependent display of objects in <span class="ph msgph prodname">AutoCAD Architecture 2022 toolset</span> is made possible by a hierarchical system of display settings that specify display properties (visibility, layer, color, linetype, and so on) for individual display components of all the different types of architectural objects under all the different viewing scenarios. </p>
+
+<p class="p" id="GUID-6C92CA39-53A5-4A22-9493-6E2033558CB6__WS73099CC142F4875525502E10EA1D370AE-7D55">For example, a door object has 5 display components by default: Door Panel, Frame, Stop, Swing, and Glass. (Many display components correspond directly to the physical components of the object, but some, like Swing, do not.) For each of these display components, the drawing default settings specify the relevant display properties as appropriate for the drawing type. In the case of doors, the default settings specify that the Swing component is visible in plan and elevation views, but not in 3D views. </p>
+
+</div>
+<div class="section" id="GUID-6C92CA39-53A5-4A22-9493-6E2033558CB6__WS73099CC142F4875525502E10EA1D370AE-7D54">
+<h2 class="title sectiontitle">Overrides</h2>
+
+</div>
+<div class="section" id="GUID-6C92CA39-53A5-4A22-9493-6E2033558CB6__GUID-685A86E6-D2EC-4D47-8BC4-789324DD4611">
+<p class="p" id="GUID-6C92CA39-53A5-4A22-9493-6E2033558CB6__WS73099CC142F4875525502E10EA1D370AE-7D53">The drawing default settings for a particular type of object apply to all such objects in the drawing, except those for which an override is in effect. For example, you can change a setting for all doors of a particular style (a style override) or for an individual door (an object override). </p>
+
+</div>
+<div class="section" id="GUID-6C92CA39-53A5-4A22-9493-6E2033558CB6__WS73099CC142F4875525502E10EA1D370AE-7D52">
+<h2 class="title sectiontitle">Establishing and Modifying Default Display Settings</h2>
+
+</div>
+<div class="section" id="GUID-6C92CA39-53A5-4A22-9493-6E2033558CB6__GUID-1EEBA1EF-6189-48BE-9503-3346C8EAB760">
+<p class="p" id="GUID-6C92CA39-53A5-4A22-9493-6E2033558CB6__WS73099CC142F4875525502E10EA1D370AE-7D51">If you are a CAD manager, you will want to fully understand the display system structure and the display manager so that you can modify and organize default settings as necessary to implement your own display standards. But any user can quickly change the appearance of an object in a particular view by modifying values on the Display tab of the Properties palette. </p>
+
+<div class="note note" id="GUID-6C92CA39-53A5-4A22-9493-6E2033558CB6__WS73099CC142F48755-5C83E7B1120018DE8C0-6D52">
+<span class="notetitle">Note:</span> To hide the Display Tab (or show it if it is currently hidden), enter the following command at the command line: AECCHANGEDISPLAYTABSTATUS. </div>
+
+<div class="fig fignone" id="GUID-6C92CA39-53A5-4A22-9493-6E2033558CB6__WS1A9193826455F5FF-4F6D1F1D11D24BE3E03-7DBB">
+<img class="image" id="GUID-6C92CA39-53A5-4A22-9493-6E2033558CB6__IMAGE_A3D7338049A74660AF924E7894088F5F" width="400" height="455" src="../images/GUID-FF900778-DEBD-44D1-9290-D1A30D143A8D.png"><p class="figcap">Display tab when display component is selected</p>
+</div>
+
+<p class="p" id="GUID-6C92CA39-53A5-4A22-9493-6E2033558CB6__WS73099CC142F487552B5AC6C412649166E6E-7D8C">To change the display using this tab, click <img class="image" id="GUID-6C92CA39-53A5-4A22-9493-6E2033558CB6__IMAGE_E770B2E4701248B982F3ABBC6C0CF737" width="16" height="16" src="../images/GUID-FE0B83D7-295F-4C0C-94DD-F00E8BD7CEB3.png"> (Select Components), select an object display component (like a hatch or a boundary), and then select or enter a new value for the display property you want to change (such as color, visibility, or lineweight). </p>
+
+<p class="p" id="GUID-6C92CA39-53A5-4A22-9493-6E2033558CB6__WS73099CC142F4875525502E10EA1D370AE-7D50">The results are immediately visible in the drawing area for the current display representation and can be applied to other display representations that use the same component. You can also apply style or object overrides by changing the value of Display controlled by. </p>
+
+</div>
+</div>
+<div class="related-links">
+<div class="relinfo relconcepts">
+<h4 class="related">Related Concepts</h4>
+<ul>
+<li><a class="link" href="GUID-8512B736-FC8A-4559-BFF5-7F097517A1C2.htm">About Display System Structure</a></li>
+<li><a class="link" href="GUID-0E3128EA-398E-4CD1-8A4D-412027A659BC.htm">About Display Representations</a></li>
+<li><a class="link" href="GUID-89C368FF-0781-439D-9E4A-283E062A80D8.htm">About Display Sets</a></li>
+<li><a class="link" href="GUID-BA31AA3B-5E14-410B-9AD8-661A9E4D47A8.htm">About Display Configurations</a></li>
+<li><a class="link" href="GUID-1C82E74B-75A8-45F7-9035-BF2513544904.htm">About Creating and Editing Display Configurations</a></li>
+<li><a class="link" href="GUID-89DA9B70-1849-40CA-9F67-EA67F8C98173.htm">About Managing Display Configurations</a></li>
+<li><a class="link" href="GUID-BD29B0D6-59B4-4ECC-AB5D-115D455656FB.htm">About Working With Standard Display Settings</a></li>
+</ul>
+</div>
+<div class="relinfo reltasks">
+<h4 class="related">Related Tasks</h4>
+<ul><li><a class="link" href="GUID-5DA297CC-CA7B-4B66-8BF9-52996011483A.htm">To Use the Properties Palette to Change Display Properties</a></li></ul>
+</div>
+<div class="relinfo relref">
+<h4 class="related">Related Reference</h4>
+<ul><li><a class="link" href="GUID-D83B5778-A87B-441E-8D5D-8F1EBE9172C1.htm">Display Manager Reference</a></li></ul>
+</div>
+</div>
+
+</body>
+</html>

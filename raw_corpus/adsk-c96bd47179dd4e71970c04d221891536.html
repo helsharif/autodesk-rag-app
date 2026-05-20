@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?xml version="1.0" encoding="UTF-8"?><html xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="topic-type" content="task-adsk">
+<meta name="helpsystempath" content="https://help.autodesk.com/view/ARCHDESK/2022/ENU/">
+<meta name="product" content="ARCHDESK">
+<meta name="release" content="2022">
+<meta name="book" content="GeneralUser">
+<meta name="component" content="AutoCAD-Architecture">
+<meta name="created" content="23/3/2021">
+<meta name="applies-to" content="BLDSYS=2022">
+<meta name="user-comments" content="disable">
+<meta name="cmdname" content="AECSPACEAUTOUPDATE">
+<meta name="contextid" content="AECID_AECSPACEAUTOUPDATE">
+<meta name="experiencelevel" content="general">
+<meta name="audience" content="user">
+<meta name="modified" content="06/01/2021">
+<meta name="topicid" content="GUID-B799FADB-CD29-4F2E-899F-F5DEBE5221A6">
+<meta name="language" content="ENU">
+<title>To Activate and Deactivate Automatic Update of Spaces</title>
+
+	<link rel="stylesheet" type="text/css" href="/view/clientframework/client.css">
+	<script type="text/javascript" src="/view/clientframework/client.js"><!--filler--></script>
+</head>
+<body id="GUID-B799FADB-CD29-4F2E-899F-F5DEBE5221A6">
+<div class="head">
+<div class="head-block">
+<div class="button-info"><span id="infoline">&nbsp;</span></div>
+<div class="ancestry">&nbsp;</div>
+<div class="head-text"><h1>To Activate and Deactivate Automatic Update of Spaces</h1></div>
+</div>
+</div>
+
+<div class="body taskbody-adsk" id="WS1A9193826455F5FF-4F6D1F1D11D24BE3E03-7177">
+<p class="p" id="GUID-B799FADB-CD29-4F2E-899F-F5DEBE5221A6__WS1A9193826455F5FF104D7F510F19418261-6925"> Use this procedure to activate or deactivate the automatic update of associative spaces. </p>
+<p class="p" id="GUID-B799FADB-CD29-4F2E-899F-F5DEBE5221A6__WS73099CC142F4875522762411361C5AA35-7CEC">Updating each temporary change to the space geometry might not be necessary or desirable. For example, if you delete a wall only to replace it with a different one in the same position, you only need the space to update after the new wall is in place, rather than once when the old wall is removed and again when the new one is inserted. </p>
+<p class="p" id="GUID-B799FADB-CD29-4F2E-899F-F5DEBE5221A6__WS1A9193826455F5FF104D7F510F19418261-6926">Manual updates offer better performance, but mean that the geometry of spaces and their boundary objects might be out-of-synch at a given time during the drawing session. </p>
+<p class="p" id="GUID-B799FADB-CD29-4F2E-899F-F5DEBE5221A6__WS1A9193826455F5FF104D7F510F19418261-6924">When the automatic update of associative spaces is deactivated, and an area calculation standard has been selected to calculate boundary offsets, the rules of the standard will only be applied to changed spaces when either the automatic update has been activated again or the spaces are updated manually. </p>
+<div class="note note" id="GUID-B799FADB-CD29-4F2E-899F-F5DEBE5221A6__WS73099CC142F48755-5C83E7B1120018DE8C0-5629">
+<span class="notetitle">Note:</span> When you re-activate the automatic update of spaces, only those spaces will be updated that had no boundary objects added while the update was off. For example, if you added a dividing wall to a space while the automatic update was off, and then turn the automatic update on, the space will not be divided by the wall. Update the space manually to reflect the new geometry. </div>
+<ol class="ol" id="GUID-B799FADB-CD29-4F2E-899F-F5DEBE5221A6__WS1A9193826455F5FF104D7F510F19418261-6923">
+<li class="li" id="GUID-B799FADB-CD29-4F2E-899F-F5DEBE5221A6__LI_6C9C7D98DD1541CC8515F64F3FAFD52B">Click <img class="image" id="GUID-B799FADB-CD29-4F2E-899F-F5DEBE5221A6__IMAGE_9A5E3622D0DB45E9A9467B96FB85047D" width="41" height="40" src="../images/GUID-9FE72D1E-B311-477E-85A7-1F49A22632C6.png"> <span name="glyph_span" class="glyphArrow"><img src="../images/ac.menuaro.gif"></span> Options. </li>
+<li class="li" id="GUID-B799FADB-CD29-4F2E-899F-F5DEBE5221A6__LI_1EB00424165D410CAFFC6355B008A842">Click the AEC Object Settings tab. <div class="fig fignone" id="GUID-B799FADB-CD29-4F2E-899F-F5DEBE5221A6__WS73099CC142F487557CB2BAEA11CFFB8ADB7-697D"><img class="image" id="GUID-B799FADB-CD29-4F2E-899F-F5DEBE5221A6__IMAGE_AC0DC9C4F5CF49C9AD11B3E962C65829" width="652" height="561" src="../images/GUID-1FA11523-2B61-4CD2-8143-66D4FC77DE5F.png"></div>
+ </li>
+<li class="li" id="GUID-B799FADB-CD29-4F2E-899F-F5DEBE5221A6__LI_503D6CAE6C384092BAB04B189C128ECB">Under Space Settings, specify whether associative spaces will be updated automatically: 
+<div class="tablenoborder">
+<table cellpadding="4" cellspacing="0" summary="" id="GUID-B799FADB-CD29-4F2E-899F-F5DEBE5221A6__TABLE_DCC1284346BD4A5D956466D2A9CFC006" class="table" frame="border" border="1" rules="all">
+<thead class="thead" align="left">
+<tr class="row">
+<th class="entry" valign="top" width="50%">If you want to&hellip; </th>
+<th class="entry" valign="top" width="50%">Then&hellip; </th>
+</tr>
+</thead>
+<tbody class="tbody">
+<tr class="row">
+<td class="entry" valign="top" width="50%">update associative spaces automatically each time you make a change to the boundary objects </td>
+<td class="entry" valign="top" width="50%">select Automatically update associative spaces. </td>
+</tr>
+<tr class="row">
+<td class="entry" valign="top" width="50%">update associative spaces manually </td>
+<td class="entry" valign="top" width="50%">clear Automatically update associative spaces. </td>
+</tr>
+</tbody>
+</table>
+</div>
+ </li>
+<li class="li" id="GUID-B799FADB-CD29-4F2E-899F-F5DEBE5221A6__LI_7C8F28CD30F44BAE918302352801C9C0">Click OK. <div class="note tip" id="GUID-B799FADB-CD29-4F2E-899F-F5DEBE5221A6__WS73099CC142F48755-5C83E7B1120018DE8C0-5628">
+<span class="tiptitle">Tip:</span> The automatic update of spaces can also be turned on or off via the <strong class="ph b" id="GUID-B799FADB-CD29-4F2E-899F-F5DEBE5221A6__GUID-80A2D4F5-FA1E-455F-BCCA-BA7871200FF1">aecspaceautoupdate</strong> command. </div>
+ </li>
+</ol>
+</div>
+<div class="related-links">
+<div class="relinfo relconcepts">
+<h4 class="related">Related Concepts</h4>
+<ul>
+<li><a class="link" href="GUID-DFBC0D7E-BB6D-4D29-B311-4D058B79E1A5.htm" title="You can choose to either update only selected spaces, or all associative spaces in the drawing.">About Manual Update of Associative Spaces</a></li>
+<li><a class="link" href="GUID-F51C80FE-3B37-43E8-8A20-2850D07AFDD9.htm">About Updating Associative Spaces</a></li>
+<li><a class="link" href="GUID-3845A9D8-FC9E-4234-892B-CC5BB875770E.htm">About Generating Associative Spaces</a></li>
+<li><a class="link" href="GUID-D8C35179-9FCE-41F0-8971-00C78CE5D240.htm">FAQ: What are the reasons for the performance lag between space drawings in the current version?</a></li>
+<li><a class="link" href="GUID-D643C23C-7BF5-4AD9-AD05-D94DA58470D0.htm">FAQ: Why do I see display solution tip icons after activating automatic update of associative spaces?</a></li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

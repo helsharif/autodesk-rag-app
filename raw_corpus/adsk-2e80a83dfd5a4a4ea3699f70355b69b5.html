@@ -1,0 +1,208 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?xml version="1.0" encoding="UTF-8"?><html xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="topic-type" content="concept">
+<meta name="helpsystempath" content="https://help.autodesk.com/view/ACAD_E/2022/ENU/">
+<meta name="product" content="ACAD_E">
+<meta name="release" content="2022">
+<meta name="book" content="GeneralUser">
+<meta name="component" content="AutoCAD-Electrical">
+<meta name="created" content="20/10/2021">
+<meta name="user-comments" content="disable">
+<meta name="description" content="Defines new AutoCAD Electrical toolset component, terminal, and panel layout library symbols.">
+<meta name="indexterm" content="libraries">
+<meta name="indexterm" content="symbol types">
+<meta name="indexterm" content="child symbols">
+<meta name="indexterm" content="parent symbols">
+<meta name="indexterm" content="Block Editor">
+<meta name="contextid" content="SYMBOL_BUILDER_CONCEPT">
+<meta name="experiencelevel" content="novice">
+<meta name="audience" content="user">
+<meta name="modified" content="27/02/2020">
+<meta name="topicid" content="GUID-E35D7660-5257-42BE-9372-29167818D157">
+<meta name="language" content="ENU">
+<title>About Symbol Builder</title>
+
+	<link rel="stylesheet" type="text/css" href="/view/clientframework/client.css">
+	<script type="text/javascript" src="/view/clientframework/client.js"><!--filler--></script>
+</head>
+<body id="GUID-E35D7660-5257-42BE-9372-29167818D157">
+<div class="head">
+<div class="head-block">
+<div class="button-info"><span id="infoline">&nbsp;</span></div>
+<div class="ancestry">&nbsp;</div>
+<div class="head-text"><h1>About Symbol Builder</h1></div>
+</div>
+</div>
+
+<div class="body conbody">
+<p class="shortdesc">Defines new <span class="ph msgph prodname" id="GUID-195E44F7-7297-4C8B-B153-8BB1BF1283DA">AutoCAD Electrical toolset</span> component, terminal, and panel layout library symbols. 
+  </p>
+<p class="p" id="GUID-E35D7660-5257-42BE-9372-29167818D157__GUID-4BB3797F-4452-47F1-A833-6480BDC7D4B1">You can convert symbols or create custom components on the fly. Symbols created or converted using Symbol Builder are fully compatible with <span class="ph msgph prodname" id="GUID-E35D7660-5257-42BE-9372-29167818D157__GUID-195E44F7-7297-4C8B-B153-8BB1BF1283DA">AutoCAD Electrical toolset</span>. They break wires upon insertion, and appear in the bill of material and various component and wire connection reports. 
+	 </p>
+<p class="p" id="GUID-E35D7660-5257-42BE-9372-29167818D157__GUID-AC8A08DC-A892-47AA-BB9D-128B7D983568">You can exit the Symbol Builder command and re-enter it at any time. You can also exit the command and use regular AutoCAD commands to edit or finish the symbol you are creating. The AutoCAD Wblock command writes it to disk. Each time you re-enter the Symbol Builder tool, select objects from within the Select Symbol/Objects dialog box. Selecting the objects allows the tool to track what standard attributes and wire connection points you already inserted. 
+	 </p>
+<p class="p" id="GUID-E35D7660-5257-42BE-9372-29167818D157__GUID-5678A146-042B-4853-AA44-5D4F332C15D5">New symbols you create are inserted with the <span class="ph msgph prodname" id="GUID-E35D7660-5257-42BE-9372-29167818D157__GUID-195E44F7-7297-4C8B-B153-8BB1BF1283DA">AutoCAD Electrical toolset</span> Insert Component or Insert Panel Component commands. You can add your new symbol to the icon menu. You can also select it from the Type it or Browse options in the bottom left-hand corner of the icon menu. 
+	 </p>
+<div class="section" id="GUID-E35D7660-5257-42BE-9372-29167818D157__WS73099CC142F48755-5D5EE8C511587A9A96F6117">
+<h2 class="title sectiontitle">Symbol Types</h2> 
+		 
+		
+<div class="tablenoborder">
+<table cellpadding="4" cellspacing="0" summary="" id="GUID-E35D7660-5257-42BE-9372-29167818D157__WS73099CC142F48755-5D5EE8C511587A9A96F6118" class="table" width="100%" border="0">
+<tbody class="tbody">
+<tr class="row">
+<td class="entry" valign="top" width="30%"> 
+					 <p class="p" id="GUID-E35D7660-5257-42BE-9372-29167818D157__GUID-47DB7124-D61D-49AF-AC52-0DE33673F074"> 
+						<strong class="ph b" id="GUID-E35D7660-5257-42BE-9372-29167818D157__GUID-9A95EC69-D780-4C34-BF1A-D4E7188289EB">Schematic Parent</strong> 
+					 </p>
+ 
+				  </td>
+<td class="entry" valign="top" width="70%"> 
+					 <p class="p" id="GUID-E35D7660-5257-42BE-9372-29167818D157__GUID-C3C61D58-328B-4F02-A7FC-52611DB187B0">Schematic symbol is used as a stand-alone symbol or a parent component with related secondary contacts. Must have a TAG1, TAG, or split TAG1 attribute. 
+					 </p>
+ 
+				  </td>
+</tr>
+<tr class="row">
+<td class="entry" valign="top" width="30%"> 
+					 <p class="p" id="GUID-E35D7660-5257-42BE-9372-29167818D157__GUID-7F5704F3-2833-4F06-9AAD-0C2A9F3432B4"> 
+						<strong class="ph b" id="GUID-E35D7660-5257-42BE-9372-29167818D157__GUID-B4190860-4FC7-47C7-ABEF-F8F7731895F5">Schematic Child</strong> 
+					 </p>
+ 
+				  </td>
+<td class="entry" valign="top" width="70%"> 
+					 <p class="p" id="GUID-E35D7660-5257-42BE-9372-29167818D157__GUID-3D173048-FC6E-4F1E-93E2-C1986E88E796">Schematic secondary symbol that is related to a parent component. Must have a TAG2 attribute. 
+					 </p>
+ 
+				  </td>
+</tr>
+<tr class="row">
+<td class="entry" valign="top" width="30%"> 
+					 <p class="p" id="GUID-E35D7660-5257-42BE-9372-29167818D157__GUID-6A07F898-F77D-49AF-BBBA-E448B9DFD1F2"> 
+						<strong class="ph b" id="GUID-E35D7660-5257-42BE-9372-29167818D157__GUID-24B3871C-284C-443F-A611-5575824D0C50">Schematic Terminal</strong> 
+					 </p>
+ 
+				  </td>
+<td class="entry" valign="top" width="70%"> 
+					 <p class="p" id="GUID-E35D7660-5257-42BE-9372-29167818D157__GUID-EF3638A3-B6AE-4D01-9AC7-9A20744B62C5">Schematic terminal with terminal number. Must have a TERM01 attribute. 
+					 </p>
+ 
+				  </td>
+</tr>
+<tr class="row">
+<td class="entry" valign="top" width="30%"> 
+					 <p class="p" id="GUID-E35D7660-5257-42BE-9372-29167818D157__GUID-7CB8AB56-7AE0-4D22-A445-9AD64F97E7D0"> 
+						<strong class="ph b" id="GUID-E35D7660-5257-42BE-9372-29167818D157__GUID-37D3486B-229D-4DE0-8B9D-D555F9DD5947">Schematic Terminal</strong> 
+					 </p>
+ 
+				  </td>
+<td class="entry" valign="top" width="70%"> 
+					 <p class="p" id="GUID-E35D7660-5257-42BE-9372-29167818D157__GUID-19A98558-EB84-44F6-99C9-EB84FE36D265">Schematic terminal that follows the wire number rather than having a terminal number of its own. Must have a WIRENO attribute. 
+					 </p>
+ 
+				  </td>
+</tr>
+<tr class="row">
+<td class="entry" valign="top" width="30%"> 
+					 <p class="p" id="GUID-E35D7660-5257-42BE-9372-29167818D157__GUID-CDE7A09C-305F-4511-9800-0873D9462DA8"> 
+						<strong class="ph b" id="GUID-E35D7660-5257-42BE-9372-29167818D157__GUID-224E91B5-26A0-434A-8495-D6BA4314FD10">Panel Footprint</strong> 
+					 </p>
+ 
+				  </td>
+<td class="entry" valign="top" width="70%"> 
+					 <p class="p" id="GUID-E35D7660-5257-42BE-9372-29167818D157__GUID-A44830F2-6A25-4CEB-81D1-69C1AA1B4E6F">Panel symbol that is not used as a terminal or nameplate. Must have a P_TAG1 and FP attribute or xdata. 
+					 </p>
+ 
+				  </td>
+</tr>
+<tr class="row">
+<td class="entry" valign="top" width="30%"> 
+					 <p class="p" id="GUID-E35D7660-5257-42BE-9372-29167818D157__GUID-078BD970-A51F-4A68-A913-0A3FEF674860"> 
+						<strong class="ph b" id="GUID-E35D7660-5257-42BE-9372-29167818D157__GUID-08BDFC88-5262-4DB8-9221-0523AF399129">Panel Terminal</strong> 
+					 </p>
+ 
+				  </td>
+<td class="entry" valign="top" width="70%"> 
+					 <p class="p" id="GUID-E35D7660-5257-42BE-9372-29167818D157__GUID-77D2D1F7-5D11-4404-8D79-76BA1208F772">Panel terminal symbol. Must have a P_TAGSTRIP and FPT attribute or xdata. 
+					 </p>
+ 
+				  </td>
+</tr>
+<tr class="row">
+<td class="entry" valign="top" width="30%"> 
+					 <p class="p" id="GUID-E35D7660-5257-42BE-9372-29167818D157__GUID-1F883115-F2A5-4F61-B830-1959A2889D0E"> 
+						<strong class="ph b" id="GUID-E35D7660-5257-42BE-9372-29167818D157__GUID-D8360006-C301-4448-8AE6-C8BA5E2C9A5A">Panel Nameplate</strong> 
+					 </p>
+ 
+				  </td>
+<td class="entry" valign="top" width="70%"> 
+					 <p class="p" id="GUID-E35D7660-5257-42BE-9372-29167818D157__GUID-46A12607-C2B8-4C16-A249-EEB465B54A1D">Panel nameplate symbol. Must have a P_TAG1 and NP attribute or xdata. 
+					 </p>
+ 
+				  </td>
+</tr>
+</tbody>
+</table>
+</div>
+ 
+		<div class="note note" id="GUID-E35D7660-5257-42BE-9372-29167818D157__GUID-C12F20FC-2F3F-4AED-B2DE-B4EC09EAEB8D">
+<span class="notetitle">Note:</span> Panel symbols do not require any attributes but uses xdata for any missing attributes. This xdata is added when the symbol is inserted using the appropriate <span class="ph msgph prodname" id="GUID-E35D7660-5257-42BE-9372-29167818D157__GUID-195E44F7-7297-4C8B-B153-8BB1BF1283DA">AutoCAD Electrical toolset</span> panel insertion command. All xdata values have a VIA_WD_ prefix followed by the name of the attribute it takes the place of. For example, if a panel footprint does not have a P_TAG1 attribute it gets a VIA_WD_P_TAG1 xdata when inserted. 
+		</div>
+ 
+	 </div>
+<div class="section" id="GUID-E35D7660-5257-42BE-9372-29167818D157__WS73099CC142F48755-5D5EE8C511587A9A96F6116">
+<h2 class="title sectiontitle">Block Editor Environment</h2> 
+		 
+		<p class="p" id="GUID-E35D7660-5257-42BE-9372-29167818D157__GUID-DAA2AEA2-CE3A-4CEB-8537-03CCBBD39867">Once you make the initial selections, you enter to the Block Editor environment. Your initial selections can include symbol type, attribute template, existing objects, and insertion point. In addition to the Block Editor menus for adding and modifying the symbol graphics, a Symbol builder attribute editor is available for inserting and modifying the <span class="ph msgph prodname" id="GUID-E35D7660-5257-42BE-9372-29167818D157__GUID-195E44F7-7297-4C8B-B153-8BB1BF1283DA">AutoCAD Electrical toolset</span> attributes. 
+		</p>
+ 
+	 </div>
+<div class="section" id="GUID-E35D7660-5257-42BE-9372-29167818D157__WS73099CC142F48755-5D5EE8C511587A9A96F6115">
+<h2 class="title sectiontitle">Attribute Template</h2> 
+		 
+		<p class="p" id="GUID-E35D7660-5257-42BE-9372-29167818D157__GUID-38AC9F54-DD8A-4357-8560-EC44EC55DDF0"><span class="ph msgph prodname" id="GUID-E35D7660-5257-42BE-9372-29167818D157__GUID-195E44F7-7297-4C8B-B153-8BB1BF1283DA">AutoCAD Electrical toolset</span> expects certain attributes for each symbol type, schematic parent, schematic child, and so on. Symbol builder uses attribute templates to facilitate adding these attributes to your symbol. Attribute template drawings are AutoCAD drawings with <span class="ph msgph prodname" id="GUID-E35D7660-5257-42BE-9372-29167818D157__GUID-195E44F7-7297-4C8B-B153-8BB1BF1283DA">AutoCAD Electrical toolset</span> attributes. There are different attribute templates for different types of symbols and for different family codes. The supplied attribute templates are in the symbol library folders and all attribute template drawing names begin with &ldquo;AT_&rdquo;. 
+		</p>
+ 
+		<p class="p" id="GUID-E35D7660-5257-42BE-9372-29167818D157__GUID-43110796-B415-4A89-9360-74CAB39E3B04">When you select your symbol type, the associated attribute template is used to create a list of attributes. The attribute template can contain attributes defined as required and others as optional. The required attributes are expected on the specific symbol type you are building. Optional attributes are attributes that may not be necessary on this symbol type but are supported. For example rating or switch position attributes. You can insert the attributes individually as needed, or you can insert all the attributes from the template at one time. 
+		</p>
+ 
+		<p class="p" id="GUID-E35D7660-5257-42BE-9372-29167818D157__GUID-EF914F84-500F-415B-8A90-4FB027F136AF">Attribute templates follow the naming convention, AT_{symbol}_{type}. The {symbol} string is displayed in the Symbol list in the Select Symbol/Objects dialog box and the {type} string is displayed in the Type list. You can also map abbreviations for the {type} in the _FAMILY_DESCRIPTION table of the catalog database, default_cat.mdb. 
+		</p>
+ 
+		<div class="note note" id="GUID-E35D7660-5257-42BE-9372-29167818D157__GUID-893A11E1-0829-48AB-A92F-DA062835FF61">
+<span class="notetitle">Note:</span> The attribute templates do not carry wire connection attributes. Add wire connection attributes to your symbol as needed. You can create your own wire connection templates which are used when inserting wire connections. 
+		</div>
+ 
+	 </div>
+</div>
+<div class="related-links">
+<div class="relinfo relconcepts">
+<h4 class="related">Related Concepts</h4>
+<ul>
+<li><a class="link" href="GUID-426D2FCD-D82A-4FB7-A657-28D8B2EC336D.htm">About Symbol Naming Conventions</a></li>
+<li><a class="link" href="GUID-A42DA038-B1AB-4401-BD71-BC7A683D8DF7.htm">About Schematic Attributes</a></li>
+<li><a class="link" href="GUID-0DBE4927-82FE-4276-AD0B-7750560CFD1B.htm">About Panel Footprint Attributes and Xdata</a></li>
+</ul>
+</div>
+<div class="relinfo reltasks">
+<h4 class="related">Related Tasks</h4>
+<ul>
+<li><a class="link" href="GUID-FCE4AE61-DCE2-4F93-8F0D-98D7147D034D.htm" title="Create an AutoCAD Electrical toolset symbol using Symbol Builder.">To Work With Symbol Builder</a></li>
+<li><a class="link" href="GUID-315C837D-98F7-405B-92B4-3EC2981DA69E.htm">To Create a Schematic Parent Symbol (Example)</a></li>
+<li><a class="link" href="GUID-3AF4748A-E0FE-4E16-A020-5B49D20B1439.htm">To Create a Schematic Terminal Symbol (Example)</a></li>
+<li><a class="link" href="GUID-8682DFE3-FB92-4291-8570-9986E4F0894A.htm">To Create a One-Line Parent Symbol (Example)</a></li>
+<li><a class="link" href="GUID-A93389E5-F52B-4D86-8E39-2B4FE5DF5F4F.htm">To Create a Panel Footprint (Example)</a></li>
+<li><a class="link" href="GUID-B565EDB6-2221-4A63-A103-F0E6122003F4.htm">To Create a Symbol Builder Attribute Template</a></li>
+<li><a class="link" href="GUID-E2BD92FB-EA3D-446F-8AA6-C45E793B1F02.htm">To Create a Custom Wire Connection Style</a></li>
+</ul>
+</div>
+<div class="relinfo relref">
+<h4 class="related">Related Reference</h4>
+<ul><li><a class="link" href="GUID-EDB6CA55-99F2-4A3B-A9AB-F1EA08F6320F.htm">Symbol Builder Dialog Box Reference</a></li></ul>
+</div>
+</div>
+
+</body>
+</html>

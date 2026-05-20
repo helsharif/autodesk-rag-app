@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?xml version="1.0" encoding="UTF-8"?><html xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="topic-type" content="concept">
+<meta name="helpsystempath" content="https://help.autodesk.com/view/ACAD_E/2022/ENU/">
+<meta name="product" content="ACAD_E">
+<meta name="release" content="2022">
+<meta name="book" content="GeneralUser">
+<meta name="component" content="AutoCAD-Electrical">
+<meta name="created" content="20/10/2021">
+<meta name="user-comments" content="disable">
+<meta name="indexterm" content="group reports">
+<meta name="indexterm" content="SET files">
+<meta name="indexterm" content="RGF">
+<meta name="indexterm" content="format">
+<meta name="indexterm" content="tables">
+<meta name="indexterm" content="file output">
+<meta name="indexterm" content="table output">
+<meta name="indexterm" content="batch reports">
+<meta name="experiencelevel" content="novice">
+<meta name="audience" content="user">
+<meta name="modified" content="15/07/2015">
+<meta name="topicid" content="GUID-E0B8CB25-86A5-45A3-B130-3104ECBD8A95">
+<meta name="language" content="ENU">
+<title>About Automatic Reports</title>
+
+	<link rel="stylesheet" type="text/css" href="/view/clientframework/client.css">
+	<script type="text/javascript" src="/view/clientframework/client.js"><!--filler--></script>
+</head>
+<body id="GUID-E0B8CB25-86A5-45A3-B130-3104ECBD8A95">
+<div class="head">
+<div class="head-block">
+<div class="button-info"><span id="infoline">&nbsp;</span></div>
+<div class="ancestry">&nbsp;</div>
+<div class="head-text"><h1>About Automatic Reports</h1></div>
+</div>
+</div>
+
+<div class="body conbody">
+<p class="p" id="GUID-E0B8CB25-86A5-45A3-B130-3104ECBD8A95__GUID-8B54EECA-B303-4B51-83AE-9536732BBABA">The Automatic Reports tool allows you to run multiple reports at one time. You can save each report to a file, place each report as a table, or both.  <button class="uifinderbtn" data-id="ID_WDARG" title="Find"><img class="image" id="GUID-E0B8CB25-86A5-45A3-B130-3104ECBD8A95__IMAGE_FA8DD48DA8B74AD4818419C46519A110" src="../images/GUID-B161359F-E74C-4FCF-A740-4BC451386325.png"></button> <span class="uifinderbtn" data-id="ID_WDARG">Find</span> </p>
+<p class="p" id="GUID-E0B8CB25-86A5-45A3-B130-3104ECBD8A95__GUID-1AE76DCB-6D1F-4D30-A251-64B6C151BFA5"> The Report Generator dialog box is not displayed for each report and no user input is required once launched. Format files are required to use Automatic Reports. The format files must define file output, table output, or both since the reports are not displayed on the screen. Use Format File Setup to define file and table output in a format file.  <button class="uifinderbtn" data-id="ID_WDFFWIZ" title="Find"><img class="image" id="GUID-E0B8CB25-86A5-45A3-B130-3104ECBD8A95__IMAGE_A35682DC8A7644C980D98A3E7FED076E" src="../images/GUID-DFD0B391-C927-4B7D-A62E-8CBF8F8231C3.png"></button> <span class="uifinderbtn" data-id="ID_WDFFWIZ">Find</span> </p>
+<p class="p" id="GUID-E0B8CB25-86A5-45A3-B130-3104ECBD8A95__GUID-586CEC58-4DAC-4158-8806-7F01A609C64B">If you frequently run the same group of reports you can save the group as a report grouping. To set up a report grouping, add all your format files as if you are going to run the reports and save the report grouping. The information about the format files is saved in a Report Grouping file with an <em class="ph i" id="GUID-E0B8CB25-86A5-45A3-B130-3104ECBD8A95__GUID-E890692C-D274-4488-B7EB-8E615301CF0A">.rgf</em> extension. The next time you want to run that group of reports, open the <em class="ph i" id="GUID-E0B8CB25-86A5-45A3-B130-3104ECBD8A95__GUID-C8ADB805-DDA7-4130-9CEB-440D1589FC28">.rgf</em> saved previously. </p>
+<div class="fig fignone" id="GUID-E0B8CB25-86A5-45A3-B130-3104ECBD8A95__FIG_1A73FDE0291741E98FFF1339B8EA6B3D"><img class="image" id="GUID-E0B8CB25-86A5-45A3-B130-3104ECBD8A95__IMAGE_0FEDD03B3F08410DBC51BB6BBC8EAD55" src="../images/GUID-78CEE35E-32D9-4C02-9EB7-074373AB5071.png"></div>
+<div class="section" id="GUID-E0B8CB25-86A5-45A3-B130-3104ECBD8A95__SECTION_D59B1E16FB164C6387B32678C2F164EB">
+<h2 class="title sectiontitle">Table Output</h2>
+
+<p class="p" id="GUID-E0B8CB25-86A5-45A3-B130-3104ECBD8A95__GUID-06CF870A-BC49-421A-9351-B177C1A6365C">If any of your selected format files contain table output, the program checks for any existing tables for the selected report. If an existing table meets <em class="ph i" id="GUID-E0B8CB25-86A5-45A3-B130-3104ECBD8A95__GUID-6008870C-8F90-461F-8FEE-7625E9320C0E">all</em> of the following conditions it is considered a match to the current report and updates. </p>
+
+<ul class="ul" id="GUID-E0B8CB25-86A5-45A3-B130-3104ECBD8A95__UL_0728AA03522A4272AA419703F0F607CE">
+<li class="li" id="GUID-E0B8CB25-86A5-45A3-B130-3104ECBD8A95__LI_FF9B3E38A3754D32BF4B48920E338131">The existing table is for the same report, for example Schematic Bill of Material; Normal Tallied Format. </li>
+<li class="li" id="GUID-E0B8CB25-86A5-45A3-B130-3104ECBD8A95__LI_B212AD16B81E445E82439AA4BC013E1A">The existing table is for the same scope, for example Active Drawing or Project. </li>
+<li class="li" id="GUID-E0B8CB25-86A5-45A3-B130-3104ECBD8A95__LI_204E9EB433174A03B3594F85585B467F">The existing table used the same format file. If the table was inserted without specifying a format file, it is a match if you do not use a format file for the report you are running. </li>
+</ul>
+
+<p class="p" id="GUID-E0B8CB25-86A5-45A3-B130-3104ECBD8A95__GUID-B3EDFDB7-E350-4A14-946D-EA4596D144D9">If no matching tables are found, the report tables insert on new drawings. If you are running multiple reports with multiple table output, each report inserts new tables on its own drawings. You can specify the first drawing name and the template name for any new drawings. Subsequent drawing names generate automatically by incrementing the previous drawing's name. </p>
+
+<p class="p" id="GUID-E0B8CB25-86A5-45A3-B130-3104ECBD8A95__GUID-82D0E1C5-4ADE-459C-9670-399243C68A99">Define the insertion point in the format file, otherwise the table is inserted at <em class="ph i" id="GUID-E0B8CB25-86A5-45A3-B130-3104ECBD8A95__GUID-78883DD4-ACE4-4BAC-9B90-51CD6940C4F9">0,0</em> coordinate value by Automatic Reports. </p>
+
+<div class="fig fignone" id="GUID-E0B8CB25-86A5-45A3-B130-3104ECBD8A95__FIG_8914CEB1411648548FEEFF8053623420"><img class="image" id="GUID-E0B8CB25-86A5-45A3-B130-3104ECBD8A95__IMAGE_F3AC244957F84350BA5FCE8BB8D254B1" src="../images/GUID-B18E4338-2948-4CDC-9034-BC389E669497.png"></div>
+
+<p class="p" id="GUID-E0B8CB25-86A5-45A3-B130-3104ECBD8A95__GUID-9C3E1799-ECD5-4175-B920-143F93967814">Breaks in a report table can be defined either by using the Special Breaks option or by defining a specific number of rows per table section. If your table contains breaks and multiple table sections per drawing, define the distance between table sections in your format file. </p>
+
+<div class="fig fignone" id="GUID-E0B8CB25-86A5-45A3-B130-3104ECBD8A95__FIG_06470BB0D845482483F4B7700E2A0A4D"><img class="image" id="GUID-E0B8CB25-86A5-45A3-B130-3104ECBD8A95__IMAGE_46F211DE528D48499A0D6993C24BAF47" src="../images/GUID-7C851972-A625-4C5B-A47F-3A8D653AA8E6.png"></div>
+
+<p class="p" id="GUID-E0B8CB25-86A5-45A3-B130-3104ECBD8A95__GUID-513C2960-0797-45A6-A07D-4573EEAFFD92">The X-distance and Y-distance values define the distance from the end of one table section to the beginning of the next. It is used when multiple table sections for one report are on the same drawing. A blank value is interpreted as zero. </p>
+
+<div class="fig fignone" id="GUID-E0B8CB25-86A5-45A3-B130-3104ECBD8A95__FIG_D96FA3C29A264423B6D3ADB5868D91E9"><img class="image" id="GUID-E0B8CB25-86A5-45A3-B130-3104ECBD8A95__IMAGE_6217370FD8B84A55BA725A868BBB11A9" src="../images/GUID-17F89E99-7514-4C57-AA17-708573FE8B0B.png"></div>
+
+<div class="fig fignone" id="GUID-E0B8CB25-86A5-45A3-B130-3104ECBD8A95__FIG_B251B8AC67684876A826C1A4EC310EF0"><img class="image" id="GUID-E0B8CB25-86A5-45A3-B130-3104ECBD8A95__IMAGE_6EC635BC808A4F2F9EC357C494D16BCD" src="../images/GUID-D2BD0204-F3A1-445A-88E8-B8B4461B1AC6.png"></div>
+
+</div>
+</div>
+<div class="related-links">
+<div class="relinfo relconcepts">
+<h4 class="related">Related Concepts</h4>
+<ul>
+<li><a class="link" href="GUID-5439C8D3-FC33-4492-9773-B249FE736AAF.htm">About Reports</a></li>
+<li><a class="link" href="GUID-59967449-5BF1-47F9-8CEF-666D74E71425.htm">About Report Format Files</a></li>
+</ul>
+</div>
+<div class="relinfo reltasks">
+<h4 class="related">Related Tasks</h4>
+<ul>
+<li><a class="link" href="GUID-8FA6254B-4ED0-4C20-B182-4E526E20992E.htm">To Run Automatic Reports</a></li>
+<li><a class="link" href="GUID-DBD9942E-F244-41DB-B987-0D6FD802AE22.htm" title="A format (.set) file preformats reports.">To Work With Report Format Files</a></li>
+</ul>
+</div>
+<div class="relinfo relref">
+<h4 class="related">Related Reference</h4>
+<ul>
+<li><a class="link" href="GUID-90CC3903-7145-4611-B348-3667C43FFE35.htm" title="Generates any number of report output files, and places report tables on drawings. You select the reports and the associated format files (.set).">Automatic Report Selection Dialog Box</a></li>
+<li><a class="link" href="GUID-65DA310C-7B78-457F-A8E1-20CCCA1CD93C.htm" title="Creates or edits a format file (.set) for a report. A format file defines the fields to include in the report, the field order, table options, and more.">Report Format File Setup Dialog Box</a></li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

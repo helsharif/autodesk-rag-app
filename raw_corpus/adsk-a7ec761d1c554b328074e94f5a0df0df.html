@@ -1,0 +1,4028 @@
+<!DOCTYPE HTML>
+<html lang="en-US" data-env="prod" data-flex-incentives-enabled="disabled" data-new-buy-panel="disabled" data-minicart-promotion-enabled="disabled" data-odm-minicart-enabled="disabled" data-myab-ppg-enabled="disabled" data-subscription-ppg-enabled="enabled" data-promo-enabled="true" data-ppg-host="https://damassets.autodesk.net/ppg/prices">
+    <head>
+  <meta charset="UTF-8"/>
+  <meta name="headRosetta" content="true"/>
+  
+    
+<script type="text/javascript">/*
+ Copyright and licenses see https://www.dynatrace.com/company/trust-center/customers/reports/ */
+(function(){function Ha(){document.cookie="".concat("__dTCookie","=").concat("1",";SameSite=Lax");var La=-1!==document.cookie.indexOf("__dTCookie");document.cookie="".concat("__dTCookie","=").concat("1","; expires=Thu, 01-Jan-1970 00:00:01 GMT");return La}function Wa(){return void 0===Ya.dialogArguments?navigator.cookieEnabled||Ha():Ha()}function lb(){var La;if(Wa()){var Ra=Ya.dT_,Sa=null===Ra||void 0===Ra?void 0:Ra.platformPrefix;if(!Ra||Sa){var ra=null===Ra||void 0===Ra?void 0:Ra.minAgentVersion;
+ra&&"10277231024135831"<ra+""?window.console.log("[CookiePrefix/initConfig] Min agent version detected, and javascript agent is older - the javascript agent will not be initialized!"):(ra=(La={},La.cfg="domain=autodesk.com|reportUrl=/rb_dee0b18c-0606-403f-9634-093a46e2a879|app=f7a12a3012486f2d|agentId=69c99611b2b1ce88|featureHash=A27NVfhjqrux|vcv=2|xb=.*clicktale^bs..*|rdnt=1|uxrgce=1|bp=3|cuc=3xz3uffg|mel=100000|dpvc=1|md=mdcc1=bwindow.adsk_waf_s.Q.Integrate.s.Integrate.s.eVar83,mdcc2=cidentity-sso|ssv=4|lastModification=1702590743106|tp=500,50,0,1|agentUri=/ruxitagentjs_A27NVfhjqrux_10277231024135831.js|auto=1|domain=autodesk.com|rid=RID_1831524733|rpid=1178212461|app=f7a12a3012486f2d",La.iCE=Wa,La.platformCookieOffset=null===Ra||void 0===Ra?void 0:Ra.platformCookieOffset,La),Sa&&(ra.platformPrefix=Sa),Ya.dT_=ra)}}}this.dT_&&dT_.prm&&dT_.prm();var Ya="undefined"!==typeof window?window:self,
+Ta;Ya.dT_&&!Ya.dT_.platformPrefix?Ya.dT_.gCP||(null===(Ta=Ya.console)||void 0===Ta?void 0:Ta.log("Duplicate agent injection detected, turning off redundant initConfig."),Ya.dT_.di=1):lb()})();
+(function(){function Ha(f,r,w){if(w||2===arguments.length)for(var W=0,H=r.length,wa;W<H;W++)!wa&&W in r||(wa||(wa=Array.prototype.slice.call(r,0,W)),wa[W]=r[W]);return f.concat(wa||Array.prototype.slice.call(r))}function Wa(f){var r;return function(){var w,W;if(r)return r;var H=null===(W=null===(w=gh.dT_)||void 0===w?void 0:w.gCP)||void 0===W?void 0:W.call(w);return r=w=H?"".concat(H,"_").concat(f):f}}function lb(){var f=0;try{f=Math.round(Ka.performance.timeOrigin)}catch(r){}if(0>=f||isNaN(f)||!isFinite(f)){Yd.push({severity:"Warning",
+type:"ptoi",text:"performance.timeOrigin is invalid, with a value of [".concat(f,"]. Falling back to performance.timing.navigationStart")});f=0;try{f=Ka.performance.timing.navigationStart}catch(r){}f=0>=f||isNaN(f)||!isFinite(f)?Ke:f}v=f;u=Ya;return v}function Ya(){return v}function Ta(){return u()}function La(){var f,r=0;if(null===(f=null===Ka||void 0===Ka?void 0:Ka.performance)||void 0===f?0:f.now)try{r=Math.round(Ka.performance.now())}catch(w){}return 0>=r||isNaN(r)||!isFinite(r)?(new Date).getTime()-
+u():r}function Ra(){var f;return!(null===(f=Ka.console)||void 0===f||!f.log)}function Sa(f,r){if(!r)return"";var w=f+"=";f=r.indexOf(w);if(0>f)return"";for(;0<=f;){if(0===f||" "===r.charAt(f-1)||";"===r.charAt(f-1))return w=f+w.length,f=r.indexOf(";",f),0<=f?r.substring(w,f):r.substring(w);f=r.indexOf(w,f+w.length)}return""}function ra(f){return Sa(f,document.cookie)}function cb(){}function Za(f,r){void 0===r&&(r=document.cookie);return Sa(f,r)}function ob(){}function ab(f,r){return function(){f.apply(r,
+arguments)}}function na(f){if(!(this instanceof na))throw new TypeError("Promises must be constructed via new");if("function"!==typeof f)throw new TypeError("not a function");this.ma=0;this.kc=!1;this.ra=void 0;this.Fa=[];Fa(f,this)}function ta(f,r){for(;3===f.ma;)f=f.ra;0===f.ma?f.Fa.push(r):(f.kc=!0,na.Eb(function(){var w=1===f.ma?r.Ee:r.Fe;if(null===w)(1===f.ma?db:da)(r.promise,f.ra);else{try{var W=w(f.ra)}catch(H){da(r.promise,H);return}db(r.promise,W)}}))}function db(f,r){try{if(r===f)throw new TypeError("A promise cannot be resolved with itself.");
+if(r&&("object"===typeof r||"function"===typeof r)){var w=r.then;if(r instanceof na){f.ma=3;f.ra=r;R(f);return}if("function"===typeof w){Fa(ab(w,r),f);return}}f.ma=1;f.ra=r;R(f)}catch(W){da(f,W)}}function da(f,r){f.ma=2;f.ra=r;R(f)}function R(f){2===f.ma&&0===f.Fa.length&&na.Eb(function(){f.kc||na.qc(f.ra)});for(var r=0,w=f.Fa.length;r<w;r++)ta(f,f.Fa[r]);f.Fa=null}function ka(f,r,w){this.Ee="function"===typeof f?f:null;this.Fe="function"===typeof r?r:null;this.promise=w}function Fa(f,r){var w=!1;
+try{f(function(W){w||(w=!0,db(r,W))},function(W){w||(w=!0,da(r,W))})}catch(W){w||(w=!0,da(r,W))}}function Ua(){Q.Eb=function(f){if("string"===typeof f)throw Error("Promise polyfill called _immediateFn with string");f()};Q.qc=function(){};return Q}function Ga(f,r){var w;void 0===r&&(r=[]);if(!f||"object"!==typeof f&&"function"!==typeof f)return!1;var W="number"!==typeof r?r:[],H=null,wa=[];switch("number"===typeof r?r:5){case 1:H="Boolean";break;case 2:H="Number";break;case 3:H="String";break;case 4:H=
+"Function";break;case 5:H="Object";break;case 6:H="Date";wa.push("getTime");break;case 7:H="Error";wa.push("name","message");break;case 8:H="Element";break;case 9:H="HTMLElement";break;case 10:H="HTMLImageElement";wa.push("complete");break;case 11:H="PerformanceEntry";break;case 12:H="PerformanceTiming";break;case 13:H="PerformanceResourceTiming";break;case 14:H="PerformanceNavigationTiming";break;case 15:H="CSSRule";wa.push("cssText","parentStyleSheet");break;case 16:H="CSSStyleSheet";wa.push("cssRules",
+"insertRule");break;case 17:H="Request";wa.push("url");break;case 18:H="Response";wa.push("ok","status","statusText");break;case 19:H="Set";wa.push("add","entries","forEach");break;case 20:H="Map";wa.push("set","entries","forEach");break;case 21:H="Worker";wa.push("addEventListener","postMessage","terminate");break;case 22:H="XMLHttpRequest";wa.push("open","send","setRequestHeader");break;case 23:H="SVGScriptElement";wa.push("ownerSVGElement","type");break;case 24:H="HTMLMetaElement";wa.push("httpEquiv",
+"content","name");break;case 25:H="HTMLHeadElement";break;case 26:H="ArrayBuffer";break;case 27:H="ShadowRoot",wa.push("host","mode")}r=H;if(!r)return!1;wa=wa.length?wa:W;if(!W.length)try{if(Ka[r]&&f instanceof Ka[r]||Object.prototype.toString.call(f)==="[object "+r+"]")return!0;if(f&&f.nodeType&&1===f.nodeType){var Cb=null===(w=f.ownerDocument.defaultView)||void 0===w?void 0:w[r];if("function"===typeof Cb&&f instanceof Cb)return!0}}catch(Ob){}for(w=0;w<wa.length;w++)if(W=wa[w],"string"!==typeof W&&
+"number"!==typeof W&&"symbol"!==typeof W||!(W in f))return!1;return!!wa.length}function Z(f,r,w,W){"undefined"===typeof W&&(W=N(r,!0));"boolean"===typeof W&&(W=N(r,W));f===Ka?Ia&&Ia(r,w,W):pb&&Ga(f,21)?Wb.call(f,r,w,W):f.addEventListener&&(f===Ka.document||f===Ka.document.documentElement?hb.call(f,r,w,W):Ia.call(f,r,w,W));W=!1;for(var H=kc.length;0<=--H;){var wa=kc[H];if(wa.object===f&&wa.event===r&&wa.H===w){W=!0;break}}W||kc.push({object:f,event:r,H:w})}function aa(f,r,w,W){for(var H=kc.length;0<=
+--H;){var wa=kc[H];if(wa.object===f&&wa.event===r&&wa.H===w){kc.splice(H,1);break}}"undefined"===typeof W&&(W=N(r,!0));"boolean"===typeof W&&(W=N(r,W));f===Ka?ib&&ib(r,w,W):f.removeEventListener&&(f===Ka.document||f===Ka.document.documentElement?bb.call(f,r,w,W):ib.call(f,r,w,W))}function N(f,r){var w=!1;try{if(Ia&&-1<Fc.indexOf(f)){var W=Object.defineProperty({},"passive",{get:function(){w=!0}});Ia("test",cb,W)}}catch(H){}return w?{passive:!0,capture:r}:r}function ua(){for(var f=kc,r=f.length;0<=
+--r;){var w=f[r];aa(w.object,w.event,w.H)}kc=[]}function X(f){return"function"===typeof f&&/{\s+\[native code]/.test(Function.prototype.toString.call(f))}function O(f,r){for(var w,W=[],H=2;H<arguments.length;H++)W[H-2]=arguments[H];return void 0!==Function.prototype.bind&&X(Function.prototype.bind)?(w=Function.prototype.bind).call.apply(w,Ha([f,r],W,!1)):function(){for(var wa=0;wa<arguments.length;wa++);return f.apply(r,(W||[]).concat(Array.prototype.slice.call(arguments)||[]))}}function E(){if(Kc){var f=
+new Kc;if(Hc)for(var r=0,w=nc;r<w.length;r++){var W=w[r];void 0!==Hc[W]&&(f[W]=O(Hc[W],f))}return f}return new Ka.XMLHttpRequest}function L(){document.cookie="".concat("__dTCookie","=").concat("1",";SameSite=Lax");var f=-1!==document.cookie.indexOf("__dTCookie");document.cookie="".concat("__dTCookie","=").concat("1","; expires=Thu, 01-Jan-1970 00:00:01 GMT");return f}function T(){return void 0===Ka.dialogArguments?navigator.cookieEnabled||L():L()}function S(){return Ka.dT_}function oa(f){f=encodeURIComponent(f);
+var r=[];if(f)for(var w=0;w<f.length;w++){var W=f.charAt(w);r.push($e[W]||W)}return r.join("")}function qa(f){-1<f.indexOf("^")&&(f=f.split("^^").join("^"),f=f.split("^dq").join('"'),f=f.split("^rb").join(">"),f=f.split("^lb").join("<"),f=f.split("^p").join("|"),f=f.split("^e").join("="),f=f.split("^s").join(";"),f=f.split("^c").join(","),f=f.split("^bs").join("\\"));return f}function V(){return vd}function Ca(f){vd=f}function $a(f){var r=ea("rid"),w=ea("rpid");r&&(f.rid=r);w&&(f.rpid=w)}function Lb(f){if(f=
+f.xb){f=qa(f);try{vd=new RegExp(f,"i")}catch(r){}}else vd=void 0}function Jb(f){return"n"===f||"s"===f||"l"===f?";SameSite=".concat(ie[f]):""}function Pb(f,r,w){var W=1,H=0;do document.cookie=f+'=""'+(r?";domain="+r:"")+";path="+w.substring(0,W)+"; expires=Thu, 01 Jan 1970 00:00:01 GMT;",W=w.indexOf("/",W),H++;while(-1!==W&&5>H)}function yb(){var f=(document.domain||location.hostname||"").split(".");return 1>=f.length?[]:f}function tc(f,r){r="dTValidationCookieValue;path=/;domain=".concat(f).concat(Jb(r));
+document.cookie="".concat(je(),"=").concat(r);return Za(je())?(Pb(je(),f,"/"),!0):!1}function cc(){if(Ka.MobileAgent||Ka.dynatraceMobile){var f=ra("dtAdkSettings");return lc(f).privacyState||null}return null}function fb(f,r){return!Bb()||S().overloadPrevention&&!G()?null:f.apply(this,r||[])}function Bb(){var f=cc();return 2===f||1===f?!1:!P("coo")||P("cooO")||G()}function Fb(f,r){try{Ka.sessionStorage.setItem(f,r)}catch(w){}}function Hb(f,r){fb(Fb,[f,r])}function Ib(f){try{return Ka.sessionStorage.getItem(f)}catch(r){}return null}
+function rb(f){try{Ka.sessionStorage.removeItem(f)}catch(r){}}function ac(f){document.cookie=f+'="";path=/'+(ea("domain")?";domain="+ea("domain"):"")+"; expires=Thu, 01 Jan 1970 00:00:01 GMT;"}function zc(f,r,w,W){r||0===r?(r=(r+"").replace(/[;\n\r]/g,"_"),f=f+"="+r+";path=/"+(ea("domain")?";domain="+ea("domain"):""),w&&(f+=";expires="+w.toUTCString()),f+=Jb(ea("cssm")),W&&"https:"===location.protocol&&(f+=";Secure"),document.cookie=f):ac(f)}function wb(f,r,w,W){fb(zc,[f,r,w,W])}function Sb(f){return-1===
+f.indexOf("v_4")?!1:!0}function jc(f){f=Za(ed(),f);f||((f=Ib(ed()))&&Sb(f)?hc(f):f="");return Sb(f)?f:""}function hc(f){wb(ed(),f,void 0,P("ssc"))}function xb(f){return(f=f||jc())?lc(f):{sessionId:"",serverId:"",overloadState:0,appState:{}}}function n(f){return xb(f).serverId}function y(f){return xb(f).sessionId}function G(){return 0<=navigator.userAgent.indexOf("RuxitSynthetic")}function z(f){var r={},w=0;for(f=f.split("|");w<f.length;w++){var W=f[w].split("=");2===W.length&&(r[W[0]]=decodeURIComponent(W[1].replace(/\+/g,
+" ")))}return r}function ba(){var f=ea("csu");return(f.indexOf("dbg")===f.length-3?f.substring(0,f.length-3):f)+"_"+ea("app")+"_Store"}function F(f,r,w){void 0===r&&(r={});var W=0;for(f=f.split("|");W<f.length;W++){var H=f[W],wa=H,Cb=H.indexOf("=");-1===Cb?r[wa]="1":(wa=H.substring(0,Cb),r[wa]=H.substring(Cb+1,H.length))}!w&&(w=r,W=w.spc)&&(f=document.createElement("textarea"),f.innerHTML=W,w.spc=f.value);return r}function ha(f){var r;return null!==(r=Rb[f])&&void 0!==r?r:Sd[f]}function P(f){f=ha(f);
+return"false"===f||"0"===f?!1:!!f}function ja(f){var r=ha(f);r=parseInt(r);isNaN(r)&&(r=Sd[f]);return r}function ea(f){return(ha(f)||"")+""}function Aa(f,r){Rb[f]=r+""}function eb(f){return Rb=f}function sb(f){var r=Rb[f];r&&(Rb[f]=0>r.indexOf("#"+f.toUpperCase())?r:"")}function Ub(f){var r=f.agentUri;r&&-1<r.indexOf("_")&&(r=/([a-zA-Z]*)[0-9]{0,4}_([a-zA-Z_0-9]*)_[0-9]+/g.exec(r))&&r.length&&2<r.length&&(f.csu=r[1],f.featureHash=r[2])}function qc(f){var r=S().platformCookieOffset;if("number"===typeof r){a:{var w=
+ea("cssm");var W=yb();if(W.length)for(r=W.slice(r);r.length;){if(tc(r.join("."),w)){w=r.join(".");break a}r.shift()}w=""}w&&(f.domain=w)}else if(w=f.domain||"",r=(r=location.hostname)&&w?r===w||-1!==r.indexOf("."+w,r.length-("."+w).length):!0,!w||!r){f.domainOverride||(f.domainOriginal=f.domain||"",f.domainOverride="".concat(location.hostname,",").concat(w),delete f.domain);a:{W=ea("cssm");var H=yb().reverse();if(H.length)for(var wa=H[0],Cb=1;Cb<=H.length;Cb++){if(tc(wa,W)){W=wa;break a}var Ob=H[Cb];
+Ob&&(wa="".concat(Ob,".").concat(wa))}W=""}W&&(f.domain=W);r||Yd.push({type:"dpi",severity:"Warning",text:'Configured domain "'.concat(w,'" is invalid for current location "').concat(location.hostname,'". Agent will use "').concat(f.domain,'" instead.')})}}function rc(f,r){qc(f);var w=Rb.pVO;w&&(f.pVO=w);r||(f.bp=(f.bp||Sd.bp)+"")}function xc(){return Rb}function Zc(f){return Sd[f]===ha(f)}function lc(f){var r,w={},W={sessionId:"",serverId:"",overloadState:0,appState:w},H=f.split("_");if(2<H.length&&
+0===H.length%2){f=+H[1];if(isNaN(f)||3>f)return W;f={};for(var wa=2;wa<H.length;wa++){var Cb=H[wa];0===Cb.indexOf($f)?w[Cb.substring(6).toLowerCase()]=+H[wa+1]:f[Cb]=H[wa+1];wa++}f.sn?(H=f.sn,H=H.length===Td||12>=H.length?H:""):H="hybrid";W.sessionId=H;if(f.srv){a:{H=f.srv.replace("-2D","-");if(!isNaN(+H)&&(wa=parseInt(H),-99<=wa&&99>=wa))break a;H=""}W.serverId=H}H=+f.ol;1===H&&ub(G());0<=H&&2>=H&&(W.overloadState=H);f=+f.prv;isNaN(f)||(W.privacyState=1>f||4<f?1:f);f=null===(r=ea("app"))||void 0===
+r?void 0:r.toLowerCase();r=w[f];isNaN(r)||0!==r||ub(G())}return W}function ub(f){var r=S();f||(r.disabled=!0,r.overloadPrevention=!0)}function Ab(){return wc()}function ec(f,r){function w(){delete wd[wa];f.apply(this,arguments)}for(var W=[],H=2;H<arguments.length;H++)W[H-2]=arguments[H];if("apply"in ag){W.unshift(w,r);var wa=ag.apply(Ka,W)}else wa=ag(w,r);wd[wa]=!0;return wa}function qb(f){delete wd[f];"apply"in we?we.call(Ka,f):we(f)}function Mb(f){qd.push(f)}function Oc(f){for(var r=qd.length;r--;)if(qd[r]===
+f){qd.splice(r,1);break}}function Zd(){return qd}function Bd(f,r){return bg(f,r)}function Kd(f){cg(f)}function Bc(f,r){if(!ke||!Le)return"";f=new ke([f],{type:r});return Le(f)}function Sc(f,r){return Ld?new Ld(f,r):void 0}function Ba(f){"function"===typeof f&&Me.push(f)}function I(){return Me}function ma(){return Ke}function za(f){return function(){for(var r=[],w=0;w<arguments.length;w++)r[w]=arguments[w];if("number"!==typeof r[0]||!wd[r[0]])try{return f.apply(this,r)}catch(W){return f(r[0])}}}function xa(){return Yd}
+function ya(){u=lb;Ka.performance&&(wc=function(){return Math.round(u()+La())});if(!wc||isNaN(wc())||0>=wc()||!isFinite(wc()))wc=function(){return(new Date).getTime()}}function Ma(){fe&&(Ka.clearTimeout=we,Ka.clearInterval=cg,fe=!1)}function sa(f,r){try{Ka.localStorage.setItem(f,r)}catch(w){}}function Ea(f){try{Ka.localStorage.removeItem(f)}catch(r){}}function gb(f){try{return Ka.localStorage.getItem(f)}catch(r){}return null}function Va(f){Bb()?f():(le||(le=[]),le.push(f))}function jb(f){return fb(f)}
+function ic(){if(P("coo")&&!Bb()){for(var f=0,r=le;f<r.length;f++)ec(r[f],0);le=[];Aa("cooO",!0)}}function Zb(){if(P("coo")&&Bb()){Aa("cooO",!1);ac(ed());ac(qf());ac("dtSa");ac("dtAdk");ac($c());ac(fd());try{rb(Md()),rb(fd()),Ea(Md()),Ea(fd()),rb($c()),rb(ed()),Ea(ba()),Ea("dtAdk")}catch(f){}}}function Gb(f,r){void 0===r&&(r=document.cookie||"");return r.split(f+"=").length-1}function $b(f,r){var w=Gb(f,r);if(1<w){r=ea("domain")||Ka.location.hostname;var W=Ka.location.hostname,H=Ka.location.pathname,
+wa=0,Cb=0;ld.add(f);do{var Ob=W.substring(wa);if(Ob!==r||"/"!==H){Pb(f,Ob===r?"":Ob,H);var fc=Gb(f);fc<w&&(ld.add(Ob),w=fc)}wa=W.indexOf(".",wa)+1;Cb++}while(0!==wa&&10>Cb&&1<w);ea("domain")&&1<w&&Pb(f,"",H)}}function Tc(){var f=document.cookie;$b(qf(),f);$b(ed(),f);$b(fd(),f);f=ld.size;0<f&&f!==Gf&&(Gf=f,Yd.push({severity:"Error",type:"dcn",text:"Duplicate cookie name".concat(1!==f?"s":""," detected: ").concat(yc())}))}function sd(){ld=new Set;Tc();Mb(function(f,r,w,W){0===ld.size||r||(f.av(W,"dCN",
+yc()),ld.clear(),Gf=0)})}function yc(){var f=[];ld.forEach(function(r){f.push(r)});return f.join(",")}function md(f){var r=f,w=Math.pow(2,32);return function(){r=(1664525*r+1013904223)%w;return r/w}}function Cd(f,r){return isNaN(f)||isNaN(r)?Math.floor(33*af()):Math.floor(af()*(r-f+1))+f}function $d(f){if(!f)return"";var r=Ka.crypto||Ka.msCrypto;if(r&&-1===navigator.userAgent.indexOf("Googlebot"))r=r.getRandomValues(new Uint8Array(f));else{r=[];for(var w=0;w<f;w++)r.push(Cd(0,32))}f=[];for(w=0;w<
+r.length;w++){var W=Math.abs(r[w]%32);f.push(String.fromCharCode(W+(9>=W?48:55)))}return f.join("")}function Dd(){return bf}function Ed(f){void 0===f&&(f=!0);jg=f}function Lc(f,r,w){var W=ja("pcl");W=f.length-W;0<W&&f.splice(0,W);W=n(Za(ed(),w));for(var H=[],wa=W?"".concat(W,"$"):"",Cb=0;Cb<f.length;Cb++){var Ob=f[Cb];"-"!==Ob.D&&H.push("".concat(wa).concat(Ob.frameId,"h").concat(Ob.D))}f=H.join("p");f||(jg&&(Ic(!0,"a",w),Ed(!1)),f+="".concat(W,"$").concat(bf,"h-"));f+="v".concat(r||Xc(w));r=f+"e0";
+wb(qf(),r,void 0,P("ssc"))}function bd(f,r){void 0===r&&(r=document.cookie);var w=Za(qf(),r);r=[];if(w&&"-"!==w){var W="";var H=0;for(w=w.split("p");H<w.length;H++){var wa=w[H],Cb=W;void 0===Cb&&(Cb="");var Ob=wa.indexOf("h");var fc=wa.indexOf("v"),Mc=wa.indexOf("e");W=wa.substring(wa.indexOf("$")+1,Ob);Ob=-1!==fc?wa.substring(Ob+1,fc):wa.substring(Ob+1);Cb||-1===fc||(Cb=-1!==Mc?wa.substring(fc+1,Mc):wa.substring(fc+1));wa=null;(fc=f)||(fc=parseInt(W.split("_")[0]),Mc=wc()%Hf,Mc<fc&&(Mc+=Hf),fc=fc+
+9E5>Mc);fc&&(wa={frameId:W,D:"-"===Ob?"-":parseInt(Ob),visitId:""});W=Cb;(Ob=wa)&&r.push(Ob)}for(f=0;f<r.length;f++)r[f].visitId=W}return r}function Uc(f,r){var w=document.cookie;r=bd(r,w);for(var W=!1,H=0;H<r.length;H++){var wa=r[H];wa.frameId===bf&&(wa.D=f,W=!0)}W||r.push({frameId:bf,D:f,visitId:""});Lc(r,void 0,w)}function Xc(f){return Vc(f)||Ic(!0,"c",f)}function Vc(f){if(ia(f)<=wc())return Ic(!0,"t",f);var r=Ud(f);if(!r)return Ic(!0,"c",f);var w=hh.exec(r);if(!w||3!==w.length||32!==w[1].length||
+isNaN(parseInt(w[2])))return Ic(!0,"i",f);Hb(Md(),r);return r}function nd(f,r){var w=wc();r=ca(r).Fc;f&&(r=w);B(w+If+"|"+r);p()}function me(f){var r="t"+(wc()-ia(f)),w=Ud(f),W=Ne();xd(W,f);xe(W,r,w)}function Ud(f){var r,w;return null!==(w=null===(r=bd(!0,f)[0])||void 0===r?void 0:r.visitId)&&void 0!==w?w:Ib(Md())}function Ne(){var f=$d(Td);try{f=f.replace(/[0-9]/g,function(r){return String.fromCharCode(Math.floor(2.5*parseInt(r)+65))})}catch(r){throw Ga(r,7),r;}return f+"-0"}function xd(f,r){var w=
+bd(!1,r);Lc(w,f,r);Hb(Md(),f);nd(!0)}function td(f,r,w){return Ic(f,r,w)}function Ic(f,r,w){f&&(Jf=!0);f=Ud(w);w=Ne();xd(w);xe(w,r,f);return w}function xe(f,r,w){if(Ud(document.cookie))for(var W=0,H=Xg;W<H.length;W++)(0,H[W])(f,Jf,r,w)}function Fd(f){Xg.push(f)}function p(f){ye&&qb(ye);ye=ec(x,ia(f)-wc())}function x(){var f=document.cookie;if(ia(f)<=wc())return fb(me,[f]),!0;Va(p);return!1}function B(f){var r=O(wb,null,fd(),f,void 0,P("ssc"));r();var w=Za(fd());""!==w&&f!==w&&(Tc(),r(),f===Za(fd())||
+kg||(Yd.push({severity:"Error",type:"dcn",text:"Could not sanitize cookies"}),kg=!0));Hb(fd(),f)}function K(f,r){(r=Za(f,r))||(r=Ib(f)||"");return r}function M(){var f=Vc()||"";Hb(Md(),f);f=K(fd());B(f);Ea(Md());Ea(fd())}function ca(f){var r={Nd:0,Fc:0};if(f=K(fd(),f))try{var w=f.split("|");2===w.length&&(r.Nd=parseInt(w[0]),r.Fc=parseInt(w[1]))}catch(W){}return r}function ia(f){f=ca(f);return Math.min(f.Nd,f.Fc+dg)}function va(f){If=f}function Oa(){var f=Jf;Jf=!1;return f}function Ja(){x()||nd(!1)}
+function mb(){var f=Za($c());f&&45===(null===f||void 0===f?void 0:f.length)||(f=gb($c())||Ib($c()),45!==(null===f||void 0===f?void 0:f.length)&&(Yg=!0,f=wc()+"",f+=$d(45-f.length)));Kb(f);return f}function Kb(f){if(P("dpvc")||P("pVO"))Hb($c(),f);else{var r=new Date;var w=r.getMonth()+Math.min(24,Math.max(1,ja("rvcl")));r.setMonth(w);w=$c();fb(sa,[w,f])}wb($c(),f,r,P("ssc"))}function uc(){return Yg}function sc(f){var r=Za($c());ac($c());rb($c());Ea($c());Aa("pVO",!0);Kb(r);f&&fb(sa,["dt-pVO","1"]);
+M()}function oc(){Ea("dt-pVO");P("pVO")&&(Aa("pVO",!1),mb());rb($c());M()}function Jc(f,r,w,W,H){var wa=document.createElement("script");wa.setAttribute("src",f);r&&wa.setAttribute("defer","defer");w&&(wa.onload=w);W&&(wa.onerror=W);H&&wa.setAttribute("id",H);wa.setAttribute("crossorigin","anonymous");f=document.getElementsByTagName("script")[0];f.parentElement.insertBefore(wa,f)}function gd(f,r){return ih+"/"+(r||Kf)+"_"+f+"_"+(ja("buildNumber")||S().version)+".js"}function hd(){var f,r;try{null===
+(r=null===(f=Ka.MobileAgent)||void 0===f?void 0:f.incrementActionCount)||void 0===r?void 0:r.call(f)}catch(w){}}function Gd(){var f,r=Ka.dT_;Ka.dT_=(f={},f.di=0,f.version="10277231024135831",f.cfg=r?r.cfg:"",f.iCE=r?T:function(){return navigator.cookieEnabled},f.ica=1,f.disabled=!1,f.overloadPrevention=!1,f.gAST=ma,f.ww=Sc,f.stu=Bc,f.nw=Ab,f.st=ec,f.si=Bd,f.aBPSL=Mb,f.rBPSL=Oc,f.gBPSL=Zd,f.aBPSCC=Ba,f.gBPSCC=I,f.buildType="dynatrace",f.gSSV=Ib,f.sSSV=Hb,f.rSSV=rb,f.rvl=Ea,f.iVSC=Sb,f.p3SC=lc,f.dC=
+ac,f.sC=wb,f.esc=oa,f.gSId=n,f.gDtc=y,f.gSC=jc,f.sSC=hc,f.gC=ra,f.cRN=Cd,f.cRS=$d,f.cfgO=xc,f.pCfg=z,f.pCSAA=F,f.cFHFAU=Ub,f.sCD=rc,f.bcv=P,f.ncv=ja,f.scv=ea,f.stcv=Aa,f.rplC=eb,f.cLSCK=ba,f.gFId=Dd,f.gBAU=gd,f.iS=Jc,f.eWE=Va,f.oEIE=jb,f.oEIEWA=fb,f.eA=ic,f.dA=Zb,f.iNV=uc,f.gVID=mb,f.dPV=sc,f.ePV=oc,f.sVIdUP=Ed,f.sVTT=va,f.sVID=xd,f.rVID=Vc,f.gVI=Xc,f.gNVIdN=td,f.gARnVF=Oa,f.cAUV=Ja,f.uVT=nd,f.aNVL=Fd,f.gPC=bd,f.cPC=Uc,f.sPC=Lc,f.clB=Ma,f.ct=qb,f.aRI=$a,f.iXB=Lb,f.gXBR=V,f.sXBR=Ca,f.de=qa,f.cCL=Ra,
+f.iEC=hd,f.rnw=La,f.gto=Ta,f.ael=Z,f.rel=aa,f.sup=N,f.cuel=ua,f.iAEPOO=Bb,f.iSM=G,f.gxwp=E,f.iIO=Ga,f.prm=Ua,f.cI=Kd,f.gidi=xa,f.iDCV=Zc,f.gCF=Za,f.gPSMB=cc,f.lvl=gb,f.gCP=(null===r||void 0===r?0:r.platformPrefix)?function(){return r.platformPrefix||""}:void 0,f.platformCookieOffset=null===r||void 0===r?void 0:r.platformCookieOffset,f)}function ze(){if(P("nsfnv")){var f=Za(ed());if(-1===f.indexOf("".concat(eg,"-"))){var r=lc(f).serverId;f=f.replace("".concat(eg).concat(r),"".concat(eg).concat("".concat(-1*
+Cd(2,99)).replace("-","-2D")));hc(f)}}}function cf(){Va(function(){if(!y()){var f=-1*Cd(2,99),r=$d(Td);hc("v_4".concat(eg).concat("".concat(f).replace("-","-2D"),"_sn_").concat(r))}});Fd(ze)}function Ve(){for(var f=[],r=0;r<arguments.length;r++)f[r]=arguments[r];Ka.console.log.apply(Ka.console,f)}this.dT_&&dT_.prm&&dT_.prm();var ne;(function(f){f[f.ENABLED=0]="ENABLED";f[f.DISABLED=1]="DISABLED";f[f.DELAYED=2]="DELAYED"})(ne||(ne={}));var rf;(function(f){f[f.BLOCKED_BY_PERCENTAGE=0]="BLOCKED_BY_PERCENTAGE";
+f[f.ENABLED=1]="ENABLED";f[f.BLOCKED=2]="BLOCKED"})(rf||(rf={}));var We;(function(f){f[f.NONE=1]="NONE";f[f.OFF=2]="OFF";f[f.PERFORMANCE=3]="PERFORMANCE";f[f.BEHAVIOR=4]="BEHAVIOR"})(We||(We={}));var lg;(function(f){f.OVERLOAD_PREVENTION="ol";f.PRIVACY_STATE="prv";f.SERVER_ID="srv";f.SESSION_ID="sn"})(lg||(lg={}));var Ae;(function(f){f.DYNATRACE_MOBILE="dynatraceMobile";f.MOBILE_AGENT="MobileAgent"})(Ae||(Ae={}));var mg;(function(f){f[f.ARRAY=0]="ARRAY";f[f.BOOLEAN=1]="BOOLEAN";f[f.NUMBER=2]="NUMBER";
+f[f.STRING=3]="STRING";f[f.FUNCTION=4]="FUNCTION";f[f.OBJECT=5]="OBJECT";f[f.DATE=6]="DATE";f[f.ERROR=7]="ERROR";f[f.ELEMENT=8]="ELEMENT";f[f.HTML_ELEMENT=9]="HTML_ELEMENT";f[f.HTML_IMAGE_ELEMENT=10]="HTML_IMAGE_ELEMENT";f[f.PERFORMANCE_ENTRY=11]="PERFORMANCE_ENTRY";f[f.PERFORMANCE_TIMING=12]="PERFORMANCE_TIMING";f[f.PERFORMANCE_RESOURCE_TIMING=13]="PERFORMANCE_RESOURCE_TIMING";f[f.PERFORMANCE_NAVIGATION_TIMING=14]="PERFORMANCE_NAVIGATION_TIMING";f[f.CSS_RULE=15]="CSS_RULE";f[f.CSS_STYLE_SHEET=16]=
+"CSS_STYLE_SHEET";f[f.REQUEST=17]="REQUEST";f[f.RESPONSE=18]="RESPONSE";f[f.SET=19]="SET";f[f.MAP=20]="MAP";f[f.WORKER=21]="WORKER";f[f.XML_HTTP_REQUEST=22]="XML_HTTP_REQUEST";f[f.SVG_SCRIPT_ELEMENT=23]="SVG_SCRIPT_ELEMENT";f[f.HTML_META_ELEMENT=24]="HTML_META_ELEMENT";f[f.HTML_HEAD_ELEMENT=25]="HTML_HEAD_ELEMENT";f[f.ARRAY_BUFFER=26]="ARRAY_BUFFER";f[f.SHADOW_ROOT=27]="SHADOW_ROOT"})(mg||(mg={}));var gh=window,qf=Wa("dtPC"),ed=Wa("dtCookie"),fd=Wa("rxvt"),$c=Wa("rxVisitor"),je=Wa("dTValidationCookie"),
+Ka="undefined"!==typeof window?window:self,v,u,A=setTimeout;na.prototype["catch"]=function(f){return this.then(null,f)};na.prototype.then=function(f,r){var w=new this.constructor(ob);ta(this,new ka(f,r,w));return w};na.prototype["finally"]=function(f){var r=this.constructor;return this.then(function(w){return r.resolve(f()).then(function(){return w})},function(w){return r.resolve(f()).then(function(){return r.reject(w)})})};na.all=function(f){return new na(function(r,w){function W(Ob,fc){try{if(fc&&
+("object"===typeof fc||"function"===typeof fc)){var Mc=fc.then;if("function"===typeof Mc){Mc.call(fc,function(Be){W(Ob,Be)},w);return}}H[Ob]=fc;0===--wa&&r(H)}catch(Be){w(Be)}}if(!f||"undefined"===typeof f.length)return w(new TypeError("Promise.all accepts an array"));var H=Array.prototype.slice.call(f);if(0===H.length)return r([]);for(var wa=H.length,Cb=0;Cb<H.length;Cb++)W(Cb,H[Cb])})};na.allSettled=function(f){return new this(function(r,w){function W(Cb,Ob){if(Ob&&("object"===typeof Ob||"function"===
+typeof Ob)){var fc=Ob.then;if("function"===typeof fc){fc.call(Ob,function(Mc){W(Cb,Mc)},function(Mc){H[Cb]={status:"rejected",reason:Mc};0===--wa&&r(H)});return}}H[Cb]={status:"fulfilled",value:Ob};0===--wa&&r(H)}if(!f||"undefined"===typeof f.length)return w(new TypeError(typeof f+" "+f+" is not iterable(cannot read property Symbol(Symbol.iterator))"));var H=Array.prototype.slice.call(f);if(0===H.length)return r([]);var wa=H.length;for(w=0;w<H.length;w++)W(w,H[w])})};na.resolve=function(f){return f&&
+"object"===typeof f&&f.constructor===na?f:new na(function(r){r(f)})};na.reject=function(f){return new na(function(r,w){w(f)})};na.race=function(f){return new na(function(r,w){if(!f||"undefined"===typeof f.length)return w(new TypeError("Promise.race accepts an array"));for(var W=0,H=f.length;W<H;W++)na.resolve(f[W]).then(r,w)})};na.Eb="function"===typeof setImmediate&&function(f){setImmediate(f)}||function(f){A(f,0)};na.qc=function(f){"undefined"!==typeof console&&console&&console.warn("Possible Unhandled Promise Rejection:",
+f)};var Q=na,pa;(function(f){f.ANCHOR="A";f.BUTTON="BUTTON";f.FORM="FORM";f.I_FRAME="IFRAME";f.IMAGE="IMG";f.INPUT="INPUT";f.LABEL="LABEL";f.LINK="LINK";f.OPTION="OPTION";f.SCRIPT="SCRIPT";f.SELECT="SELECT";f.STYLE="STYLE";f.TEXT_AREA="TEXTAREA"})(pa||(pa={}));var Ia,ib,hb,bb,pb=Ka.Worker,Wb=pb&&pb.prototype.addEventListener,kc=[],Fc=["touchstart","touchend","scroll"],Kc,nc="abort getAllResponseHeaders getResponseHeader open overrideMimeType send setRequestHeader".split(" "),Hc,$e={"!":"%21","~":"%7E",
+"*":"%2A","(":"%28",")":"%29","'":"%27",$:"%24",";":"%3B",",":"%2C"},vd,Cc,ie=(Cc={},Cc.l="Lax",Cc.s="Strict",Cc.n="None",Cc),Sd,Td=32,ud;(function(f){f.LAX="l";f.NONE="n";f.NOT_SET="0";f.STRICT="s"})(ud||(ud={}));var Md=Wa("rxvisitid"),Rb={},$f="app-3A",Ld=Ka.Worker,ke=Ka.Blob,Le=Ka.URL&&Ka.URL.createObjectURL,we,cg,ag,bg,fe=!1,qd,Me=[],Yd=[],Ke,sf,wd={},wc,le=[],ld,Gf=0,af,Kh,bf,Hf=6E8,jg=!1,hh=/([A-Z]+)-([0-9]+)/,Xg=[],If,dg,Jf=!1,ye,kg=!1,Yg=!1,ng,ih,Kf,eg="".concat("_","srv").concat("_");(function(){var f,
+r,w;if(!(11>document.documentMode)){var W=0>(null===(r=navigator.userAgent)||void 0===r?void 0:r.indexOf("RuxitSynthetic"));if(!Ka.dT_||!Ka.dT_.cfg||"string"!==typeof Ka.dT_.cfg||"initialized"in Ka.dT_&&Ka.dT_.initialized)(null===(w=Ka.dT_)||void 0===w?0:w.gCP)?Ve("[CookiePrefix/initCode] initCode with cookie prefix already initialized, not initializing initCode!"):Ve("InitConfig not found or agent already initialized! This is an injection issue."),Ka.dT_&&(Ka.dT_.di=3);else if(W)try{Gd();var H;Sd=
+(H={},H.ade="",H.aew=!0,H.apn="",H.agentLocation="",H.agentUri="",H.app="",H.async=!1,H.ase=!1,H.auto=!1,H.bp=3,H.bs=!1,H.buildNumber=0,H.csprv=!0,H.cepl=16E3,H.cls=!0,H.ccNcss=!1,H.coo=!1,H.cooO=!1,H.cssm="0",H.cwt="",H.cwtUrl="27pd8x1igg",H.cors=!1,H.csu="",H.cuc="",H.cce=!1,H.cux=!1,H.dataDtConfig="",H.debugName="",H.dvl=500,H.dASXH=!1,H.disableCookieManager=!1,H.dKAH=!1,H.disableLogging=!1,H.dmo=!1,H.doel=!1,H.dpch=!1,H.dpvc=!1,H.disableXhrFailures=!1,H.domain="",H.domainOverride="",H.domainOriginal=
+"",H.doNotDetect="",H.ds=!0,H.dsndb=!1,H.dsa=!1,H.dsss=!1,H.dssv=!0,H.earxa=!0,H.exp=!1,H.eni=!0,H.expw=!1,H.instr="",H.evl="",H.fa=!1,H.fvdi=!1,H.featureHash="",H.hvt=216E5,H.imm=!1,H.ign="",H.iub="",H.iqvn=!1,H.initializedModules="",H.lastModification=0,H.lupr=!0,H.lab=!1,H.legacy=!1,H.lt=!0,H.mb="",H.md="",H.mdp="",H.mdl="",H.mcepsl=100,H.mdn=5E3,H.mhl=4E3,H.mpl=1024,H.mmds=2E4,H.msl=3E4,H.bismepl=2E3,H.mel=200,H.mepp=10,H.moa=30,H.mrt=3,H.ntd=!1,H.nsfnv=!1,H.ncw=!1,H.oat=180,H.ote=!1,H.owasp=
+!1,H.pcl=20,H.pt=!0,H.perfbv=1,H.prfSmpl=0,H.pVO=!1,H.peti=!1,H.raxeh=!0,H.rdnt=0,H.nosr=!0,H.reportUrl="dynaTraceMonitor",H.rid="",H.ridPath="",H.rpid="",H.rcdec=12096E5,H.rtl=0,H.rtp=2,H.rtt=1E3,H.rtu=200,H.rvcl=24,H.sl=100,H.ssc=!1,H.svNB=!1,H.srad=!0,H.srbbv=1,H.srbw=!0,H.srdinitrec=!0,H.srmr=100,H.srms="1,1,,,",H.srsr=1E5,H.srtbv=3,H.srtd=1,H.srtr=500,H.srvr="",H.srvi=0,H.srwo=!1,H.srre="",H.srxcss=!0,H.srxicss=!0,H.srficros=!1,H.srif=!1,H.srmrc=!1,H.srsdom=!0,H.srcss=!0,H.srmcrl=1,H.srmcrv=
+10,H.st=3E3,H.spc="",H.syntheticConfig=!1,H.tal=0,H.tt=100,H.tvc=3E3,H.uxdce=!1,H.uxdcw=1500,H.uxrgce=!0,H.uxrgcm="100,25,300,3;100,25,300,3",H.uam=!1,H.uana="data-dtname,data-dtName",H.uanpi=0,H.pui=!1,H.usrvd=!0,H.vrt=!1,H.vcfi=!0,H.vcsb=!1,H.vcit=1E3,H.vct=50,H.vcx=50,H.vscl=0,H.vncm=1,H.xb="",H.chw="",H.xt=0,H.xhb="",H);var wa;Ua();var Cb;Kc=Ka.XMLHttpRequest;var Ob=null===(Cb=Ka.XMLHttpRequest)||void 0===Cb?void 0:Cb.prototype;if(Ob)for(Hc={},r=0,w=nc;r<w.length;r++){var fc=w[r];void 0!==Ob[fc]&&
+(Hc[fc]=Ob[fc])}Ia=Ka.addEventListener;ib=Ka.removeEventListener;hb=Ka.document.addEventListener;bb=Ka.document.removeEventListener;ag=Ka.setTimeout;bg=Ka.setInterval;fe||(we=Ka.clearTimeout,cg=Ka.clearInterval);var Mc=T?T():navigator.cookieEnabled,Be=1===lc(Za("dtAdkSettings")||(null===(wa=sf)||void 0===wa?void 0:wa.getItem("dtAdkSettings"))||"").overloadState;Ra();if(!(!Mc||Be?0:"complete"!==document.readyState||Ka.performance&&Ka.performance.timing))throw Error("Error during initCode initialization");
+try{sf=Ka.localStorage}catch(jh){}Yd=[];ya();Ke=wc();qd=[];wd={};fe||(Ka.clearTimeout=za(we),Ka.clearInterval=za(cg),fe=!0);var oe=Math.random(),df=Math.random();Kh=0!==oe&&0!==df&&oe!==df;if(-1!==navigator.userAgent.indexOf("Googlebot")){var Ce=performance.getEntriesByType("navigation")[0];wa=1;if(Ce){for(var Oe in Ce){var fg=Ce[Oe];"number"===typeof fg&&fg&&(wa=1===wa?fg:wa+fg)}var gg=Math.floor(1E4*wa)}else gg=wa;af=md(gg)}else Kh?af=Math.random:af=md(wc());bf=Ke%Hf+"_"+parseInt(Cd(0,1E3)+"");
+a:{var ae,Pe,ad=S().cfg;Rb={reportUrl:"dynaTraceMonitor",initializedModules:"",csu:"dtagent",dataDtConfig:"string"===typeof ad?ad:""};S().cfg=Rb;Rb.csu="ruxitagentjs";var Nd=Rb.dataDtConfig;Nd&&-1===Nd.indexOf("#CONFIGSTRING")&&(F(Nd,Rb),sb("domain"),sb("auto"),sb("app"),Ub(Rb));var Od=document.getElementsByTagName("script"),De=Od.length,Pd=-1===(Rb.dataDtConfig||"").indexOf("#CONFIGSTRING")?Rb:null;if(0<De)for(gg=0;gg<De;gg++)b:{Ce=void 0;var Zg=Od[gg];Oe=Pd;if(Zg.attributes){fg=Oe;var kh=Zg.src,
+lh=Zg.attributes.getNamedItem("data-dtconfig");if(lh){ad=void 0;Nd=kh;var Ig=lh.value;wa={};Rb.legacy="1";Ob=/([a-zA-Z]*)_([a-zA-Z_0-9]*)_([0-9]+)/g;Nd&&(ad=Ob.exec(Nd),null===ad||void 0===ad?0:ad.length)&&(wa.csu=ad[1],wa.featureHash=ad[2],wa.agentLocation=Nd.substring(0,Nd.indexOf(ad[1])-1),wa.buildNumber=ad[3]);if(Ig){F(Ig,wa,!0);var og=wa.agentUri;!Nd&&og&&(ad=Ob.exec(og),null===ad||void 0===ad?0:ad.length)&&(wa.csu=ad[1])}qc(wa);Ce=wa;if(!Oe)fg=Ce;else if(!Ce.syntheticConfig){Pd=Ce;break b}}Pd=
+fg}else Pd=Oe}if(Pd)for(var Lf in Pd)Object.prototype.hasOwnProperty.call(Pd,Lf)&&(Od=Lf,Rb[Od]=Pd[Od]);var Mf=ba();try{var pe=(Pd=sf)&&Pd.getItem(Mf);if(pe){var Qd=z(pe),tf=F(Qd.config||""),mh=Rb.lastModification||"0",nh=parseInt((tf.lastModification||Qd.lastModification||"0").substring(0,13)),pg="string"===typeof mh?parseInt(mh.substring(0,13)):mh;if(!mh||nh>=pg)if(tf.csu=Qd.name||ea("csu"),tf.featureHash=Qd.featureHash||ea("featureHash"),tf.agentUri&&Ub(tf),rc(tf,!0),Lb(tf),$a(tf),nh>(+Rb.lastModification||
+0)){var Jg=P("auto"),Nf=P("legacy");Rb=eb(tf);Rb.auto=Jg?"1":"0";Rb.legacy=Nf?"1":"0"}}}catch(jh){}rc(Rb);try{var Ee=Rb.ign;if(Ee&&(new RegExp(Ee)).test(Ka.location.href)){document.dT_=Ka.dT_=void 0;var Of=!1;break a}}catch(jh){}if(G()){var uf=navigator.userAgent,Vd=uf.lastIndexOf("RuxitSynthetic");if(-1===Vd)var Pf={};else{var Qe=uf.substring(Vd+14);if(-1===Qe.indexOf(" c"))Pf={};else{Mf={};pe=0;for(var qg=Qe.split(" ");pe<qg.length;pe++){var Kg=qg[pe];if("c"===Kg.charAt(0)){var Lg=Kg.substring(1),
+Lh=Lg.indexOf("="),$g=Lg.substring(0,Lh),Mh=Lg.substring(Lh+1);$g&&Mh&&(Mf[$g]=Mh)}}Pf=Mf}}Qe=void 0;for(Qe in Pf)Object.prototype.hasOwnProperty.call(Pf,Qe)&&Pf[Qe]&&(Rb[Qe]=Pf[Qe]);eb(Rb)}var vf=null===(Pe=(ae=S()).gCP)||void 0===Pe?void 0:Pe.call(ae),oh=ea("cuc");if(vf&&vf!==oh)throw Error("platformPrefix and cuc do not match!");Of=!0}if(!Of)throw Error("Error during config initialization");sd();ng=S().disabled;var be;if(!(be=ea("agentLocation")))a:{var Nh=ea("agentUri");if(Nh||document.currentScript){var wf=
+Nh||document.currentScript.src;if(wf){var ph=-1===wf.indexOf("_complete")?1:2,rg=wf.lastIndexOf("/");for(Of=0;Of<ph&&-1!==rg;Of++)wf=wf.substring(0,rg),rg=wf.lastIndexOf("/");be=wf;break a}}var Qf=location.pathname;be=Qf.substring(0,Qf.lastIndexOf("/"))}ih=be;Kf=ea("csu")||"ruxitagentjs";"true"===Za("dtUseDebugAgent")&&0>Kf.indexOf("dbg")&&(Kf=ea("debugName")||Kf+"dbg");if(!P("auto")&&!P("legacy")&&!ng){var qe=ea("agentUri")||gd(ea("featureHash"));if(P("async")||"complete"===document.readyState)Jc(qe,
+P("async"),void 0,void 0,"dtjsagent");else{var Ii="".concat("dtjsagent","dw");document.write('<script id="'.concat(Ii,'" type="text/javascript" src="').concat(qe,'">\x3c/script>'));document.getElementById(Ii)||Jc(qe,P("async"),void 0,void 0,"dtjsagent")}}Za(ed())&&Aa("cooO",!0);cf();Aa("pVO",!!gb("dt-pVO"));Va(mb);If=18E5;dg=ja("hvt")||216E5;fb(Uc,[1])}catch(jh){"platformPrefix and cuc do not match!"===jh.message?(be=Ka.dT_,Ka.dT_=(f={},f.minAgentVersion=be.minAgentVersion,f.platformPrefix=be.platformPrefix,
+f.platformCookieOffset=be.platformCookieOffset,f),Ve("[CookiePrefix/initCode] cuc and platformPrefix do not match, disabling agent!")):(delete Ka.dT_,Ve("JsAgent initCode initialization failed!",jh))}}})()})();
+</script><script type="text/javascript" src="/ruxitagentjs_A27NVfhjqrux_10277231024135831.js" defer="defer"></script><link rel="stylesheet" href="https://static-dc.autodesk.net/etc.clientlibs/v605.20231207.1619/dotcom/clientlibs/clientlib-rosetta.min.css" type="text/css">
+
+
+
+  <title>Privacy Statement English</title>
+
+  
+  <link rel="preconnect" href="https://swc.autodesk.com"/>
+  <link rel="preconnect" href="https://damassets.autodesk.net"/>
+  <link rel="preconnect" href="https://static-dc.autodesk.net"/>
+  <link rel="preconnect" href="https://tags.tiqcdn.com"/>
+  <link rel="dns-prefetch" href="https://app.digital-help-prd.autodesk.com"/>
+
+  <link rel="preload" href="https://swc.autodesk.com/pharmacopeia/fonts/ArtifaktLegend/v1.0/WOFF2/Artifakt%20Legend%20Extra%20Bold.woff2" as="font" type="font/woff2" crossorigin/>
+
+  
+  
+    
+    
+  <script>
+    LUX=(function(){var a=("undefined"!==typeof(LUX)&&"undefined"!==typeof(LUX.gaMarks)?LUX.gaMarks:[]);var d=("undefined"!==typeof(LUX)&&"undefined"!==typeof(LUX.gaMeasures)?LUX.gaMeasures:[]);var j="LUX_start";var k=window.performance;var l=("undefined"!==typeof(LUX)&&LUX.ns?LUX.ns:(Date.now?Date.now():+(new Date())));if(k&&k.timing&&k.timing.navigationStart){l=k.timing.navigationStart}function f(){if(k&&k.now){return k.now()}var o=Date.now?Date.now():+(new Date());return o-l}function b(n){if(k){if(k.mark){return k.mark(n)}else{if(k.webkitMark){return k.webkitMark(n)}}}a.push({name:n,entryType:"mark",startTime:f(),duration:0});return}function m(p,t,n){if("undefined"===typeof(t)&&h(j)){t=j}if(k){if(k.measure){if(t){if(n){return k.measure(p,t,n)}else{return k.measure(p,t)}}else{return k.measure(p)}}else{if(k.webkitMeasure){return k.webkitMeasure(p,t,n)}}}var r=0,o=f();if(t){var s=h(t);if(s){r=s.startTime}else{if(k&&k.timing&&k.timing[t]){r=k.timing[t]-k.timing.navigationStart}else{return}}}if(n){var q=h(n);if(q){o=q.startTime}else{if(k&&k.timing&&k.timing[n]){o=k.timing[n]-k.timing.navigationStart}else{return}}}d.push({name:p,entryType:"measure",startTime:r,duration:(o-r)});return}function h(n){return c(n,g())}function c(p,o){for(i=o.length-1;i>=0;i--){var n=o[i];if(p===n.name){return n}}return undefined}function g(){if(k){if(k.getEntriesByType){return k.getEntriesByType("mark")}else{if(k.webkitGetEntriesByType){return k.webkitGetEntriesByType("mark")}}}return a}return{mark:b,measure:m,gaMarks:a,gaMeasures:d}})();LUX.ns=(Date.now?Date.now():+(new Date()));LUX.ac=[];LUX.cmd=function(a){LUX.ac.push(a)};LUX.init=function(){LUX.cmd(["init"])};LUX.send=function(){LUX.cmd(["send"])};LUX.addData=function(a,b){LUX.cmd(["addData",a,b])};LUX_ae=[];window.addEventListener("error",function(a){LUX_ae.push(a)});LUX_al=[];if("function"===typeof(PerformanceObserver)&&"function"===typeof(PerformanceLongTaskTiming)){var LongTaskObserver=new PerformanceObserver(function(c){var b=c.getEntries();for(var a=0;a<b.length;a++){var d=b[a];LUX_al.push(d)}});try{LongTaskObserver.observe({type:["longtask"]})}catch(e){}};
+  </script>
+  <script src="https://cdn.speedcurve.com/js/lux.js?id=363755304" async defer crossorigin="anonymous"></script>
+
+
+  
+
+  
+  <link rel="canonical" href="https://www.autodesk.com/company/legal-notices-trademarks/privacy-statement"/>
+  
+    <link rel="alternate" hreflang="en-us" href="https://www.autodesk.com/company/legal-notices-trademarks/privacy-statement"/>
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+  
+    <link rel="alternate" hreflang="x-default" href="https://www.autodesk.com/company/legal-notices-trademarks/privacy-statement"/>
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+  
+    
+  
+    <meta name="alternate" data-locale="fr-ca" data-link="https://www.autodesk.com/ca-fr"/>
+  
+    <meta name="alternate" data-locale="en-ca" data-link="https://www.autodesk.com/ca-en"/>
+  
+    <meta name="alternate" data-locale="es-mx" data-link="https://www.autodesk.mx"/>
+  
+    <meta name="alternate" data-locale="en-au" data-link="https://www.autodesk.com.au"/>
+  
+    <meta name="alternate" data-locale="zh-cn" data-link="https://www.autodesk.com.cn"/>
+  
+    <meta name="alternate" data-locale="ja-jp" data-link="https://www.autodesk.co.jp"/>
+  
+    <meta name="alternate" data-locale="ko-kr" data-link="https://www.autodesk.co.kr"/>
+  
+    <meta name="alternate" data-locale="zh-tw" data-link="https://www.autodesk.com.tw"/>
+  
+    <meta name="alternate" data-locale="en-in" data-link="https://www.autodesk.in"/>
+  
+    <meta name="alternate" data-locale="en-th" data-link="https://asean.autodesk.com"/>
+  
+    <meta name="alternate" data-locale="en-id" data-link="https://asean.autodesk.com"/>
+  
+    <meta name="alternate" data-locale="en-ph" data-link="https://asean.autodesk.com"/>
+  
+    <meta name="alternate" data-locale="en-my" data-link="https://asean.autodesk.com"/>
+  
+    <meta name="alternate" data-locale="en-nz" data-link="https://www.autodesk.co.nz"/>
+  
+    <meta name="alternate" data-locale="en-sg" data-link="https://www.autodesk.com.sg"/>
+  
+    <meta name="alternate" data-locale="en-hk" data-link="https://www.autodesk.com.hk"/>
+  
+    <meta name="alternate" data-locale="en-ng" data-link="https://www.autodesk.com/za"/>
+  
+    <meta name="alternate" data-locale="en-na" data-link="https://www.autodesk.com/za"/>
+  
+    <meta name="alternate" data-locale="en-gh" data-link="https://www.autodesk.com/za"/>
+  
+    <meta name="alternate" data-locale="en-za" data-link="https://www.autodesk.com/za"/>
+  
+    <meta name="alternate" data-locale="en-il" data-link="https://www.autodesk.ae"/>
+  
+    <meta name="alternate" data-locale="en-sa" data-link="https://www.autodesk.ae"/>
+  
+    <meta name="alternate" data-locale="en-qa" data-link="https://www.autodesk.ae"/>
+  
+    <meta name="alternate" data-locale="en-kw" data-link="https://www.autodesk.ae"/>
+  
+    <meta name="alternate" data-locale="en-eg" data-link="https://www.autodesk.ae"/>
+  
+    <meta name="alternate" data-locale="en-om" data-link="https://www.autodesk.ae"/>
+  
+    <meta name="alternate" data-locale="en-ae" data-link="https://www.autodesk.ae"/>
+  
+    <meta name="alternate" data-locale="pt-br" data-link="https://www.autodesk.com.br"/>
+  
+    <meta name="alternate" data-locale="es-pe" data-link="https://latinoamerica.autodesk.com"/>
+  
+    <meta name="alternate" data-locale="es-co" data-link="https://latinoamerica.autodesk.com"/>
+  
+    <meta name="alternate" data-locale="es-cl" data-link="https://latinoamerica.autodesk.com"/>
+  
+    <meta name="alternate" data-locale="es-uy" data-link="https://latinoamerica.autodesk.com"/>
+  
+    <meta name="alternate" data-locale="es-ar" data-link="https://latinoamerica.autodesk.com"/>
+  
+    <meta name="alternate" data-locale="cs-cz" data-link="https://www.autodesk.cz"/>
+  
+    <meta name="alternate" data-locale="da-dk" data-link="https://www.autodesk.dk"/>
+  
+    <meta name="alternate" data-locale="de-de" data-link="https://www.autodesk.de"/>
+  
+    <meta name="alternate" data-locale="de-ch" data-link="https://www.autodesk.ch/de"/>
+  
+    <meta name="alternate" data-locale="en-gb" data-link="https://www.autodesk.co.uk"/>
+  
+    <meta name="alternate" data-locale="es-es" data-link="https://www.autodesk.es"/>
+  
+    <meta name="alternate" data-locale="fr-be" data-link="https://www.autodesk.be/fr"/>
+  
+    <meta name="alternate" data-locale="fr-fr" data-link="https://www.autodesk.fr"/>
+  
+    <meta name="alternate" data-locale="fr-ch" data-link="https://www.autodesk.ch/fr"/>
+  
+    <meta name="alternate" data-locale="hu-hu" data-link="https://www.autodesk.hu"/>
+  
+    <meta name="alternate" data-locale="it-it" data-link="https://www.autodesk.it"/>
+  
+    <meta name="alternate" data-locale="it-ch" data-link="https://www.autodesk.ch/it"/>
+  
+    <meta name="alternate" data-locale="nl-be" data-link="https://www.autodesk.be/nl"/>
+  
+    <meta name="alternate" data-locale="en-ie" data-link="https://www.autodesk.eu"/>
+  
+    <meta name="alternate" data-locale="en-nl" data-link="https://www.autodesk.eu"/>
+  
+    <meta name="alternate" data-locale="nl-nl" data-link="https://www.autodesk.nl"/>
+  
+    <meta name="alternate" data-locale="de-at" data-link="https://www.autodesk.de"/>
+  
+    <meta name="alternate" data-locale="no-no" data-link="https://www.autodesk.no"/>
+  
+    <meta name="alternate" data-locale="pl-pl" data-link="https://www.autodesk.pl"/>
+  
+    <meta name="alternate" data-locale="pt-pt" data-link="https://www.autodesk.pt"/>
+  
+    <meta name="alternate" data-locale="fi-fi" data-link="https://www.autodesk.fi"/>
+  
+    <meta name="alternate" data-locale="sv-se" data-link="https://www.autodesk.se"/>
+  
+    <meta name="alternate" data-locale="ru-ru" data-link="https://www.autodesk.com/ru-ru"/>
+  
+    <meta name="alternate" data-locale="tr-tr" data-link="https://www.autodesk.com.tr"/>
+  
+
+  
+  
+
+  <script type="text/javascript" data-uh="script" src="https://swc.autodesk.com/web-mfe/universal-header/v1/app.js" defer="defer"></script>
+
+  
+  <meta name="industry" content="mfg"/>
+  
+  <meta name="template" content="gen-fy21-page-standard"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+  
+  <meta itemprop="dateCreated" content="2021-02-19T21:11:58Z"/>
+  <meta itemprop="datePublished" content="2023-02-17T14:09:26Z"/>
+  <meta itemprop="dateModified" content="2022-12-14T07:06:12Z"/>
+  
+  <meta property="og:type" content="article"/>
+  <meta property="og:title" content="Privacy Statement English"/>
+  
+  <meta property="og:description"/>
+  <meta name="twitter:card" content="summary"/>
+  <meta name="twitter:title" content="Privacy Statement English"/>
+  <meta name="twitter:description"/>
+  
+  <meta name="twitter:site" content="@autodesk"/>
+  <meta name="twitter:creator" content="@autodesk"/>
+
+
+  
+  
+
+  
+  
+    <script type="text/javascript" name="cfpVendor" src="https://prd-cfp.autodesk.com/cfp-vendors/current/main.js" defer></script>
+    <script type="text/javascript" name="cfpCore" src="https://prd-cfp.autodesk.com/cfp-runtime/current/main.js" defer></script>
+  
+
+  
+  
+  
+
+  
+  <meta name="robots"/>
+
+  
+  <link rel="stylesheet" type="text/css" href="https://swc.autodesk.com/web-mfe/web-styles/rosetta/app.css"/>
+
+  
+  
+    <link rel="stylesheet" type="text/css" href="https://swc.autodesk.com/pharmacopeia/css/dhig2021/v0/dhig-global.css"/>
+  
+
+  
+  
+    
+    <script type="text/javascript">
+            if ( !window.CQ_Analytics ) {
+                window.CQ_Analytics = {};
+            }
+            if ( !CQ_Analytics.TestTarget ) {
+                CQ_Analytics.TestTarget = {};
+            }
+            CQ_Analytics.TestTarget.clientCode = 'autodesk';
+            CQ_Analytics.TestTarget.currentPagePath = '\/content\/autodesk\/global\/en\/company\/legal\u002Dnotices\u002Dtrademarks\/privacy\u002Dstatement';
+        </script>
+    <script src="https://static-dc.autodesk.net/etc.clientlibs/v605.20231207.1619/cq/testandtarget/clientlibs/testandtarget/parameters.min.js"></script>
+<script src="https://static-dc.autodesk.net/etc.clientlibs/v605.20231207.1619/clientlibs/granite/jquery.min.js"></script>
+<script src="https://static-dc.autodesk.net/etc.clientlibs/v605.20231207.1619/cq/personalization/clientlib/personalization/integrations/commons.min.js"></script>
+<script src="https://static-dc.autodesk.net/etc.clientlibs/v605.20231207.1619/cq/testandtarget/clientlibs/testandtarget/atjs-integration.min.js"></script>
+
+
+    
+
+    
+    
+<script src="https://static-dc.autodesk.net/etc.clientlibs/v605.20231207.1619/dotcom/clientlibs/clientlib-dependencies.min.js" defer></script>
+
+
+
+    
+    
+<link rel="stylesheet" href="https://static-dc.autodesk.net/etc.clientlibs/v605.20231207.1619/dotcom/clientlibs/clientlib-dependencies.min.css" type="text/css">
+<link rel="stylesheet" href="https://static-dc.autodesk.net/etc.clientlibs/v605.20231207.1619/dotcom/clientlibs/clientlib-base.min.css" type="text/css">
+<link rel="stylesheet" href="https://static-dc.autodesk.net/etc.clientlibs/v605.20231207.1619/dotcom/clientlibs/clientlib-site.min.css" type="text/css">
+
+
+
+    
+
+
+  
+  
+    <link rel="stylesheet" type="text/css" href="https://swc.autodesk.com/web-mfe/mfe-product-price/app.css"/>
+
+
+
+  
+  <link rel="stylesheet" href="https://swc.autodesk.com/web-aem/rosetta-styles/company/terms-of-use/terms-of-use.css"/>
+
+
+  
+  
+  
+  <link rel="icon" type="image/png" href="https://static-dc.autodesk.net/etc.clientlibs/v605.20231207.1619/dotcom/clientlibs/clientlib-site/resources/images/favicons/app-icon-192.png" sizes="192x192"/>
+
+  <link rel="apple-touch-icon" type="image/png" href="https://static-dc.autodesk.net/etc.clientlibs/v605.20231207.1619/dotcom/clientlibs/clientlib-site/resources/images/favicons/touch-icon-180.png"/>
+
+  
+  <link rel="icon" type="image/svg+xml" href="https://static-dc.autodesk.net/etc.clientlibs/v605.20231207.1619/dotcom/clientlibs/clientlib-site/resources/images/favicons/favicon.svg"/>
+
+
+  
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div id="adobeTargetPublishMode"></div>
+  
+
+  <script type="text/javascript">
+            (function() {
+                window.ContextHub = window.ContextHub || {};
+
+                /* setting paths */
+                ContextHub.Paths = ContextHub.Paths || {};
+                ContextHub.Paths.CONTEXTHUB_PATH = "/conf/autodesk/settings/cloudsettings/contexthub";
+                ContextHub.Paths.RESOURCE_PATH = "\/content\/autodesk\/global\/en\/company\/legal\u002Dnotices\u002Dtrademarks\/privacy\u002Dstatement\/_jcr_content\/contexthub";
+                ContextHub.Paths.SEGMENTATION_PATH = "\/conf\/autodesk\/settings\/wcm\/segments";
+                ContextHub.Paths.CQ_CONTEXT_PATH = "";
+
+                /* setting initial constants */
+                ContextHub.Constants = ContextHub.Constants || {};
+                ContextHub.Constants.ANONYMOUS_HOME = "/home/users/5/5pL3nkmSL9fWV2JEeggb";
+                ContextHub.Constants.MODE = "no-ui";
+            }());
+        </script><script src="/etc/cloudsettings.kernel.js/conf/autodesk/settings/cloudsettings/contexthub" type="text/javascript" defer></script>
+
+  <link rel="preload" href="/content/promotions/data/en-US/promo.json" as="fetch" type="application/json" crossorigin="anonymous"/>
+</head>
+    <body class=" page basicpage" id="rosetta" data-forge-client="uWlmiJuqQqVaAQjGdojc8Qxit4KVdorZ">
+        
+        <div id="dhig-svg-container" style="display: none"></div>
+        
+        <mfe-tooltip id="mfe-tooltip"></mfe-tooltip>
+        
+        
+
+
+
+        <svg width="0" height="0" style="position:absolute">
+  <defs>
+    <svg viewBox="0 0 140 23" id="autodesk-logo" xmlns="http://www.w3.org/2000/svg">
+      <linearGradient id="aa" gradientUnits="userSpaceOnUse" x1="1.87" y1="19.5" x2="14.31" y2="14.81">
+        <stop offset="0" stop-color="#269c90"></stop>
+        <stop offset=".09" stop-color="#43aea4"></stop>
+        <stop offset=".18" stop-color="#58bbb2"></stop>
+        <stop offset=".27" stop-color="#65c3bb"></stop>
+        <stop offset=".35" stop-color="#69c6be"></stop>
+      </linearGradient>
+      <path d="M5.9 17.1H1.8c-1.5 0-1.9-1-1.6-1.8v.1c-.2.7.1 1 .3 1.5.7 1.4 2.9 5.4 2.9 5.4.2.5.6.7 1.2.7 1.2 0 3.2-1.3 3.2-1.3l7.4-4.6H5.9z" fill="url(#aa)"></path>
+      <linearGradient id="ab" gradientUnits="userSpaceOnUse" x1="2.26" y1="17.59" x2="9.61" y2=".94">
+        <stop offset="0" stop-color="#d6de23"></stop>
+        <stop offset="0" stop-color="#d5de23"></stop>
+        <stop offset=".4" stop-color="#7fb842"></stop>
+        <stop offset=".51" stop-color="#7bb742"></stop>
+        <stop offset=".61" stop-color="#70b343"></stop>
+        <stop offset=".71" stop-color="#5cae44"></stop>
+        <stop offset=".81" stop-color="#41a645"></stop>
+        <stop offset=".91" stop-color="#1e9c47"></stop>
+        <stop offset=".98" stop-color="#009348"></stop>
+      </linearGradient>
+      <path d="M7.4.1c-.8 0-1 .5-1.1.6L.2 15.2c-.3.8 0 1.9 1.6 1.9h4.1L10.6 6C9.3 3 8.4.8 8.4.8c-.1-.1-.3-.7-1-.7z" fill="url(#ab)"></path>
+      <linearGradient id="ac" gradientUnits="userSpaceOnUse" x1="10.52" y1=".02" x2="19.95" y2="23.1">
+        <stop offset="0" stop-color="#4dbeed"></stop>
+        <stop offset=".4" stop-color="#289fd9"></stop>
+        <stop offset=".78" stop-color="#0b86ca"></stop>
+        <stop offset="1" stop-color="#007dc4"></stop>
+      </linearGradient>
+      <path d="M14.8.6c-.1-.1-.3-.6-1-.6H7.4c-.7 0-.9.4-1 .5 0 0 .2-.5 1-.5.7 0 1 .6 1 .7 0 0 .9 2.2 2.2 5.2 2.8 6.6 7.2 17.1 7.2 17.1h6.5S14.9.8 14.8.6z" fill="url(#ac)"></path>
+      <path d="M42.6 17.1h-2.5l-1.4-3.2h-6.3L31 17.1h-2.4l5.9-13.4h2.2l5.9 13.4zm-7-10.6l-2.3 5.3h4.6l-2.3-5.3zm28.7 10.6h-2.4V6h-4.2V3.8h11L67.8 6h-3.5v11.1zM109.1 6H102v3.4h4.6v2.1H102V15h7.1v2.1h-9.5V3.8h9.5V6zm16.8 11.1h-2.2V3.8h2.2v13.3zm-9.5-11.4c-1.4 0-2.5.4-2.5 1.3 0 1.1.7 1.4 3.2 2.2 2.8.9 4.2 1.8 4.2 4.1 0 2.5-2 4-4.9 4-2 0-3.8-.7-5.2-1.9l.9-2.1c1.3 1.1 2.8 1.8 4.4 1.8 1.4 0 2.5-.7 2.5-1.7 0-.9-.5-1.4-2.9-2.2-2.8-.9-4.5-1.9-4.5-4.1 0-2.3 2.1-3.5 4.8-3.5 2.7 0 4.2 1 4.4 1.1l-.8 1.9c-.7-.3-1.8-.9-3.6-.9zm12.4 4.5l5.9-6.4h-2.8l-6 6.4 6.6 6.9h2.9zM75.9 3.6c-3.8 0-6.9 3.1-6.9 6.9 0 3.8 3.1 6.9 6.9 6.9 3.8 0 6.9-3.1 6.9-6.9 0-3.9-3.1-6.9-6.9-6.9zm0 11.6c-2.6 0-4.5-2.1-4.5-4.7s1.9-4.7 4.5-4.7 4.5 2.1 4.5 4.7-1.9 4.7-4.5 4.7zM90.3 3.8h-5.1v13.3h5.1c3.8 0 6.9-2.9 6.9-6.7 0-3.8-3.1-6.6-6.9-6.6zm0 11.2h-2.7V6h2.7c2.6 0 4.5 1.9 4.5 4.5.1 2.6-1.8 4.5-4.5 4.5zm-35.2-3.8c0 4-2.3 6.1-5.7 6.1-3.4 0-5.7-2.1-5.7-6.1V3.8H46v7.7c0 2.3 1.4 3.7 3.4 3.7s3.4-1.4 3.4-3.7V3.8h2.4v7.4z" fill="#231f20"></path>
+      <g fill="#231f20">
+        <path d="M139.9 15.4c0-.9-.8-1.7-1.7-1.7-.9 0-1.7.8-1.7 1.7 0 .9.8 1.7 1.7 1.7.9 0 1.7-.7 1.7-1.7zm-.3 0c0 .8-.6 1.5-1.4 1.5-.8 0-1.4-.6-1.4-1.5 0-.8.6-1.5 1.4-1.5.8.1 1.4.7 1.4 1.5z"></path>
+        <path d="M138.9 16.3l-.4-.6c-.1-.1-.1-.2-.2-.2.3 0 .5-.2.5-.5s-.2-.5-.5-.5h-.6v1.8h.3v-.8c.1 0 .2 0 .3.2l.4.6h.2zm-.4-1.3c0 .3-.2.3-.4.3h-.2v-.6h.3c.2 0 .3.2.3.3z"></path>
+      </g>
+    </svg>
+  </defs>
+</svg>
+
+        
+<div class="root responsivegrid">
+
+
+<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+    
+    <div class="core-container aem-GridColumn aem-GridColumn--default--12">
+
+  
+  
+  
+  
+  <div id="container-3bd3572f48" class="cmp-container header-content fixed-header">
+    
+    <div class="mfe-universal-header"><div data-uh="container" data-uh-primarynav="false" data-minicart-enabled="true" data-uh-config="{&#34;scriptPath&#34;:&#34;https://swc.autodesk.com/web-mfe/universal-header/v1/app.js&#34;,&#34;property&#34;:&#34;dotcom&#34;,&#34;env&#34;:&#34;prd&#34;}" data-uh-searchparam="https://www.autodesk.com" data-uh-cart-configs="{&#34;cartConfigs&#34;:{&#34;US_en&#34;:{&#34;specialTerms&#34;:[],&#34;cartLinkUrl&#34;:&#34;https://checkout.autodesk.com/en-US?visitorId={{visitorId}}&#34;,&#34;cartCountUrl&#34;:&#34;https://amart.oc.autodesk.com/services/v5/cart/{{visitorId}}|STORE-NAMER/count&#34;}}}" id="mfe-uh-container" class="mfe-uh-container header" data-domain-consolidation-enabled="disabled"></div>
+</div>
+<div class="promotion-banner">
+<div data-locale="en-US" class="promotions-placement__banner  "></div>
+</div>
+<div class="core-container">
+
+  
+  
+  
+  
+  <div id="container-f20fbd381c" class="cmp-container  ">
+    
+    <div class="experiencefragment">
+<div id="experiencefragment-fac025540b" class="cmp-experiencefragment cmp-experiencefragment--top-navigation" data-ef-variation-path="/content/experience-fragments/autodesk/en/company/legal-notices-trademarks/privacy-statement/top-navigation/master" data-ef-all-variations="master">
+
+
+
+  
+
+
+
+<div class="xfpage-content-container">
+  
+  <div class="root responsivegrid">
+
+
+<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+    
+    <div class="navigation aem-GridColumn aem-GridColumn--default--12"><div data-cmp-is="navigation" class="cmp-navigation top-nav-alternative local-navigation navigation " id="navigation-fa1603ac9a" data-cmp-navigation-layout="top-nav">
+
+  
+
+  
+
+  
+
+  
+    <div class="top-navigation" data-wat-link-section="topNav">
+
+        <div class="top-nav-title">
+          <div class="row">
+            <a class="local-navigation-name ">
+              PRIVACY STATEMENT
+            </a>
+            <a class="mobile nav-toggle" href="#">
+              <svg class="top-nav-arrow icon-svg-arrow-dropdown">
+                <use xlink:href="/content/dam/autodesk/icons.svg#icon-svg-arrow-dropdown"></use>
+              </svg>
+            </a>
+          </div>
+        </div>
+      
+  <ul class="cmp-navigation__list">
+    <li class="cmp-navigation__listitem" data-cmp-hook-navigation="item" data-name="item_2" data-resource-type="dotcom/components/navigation/link">
+      <div class="cmp-navigation__panel" data-cmp-hook-navigation="panel" id="navigation-fa1603ac9a-item-6e28bacb87-panel"><div class="link">
+<a class="cmp-navigation-link  active " id="link-cc6c0e03e3" href="/company/legal-notices-trademarks/privacy-statement" data-trial-trigger="trialdownloads-plc" data-link-type="default" data-wat-val="privacy statement" data-wat-link="true">
+  <span class="cmp-navigation-link__text">
+    
+    Privacy Statement
+  </span>
+</a>
+
+
+
+
+
+    
+
+</div>
+</div>
+    </li>
+<li class="cmp-navigation__listitem" data-cmp-hook-navigation="item" data-name="item_3" data-resource-type="dotcom/components/navigation/link">
+      <div class="cmp-navigation__panel" data-cmp-hook-navigation="panel" id="navigation-fa1603ac9a-item-139e3e4e31-panel"><div class="link">
+<a class="cmp-navigation-link   " id="link-8fef12e770" href="/company/legal-notices-trademarks/privacy-statement/cookie-statement" data-link-type="default" data-wat-val="cookie statement">
+  <span class="cmp-navigation-link__text">
+    
+    Cookie Statement
+  </span>
+</a>
+
+
+
+
+
+    
+
+</div>
+</div>
+    </li>
+<li class="cmp-navigation__listitem" data-cmp-hook-navigation="item" data-name="item_1615496879525" data-resource-type="dotcom/components/navigation/link">
+      <div class="cmp-navigation__panel" data-cmp-hook-navigation="panel" id="navigation-fa1603ac9a-item-f21969afd6-panel"><div class="link">
+<a class="cmp-navigation-link   " id="link-2ba1969f6a" href="/company/legal-notices-trademarks/privacy-statement/childrens-privacy-statement" data-link-type="default" data-wat-val="childrens statement">
+  <span class="cmp-navigation-link__text">
+    
+    Childrens Statement
+  </span>
+</a>
+
+
+
+
+
+    
+
+</div>
+</div>
+    </li>
+<li class="cmp-navigation__listitem" data-cmp-hook-navigation="item" data-name="item_1615497167311" data-resource-type="dotcom/components/navigation">
+      <div class="cmp-navigation__panel" data-cmp-hook-navigation="panel" id="navigation-fa1603ac9a-item-7f582b67ba-panel"><div class="navigation"><div data-cmp-is="navigation" class="cmp-navigation dropdown-nav  " id="lang-hidden-med-up" data-cmp-navigation-layout="dropdown-nav">
+
+  
+
+  
+
+  
+
+  
+
+  
+  <div class="dropdown-navigation">
+    <a class="cmp-navigation__dropdown-button" href="javascript:void(0);" data-cmp-hook-navigation="button" data-wat-val="Language">
+      
+      <div>Language</div>
+      <svg class="cta-button-arrow icon-svg-arrow-down" data-cmp-hook-navigation="arrow">
+        <use xlink:href="/content/dam/autodesk/icons.svg#icon-svg-arrow-down"></use>
+      </svg>
+    </a>
+
+    <div class="cmp-navigation__dropdown-contents" data-cmp-hook-navigation="dropdown">
+  <ul class="cmp-navigation__list">
+    <li class="cmp-navigation__listitem" data-cmp-hook-navigation="item" data-name="item_1615497191355" data-resource-type="dotcom/components/navigation/link">
+      <div class="cmp-navigation__panel" data-cmp-hook-navigation="panel" id="lang-hidden-med-up-item-7a8ff0ac47-panel"><div class="link">
+<a class="cmp-navigation-link   " id="link-b8302cdbd8" href="/company/terms-of-use/en/general-terms" data-link-type="default" data-wat-val="english">
+  <span class="cmp-navigation-link__text">
+    
+    English
+  </span>
+</a>
+
+
+
+
+
+    
+
+</div>
+</div>
+    </li>
+<li class="cmp-navigation__listitem" data-cmp-hook-navigation="item" data-name="item_1615497195394" data-resource-type="dotcom/components/navigation/link">
+      <div class="cmp-navigation__panel" data-cmp-hook-navigation="panel" id="lang-hidden-med-up-item-935db65056-panel"><div class="link">
+<a class="cmp-navigation-link   " id="link-ce41ddcd7c" href="/company/terms-of-use/de/general-terms" data-link-type="default" data-wat-val="deutsch">
+  <span class="cmp-navigation-link__text">
+    
+    Deutsch
+  </span>
+</a>
+
+
+
+
+
+    
+
+</div>
+</div>
+    </li>
+<li class="cmp-navigation__listitem" data-cmp-hook-navigation="item" data-name="item_1615497260961" data-resource-type="dotcom/components/navigation/link">
+      <div class="cmp-navigation__panel" data-cmp-hook-navigation="panel" id="lang-hidden-med-up-item-d6dfcda33e-panel"><div class="link">
+<a class="cmp-navigation-link   " id="link-699bd99ad4" href="/company/terms-of-use/es/general-terms" data-link-type="default" data-wat-val="español">
+  <span class="cmp-navigation-link__text">
+    
+    Español
+  </span>
+</a>
+
+
+
+
+
+    
+
+</div>
+</div>
+    </li>
+<li class="cmp-navigation__listitem" data-cmp-hook-navigation="item" data-name="item_1615497272663" data-resource-type="dotcom/components/navigation/link">
+      <div class="cmp-navigation__panel" data-cmp-hook-navigation="panel" id="lang-hidden-med-up-item-5ff6d0c182-panel"><div class="link">
+<a class="cmp-navigation-link   " id="link-932310fc02" href="/company/terms-of-use/fr/general-terms" data-link-type="default" data-wat-val="français">
+  <span class="cmp-navigation-link__text">
+    
+    Français
+  </span>
+</a>
+
+
+
+
+
+    
+
+</div>
+</div>
+    </li>
+<li class="cmp-navigation__listitem" data-cmp-hook-navigation="item" data-name="item_1615497287673" data-resource-type="dotcom/components/navigation/link">
+      <div class="cmp-navigation__panel" data-cmp-hook-navigation="panel" id="lang-hidden-med-up-item-c7de020f14-panel"><div class="link">
+<a class="cmp-navigation-link   " id="link-7f7e62c00e" href="/company/terms-of-use/it/general-terms" data-link-type="default" data-wat-val="italiano">
+  <span class="cmp-navigation-link__text">
+    
+    Italiano
+  </span>
+</a>
+
+
+
+
+
+    
+
+</div>
+</div>
+    </li>
+<li class="cmp-navigation__listitem" data-cmp-hook-navigation="item" data-name="item_1615497308111" data-resource-type="dotcom/components/navigation/link">
+      <div class="cmp-navigation__panel" data-cmp-hook-navigation="panel" id="lang-hidden-med-up-item-824a053a95-panel"><div class="link">
+<a class="cmp-navigation-link   " id="link-0457772b23" href="/company/terms-of-use/pt/general-terms" data-link-type="default" data-wat-val="português">
+  <span class="cmp-navigation-link__text">
+    
+    Português
+  </span>
+</a>
+
+
+
+
+
+    
+
+</div>
+</div>
+    </li>
+<li class="cmp-navigation__listitem" data-cmp-hook-navigation="item" data-name="item_1615497313763" data-resource-type="dotcom/components/navigation/link">
+      <div class="cmp-navigation__panel" data-cmp-hook-navigation="panel" id="lang-hidden-med-up-item-bfe25311cf-panel"><div class="link">
+<a class="cmp-navigation-link   " id="link-811e8b8c66" href="/company/terms-of-use/br/general-terms" data-link-type="default" data-wat-val="português brasileiro">
+  <span class="cmp-navigation-link__text">
+    
+    Português brasileiro
+  </span>
+</a>
+
+
+
+
+
+    
+
+</div>
+</div>
+    </li>
+<li class="cmp-navigation__listitem" data-cmp-hook-navigation="item" data-name="item_1615497340209" data-resource-type="dotcom/components/navigation/link">
+      <div class="cmp-navigation__panel" data-cmp-hook-navigation="panel" id="lang-hidden-med-up-item-41b89fcade-panel"><div class="link">
+<a class="cmp-navigation-link   " id="link-c0bebccc05" href="/company/terms-of-use/nl/general-terms" data-link-type="default" data-wat-val="nederlands">
+  <span class="cmp-navigation-link__text">
+    
+    Nederlands
+  </span>
+</a>
+
+
+
+
+
+    
+
+</div>
+</div>
+    </li>
+<li class="cmp-navigation__listitem" data-cmp-hook-navigation="item" data-name="item_1615497354121" data-resource-type="dotcom/components/navigation/link">
+      <div class="cmp-navigation__panel" data-cmp-hook-navigation="panel" id="lang-hidden-med-up-item-4f50d6a0c0-panel"><div class="link">
+<a class="cmp-navigation-link   " id="link-8b4acc4f22" href="/company/terms-of-use/cs/general-terms" data-link-type="default" data-wat-val="čeština">
+  <span class="cmp-navigation-link__text">
+    
+    Čeština
+  </span>
+</a>
+
+
+
+
+
+    
+
+</div>
+</div>
+    </li>
+<li class="cmp-navigation__listitem" data-cmp-hook-navigation="item" data-name="item_1615497374793" data-resource-type="dotcom/components/navigation/link">
+      <div class="cmp-navigation__panel" data-cmp-hook-navigation="panel" id="lang-hidden-med-up-item-1b58f6aaaf-panel"><div class="link">
+<a class="cmp-navigation-link   " id="link-3973f82852" href="/company/terms-of-use/pl/general-terms" data-link-type="default" data-wat-val="polski">
+  <span class="cmp-navigation-link__text">
+    
+    Polski
+  </span>
+</a>
+
+
+
+
+
+    
+
+</div>
+</div>
+    </li>
+<li class="cmp-navigation__listitem" data-cmp-hook-navigation="item" data-name="item_1615497386384" data-resource-type="dotcom/components/navigation/link">
+      <div class="cmp-navigation__panel" data-cmp-hook-navigation="panel" id="lang-hidden-med-up-item-d402f5c94a-panel"><div class="link">
+<a class="cmp-navigation-link   " id="link-6a36ecba30" href="/company/terms-of-use/hu/general-terms" data-link-type="default" data-wat-val="magyar">
+  <span class="cmp-navigation-link__text">
+    
+    Magyar
+  </span>
+</a>
+
+
+
+
+
+    
+
+</div>
+</div>
+    </li>
+<li class="cmp-navigation__listitem" data-cmp-hook-navigation="item" data-name="item_1615497398387" data-resource-type="dotcom/components/navigation/link">
+      <div class="cmp-navigation__panel" data-cmp-hook-navigation="panel" id="lang-hidden-med-up-item-ea5b255519-panel"><div class="link">
+<a class="cmp-navigation-link   " id="link-bdd25bf270" href="/company/terms-of-use/ru/general-terms" data-link-type="default" data-wat-val="pусский">
+  <span class="cmp-navigation-link__text">
+    
+    Pусский
+  </span>
+</a>
+
+
+
+
+
+    
+
+</div>
+</div>
+    </li>
+<li class="cmp-navigation__listitem" data-cmp-hook-navigation="item" data-name="item_1615497411045" data-resource-type="dotcom/components/navigation/link">
+      <div class="cmp-navigation__panel" data-cmp-hook-navigation="panel" id="lang-hidden-med-up-item-e37a79b33b-panel"><div class="link">
+<a class="cmp-navigation-link   " id="link-093e727e59" href="/company/terms-of-use/jp/general-terms" data-link-type="default" data-wat-val="日本語">
+  <span class="cmp-navigation-link__text">
+    
+    日本語
+  </span>
+</a>
+
+
+
+
+
+    
+
+</div>
+</div>
+    </li>
+<li class="cmp-navigation__listitem" data-cmp-hook-navigation="item" data-name="item_1615497416383" data-resource-type="dotcom/components/navigation/link">
+      <div class="cmp-navigation__panel" data-cmp-hook-navigation="panel" id="lang-hidden-med-up-item-c0a4490661-panel"><div class="link">
+<a class="cmp-navigation-link   " id="link-ea04a6ee0b" href="/company/terms-of-use/kr/general-terms" data-link-type="default" data-wat-val="한국어">
+  <span class="cmp-navigation-link__text">
+    
+    한국어
+  </span>
+</a>
+
+
+
+
+
+    
+
+</div>
+</div>
+    </li>
+<li class="cmp-navigation__listitem" data-cmp-hook-navigation="item" data-name="item_1615497426192" data-resource-type="dotcom/components/navigation/link">
+      <div class="cmp-navigation__panel" data-cmp-hook-navigation="panel" id="lang-hidden-med-up-item-62f1325bc4-panel"><div class="link">
+<a class="cmp-navigation-link   " id="link-24178a881e" href="/company/terms-of-use/cn/general-terms" data-link-type="default" data-wat-val="简体中文">
+  <span class="cmp-navigation-link__text">
+    
+    简体中文
+  </span>
+</a>
+
+
+
+
+
+    
+
+</div>
+</div>
+    </li>
+<li class="cmp-navigation__listitem" data-cmp-hook-navigation="item" data-name="item_1615497437339" data-resource-type="dotcom/components/navigation/link">
+      <div class="cmp-navigation__panel" data-cmp-hook-navigation="panel" id="lang-hidden-med-up-item-8ad8677c65-panel"><div class="link">
+<a class="cmp-navigation-link   " id="link-3b38fd66b3" href="/company/terms-of-use/cn2/general-terms" data-link-type="default" data-wat-val="繁體中文">
+  <span class="cmp-navigation-link__text">
+    
+    繁體中文
+  </span>
+</a>
+
+
+
+
+
+    
+
+</div>
+</div>
+    </li>
+
+  </ul>
+</div>
+  </div>
+
+
+  
+</div>
+
+</div>
+</div>
+    </li>
+
+  </ul>
+
+    </div>
+
+
+  
+
+  
+</div>
+
+</div>
+
+    
+</div>
+</div>
+
+</div>
+
+
+
+</div>
+
+
+    
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+  </div>
+
+
+</div>
+<div class="core-container aem-GridColumn aem-GridColumn--default--12">
+
+  
+  
+  
+  
+  <div id="container-aad03e66fd" class="cmp-container body-content ">
+    
+    <div class="core-container">
+
+  
+  
+  <div id="container-23c1713605" class="cmp-container  ">
+    
+
+
+<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+    
+    <div class="text aem-GridColumn aem-GridColumn--default--12">
+<div id="text-44a7b77657" class="cmp-text ">
+  <p><button id="backToTopBtn" class="wd-bg-pacific-blue wp-utility-scrollTo" data-target=".wp-banner-style-small">Back to top</button></p>
+
+</div>
+
+    
+
+</div>
+<div class="experiencefragment aem-GridColumn aem-GridColumn--default--12">
+<div id="experiencefragment-3253a20f4f" class="cmp-experiencefragment cmp-experiencefragment--banner" data-ef-variation-path="/content/experience-fragments/autodesk/en/company/legal-notices-trademarks/privacy-statement/banner/master" data-ef-all-variations="master">
+
+
+
+  
+
+
+
+<div class="xfpage-content-container">
+  
+  <div class="root responsivegrid">
+
+
+<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+    
+    <div class="core-container aem-GridColumn aem-GridColumn--default--12">
+
+  
+  
+  
+  
+  <div id="container-42f20651f2" class="cmp-container wp-banner-style-small  wd-bg-dark-black   " style="background-image:url(https://damassets.autodesk.net/content/dam/autodesk/www/company/legal-notices-trademarks/privacy-statement/company-banner-1580x350-v1.jpg);">
+    
+    <div class="core-container">
+
+  
+  
+  <div id="container-9b861c59f8" class="cmp-container wp-banner-grid wd-fl ">
+    
+
+
+<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 aem-Grid--large--12 ">
+    
+    <div class="title aem-GridColumn aem-GridColumn--default--12 aem-GridColumn--large--12">
+<div class="cmp-title" id="title-3bdf35c8ab">
+  <h1 class="cmp-title__text wd-normal wd-font-40">
+    Privacy Statement</h1>
+</div>
+
+    
+
+</div>
+
+    
+</div>
+
+  </div>
+
+  
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+</div>
+</div>
+
+</div>
+
+
+
+</div>
+
+
+    
+
+</div>
+<div class="core-container aem-GridColumn aem-GridColumn--default--12">
+
+  
+  
+  
+  
+  <div id="container-fbf2ef74e9" class="cmp-container  ">
+    
+    <div class="experiencefragment">
+<div id="experiencefragment-3244ceb507" class="cmp-experiencefragment cmp-experiencefragment--announcement-bar" data-ef-variation-path="/content/experience-fragments/autodesk/en/company/legal-notices-trademarks/privacy-statement/privacy_statement_ch/announcement-bar/master" data-ef-all-variations="master">
+
+
+
+  
+
+
+
+<div class="xfpage-content-container">
+  
+  <div class="root responsivegrid">
+
+
+<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+    
+    <div class="core-container aem-GridColumn aem-GridColumn--default--12">
+
+  
+  
+  <div id="container-982997914d" class="cmp-container wp-announcement  wp-clickable ">
+    
+
+
+<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 aem-Grid--xlarge--12 ">
+    
+    <div class="core-container aem-GridColumn--xlarge--none aem-GridColumn--xlarge--12 aem-GridColumn aem-GridColumn--default--12 aem-GridColumn--offset--xlarge--0">
+
+  
+  
+  <div id="container-d367f06151" class="cmp-container wd-responsive-grid wd-pa-20 ">
+    
+
+
+<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 aem-Grid--xlarge--12 ">
+    
+    <div class="core-container aem-GridColumn--xlarge--none aem-GridColumn--xlarge--10 aem-GridColumn aem-GridColumn--default--12 aem-GridColumn--offset--xlarge--0">
+
+  
+  
+  
+  
+  <div id="container-a12d467600" class="cmp-container  ">
+    
+    <div class="text">
+<div id="text-d99842495b" class="cmp-text ">
+  <p class="wp-full-width wd-inline-icon wd-bold"><a href="https://www.autodesk.com/company/legal-notices-trademarks/privacy-statement/privacy-statement-changes" data-wat-link="true" data-wat-loc="content" data-wat-val="announcement" target="_blank">We've updated our Privacy Statement. Click here to learn more.</a></p>
+
+</div>
+
+    
+
+</div>
+
+    
+  </div>
+
+
+</div>
+<div class="core-container aem-GridColumn--xlarge--none aem-GridColumn aem-GridColumn--default--12 aem-GridColumn--xlarge--2 aem-GridColumn--offset--xlarge--0">
+
+  
+  
+  
+  
+  <div id="container-95c120330e" class="cmp-container  ">
+    
+    
+    
+  </div>
+
+
+</div>
+
+    
+</div>
+
+  </div>
+
+  
+
+</div>
+
+    
+</div>
+
+  </div>
+
+  
+
+</div>
+
+    
+</div>
+</div>
+
+</div>
+
+
+
+</div>
+
+
+    
+
+</div>
+
+    
+  </div>
+
+
+</div>
+<div class="core-container aem-GridColumn aem-GridColumn--default--12">
+
+  
+  
+  <div id="container-2300a3a27d" class="cmp-container wp-content-box wd-mt-64 wd-pb-64 wd-color-black wd-responsive-grid wd-ph-20 ">
+    
+
+
+<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 aem-Grid--xlarge--12 ">
+    
+    <div class="core-container aem-GridColumn--xlarge--none aem-GridColumn aem-GridColumn--default--12 aem-GridColumn--xlarge--2 aem-GridColumn--offset--xlarge--0">
+
+  
+  
+  
+  
+  <div id="container-8ff8eb0577" class="cmp-container wp-sidebar wd-pa-12 ">
+    
+    <div class="experiencefragment">
+<div id="experiencefragment-79236514fb" class="cmp-experiencefragment cmp-experiencefragment--left-sidebar" data-ef-variation-path="/content/experience-fragments/autodesk/en/company/legal-notices-trademarks/privacy-statement/left-sidebar/master" data-ef-all-variations="master">
+
+
+
+  
+
+
+
+<div class="xfpage-content-container">
+  
+  <div class="root responsivegrid">
+
+
+<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+    
+    <div class="text aem-GridColumn aem-GridColumn--default--12">
+<div id="text-c56ee407e8" class="cmp-text ">
+  <div id="sidebar"><h4 class="pc-brand hide-after-scroll">Autodesk Privacy Statement</h4>
+<div id="checkdiv"> </div>
+<div id="nav"><div id="scrollbar-container"><div id="scrollbar"> </div>
+</div>
+<ul class="wp-parent-contenair page-logo">
+<li><a class="wp-utility-scrollTo" data-target="#info-collect" href="#info-collect">What information does Autodesk collect about you?</a></li>
+<li><a class="wp-utility-scrollTo" data-target="#info-use" href="#info-use">How does Autodesk use the information it collects about you?</a></li>
+<li><a class="wp-utility-scrollTo" data-target="#personal-data" href="#personal-data">How does Autodesk disclose your personal data?</a></li>
+<li><a class="wp-utility-scrollTo" data-target="#protect-data" href="#protect-data">How does Autodesk protect your data?</a></li>
+<li><a class="wp-utility-scrollTo" data-target="#rights-and-choices" href="#rights-and-choices">What rights and choices do you have?</a></li>
+<li><a class="wp-utility-scrollTo" data-target="#storage" href="#storage">What are Autodesk’s storage and data retention practices?</a></li>
+<li><a class="wp-utility-scrollTo" data-target="#borders" href="#borders">Does Autodesk transfer your personal data across national borders?</a></li>
+<li><a class="wp-utility-scrollTo" data-target="#marketing-practices" href="#marketing-practices">What are Autodesk’s marketing and advertising practices?</a></li>
+<li><a class="wp-utility-scrollTo" data-target="#protect-children" href="#protect-children">How does Autodesk protect children and student data?</a></li>
+<li><a class="wp-utility-scrollTo" data-target="#data-public" href="#data-public">Is the personal data you give us ever displayed publicly?</a></li>
+<li><a class="wp-utility-scrollTo" data-target="#change" href="#change">Will this Privacy Statement change?</a></li>
+<li><a class="wp-utility-scrollTo" data-target="#contact" href="#contact">How to contact us?</a></li>
+<li><a class="wp-utility-scrollTo" data-target="#questions" href="#questions">Who can I contact with questions or concerns?</a></li>
+</ul>
+</div>
+</div>
+
+</div>
+
+    
+
+</div>
+
+    
+</div>
+</div>
+
+</div>
+
+
+
+</div>
+
+
+    
+
+</div>
+
+    
+  </div>
+
+
+</div>
+<div class="core-container aem-GridColumn--xlarge--8 aem-GridColumn--xlarge--none aem-GridColumn aem-GridColumn--default--12 aem-GridColumn--offset--xlarge--0">
+
+  
+  
+  
+  
+  <div id="container-962e662c3c" class="cmp-container wp-content-page wd-pa-12 ">
+    
+    <div class="experiencefragment">
+<div id="experiencefragment-7db2a7b4dc" class="cmp-experiencefragment cmp-experiencefragment--introduction" data-ef-variation-path="/content/experience-fragments/autodesk/en/company/legal-notices-trademarks/privacy-statement/introduction/master" data-ef-all-variations="master">
+
+
+
+  
+
+
+
+<div class="xfpage-content-container">
+  
+  <div class="root responsivegrid">
+
+
+<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+    
+    <div class="core-container aem-GridColumn aem-GridColumn--default--12">
+
+  
+  
+  
+  
+  <div id="standard-subscription-benefits" class="cmp-container wp-parent legal-section ">
+    
+    <div class="core-container">
+
+  
+  
+  
+  
+  <div id="container-becb224e50" class="cmp-container wd-mb-64 wd-bbw-1 wd-bc-smoke wd-pb-12 ">
+    
+    <div class="title">
+<div class="cmp-title" id="title-3deb21f14d">
+  <h3 class="cmp-title__text pc-brand wd-font-20">
+    Autodesk Privacy Statement</h3>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-72e62967f9" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12">Effective date: January 1, 2023</p>
+<p class="wd-font-14 wd-mv-12">Protecting your privacy is important to Autodesk. This Privacy Statement explains how Autodesk processes personal data collected through websites, products, and services (“applications”), including those distributed by our resellers and other channel partners, and through in-person and digital events, webinars, surveys, marketing activities, and visits to our premises (along with applications, collectively our “offerings”). References to “Autodesk,” “we,” or “our” means Autodesk, Inc. and other entities that belong to the Autodesk corporate family and that link to this Privacy Statement. A list of entities within the Autodesk corporate family can be found <a href="https://www.autodesk.com/company/contact-us/office-locations" class="wp-body-links">here</a>.</p>
+<p class="wd-font-14 wd-mv-12">We may display supplemental privacy notices on occasion, such as when we believe additional transparency would help you make an informed choice about whether to provide personal data. For example, you may see a supplemental privacy notice explaining a particular data collection program, or you may see a supplemental privacy notice when registering for an event.</p>
+<p class="wd-font-14 wd-mv-12">This Privacy Statement describes how we process personal data for our own purposes. We also process personal data on behalf of our customers subject to a written contract. We do not control the data processing or protection practices of our customers, which may differ from those set out in this Privacy Statement.</p>
+<p class="wd-font-14 wd-mv-12">“Personal data” is information that identifies, or can reasonably be linked directly or indirectly to, an identifiable person. Personal data does not include information that is anonymous, de-identified, or aggregated, as those terms may be defined under applicable law. For purposes of this Privacy Statement, “personal data” and “personal information” have the same meaning and are used interchangeably. </p>
+
+</div>
+
+    
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+</div>
+</div>
+
+</div>
+
+
+
+</div>
+
+
+    
+
+</div>
+<div class="experiencefragment">
+<div id="experiencefragment-4189b17bec" class="cmp-experiencefragment cmp-experiencefragment--what-information-does-autodesk-collect-about-you" data-ef-variation-path="/content/experience-fragments/autodesk/en/company/legal-notices-trademarks/privacy-statement/what-information-does-autodesk-collect-about-you/master" data-ef-all-variations="master">
+
+
+
+  
+
+
+
+<div class="xfpage-content-container">
+  
+  <div class="root responsivegrid">
+
+
+<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+    
+    <div class="core-container aem-GridColumn aem-GridColumn--default--12">
+
+  
+  
+  
+  
+  <div id="info-collect" class="cmp-container wp-parent legal-section ">
+    
+    <div class="core-container">
+
+  
+  
+  
+  
+  <div id="container-624c1b290b" class="cmp-container wd-mb-64 wd-bbw-1 wd-bc-smoke wd-pb-12 ">
+    
+    <div class="title">
+<div class="cmp-title" id="title-aac1c0826e">
+  <h3 class="cmp-title__text pc-brand wd-font-20">
+    What information does Autodesk collect about you?</h3>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-c12c231e7e" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12">We obtain personal data in different ways. Some personal data is collected directly from you. Other data is automatically collected or generated about how, when, and why you interact with us through our offerings, including data obtained through the use of cookies and other tracking technologies. We also obtain data about you from third parties.</p>
+
+</div>
+
+    
+
+</div>
+<div class="title">
+<div class="cmp-title" id="title-843c98c0cc">
+  <h4 class="cmp-title__text ">
+    Information you provide us:</h4>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-4c3baa8c30" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12">We collect information directly from you, such as when you sign up for an account or use our offerings, register a product or service, sign up for our newsletter or for one of our events, interact with one of our events, surveys, activities or with social media, visit our premises, or otherwise contact us. The types of information we may collect from you include:</p>
+<ul class="wd-font-14 wd-mv-12">
+<li><b>Identifiers</b>, such as your name, telephone number, physical and/or email addresses, account username, and account password.</li>
+<li><b>Professional information</b>, such as your occupation, industry, professional licenses, work experience and employment history, and other qualifications.</li>
+<li><b>Commercial information</b>, such as details about your subscription plans, the offerings that you have purchased, used and/or expressed interest in, and events you have attended.</li>
+<li><b>Financial account information</b>, such as payment information you provide when making a purchase of or through an offering (a third party processes these transfers on our behalf as described below).</li>
+<li><b>Education information</b>, such as your educational background and training records.</li>
+<li><b>Protected characteristics</b>, such as your date of birth (where applicable).</li>
+<li><b>Information that may be deemed sensitive under applicable laws</b>, such as usernames and passwords used to access your account, government identification numbers, and information regarding children.</li>
+<li><b>Visual, audio, and electronic information</b>, such as your picture or signature; records of our interactions, such as correspondence, details of complaints and their resolutions, service records; your preferences, including your preferred tools, experience, language, and the frequency at which you wish to receive marketing communications.</li>
+</ul>
+<p class="wd-font-14 wd-mv-12">When you make purchases through our websites, we use payment processors (<a href="https://www.digitalriver.com/corporate-policies/" class="wp-body-links" target="_blank">Digital River</a>, <a href="https://www.paypal.com/us/webapps/mpp/ua/privacy-full" class="wp-body-links" target="_blank">PayPal</a>, <a href="https://stripe.com/us/privacy" class="wp-body-links" target="_blank">Stripe</a>, <a href="https://www.fisglobal.com/en/privacy" target="_blank">Worldpay</a>, <a href="https://www.adyen.com/policies-and-disclaimer/privacy-policy" class="wp-body-links" target="_blank">Adyen</a>, <a href="https://www.chargebee.com/privacy/" class="wp-body-links" target="_blank">Chargebee</a>) and do not store credit card or other financial information (other than confirmation that payment in a certain amount has been made). We or our payment processors collect contact and account information from you to facilitate the transaction. For more information, you can contact our providers as set forth in their privacy notices.</p>
+
+</div>
+
+    
+
+</div>
+<div class="title">
+<div class="cmp-title" id="title-054efa5973">
+  <h4 class="cmp-title__text ">
+    Information we obtain or generate:</h4>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-6fc509d474" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12">We automatically collect or generate certain personal information about you based on your interactions with us, such as when you use our offerings, and we may associate that information with your account. The information we automatically collect or generate includes:</p>
+<ul class="wd-font-14 wd-mv-12">
+<li><b>Identifiers</b>, such as unique user identifiers, unique device identifiers, IP addresses, cookie identifiers, information about product licenses, and usernames.</li>
+<li><b>Internet or other electronic network activity information</b>, such as the website domain visited; which activities and offerings are used, how, and for how long; posts, discussions, and other types of engagement with us, including on our blogs, discussion forums, or chat rooms; the use of any hyperlinks or downloadable content available through the offerings.</li>
+<li><b>Geolocation information,</b> such as region, country, state, Zip or postal code.</li>
+<li><b>Electronic information</b>, such as information about operating systems, device types, information about browsers, information relating to automatic updates and technical errors, information about your use of our offerings, including your preferred tools and experiences, and your engagement with our activities.</li>
+<li><b>Commercial information</b>, such as records about interest in our offerings or completed purchases.</li>
+<li><b>Information that may be deemed sensitive under applicable laws</b>, such as usernames and passwords used to access your account, and precise geolocation information.</li>
+<li><b>Identifying characteristics</b>, such as facial templates and eye movement.</li>
+<li><b>Inferences</b> drawn from any of the personal and offering usage information available to us.</li>
+</ul>
+<p class="wd-font-14 wd-mv-12">We also use cookies (small text files stored by your web browser when you use websites) and related technologies, such as pixels and beacons (collectively “Cookies”), to collect and store information when you use our applications. To learn more, see our <a href="https://www.autodesk.com/company/legal-notices-trademarks/privacy-statement/cookie-statement" class="wp-body-links">Cookie Statement</a>.</p>
+<p class="wd-font-14 wd-mv-12">Except as described in our Privacy Statement and our Cookie Statement, whether we collect data through the use of Cookies is up to you. You can change your mind at any time by going into your application settings or by clicking a link in the footer of our websites. The relevant link may be titled “Cookie preferences,&quot; “Privacy settings,” or something similar.</p>
+<p class="wd-font-14 wd-mv-12">In addition, we gather certain information automatically as part of your use of our products and services via Autodesk analytics programs and tools, including third-party analytics tools, such as <a href="http://www.google.com/policies/privacy" class="wp-body-links" target="_blank">Google Analytics</a>. To learn more, see our <a href="https://www.autodesk.com/company/autodesk-analytics" class="wp-body-links">Autodesk analytics programs</a> page.</p>
+<p class="wd-font-14 wd-mv-12"><b>Social Networking Data:</b> We may include content, pixels, tags, buttons, or other tools that link to another company’s services and/or platform(s) (“Plugins”). If you use one of our offerings that contains Plugins, information can be transferred directly from your device to a third-party provider of services and/or platforms. We may not control the data collected by Plugins. If you are logged into a social network, the social network may be able to link your use of our offerings to their services and/or platform.</p>
+<p class="wd-font-14 wd-mv-12">For example, if you interact with a Plugin by clicking on &quot;Like,&quot; &quot;Follow,&quot; or &quot;Share,&quot; or by writing a comment, this information may automatically appear in your profile on the relevant social network service or platform. Even if you are not logged in, the Plugins may send your IP address to social network services and/or platforms. Please note this when using our offerings.</p>
+<p class="wd-font-14 wd-mv-12">When you connect to a social networking service or platform on a device that is also used by others, these other users may be able to see information that is stored or displayed in connection with your profile on the social networking service page.</p>
+
+</div>
+
+    
+
+</div>
+<div class="title">
+<div class="cmp-title" id="title-12041f0260">
+  <h4 class="cmp-title__text ">
+    Information we collect from other parties:</h4>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-16705579c8" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12">We receive and process information from our affiliates and from third-party sources, including employers, business partners, business contact databases, enrichment services, channel partners (e.g., resellers), marketing service providers, third-party data aggregators, and social networking services and platforms (e.g., LinkedIn and Facebook). We also receive information from publicly available sources and licensors. The categories of personal information we collect from these sources include:</p>
+<ul class="wd-font-14 wd-mv-12">
+<li><b>Identifiers</b>, such as names, phone numbers, and email addresses.</li>
+<li><b>Professional information</b>, such as occupations, industries, professional licenses, work experience and employment histories, and other qualifications.</li>
+<li><b>Education information</b>, such as your educational background.</li>
+<li><b>Commercial information</b>, such as events you have attended or activities you have participated in.</li>
+<li><b>Inferences</b>, such as regarding usage information and your preferences, behaviors, and other attributes.</li>
+</ul>
+<p class="wd-font-14 wd-mv-12">In accordance with applicable law, we may combine your personal data with information we collect from other parties to help keep our databases current and accurate, and to provide you with more relevant content, experiences, applications, and other offerings.</p>
+
+</div>
+
+    
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+</div>
+</div>
+
+</div>
+
+
+
+</div>
+
+
+    
+
+</div>
+<div class="experiencefragment">
+<div id="experiencefragment-9817660b3e" class="cmp-experiencefragment cmp-experiencefragment--how-does-autodesk-use-the-information" data-ef-variation-path="/content/experience-fragments/autodesk/en/company/legal-notices-trademarks/privacy-statement/how-does-autodesk-use-the-information/master" data-ef-all-variations="master">
+
+
+
+  
+
+
+
+<div class="xfpage-content-container">
+  
+  <div class="root responsivegrid">
+
+
+<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+    
+    <div class="core-container aem-GridColumn aem-GridColumn--default--12">
+
+  
+  
+  
+  
+  <div id="info-use" class="cmp-container wp-parent legal-section ">
+    
+    <div class="core-container">
+
+  
+  
+  
+  
+  <div id="container-cf9349da7a" class="cmp-container wd-mb-64 wd-bbw-1 wd-bc-smoke wd-pb-12 ">
+    
+    <div class="title">
+<div class="cmp-title" id="title-ff537f10f4">
+  <h3 class="cmp-title__text pc-brand wd-font-20">
+    How does Autodesk use the information it collects about you?</h3>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-30d7a4f39c" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12">We collect and use your personal information for the following purposes:</p>
+<ul class="wd-font-14 wd-mv-12">
+<li>To validate your identity as necessary to perform our contract with you.</li>
+<li>To deliver services, products, and other offerings, including information such as insights and recommendations, as necessary to fulfill our contractual obligations. For example, we may analyze usage information for billing or discount purposes.</li>
+<li>To send you important information, such as about your account or purchases, within the scope of our contract with you.</li>
+<li>To send you information you requested to the extent necessary to perform our contract with you or, when not necessary to perform a contract, in furtherance of our legitimate interest, for example, in responding to customer inquiries.</li>
+<li>To maintain and improve the security of, and to troubleshoot any issues relating to, our offerings as necessary to perform our contract with you or, when not necessary to perform a contract, in furtherance of our legitimate interest in protecting our business.</li>
+<li>To anonymize, aggregate, or de-identify your personal data so it can no longer identify you in furtherance of our legitimate interest in conducting research and analysis. When we de-identify personal data, we will take reasonable measures to ensure the data is not re-identified, except for purpose of confirming that it is de-identified.</li>
+<li>To develop and improve our current and future offerings and your experience, including through the use of automated systems that analyze data using machine learning and other analytic techniques, in furtherance of our legitimate interests or, where needed, with consent.</li>
+<li>To understand the ways our offerings are used and who is using them in furtherance of our legitimate interest in improving our offerings and the overall user experience or, where needed, with consent.</li>
+<li>To analyze information about how you interact or may interact with us or our offerings in furtherance of our legitimate interest in improving our offerings and your experience with us or, where needed, with consent.</li>
+<li>To make strategic decisions concerning our business operations, including reporting on the performance of our business, in furtherance of our legitimate interest in making those decisions or, where needed, with consent.</li>
+<li>To send you learning content, tutorials, suggestions, newsletters, surveys, or other information, including information that may be relevant to your interests or preferences, in furtherance of our legitimate interest in improving your customer experience or, where needed, with consent.</li>
+<li>To send you promotional offers, advertising, or other marketing content in furtherance of our legitimate interest to engage in direct marketing or with consent as required by applicable law.</li>
+<li>To detect, prevent, or otherwise address non-valid use such as through fraud and software piracy (e.g., to confirm that software is genuine and properly licensed) and to protect you, Autodesk, and/or third parties in furtherance of our legitimate interests. For example, learn more about how Autodesk detects and combats non-valid software <a href="https://www.autodesk.com/genuine/frequently-asked-questions" class="wp-body-links">here</a>.</li>
+<li>To enforce, and review compliance with, the legal terms that govern our offerings in furtherance of our legitimate interest in ensuring adherence to the relevant terms.</li>
+<li>To comply with our legal obligations under applicable laws.</li>
+<li>To protect the rights, safety, and property of Autodesk, you, or any third party in furtherance of our legitimate interest in protecting us, our users, and third parties.</li>
+<li>For other purposes for which we obtain your consent.</li>
+<li>As further described in our offerings, such as in a supplemental notice, or in our About Boxes (available via Settings in your application).</li>
+</ul>
+<p class="wd-font-14 wd-mv-12">Where we rely on your consent to process personal data, you may withdraw your consent at any time by contacting us at the contact details below or as otherwise indicated to you in writing. Please note that your withdrawal of consent will not affect our processing activities based on your consent that occurred before your withdrawal.</p>
+<p class="wd-font-14 wd-mv-12">Where we rely on our legitimate interests to process your personal information, we balance your rights against ours so that our interest is not overridden by the interests you have to protect your information. You may also have the right to object to that processing on the basis of circumstances specific to you. For more information, see “<a href="https://www.autodesk.com/company/legal-notices-trademarks/privacy-statement#rights-and-choices">What Rights and Choices Do You Have?</a>” below.</p>
+<p class="wd-font-14 wd-mv-12">When we process personal data about you to comply with legal requirements or to perform our obligations under a contract with you or with our customer through whom you use our offerings, failure to provide such data may prevent or delay our fulfillment of these obligations.</p>
+
+</div>
+
+    
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+</div>
+</div>
+
+</div>
+
+
+
+</div>
+
+
+    
+
+</div>
+<div class="experiencefragment">
+<div id="experiencefragment-43b75d36b5" class="cmp-experiencefragment cmp-experiencefragment--how-does-autodesk-disclose-your-personal-data" data-ef-variation-path="/content/experience-fragments/autodesk/en/company/legal-notices-trademarks/privacy-statement/how-does-autodesk-disclose-your-personal-data/master" data-ef-all-variations="master">
+
+
+
+  
+
+
+
+<div class="xfpage-content-container">
+  
+  <div class="root responsivegrid">
+
+
+<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+    
+    <div class="core-container aem-GridColumn aem-GridColumn--default--12">
+
+  
+  
+  
+  
+  <div id="personal-data" class="cmp-container wp-parent legal-section ">
+    
+    <div class="core-container">
+
+  
+  
+  
+  
+  <div id="container-4eecdd5151" class="cmp-container wd-mb-64 wd-bbw-1 wd-bc-smoke wd-pb-12 ">
+    
+    <div class="title">
+<div class="cmp-title" id="title-7822d90e64">
+  <h3 class="cmp-title__text pc-brand wd-font-20">
+    How does Autodesk disclose your personal data?</h3>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-a530122318" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12">We disclose the categories of information described above to the following categories of persons:</p>
+<ul class="wd-font-14 wd-mv-12">
+<li><b>Our service providers</b>, including vendors, consultants, contractors, and other service providers who perform services or functions on our behalf, for business purposes. For example, our service providers include companies who support us with marketing, sales, consulting, communications, software maintenance and support, analytics, social media, market research, auditing for valid use, license compliance, security, user verification, localization, and payment processing. Our service providers process your information subject to contractual terms that restrict their ability to use your information.</li>
+<li><b>Our business partners</b>, such as integration partners, channel partners (e.g., resellers), event sponsors, partners, and attendees, Ad Partners, and Autodesk’s App Store publishers, with whom you interact to facilitate your relationship with Autodesk and those business partners for any of the purposes described in our or those business partners’ privacy statements.</li>
+<li><b>Our affiliates</b>, for any of the purposes and uses of information described in this Privacy Statement, including providing you with integrated offerings (including administering purchases, services, and payments across our integrated offerings) in furtherance of our legitimate interests. You can find a list of Autodesk entities <a href="https://www.autodesk.com/company/contact-us/office-locations" class="wp-body-links">here</a>.</li>
+<li><b>Social networking services and platforms </b>to connect with or share information publicly, with service providers, or with your contacts on such services or platforms.</li>
+<li><b>Persons to whom we are required by law to provide information</b>, such as pursuant to a subpoena or a court order.</li>
+<li><b>Law enforcement, legal counsel, or other reasonably necessary parties </b>when we determine that such disclosure is reasonably necessary to: (a) comply with any applicable law, regulation, legal process, or appropriate government request or to enforce or apply our terms and conditions or to establish, exercise or defend the rights of Autodesk, Autodesk personnel, customers or others. For more information on Autodesk policy on responding to law enforcement requests, see <a href="https://damassets.autodesk.net/content/dam/autodesk/www/pdfs/(Final)-Transparency-Report-Feb2022-Jan2023.pdf" class="wp-body-links">Autodesk Transparency Report;</a> (b) prevent or respond to fraud or software piracy; (c) protect the rights, property, or safety of Autodesk, our customers, and the public.</li>
+<li><b>Persons involved in the consideration, negotiation, completion of a business transaction</b>, including the sale, merger, consolidation, acquisition, change in control, transfer of substantial assets, bankruptcy, or reorganization, and any subsequent integration.</li>
+</ul>
+<p class="wd-font-14 wd-mv-12">We may also disclose your personal information to other parties when we have your consent to do so or when you direct us to, for any purposes requested or permitted by you.</p>
+<p class="wd-font-14 wd-mv-12">We may share aggregate, anonymous, or de-identified demographic, statistical, and other information regarding use of our offerings with third parties for marketing, analytics, planning, and other purposes. Such information will not specifically identify any particular user.</p>
+
+</div>
+
+    
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+</div>
+</div>
+
+</div>
+
+
+
+</div>
+
+
+    
+
+</div>
+<div class="experiencefragment">
+<div id="experiencefragment-dad47aa07d" class="cmp-experiencefragment cmp-experiencefragment--how-does-autodesk-protect-your-data" data-ef-variation-path="/content/experience-fragments/autodesk/en/company/legal-notices-trademarks/privacy-statement/how-does-autodesk-protect-your-data/master" data-ef-all-variations="master">
+
+
+
+  
+
+
+
+<div class="xfpage-content-container">
+  
+  <div class="root responsivegrid">
+
+
+<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+    
+    <div class="core-container aem-GridColumn aem-GridColumn--default--12">
+
+  
+  
+  
+  
+  <div id="protect-data" class="cmp-container wp-parent legal-section ">
+    
+    <div class="core-container">
+
+  
+  
+  
+  
+  <div id="container-4991efcbfa" class="cmp-container wd-mb-64 wd-bbw-1 wd-bc-smoke wd-pb-12 ">
+    
+    <div class="title">
+<div class="cmp-title" id="title-81b1a78dcc">
+  <h3 class="cmp-title__text pc-brand wd-font-20">
+    How does Autodesk protect your data?</h3>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-309e558172" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12">We maintain a combination of reasonable and appropriate physical, organizational, administrative, and technological procedures and controls to protect your data from unauthorized access, use, loss, alteration, destruction, modification or other malicious actions. For more information about our security practices, please visit the <a href="https://www.autodesk.com/trust/overview" class="wp-body-links">Trust Center</a>.</p>
+<p class="wd-font-14 wd-mv-12">We take reasonable steps to limit the access employees, contractors, and agents of Autodesk have to your personal data to those who need to know this data to perform their assigned functions.</p>
+
+</div>
+
+    
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+</div>
+</div>
+
+</div>
+
+
+
+</div>
+
+
+    
+
+</div>
+<div class="experiencefragment">
+<div id="experiencefragment-de063ce26b" class="cmp-experiencefragment cmp-experiencefragment--what-rights-and-choices-do-you-have" data-ef-variation-path="/content/experience-fragments/autodesk/en/company/legal-notices-trademarks/privacy-statement/what-rights-and-choices-do-you-have/master" data-ef-all-variations="master">
+
+
+
+  
+
+
+
+<div class="xfpage-content-container">
+  
+  <div class="root responsivegrid">
+
+
+<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+    
+    <div class="core-container aem-GridColumn aem-GridColumn--default--12">
+
+  
+  
+  
+  
+  <div id="rights-and-choices" class="cmp-container wp-parent legal-section ">
+    
+    <div class="core-container">
+
+  
+  
+  
+  
+  <div id="container-93d12cd3fb" class="cmp-container wd-mb-64 wd-bbw-1 wd-bc-smoke wd-pb-12 ">
+    
+    <div class="title">
+<div class="cmp-title" id="title-1c332442f6">
+  <h3 class="cmp-title__text pc-brand wd-font-20">
+    What rights and choices do you have?</h3>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-344885986f" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12">You have the right to access, update, delete, receive a copy of, or restrict our use of your personal data. When we process personal data based on your consent, you have the right to withdraw your consent any time.</p>
+<p class="wd-font-14 wd-mv-12">Please log-in to your account to manage your personal data and content using our applications. You can also delete your personal data and close your account. If you do not have an Autodesk account, you may submit a deletion request using this <a href="https://accounts.autodesk.com/externaluser/delete" target="_blank">form</a>. We may retain certain data about you for legal and internal business purposes, such as fraud prevention, in accordance with applicable laws.</p>
+<p class="wd-font-14 wd-mv-12">To request a copy of the personal data in your account, please <a href="https://accounts.autodesk.com/profile/download?returnurl=https://www.autodesk.com/company/legal-notices-trademarks/privacy-statement/confirmation-en" class="wp-body-links" target="_blank">submit this form</a>. Consistent with applicable law, we may ask for proof of your identity before fulfilling your request, and we may ask for additional forms of verification depending on the nature of the personal information requested.</p>
+<p class="wd-font-14 wd-mv-12">Certain jurisdictions grant individuals additional rights with respect to their personal data. Depending on where you live or applicable law, you may also have the right to:</p>
+<ul class="wd-font-14 wd-mv-12">
+<li>Object to our processing of your personal data</li>
+<li>Have us block or anonymize your personal data, as appropriate</li>
+<li>Receive a copy of your personal data to transfer it to a third party</li>
+<li>Opt-out of certain direct marketing communications</li>
+<li>Opt-out of certain disclosures of your personal information to third parties</li>
+<li>Opt-out of targeted advertising</li>
+<li>Opt-out of profiling that may have legal or other significant effects on you (Please note that we do not engage in such profiling)</li>
+<li>Not be denied a good or service for exercising your rights, though you may be provided a different level of service or charged a different rate or price consistent with applicable law</li>
+<li>Lodge a complaint with the relevant data protection authority in the jurisdiction in which you are located</li>
+<li>Appeal any decision we may make regarding your requests</li>
+</ul>
+<p class="wd-font-14 wd-mv-12">These rights may be limited in some circumstances by local law. For example, even if you ask us to delete your personal information, we may need to retain it to complete transactions you have requested, to comply with our legal obligations, or for other limited business purposes as required or permitted by law. To exercise the rights you may have, please contact us at <a href="mailto:privacy.questions@autodesk.com" class="wp-body-links">privacy.questions@autodesk.com</a>.</p>
+<p class="wd-font-14 wd-mv-12">Where we process personal data on behalf of our customers, we may refer the request to the relevant customer and cooperate with their handling of the request, subject to any special contractual arrangement with that customer.</p>
+<p class="wd-font-14 wd-mv-12"><b>Residents of California, Colorado, Connecticut, Utah, and Virginia</b>, please read the relevant section “<a href="#california-privacy">Privacy Rights under U.S. Privacy Laws</a>” below for additional disclosures and information regarding your rights under applicable law.</p>
+<p class="wd-font-14 wd-mv-12"><b>Individuals in Brazil</b>, please read the <a href="https://damassets.autodesk.net/content/dam/autodesk/www/trust/2020/lgpd-faqs.pdf" class="wp-body-links" target="_blank">LGPD FAQs</a> for additional information regarding the LGPD and your rights under the law.</p>
+<p class="wd-font-14 wd-mv-12"><b>Individuals in China</b>, please read the <a href="https://damassets.autodesk.net/content/dam/autodesk/www/trust/compliance/assets/china-pipl-faqs-final.pdf" class="wp-body-links" target="_blank">PIPL FAQs</a> for additional information regarding the PIPL and your rights under the law.</p>
+
+</div>
+
+    
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+</div>
+</div>
+
+</div>
+
+
+
+</div>
+
+
+    
+
+</div>
+<div class="experiencefragment">
+<div id="experiencefragment-5e5da5e505" class="cmp-experiencefragment cmp-experiencefragment--what-are-autodesks-storage-and-data-retention-practices" data-ef-variation-path="/content/experience-fragments/autodesk/en/company/legal-notices-trademarks/privacy-statement/what-are-autodesks-storage-and-data-retention-practices/master" data-ef-all-variations="master">
+
+
+
+  
+
+
+
+<div class="xfpage-content-container">
+  
+  <div class="root responsivegrid">
+
+
+<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+    
+    <div class="core-container aem-GridColumn aem-GridColumn--default--12">
+
+  
+  
+  
+  
+  <div id="storage" class="cmp-container wp-parent legal-section ">
+    
+    <div class="core-container">
+
+  
+  
+  
+  
+  <div id="container-8baa57c87e" class="cmp-container wd-mb-64 wd-bbw-1 wd-bc-smoke wd-pb-12 ">
+    
+    <div class="title">
+<div class="cmp-title" id="title-d695816a44">
+  <h3 class="cmp-title__text pc-brand wd-font-20">
+    What are Autodesk’s storage and data retention practices?</h3>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-70db4e7334" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12">We store your personal data and content on our servers and the servers of our service providers. Because we and our service providers maintain servers in global locations, your personal data may be transferred across national borders and stored on the servers outside of your country or region. We will retain your personal data for as long as reasonably necessary or permitted and proportionate to the purpose for which it was collected. For example, to provide you with the offerings that you are using or have requested, for the establishment, exercise or defense of legal claims, and as needed to comply with our legal obligations. Data may persist in copies made for backup and business continuity purposes for additional time. There may be occasions where we are unable to fully delete, anonymize or de-identify your personal data due to technical, legal, regulatory compliance or other operational reasons.</p>
+
+</div>
+
+    
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+</div>
+</div>
+
+</div>
+
+
+
+</div>
+
+
+    
+
+</div>
+<div class="experiencefragment">
+<div id="experiencefragment-85f8a45346" class="cmp-experiencefragment cmp-experiencefragment--does-autodesk-transfer-your-personal-data-across-national-borders" data-ef-variation-path="/content/experience-fragments/autodesk/en/company/legal-notices-trademarks/privacy-statement/does-autodesk-transfer-your-personal-data-across-national-borders/master" data-ef-all-variations="master">
+
+
+
+  
+
+
+
+<div class="xfpage-content-container">
+  
+  <div class="root responsivegrid">
+
+
+<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+    
+    <div class="core-container aem-GridColumn aem-GridColumn--default--12">
+
+  
+  
+  
+  
+  <div id="borders" class="cmp-container wp-parent legal-section ">
+    
+    <div class="core-container">
+
+  
+  
+  
+  
+  <div id="container-c01662d6eb" class="cmp-container wd-mb-64 wd-bbw-1 wd-bc-smoke wd-pb-12 ">
+    
+    <div class="title">
+<div class="cmp-title" id="title-22260d7ab1">
+  <h3 class="cmp-title__text pc-brand wd-font-20">
+    Does Autodesk transfer your personal data across national borders?</h3>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-c0e7a90aee" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12">Because we are a global company, we transfer personal data across national borders to other countries, in compliance with the laws that apply to that data. Where required by law, we have put in place measures (such as standard contractual clauses) to adequately protect personal data that we transfer across borders. If you wish to obtain a copy of the safeguards that we use to protect personal data transferred across borders, please contact us using the information in the “How to contact us?” section below.</p>
+<p class="wd-font-14 wd-mv-12">Autodesk has certified to the EU-U.S. Privacy Shield Framework and the Swiss-U.S. Privacy Shield Framework (“Privacy Shield”) as set forth by the U.S. Department of Commerce regarding the collection, use, and retention of personal data transferred from the EEA, the United Kingdom and/or Switzerland to the United States. If there is any conflict between the terms in this Privacy Statement and the Privacy Shield Principles, the Privacy Shield Principles shall govern with respect to personal data subject to Autodesk’s Privacy Shield Notice. To learn more about the Privacy Shield program, and to view our certification, please visit <a href="https://www.privacyshield.gov/" class="wp-body-links" target="_blank">https://www.privacyshield.gov/</a> and read our <a href="https://damassets.autodesk.net/content/dam/autodesk/www/Company/docs/pdf/legal-notices-&amp;-trademarks/privacy-shield-statement-nov-2017-updated-1.pdf" class="wp-body-links" target="_blank">Privacy Shield Notice</a>.</p>
+
+</div>
+
+    
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+</div>
+</div>
+
+</div>
+
+
+
+</div>
+
+
+    
+
+</div>
+<div class="experiencefragment">
+<div id="experiencefragment-5882441a2c" class="cmp-experiencefragment cmp-experiencefragment--what-are-autodesks-marketing-and-advertising-practices" data-ef-variation-path="/content/experience-fragments/autodesk/en/company/legal-notices-trademarks/privacy-statement/what-are-autodesks-marketing-and-advertising-practices/master" data-ef-all-variations="master">
+
+
+
+  
+
+
+
+<div class="xfpage-content-container">
+  
+  <div class="root responsivegrid">
+
+
+<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+    
+    <div class="core-container aem-GridColumn aem-GridColumn--default--12">
+
+  
+  
+  
+  
+  <div id="marketing-practices" class="cmp-container wp-parent legal-section ">
+    
+    <div class="core-container">
+
+  
+  
+  
+  
+  <div id="container-6f185c859a" class="cmp-container wd-mb-64 wd-bbw-1 wd-bc-smoke wd-pb-12 ">
+    
+    <div class="title">
+<div class="cmp-title" id="title-88916a8199">
+  <h3 class="cmp-title__text pc-brand wd-font-20">
+    What are Autodesk’s marketing and advertising practices?</h3>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-ab7c044e81" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12">We use analytics tools and also work with one or more advertising networks and digital advertising partners (our “Ad Partners”) that use Cookies to collect information about application visitors, to serve ads, and to help us track results of advertising and marketing campaigns. Partners of our Ad Partners may also use Cookies to collect information from you for these purposes. Through these means, we and/or our Ad Partners and their partners may be able to collect information from application visitors, including websites visited, how and when applications are used, marketing preferences, IP addresses, device IDs, and browser information. This information is used to display personalized advertising in websites and other applications, to calculate and control the number of unique and repeat views of a given ad, to deliver ads that relate to a visitor’s interests, and to measure the effectiveness of ad campaigns. We process your personal data for the above activities in furtherance of our legitimate interests or, where required, with your consent.</p>
+<p class="wd-font-14 wd-mv-12">You can opt out of the use of your information by certain Ad Partners for online behavioral advertising by using the Digital Advertising Alliance’s <a href="http://optout.aboutads.info/?c=2#!/" class="wp-body-links" target="_blank">Your AdChoices</a> tool. The Your AdChoices tool may not work if your browser does not accept third-party Cookies, and if you delete Cookies, use a different browser, or use a different computer, you will need to use the tool again to renew your opt out.</p>
+<p class="wd-font-14 wd-mv-12">If you reside in the US, please see what additional rights you might have in the &quot;Privacy Rights under U.S. Privacy Laws&quot; section below.</p>
+<p class="wd-font-14 wd-mv-12">As described above, you can change your Cookie preferences. Cookie choices are generally application-, browser-, and device-specific, so you may need to refresh your choices if you visit a different application, use a new browser or device, or clear your browser’s cookies.</p>
+<p class="wd-font-14 wd-mv-12">Autodesk currently does not respond to “do not track” signals.</p>
+
+</div>
+
+    
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+</div>
+</div>
+
+</div>
+
+
+
+</div>
+
+
+    
+
+</div>
+<div class="experiencefragment">
+<div id="experiencefragment-62d994de0b" class="cmp-experiencefragment cmp-experiencefragment--how-does-autodesk-protect-children-and-student-data" data-ef-variation-path="/content/experience-fragments/autodesk/en/company/legal-notices-trademarks/privacy-statement/how-does-autodesk-protect-children-and-student-data/master" data-ef-all-variations="master">
+
+
+
+  
+
+
+
+<div class="xfpage-content-container">
+  
+  <div class="root responsivegrid">
+
+
+<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+    
+    <div class="core-container aem-GridColumn aem-GridColumn--default--12">
+
+  
+  
+  
+  
+  <div id="protect-children" class="cmp-container wp-parent legal-section ">
+    
+    <div class="core-container">
+
+  
+  
+  
+  
+  <div id="container-79f4346513" class="cmp-container wd-mb-64 wd-bbw-1 wd-bc-smoke wd-pb-12 ">
+    
+    <div class="title">
+<div class="cmp-title" id="title-8a50bc6de3">
+  <h3 class="cmp-title__text pc-brand wd-font-20">
+    How does Autodesk protect children and student data?</h3>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-06b218892e" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12">At Autodesk, we care deeply about children’s privacy and protecting their data.</p>
+<p class="wd-font-14 wd-mv-12">Most of our applications are made for the general public and are designed for adult users. We refer to these applications as “general interest applications.” We do not knowingly collect personal data from children in connection with general interest applications. Certain applications are appropriate for and are intended for use by children. We refer to these applications as “Children’s applications.”</p>
+<p class="wd-font-14 wd-mv-12">Our <a href="https://www.autodesk.com/company/legal-notices-trademarks/privacy-statement/childrens-privacy-policy-english" class="wp-body-links" target="_blank">Children’s Privacy Statement</a> applies to personal data collected from certain child and student users of Autodesk offerings, including Children's applications. If there is a conflict between our Children’s Privacy Statement and our Privacy Statement, the Children’s Privacy Statement sets the standard for how we process children’s personal data. For more information, please refer to our <a href="https://www.autodesk.com/company/legal-notices-trademarks/privacy-statement/childrens-privacy-policy-english" class="wp-body-links" target="_blank">Children’s Privacy Statement</a>.</p>
+
+</div>
+
+    
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+</div>
+</div>
+
+</div>
+
+
+
+</div>
+
+
+    
+
+</div>
+<div class="experiencefragment">
+<div id="experiencefragment-aa8271c251" class="cmp-experiencefragment cmp-experiencefragment--is-the-personal-data-you-give-us-ever-displayed-publicly" data-ef-variation-path="/content/experience-fragments/autodesk/en/company/legal-notices-trademarks/privacy-statement/is-the-personal-data-you-give-us-ever-displayed-publicly/master" data-ef-all-variations="master">
+
+
+
+  
+
+
+
+<div class="xfpage-content-container">
+  
+  <div class="root responsivegrid">
+
+
+<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+    
+    <div class="core-container aem-GridColumn aem-GridColumn--default--12">
+
+  
+  
+  
+  
+  <div id="data-public" class="cmp-container wp-parent legal-section ">
+    
+    <div class="core-container">
+
+  
+  
+  
+  
+  <div id="container-7dc9e19a35" class="cmp-container wd-mb-64 wd-bbw-1 wd-bc-smoke wd-pb-12 ">
+    
+    <div class="title">
+<div class="cmp-title" id="title-74fe7289ba">
+  <h3 class="cmp-title__text pc-brand wd-font-20">
+    Is the personal data you give us ever displayed publicly?</h3>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-9d4bfb6a3b" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12">As always, we urge you to be mindful when deciding to disclose personal data, including on our offerings. Our offerings may allow you to post content, including comments and “likes,” that can be visible to the public.</p>
+<p class="wd-font-14 wd-mv-12">In some cases, you can limit who can view or access the information and content you post. In other cases, the information and content might be available to registered members of the offering, or even to the general public. Your name, username, profile image, or email address (particularly if this is your username) may be posted along with any message or other content you post through some of our offerings.</p>
+<p class="wd-font-14 wd-mv-12">If you are posting information you do not want to be disclosed publicly, make sure you are using an offering that allows you to control who sees information you have posted.</p>
+
+</div>
+
+    
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+</div>
+</div>
+
+</div>
+
+
+
+</div>
+
+
+    
+
+</div>
+<div class="experiencefragment">
+<div id="experiencefragment-0d0c1c90c7" class="cmp-experiencefragment cmp-experiencefragment--will-this-privacy-statement-change" data-ef-variation-path="/content/experience-fragments/autodesk/en/company/legal-notices-trademarks/privacy-statement/will-this-privacy-statement-change/master" data-ef-all-variations="master">
+
+
+
+  
+
+
+
+<div class="xfpage-content-container">
+  
+  <div class="root responsivegrid">
+
+
+<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+    
+    <div class="core-container aem-GridColumn aem-GridColumn--default--12">
+
+  
+  
+  
+  
+  <div id="change" class="cmp-container wp-parent legal-section ">
+    
+    <div class="core-container">
+
+  
+  
+  
+  
+  <div id="container-65667bc3e1" class="cmp-container wd-mb-64 wd-bbw-1 wd-bc-smoke wd-pb-12 ">
+    
+    <div class="title">
+<div class="cmp-title" id="title-0e3bfa6851">
+  <h3 class="cmp-title__text pc-brand wd-font-20">
+    Will this Privacy Statement change?</h3>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-314ed3b432" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12">We may change this Privacy Statement to reflect changes in the law, our data handling practices, or the features of our business. The updated Privacy Statement will be available at our Trust Center <a href="https://www.autodesk.com/company/legal-notices-trademarks/privacy-statement" class="wp-body-links">here</a>. We will show the date the Privacy Statement was last updated to help you know when we change it. If we make material changes to our Privacy Statement, we will endeavor to provide you with notice before such changes take effect, such as through prominent notice on our website or services or by email.</p>
+
+</div>
+
+    
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+</div>
+</div>
+
+</div>
+
+
+
+</div>
+
+
+    
+
+</div>
+<div class="experiencefragment">
+<div id="experiencefragment-85be7bf2b3" class="cmp-experiencefragment cmp-experiencefragment--how-to-contact-us" data-ef-variation-path="/content/experience-fragments/autodesk/en/company/legal-notices-trademarks/privacy-statement/how-to-contact-us/master" data-ef-all-variations="master">
+
+
+
+  
+
+
+
+<div class="xfpage-content-container">
+  
+  <div class="root responsivegrid">
+
+
+<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+    
+    <div class="core-container aem-GridColumn aem-GridColumn--default--12">
+
+  
+  
+  
+  
+  <div id="contact" class="cmp-container wp-parent legal-section ">
+    
+    <div class="core-container">
+
+  
+  
+  
+  
+  <div id="container-b90a04480d" class="cmp-container wd-mb-64 wd-bbw-1 wd-bc-smoke wd-pb-12 ">
+    
+    <div class="title">
+<div class="cmp-title" id="title-238178c4d7">
+  <h3 class="cmp-title__text pc-brand wd-font-20">
+    How to contact us?</h3>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-46624612ae" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12">To contact us, please use the following contact information. When you do so, please tell us the name of the offering about which you are contacting us:</p>
+<p class="wd-font-14 wd-mv-12">By email at: <a href="mailto:privacy.questions@autodesk.com" class="wp-body-links">privacy.questions@autodesk.com</a></p>
+<p class="wd-font-14 wd-mv-12">By postal mail:</p>
+<blockquote><p class="wd-font-14">Autodesk, Inc.<br />
+Privacy Questions<br />
+The Landmark at One Market Street, Suite 400<br />
+San Francisco, CA 94105<br />
+United States</p>
+</blockquote>
+<p class="wd-font-14 wd-mv-12"><b>Data protection officer:</b> To contact our data protection officer, please use the following contact information: <a href="mailto:DPO@autodesk.com" class="wp-body-links">DPO@autodesk.com</a>.</p>
+
+</div>
+
+    
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+</div>
+</div>
+
+</div>
+
+
+
+</div>
+
+
+    
+
+</div>
+<div class="experiencefragment">
+<div id="experiencefragment-fa073b9885" class="cmp-experiencefragment cmp-experiencefragment--who-can-i-contact-with-questions-or-concerns" data-ef-variation-path="/content/experience-fragments/autodesk/en/company/legal-notices-trademarks/privacy-statement/who-can-i-contact-with-questions-or-concerns/master" data-ef-all-variations="master">
+
+
+
+  
+
+
+
+<div class="xfpage-content-container">
+  
+  <div class="root responsivegrid">
+
+
+<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+    
+    <div class="core-container aem-GridColumn aem-GridColumn--default--12">
+
+  
+  
+  
+  
+  <div id="questions" class="cmp-container wp-parent legal-section ">
+    
+    <div class="core-container">
+
+  
+  
+  
+  
+  <div id="container-a21c498d7a" class="cmp-container wd-mb-64 wd-bbw-1 wd-bc-smoke wd-pb-12 ">
+    
+    <div class="title">
+<div class="cmp-title" id="title-7fbb0eab2e">
+  <h3 class="cmp-title__text pc-brand wd-font-20">
+    Who can I contact with questions or concerns?</h3>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="california-privacy" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12">We are committed to working with you to obtain a fair resolution of any complaint or concern about privacy. If, however, you believe that we have not been able to assist with your complaint or concern, you have a right to lodge a complaint with the <a href="https://www.ftc.gov/faq/consumer-protection/submit-consumer-complaint-ftc" class="wp-body-links" target="_blank">data protection authority of the United States of America</a> and/or with a competent European supervisory authority or your local equivalent.</p>
+
+</div>
+
+    
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+</div>
+</div>
+
+</div>
+
+
+
+</div>
+
+
+    
+
+</div>
+<div class="experiencefragment">
+<div id="experiencefragment-1592e48029" class="cmp-experiencefragment cmp-experiencefragment--california-privacy-rights" data-ef-variation-path="/content/experience-fragments/autodesk/en/company/legal-notices-trademarks/privacy-statement/california-privacy-rights/master" data-ef-all-variations="master">
+
+
+
+  
+
+
+
+<div class="xfpage-content-container">
+  
+  <div class="root responsivegrid">
+
+
+<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+    
+    <div class="title aem-GridColumn aem-GridColumn--default--12">
+<div class="cmp-title" id="title-32d569249a">
+  <h3 class="cmp-title__text pc-brand wd-font-20">
+    Privacy Rights under U.S. Privacy Laws</h3>
+</div>
+
+    
+
+</div>
+<div class="accordion aem-GridColumn--default--none aem-GridColumn aem-GridColumn--default--12 aem-GridColumn--offset--default--0">
+<div id="accordion-8d6c14930f" class="cmp-accordion wd-mt-32 " data-cmp-is="accordion">
+  <div class="cmp-accordion__item dc-bd-bt" data-cmp-hook-accordion="item" id="accordion-8d6c14930f-item-49377b64ed">
+    <h3 class="cmp-accordion__header">
+      <button id="accordion-8d6c14930f-item-49377b64ed-button" data-cmp-hook-accordion="button" aria-controls="accordion-8d6c14930f-item-49377b64ed-panel" class="cmp-accordion__button">
+        <span class="cmp-accordion__icon">
+          <div class="dc-svg-show">
+              <span class="dc-svg-icon">
+                  <svg class="icon-svg-show wd-vam" viewBox="0 0 32 32">
+                      <use xlink:href="/content/dam/autodesk/icons.svg#icon-svg-show"></use>
+                  </svg>
+              </span>
+          </div>
+          <div class="dc-svg-hide">
+              <span class="dc-svg-icon">
+                  <svg class="icon-svg-hide wd-vam" viewBox="0 0 32 32">
+                      <use xlink:href="/content/dam/autodesk/icons.svg#icon-svg-hide"></use>
+                  </svg>
+              </span>
+          </div>
+        </span>
+        <span class="cmp-accordion__title">California</span>
+        
+      </button>
+    </h3>
+    <div aria-labelledby="accordion-8d6c14930f-item-49377b64ed-button" class="cmp-accordion__panel cmp-accordion__panel--hidden" data-cmp-hook-accordion="panel" id="accordion-8d6c14930f-item-49377b64ed-panel" role="region">
+      <div><div class="core-container">
+
+  
+  
+  <div id="container-9639b8dc1b" class="cmp-container  ">
+    
+
+
+<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+    
+    <div class="text aem-GridColumn aem-GridColumn--default--12">
+<div id="text-fed7cfb671" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12">We described several types of rights in <a href="mailto:privacy.questions@autodesk.com"><b>“What Rights and Choices Do You Have?”</b></a> above.</p>
+<p class="wd-font-14 wd-mv-12">If you reside in California, you may have the following rights:<br />
+</p>
+<ul class="wd-font-14">
+<li><b>right to access</b> the specific pieces of your information that we have collected about you in a portable and, to the extent technically feasible, readily usable format;</li>
+<li><b>right to know</b> details about our processing of your information;</li>
+<li><b>right to request deletion</b> of your personal information;</li>
+<li><b>right to correct</b> inaccurate data in certain circumstances;</li>
+<li><b>right to opt-out of sales of personal information and the sharing of your personal information for cross context behavioral and targeted advertising;</b> and</li>
+<li><b>the right to non-discrimination</b> (e.g., to not be denied goods or services for exercising your rights).</li>
+</ul>
+<p class="wd-font-14 wd-mv-12"><span style="">To the extent applicable, you also have the right to limit the use and disclosure of any &quot;sensitive personal information.&quot;<br />
+ California law treats certain disclosures of personal information with third parties in exchange for something of value as “sales,” even when no money changes hand. Autodesk does not exchange your personal information for money. However, some of the technologies we use to provide our offerings involve transfers of personal information that may be considered a “sale” under California law. In addition, California consumers have the right to opt out of the “sharing” of their information for cross-context behavioral advertising.</span></p>
+<p class="wd-font-14 wd-mv-12"><span style="">You may exercise these rights by going to www.Autodesk.com and clicking on Do Not Sell link provided at the bottom of the page (effective January 1, 2023, this will read &quot;Do Not Sell or Share&quot;). You may also opt-out of these transfers by submitting <a href="https://www.autodesk.com/company/legal-notices-trademarks/ccpa-do-not-sell" target="_blank"><b>this form</b></a> or by emailing us at <a href="mailto:privacy.questions@autodesk.com" class="wp-body-links">privacy.questions@autodesk.com</a>.</span></p>
+<p class="wd-font-14 wd-mv-12"><span style="">You can exercise the rights above by emailing us at <a href="mailto:privacy.questions@autodesk.com" class="wp-body-links">privacy.questions@autodesk.com</a> To request a copy of the personal information in your account, you can also <a href="https://accounts.autodesk.com/profile/download?returnurl=https://www.autodesk.com/company/legal-notices-trademarks/privacy-statement/confirmation-en" class="wp-body-links" target="_blank">submit this form.</a> To request deletion of your personal information, you can also <a href="https://accounts.autodesk.com/externaluser/delete?_ga=2.171839072.1544005094.1610492784-1194858300.1604681173" class="wp-body-links" target="_blank">submit this form.</a> If you have an Autodesk account, you can edit and correct your personal information at any time by changing it in your account.</span></p>
+<p class="wd-font-14 wd-mv-12"><span style="">Except as described in this notice or provided under applicable privacy laws, there is no charge to exercise your legal rights. However, if your requests are manifestly unfounded or excessive, in particular because of their repetitive character, we may:</span></p>
+<ul class="wd-font-14">
+<li>Charge a reasonable fee, taking into account the administrative costs of providing the information or taking the action requested; or</li>
+<li>Refuse to act on the request and notify you of the reason for refusing the request.</li>
+</ul>
+<p class="wd-font-14 wd-mv-12"><span style="">Please note that the above rights are not absolute, and we may be entitled to refuse requests in whole or in part, where exceptions under applicable law apply. For example, we may decline certain requests where the time and resources expended by us to honor the request significantly outweigh the benefit provided to the consumer.</span></p>
+<p class="wd-font-14 wd-mv-12"><span style="">We may need to verify your identity before completing your rights request. How we verify your identity depends on whether you hold an account with Autodesk:</span></p>
+<ul class="wd-font-14">
+<li>Individuals with Autodesk accounts can verify their identity by logging into their account.</li>
+<li>Individuals without Autodesk accounts (non-accountholders) need to provide information establishing their identity to the degree of certainty required by law. We may ask non-accountholders to provide information such as name, e-mail addresses, and information relating to their use of the Autodesk websites or other offerings.</li>
+<li>Authorized Agents: Persons authorized to submit requests on behalf of a consumer (“agents”) can submit a request by email to <a href="mailto:privacy.questions@autodesk.com" class="wp-body-links">privacy.questions@autodesk.com</a>. We may notify the consumer and require the consumer to independently verify their identity with us and confirm that you provided the authorized agent permission to submit the rights request before fulfilling the authorized agent’s request. This verification process is not necessary if your authorized agent provides documentation reflecting that the authorized agent has power of attorney to act on your behalf under Cal. Probate Code §§ 4121 to 4130. For additional information, please see our <a href="https://damassets.autodesk.net/content/dam/autodesk/www/pdfs/CCPA-FAQs.pdf" class="wp-body-links" target="_blank">U.S. Privacy Law FAQs for California</a>.</li>
+<li>We will not respond to your data rights request until we are able to verify your identity or confirm the validity of an Authorized Agent request. For more information about authorized agent requests, please see <a href="https://damassets.autodesk.net/content/dam/autodesk/www/pdfs/CCPA-FAQs.pdf" class="wp-body-links" target="_blank">U.S. Privacy Law FAQs for California</a>.</li>
+</ul>
+<p class="wd-font-14 wd-mv-12">We retain certain information relating to your CPRA request to demonstrate compliance with CPRA and to improve our consumer request process. We retain personal information that is reasonably necessary and proportionate to the purpose for which it was collected or for other disclosed and compatible purposes.</p>
+<p class="wd-font-14 wd-mv-12">The following table provides a description of the personal information that we have disclosed for our business purposes, the personal information that we have sold or shared, and the categories of third parties that received the personal information.</p>
+
+</div>
+
+    
+
+</div>
+<div class="text aem-GridColumn aem-GridColumn--default--12">
+<div id="text-f786def3cb" class="cmp-text ">
+  <div class="wp-responsive-table-wrap"><div class="box-content parsys"><div class="responsive-table section"><table class="ct">
+<tbody><tr class="wd-bg-light-gray-3"><td><p class="wd-font-14"><b>Category of Personal Information </b></p>
+</td>
+<td><p class="wd-font-14"><b>Categories of Third Parties to which we Disclosed that Personal Information for business purposes</b></p>
+</td>
+<td><p class="wd-font-14"><b>Categories of Third Parties to which we “Sold” or “Shared” that Personal Information in the 12 months prior to the effective date of this Privacy Statement</b></p>
+</td>
+<td><p class="wd-font-14"><b>Purposes of Sharing Personal Information, where &quot;sharing&quot; is defined to mean sharing for cross context behavioral advertising or targeted advertising</b></p>
+</td>
+</tr><tr><td><p class="wd-font-14">Identifiers</p>
+</td>
+<td><p class="wd-font-14">Service Providers, Contractors, Third Parties and Affiliates</p>
+</td>
+<td><p class="wd-font-14">Social networking services and platforms and Ad Partners</p>
+</td>
+<td><p class="wd-font-14">To send you promotional offers, advertising or other marketing content</p>
+</td>
+</tr><tr><td><p class="wd-font-14">Commercial Information</p>
+</td>
+<td><p class="wd-font-14">Service Providers, Contractors, Third Parties and Affiliates</p>
+</td>
+<td><p class="wd-font-14">Social networking services and Ad Partners</p>
+</td>
+<td><p class="wd-font-14">To send you promotional offers, advertising or other marketing content</p>
+</td>
+</tr><tr><td><p class="wd-font-14">Financial Account Information</p>
+</td>
+<td><p class="wd-font-14">Service Providers, Contractors, Third Parties and Affiliates</p>
+</td>
+<td><p class="wd-font-14">None</p>
+</td>
+<td><p class="wd-font-14">N/A</p>
+</td>
+</tr><tr><td><p class="wd-font-14">Education Information</p>
+</td>
+<td><p class="wd-font-14">Service Providers, Contractors, Third Parties and Affiliates</p>
+</td>
+<td><p class="wd-font-14">None</p>
+</td>
+<td><p class="wd-font-14">N/A</p>
+</td>
+</tr><tr><td><p class="wd-font-14">Protected Characteristics</p>
+</td>
+<td><p class="wd-font-14">Service Providers, Contractors, Third Parties and Affiliates</p>
+</td>
+<td><p class="wd-font-14">None</p>
+</td>
+<td><p class="wd-font-14">N/A</p>
+</td>
+</tr><tr><td><p class="wd-font-14">Visual, Audio, and Electronic Information</p>
+</td>
+<td><p class="wd-font-14">Service Providers, Contractors, Third Parties and Affiliates</p>
+</td>
+<td><p class="wd-font-14">Social networking services and platforms and Ad Partners</p>
+</td>
+<td><p class="wd-font-14">To send you promotional offers, advertising or other marketing content</p>
+</td>
+</tr><tr><td><p class="wd-font-14">Internet or other Electronic Network Activity Information</p>
+</td>
+<td><p class="wd-font-14">Service Providers, Contractors, Third Parties and Affiliates</p>
+</td>
+<td><p class="wd-font-14">Social networking services and platforms and Ad Partners</p>
+</td>
+<td><p class="wd-font-14">To send you promotional offers, advertising or other marketing content</p>
+</td>
+</tr><tr><td><p class="wd-font-14">Geolocation information</p>
+</td>
+<td><p class="wd-font-14">Service Providers, Contractors, Third Parties and Affiliates</p>
+</td>
+<td><p class="wd-font-14">Social networking services and platforms and Ad Partners</p>
+</td>
+<td><p class="wd-font-14">To send you promotional offers, advertising or other marketing content</p>
+</td>
+</tr><tr><td><p class="wd-font-14">Inferences</p>
+</td>
+<td><p class="wd-font-14">Service Providers, Contractors, Third Parties and Affiliates</p>
+</td>
+<td><p class="wd-font-14">Social networking services and platforms and Ad Partners</p>
+</td>
+<td><p class="wd-font-14">To send you promotional offers, advertising or other marketing content</p>
+</td>
+</tr><tr><td><p class="wd-font-14">Social Networking Data</p>
+</td>
+<td><p class="wd-font-14">Service Providers, Contractors, Third Parties and Affiliates</p>
+</td>
+<td><p class="wd-font-14">Social networking services and platforms and Ad Partners</p>
+</td>
+<td><p class="wd-font-14">To send you promotional offers, advertising or other marketing content</p>
+</td>
+</tr></tbody></table>
+</div>
+</div>
+</div>
+
+</div>
+
+    
+
+</div>
+
+    
+</div>
+
+  </div>
+
+  
+
+</div>
+</div>
+    </div>
+  </div>
+<div class="cmp-accordion__item dc-bd-bt" data-cmp-hook-accordion="item" id="accordion-8d6c14930f-item-1fda2add5f">
+    <h3 class="cmp-accordion__header">
+      <button id="accordion-8d6c14930f-item-1fda2add5f-button" data-cmp-hook-accordion="button" aria-controls="accordion-8d6c14930f-item-1fda2add5f-panel" class="cmp-accordion__button">
+        <span class="cmp-accordion__icon">
+          <div class="dc-svg-show">
+              <span class="dc-svg-icon">
+                  <svg class="icon-svg-show wd-vam" viewBox="0 0 32 32">
+                      <use xlink:href="/content/dam/autodesk/icons.svg#icon-svg-show"></use>
+                  </svg>
+              </span>
+          </div>
+          <div class="dc-svg-hide">
+              <span class="dc-svg-icon">
+                  <svg class="icon-svg-hide wd-vam" viewBox="0 0 32 32">
+                      <use xlink:href="/content/dam/autodesk/icons.svg#icon-svg-hide"></use>
+                  </svg>
+              </span>
+          </div>
+        </span>
+        <span class="cmp-accordion__title">Virginia</span>
+        
+      </button>
+    </h3>
+    <div aria-labelledby="accordion-8d6c14930f-item-1fda2add5f-button" class="cmp-accordion__panel cmp-accordion__panel--hidden" data-cmp-hook-accordion="panel" id="accordion-8d6c14930f-item-1fda2add5f-panel" role="region">
+      <div><div class="core-container">
+
+  
+  
+  <div id="container-664da8c542" class="cmp-container  ">
+    
+
+
+<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+    
+    <div class="text aem-GridColumn aem-GridColumn--default--12">
+<div id="text-a4ddfe52a1" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12"><b>Virginia: Virginia Consumer Data Protection Act</b></p>
+<p class="wd-font-14 wd-mv-12">The Virginia Consumer Data Protection Act provides Virginia consumers with certain rights regarding their personal data. If you are a resident of Virginia, you may have the following rights with respect to your personal data, subject to applicable exceptions:<br />
+</p>
+<ul class="wd-font-14">
+<li>The right to confirm whether Autodesk is processing personal information;</li>
+<li>The right to access;</li>
+<li>The right to deletion;</li>
+<li>The right to data portability;</li>
+<li>The right to correct inaccurate personal data;</li>
+<li>The right to opt out of the sale of personal data, and the processing of personal data for targeted advertising, or profiling in furtherance of decisions that produce legal or similarly significant effects;</li>
+<li>The right to non-discrimination; and</li>
+<li>The right to appeal the denial of a consumer rights request.</li>
+</ul>
+<p class="wd-font-14 wd-mv-12"><span style="">To exercise your rights or to appeal a decision, please contact us via email at <a href="mailto:privacy.questions@autodesk.com" class="wp-body-links">privacy.questions@autodesk.com</a>.</span></p>
+
+</div>
+
+    
+
+</div>
+
+    
+</div>
+
+  </div>
+
+  
+
+</div>
+</div>
+    </div>
+  </div>
+<div class="cmp-accordion__item dc-bd-bt" data-cmp-hook-accordion="item" id="accordion-8d6c14930f-item-b6ed050f68">
+    <h3 class="cmp-accordion__header">
+      <button id="accordion-8d6c14930f-item-b6ed050f68-button" data-cmp-hook-accordion="button" aria-controls="accordion-8d6c14930f-item-b6ed050f68-panel" class="cmp-accordion__button">
+        <span class="cmp-accordion__icon">
+          <div class="dc-svg-show">
+              <span class="dc-svg-icon">
+                  <svg class="icon-svg-show wd-vam" viewBox="0 0 32 32">
+                      <use xlink:href="/content/dam/autodesk/icons.svg#icon-svg-show"></use>
+                  </svg>
+              </span>
+          </div>
+          <div class="dc-svg-hide">
+              <span class="dc-svg-icon">
+                  <svg class="icon-svg-hide wd-vam" viewBox="0 0 32 32">
+                      <use xlink:href="/content/dam/autodesk/icons.svg#icon-svg-hide"></use>
+                  </svg>
+              </span>
+          </div>
+        </span>
+        <span class="cmp-accordion__title">Colorado</span>
+        
+      </button>
+    </h3>
+    <div aria-labelledby="accordion-8d6c14930f-item-b6ed050f68-button" class="cmp-accordion__panel cmp-accordion__panel--hidden" data-cmp-hook-accordion="panel" id="accordion-8d6c14930f-item-b6ed050f68-panel" role="region">
+      <div><div class="core-container">
+
+  
+  
+  
+  
+  <div id="container-db16a0e369" class="cmp-container  ">
+    
+    <div class="text">
+<div id="text-708fee3d2e" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12"><b>Colorado: Colorado Privacy Act, effective July 1, 2023</b></p>
+<p class="wd-font-14 wd-mv-12">The Colorado Privacy Act provides Colorado consumers with certain rights regarding their personal data. If you are a resident of Colorado, you may have the following rights with respect to your personal data, subject to applicable exceptions:<br />
+</p>
+<ul class="wd-font-14">
+<li>The right to access;</li>
+<li>The right to deletion;</li>
+<li>The right to data portability ;</li>
+<li>The right to correct inaccurate personal data;</li>
+<li>The right to opt out of the sale (any exchange for monetary or other valuable consideration) of personal data, the processing of personal data for targeted advertising, or profiling in furtherance of decisions that produce legal or similarly significant effects;</li>
+<li>The right to non-discrimination; and</li>
+<li>The right to appeal the denial of a consumer rights request.</li>
+</ul>
+<p class="wd-font-14 wd-mv-12"><span style="">To exercise your rights or to appeal a decision, please contact us via email at <a href="mailto:privacy.questions@autodesk.com" class="wp-body-links">privacy.questions@autodesk.com</a>.</span></p>
+
+</div>
+
+    
+
+</div>
+
+    
+  </div>
+
+
+</div>
+</div>
+    </div>
+  </div>
+<div class="cmp-accordion__item dc-bd-bt" data-cmp-hook-accordion="item" id="accordion-8d6c14930f-item-4245cccc41">
+    <h3 class="cmp-accordion__header">
+      <button id="accordion-8d6c14930f-item-4245cccc41-button" data-cmp-hook-accordion="button" aria-controls="accordion-8d6c14930f-item-4245cccc41-panel" class="cmp-accordion__button">
+        <span class="cmp-accordion__icon">
+          <div class="dc-svg-show">
+              <span class="dc-svg-icon">
+                  <svg class="icon-svg-show wd-vam" viewBox="0 0 32 32">
+                      <use xlink:href="/content/dam/autodesk/icons.svg#icon-svg-show"></use>
+                  </svg>
+              </span>
+          </div>
+          <div class="dc-svg-hide">
+              <span class="dc-svg-icon">
+                  <svg class="icon-svg-hide wd-vam" viewBox="0 0 32 32">
+                      <use xlink:href="/content/dam/autodesk/icons.svg#icon-svg-hide"></use>
+                  </svg>
+              </span>
+          </div>
+        </span>
+        <span class="cmp-accordion__title">Connecticut</span>
+        
+      </button>
+    </h3>
+    <div aria-labelledby="accordion-8d6c14930f-item-4245cccc41-button" class="cmp-accordion__panel cmp-accordion__panel--hidden" data-cmp-hook-accordion="panel" id="accordion-8d6c14930f-item-4245cccc41-panel" role="region">
+      <div><div class="core-container">
+
+  
+  
+  
+  
+  <div id="container-b896725e0c" class="cmp-container  ">
+    
+    <div class="text">
+<div id="text-e7b1b439d3" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12"><b>Connecticut: Connecticut Data Privacy Act, effective July 1, 2023</b></p>
+<p class="wd-font-14 wd-mv-12">The Connecticut Data Privacy Act provides Connecticut consumers with certain rights regarding their personal data. If you are a resident of Connecticut, you may have the following rights with respect to your personal data, subject to applicable exceptions:<br />
+</p>
+<ul class="wd-font-14">
+<li>The right to access;</li>
+<li>The right to deletion;</li>
+<li>The right to data portability;</li>
+<li>The right to correct inaccurate personal data;</li>
+<li>The right to opt out of the sale (any exchange for monetary or other valuable consideration) of personal data, the processing of personal data for targeted advertising, and profiling in furtherance of decisions that produce legal or similarly significant effects;</li>
+<li>The right to non-discrimination; and</li>
+<li>The right to appeal the denial of a consumer rights request.</li>
+</ul>
+<p class="wd-font-14 wd-mv-12"><span style="">To exercise your rights or appeal our decision regarding your request, please contact us via email at <a href="mailto:privacy.questions@autodesk.com" class="wp-body-links">privacy.questions@autodesk.com</a></span></p>
+
+</div>
+
+    
+
+</div>
+
+    
+  </div>
+
+
+</div>
+</div>
+    </div>
+  </div>
+<div class="cmp-accordion__item dc-bd-bt" data-cmp-hook-accordion="item" id="accordion-8d6c14930f-item-1e29a14a2c">
+    <h3 class="cmp-accordion__header">
+      <button id="accordion-8d6c14930f-item-1e29a14a2c-button" data-cmp-hook-accordion="button" aria-controls="accordion-8d6c14930f-item-1e29a14a2c-panel" class="cmp-accordion__button">
+        <span class="cmp-accordion__icon">
+          <div class="dc-svg-show">
+              <span class="dc-svg-icon">
+                  <svg class="icon-svg-show wd-vam" viewBox="0 0 32 32">
+                      <use xlink:href="/content/dam/autodesk/icons.svg#icon-svg-show"></use>
+                  </svg>
+              </span>
+          </div>
+          <div class="dc-svg-hide">
+              <span class="dc-svg-icon">
+                  <svg class="icon-svg-hide wd-vam" viewBox="0 0 32 32">
+                      <use xlink:href="/content/dam/autodesk/icons.svg#icon-svg-hide"></use>
+                  </svg>
+              </span>
+          </div>
+        </span>
+        <span class="cmp-accordion__title">Utah</span>
+        
+      </button>
+    </h3>
+    <div aria-labelledby="accordion-8d6c14930f-item-1e29a14a2c-button" class="cmp-accordion__panel cmp-accordion__panel--hidden" data-cmp-hook-accordion="panel" id="accordion-8d6c14930f-item-1e29a14a2c-panel" role="region">
+      <div><div class="core-container">
+
+  
+  
+  
+  
+  <div id="container-b5de2466f1" class="cmp-container  ">
+    
+    <div class="text">
+<div id="text-13da386f51" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12"><b>Utah: Utah Consumer Privacy Act, effective December 31, 2023</b></p>
+<p class="wd-font-14 wd-mv-12">The Utah Consumer Privacy Act provides Utah consumers with certain rights regarding their personal data. If you are a resident of Utah, you may have the following rights with respect to your personal data, subject to applicable exceptions:<br />
+</p>
+<ul class="wd-font-14">
+<li>The right to access;</li>
+<li>The right to deletion;</li>
+<li>The right to data portability;</li>
+<li>The right to opt out of the sale (any exchange for monetary or other valuable consideration) of personal data or the processing of personal data for targeted advertising; and</li>
+<li>The right to non-discrimination</li>
+</ul>
+<p class="wd-font-14 wd-mv-12"><span style="">To exercise your rights, please contact us via email at <a href="mailto:privacy.questions@autodesk.com" class="wp-body-links">privacy.questions@autodesk.com</a>.</span></p>
+
+</div>
+
+    
+
+</div>
+
+    
+  </div>
+
+
+</div>
+</div>
+    </div>
+  </div>
+
+  
+</div>
+</div>
+
+    
+</div>
+</div>
+
+</div>
+
+
+
+</div>
+
+
+    
+
+</div>
+
+    
+  </div>
+
+
+</div>
+<div class="core-container aem-GridColumn--xlarge--none aem-GridColumn aem-GridColumn--default--12 aem-GridColumn--xlarge--2 aem-GridColumn--offset--xlarge--0">
+
+  
+  
+  
+  
+  <div id="container-45d2ce1275" class="cmp-container  ">
+    
+    <div class="experiencefragment">
+<div id="experiencefragment-b01f423d64" class="cmp-experiencefragment cmp-experiencefragment--language-sidebar" data-ef-variation-path="/content/experience-fragments/autodesk/en/company/legal-notices-trademarks/privacy-statement/language-sidebar/master" data-ef-all-variations="master">
+
+
+
+  
+
+
+
+<div class="xfpage-content-container">
+  
+  <div class="root responsivegrid">
+
+
+<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+    
+    <div class="text aem-GridColumn aem-GridColumn--default--12">
+<div id="text-167084b7f3" class="cmp-text ">
+  <div class="hide-for-small"><div class="wp-print-btn"><img class="legal-print-icn" src="https://damassets.autodesk.net/content/dam/autodesk/icons/printer-blue.png"/></div>
+<div class="wp-product-finder"><div id="lang-sidebar" class="wp-filter legal-language-dropdown"><div class="wp-filter-container"><p class="wd-font-14"><a data-countrycode="en" href="/company/legal-notices-trademarks/privacy-statement">English</a></p>
+<p class="wd-font-14"><a data-countrycode="de" href="/company/legal-notices-trademarks/privacy-statement-de">Deutsch</a></p>
+<p class="wd-font-14"><a data-countrycode="es" href="/company/legal-notices-trademarks/privacy-statement-es">Español</a></p>
+<p class="wd-font-14"><a data-countrycode="fr" href="/company/legal-notices-trademarks/privacy-statement-fr" id="legal-lang-fr">Français</a></p>
+<p class="wd-font-14"><a data-countrycode="id" href="/company/legal-notices-trademarks/privacy-statement-id">Bahasa Indonesia</a></p>
+<p class="wd-font-14"><a data-countrycode="it" href="/company/legal-notices-trademarks/privacy-statement-it">Italiano</a></p>
+<p class="wd-font-14"><a data-countrycode="pt" href="/company/legal-notices-trademarks/privacy-statement-pt">Português</a></p>
+<p class="wd-font-14"><a data-countrycode="br" href="/company/legal-notices-trademarks/privacy-statement-br">Português brasileiro</a></p>
+<p class="wd-font-14"><a data-countrycode="nl" href="/company/legal-notices-trademarks/privacy-statement-nl">Nederlands</a></p>
+<p class="wd-font-14"><a data-countrycode="cz" href="/company/legal-notices-trademarks/privacy-statement-cz">Čeština</a></p>
+<p class="wd-font-14"><a data-countrycode="pl" href="/company/legal-notices-trademarks/privacy-statement-pl">Polski</a></p>
+<p class="wd-font-14"><a data-countrycode="hu" href="/company/legal-notices-trademarks/privacy-statement-hu">Magyar</a></p>
+<p class="wd-font-14"><a data-countrycode="ru" href="/company/legal-notices-trademarks/privacy-statement-ru">Pусский</a></p>
+<p class="wd-font-14"><a data-countrycode="jp" href="/company/legal-notices-trademarks/privacy-statement-jp">日本語</a></p>
+<p class="wd-font-14"><a data-countrycode="kr" href="/company/legal-notices-trademarks/privacy-statement-kr">한국어</a></p>
+<p class="wd-font-14"><a data-countrycode="zh-hans" href="/company/legal-notices-trademarks/privacy-statement-zh-hans">简体中文</a></p>
+<p class="wd-font-14"><a data-countrycode="zh-hant" href="/company/legal-notices-trademarks/privacy-statement-zh-hant">繁體中文</a></p>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+
+    
+
+</div>
+
+    
+</div>
+</div>
+
+</div>
+
+
+
+</div>
+
+
+    
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+</div>
+
+  </div>
+
+  
+
+</div>
+
+    
+</div>
+
+  </div>
+
+  
+
+</div>
+
+    
+  </div>
+
+
+</div>
+<div class="core-container aem-GridColumn aem-GridColumn--default--12">
+
+  
+  
+  
+  
+  <div id="container-d8c2a83961" class="cmp-container footer-content ">
+    
+    <div class="core-container">
+
+  
+  
+  
+  
+  <div id="container-e7842c3dc5" class="cmp-container  ">
+    
+    <div class="experiencefragment">
+<div id="experiencefragment-0f9d1e4b7f" class="cmp-experiencefragment cmp-experiencefragment--universal-footer" data-ef-variation-path="/content/experience-fragments/autodesk/en/universal-footer/master" data-ef-all-variations="master">
+
+
+<div class="xfpage-content-container">
+  
+  <div class="root container responsivegrid">
+
+    
+    
+    
+    <div id="container-8efa76469e" class="cmp-container">
+        
+        <div class="universal-footer"><div class="footer">
+    <link rel="stylesheet" href="https://swc-stg.autodesk.com/web-mfe/universal-footer/development/v1/app.css" defer type="text/css"/>
+    <div id="universal-footer-example" class="cmp-footer">
+      <div class="inner-footer dhig-theme--light">
+          <div class="cmp-mega-footer dhig-py-7" data-wat-link-section="megafooter">
+  <div class="page-container-wrapper">
+    <div class="page-container">
+      <div class="column-container dhig-grid sm:dhig-grid-cols-1 md:dhig-grid-cols-4 md:dhig-gap-3 lg:dhig-grid-cols-4 lg:dhig-gap-3">
+        <div class="column mega-footer-column-1-2 md:dhig-col-span-2 lg:dhig-col-span-2" data-wat-loc="autodesk">
+          <div class="dhig-grid sm:dhig-grid-cols-1 md:dhig-grid-cols-2 md:dhig-gap-3 lg:dhig-grid-cols-2 lg:dhig-gap-3">
+            <input type="checkbox"/>
+            <div class="mega-footer-column-1">
+              <div class="mega-footer-column__title">
+                <img class="mega-footer-column__title-image-arrow-right" src="https://swc.autodesk.com/pharmacopeia/svg/icons/v0/icons/utility/caret-right.svg" alt=""/>
+                <img class="mega-footer-column__title-image-arrow-down" src="https://swc.autodesk.com/pharmacopeia/svg/icons/v0/icons/utility/caret-down.svg" alt=""/>
+                <div>
+<div id="mega-footer-column-1-title" class="cmp-text dhig-typography-headline-small">
+  <div class="cmp-text-editable">
+    Autodesk
+  </div>
+</div>
+
+
+    
+
+</div>
+              </div>
+              <div><div class="mega-footer-column" id="mega-footer-column-933ef52e61">
+  
+  <div id="mega-footer-column-933ef52e61-item-db7f362b8c" class="mega-footer-column-item dhig-pb-3"><div class=" cmp-text-link dhig-typography-body-copy-small" id="careers">
+  
+  <a class="cmp-text-link__link MuiTypography-root MuiLink-root MuiLink-underlineHover " id="link-careers" data-wat-loc="footer" data-wat-val="company overview" data-wat-link="true" href="https://www.autodesk.com/company">
+    
+    <span class="cmp-text-link__link-text">Company overview</span>
+    
+  </a>
+
+
+  
+  
+</div>
+
+
+
+
+</div>
+<div id="mega-footer-column-933ef52e61-item-065321e4ba" class="mega-footer-column-item dhig-pb-3"><div class=" cmp-text-link dhig-typography-body-copy-small" id="company-overview">
+  
+  <a class="cmp-text-link__link MuiTypography-root MuiLink-root MuiLink-underlineHover " id="link-company-overview" data-wat-loc="footer" data-wat-val="careers" data-wat-link="true" href="https://www.autodesk.com/careers/overview">
+    
+    <span class="cmp-text-link__link-text">Careers </span>
+    
+  </a>
+
+
+  
+  
+</div>
+
+
+
+
+</div>
+<div id="mega-footer-column-933ef52e61-item-efb0577229" class="mega-footer-column-item dhig-pb-3"><div class=" cmp-text-link dhig-typography-body-copy-small" id="investor-relations">
+  
+  <a class="cmp-text-link__link MuiTypography-root MuiLink-root MuiLink-underlineHover " id="link-investor-relations" data-wat-loc="footer" data-wat-val="investor relations" data-wat-link="true" target="_blank" href="https://investors.autodesk.com/">
+    
+    <span class="cmp-text-link__link-text">Investor relations</span>
+    <svg class="cmp-text-link__link-icon-right MuiSvgIcon-root DhigSvgIcon--size-- inline">
+      <use href="#dhig--icons--utility--external" xlink:href="#dhig--icons--utility--external"></use>
+    </svg>
+  </a>
+
+
+  
+  
+</div>
+
+
+
+
+</div>
+<div id="mega-footer-column-933ef52e61-item-5f17f2d94c" class="mega-footer-column-item dhig-pb-3"><div class=" cmp-text-link dhig-typography-body-copy-small" id="text-link-small">
+  
+  <a class="cmp-text-link__link MuiTypography-root MuiLink-root MuiLink-underlineHover " id="link-text-link-small" data-wat-loc="footer" data-wat-val=" autodesk trust center" data-wat-link="true" href="https://www.autodesk.com/trust/overview">
+    
+    <span class="cmp-text-link__link-text"> Autodesk Trust Center</span>
+    
+  </a>
+
+
+  
+  
+</div>
+
+
+
+
+</div>
+<div id="mega-footer-column-933ef52e61-item-ea3cc360ed" class="mega-footer-column-item dhig-pb-3"><div class=" cmp-text-link dhig-typography-body-copy-small" id="newsroom">
+  
+  <a class="cmp-text-link__link MuiTypography-root MuiLink-root MuiLink-underlineHover " id="link-newsroom" data-wat-loc="footer" data-wat-val="newsroom" data-wat-link="true" target="_blank" href="https://adsknews.autodesk.com/">
+    
+    <span class="cmp-text-link__link-text">Newsroom</span>
+    <svg class="cmp-text-link__link-icon-right MuiSvgIcon-root DhigSvgIcon--size-- inline">
+      <use href="#dhig--icons--utility--external" xlink:href="#dhig--icons--utility--external"></use>
+    </svg>
+  </a>
+
+
+  
+  
+</div>
+
+
+
+
+</div>
+<div id="mega-footer-column-933ef52e61-item-4a7effe825" class="mega-footer-column-item dhig-pb-3"><div class=" cmp-text-link dhig-typography-body-copy-small" id="diversity-belonging">
+  
+  <a class="cmp-text-link__link MuiTypography-root MuiLink-root MuiLink-underlineHover " id="link-diversity-belonging" data-wat-loc="footer" data-wat-val="diversity and belonging" data-wat-link="true" href="https://www.autodesk.com/company/diversity-and-belonging">
+    
+    <span class="cmp-text-link__link-text">Diversity and belonging</span>
+    
+  </a>
+
+
+  
+  
+</div>
+
+
+
+
+</div>
+
+</div>
+</div>
+              <div class="mega-footer-socials mega-footer-socials-desktop" aria-label="social media" tabindex="0">
+                <div>
+<div id="text-7e532cbaab" class="cmp-text dhig-typography-body-copy-small">
+  <div class="cmp-text-editable">
+    <ul class="dhig-grid-cols-1 xl:dhig-list-item xl:dhig-space-y-4 md:dhig-flex md:dhig-gap-7">
+<li><a href="https://www.autodesk.com/social-media" class="social-media-link" data-wat-val="social media" title="social media"><img src="https://swc.autodesk.com/pharmacopeia/svg/icons/v0/icons/social/facebook-circle.svg" alt=""/><img src="https://swc.autodesk.com/pharmacopeia/svg/icons/v0/icons/social/instagram-circle.svg" alt="" style="letter-spacing: 0.0px;"/><img src="https://swc.autodesk.com/pharmacopeia/svg/icons/v0/icons/social/twitter-circle.svg" alt="" style="letter-spacing: 0.0px;"/><img src="https://swc.autodesk.com/pharmacopeia/svg/icons/v0/icons/social/linkedin-circle.svg" alt="" style="letter-spacing: 0.0px;"/><img src="https://swc.autodesk.com/pharmacopeia/svg/icons/v0/icons/social/youtube.svg" alt="" style="letter-spacing: 0.0px;"/></a></li>
+</ul>
+
+  </div>
+</div>
+
+
+    
+
+</div>
+              </div>
+            </div>
+            <div class="mega-footer-column-2">
+              <div><div class="mega-footer-column" id="mega-footer-column-15a3ef4d11">
+  
+  <div id="mega-footer-column-15a3ef4d11-item-e84abf850b" class="mega-footer-column-item dhig-pb-3"><div class=" cmp-text-link dhig-typography-body-copy-small" id="autodesk-foundation">
+  
+  <a class="cmp-text-link__link MuiTypography-root MuiLink-root MuiLink-underlineHover " id="link-autodesk-foundation" data-wat-loc="footer" data-wat-val="autodesk foundation" data-wat-link="true" target="_blank" href="https://www.autodesk.org/">
+    
+    <span class="cmp-text-link__link-text">Autodesk Foundation</span>
+    <svg class="cmp-text-link__link-icon-right MuiSvgIcon-root DhigSvgIcon--size-- inline">
+      <use href="#dhig--icons--utility--external" xlink:href="#dhig--icons--utility--external"></use>
+    </svg>
+  </a>
+
+
+  
+  
+</div>
+
+
+
+
+</div>
+<div id="mega-footer-column-15a3ef4d11-item-df9f9bdb57" class="mega-footer-column-item dhig-pb-3"><div class=" cmp-text-link dhig-typography-body-copy-small" id="sustainability">
+  
+  <a class="cmp-text-link__link MuiTypography-root MuiLink-root MuiLink-underlineHover " id="link-sustainability" data-wat-loc="footer" data-wat-val="sustainability" data-wat-link="true" href="https://www.autodesk.com/sustainability/overview">
+    
+    <span class="cmp-text-link__link-text">Sustainability</span>
+    
+  </a>
+
+
+  
+  
+</div>
+
+
+
+
+</div>
+<div id="mega-footer-column-15a3ef4d11-item-032c8ef426" class="mega-footer-column-item dhig-pb-3"><div class=" cmp-text-link dhig-typography-body-copy-small" id="contact-us">
+  
+  <a class="cmp-text-link__link MuiTypography-root MuiLink-root MuiLink-underlineHover " id="link-contact-us" data-wat-loc="footer" data-wat-val="contact us" data-wat-link="true" href="https://www.autodesk.com/company/contact-us">
+    
+    <span class="cmp-text-link__link-text">Contact us</span>
+    
+  </a>
+
+
+  
+  
+</div>
+
+
+
+
+</div>
+<div id="mega-footer-column-15a3ef4d11-item-78830cfb70" class="mega-footer-column-item dhig-pb-3"><div class=" cmp-text-link dhig-typography-body-copy-small" id="students-educators">
+  
+  <a class="cmp-text-link__link MuiTypography-root MuiLink-root MuiLink-underlineHover " id="link-students-educators" data-wat-val="students and educators" href="https://www.autodesk.com/education/home">
+    
+    <span class="cmp-text-link__link-text">Students and educators</span>
+    
+  </a>
+
+
+  
+  
+</div>
+
+
+
+
+</div>
+<div id="mega-footer-column-15a3ef4d11-item-27fe61e4b9" class="mega-footer-column-item dhig-pb-3"><div class=" cmp-text-link dhig-typography-body-copy-small" id="affiliate-program">
+  
+  <a class="cmp-text-link__link MuiTypography-root MuiLink-root MuiLink-underlineHover " id="link-affiliate-program" data-wat-loc="footer" data-wat-val="affiliate program" data-wat-link="true" href="https://www.autodesk.com/affiliate-program/overview">
+    
+    <span class="cmp-text-link__link-text">Affiliate program</span>
+    
+  </a>
+
+
+  
+  
+</div>
+
+
+
+
+</div>
+<div id="mega-footer-column-15a3ef4d11-item-595a68bc22" class="mega-footer-column-item dhig-pb-3"><div class=" cmp-text-link dhig-typography-body-copy-small" id="autodesk-research">
+  
+  <a class="cmp-text-link__link MuiTypography-root MuiLink-root MuiLink-underlineHover " id="link-autodesk-research" data-wat-loc="footer" data-wat-val="autodesk research" data-wat-link="true" target="_blank" href="https://www.research.autodesk.com/">
+    
+    <span class="cmp-text-link__link-text">Autodesk Research</span>
+    <svg class="cmp-text-link__link-icon-right MuiSvgIcon-root DhigSvgIcon--size-- inline">
+      <use href="#dhig--icons--utility--external" xlink:href="#dhig--icons--utility--external"></use>
+    </svg>
+  </a>
+
+
+  
+  
+</div>
+
+
+
+
+</div>
+<div id="mega-footer-column-15a3ef4d11-item-415f85934d" class="mega-footer-column-item dhig-pb-3"><div class=" cmp-text-link dhig-typography-body-copy-small" id="autodesk-insights">
+  
+  <a class="cmp-text-link__link MuiTypography-root MuiLink-root MuiLink-underlineHover " id="link-autodesk-insights" data-wat-val="autodesk insights" data-wat-link="true" href="https://www.autodesk.com/insights">
+    
+    <span class="cmp-text-link__link-text">Autodesk Insights</span>
+    
+  </a>
+
+
+  
+  
+</div>
+
+
+
+
+</div>
+
+</div>
+</div>
+            </div>
+          </div>
+        </div>
+        <div class="column mega-footer-column-3" data-wat-loc="how to buy">
+          <input type="checkbox"/>
+          <div class="mega-footer-column__title">
+            <img class="mega-footer-column__title-image-arrow-right" src="https://swc.autodesk.com/pharmacopeia/svg/icons/v0/icons/utility/caret-right.svg" alt=""/>
+            <img class="mega-footer-column__title-image-arrow-down" src="https://swc.autodesk.com/pharmacopeia/svg/icons/v0/icons/utility/caret-down.svg" alt=""/>
+            <div>
+<div id="mega-footer-column-3-title" class="cmp-text dhig-typography-headline-small">
+  <div class="cmp-text-editable">
+    <p>How to buy</p>
+
+  </div>
+</div>
+
+
+    
+
+</div>
+          </div>
+          <div><div class="mega-footer-column" id="mega-footer-column-c4d733095f">
+  
+  <div id="mega-footer-column-c4d733095f-item-86fcb18461" class="mega-footer-column-item dhig-pb-3"><div class=" cmp-text-link dhig-typography-body-copy-small" id="view-all-products">
+  
+  <a class="cmp-text-link__link MuiTypography-root MuiLink-root MuiLink-underlineHover " id="link-view-all-products" data-wat-val="view all products" href="https://www.autodesk.com/products">
+    
+    <span class="cmp-text-link__link-text">View all products</span>
+    
+  </a>
+
+
+  
+  
+</div>
+
+
+
+
+</div>
+<div id="mega-footer-column-c4d733095f-item-4b6fb472fb" class="mega-footer-column-item dhig-pb-3"><div class=" cmp-text-link dhig-typography-body-copy-small" id="buying-with-autodesk">
+  
+  <a class="cmp-text-link__link MuiTypography-root MuiLink-root MuiLink-underlineHover " id="link-buying-with-autodesk" data-wat-val="buying with autodesk" href="https://www.autodesk.com/buying/overview">
+    
+    <span class="cmp-text-link__link-text">Buying with Autodesk</span>
+    
+  </a>
+
+
+  
+  
+</div>
+
+
+
+
+</div>
+<div id="mega-footer-column-c4d733095f-item-331e86ed84" class="mega-footer-column-item dhig-pb-3"><div class=" cmp-text-link dhig-typography-body-copy-small" id="renewal-options">
+  
+  <a class="cmp-text-link__link MuiTypography-root MuiLink-root MuiLink-underlineHover " id="link-renewal-options" data-wat-val="renewal options" href="https://www.autodesk.com/buying/renewal">
+    
+    <span class="cmp-text-link__link-text">Renewal options</span>
+    
+  </a>
+
+
+  
+  
+</div>
+
+
+
+
+</div>
+<div id="mega-footer-column-c4d733095f-item-7a0765799c" class="mega-footer-column-item dhig-pb-3"><div class=" cmp-text-link dhig-typography-body-copy-small" id="find-reseller">
+  
+  <a class="cmp-text-link__link MuiTypography-root MuiLink-root MuiLink-underlineHover " id="link-find-reseller" data-wat-val="find a reseller" href="https://www.autodesk.com/partners/locate-a-reseller">
+    
+    <span class="cmp-text-link__link-text">Find a reseller</span>
+    
+  </a>
+
+
+  
+  
+</div>
+
+
+
+
+</div>
+<div id="mega-footer-column-c4d733095f-item-5f27b6138d" class="mega-footer-column-item dhig-pb-3"><div class=" cmp-text-link dhig-typography-body-copy-small" id="sales-refunds">
+  
+  <a class="cmp-text-link__link MuiTypography-root MuiLink-root MuiLink-underlineHover " id="link-sales-refunds" data-wat-val="sales and refunds" href="https://www.autodesk.com/customer/help">
+    
+    <span class="cmp-text-link__link-text">Sales and refunds</span>
+    
+  </a>
+
+
+  
+  
+</div>
+
+
+
+
+</div>
+<div id="mega-footer-column-c4d733095f-item-d8c9df1bd2" class="mega-footer-column-item dhig-pb-3"><div class=" cmp-text-link dhig-typography-body-copy-small" id="choose-subsciption">
+  
+  <a class="cmp-text-link__link MuiTypography-root MuiLink-root MuiLink-underlineHover " id="link-choose-subsciption" data-wat-val="choose your subscription plan" href="https://www.autodesk.com/buying/plans">
+    
+    <span class="cmp-text-link__link-text">Choose your subscription plan</span>
+    
+  </a>
+
+
+  
+  
+</div>
+
+
+
+
+</div>
+<div id="mega-footer-column-c4d733095f-item-15b6ce1991" class="mega-footer-column-item dhig-pb-3"><div class=" cmp-text-link dhig-typography-body-copy-small" id="pay-as-go">
+  
+  <a class="cmp-text-link__link MuiTypography-root MuiLink-root MuiLink-underlineHover " id="link-pay-as-go" data-wat-val="pay as you go with flex" href="https://www.autodesk.com/buying/flex">
+    
+    <span class="cmp-text-link__link-text">Pay as you go with Flex</span>
+    
+  </a>
+
+
+  
+  
+</div>
+
+
+
+
+</div>
+
+</div>
+</div>
+
+        </div>
+        <div class="column mega-footer-column-4" data-wat-loc="support">
+          <input type="checkbox"/>
+          <div class="mega-footer-column__title">
+            <img class="mega-footer-column__title-image-arrow-right" src="https://swc.autodesk.com/pharmacopeia/svg/icons/v0/icons/utility/caret-right.svg" alt=""/>
+            <img class="mega-footer-column__title-image-arrow-down" src="https://swc.autodesk.com/pharmacopeia/svg/icons/v0/icons/utility/caret-down.svg" alt=""/>
+            <div>
+<div id="mega-footer-column-4-title" class="cmp-text dhig-typography-headline-small">
+  <div class="cmp-text-editable">
+    Support
+  </div>
+</div>
+
+
+    
+
+</div>
+          </div>
+          <div><div class="mega-footer-column" id="mega-footer-column-90afa6b7d3">
+  
+  <div id="mega-footer-column-90afa6b7d3-item-0b3fb43798" class="mega-footer-column-item dhig-pb-3"><div class=" cmp-text-link dhig-typography-body-copy-small" id="product-support">
+  
+  <a class="cmp-text-link__link MuiTypography-root MuiLink-root MuiLink-underlineHover " id="link-product-support" data-wat-val="product support" href="https://www.autodesk.com/support">
+    
+    <span class="cmp-text-link__link-text">Product support</span>
+    
+  </a>
+
+
+  
+  
+</div>
+
+
+
+
+</div>
+<div id="mega-footer-column-90afa6b7d3-item-ad509490b6" class="mega-footer-column-item dhig-pb-3"><div class=" cmp-text-link dhig-typography-body-copy-small" id="manage-account">
+  
+  <a class="cmp-text-link__link MuiTypography-root MuiLink-root MuiLink-underlineHover " id="link-manage-account" data-wat-val="manage your account" href="https://manage.autodesk.com">
+    
+    <span class="cmp-text-link__link-text">Manage your account</span>
+    
+  </a>
+
+
+  
+  
+</div>
+
+
+
+
+</div>
+<div id="mega-footer-column-90afa6b7d3-item-3724693e00" class="mega-footer-column-item dhig-pb-3"><div class=" cmp-text-link dhig-typography-body-copy-small" id="download-software">
+  
+  <a class="cmp-text-link__link MuiTypography-root MuiLink-root MuiLink-underlineHover " id="link-download-software" data-wat-val="download and install software" href="https://manage.autodesk.com/products">
+    
+    <span class="cmp-text-link__link-text">Download and install software</span>
+    
+  </a>
+
+
+  
+  
+</div>
+
+
+
+
+</div>
+<div id="mega-footer-column-90afa6b7d3-item-8046de71d6" class="mega-footer-column-item dhig-pb-3"><div class=" cmp-text-link dhig-typography-body-copy-small" id="covid-resources">
+  
+  <a class="cmp-text-link__link MuiTypography-root MuiLink-root MuiLink-underlineHover " id="link-covid-resources" data-wat-val="covid-19 resources" href="https://www.autodesk.com/covid-19/resource-center">
+    
+    <span class="cmp-text-link__link-text">COVID-19 resources</span>
+    
+  </a>
+
+
+  
+  
+</div>
+
+
+
+
+</div>
+<div id="mega-footer-column-90afa6b7d3-item-10e9d86198" class="mega-footer-column-item dhig-pb-3"><div class=" cmp-text-link dhig-typography-body-copy-small" id="education-support">
+  
+  <a class="cmp-text-link__link MuiTypography-root MuiLink-root MuiLink-underlineHover " id="link-education-support" data-wat-val="education support" href="https://www.autodesk.com/education/support">
+    
+    <span class="cmp-text-link__link-text">Education support</span>
+    
+  </a>
+
+
+  
+  
+</div>
+
+
+
+
+</div>
+<div id="mega-footer-column-90afa6b7d3-item-e1e2716abc" class="mega-footer-column-item dhig-pb-3"><div class=" cmp-text-link dhig-typography-body-copy-small" id="text-link-small">
+  
+  <a class="cmp-text-link__link MuiTypography-root MuiLink-root MuiLink-underlineHover " id="link-text-link-small" data-wat-loc="footer" data-wat-val="contact support" data-wat-link="true" href="https://www.autodesk.com/support/contact-support">
+    
+    <span class="cmp-text-link__link-text">Contact support</span>
+    
+  </a>
+
+
+  
+  
+</div>
+
+
+
+
+</div>
+
+</div>
+</div>
+
+        </div>
+      </div>
+      <div class="mega-footer-socials mega-footer-socials-mobile" aria-label="social media" tabindex="0">
+        <div>
+<div id="text-7e532cbaab" class="cmp-text dhig-typography-body-copy-small">
+  <div class="cmp-text-editable">
+    <ul class="dhig-grid-cols-1 xl:dhig-list-item xl:dhig-space-y-4 md:dhig-flex md:dhig-gap-7">
+<li><a href="https://www.autodesk.com/social-media" class="social-media-link" data-wat-val="social media" title="social media"><img src="https://swc.autodesk.com/pharmacopeia/svg/icons/v0/icons/social/facebook-circle.svg" alt=""/><img src="https://swc.autodesk.com/pharmacopeia/svg/icons/v0/icons/social/instagram-circle.svg" alt="" style="letter-spacing: 0.0px;"/><img src="https://swc.autodesk.com/pharmacopeia/svg/icons/v0/icons/social/twitter-circle.svg" alt="" style="letter-spacing: 0.0px;"/><img src="https://swc.autodesk.com/pharmacopeia/svg/icons/v0/icons/social/linkedin-circle.svg" alt="" style="letter-spacing: 0.0px;"/><img src="https://swc.autodesk.com/pharmacopeia/svg/icons/v0/icons/social/youtube.svg" alt="" style="letter-spacing: 0.0px;"/></a></li>
+</ul>
+
+  </div>
+</div>
+
+
+    
+
+</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+          <div class="cmp-legal-footer dhig-py-6" data-wat-link-section="legalfooter">
+  <div class="page-container-wrapper">
+    <div class="page-container dhig-flex">
+      <div>
+<div id="text-876a69ad9a" class="cmp-text dhig-typography-body-copy-smaller">
+  <div class="cmp-text-editable">
+    <p><a data-wat-val="privacy" href="https://www.autodesk.com/company/legal-notices-trademarks/privacy-statement">Privacy</a> | <a data-wat-val="do not sell or share my personal information" href="https://www.autodesk.com/company/legal-notices-trademarks/ccpa-do-not-sell">Do not sell or share my personal information</a> | <a data-wat-val="cookie preferences" data-opt-in-preferences="true">Cookie preferences</a> | <a data-wat-val="report noncompliance" href="https://www.autodesk.com/genuine/report-piracy">Report noncompliance</a> | <a data-wat-val="terms of use" href="https://www.autodesk.com/company/terms-of-use/en/general-terms" id="coral-id-677" class="MuiTypography-root MuiLink-root MuiLink-underlineHover">Terms of use</a> | <a data-wat-val="legal" href="https://www.autodesk.com/company/legal-notices-trademarks" class="MuiTypography-root MuiLink-root MuiLink-underlineHover">Legal</a> | <span class="cmp-legal-footer__copyright">© 2023 Autodesk Inc. All rights reserved</span></p>
+
+  </div>
+</div>
+
+
+    
+
+</div>
+    </div>
+  </div>
+</div>
+
+      </div>
+    </div>
+</div>
+</div>
+
+        
+    </div>
+
+</div>
+
+</div>
+</div>
+
+
+    
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+  </div>
+
+
+</div>
+<div class="universal-help-module aem-GridColumn aem-GridColumn--default--12">
+    
+
+
+<script>
+    window.adskUniversalHelpOptions = {
+        language: "en_US",
+        pageTitle: "privacy\u002Dstatement",
+        product: ""
+    };
+</script>
+</div>
+
+    
+</div>
+</div>
+
+
+        
+        <div style="display: none;">
+
+</div>
+        
+
+  
+  
+    
+<script src="https://static-dc.autodesk.net/etc.clientlibs/v605.20231207.1619/core/wcm/components/commons/site/clientlibs/container.min.js" defer></script>
+<script src="https://static-dc.autodesk.net/etc.clientlibs/v605.20231207.1619/dotcom/clientlibs/clientlib-base.min.js" defer></script>
+<script src="https://static-dc.autodesk.net/etc.clientlibs/v605.20231207.1619/dotcom/clientlibs/clientlib-site.min.js" defer></script>
+
+
+
+
+  
+  
+    <script type="text/javascript" src="https://swc.autodesk.com/web-mfe/mfe-product-price/app.js" defer></script>
+
+
+
+  
+  <script type="text/javascript" src="https://swc.autodesk.com/web-aem/company/terms-of-use/terms-of-use.js" defer></script>
+
+
+  
+  
+  <script type="text/javascript">
+    window.adsk = window.adsk || {};
+    adsk.webSDK = adsk.webSDK || {};
+    adsk.anyWherewebSDK = adsk.anyWherewebSDK || {};
+    adsk.webSDK.css="https:\/\/emsfs.autodesk.com\/utility\/dlm\/prod\/SDK\/3_34\/adsk.fxsdk.min.css";
+    adsk.webSDK.script="https:\/\/emsfs.autodesk.com\/utility\/dlm\/prod\/SDK\/3_34\/adsk.fxsdk.min.js";
+    adsk.webSDK.jquery="https:\/\/emsfs.autodesk.com\/utility\/dlm\/prod\/SDK\/3_34\/jqt\/jquery\u002Dui.min.1.9.1.js";
+    adsk.webSDK.isWebSDKDirectDownloadUrl = false;
+    adsk.anyWherewebSDK.script="https:\/\/emsfs.autodesk.com\/utility\/websdk\/1\/prd\/latest\/websdk.js";
+  </script>
+
+  
+  
+    <script type="text/javascript">
+      ((window.adsk = window.adsk || {}).api = window.adsk.api || {}).universalHelp = window.adsk.api.universalHelp || {};
+      window.adsk.api.universalHelp.scriptPath = "https:\/\/app.digital\u002Dhelp\u002Dprd.autodesk.com\/universal\u002Dhelp\/current\/uhm\u002Dprd.min.js";
+      window.adsk.api.universalHelp.enabled = "true";
+    </script>
+  
+
+  
+    <script type="text/javascript">
+      window.digitalData = JSON.parse('{"pageInstanceID":"prod","page":{"countryCode":"us","destinationURL":"https://www.autodesk.com/content/autodesk/global/en/company/legal-notices-trademarks/privacy-statement.html","languageCode":"en","pageName":"adsk:en:company:legal-notices-trademarks:privacy-statement","continentCode":"amer"},"version":{"versionNumber":"1.0"},"user":{"authSystem":"","oxygenGuid":"","loginStatus":""},"products":[]}');
+      if (digitalData && digitalData.hasOwnProperty('page') && digitalData.page.destinationURL) {
+        digitalData.page.destinationURL = document.URL;
+      }
+    </script>
+
+    
+
+    <script type="text/javascript" name="tealiumAdobeVisitor:url" src="//tags.tiqcdn.com/utag/autodesk/lib-adobevisitorapi/prod/utag.sync.js"></script>
+
+    <script type="text/javascript" name="tealiumFooterSync:url" src="//tags.tiqcdn.com/utag/autodesk/lib-target/prod/utag.sync.js"></script>
+
+    
+      
+        
+        <script type="text/javascript" name="tealium:url" src="//tags.tiqcdn.com/utag/autodesk/global-sites/prod/utag.js" defer></script>
+        
+      
+    
+  
+
+
+        
+
+    </body>
+</html>

@@ -1,0 +1,16 @@
+.env
+.venv/
+.tmp/
+.tiktoken_cache/
+secrets/
+notes/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+data/raw/
+data/**/*.pdf
+.streamlit/secrets.toml
+streamlit*.log
+eval_status/
+/cobb_county_testset.csv
+instructions/

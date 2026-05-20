@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?xml version="1.0" encoding="UTF-8"?><html xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="topic-type" content="concept">
+<meta name="helpsystempath" content="https://help.autodesk.com/view/ACAD_E/2022/ENU/">
+<meta name="product" content="ACAD_E">
+<meta name="release" content="2022">
+<meta name="book" content="GeneralUser">
+<meta name="component" content="AutoCAD-Electrical">
+<meta name="created" content="20/10/2021">
+<meta name="user-comments" content="disable">
+<meta name="indexterm" content="customizing">
+<meta name="indexterm" content="3-phase motor symbols">
+<meta name="contextid" content="CIRCUIT_BUILDER_HOME">
+<meta name="contextid" content="MOTOR_CONTROL_ONE_LINE_CIRCUITS">
+<meta name="experiencelevel" content="novice">
+<meta name="audience" content="user">
+<meta name="modified" content="15/07/2015">
+<meta name="topicid" content="GUID-41B776E6-CAAE-4F46-8010-B6A13D309D0C">
+<meta name="language" content="ENU">
+<title>About Circuit Builder</title>
+
+	<link rel="stylesheet" type="text/css" href="/view/clientframework/client.css">
+	<script type="text/javascript" src="/view/clientframework/client.js"><!--filler--></script>
+</head>
+<body id="GUID-41B776E6-CAAE-4F46-8010-B6A13D309D0C">
+<div class="head">
+<div class="head-block">
+<div class="button-info"><span id="infoline">&nbsp;</span></div>
+<div class="ancestry">&nbsp;</div>
+<div class="head-text"><h1>About Circuit Builder</h1></div>
+</div>
+</div>
+
+<div class="body conbody">
+<p class="p" id="GUID-41B776E6-CAAE-4F46-8010-B6A13D309D0C__GUID-BCF1D083-EE32-4EB7-B185-6A95A21934E4">The Circuit Builder tool comes prepopulated with data to build and annotate a sampling of motor control circuits and power feed circuits. Circuits include 3-phase, single-phase, and one-line circuit representations. Each circuit is built dynamically, adjusting the power bus to match the wire bus for the drawing, adding wiring between components, and annotating the elements with suggested values based upon the selected load. Each time a circuit is configured, it is added to a history list of circuits. This list provides for quick reinsertion at a later time. </p>
+<p class="p" id="GUID-41B776E6-CAAE-4F46-8010-B6A13D309D0C__GUID-21E8AD8D-3EF8-4B0C-B9FA-47C43D43E53A">Three items control this feature: </p>
+<ul class="ul" id="GUID-41B776E6-CAAE-4F46-8010-B6A13D309D0C__WS73099CC142F4875535A241551166AC8792F1DB0">
+<li class="li" id="GUID-41B776E6-CAAE-4F46-8010-B6A13D309D0C__LI_CE31078B12D24D3BB1A777AE8FAD6967">The spreadsheet defines the available circuits, circuit types, and defaults for each option within a circuit. </li>
+<li class="li" id="GUID-41B776E6-CAAE-4F46-8010-B6A13D309D0C__LI_12F557B7480441579C13088E1E99F266">The template (.dwg file) for a selected circuit defines the wiring and the placement position for the individual components on that wiring. </li>
+<li class="li" id="GUID-41B776E6-CAAE-4F46-8010-B6A13D309D0C__LI_214F6F0B7C3F4A88A1C821725D391657">The electrical standards database provides suggested values used to annotate components of the circuit and the wire size and type of the power wiring. </li>
+</ul>
+<p class="p" id="GUID-41B776E6-CAAE-4F46-8010-B6A13D309D0C__GUID-C2D58ABE-7964-48CC-AA23-4006D2C5C428">Circuit Builder is customizable. You can add new circuit definitions and edit existing ones. </p>
+<div class="section" id="GUID-41B776E6-CAAE-4F46-8010-B6A13D309D0C__WS73099CC142F48755-57AF30D311C6900F989-78F1">
+<h2 class="title sectiontitle">One-line motor control</h2>
+
+<p class="p" id="GUID-41B776E6-CAAE-4F46-8010-B6A13D309D0C__GUID-2D3E24D1-962F-4B07-9D22-44ACCB287571">Circuit Build supplies and uses a one-line symbol library when building a one-line circuit. Each one-line symbol has a WDTYPE attribute with a value of &ldquo;1-&rdquo; or &ldquo;1-1&rdquo;. The WDTYPE attribute value distinguishes the one-line symbol from a schematic symbol. A schematic symbol either has no WDTYPE attribute or a blank WDTYPE attribute value. One-line symbols follow the same symbol naming conventions and have the same attribute requirements as schematic symbols with a few attribute exceptions. </p>
+
+
+<div class="tablenoborder">
+<table cellpadding="4" cellspacing="0" summary="" id="GUID-41B776E6-CAAE-4F46-8010-B6A13D309D0C__WS73099CC142F48755-4607E7CC11B1CFFF571-1526" class="table" width="100%" border="0">
+<thead class="thead" align="left">
+<tr class="row">
+<th class="entry" valign="top" width="30%">
+<p class="p" id="GUID-41B776E6-CAAE-4F46-8010-B6A13D309D0C__GUID-E12CE6D0-93EE-4C96-A4F2-5DBA722F2647">Attribute </p>
+
+</th>
+<th class="entry" valign="top" width="70%">
+<p class="p" id="GUID-41B776E6-CAAE-4F46-8010-B6A13D309D0C__GUID-4A24AC33-794B-4A3D-9CCB-F84B5522BF24">Description </p>
+
+</th>
+</tr>
+</thead>
+<tbody class="tbody">
+<tr class="row">
+<td class="entry" valign="top" width="30%">
+<p class="p" id="GUID-41B776E6-CAAE-4F46-8010-B6A13D309D0C__GUID-4CD6BAE3-0CBF-4771-A7A5-EB564B710C2C">WDTYPE </p>
+
+</td>
+<td class="entry" valign="top" width="70%">
+<p class="p" id="GUID-41B776E6-CAAE-4F46-8010-B6A13D309D0C__GUID-F1480F37-EE01-4D55-ADD9-BCCA5531B27C">The attribute must be present and carry a value of &ldquo;1-&rdquo; to indicate it is a one-line symbol, or &ldquo;1-1&rdquo; for the one-line bus-tap symbols. A bus-tap symbol is used to mark the beginning of a one-line circuit. Schematic symbols do not carry this attribute or have the attribute but with a blank value. </p>
+
+</td>
+</tr>
+<tr class="row">
+<td class="entry" valign="top" width="30%">
+<p class="p" id="GUID-41B776E6-CAAE-4F46-8010-B6A13D309D0C__GUID-0FBE1E6E-5D4F-4E4D-9B67-B1DD24C90A9D">RATING1 </p>
+
+</td>
+<td class="entry" valign="top" width="70%">
+<p class="p" id="GUID-41B776E6-CAAE-4F46-8010-B6A13D309D0C__GUID-D9BFE4D8-BDE4-4B4C-8F83-973F2C1CD6FE">Omitted from one-line cable markers symbols since a one-line cable marker can represent multiple conductors, multiple wires, or core color assignments. </p>
+
+</td>
+</tr>
+<tr class="row">
+<td class="entry" valign="top" width="30%">
+<p class="p" id="GUID-41B776E6-CAAE-4F46-8010-B6A13D309D0C__GUID-265FCB4F-E11F-4613-BC6D-EB605FB03CCC">TERM01 </p>
+
+</td>
+<td class="entry" valign="top" width="70%">
+<p class="p" id="GUID-41B776E6-CAAE-4F46-8010-B6A13D309D0C__GUID-F18107E8-6C84-4954-94DF-09A09B25DB31">Omitted from one-line terminal symbols since a one-line terminal can represent multiple independent terminals. </p>
+
+<p class="p" id="GUID-41B776E6-CAAE-4F46-8010-B6A13D309D0C__GUID-4D728691-34C1-4F7F-98D9-48323B286E69">If a TERM01 attribute is added to a one-line symbol and carries a non-blank value, it can be edited in the Insert/Edit Terminal Symbol dialog box. However, terminal number text on one-line terminal symbols is not linked back to terminal number assignments on schematic or panel terminal representations. </p>
+
+<div class="note note" id="GUID-41B776E6-CAAE-4F46-8010-B6A13D309D0C__GUID-5C80BE26-15FE-41F8-BD02-69DBFE018D82">
+<span class="notetitle">Note:</span> One-line terminals are not processed by Terminal Strip Editor. </div>
+
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+</div>
+<div class="section" id="GUID-41B776E6-CAAE-4F46-8010-B6A13D309D0C__WS73099CC142F48755-1257E12111BF108800E-2238">
+<h2 class="title sectiontitle">Workflow</h2>
+
+<ol class="ol" id="GUID-41B776E6-CAAE-4F46-8010-B6A13D309D0C__WS1A9193826455F5FF4E421D7D11BF108001D-6A19">
+<li class="li" id="GUID-41B776E6-CAAE-4F46-8010-B6A13D309D0C__LI_7834C21C807643DB83BA4B60CAC2125F">Circuit Builder opens the spreadsheet and reads in the first sheet named &ldquo;ACE_CIRCS&rdquo;. </li>
+<li class="li" id="GUID-41B776E6-CAAE-4F46-8010-B6A13D309D0C__LI_D3981966716A4C6C92B1008CCA262AB8">Circuit Builder shows the list of defined circuits in the Circuit Selection dialog box. </li>
+<li class="li" id="GUID-41B776E6-CAAE-4F46-8010-B6A13D309D0C__LI_89F98C4215524288B4D86E97EFA414D6">Select a circuit to insert or configure. The associated line from the ACE_CIRCS sheet provides the base drawing template name, and the name of a circuit code sheet. The circuit code sheet is a separate sheet within the Circuit Builder spreadsheet. </li>
+<li class="li" id="GUID-41B776E6-CAAE-4F46-8010-B6A13D309D0C__LI_CBB57134E31744DBB35C99C84320BB18">The base drawing template for the circuit inserts at your selected location. </li>
+<li class="li" id="GUID-41B776E6-CAAE-4F46-8010-B6A13D309D0C__LI_77ADB003023541008B38AFEF77EFCC56">Circuit Builder finds and reads the attributes on all the special marker blocks on the inserted drawing template. </li>
+<li class="li" id="GUID-41B776E6-CAAE-4F46-8010-B6A13D309D0C__LI_E229FBB9B6CA4EA1B4C94DD713E369B3">Circuit Builder matches each marker block to a specific section in the circuit codes sheet. This section can be a single spreadsheet row or multiple consecutive rows in the circuit codes sheet. The section identifies one of the following: <ul class="ul" id="GUID-41B776E6-CAAE-4F46-8010-B6A13D309D0C__WS1A9193826455F5FF-7C11D46C11CB8605735-5454">
+<li class="li" id="GUID-41B776E6-CAAE-4F46-8010-B6A13D309D0C__LI_F8B35163E1AB48FC8DDD93353650EAFC">The action taken at this marker block location in the circuit. For example, calculate a wire type, insert a wire number, or adjust rung spacing. </li>
+<li class="li" id="GUID-41B776E6-CAAE-4F46-8010-B6A13D309D0C__LI_D83A1FAE2E3E436BA85FE3087A563CD9">Provides a list of component insertion options that can be inserted at this point in the circuit. For example, presents a selection list containing a fuse, circuit breaker, or disconnect switch symbol. </li>
+</ul>
+ <p class="p" id="GUID-41B776E6-CAAE-4F46-8010-B6A13D309D0C__GUID-6E2EAD42-4C6F-444E-B3B0-85F7848DB53F">Each marker block is processed in sequence, controlled by an ORDER attribute value carried on each marker block </p>
+ </li>
+<li class="li" id="GUID-41B776E6-CAAE-4F46-8010-B6A13D309D0C__LI_507AE5D6817B4DA5A3D497A1D6F6F493">A marker block can insert a nested template into the main circuit template. If the nested template carries its own marker blocks, these marker blocks are added to the overall list to process. When all marker blocks have been processed, the circuit is complete. </li>
+</ol>
+
+</div>
+</div>
+<div class="related-links">
+<div class="relinfo relconcepts">
+<h4 class="related">Related Concepts</h4>
+<ul>
+<li><a class="link" href="GUID-ED878C9D-EC12-4130-B384-61E20D6E77EC.htm">About the Circuit Builder Spreadsheet</a></li>
+<li><a class="link" href="GUID-DD83308C-D049-42D3-B761-9B888213EE78.htm">About the Circuit Builder Drawing Templates</a></li>
+<li><a class="link" href="GUID-83A915B1-5D5C-4E6B-8385-F11A00E5B967.htm">About the Circuit Builder Electrical Standards Database</a></li>
+<li><a class="link" href="GUID-3605E74F-AFF8-491B-BF54-57596C3ED59A.htm">About Referencing an Existing Circuit</a></li>
+<li><a class="link" href="GUID-F2340AAB-B324-48FB-A3CE-AF382488B5CE.htm">About Customizing Circuit Builder</a></li>
+<li><a class="link" href="GUID-105E8A4C-4C95-4074-A327-5A4F83A50A21.htm">About Attributes for One-Line, Hydraulic, and P&amp;ID Symbols</a></li>
+<li><a class="link" href="GUID-426D2FCD-D82A-4FB7-A657-28D8B2EC336D.htm">About Symbol Naming Conventions</a></li>
+<li><a class="link" href="GUID-A42DA038-B1AB-4401-BD71-BC7A683D8DF7.htm">About Schematic Attributes</a></li>
+</ul>
+</div>
+<div class="relinfo reltasks">
+<h4 class="related">Related Tasks</h4>
+<ul>
+<li><a class="link" href="GUID-BC3EFA37-1861-4DA8-B470-3CDC71A0C1DD.htm">To Work With Circuit Builder</a></li>
+<li><a class="link" href="GUID-53705D1E-043F-4B16-B697-290D04658B39.htm" title="When Circuit Builder inserts a circuit, the parameters used to size the wires are saved on the motor or load symbol as Xdata. You can recalculate the wire size data for selected motor or power feed load representations.">To Recalculate Wire Size</a></li>
+</ul>
+</div>
+<div class="relinfo relref">
+<h4 class="related">Related Reference</h4>
+<ul>
+<li><a class="link" href="GUID-73AB7BAD-F7F6-4508-A82F-B1D7570856BA.htm">Circuit Builder Reference</a></li>
+<li><a class="link" href="GUID-4544D942-376F-4762-B133-AA93AED0197D.htm">To Customize Circuit Builder Task List</a></li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

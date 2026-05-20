@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?xml version="1.0" encoding="UTF-8"?><html xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="topic-type" content="concept">
+<meta name="helpsystempath" content="https://help.autodesk.com/view/ARCHDESK/2022/ENU/">
+<meta name="product" content="ARCHDESK">
+<meta name="release" content="2022">
+<meta name="book" content="GeneralUser">
+<meta name="component" content="AutoCAD-Architecture">
+<meta name="created" content="23/3/2021">
+<meta name="applies-to" content="BLDSYS=2022">
+<meta name="user-comments" content="disable">
+<meta name="contextid" content="AECID_AECLAYERSTANDARDS">
+<meta name="contextid" content="AECID_AECLAYERSTANDARD">
+<meta name="contextid" content="AECL_DLG_CREATELAYERSTD">
+<meta name="contextid" content="AECL_DLG_IMPORTEXPORTSTDS">
+<meta name="contextid" content="AECL_DLG_LAYSTD_SELECT">
+<meta name="contextid" content="AECL_DLG_SELLAYSTD">
+<meta name="experiencelevel" content="novice">
+<meta name="audience" content="user">
+<meta name="modified" content="06/01/2021">
+<meta name="topicid" content="GUID-08947990-83DE-48D9-9042-BAC426C65177">
+<meta name="language" content="ENU">
+<title>About Creating and Editing Layer Standards</title>
+
+	<link rel="stylesheet" type="text/css" href="/view/clientframework/client.css">
+	<script type="text/javascript" src="/view/clientframework/client.js"><!--filler--></script>
+</head>
+<body id="GUID-08947990-83DE-48D9-9042-BAC426C65177">
+<div class="head">
+<div class="head-block">
+<div class="button-info"><span id="infoline">&nbsp;</span></div>
+<div class="ancestry">&nbsp;</div>
+<div class="head-text"><h1>About Creating and Editing Layer Standards</h1></div>
+</div>
+</div>
+
+<div class="body conbody">
+<div class="section" id="GUID-08947990-83DE-48D9-9042-BAC426C65177__GUID-61FEE722-C665-49A7-864E-6334B2239D9A">
+<p class="p" id="GUID-08947990-83DE-48D9-9042-BAC426C65177__WS1A9193826455F5FF128052610E798412BC-6F4F"> A layer standard contains predefined layer names and a set of rules that determines the names of new layers that you create using that layer standard. You can use layer standards to establish individual, project, or office layering conventions that provide consistent and informative layer names. <span class="ph msgph prodname">AutoCAD Architecture 2022 toolset</span> provides a number of layer standards that you can use in drawings. You can also create your own layer standards by customizing an existing layer standard. </p>
+
+</div>
+<div class="section" id="GUID-08947990-83DE-48D9-9042-BAC426C65177__WS1A9193826455F5FF128052610E798412BC-6F4E">
+<h2 class="title sectiontitle">How Layer Standards Determine Layer Name</h2>
+
+<p class="p" id="GUID-08947990-83DE-48D9-9042-BAC426C65177__WS1A9193826455F5FF128052610E798412BC-6F4D">When you create a new layer using a layer standard, the layer name has a number of parts separated by delimiters (for example, hyphens). Each part of the layer name is determined by rules specified in a corresponding field of the layer standard. </p>
+
+<p class="p" id="GUID-08947990-83DE-48D9-9042-BAC426C65177__WS1A9193826455F5FF128052610E798412BC-6F4C">For example, the AIA 2nd Edition layer standard includes five fields that form each new layer name: Discipline Designator, Major, Minor 1, Minor 2, and Status. Each field is separated by a hyphen (?) delimiter, as in the following example: </p>
+
+<p class="p" id="GUID-08947990-83DE-48D9-9042-BAC426C65177__WS1A9193826455F5FF128052610E798412BC-6F4B">(Discipline Designator) - (Major) - (Minor 1) - (Minor 2) - (Status) </p>
+
+<p class="p" id="GUID-08947990-83DE-48D9-9042-BAC426C65177__WS1A9193826455F5FF128052610E798412BC-6F4A">A layer in your drawing with a Discipline value of &ldquo;A,&rdquo; a Major value of &ldquo;Wall,&rdquo; a Minor 1 value of &ldquo;Full,&rdquo; a Minor 2 value of &ldquo;Abov&rdquo; and a Status value of &ldquo;D,&rdquo; to denote a demolition layer, would be named A-WALL-FULL-ABOV-D. </p>
+
+<p class="p" id="GUID-08947990-83DE-48D9-9042-BAC426C65177__WS1A9193826455F5FF128052610E798412BC-6F49">You can edit the layer standard definition to change these rules. </p>
+
+<p class="p" id="GUID-08947990-83DE-48D9-9042-BAC426C65177__WS1A9193826455F5FF128052610E798412BC-6F48">You can override the information in each field to change the way a layer standard creates a layer name by specifying layer key overrides. </p>
+
+</div>
+<div class="section" id="GUID-08947990-83DE-48D9-9042-BAC426C65177__WS1A9193826455F5FF128052610E798412BC-6F47">
+<h2 class="title sectiontitle">Layer Standards Included with the Layer Properties Manager</h2>
+
+<p class="p" id="GUID-08947990-83DE-48D9-9042-BAC426C65177__WS1A9193826455F5FF128052610E798412BC-6F46"> <span class="ph msgph prodname">AutoCAD Architecture 2022 toolset</span> provides industry-standard layering conventions including: AIA 2nd Edition, BS1192 Descriptive, and BS1192 - AUG Version&nbsp;2. Additional international layer conventions are also provided including: DIN 276, ISYBAU Long Format, ISYBAU Short Format, and STLB. Each layer standard contains specific information organized in fields. You can specify how the information appears in each field by changing the values in the layer standard fields </p>
+
+</div>
+</div>
+<div class="related-links">
+<div class="relinfo relconcepts">
+<h4 class="related">Related Concepts</h4>
+<ul>
+<li><a class="link" href="GUID-5BF88901-F982-4ED1-8862-5BFF53C6F60A.htm">About Component Fields in Layer Standards</a></li>
+<li><a class="link" href="GUID-04A427DC-85B3-4B90-AA84-6B0F5C017036.htm">About Layer Management</a></li>
+<li><a class="link" href="GUID-DC0F8550-61B9-4A35-B4EB-695064D832AB.htm">About Managing Drawing Layers</a></li>
+<li><a class="link" href="GUID-ACA0470C-989F-4EB6-957F-E74797F1177B.htm">About Working With Layer Groups</a></li>
+<li><a class="link" href="GUID-DE0F9CC2-6C87-4A8B-B3BA-3119D7D7D8CD.htm">About New Layer Notification</a></li>
+<li><a class="link" href="GUID-E1241484-08A5-4CB9-84E2-E056E4B03368.htm">About Working With Layer States</a></li>
+<li><a class="link" href="GUID-FA684C28-B27F-4041-922F-A14A3933A564.htm">About Working With Layer Keys</a></li>
+</ul>
+</div>
+<div class="relinfo reltasks">
+<h4 class="related">Related Tasks</h4>
+<ul>
+<li><a class="link" href="GUID-23B4C2CE-6330-4F9B-A682-77461102FD05.htm">To Create a Layer Standard</a></li>
+<li><a class="link" href="GUID-5D5BB167-2206-4C4F-AB17-B727D7D7D923.htm">To Edit Component Fields</a></li>
+<li><a class="link" href="GUID-A7E85B67-F02B-4965-8168-733E4EAA36A6.htm">To Edit Descriptive Fields</a></li>
+<li><a class="link" href="GUID-617F11DD-1FF5-4CFC-A93F-2977C796A1CE.htm">To Edit Descriptions</a></li>
+<li><a class="link" href="GUID-BA41DC0E-AE59-4F95-8DBD-BBDED67AD268.htm">To Edit Description Specifications</a></li>
+<li><a class="link" href="GUID-0E8CFE23-734E-43E9-A515-63439478BE89.htm">To Purge Layer Standards</a></li>
+<li><a class="link" href="GUID-1DCBBB27-A9DB-41D8-B3BD-D478F77FB28B.htm">To Import Layer Standards</a></li>
+<li><a class="link" href="GUID-7CF0A481-602F-42CA-A468-FFEBC2EDFF6C.htm">To Export Layer Standards</a></li>
+</ul>
+</div>
+<div class="relinfo relref">
+<h4 class="related">Related Reference</h4>
+<ul><li><a class="link" href="GUID-9599CE8D-A8B0-48E6-850F-CB007668BA33.htm">LISP Changes for Layer Snapshots and Layer States Reference</a></li></ul>
+</div>
+</div>
+
+</body>
+</html>

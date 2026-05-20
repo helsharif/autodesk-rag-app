@@ -1,0 +1,5773 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- force IE browsers in compatibility mode to use their most aggressive rendering engine -->
+
+    <meta charset="utf-8">
+    <title>Autodesk Health Dashboard Status</title>
+    <meta name="description" content="Welcome to Autodesk Health Dashboard&#39;s home for real-time and historical data on system performance.">
+
+    <!-- Mobile viewport optimization -->
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+
+    <!-- Time this page was rendered - http://purl.org/dc/terms/issued -->
+    <meta name="issued" content="1702688074">
+
+    <!-- Mobile IE allows us to activate ClearType technology for smoothing fonts for easy reading -->
+    <meta http-equiv="cleartype" content="on">
+
+    <!-- Le fonts -->
+<style>
+  @font-face {
+    font-family: 'proxima-nova';
+    src: url('https://dka575ofm4ao0.cloudfront.net/assets/ProximaNovaLight-f0b2f7c12b6b87c65c02d3c1738047ea67a7607fd767056d8a2964cc6a2393f7.eot?host=health.autodesk.com');
+    src: url('https://dka575ofm4ao0.cloudfront.net/assets/ProximaNovaLight-f0b2f7c12b6b87c65c02d3c1738047ea67a7607fd767056d8a2964cc6a2393f7.eot?host=health.autodesk.com#iefix') format('embedded-opentype'),
+         url('https://dka575ofm4ao0.cloudfront.net/assets/ProximaNovaLight-e642ffe82005c6208632538a557e7f5dccb835c0303b06f17f55ccf567907241.woff?host=health.autodesk.com') format('woff'),
+         url('https://dka575ofm4ao0.cloudfront.net/assets/ProximaNovaLight-0f094da9b301d03292f97db5544142a16f9f2ddf50af91d44753d9310c194c5f.ttf?host=health.autodesk.com') format('truetype');
+    font-weight:300;
+    font-style:normal;
+  }
+   
+  @font-face {
+    font-family: 'proxima-nova';
+    src: url('https://dka575ofm4ao0.cloudfront.net/assets/ProximaNovaRegular-366d17769d864aa72f27defaddf591e460a1de4984bb24dacea57a9fc1d14878.eot?host=health.autodesk.com');
+    src: url('https://dka575ofm4ao0.cloudfront.net/assets/ProximaNovaRegular-366d17769d864aa72f27defaddf591e460a1de4984bb24dacea57a9fc1d14878.eot?host=health.autodesk.com#iefix') format('embedded-opentype'),
+         url('https://dka575ofm4ao0.cloudfront.net/assets/ProximaNovaRegular-2ee4c449a9ed716f1d88207bd1094e21b69e2818b5cd36b28ad809dc1924ec54.woff?host=health.autodesk.com') format('woff'),
+         url('https://dka575ofm4ao0.cloudfront.net/assets/ProximaNovaRegular-a40a469edbd27b65b845b8000d47445a17def8ba677f4eb836ad1808f7495173.ttf?host=health.autodesk.com') format('truetype');
+    font-weight:400;
+    font-style:normal;
+  }
+   
+  @font-face {
+    font-family: 'proxima-nova';
+    src: url('https://dka575ofm4ao0.cloudfront.net/assets/ProximaNovaRegularIt-0bf83a850b45e4ccda15bd04691e3c47ae84fec3588363b53618bd275a98cbb7.eot?host=health.autodesk.com');
+    src: url('https://dka575ofm4ao0.cloudfront.net/assets/ProximaNovaRegularIt-0bf83a850b45e4ccda15bd04691e3c47ae84fec3588363b53618bd275a98cbb7.eot?host=health.autodesk.com#iefix') format('embedded-opentype'),
+         url('https://dka575ofm4ao0.cloudfront.net/assets/ProximaNovaRegularIt-0c394ec7a111aa7928ea470ec0a67c44ebdaa0f93d1c3341abb69656cc26cbdd.woff?host=health.autodesk.com') format('woff'),
+         url('https://dka575ofm4ao0.cloudfront.net/assets/ProximaNovaRegularIt-9e43859f8015a4d47d9eaf7bafe8d1e26e3298795ce1f4cdb0be0479b8a4605e.ttf?host=health.autodesk.com') format('truetype');
+    font-weight:400;
+    font-style:italic;
+  }
+   
+  @font-face {
+    font-family: 'proxima-nova';
+    src: url('https://dka575ofm4ao0.cloudfront.net/assets/ProximaNovaSemibold-09566917307251d22021a3f91fc646f3e45f8d095209bcd2cded8a1979f06e54.eot?host=health.autodesk.com');
+    src: url('https://dka575ofm4ao0.cloudfront.net/assets/ProximaNovaSemibold-09566917307251d22021a3f91fc646f3e45f8d095209bcd2cded8a1979f06e54.eot?host=health.autodesk.com#iefix') format('embedded-opentype'),
+         url('https://dka575ofm4ao0.cloudfront.net/assets/ProximaNovaSemibold-86724fb2152613d735ba47c3f47a9ad2424b898bea4bece213dacee40344f966.woff?host=health.autodesk.com') format('woff'),
+         url('https://dka575ofm4ao0.cloudfront.net/assets/ProximaNovaSemibold-cf3e4eb7fbdf6fb83e526cc2a0141e55b01097e6e1abfd4cbdc3eda75d183f74.ttf?host=health.autodesk.com') format('truetype');
+    font-weight:500;
+    font-style:normal;
+  }
+   
+  @font-face {
+    font-family: 'proxima-nova';
+    src: url('https://dka575ofm4ao0.cloudfront.net/assets/ProximaNovaBold-622ea489d20e12e691663f83217105e957e2d3d09703707d40155a29c06cc9d9.eot?host=health.autodesk.com');
+    src: url('https://dka575ofm4ao0.cloudfront.net/assets/ProximaNovaBold-622ea489d20e12e691663f83217105e957e2d3d09703707d40155a29c06cc9d9.eot?host=health.autodesk.com#iefix') format('embedded-opentype'),
+         url('https://dka575ofm4ao0.cloudfront.net/assets/ProximaNovaBold-c8dc577ff7f76d2fc199843e38c04bb2e9fd15889421358d966a9f846c2ed1cd.woff?host=health.autodesk.com') format('woff'),
+         url('https://dka575ofm4ao0.cloudfront.net/assets/ProximaNovaBold-27177fe9242acbe089276ee587feef781446667ffe9b6fdc5b7fe21ad73e12f3.ttf?host=health.autodesk.com') format('truetype');
+    font-weight:700;
+    font-style:normal;
+  }
+</style>
+
+
+      <link rel="shortcut icon" type="image/x-icon" href="//dka575ofm4ao0.cloudfront.net/pages-favicon_logos/original/196121/adsk-logo-only-black.png" />
+
+    <link rel="shortcut icon" href='//dka575ofm4ao0.cloudfront.net/pages-favicon_logos/original/196121/adsk-logo-only-black.png'>
+
+    <link rel="alternate" type="application/atom+xml" href="https://health.autodesk.com/history.atom" title="Autodesk Health Dashboard Status History - Atom Feed">
+    <link rel="alternate" type="application/rss+xml" href="https://health.autodesk.com/history.rss" title="Autodesk Health Dashboard Status History - RSS Feed">
+
+      <!-- Canonical Link to ensure that only the custom domain is indexed when present -->
+      <link rel="canonical" href="https://health.autodesk.com">
+
+    <meta name="_globalsign-domain-verification" content="y_VzfckMy4iePo5oDJNivyYIjh8LffYa4jzUndm_bZ"/>
+
+      <meta name="robots" content="noindex,nofollow">
+
+    <link rel="alternate" type="application/atom+xml" title="ATOM" href="https://health.autodesk.com/history.atom" />
+
+    <!-- Le styles -->
+    <link rel="stylesheet" media="screen" href="https://dka575ofm4ao0.cloudfront.net/packs/0.de06b70483afcabc37df.css" />
+    <link rel="stylesheet" media="all" href="https://dka575ofm4ao0.cloudfront.net/assets/status/status_manifest-cc9fd99d26ea5cca6f3352190ad1a451683d356cd9a12bb1c7d57870bed73318.css" />
+
+    <script src="https://dka575ofm4ao0.cloudfront.net/assets/jquery-3.5.1.min-729e416557a365062a8a20f0562f18aa171da57298005d392312670c706c68de.js"></script>
+
+    <script>
+      window.pageColorData = {"blue":"#3498DB","border":"#E0E0E0","body_background":"#ffffff","font":"#333333","graph":"#3498db","green":"#2fcc66","light_font":"#AAAAAA","link":"#3498db","orange":"#e67e22","red":"#e74c3c","yellow":"#f1c40f","no_data":"#b3bac5"};
+    </script>
+    <style>
+  /* BODY BACKGROUND */ /* BODY BACKGROUND */ /* BODY BACKGROUND */ /* BODY BACKGROUND */ /* BODY BACKGROUND */
+  body,
+  .layout-content.status.status-api .section .example-container .example-opener .color-secondary,
+  .grouped-items-selector,
+  .layout-content.status.status-full-history .history-nav a.current,
+  div[id^="subscribe-modal"] .modal-footer,
+  div[id^="subscribe-modal"],
+  div[id^="updates-dropdown"] .updates-dropdown-section,
+  #uptime-tooltip .tooltip-box {
+    background-color:#ffffff;
+  }
+
+  #uptime-tooltip .pointer-container .pointer-smaller {
+    border-bottom-color:#ffffff;
+  }
+
+
+
+
+  /* PRIMARY FONT COLOR */ /* PRIMARY FONT COLOR */ /* PRIMARY FONT COLOR */ /* PRIMARY FONT COLOR */
+  body.status,
+  .color-primary,
+  .color-primary:hover,
+  .layout-content.status-index .status-day .update-title.impact-none a,
+  .layout-content.status-index .status-day .update-title.impact-none a:hover,
+  .layout-content.status-index .timeframes-container .timeframe.active,
+  .layout-content.status-full-history .month .incident-container .impact-none,
+  .layout-content.status.status-index .incidents-list .incident-title.impact-none a,
+  .incident-history .impact-none,
+  .layout-content.status .grouped-items-selector.inline .grouped-item.active,
+  .layout-content.status.status-full-history .history-nav a.current,
+  .layout-content.status.status-full-history .history-nav a:not(.current):hover,
+  div[id^="subscribe-modal"] .modal-header .close,
+  .grouped-item-label,
+  #uptime-tooltip .tooltip-box .tooltip-content .related-events .related-event a.related-event-link {
+    color:#333333;
+  }
+
+  .layout-content.status.status-index .components-statuses .component-container .name {
+    color:#333333;
+    color:rgba(51,51,51,.8);
+  }
+
+
+
+
+  /* SECONDARY FONT COLOR */ /* SECONDARY FONT COLOR */ /* SECONDARY FONT COLOR */ /* SECONDARY FONT COLOR */
+  small,
+  .layout-content.status .table-row .date,
+  .color-secondary,
+  .layout-content.status .grouped-items-selector.inline .grouped-item,
+  .layout-content.status.status-full-history .history-footer .pagination a.disabled,
+  .layout-content.status.status-full-history .history-nav a,
+  #uptime-tooltip .tooltip-box .tooltip-content .related-events #related-event-header {
+    color:#AAAAAA;
+  }
+
+
+
+
+  /* BORDER COLOR */  /* BORDER COLOR */  /* BORDER COLOR */  /* BORDER COLOR */  /* BORDER COLOR */  /* BORDER COLOR */
+  body.status .layout-content.status .border-color,
+  hr,
+  .tooltip-base,
+  .markdown-display table,
+  div[id^="subscribe-modal"],
+  #uptime-tooltip .tooltip-box {
+    border-color:#E0E0E0;
+  }
+
+  div[id^="subscribe-modal"] .modal-footer,
+  .markdown-display table td {
+    border-top-color:#E0E0E0;
+  }
+
+  .markdown-display table td + td, .markdown-display table th + th {
+    border-left-color:#E0E0E0;
+  }
+
+  div[id^="subscribe-modal"] .modal-header,
+  #uptime-tooltip .pointer-container .pointer-larger {
+    border-bottom-color:#E0E0E0;
+  }
+
+  #uptime-tooltip .tooltip-box .outage-field {
+    /*
+      Generate the background-color for the outage-field from the css_body_background_color and css_border_color.
+
+      For the default background (#ffffff) and default css_border_color (#e0e0e0), use the luminosity of the default background with a magic number to arrive at
+      the original outage-field background color (#f4f5f7). I used the formula Target Color = Color * alpha + Background * (1 - alpha) to find the magic number of ~0.08.
+
+      For darker css_body_background_color, luminosity values are lower so alpha trends toward becoming transparent (thus outage-field background becomes same as css_body_background_color).
+    */
+    background-color: rgba(224,224,224,0.31);
+
+    /*
+      outage-field border-color alpha is inverse to the luminosity of css_body_background_color.
+      That is to say, with a default white background this border is transparent, but on a black background, it's opaque css_border_color.
+    */
+    border-color: rgba(224,224,224,0.0);
+  }
+
+
+
+
+  /* CSS REDS */ /* CSS REDS */ /* CSS REDS */ /* CSS REDS */ /* CSS REDS */ /* CSS REDS */ /* CSS REDS */
+  .layout-content.status.status-index .status-day .update-title.impact-critical a,
+  .layout-content.status.status-index .status-day .update-title.impact-critical a:hover,
+  .layout-content.status.status-index .page-status.status-critical,
+  .layout-content.status.status-index .unresolved-incident.impact-critical .incident-title,
+  .flat-button.background-red {
+    background-color:#e74c3c;
+  }
+
+  .layout-content.status-index .components-statuses .component-container.status-red:after,
+  .layout-content.status-full-history .month .incident-container .impact-critical,
+  .layout-content.status-incident .incident-name.impact-critical,
+  .layout-content.status.status-index .incidents-list .incident-title.impact-critical a,
+  .status-red .icon-indicator,
+  .incident-history .impact-critical,
+  .components-container .component-inner-container.status-red .component-status,
+  .components-container .component-inner-container.status-red .icon-indicator {
+    color:#e74c3c;
+  }
+
+  .layout-content.status.status-index .unresolved-incident.impact-critical .updates {
+    border-color:#e74c3c;
+  }
+
+
+
+
+  /* CSS ORANGES */ /* CSS ORANGES */ /* CSS ORANGES */ /* CSS ORANGES */ /* CSS ORANGES */ /* CSS ORANGES */
+  .layout-content.status.status-index .status-day .update-title.impact-major a,
+  .layout-content.status.status-index .status-day .update-title.impact-major a:hover,
+  .layout-content.status.status-index .page-status.status-major,
+  .layout-content.status.status-index .unresolved-incident.impact-major .incident-title {
+    background-color:#e67e22;
+  }
+
+  .layout-content.status-index .components-statuses .component-container.status-orange:after,
+  .layout-content.status-full-history .month .incident-container .impact-major,
+  .layout-content.status-incident .incident-name.impact-major,
+  .layout-content.status.status-index .incidents-list .incident-title.impact-major a,
+  .status-orange .icon-indicator,
+  .incident-history .impact-major,
+  .components-container .component-inner-container.status-orange .component-status,
+  .components-container .component-inner-container.status-orange .icon-indicator {
+    color:#e67e22;
+  }
+
+  .layout-content.status.status-index .unresolved-incident.impact-major .updates {
+    border-color:#e67e22;
+  }
+
+
+
+
+  /* CSS YELLOWS */ /* CSS YELLOWS */ /* CSS YELLOWS */ /* CSS YELLOWS */ /* CSS YELLOWS */ /* CSS YELLOWS */
+  .layout-content.status.status-index .status-day .update-title.impact-minor a,
+  .layout-content.status.status-index .status-day .update-title.impact-minor a:hover,
+  .layout-content.status.status-index .page-status.status-minor,
+  .layout-content.status.status-index .unresolved-incident.impact-minor .incident-title,
+  .layout-content.status.status-index .scheduled-incidents-container .tab {
+    background-color:#f1c40f;
+  }
+
+  .layout-content.status-index .components-statuses .component-container.status-yellow:after,
+  .layout-content.status-full-history .month .incident-container .impact-minor,
+  .layout-content.status-incident .incident-name.impact-minor,
+  .layout-content.status.status-index .incidents-list .incident-title.impact-minor a,
+  .status-yellow .icon-indicator,
+  .incident-history .impact-minor,
+  .components-container .component-inner-container.status-yellow .component-status,
+  .components-container .component-inner-container.status-yellow .icon-indicator,
+  .layout-content.status.manage-subscriptions .confirmation-infobox .fa {
+    color:#f1c40f;
+  }
+
+  .layout-content.status.status-index .unresolved-incident.impact-minor .updates,
+  .layout-content.status.status-index .scheduled-incidents-container {
+    border-color:#f1c40f;
+  }
+
+
+
+
+  /* CSS BLUES */ /* CSS BLUES */ /* CSS BLUES */ /* CSS BLUES */ /* CSS BLUES */ /* CSS BLUES */
+  .layout-content.status.status-index .status-day .update-title.impact-maintenance a,
+  .layout-content.status.status-index .status-day .update-title.impact-maintenance a:hover,
+  .layout-content.status.status-index .page-status.status-maintenance,
+  .layout-content.status.status-index .unresolved-incident.impact-maintenance .incident-title,
+  .layout-content.status.status-index .scheduled-incidents-container .tab {
+    background-color:#3498DB;
+  }
+
+  .layout-content.status-index .components-statuses .component-container.status-blue:after,
+  .layout-content.status-full-history .month .incident-container .impact-maintenance,
+  .layout-content.status-incident .incident-name.impact-maintenance,
+  .layout-content.status.status-index .incidents-list .incident-title.impact-maintenance a,
+  .status-blue .icon-indicator,
+  .incident-history .impact-maintenance,
+  .components-container .component-inner-container.status-blue .component-status,
+  .components-container .component-inner-container.status-blue .icon-indicator {
+    color:#3498DB;
+  }
+
+  .layout-content.status.status-index .unresolved-incident.impact-maintenance .updates,
+  .layout-content.status.status-index .scheduled-incidents-container {
+    border-color:#3498DB;
+  }
+
+
+
+
+  /* CSS GREENS */ /* CSS GREENS */ /* CSS GREENS */ /* CSS GREENS */ /* CSS GREENS */ /* CSS GREENS */ /* CSS GREENS */
+  .layout-content.status.status-index .page-status.status-none {
+    background-color:#2fcc66;
+  }
+  .layout-content.status-index .components-statuses .component-container.status-green:after,
+  .status-green .icon-indicator,
+  .components-container .component-inner-container.status-green .component-status,
+  .components-container .component-inner-container.status-green .icon-indicator {
+    color:#2fcc66;
+  }
+
+
+
+
+  /* CSS LINK COLOR */  /* CSS LINK COLOR */  /* CSS LINK COLOR */  /* CSS LINK COLOR */  /* CSS LINK COLOR */  /* CSS LINK COLOR */
+  a,
+  a:hover,
+  .layout-content.status-index .page-footer span a:hover,
+  .layout-content.status-index .timeframes-container .timeframe:not(.active):hover,
+  .layout-content.status-incident .subheader a:hover {
+    color:#3498db;
+  }
+
+  .flat-button,
+  .masthead .updates-dropdown-container .show-updates-dropdown,
+  .layout-content.status-full-history .show-filter.open  {
+    background-color:#3498db;
+  }
+
+
+
+
+  /* CUSTOM COLOR OVERRIDES FOR UPTIME SHOWCASE */
+  .components-section .components-uptime-link {
+    color: #aaaaaa;
+  }
+
+  .layout-content.status .shared-partial.uptime-90-days-wrapper .legend .legend-item {
+    color: #aaaaaa;
+    opacity: 0.8;
+  }
+  .layout-content.status .shared-partial.uptime-90-days-wrapper .legend .legend-item.light {
+    color: #aaaaaa;
+    opacity: 0.5;
+  }
+  .layout-content.status .shared-partial.uptime-90-days-wrapper .legend .spacer {
+    background: #aaaaaa;
+    opacity: 0.3;
+  }
+</style>
+
+
+    <!-- custom css -->
+        <link rel="stylesheet" type="text/css" href="//dka575ofm4ao0.cloudfront.net/page_display_customizations-custom_css_externals/195357/external20231213-31-2b79pw.css">
+
+      <!-- polyfills -->
+      <script crossorigin="anonymous" src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <!-- Le HTML5 shim -->
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- injection for static -->
+
+
+    
+  </head>
+
+
+  <body class="status index status-none">
+
+    
+
+
+  <div class="layout-content status status-index starter">
+      <div class="masthead-container basic">
+
+    <div class="masthead no-logo">
+        <h3>
+          <a class="color-primary" href="https://www.autodesk.com/">Autodesk Health Dashboard</a>
+        </h3>
+
+        
+  <div class="updates-dropdown-container" data-js-hook="updates-dropdown-container">
+    <a href="#" data-js-hook="show-updates-dropdown" id="show-updates-dropdown" class="show-updates-dropdown" aria-label="Subscribe to updates" aria-expanded="false" aria-haspopup="dialog" role="button">
+
+    </a>
+
+<!--    Accessibility guidelines for tabs: https://www.w3.org/TR/wai-aria-practices-1.1/examples/tabs/tabs-1/tabs.html -->
+    <div class="updates-dropdown" data-js-hook="updates-dropdown" id="updates-dropdown" style="display:none">
+      <div class="updates-dropdown-nav nav-items-3" role="tablist" aria-label="Subscribe to updates">
+          <a href="#updates-dropdown-email" aria-controls="updates-dropdown-email" aria-label="Subscribe via email" role="tab" aria-selected="true" id="updates-dropdown-email-btn">
+            <span class="icon-container email">
+          </a>
+          <a href="#updates-dropdown-support" aria-controls="updates-dropdown-support" aria-label="Contact support" role="tab" id="updates-dropdown-support-btn">
+            <span class="icon-container support">
+          </a>
+        <button data-js-hook="updates-dropdown-close" aria-controls="updates-dropdown-close" aria-label="Close subscribe form" id="updates-dropdown-close-btn">
+          x
+        </button>
+      </div>
+      <div class="updates-dropdown-sections-container">
+          <div class="updates-dropdown-section email" id="updates-dropdown-email" style="display:none" role="tabpanel" aria-labelledby="updates-dropdown-email-btn">
+            <div class="directions">
+              Get email notifications whenever Autodesk Health Dashboard <strong>creates</strong>,  <strong>updates</strong> or <strong>resolves</strong> an incident.
+            </div>
+            <form id="subscribe-form-email" action="/subscriptions/new-email" accept-charset="UTF-8" data-remote="true" method="post">
+              <input type="hidden" name="authenticity_token" id="authenticity_token" value="G_rmJ_77s9hDakOpgbuflypCCPlKg0CGLEMdw3n4Z0R2BWqnoV9yFehrT7RsH-9AhXj_6BkaP-zAOQV9GNHh2A" autocomplete="off" />
+                <!-- make sure not to put cookie values in here since this gets cached -->
+                <label for="email">Email address:</label>
+                <input name="email" id="email" type="text" class="full-width" data-js-hook="email-notification-field" autocomplete="email">
+                  <input type="hidden" name="captcha_error" id="captcha_error" value="false" autocomplete="off" />
+                  <input type="submit" value="Subscribe via Email" class="flat-button full-width g-recaptcha" id="subscribe-btn-email" data-disabled-text="Subscribing..." data-sitekey=6LdTS8AUAAAAAOIbCKoCAP4LQku1olYGrywPTaZz data-callback="submitNewEmailSubscriber" data-error-callback="emailSubscriberCaptchaError" >
+                  <div class="terms_and_privacy_information bottom small"><div class="privacy_policy_information small">By subscribing you agree to our <a target="_blank" rel="noopener" href="https://www.autodesk.com/company/legal-notices-trademarks/privacy-statement">Privacy Policy</a>.</div> This site is protected by reCAPTCHA and the Google <a target="_blank" rel="noopener" href="https://policies.google.com/privacy">Privacy Policy</a> and <a target="_blank" rel="noopener" data-js-hook="captcha-terms-of-service-link" href="https://policies.google.com/terms">Terms of Service</a> apply.</div>
+</form>          </div>
+
+
+
+
+
+
+          <div class="updates-dropdown-section support" id="updates-dropdown-support" style="display:none" role="tabpanel" aria-labelledby="updates-dropdown-support-btn">
+            Visit our <a target="_blank" href="https://knowledge.autodesk.com/support">support site</a>.
+          </div>
+
+      </div>
+    </div>
+  </div>
+
+<script>
+  $(function () {
+    const phoneNumberInput = $('#phone-number');
+    const errorDiv = $('#sms-atl-error')
+    if(errorDiv.length){
+      function checkSelectedCountry() {
+        const selectedCountry = $('#phone-country').val();
+        const isOtpEnabled = $('#phone-number-country-code').attr('data-otp-enabled') === 'true';
+        const form = document.getElementById('subscribe-form-sms');
+        form.action = '/subscriptions/new-sms';
+        const isOtpFlow = document.getElementById('otp_verify_flow');
+        document.getElementById('otp-container').style.display = "none";
+        if(true && selectedCountry === 'sg') { // Replace 'SG' with the actual value representing Singapore in your select tag
+          phoneNumberInput.prop('disabled', true);
+          errorDiv.html(`Due to new Singapore government regulations, we're currently not supporting text subscriptions in Singapore.<a href="https://community.atlassian.com/t5/Statuspage-articles/Attention-SMS-notifications-will-be-disabled-on-August-1st-2023/ba-p/2424398" target="_blank"> Learn more.</a> <br> Select another method to subscribe.`);
+        } else {
+          phoneNumberInput.prop('readonly', false);
+          errorDiv.html('');
+          if(false){
+            if(isOtpEnabled){
+              document.getElementById('subscribe-btn-sms').value = "Send OTP";
+            }
+            else {
+              isOtpFlow.value = false;
+              document.getElementById('subscribe-btn-sms').value = "Subscribe via Text Message";
+            }
+          }
+        }
+      }
+
+      $('#phone-country').on('change', checkSelectedCountry);
+      checkSelectedCountry();
+    }
+  });
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const dropdown = document.querySelector('#phone-number-country-code .phone-country');
+    if (dropdown){
+      const wrapperDiv = document.getElementById('phone-number-country-code');
+      const selectedOption = dropdown.options[dropdown.selectedIndex];
+      const otpEnabled = selectedOption.getAttribute('data-otp-enabled');
+
+      wrapperDiv.setAttribute('data-otp-enabled', otpEnabled);
+
+      dropdown.addEventListener('change', function() {
+        const selectedOption = dropdown.options[dropdown.selectedIndex];
+        const otpEnabled = selectedOption.getAttribute('data-otp-enabled');
+
+        wrapperDiv.setAttribute('data-otp-enabled', otpEnabled);
+      });
+    }
+  });
+
+  var countdownTimer;
+  var resendBtn = document.getElementById('resend');
+  var timer = document.getElementById('timer');
+  var form = document.getElementById('subscribe-form-sms');
+  var RESEND_TIMER = 30;
+  $(function() {
+    $('#subscribe-form-sms').on('ajax:success', function(e, data, status, xhr){
+      const form = this;
+      const action = form.getAttribute('action');
+      if (data.type === 'success' && data.otp_flow === true) {
+        document.getElementById('subscriber_code').value = data.subscriber_code
+        document.getElementById('otp-container').style.display = "block";
+        $('#phone-number').prop('readonly', true);
+        var display = document.getElementById('countdown');
+        disableResend();
+        startTimer(RESEND_TIMER, display)
+        document.getElementById('subscribe-btn-sms').value = "Verify OTP and Subscribe";
+        document.getElementById('otp_verify_flow').value = true;
+        form.action = '/subscriptions/verify-otp';
+      } else if (data.type === 'success' && action.includes('verify')){
+        document.getElementById('otp-container').style.display = "none";
+        $('#phone-number').val('').prop('readonly', false);
+        $('#otp').val('');
+        document.getElementById('subscribe-btn-sms').value = "Send OTP";
+        document.getElementById('otp_verify_flow').value = false;
+        form.action = '/subscriptions/new-sms';
+        SP.currentPage.updatesDropdown.hide();
+      }
+    });
+    $("#btn-subcriber-change-number").on('click', () => {
+      document.getElementById('otp-container').style.display = "none";
+      $('#phone-number').prop('readonly', false);
+      document.getElementById('subscribe-btn-sms').value = "Send OTP";
+      form.action = '/subscriptions/new-sms';
+      return false
+    })
+    $('#resend-otp-btn').on('click', function(e) {
+      e.preventDefault();
+      let phoneNumber = $('#phone-number').val();
+      let countryCode = $('.phone-country').val();
+      $.ajax({
+        type: 'POST',
+        url: "/subscriptions/new-sms",
+        data: {
+          phone_number: phoneNumber,
+          phone_country: countryCode,
+          type: 'resend'
+        },
+      }).done(function(data) {
+        var messageOptions = (data.type !== undefined && data.type !== null) ? { cssClass: data.type } : {};
+        HRB.utils.notify(data.text, messageOptions);
+        var display = document.getElementById('countdown');
+        disableResend();
+        timer.style.display = "none"
+        if (data.type === 'success') {
+          startTimer(RESEND_TIMER, display);
+        }
+      })
+    });
+  })
+
+  function startTimer(duration, display){
+    var timer = duration, seconds;
+    clearInterval(countdownTimer);
+    countdownTimer = setInterval(function () {
+      seconds = parseInt(timer % 60, 10);
+      display.textContent = seconds;
+      if(--timer < 0){
+        enableResend();
+        clearInterval(countdownTimer);
+      }
+    }, 1000);
+    disableResend();
+  }
+  function enableResend(){
+    resendBtn.style.display = "block";
+    timer.style.display = "none"
+  }
+  function disableResend(){
+    resendBtn.style.display = "none";
+    timer.style.display = "block"
+  }
+</script>
+
+      <div class="clearfix"></div>
+    </div>
+
+</div>
+ <!-- this is outside of the .container so that the cover photo can go full width on mobile -->
+
+    <div class="container">
+        <div class="page-status status-none">
+          <span class="status font-large">
+            All Systems Operational
+          </span>
+          <span class="last-updated-stamp  font-small"></span>
+        </div>
+
+
+
+        <div class="components-section font-regular">
+    <div class="components-container three-columns">
+          <div class="component-container border-color">
+            
+<div data-component-id="s7f197pchdtv"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      *Autodesk System Maintenance*
+   </span>
+
+    <span class="tooltip-base tool" title="Emergency maintenance notification and general updates.">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="tklxtjv3c75w"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      A360
+   </span>
+
+    <span class="tooltip-base tool" title="A360">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="kysc540w3mjk"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      A360 Mobile
+   </span>
+
+    <span class="tooltip-base tool" title="A360 Mobile">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="lw1zjcqd0xph"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      ACC Admin Console
+   </span>
+
+    <span class="tooltip-base tool" title="ACC Admin Console">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="ydsj3vjdh81p"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      ACC Admin Console (Europe)
+   </span>
+
+    <span class="tooltip-base tool" title="ACC Admin Console (Europe)">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="b65knmlk9vsz"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      ACC AutoSpecs
+   </span>
+
+    <span class="tooltip-base tool" title="ACC AutoSpecs">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="lft01py2zclg"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      ACC Reports
+   </span>
+
+    <span class="tooltip-base tool" title="ACC Reports">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="h4d44b03fnsm"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      ACC Reports (Europe)
+   </span>
+
+    <span class="tooltip-base tool" title="ACC Reports (Europe)">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="tjdw3d2bshcg"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      APS - Data Exchange
+   </span>
+
+    <span class="tooltip-base tool" title="APS - Data Exchange">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="3139jd3z28ng"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      APS - Data Management
+   </span>
+
+    <span class="tooltip-base tool" title="Forge-DM">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="6qqz3r93dhmz"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      APS - Design Automation
+   </span>
+
+    <span class="tooltip-base tool" title="APS - Design Automation">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="66l2m2jy1svw"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      APS - Developer Portal
+   </span>
+
+    <span class="tooltip-base tool" title="APS - Developer Portal">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="x2dz2660jnb2"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      APS - Manufacturing Data Model
+   </span>
+
+    <span class="tooltip-base tool" title="Previously - PIMGQLXS - APS Fusion Data
+Currently - APS Manufacturing Data Model">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="0gb1sgt4q0k2"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      APS - Model Derivative
+   </span>
+
+    <span class="tooltip-base tool" title="APS - Model Derivative">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="pxj9k5864yrb"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      APS - Webhooks
+   </span>
+
+    <span class="tooltip-base tool" title="APS - Webhooks">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="mtjvsd3xq4s3"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      AutoCAD Online Services
+   </span>
+
+    <span class="tooltip-base tool" title="AutoCAD Online Services">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="pbj2tsfcl8z5"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      AutoCAD Web
+   </span>
+
+    <span class="tooltip-base tool" title="AutoCAD Web">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="c6tc5fd8228b"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      Autodesk App Store
+   </span>
+
+    <span class="tooltip-base tool" title="Autodesk App Store">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="mprm152w1nr6"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      Autodesk BIM Collaborate
+   </span>
+
+    <span class="tooltip-base tool" title="Autodesk BIM Collaborate">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="sdvvpyc19gvb"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      Autodesk BIM Collaborate (Europe)
+   </span>
+
+    <span class="tooltip-base tool" title="Autodesk BIM Collaborate (Europe)">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="jh2m22lbkndr"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      Autodesk Build
+   </span>
+
+    <span class="tooltip-base tool" title="Autodesk Build">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="x43bd5d6shb1"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      Autodesk Build (Europe)
+   </span>
+
+    <span class="tooltip-base tool" title="Autodesk Build (Europe)">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="yf7q801phxdz"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      Autodesk Business Systems
+   </span>
+
+    <span class="tooltip-base tool" title="Autodesk Business Systems">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="lyy5zy23n8rx"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      Autodesk Construction Cloud Data Connector
+   </span>
+
+    <span class="tooltip-base tool" title="BIM360DC - BIM 360 Data Connector">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="34ylwg5tvb49"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      Autodesk Construction Cloud Data Connector (Europe)
+   </span>
+
+    <span class="tooltip-base tool" title="BIM360DC - BIM360 Data Connector">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="kx2yh14l687p"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      Autodesk Docs
+   </span>
+
+    <span class="tooltip-base tool" title="Autodesk Docs">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="7db2tcdkbfsn"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      Autodesk Docs (Europe)
+   </span>
+
+    <span class="tooltip-base tool" title="Autodesk Docs (Europe)">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="vvxks0r10k2y"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      Autodesk Drive
+   </span>
+
+    <span class="tooltip-base tool" title="Autodesk Drive">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="n2c15q1lxc42"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      Autodesk Takeoff
+   </span>
+
+    <span class="tooltip-base tool" title="Autodesk Takeoff">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="z47nr7xqh0yt"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      Autodesk Takeoff (Europe)
+   </span>
+
+    <span class="tooltip-base tool" title="Autodesk Takeoff (Europe)">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="wj4wv4scstr6"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      Autodesk Tandem™
+   </span>
+
+    <span class="tooltip-base tool" title="Autodesk Tandem™">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="6qhbkm85lhwg"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      AVA
+   </span>
+
+    <span class="tooltip-base tool" title="AVA">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="z3n0q4mzl012"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      BIM 360 Account Administration
+   </span>
+
+    <span class="tooltip-base tool" title="BIM 360 Account Administration">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="q2ml7fc6b203"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      BIM 360 Account Administration (Europe)
+   </span>
+
+    <span class="tooltip-base tool" title="BIM 360 Account Administration (Europe)">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="8jbnpn737771"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      BIM 360 Cost Management
+   </span>
+
+    <span class="tooltip-base tool" title="BIM 360 Cost Management">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="mz0y9cf8qn9g"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      BIM 360 Cost Management (Europe)
+   </span>
+
+    <span class="tooltip-base tool" title="BIM 360 Cost Management (Europe)">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="khf6ztnbs01x"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      BIM 360 Design Collaboration
+   </span>
+
+    <span class="tooltip-base tool" title="BIM 360 Design Collaboration">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="qq4dydfz7hrv"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      BIM 360 Design Collaboration (Europe)
+   </span>
+
+    <span class="tooltip-base tool" title="BIM 360 Design Collaboration (Europe)">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="2sl6rn4zrd83"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      BIM 360 Docs
+   </span>
+
+    <span class="tooltip-base tool" title="BIM 360 Docs">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="gnzh7jzgpmjm"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      BIM 360 Docs (Europe)
+   </span>
+
+    <span class="tooltip-base tool" title="BIM 360 Docs (Europe)">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="5g93nnnynnrd"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      BIM 360 Field
+   </span>
+
+    <span class="tooltip-base tool" title="BIM 360 Field">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="y7js1n62sxnx"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      BIM 360 Field (Europe)
+   </span>
+
+    <span class="tooltip-base tool" title="BIM 360 Field (Europe)">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="wfmxdv9m8htl"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      BIM 360 Field Management
+   </span>
+
+    <span class="tooltip-base tool" title="BIM 360 Field Management">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="qnvm0kc3mq1k"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      BIM 360 Field Management (Europe)
+   </span>
+
+    <span class="tooltip-base tool" title="BIM 360 Field Management (Europe)">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="n6l5nnbzzsgj"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      BIM 360 Insight
+   </span>
+
+    <span class="tooltip-base tool" title="BIM 360 Insight">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="6tyk7rg0ydqw"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      BIM 360 Insight (Europe)
+   </span>
+
+    <span class="tooltip-base tool" title="BIM 360 Insight (Europe)">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="xjkvpx2y78wg"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      BIM 360 Glue
+   </span>
+
+    <span class="tooltip-base tool" title="BIM 360 Glue">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="fptyn2zfz5wp"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      BIM 360 Glue (Europe)
+   </span>
+
+    <span class="tooltip-base tool" title="BIM 360 Glue (Europe)">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="22wlqyhgzsnq"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      BIM 360 Model Coordination
+   </span>
+
+    <span class="tooltip-base tool" title="BIM 360 Model Coordination">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="hvx9m94f38dl"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      BIM 360 Model Coordination (Europe)
+   </span>
+
+    <span class="tooltip-base tool" title="BIM 360 Model Coordination (Europe)">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="0x1ywp5wlmzc"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      BIM 360 Ops
+   </span>
+
+    <span class="tooltip-base tool" title="BIM 360 Ops">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="nfjwf7dktjjz"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      BIM 360 Plan
+   </span>
+
+    <span class="tooltip-base tool" title="BIM 360 Plan">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="psqrl3kmtxsx"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      BIM 360 Project Home
+   </span>
+
+    <span class="tooltip-base tool" title="BIM 360 Project Home">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="xj6p3fcbr33h"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      BIM 360 Project Home (Europe)
+   </span>
+
+    <span class="tooltip-base tool" title="BIM 360 Project Home (Europe)">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="zb8yqk5zl29d"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      BIM 360 Project Management
+   </span>
+
+    <span class="tooltip-base tool" title="BIM 360 Project Management">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="5lc2dn5cwccm"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      BIM 360 Project Management (Europe)
+   </span>
+
+    <span class="tooltip-base tool" title="BIM 360 Project Management (Europe)">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="n0769sb48xnr"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      BIM 360 Reports
+   </span>
+
+    <span class="tooltip-base tool" title="BIM 360 Reports">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="q8943xhsbsp4"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      BIM 360 Reports (Europe)
+   </span>
+
+    <span class="tooltip-base tool" title="BIM 360 Reports (Europe)">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="zll5wqdw1jds"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      BIM 360 Team Mobile
+   </span>
+
+    <span class="tooltip-base tool" title="BIM 360 Team Mobile">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="8mt0g7z502c2"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      BuildingConnected
+   </span>
+
+    <span class="tooltip-base tool" title="BuildingConnected">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="hp0n7jr7ptbz"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      CER v2 services
+   </span>
+
+    <span class="tooltip-base tool" title="CER v2 services">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="nt0q16hdc3lv"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      CFD Cloud Service
+   </span>
+
+    <span class="tooltip-base tool" title="CFD Cloud Service">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="1bbh082fdbgb"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      Character Generator
+   </span>
+
+    <span class="tooltip-base tool" title="Character Generator">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="3k00bzly0kt7"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      Civil 3D Online Services
+   </span>
+
+    <span class="tooltip-base tool" title="Civil 3D Online Services">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="2rs0bjcslmcm"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      Cloud Rendering
+   </span>
+
+    <span class="tooltip-base tool" title="Cloud Rendering">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="pj2r3dxd5x6y"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      Collaboration for AutoCAD Plant 3D
+   </span>
+
+    <span class="tooltip-base tool" title="Collaboration for AutoCAD Plant 3D">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="xwx0qvpmqg22"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      Collaboration for AutoCAD Plant 3D (Europe)
+   </span>
+
+    <span class="tooltip-base tool" title="Collaboration for AutoCAD Plant 3D (Europe)">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="fqcdbm0fpgg4"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      Digital Workplace
+   </span>
+
+    <span class="tooltip-base tool" title="Digital Workplace">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="zt6y3mb215n3"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      Dynamo Machine Learning
+   </span>
+
+    <span class="tooltip-base tool" title="Dynamo Machine Learning">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="r6cpkbdjgbhd"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      Dynamo Package Manager
+   </span>
+
+    <span class="tooltip-base tool" title="Dynamo Package Manager">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="lqq06671q6n1"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      Factory Design Warehouse
+   </span>
+
+    <span class="tooltip-base tool" title="FAW - Factory Design Warehouse">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="5ckm0j1zhtpn"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      FormIt
+   </span>
+
+    <span class="tooltip-base tool" title="FormIt">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="dnxd6vr78xwf"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      Fusion 360
+   </span>
+
+    <span class="tooltip-base tool" title="Fusion 360">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="kd7f93wnyn21"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      Fusion 360 Manage
+   </span>
+
+    <span class="tooltip-base tool" title="Fusion 360 Manage">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="ycqkt8lpnk6m"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      Fusion 360 Mobile
+   </span>
+
+    <span class="tooltip-base tool" title="Fusion 360 Mobile">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="kv053q9511gw"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      Fusion HQ
+   </span>
+
+    <span class="tooltip-base tool" title="Fusion HQ">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="xnqbf1hdqpx7"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      Fusion Online
+   </span>
+
+    <span class="tooltip-base tool" title="Fusion Online">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="p7m00ndnk457"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      Fusion Team / BIM 360 Team
+   </span>
+
+    <span class="tooltip-base tool" title="Fusion Team / BIM 360 Team">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="8zf3b17jdtm0"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      Generative Design
+   </span>
+
+    <span class="tooltip-base tool" title="Generative Design">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="7n6trm1hfstz"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      InfraWorks
+   </span>
+
+    <span class="tooltip-base tool" title="InfraWorks">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="78xzz02123vs"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      Instructables
+   </span>
+
+    <span class="tooltip-base tool" title="Instructables">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="fmnx4z84qs5j"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      Library.io
+   </span>
+
+    <span class="tooltip-base tool" title="Library.io">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="zgxpx49hjjt4"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      Licensing & Entitlement
+   </span>
+
+    <span class="tooltip-base tool" title="Licensing &amp;amp; Entitlement">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="3fbwf7dylgsw"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      Moldflow Cloud Service
+   </span>
+
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="7zw6gkvp53hr"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      My Profile and Settings
+   </span>
+
+    <span class="tooltip-base tool" title="My Profile and Settings">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="vz71yrbh175p"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      Plant Collaboration Services (based on BIM 360 Team)
+   </span>
+
+    <span class="tooltip-base tool" title="Plant Collaboration Services (based on BIM 360 Team)">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="jnnb9xhd3zvq"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      Prodsmart
+   </span>
+
+    <span class="tooltip-base tool" title="Prodsmart">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="szlj13zqq814"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      Pype AutoSpecs
+   </span>
+
+    <span class="tooltip-base tool" title="Pype AutoSpecs">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="q0zglj074941"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      Pype Closeout
+   </span>
+
+    <span class="tooltip-base tool" title="Pype Closeout">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="6m0svm3ddzlt"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      Pype Ebinder
+   </span>
+
+    <span class="tooltip-base tool" title="Pype Ebinder">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="zc0l211k9hcb"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      Pype Smartplans
+   </span>
+
+    <span class="tooltip-base tool" title="Pype Smartplans">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="xfcc5jyrlx66"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      ReCap Services
+   </span>
+
+    <span class="tooltip-base tool" title="ReCap Services">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="56sd2zqjsh2h"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      Revit Cloud Model Upgrade
+   </span>
+
+    <span class="tooltip-base tool" title="Revit Cloud Model Upgrade">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="5dwzcb4th7wj"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      Revit Cloud Worksharing / Cloud Models
+   </span>
+
+    <span class="tooltip-base tool" title="Revit Cloud Worksharing / Cloud Models">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="gvg4k22psn32"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      Revit Cloud Worksharing / Cloud Models (Europe)
+   </span>
+
+    <span class="tooltip-base tool" title="Revit Cloud Worksharing / Cloud Models (Europe)">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="h0lc4w89j0mq"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      Tinkercad
+   </span>
+
+    <span class="tooltip-base tool" title="Tinkercad">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="xsq1x0p0244n"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      TradeTapp
+   </span>
+
+    <span class="tooltip-base tool" title="TradeTapp">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="c3wtynq93cb2"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      Upchain
+   </span>
+
+    <span class="tooltip-base tool" title="Upchain">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+          <div class="component-container border-color">
+            
+<div data-component-id="j5hqk6c2j9gc"
+     class="component-inner-container status-green "
+     data-component-status="operational"
+     data-js-hook="">
+
+   <span class="name">
+      Vault Gateway
+   </span>
+
+    <span class="tooltip-base tool" title="Vault Gateway">?</span>
+
+  <span
+    class="component-status "
+    title=""
+  >
+
+    Operational
+
+  </span>
+
+  <span class="tool icon-indicator fa fa-check" title="Operational"></span>
+
+</div>
+
+          </div>
+    </div>
+    <div class="component-statuses-legend font-small">
+  <div class="legend-item status-green">
+    <span class="icon-indicator fa fa-check"></span>
+    Operational
+  </div>
+  <div class="legend-item status-yellow">
+    <span class="icon-indicator fa fa-minus-square"></span>
+    Degraded Performance
+  </div>
+  <div class="legend-item status-orange">
+    <span class="icon-indicator fa fa-exclamation-triangle"></span>
+    Partial Outage
+  </div>
+  <div class="breaker"></div>
+  <div class="legend-item status-red">
+    <span class="icon-indicator fa fa-times"></span>
+    Major Outage
+  </div>
+  <div class="legend-item status-blue">
+    <span class="icon-indicator fa fa-wrench"></span>
+    Maintenance
+  </div>
+</div>
+
+  </div>
+
+
+
+
+
+
+      <div class="incidents-list format-expanded">
+        <a class="font-largest no-link" id="past-incidents" href="#past-incidents">Past Incidents</a>
+          
+  <div class="status-day font-regular ">
+    <div class="date border-color font-large">Dec <var data-var="date">15</var>, <var data-var="year">2023</var></div>
+          <div class="incident-container">
+  <div class="incident-title impact-minor font-large">
+    <a class="whitespace-pre-wrap" href="/incidents/8cgcb5m4lqn4">Fusion 360 Manage</a>
+  </div>
+
+  <div class="updates-container">
+    <!-- postmortem -->
+
+    <!-- incident updates -->
+      <div class="update font-regular resolved">
+        <strong>Resolved</strong> -
+      	<span class="whitespace-pre-wrap">All services have returned to normal operation. Customers should now being able to preview office and image files in Fusion 360 Manage.  Thank you for your patience and understanding as we worked to resolve this issue.</span>
+
+        <br>
+
+        <small>
+            Dec <var data-var='date'>15</var>, <var data-var='time'>09:54</var> PST
+        </small>
+      </div>
+      <div class="update font-regular investigating">
+        <strong>Investigating</strong> -
+      	<span class="whitespace-pre-wrap">We are investigating an issue where customers are not being able to preview office and image files in Fusion 360 Manage.  As a workaround, customers are being asked to download the file.  We are actively looking into this and we will provide an update within 60 minutes or sooner if we have more information to share.</span>
+
+        <br>
+
+        <small>
+            Dec <var data-var='date'>15</var>, <var data-var='time'>09:07</var> PST
+        </small>
+      </div>
+  </div>
+
+</div>
+
+  </div>
+
+          
+  <div class="status-day font-regular ">
+    <div class="date border-color font-large">Dec <var data-var="date">14</var>, <var data-var="year">2023</var></div>
+          <div class="incident-container">
+  <div class="incident-title impact-critical font-large">
+    <a class="whitespace-pre-wrap" href="/incidents/z4n5r82sxxyl">Multiple ACC Services</a>
+  </div>
+
+  <div class="updates-container">
+    <!-- postmortem -->
+
+    <!-- incident updates -->
+      <div class="update font-regular resolved">
+        <strong>Resolved</strong> -
+      	<span class="whitespace-pre-wrap">This issue has been resolved and customers should now be able to access affected ACC services (acc.autodesk.com) in the North American data center. Thank you for your patience and understanding as we worked to resolve this issue.</span>
+
+        <br>
+
+        <small>
+            Dec <var data-var='date'>14</var>, <var data-var='time'>10:25</var> PST
+        </small>
+      </div>
+      <div class="update font-regular identified">
+        <strong>Identified</strong> -
+      	<span class="whitespace-pre-wrap">We have identified the cause of the issue where customers are intermittently not able to access several ACC services (acc.autodesk.com) in the North American data center.  Our team is actively working on resolving this as quickly as possible. We will provide an update within 60 minutes or sooner if we have more information to share.</span>
+
+        <br>
+
+        <small>
+            Dec <var data-var='date'>14</var>, <var data-var='time'>09:55</var> PST
+        </small>
+      </div>
+      <div class="update font-regular update">
+        <strong>Update</strong> -
+      	<span class="whitespace-pre-wrap">We are investigating an issue where customers are not able to access several ACC services in the North American data center. We are actively looking into this and we will provide an update within 60 minutes or sooner if we have more information to share.</span>
+
+        <br>
+
+        <small>
+            Dec <var data-var='date'>14</var>, <var data-var='time'>09:36</var> PST
+        </small>
+      </div>
+      <div class="update font-regular investigating">
+        <strong>Investigating</strong> -
+      	<span class="whitespace-pre-wrap">We are investigating an issue where customers are not able to access several ACC services in the North American data center. We are actively looking into this and we will provide an update within 60 minutes or sooner if we have more information to share.</span>
+
+        <br>
+
+        <small>
+            Dec <var data-var='date'>14</var>, <var data-var='time'>08:50</var> PST
+        </small>
+      </div>
+  </div>
+
+</div>
+
+          <div class="incident-container">
+  <div class="incident-title impact-minor font-large">
+    <a class="whitespace-pre-wrap" href="/incidents/9lf7ctb57b0h">Autodesk Build | Autodesk Docs</a>
+  </div>
+
+  <div class="updates-container">
+    <!-- postmortem -->
+
+    <!-- incident updates -->
+      <div class="update font-regular resolved">
+        <strong>Resolved</strong> -
+      	<span class="whitespace-pre-wrap">On December 14, 2023 at 05:46 AM PST, Autodesk identified an issue where customers may have experienced difficulties accessing the Issues model feature in Autodesk Build and Autodesk Docs in the North American data center.  Once the issue was resolved at 06:33 AM PST, Autodesk Build and Autodesk Docs returned to normal operation. This is a retroactive notification as this issue did not display on the Autodesk Health Dashboard at that time. Thank you for your patience and understanding.</span>
+
+        <br>
+
+        <small>
+            Dec <var data-var='date'>14</var>, <var data-var='time'>07:44</var> PST
+        </small>
+      </div>
+  </div>
+
+</div>
+
+  </div>
+
+          
+  <div class="status-day font-regular ">
+    <div class="date border-color font-large">Dec <var data-var="date">13</var>, <var data-var="year">2023</var></div>
+          <div class="incident-container">
+  <div class="incident-title impact-minor font-large">
+    <a class="whitespace-pre-wrap" href="/incidents/jb9bp1040hjc">Autodesk Build | ACC Reports</a>
+  </div>
+
+  <div class="updates-container">
+    <!-- postmortem -->
+
+    <!-- incident updates -->
+      <div class="update font-regular resolved">
+        <strong>Resolved</strong> -
+      	<span class="whitespace-pre-wrap">This issue has been resolved and customers should now be able to access features in Autodesk Build (including Meetings, Correspondence, Submittals, RFI's, Photos, Issues, Sheets, and Home). Thank you for your patience and understanding as we worked to resolve this issue.</span>
+
+        <br>
+
+        <small>
+            Dec <var data-var='date'>13</var>, <var data-var='time'>11:17</var> PST
+        </small>
+      </div>
+      <div class="update font-regular monitoring">
+        <strong>Monitoring</strong> -
+      	<span class="whitespace-pre-wrap">Our team is continuing to monitor the status of customers who may be experiencing issues accessing features in Autodesk Build (including Meetings, Correspondence, Submittals, RFI's, Photos, Issues, Sheets, and Home). We will provide an update within 60 minutes or sooner if we have more information to share.</span>
+
+        <br>
+
+        <small>
+            Dec <var data-var='date'>13</var>, <var data-var='time'>10:31</var> PST
+        </small>
+      </div>
+      <div class="update font-regular update">
+        <strong>Update</strong> -
+      	<span class="whitespace-pre-wrap">We are continuing to investigate customer reports of errors within their Autodesk Build projects. While we have not yet determined the root cause, we have confirmed the service is operating normally for all but a very small subset of users. We will continue to investigate overnight and provide an update at 8:00 AM PST or sooner if we have more information to share.</span>
+
+        <br>
+
+        <small>
+            Dec <var data-var='date'>12</var>, <var data-var='time'>22:00</var> PST
+        </small>
+      </div>
+      <div class="update font-regular update">
+        <strong>Update</strong> -
+      	<span class="whitespace-pre-wrap">We are continuing to investigate the service degradation with Multiple Autodesk Construction Cloud services in the North American data center. We are actively looking into this and we will provide an update within 60 minutes or sooner if we have more information to share.</span>
+
+        <br>
+
+        <small>
+            Dec <var data-var='date'>12</var>, <var data-var='time'>20:37</var> PST
+        </small>
+      </div>
+      <div class="update font-regular update">
+        <strong>Update</strong> -
+      	<span class="whitespace-pre-wrap">We are continuing to investigate the service degradation with Multiple Autodesk Construction Cloud services in the North American data center. We are actively looking into this and we will provide an update within 60 minutes or sooner if we have more information to share.</span>
+
+        <br>
+
+        <small>
+            Dec <var data-var='date'>12</var>, <var data-var='time'>20:27</var> PST
+        </small>
+      </div>
+      <div class="update font-regular update">
+        <strong>Update</strong> -
+      	<span class="whitespace-pre-wrap">We are investigating a service degradation with Multiple Autodesk Construction Cloud services in the North American data center. We are actively looking into this and we will provide an update within 60 minutes or sooner if we have more information to share.</span>
+
+        <br>
+
+        <small>
+            Dec <var data-var='date'>12</var>, <var data-var='time'>19:20</var> PST
+        </small>
+      </div>
+      <div class="update font-regular investigating">
+        <strong>Investigating</strong> -
+      	<span class="whitespace-pre-wrap">We are investigating an issue within Autodesk Build of getting errors when accessing Meetings, Correspondence, Submittals, RFI’s, Photos, Issues, Sheets, Home. We are actively looking into this and we will provide an update within 60 minutes or sooner if we have more information to share.</span>
+
+        <br>
+
+        <small>
+            Dec <var data-var='date'>12</var>, <var data-var='time'>19:07</var> PST
+        </small>
+      </div>
+  </div>
+
+</div>
+
+  </div>
+
+          
+  <div class="status-day font-regular">
+    <div class="date border-color font-large">Dec <var data-var="date">12</var>, <var data-var="year">2023</var></div>
+  </div>
+
+          
+  <div class="status-day font-regular no-incidents">
+    <div class="date border-color font-large">Dec <var data-var="date">11</var>, <var data-var="year">2023</var></div>
+        <p class="color-secondary">No incidents reported.</p>
+  </div>
+
+          
+  <div class="status-day font-regular ">
+    <div class="date border-color font-large">Dec <var data-var="date">10</var>, <var data-var="year">2023</var></div>
+          <div class="incident-container">
+  <div class="incident-title impact-maintenance font-large">
+    <a class="whitespace-pre-wrap" href="/incidents/v3816mhky94p">Scheduled Maintenance [ Identity Authorization Service ]</a>
+  </div>
+
+  <div class="updates-container">
+    <!-- postmortem -->
+
+    <!-- incident updates -->
+      <div class="update font-regular completed">
+        <strong>Completed</strong> -
+      	<span class="whitespace-pre-wrap">The scheduled maintenance has been completed.</span>
+
+        <br>
+
+        <small>
+            Dec <var data-var='date'>10</var>, <var data-var='time'>01:44</var> PST
+        </small>
+      </div>
+      <div class="update font-regular in progress">
+        <strong>In progress</strong> -
+      	<span class="whitespace-pre-wrap">Scheduled maintenance is currently in progress. We will provide updates as necessary.</span>
+
+        <br>
+
+        <small>
+            Dec <var data-var='date'>10</var>, <var data-var='time'>00:06</var> PST
+        </small>
+      </div>
+      <div class="update font-regular scheduled">
+        <strong>Scheduled</strong> -
+      	<span class="whitespace-pre-wrap">Autodesk will perform scheduled maintenance for the Identity Authorization Service on December 10th, 2023, from 06:00 AM UTC until 10:00 AM UTC, to upgrade system infrastructure. During this time user login to Autodesk Products and Services will be intermittently available. This will not impact users already logged in prior to the system maintenance window. We apologize for any inconvenience caused during this time.</span>
+
+        <br>
+
+        <small>
+            Dec <var data-var='date'>10</var>, <var data-var='time'>00:06</var> PST
+        </small>
+      </div>
+  </div>
+
+</div>
+
+          <div class="incident-container">
+  <div class="incident-title impact-maintenance font-large">
+    <a class="whitespace-pre-wrap" href="/incidents/ghjkvb52fx6t">Scheduled Maintenance [ Identity Authorization Service ]</a>
+  </div>
+
+  <div class="updates-container">
+    <!-- postmortem -->
+
+    <!-- incident updates -->
+      <div class="update font-regular completed">
+        <strong>Completed</strong> -
+      	<span class="whitespace-pre-wrap">The scheduled maintenance has been completed.</span>
+
+        <br>
+
+        <small>
+            Dec <var data-var='date'>10</var>, <var data-var='time'>00:00</var> PST
+        </small>
+      </div>
+      <div class="update font-regular in progress">
+        <strong>In progress</strong> -
+      	<span class="whitespace-pre-wrap">Scheduled maintenance is currently in progress. We will provide updates as necessary.</span>
+
+        <br>
+
+        <small>
+            Dec <var data-var='date'> 9</var>, <var data-var='time'>22:00</var> PST
+        </small>
+      </div>
+      <div class="update font-regular scheduled">
+        <strong>Scheduled</strong> -
+      	<span class="whitespace-pre-wrap">Autodesk will perform scheduled maintenance for the Identity Authorization Service on December 10th, 2023, from 06:00 AM UTC until 08:00 AM UTC, to upgrade system infrastructure. During this time user login to Autodesk Products and Services will be intermittently available. This will not impact users already logged in prior to the system maintenance window. We apologize for any inconvenience caused during this time.</span>
+
+        <br>
+
+        <small>
+            Nov <var data-var='date'>21</var>, <var data-var='time'>20:34</var> PST
+        </small>
+      </div>
+  </div>
+
+</div>
+
+  </div>
+
+          
+  <div class="status-day font-regular ">
+    <div class="date border-color font-large">Dec <var data-var="date"> 9</var>, <var data-var="year">2023</var></div>
+          <div class="incident-container">
+  <div class="incident-title impact-maintenance font-large">
+    <a class="whitespace-pre-wrap" href="/incidents/nmgcc8jdkmb5">Scheduled Maintenance [ Revit Cloud Worksharing / Cloud Models ] [ Revit Cloud Model Upgrade ]</a>
+  </div>
+
+  <div class="updates-container">
+    <!-- postmortem -->
+
+    <!-- incident updates -->
+      <div class="update font-regular completed">
+        <strong>Completed</strong> -
+      	<span class="whitespace-pre-wrap">The scheduled maintenance has been completed.</span>
+
+        <br>
+
+        <small>
+            Dec <var data-var='date'> 9</var>, <var data-var='time'>07:38</var> PST
+        </small>
+      </div>
+      <div class="update font-regular in progress">
+        <strong>In progress</strong> -
+      	<span class="whitespace-pre-wrap">Scheduled maintenance is currently in progress. We will provide updates as necessary.</span>
+
+        <br>
+
+        <small>
+            Dec <var data-var='date'> 9</var>, <var data-var='time'>04:01</var> PST
+        </small>
+      </div>
+      <div class="update font-regular update">
+        <strong>Update</strong> -
+      	<span class="whitespace-pre-wrap">We would like to remind you that Autodesk will perform scheduled maintenance for Revit Cloud Worksharing/ Cloud Models and Revit Cloud Model Upgrade on December 9, 2023 from 12:00 UTC until 18:00 UTC for the North American Data Center to improve the resiliency of our platform. During this time all workflows will be unavailable and the Revit Cloud Model Upgrade service will be unavailable.  All workflows will be restored at the conclusion of the event.  We apologize for any inconvenience caused during this time.</span>
+
+        <br>
+
+        <small>
+            Nov <var data-var='date'>30</var>, <var data-var='time'>10:06</var> PST
+        </small>
+      </div>
+      <div class="update font-regular scheduled">
+        <strong>Scheduled</strong> -
+      	<span class="whitespace-pre-wrap">Autodesk will perform scheduled maintenance for Revit Cloud Worksharing / Cloud Models and Revit Cloud Model Upgrade on December 9, 2023 from 12:00 UTC until 18:00 UTC for the North American Data Center to improve the resiliency of our platform. During this time all workflows will be unavailable and the Revit Cloud Model Upgrade service will be unavailable.  All workflows will be restored at the conclusion of the event.  We apologize for any inconvenience caused during this time.</span>
+
+        <br>
+
+        <small>
+            Nov <var data-var='date'>20</var>, <var data-var='time'>07:25</var> PST
+        </small>
+      </div>
+  </div>
+
+</div>
+
+  </div>
+
+          
+  <div class="status-day font-regular no-incidents">
+    <div class="date border-color font-large">Dec <var data-var="date"> 8</var>, <var data-var="year">2023</var></div>
+        <p class="color-secondary">No incidents reported.</p>
+  </div>
+
+          
+  <div class="status-day font-regular ">
+    <div class="date border-color font-large">Dec <var data-var="date"> 7</var>, <var data-var="year">2023</var></div>
+          <div class="incident-container">
+  <div class="incident-title impact-minor font-large">
+    <a class="whitespace-pre-wrap" href="/incidents/sgwdc5nbz46d">FusionTeam</a>
+  </div>
+
+  <div class="updates-container">
+    <!-- postmortem -->
+
+    <!-- incident updates -->
+      <div class="update font-regular resolved">
+        <strong>Resolved</strong> -
+      	<span class="whitespace-pre-wrap">This issue has been resolved and customers should now be able  to upload/download/view files. Thank you for your patience and understanding as we worked to resolve this issue.</span>
+
+        <br>
+
+        <small>
+            Dec <var data-var='date'> 7</var>, <var data-var='time'>08:57</var> PST
+        </small>
+      </div>
+      <div class="update font-regular investigating">
+        <strong>Investigating</strong> -
+      	<span class="whitespace-pre-wrap">We are investigating an issue with Fusion Team where customers are unable to upload/download/view files and also affects other workflows. We are actively looking into this and we will provide an update within 60 minutes or sooner if we have more information to share.</span>
+
+        <br>
+
+        <small>
+            Dec <var data-var='date'> 7</var>, <var data-var='time'>08:09</var> PST
+        </small>
+      </div>
+  </div>
+
+</div>
+
+  </div>
+
+          
+  <div class="status-day font-regular ">
+    <div class="date border-color font-large">Dec <var data-var="date"> 6</var>, <var data-var="year">2023</var></div>
+          <div class="incident-container">
+  <div class="incident-title impact-minor font-large">
+    <a class="whitespace-pre-wrap" href="/incidents/52zpn7h4ljzg">Fusion Team / BIM 360 Team</a>
+  </div>
+
+  <div class="updates-container">
+    <!-- postmortem -->
+
+    <!-- incident updates -->
+      <div class="update font-regular resolved">
+        <strong>Resolved</strong> -
+      	<span class="whitespace-pre-wrap">This issue has been resolved and customers should now be able to see new viewables for designs in projects. Thank you for your patience and understanding as we worked to resolve this issue.</span>
+
+        <br>
+
+        <small>
+            Dec <var data-var='date'> 6</var>, <var data-var='time'>15:59</var> PST
+        </small>
+      </div>
+      <div class="update font-regular investigating">
+        <strong>Investigating</strong> -
+      	<span class="whitespace-pre-wrap">We are investigating an issue with Fusion Team / BIM 360 Team where customers are not able to see new viewables for designs in projects.  We are actively looking into this and we will provide an update within 60 minutes or sooner if we have more information to share.</span>
+
+        <br>
+
+        <small>
+            Dec <var data-var='date'> 6</var>, <var data-var='time'>15:30</var> PST
+        </small>
+      </div>
+  </div>
+
+</div>
+
+  </div>
+
+          
+  <div class="status-day font-regular no-incidents">
+    <div class="date border-color font-large">Dec <var data-var="date"> 5</var>, <var data-var="year">2023</var></div>
+        <p class="color-secondary">No incidents reported.</p>
+  </div>
+
+          
+  <div class="status-day font-regular ">
+    <div class="date border-color font-large">Dec <var data-var="date"> 4</var>, <var data-var="year">2023</var></div>
+          <div class="incident-container">
+  <div class="incident-title impact-minor font-large">
+    <a class="whitespace-pre-wrap" href="/incidents/pdjy94b4xpgq">BIM 360 Data Connector-EMEA Region</a>
+  </div>
+
+  <div class="updates-container">
+    <!-- postmortem -->
+
+    <!-- incident updates -->
+      <div class="update font-regular resolved">
+        <strong>Resolved</strong> -
+      	<span class="whitespace-pre-wrap">This issue has been resolved for BIM 360 Data Connector and the jobs that were delayed are now getting processed. Thank you for your patience and understanding as we worked to resolve this issue.</span>
+
+        <br>
+
+        <small>
+            Dec <var data-var='date'> 4</var>, <var data-var='time'>19:17</var> PST
+        </small>
+      </div>
+      <div class="update font-regular investigating">
+        <strong>Investigating</strong> -
+      	<span class="whitespace-pre-wrap">We are investigating an issue with BIM 360 Data Connector in Europe region. The jobs are getting delayed. We are actively looking into this and we will provide an update within 60 minutes or sooner if we have more information to share.</span>
+
+        <br>
+
+        <small>
+            Dec <var data-var='date'> 4</var>, <var data-var='time'>18:55</var> PST
+        </small>
+      </div>
+  </div>
+
+</div>
+
+          <div class="incident-container">
+  <div class="incident-title impact-minor font-large">
+    <a class="whitespace-pre-wrap" href="/incidents/l0qr6g6f2n01">BIM 360 Account Administration | ACC Admin Console</a>
+  </div>
+
+  <div class="updates-container">
+    <!-- postmortem -->
+
+    <!-- incident updates -->
+      <div class="update font-regular resolved">
+        <strong>Resolved</strong> -
+      	<span class="whitespace-pre-wrap">On December 4, 2023 at 09:30 AM PST, Autodesk identified an issue where customers were unable to create projects, invite users to projects, add companies, etc. for the BIM 360 Account Administration and ACC Admin Console services in the North American data center. Once the issue was resolved on December 4, 2023 at 10:30 AM PST, BIM 360 Account Administration and ACC Admin Console returned to normal operation. This is a retroactive notification as this issue did not display on the Autodesk Health Dashboard at that time. Thank you for your patience and understanding.</span>
+
+        <br>
+
+        <small>
+            Dec <var data-var='date'> 4</var>, <var data-var='time'>13:57</var> PST
+        </small>
+      </div>
+  </div>
+
+</div>
+
+  </div>
+
+          
+  <div class="status-day font-regular no-incidents">
+    <div class="date border-color font-large">Dec <var data-var="date"> 3</var>, <var data-var="year">2023</var></div>
+        <p class="color-secondary">No incidents reported.</p>
+  </div>
+
+          
+  <div class="status-day font-regular ">
+    <div class="date border-color font-large">Dec <var data-var="date"> 2</var>, <var data-var="year">2023</var></div>
+          <div class="incident-container">
+  <div class="incident-title impact-maintenance font-large">
+    <a class="whitespace-pre-wrap" href="/incidents/b7wtlfy9mds2">Scheduled Maintenance [BIM 360 Field (Europe)]</a>
+  </div>
+
+  <div class="updates-container">
+    <!-- postmortem -->
+
+    <!-- incident updates -->
+      <div class="update font-regular completed">
+        <strong>Completed</strong> -
+      	<span class="whitespace-pre-wrap">The scheduled maintenance has been completed.</span>
+
+        <br>
+
+        <small>
+            Dec <var data-var='date'> 2</var>, <var data-var='time'>18:00</var> PST
+        </small>
+      </div>
+      <div class="update font-regular in progress">
+        <strong>In progress</strong> -
+      	<span class="whitespace-pre-wrap">Scheduled maintenance is currently in progress. We will provide updates as necessary.</span>
+
+        <br>
+
+        <small>
+            Dec <var data-var='date'> 2</var>, <var data-var='time'>15:03</var> PST
+        </small>
+      </div>
+      <div class="update font-regular scheduled">
+        <strong>Scheduled</strong> -
+      	<span class="whitespace-pre-wrap">Autodesk will be performing urgent maintenance for BIM 360 Field (Europe) on December 2, 2023 from 23:00 UTC until December 3, 02:00 UTC to improve scalability and resiliency. During this time BIM 360 Field (Europe) will not be accessible via the web interface. Mobile devices may continue to be used but will not sync. We apologize for the short notice and any inconvenience caused during this time. Thank you for your patience and understanding</span>
+
+        <br>
+
+        <small>
+            Nov <var data-var='date'>27</var>, <var data-var='time'>16:28</var> PST
+        </small>
+      </div>
+  </div>
+
+</div>
+
+  </div>
+
+          
+  <div class="status-day font-regular no-incidents">
+    <div class="date border-color font-large">Dec <var data-var="date"> 1</var>, <var data-var="year">2023</var></div>
+        <p class="color-secondary">No incidents reported.</p>
+  </div>
+
+      </div>
+
+
+      <div class="page-footer border-color font-small">
+          <a href="/history" class="history-footer-link"><span style="font-family:arial">&larr;</span> Incident History</a>
+
+        <span class="color-secondary powered-by"><a class="color-secondary" target="_blank" rel="noopener noreferrer nofollow" href="https://www.atlassian.com/software/statuspage?utm_campaign=health.autodesk.com&amp;utm_content=SP-notifications&amp;utm_medium=powered-by&amp;utm_source=inapp">Powered by Atlassian Statuspage</a></span>
+      </div>
+    </div>
+
+      <div class="custom-footer-container">
+    <script
+  src="https://swc.autodesk.com/web-mfe/universal-header/v1/app.js"
+  type="text/javascript"
+></script>
+<script
+  type="text/javascript"
+  src="//tags.tiqcdn.com/utag/autodesk/micro-basic/prod/utag.js"
+></script>
+<script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.43/moment-timezone-with-data.min.js"></script>
+
+<script>
+  $(function () {
+    // Keeping these locally means in case of network failure from statuspage this will always pull up valid icons.
+    const autodesk_icon =
+      "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAF4AAABBCAYAAABYUhMgAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAKjSURBVHgB7ZzhcdNAEEZfGAqgA44OQgdHB+kggQYCFdhUQKggdAA0gNQBVIDdAenA3FpjhhlnYkuWdN+e783sb1tvdnb3bmVfUD4xxacUL9BgleIdBfMqxdcUG8H4QaHcpviDpnSL3xRGTNGgK7w48Va/rY6rCy9K/BVdw/Ii3b34gI+yUpT4BdrNszjxMcVPfEl2Ld5b8yxC/A2+y4o78QG/zdOleCsrC8rLcmnxEX8zuWvxluVf8CXPvXj1C63ixF9SbvOUFL9rnl4kTSL+OfMSU9zTjYpnzTPmIdBtgxqq9Nk4x+Z5sNQwIZHzbZ5ZxJd2oeVCvMdtUBbxY001gW5aiVSOYoypZkG3nIhUZiFSxjYoS6lhALV5jiC+b42/Qes9xGP5leI7eQgprhlIwOdMbge3JXm5YP/K+2Cp8bwNshdDAxp8oIf4iM+Z3B7qCh3esO/xUfGet0FK/eepIWRPvNcLrQatc8Qhj//Ee90G2cO9R4fIcR634m+BjcNo0Gmefc82W/ENsHEUK3yVlSLE36HTPCPD3bkRb9/xEg3GuDKRF6/WPMea+qTF23K8hLLiRvwKneY51U2snPglOlk+5WFSRrx9h4AGkemdZBev1DznXPBkFX/PeZQVGfErdJpnJE/izSp+tw1SyPLce+PZxNtnBDRQuPqeXLw94DU6LMkrfBbxShdahv1xkIL0rfgpfpiwTvE2RYsOtulfIMSYP0x4SPGRLrNa9HiJEGNlfEuX5Wt0CQhxqnjLchP+jUovTik1n+nKSpU+gCEZb+8h2ptRLZXB9Ml4Kysm/DVV+skcm/Et+s3TFYfEr9GbyYvgqVJjzbOWlYl4LONbuoNQS2Uy/he/O3neUZmcnXibxW1iWVOZBbs8shvEB8onIMRfcKopF3Z8924AAAAASUVORK5CYII=";
+
+    const status_text = {
+      operational: "Operational",
+      degraded_performance: "Degraded Performance",
+      major_outage: "Outage",
+      under_maintenance: "Maintenance",
+    };
+
+    const $sort_icon = {
+      sort: $(
+        '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0l8 10h-16l8-10zm8 14h-16l8 10 8-10z"/></svg>'
+      ),
+    };
+
+    // noinspection HtmlUnknownAttribute
+    const $status_icons = {
+      // These are copied from statuspage itself.
+      operational: $(
+        '<svg class="operational" width="24" height="24" viewBox="0 0 24 24" focusable="false" role="presentation"><g fill-rule="evenodd"><circle fill="currentColor" cx="12" cy="12" r="10"></circle><path d="M9.707 11.293a1 1 0 1 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l4-4a1 1 0 1 0-1.414-1.414L11 12.586l-1.293-1.293z" fill="inherit"></path></g></svg>'
+      ),
+      degraded_performance: $(
+        '<svg class="degraded_performance" width="24" height="24" viewBox="120 0 780 920" focusable="false" role="presentation"><g fill="currentColor" fill-rule="evenodd"><path d="M512 832c-212.077 0-384-171.923-384-384s171.923-384 384-384c212.077 0 384 171.923 384 384v0c0 212.077-171.923 384-384 384v0zM665.6 396.8h-307.2c-28.277 0-51.2 22.923-51.2 51.2s22.923 51.2 51.2 51.2h307.2c28.277 0 51.2-22.923 51.2-51.2s-22.923-51.2-51.2-51.2v0z" fill-rule="nonzero"></path></g></svg>'
+      ),
+      partial_outage: $(
+        '<svg class="partial_outage" width="24" height="24" viewBox="0 0 24 24" focusable="false" role="presentation"><g fill-rule="evenodd"><circle fill="currentColor" cx="12" cy="12" r="10"></circle><path d="M12 14a1 1 0 0 1-1-1V8a1 1 0 0 1 2 0v5a1 1 0 0 1-1 1m0 3a1 1 0 0 1 0-2 1 1 0 0 1 0 2" fill="inherit"></path></g></svg>'
+      ),
+      major_outage: $(
+        '<svg class="major_outage" width="24" height="24" viewBox="0 0 24 24" focusable="false" role="presentation"><g fill-rule="evenodd"><circle fill="currentColor" cx="12" cy="12" r="10"></circle><path d="M13.477 9.113l-4.36 4.386a1 1 0 1 0 1.418 1.41l4.36-4.386a1 1 0 0 0-1.418-1.41z" fill="inherit"></path><path d="M9.084 10.501l4.358 4.377a1 1 0 1 0 1.418-1.411L10.5 9.09a1 1 0 0 0-1.417 1.411z" fill="inherit"></path></g></svg>'
+      ),
+      under_maintenance: $(
+        '<svg class="under_maintenance" width="24" height="24" viewBox="120 0 780 920" focusable="false" role="presentation" transform="rotate(-90)"><g fill="currentColor" fill-rule="evenodd"><path d="M128 459.52c0 212.077 171.923 384 384 384s384-171.923 384-384c0-212.077-171.923-384-384-384v0c-212.077 0-384 171.923-384 384v0zM313.173 331.52c7.753 7.924 18.556 12.837 30.507 12.837s22.753-4.913 30.499-12.83l0.008-0.008c7.924-7.753 12.837-18.556 12.837-30.507s-4.913-22.753-12.83-30.499l-0.008-0.008c-7.807-7.807-18.593-12.636-30.507-12.636-23.827 0-43.143 19.316-43.143 43.143 0 11.914 4.829 22.699 12.636 30.507v0zM599.467 462.933c6.966-1.515 14.969-2.382 23.174-2.382 62.916 0 113.92 51.004 113.92 113.92 0 17.932-4.143 34.897-11.525 49.988l0.297-0.673-90.453-90.453-55.893 56.32 90.027 90.027c-14.862 7.568-32.412 12.002-50.997 12.002-63.152 0-114.347-51.195-114.347-114.347 0-8.176 0.858-16.152 2.489-23.842l-0.133 0.747-216.32-215.893c-8.651-10.4-13.902-23.895-13.902-38.617 0-18.757 8.524-35.523 21.909-46.636l0.1-0.080c10.632-13.793 27.159-22.592 45.74-22.592 15.348 0 29.295 6.003 39.619 15.789l-0.026-0.024z" fill-rule="nonzero"></path></g></svg>'
+      ),
+      // from HDS
+      calendar: $(
+        "<svg\n" +
+          '   xmlns:dc="http://purl.org/dc/elements/1.1/"\n' +
+          '   xmlns:cc="http://creativecommons.org/ns#"\n' +
+          '   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"\n' +
+          '   xmlns="http://www.w3.org/2000/svg"\n' +
+          '   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"\n' +
+          '   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"\n' +
+          '   viewBox="0 -256 1850 1850"\n' +
+          '   id="svg3025"\n' +
+          '   width="20px"\n' +
+          '   height="20px"\n' +
+          ">\n" +
+          "  <metadata\n" +
+          '     id="metadata3035">\n' +
+          "    <rdf:RDF>\n" +
+          "      <cc:Work\n" +
+          '         rdf:about="">\n' +
+          "        <dc:format>image/svg+xml</dc:format>\n" +
+          "        <dc:type\n" +
+          '           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />\n' +
+          "      </cc:Work>\n" +
+          "    </rdf:RDF>\n" +
+          "  </metadata>\n" +
+          "  <defs\n" +
+          '     id="defs3033" />\n' +
+          "  <sodipodi:namedview\n" +
+          '     pagecolor="#ffffff"\n' +
+          '     bordercolor="#666666"\n' +
+          '     borderopacity="1"\n' +
+          '     objecttolerance="10"\n' +
+          '     gridtolerance="10"\n' +
+          '     guidetolerance="10"\n' +
+          '     inkscape:pageopacity="0"\n' +
+          '     inkscape:pageshadow="2"\n' +
+          '     inkscape:window-width="640"\n' +
+          '     inkscape:window-height="480"\n' +
+          '     id="namedview3031"\n' +
+          '     showgrid="false"\n' +
+          '     inkscape:zoom="0.13169643"\n' +
+          '     inkscape:cx="896"\n' +
+          '     inkscape:cy="896"\n' +
+          '     inkscape:window-x="0"\n' +
+          '     inkscape:window-y="25"\n' +
+          '     inkscape:window-maximized="0"\n' +
+          '     inkscape:current-layer="svg3025" />\n' +
+          "  <g\n" +
+          '     transform="matrix(1,0,0,-1,91.118644,1297.8644)"\n' +
+          '     id="g3027">\n' +
+          "    <path\n" +
+          '       d="M 128,-128 H 416 V 160 H 128 v -288 z m 352,0 H 800 V 160 H 480 V -128 z M 128,224 H 416 V 544 H 128 V 224 z m 352,0 H 800 V 544 H 480 V 224 z M 128,608 H 416 V 896 H 128 V 608 z m 736,-736 h 320 V 160 H 864 V -128 z M 480,608 H 800 V 896 H 480 V 608 z m 768,-736 h 288 V 160 H 1248 V -128 z M 864,224 h 320 V 544 H 864 V 224 z m -352,864 v 288 q 0,13 -9.5,22.5 -9.5,9.5 -22.5,9.5 h -64 q -13,0 -22.5,-9.5 Q 384,1389 384,1376 v -288 q 0,-13 9.5,-22.5 9.5,-9.5 22.5,-9.5 h 64 q 13,0 22.5,9.5 9.5,9.5 9.5,22.5 z m 736,-864 h 288 V 544 H 1248 V 224 z M 864,608 h 320 V 896 H 864 V 608 z m 384,0 h 288 V 896 H 1248 V 608 z m 32,480 v 288 q 0,13 -9.5,22.5 -9.5,9.5 -22.5,9.5 h -64 q -13,0 -22.5,-9.5 -9.5,-9.5 -9.5,-22.5 v -288 q 0,-13 9.5,-22.5 9.5,-9.5 22.5,-9.5 h 64 q 13,0 22.5,9.5 9.5,9.5 9.5,22.5 z m 384,64 V -128 q 0,-52 -38,-90 -38,-38 -90,-38 H 128 q -52,0 -90,38 -38,38 -38,90 v 1280 q 0,52 38,90 38,38 90,38 h 128 v 96 q 0,66 47,113 47,47 113,47 h 64 q 66,0 113,-47 47,-47 47,-113 v -96 h 384 v 96 q 0,66 47,113 47,47 113,47 h 64 q 66,0 113,-47 47,-47 47,-113 v -96 h 128 q 52,0 90,-38 38,-38 38,-90 z"\n' +
+          '       id="path3029"\n' +
+          '       style="fill:currentColor" />\n' +
+          "  </g>\n" +
+          "</svg>"
+      ),
+    };
+
+    const hds_footer =
+      '<div class="page-footer">\n' +
+      '      <div class="app-container">\n' +
+      '        <p class="page-footer-content">\n' +
+      '          <a href="http://www.autodesk.com/privacy" target="_blank">Privacy/Cookies (Updated)</a>\n' +
+      "          <span>  |  </span>\n" +
+      '          <a data-opt-in-preferences="" href="javascript:;">Privacy Settings</a>\n' +
+      "          <span>  |  </span>\n" +
+      '          <a href="http://www.autodesk.com/company/legal-notices-trademarks" target="_blank">Legal Notices &amp; Trademarks</a>\n' +
+      "          <span>  |  </span>\n" +
+      '          <a href="http://www.autodesk.com/reportpiracy" target="_blank">Report Noncompliance</a>\n' +
+      "          <span>  |  </span>\n" +
+      "          © 2021 Autodesk Inc. All rights reserved.\n" +
+      '          <a style="float:right" href="https://www.atlassian.com/software/statuspage/powered-by?utm_campaign=health.autodesk.com&utm_content=status-pages&utm_medium=powered-by&utm_source=inapp" target="_blank">Powered by Statuspage</a>\n' +
+      "          </p>\n" +
+      "      </div>\n" +
+      "    </div>";
+
+    // Regular expression to detect dates
+    const datePattern =
+      /\b(?:\d{1,4}[-/]\d{1,2}[-/]\d{1,4}|\b(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]* \d{1,2}(?:st|nd|rd|th)?,? \d{4}\b|\b\d{1,2} (?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]* (?:\d{1,2}(?:st|nd|rd|th)?,? \d{4})?|\b\d{1,2} (?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*,? \d{4}\b|\b\b(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]* \d{1,2}(?:st|nd|rd|th)?\b)\b/gi;
+
+    const timePattern =
+      /\b(\d{1,2}:(\d{1,2})((?:\s?[APMapm]{2})?)((?:\s?(GMT|UTC|SGT|ET|EDT|EST|PT|PST|PDT|CST|CDT|CT|MT|MST|MDT|IST))?))?\b/gi;
+
+    const timezoneMapping = {
+      GMT: "Etc/GMT",
+      UTC: "Etc/UTC",
+      SGT: "Asia/Singapore",
+      ET: "America/New_York",
+      EDT: "America/New_York",
+      EST: "America/New_York",
+      PT: "America/Los_Angeles",
+      PST: "America/Los_Angeles",
+      PDT: "America/Los_Angeles",
+      CST: "America/Chicago",
+      CDT: "America/Chicago",
+      CT: "America/Chicago",
+      MT: "America/Denver",
+      MST: "America/Denver",
+      MDT: "America/Denver",
+      IST: "Asia/Kolkata",
+    };
+
+    const nformat = {
+      withPeriod: [
+        "MMM DD hh:mma",
+        "MMM DD hh:mm a",
+        "MMM DD YYYY hh:mm a",
+        "MMM DD YYYY hh:mma",
+      ],
+      withoutPeriod: ["MMMM DD", "MMM DD", "MMM DD YYYY hh:mm", "MMM DD hh:mm"],
+    };
+
+    const cformat = {
+      withPeriod: [
+        "MMMM DD, YYYY hh:mma",
+        "MMMM DD, YYYY hh:mm a",
+        "DD MMMM, YYYY hh:mma",
+        "DD MMMM, YYYY hh:mm a",
+      ],
+      withoutPeriod: [
+        "MMMM DD, YYYY",
+        "MMMM DD, YYYY hh:mm",
+        "MMMM DD, YYYY H:mm",
+        "MMMM DD, YYYY HH:mm",
+        "DD MMMM, YYYY hh:mm",
+        "DD MMMM, YYYY H:mm",
+      ],
+    };
+
+    const hformat = {
+      withPeriod: [
+        "YYYY-MM-DD hh:mma",
+        "YYYY-MM-DD hh:mm a",
+        "DD-MM-YYYY hh:mma",
+        "DD-MM-YYYY hh:mm a",
+        "MM-DD-YYYY hh:mma",
+        "MM-DD-YYYY hh:mm a",
+      ],
+      withoutPeriod: [
+        "DD-MM-YYYY hh:mm",
+        "MM-DD-YYYY hh:mm",
+        "YYYY-MM-DD hh:mm",
+      ],
+    };
+
+    const sformat = {
+      withPeriod: [
+        "YYYY/MM/DD hh:mma",
+        "YYYY/MM/DD hh:mm a",
+        "DD/MM/YYYY hh:mma",
+        "DD/MM/YYYY hh:mm a",
+        "MM/DD/YYYY hh:mma",
+        "MM/DD/YYYY hh:mm a",
+      ],
+      withoutPeriod: [
+        "YYYY/MM/DD hh:mm",
+        "DD/MM/YYYY hh:mm",
+        "MM/DD/YYYY hh:mm",
+      ],
+    };
+
+    const tformat = {
+      withPeriod: ["hh:mm a", "hh:mma"],
+      withoutPeriod: ["hh:mm", "h:mm"],
+    };
+
+    // Adds Universal Header
+    function addUniversalHeader() {
+      const components = {
+        meMenu: {},
+      };
+
+      const uhEventListener = function (response) {
+        if (response.event == "UH_LOGO_MOUNT") {
+          $("#universal-header-container")
+            .find('a[data-testid="uh-autodesk-logo-link"]')
+            .attr("href", "/");
+        }
+      };
+
+      const config = {
+        property: "health",
+        propertyPageWidth: "1248px",
+        language: "en-US",
+        accessToken: "JWT",
+        environment: "prd",
+        components: components,
+        eventListener: uhEventListener,
+      };
+
+      $("<div id='universal-header-container'></div>").insertBefore("body");
+      if (
+        window.adsk &&
+        window.adsk.components &&
+        window.adsk.components.universalHeader
+      ) {
+        window.adsk.components.universalHeader.render(
+          "universal-header-container",
+          config
+        );
+      }
+    }
+
+    // Adds legend to current page/history page
+    function addLegendToPage() {
+      let $legend = $('<div class="legend"/>');
+
+      for (let [status, text] of Object.entries(status_text)) {
+        let $icon = $status_icons[status];
+        let $icon_legend = $("<div/>");
+        $icon_legend.append($icon);
+        let $legend_container = $('<div class="legend-container" />');
+        $legend_container.append($icon_legend);
+        $legend_container.append($("<div>" + text + "</div>"));
+        $legend.append($legend_container);
+      }
+      $(".updates-dropdown-container").before($legend);
+      $("body").after($(hds_footer));
+    }
+
+    $("#show-updates-dropdown").click(function () {
+      document.getElementById("subscribe-btn-email").value =
+        "Subscribe via email";
+      $("#updates-dropdown-email-btn").trigger("click");
+    });
+
+    // Adds a line break to page
+    function addLineBreaksToPage(className) {
+      $(className).append("<hr>");
+    }
+
+    function modifyDashboardMetaData() {
+      // Page Title
+      $(".masthead.no-logo h3").replaceWith(function () {
+        return $("<h1>", {
+          class: "dashboard-title",
+          html: $(this).html(),
+        });
+      });
+      document.title = "Autodesk Health Dashboard";
+
+      // Meta Tags
+      $("head").append(
+        '<meta name="keywords" content="autodesk health dashboard, autodesk cloud status, autodesk service checker, status dashboard, service dashboard">'
+      );
+      $("head").append(
+        '<link href= rel="shortcut icon" type="image/x-icon" />'
+      );
+      document
+        .querySelector('meta[name="description"]')
+        ?.setAttribute(
+          "content",
+          "Check real-time status, historical data on system performance, and view upcoming maintenance schedule for any of the Autodesk Cloud Services"
+        );
+      // document.querySelector('[name="robots"]').remove()
+
+      $(".component-selector > span").text("Cloud service ");
+
+      // Title Header
+      $(".masthead.no-logo h3").replaceWith(function () {
+        return $("<h1>", {
+          class: "title",
+          html: $(this).html(),
+        });
+      });
+
+      // Make Title Clickable
+      if (document.getElementsByClassName("dashboard-title").length)
+        document.getElementsByClassName("dashboard-title")[0].innerHTML =
+          '\n          <a class="color-primary" href="/">Autodesk Health Dashboard</a>\n        ';
+    }
+
+    function init_components_div() {
+      let $components_div = $('<div class="adsk-components"/>');
+      $components_div.append(
+        '<div class="adsk-component">' +
+          '<div class="adsk-component-icon"></div>' +
+          '<div id="cloudServiceNameHeader" class="adsk-component-name">' +
+          '<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" style="fill:black; margin-right:5px">	<path d="M12 0l8 10h-16l8-10zm8 14h-16l8 10 8-10z"/></svg>' +
+          "Cloud service</div>" +
+          '<div class="adsk-component-status">Status</div>' +
+          '<div class="adsk-component-incidents">Details</div>' +
+          "</div>"
+      );
+      // noinspection JSCheckFunctionSignatures
+      $components_div
+        .find(".adsk-component-calendar")
+        .append($status_icons["calendar"].clone());
+      return $components_div;
+    }
+
+    function get_component_uptime_link(component) {
+      let link = "/history?filter=" + component["id"];
+      return $('<a href="' + link + '" /></a>');
+    }
+
+    // icon
+    function get_component_icon_div(component) {
+      let $icon_div = $('<div class="adsk-component-icon"/>');
+      let icon_name = encodeURI(component["name"].replace("/", "-") + ".png");
+
+      let $link = get_component_uptime_link(component);
+      let $img = $(
+        "<img " +
+          'class="component-icon" ' +
+          'alt="' +
+          component["name"] +
+          '" ' +
+          'src="https://d2jk1xqt5322qd.cloudfront.net/resources/icons/components/' +
+          icon_name +
+          '"' +
+          "/>"
+      );
+      // default to autodesk icon.
+      $img.on("error", function () {
+        $(this).attr("src", autodesk_icon);
+        $(this).attr("class", "adsk-icon");
+      });
+      $link.append($img);
+      $icon_div.append($link);
+      return $icon_div;
+    }
+
+    // name
+    function get_component_name_div(component) {
+      let $div = $('<div class="adsk-component-name"></div>');
+      let $link = get_component_uptime_link(component);
+      $link.html(component["name"]);
+      $div.append($link);
+      return $div;
+    }
+
+    // status
+    function get_component_status_div(component) {
+      let $c_status = $('<div class="adsk-component-status"></div>');
+      let component_status = component["status"];
+      let status_image = $status_icons[component_status].clone();
+      $c_status.append(status_image);
+      $($c_status).attr("component-status", component["status"]);
+      return $c_status;
+    }
+
+    function get_component_incidents_div(component) {
+      let status = component["status"].replace(/_/g, " ");
+      let $status = $('<div class="component-incident-text" />');
+      if (status === "operational") {
+        // The status will be overwritten with incident boxes if there is an incident.
+        let $link = get_component_uptime_link(component);
+        $link.html("Currently working as expected.");
+        $status.append($link);
+      } else {
+        $status.html(status[0].toUpperCase() + status.substring(1) + ".");
+      }
+      let $component_incidents = $('<div class="adsk-component-incidents"/>');
+      $component_incidents.append($status);
+      return $component_incidents;
+    }
+
+    function populate_components_div(components_div, summary_data) {
+      var preferredOrder = [
+        "major_outage",
+        "partial_outage",
+        "under_maintenance",
+        "degraded_performance",
+        "operational",
+      ];
+      summary_data["components"].sort(function (a, b) {
+        return (
+          preferredOrder.indexOf(a.status) - preferredOrder.indexOf(b.status) ||
+          sortJsonByProperty(a, b, "name")
+        );
+      });
+
+      for (let component of summary_data["components"]) {
+        let $component = $('<div class="adsk-component"/>').attr(
+          "component-id",
+          component["id"]
+        );
+        $component.append(get_component_icon_div(component));
+        $component.append(get_component_name_div(component));
+        $component.append(get_component_status_div(component));
+        $component.append(get_component_incidents_div(component));
+        $component.children().attr("component-id", component["id"]);
+        components_div.append($component);
+      }
+      return components_div;
+    }
+
+    function filter_components(components_div, summary_data, filter_service) {
+      var preferredOrder = [
+        "major_outage",
+        "partial_outage",
+        "under_maintenance",
+        "degraded_performance",
+        "operational",
+      ];
+      summary_data["components"].sort(function (a, b) {
+        return (
+          preferredOrder.indexOf(a.status) - preferredOrder.indexOf(b.status) ||
+          sortJsonByProperty(a, b, "name")
+        );
+      });
+
+      for (let component of summary_data["components"]) {
+        let $component = $('<div class="adsk-component"/>').attr(
+          "component-id",
+          component["id"]
+        );
+
+        let service = component["name"].slice(0, 3);
+
+        if (service === filter_service) {
+          $component.append(get_component_icon_div(component));
+          $component.append(get_component_name_div(component));
+          $component.append(get_component_status_div(component));
+          $component.append(get_component_incidents_div(component));
+          $component.children().attr("component-id", component["id"]);
+          components_div.append($component);
+        }
+      }
+      return components_div;
+    }
+
+    function get_note_incident_box_div(incident) {
+      let $incident_div = $('<div class="component-incident"></div>');
+      // This incident html is cribbed from that used by statuspage
+      let $unresolved_incident = $(
+        '<div class="unresolved-incident impact-' +
+          incident["impact"] +
+          '"></div>'
+      );
+      let $incident_title = $(
+        '<div class="incident-title impact-' + incident["impact"] + '"/>'
+      );
+      let $actual_title =
+        '<div class="actual-title with-ellipsis">' +
+        incident["name"] +
+        "</div>";
+
+      $incident_title.append($actual_title);
+
+      $unresolved_incident.append($incident_title);
+      $incident_div.append($unresolved_incident);
+      let $updates_div = $('<div class="updates font-regular"/>');
+      let last_update = incident["incident_updates"][0];
+      let update_status = "";
+
+      let $last_update_div = $('<div class="update" />');
+      let incident_text =
+        update_status +
+        localizeDateTimeFromContent(last_update["body"]) +
+        "<br>" +
+        "<small>Updated: " +
+        timezoneConversion(
+          last_update["updated_at"],
+          "YYYY-MM-DDTHH:mm:ss.SSSS",
+          "MMM DD, YYYY HH:mm z"
+        ) +
+        "</small>";
+
+      $last_update_div.html(incident_text);
+
+      $updates_div.append($last_update_div);
+      $unresolved_incident.append($updates_div);
+      return $incident_div;
+    }
+
+    function get_regular_incident_box_div(incident) {
+      let $incident_div = $('<div class="component-incident"></div>');
+      // This incident html is cribbed from that used by statuspage
+      let $unresolved_incident = $(
+        '<div class="unresolved-incident impact-' +
+          incident["impact"] +
+          '"></div>'
+      );
+      let $incident_title = $(
+        '<div class="incident-title impact-' + incident["impact"] + '"/>'
+      );
+      let $actual_title;
+      $actual_title = $('<a class="actual-title with-ellipsis"/>')
+        .attr("href", "/incidents/" + incident["id"])
+        .text(incident["name"]);
+
+      let $subscribe_button = $('<a class="subscribe"/>')
+        .attr("id", "btn-subscribe-modal-" + incident["id"])
+        .attr(
+          "href",
+          "/incidents/" + incident["id"] + "#subscribe-modal-" + incident["id"]
+        )
+        .text("Subscribe to updates");
+
+      let $incident_report_button = $('<a class="incident-report"/>')
+        .attr("id", "btn-incident-report-modal-" + incident["id"])
+        .attr("href", "/incidents/" + incident["id"])
+        .text("View report");
+
+      $incident_title.append($actual_title);
+
+      $unresolved_incident.append($incident_title);
+      $incident_div.append($unresolved_incident);
+      $incident_div.append($subscribe_button);
+      $incident_div.append($incident_report_button);
+      let $updates_div = $('<div class="updates font-regular"/>');
+      let last_update = incident["incident_updates"][0];
+      // If there's no impact (this is just a note) then we don't need to
+      // include the impact in the update.
+      let update_status =
+        "<strong>" + last_update["status"] + "</strong>" + " -";
+      let $last_update_div = $('<div class="update" />');
+      let incident_text =
+        update_status +
+        localizeDateTimeFromContent(last_update["body"]) +
+        "<br>" +
+        "<small>Updated: " +
+        timezoneConversion(
+          last_update["updated_at"],
+          "YYYY-MM-DDTHH:mm:ss.SSSS",
+          "MMM DD, YYYY HH:mm z"
+        ) +
+        "</small>";
+
+      let $incident_link = $('<a href="/incidents/' + incident["id"] + '">');
+      $incident_link.html(incident_text);
+      $last_update_div.append($incident_link);
+
+      $updates_div.append($last_update_div);
+      $unresolved_incident.append($updates_div);
+      return $incident_div;
+    }
+
+    function get_happy_incident_box_div(incident) {
+      // We'll want to treat "Notes" differently.
+      if (incident["impact"] === "none") {
+        return get_note_incident_box_div(incident);
+      } else {
+        return get_regular_incident_box_div(incident);
+      }
+    }
+
+    function get_happy_maintenance_box_div(maintenance) {
+      let incident_div = $('<div class="component-maintenance"></div>');
+      // This incident html is cribbed from that used by
+      // Statuspage on the non-customized page.
+      let impact = "maintenance";
+      let unresolved_incident = $(
+        '<div class="unresolved-incident impact-' + impact + '"></div>'
+      );
+      let incident_title = $(
+        '<div class="incident-title impact-' + impact + '"/>'
+      );
+      let actual_title = $('<a class="actual-title with-ellipsis"/>')
+        .attr("href", "/incidents/" + maintenance["id"])
+        .text(maintenance["name"]);
+      let subscribe_button = $('<a class="subscribe"/>')
+        .attr("id", "btn-subscribe-modal-" + maintenance["id"])
+        .attr(
+          "href",
+          "/incidents/" +
+            maintenance["id"] +
+            "#subscribe-modal-" +
+            maintenance["id"]
+        )
+        .text("Subscribe to updates");
+
+      let incident_report_button = $('<a class="incident-report"/>')
+        .attr("id", "btn-incident-report-modal-" + maintenance["id"])
+        .attr(
+          "href",
+          "/incidents/" +
+            maintenance["id"] +
+            "#incident-report-modal-" +
+            maintenance["id"]
+        )
+        .text("View report");
+
+      incident_title.append(actual_title);
+      incident_title.append(subscribe_button);
+      unresolved_incident.append(incident_title);
+      incident_div.append(unresolved_incident);
+      incident_div.append(subscribe_button);
+      incident_div.append(incident_report_button);
+      let updates_div = $('<div class="updates font-regular"/>');
+      //console.log(incident);
+      let last_update = maintenance["incident_updates"][0];
+      let status = maintenance["status"].replace(/_/g, " ");
+      status = status[0].toUpperCase() + status.substring(1);
+      //console.log(last_update);
+      let last_update_div = $(
+        '<div class="update">' +
+          "<strong>" +
+          status +
+          "</strong>" +
+          "- " +
+          localizeDateTimeFromContent(last_update["body"]) +
+          "<br/>" +
+          "<!-- small>" +
+          timezoneConversion(
+            last_update["updated_at"],
+            "YYYY-MM-DDTHH:mm:ss.SSSS",
+            "MMM DD, YYYY HH:mm z"
+          ) +
+          "</small -->" +
+          "<small>From: " +
+          timezoneConversion(
+            maintenance["scheduled_for"],
+            "YYYY-MM-DDTHH:mm:ss.SSSS",
+            "MMM DD, YYYY HH:mm z"
+          ) +
+          "</small><br/>" +
+          "<small>To: " +
+          timezoneConversion(
+            maintenance["scheduled_until"],
+            "YYYY-MM-DDTHH:mm:ss.SSSS",
+            "MMM DD, YYYY HH:mm z"
+          ) +
+          "</small>" +
+          "</div>"
+      );
+      updates_div.append(last_update_div);
+      unresolved_incident.append(updates_div);
+      return incident_div;
+    }
+
+    function timezoneConversion(date, formatFrom, formatTo, fromTz, toTz) {
+      const dt = moment
+        .tz(date, formatFrom, fromTz ? fromTz : "America/Los_Angeles")
+        .tz(toTz ? toTz : moment.tz.guess());
+      return formatTo ? dt.format(formatTo) : dt;
+    }
+
+    function getTransformed(date, time, currentTz, tz, contentTz) {
+      time = time?.toLowerCase();
+      return timezoneConversion(
+        `${date} ${time}`,
+        date
+          ? !`${date} ${time}`.includes(",") &&
+            !`${date} ${time}`.includes("-") &&
+            !`${date} ${time}`.includes("/")
+            ? `${date} ${time}`.includes("am") ||
+              `${date} ${time}`.includes("pm")
+              ? nformat.withPeriod
+              : nformat.withoutPeriod
+            : `${date} ${time}`.includes(",")
+            ? `${date} ${time}`.includes("am") ||
+              `${date} ${time}`.includes("pm")
+              ? cformat.withPeriod
+              : cformat.withoutPeriod
+            : `${date} ${time}`.includes("-")
+            ? `${date} ${time}`.includes("am") ||
+              `${date} ${time}`.includes("pm")
+              ? hformat.withPeriod
+              : hformat.withoutPeriod
+            : `${date} ${time}`.includes("am") ||
+              `${date} ${time}`.includes("pm")
+            ? sformat.withPeriod
+            : sformat.withoutPeriod
+          : time.includes("am") || time.includes("pm")
+          ? tformat.withPeriod
+          : tformat.withoutPeriod,
+        undefined,
+        currentTz
+          ? timezoneMapping[currentTz]
+          : tz
+          ? timezoneMapping[tz]
+          : timezoneMapping[contentTz]
+      );
+    }
+
+    function localizeDateTimeFromContent(content) {
+      const contentTz = Object.keys(timezoneMapping).find((k) =>
+        content.includes(k)
+      );
+      const initalDate = content.match(datePattern)?.at(0);
+
+      return content
+        .split(".")
+        .map((sentence) => {
+          if (sentence) {
+            const dateMatches = [
+              ...new Set(sentence.match(datePattern)),
+            ].filter((k) => k);
+            const timeMatches = [
+              ...new Set(sentence.match(timePattern)),
+            ].filter((k) => k);
+
+            const tz = Object.keys(timezoneMapping).find((k) =>
+              sentence.includes(k)
+            );
+
+            if (tz || contentTz) {
+              if (
+                dateMatches.length === timeMatches.length &&
+                dateMatches.length == 2
+              ) {
+                dateMatches.map((date, i) => {
+                  const currentTz = Object.keys(timezoneMapping).find((t) =>
+                    timeMatches[i].includes(t)
+                  );
+                  const transformed = getTransformed(
+                    date,
+                    timeMatches[i],
+                    currentTz,
+                    tz,
+                    contentTz
+                  );
+                  if (transformed.isValid()) {
+                    sentence = sentence.replace(
+                      i == 0
+                        ? new RegExp(date, "g")
+                        : new RegExp(`${date}(?!.*${date})`),
+                      transformed.format("MMMM DD, YYYY")
+                    );
+                    sentence = sentence
+                      .replace(timeMatches[i], transformed.format("hh:mm A z"))
+                      .replace(
+                        new RegExp(
+                          `\\s?\\(${currentTz || tz || contentTz}\\)\\s?`
+                        ),
+                        ""
+                      );
+                  }
+                });
+              } else if (
+                (dateMatches.length || initalDate) &&
+                timeMatches.length
+              ) {
+                const date = dateMatches.pop() || initalDate;
+                let oldDate = timezoneConversion(date, "MMMM DD, YYYY");
+                timeMatches.map((time, k) => {
+                  const currentTz = Object.keys(timezoneMapping).find((t) =>
+                    time.includes(t)
+                  );
+                  const transformed = getTransformed(
+                    date,
+                    time,
+                    currentTz,
+                    tz,
+                    contentTz
+                  );
+                  if (transformed.isValid()) {
+                    if (k === 0) {
+                      sentence = sentence.replace(
+                        date,
+                        transformed.format("MMMM DD, YYYY")
+                      );
+                      if (
+                        oldDate.format("MMMM DD, YYYY") !==
+                        transformed.format("MMMM DD, YYYY")
+                      ) {
+                        oldDate = transformed;
+                      }
+                    }
+                    sentence = sentence
+                      .replace(
+                        time,
+                        oldDate.format("MMMM DD, YYYY") ===
+                          transformed.format("MMMM DD, YYYY")
+                          ? transformed.format("hh:mm A z")
+                          : transformed.format("MMMM DD, YYYY hh:mm A z")
+                      )
+                      .replace(
+                        new RegExp(
+                          `\\s?\\(${currentTz || tz || contentTz}\\)\\s?`
+                        ),
+                        ""
+                      );
+                  }
+                });
+              } else if (timeMatches.length > 0) {
+                timeMatches.map((time) => {
+                  const currentTz = Object.keys(timezoneMapping).find((t) =>
+                    time.includes(t)
+                  );
+                  const transformed = getTransformed(
+                    undefined,
+                    time,
+                    currentTz,
+                    tz,
+                    contentTz
+                  );
+                  sentence = sentence
+                    .replace(time, transformed.format("hh:mm A z"))
+                    .replace(
+                      new RegExp(
+                        `\\s?\\(${currentTz || tz || contentTz}\\)\\s?`
+                      ),
+                      ""
+                    );
+                });
+              }
+            }
+          }
+          return sentence;
+        })
+        .join(".");
+    }
+
+    function populate_components_details(
+      components_div,
+      incidents_data,
+      maintenance_data
+    ) {
+      for (let incident of incidents_data) {
+        let happy_incident_box_div = get_happy_incident_box_div(
+          incident,
+          "incident"
+        );
+        for (let component of incident["components"]) {
+          let component_incidents_div = components_div.find(
+            "div.adsk-component-incidents[component-id='" +
+              component["id"] +
+              "']"
+          );
+          component_incidents_div.append(happy_incident_box_div.clone());
+          component_incidents_div.find(".component-incident-text").remove();
+        }
+      }
+      if (maintenance_data) {
+        for (let maintenance of maintenance_data) {
+          let happy_maintenance_box_div =
+            get_happy_maintenance_box_div(maintenance);
+          for (let component of maintenance["components"]) {
+            let components_maintenances_div = components_div.find(
+              "div.adsk-component-incidents[component-id='" +
+                component["id"] +
+                "']"
+            );
+            components_maintenances_div.append(
+              happy_maintenance_box_div.clone()
+            );
+            components_maintenances_div
+              .find(".component-incident-text")
+              .remove();
+          }
+        }
+      }
+    }
+
+    function retrieve_data() {
+      return $.when($.getJSON(api_path + "/summary.json")).promise();
+    }
+
+    function populate_components_table(components_div, statuspage_data) {
+      if (window.location.href.indexOf("/APS") > -1) {
+        filter_components(
+          components_div,
+          statuspage_data,
+          (filter_service = "APS")
+        );
+      } else {
+        populate_components_div(components_div, statuspage_data);
+      }
+      populate_components_details(
+        components_div,
+        statuspage_data["incidents"],
+        statuspage_data["scheduled_maintenances"]
+      );
+    }
+
+    function build_components_table() {
+      let components_div = init_components_div();
+      retrieve_data().done(function (summary) {
+        populate_components_table(components_div, summary);
+        let $adsk_div = $("<div/>");
+        $adsk_div.append(components_div);
+        $adsk_div.append($("<br/>"));
+        $("div.masthead-container.basic").after($adsk_div);
+      });
+      $("div.adsk-component:not(:first)").remove();
+    }
+
+    function sortJsonByProperty(object1, object2, property) {
+      const obj1 = object1[property].toUpperCase();
+      const obj2 = object2[property].toUpperCase();
+
+      if (obj1 < obj2) {
+        return -1;
+      }
+      if (obj1 > obj2) {
+        return 1;
+      }
+      return 0;
+    }
+
+    function sortComponentsByCloudService() {
+      var toSort =
+        document.getElementsByClassName("adsk-components")[0].children;
+      toSort = Array.prototype.slice.call(toSort, 1);
+
+      toSort.sort(function (a, b) {
+        var aord = +a.id.split("-")[1];
+        var bord = +b.id.split("-")[1];
+        // two elements never have the same ID hence this is sufficient:
+        return aord > bord ? 1 : -1;
+      });
+      var parent = document.getElementsByClassName("adsk-components")[0];
+      for (var i = 1, l = toSort.length; i < l; i++) {
+        parent.appendChild(toSort[i]);
+      }
+    }
+
+    // Legend Icons on Status Page
+    function add_legend() {
+      let $legend = $('<div class="legend"/>');
+
+      for (let [status, text] of Object.entries(status_text)) {
+        let $icon = $status_icons[status];
+        let $icon_legend = $("<div/>");
+        $icon_legend.append($icon);
+        let $legend_container = $('<div class="legend-container" />');
+        $legend_container.append($icon_legend);
+        $legend_container.append($("<div>" + text + "</div>"));
+        $legend.append($legend_container);
+      }
+      $(".updates-dropdown-container").before($legend);
+      document.querySelector(".directions").innerText =
+        "After entering your email address below, you’ll be taken to a list of services where you can choose which you'd like to receive incident or maintenance notifications for.";
+    }
+
+    function adjustStylingForContactUs() {
+      var legend_div = document.getElementsByClassName("dashboard-title");
+      let contact_btn = document.createElement("button");
+      contact_btn.onclick = function () {
+        window.location = "https://www.autodesk.com/trust/contact-us";
+      };
+      contact_btn.innerHTML = "Contact us";
+      contact_btn.id = "contact-us";
+      legend_div[0].appendChild(contact_btn);
+    }
+
+    // Hide the second Powered By StatusPage footer
+    if (
+      window.location.href.indexOf("/history") > -1 ||
+      window.location.href.indexOf("/uptime") > -1
+    ) {
+      addLegendToPage();
+      $(".powered-by").html(" ");
+    }
+
+    // Hide the subscription text
+    if (
+      window.location.href.indexOf("/subscriptions/component-selection") > -1
+    ) {
+      addUniversalHeader();
+      $(".new-subscription .instructions")[0].innerText = "";
+      $(".new-subscription .title")[0].innerText =
+        "Please select which services you would like to receive incident, maintenance, and status update notifications for.";
+      $("#component-selector-toggle").text("Deselect all");
+      $(".component-form > div:nth-child(4) > span > strong").text(
+        "Cloud service"
+      );
+
+      $(".masthead h3").text("Autodesk Health Dashboard");
+    }
+
+    // Edit display text for Un-subscribe settings
+    if (window.location.href.indexOf("/subscriptions") > -1) {
+      $(".dashboard-title > a").attr("href", "/");
+      $(".masthead a").attr("href", "/");
+      document.querySelector(
+        "#modal-confirmation-confirmationModalId > div > div:nth-child(2)"
+      ).innerText =
+        "Are you sure you want to unsubscribe from Autodesk Health Dashboard status updates?";
+    }
+
+    $("#component-selector-toggle").text("Deselect all");
+
+    $(".component-form > div:nth-child(4) > span > strong").text(
+      "Cloud service"
+    );
+
+    $("#component-selector-toggle").click(function () {
+      $("#component-selector-toggle").hide(function () {
+        $("#component-selector-toggle")
+          .text(
+            $("#component-selector-toggle").text() == "Select all"
+              ? "Select all"
+              : "Deselect all"
+          )
+          .show(0);
+      });
+    });
+
+    if (window.location.href.indexOf("/history") > -1) {
+      $(".component-selector").append(
+        "<svg width='24' height='24' viewBox='0 0 24 24' style='margin-left: -28px;position: absolute;margin-top: 8px;' role='presentation'><path d='M8.292 10.293a1.009 1.009 0 000 1.419l2.939 2.965c.218.215.5.322.779.322s.556-.107.769-.322l2.93-2.955a1.01 1.01 0 000-1.419.987.987 0 00-1.406 0l-2.298 2.317-2.307-2.327a.99.99 0 00-1.406 0z' fill='currentColor' fill-rule='evenodd'></path></svg>"
+      );
+
+      // Show hide popover
+      $(".component-items-selector").click(function () {
+        $(this).find(".component-items-selector").slideToggle("fast");
+      });
+
+      $(document).on("click", function (event) {
+        var $trigger = $(".component-items-selector");
+        if (
+          $trigger !== event.target &&
+          !$trigger.parent().has(event.target).length
+        ) {
+          $(".component-items-selector").slideUp("fast");
+          $(
+            ".history-backpage .history-header .component-selector .show-filter"
+          ).toggleClass("open");
+        }
+      });
+
+      // Localize the time on the history page
+      const page = getParameterByName("page") || 1;
+      const filters = (getParameterByName("filter") || "")
+        .split(",")
+        .filter((n) => n);
+      fillHistoryData(filters, page, true);
+
+      async function fillHistoryData(filters, page, isRenderSelector) {
+        try {
+          const data = await retrieveHistoryData(page, filters.join(","));
+          const calFirst = data.months[0].incidents.at(0)
+            ? getDateTime(data.months[0].incidents.at(0).timestamp).at(0)
+            : undefined;
+          const calLast = data.months.at(-1).incidents.at(-1)
+            ? getDateTime(data.months.at(-1).incidents.at(-1).timestamp).at(0)
+            : undefined;
+          const first = moment(
+            `${data.months[0].name} ${data.months[0].year}`,
+            "MMMM YYYY"
+          );
+          const last = moment(
+            `${data.months.at(-1).name} ${data.months.at(-1).year}`,
+            "MMMM YYYY"
+          );
+          const start =
+            calLast &&
+            calLast.year() === last.year() &&
+            calLast.isSameOrAfter(last.date(1).hours(0).minutes(0).seconds(0))
+              ? calLast
+              : last;
+          const end =
+            calFirst &&
+            calFirst.year() === last.year() &&
+            calFirst.isSameOrBefore(
+              first.date(1).hours(0).minutes(0).seconds(0)
+            )
+              ? calFirst
+              : first;
+          if (isRenderSelector) addHistoryHeader(page, start, end);
+          addIncidentList(start, end, data);
+          return true;
+        } catch (e) {
+          console.log(e);
+          return false;
+        }
+      }
+
+      function addHistoryHeader(page, start, end) {
+        const historyHeader = $('<div class="pagination-container"></div>');
+        let componentSelector = $(
+          ".history-backpage .history-header .component-selector .show-filter"
+        )
+          .trigger("click")
+          .parent();
+        componentSelector
+          .find(".grouped-item-label")
+          .children('div[role="button"]')
+          .trigger("click");
+        componentSelector = componentSelector.clone();
+        componentSelector
+          .find(".show-filter")
+          .on("click", function () {
+            $(this).parent().find(".component-items-selector").toggle();
+            $(this).toggleClass("open");
+          })
+          .trigger("click");
+        componentSelector
+          .find(".grouped-item-label")
+          .children('div[role="button"]')
+          .on("click", function () {
+            $(this).children("i").toggleClass("fa-angle-down fa-angle-right");
+            $(this).parent().parent().find(".grouped-item").toggle();
+          })
+          .trigger("click");
+        $(".history-backpage .history-header")
+          .empty()
+          .append([componentSelector, historyHeader]);
+      }
+
+      function addIncidentList(start, end, data) {
+        const monthsContainers = {};
+        const historyHeader = `
+              <div class="pagination-container">
+                <div class="pagination">
+                  <a
+                    href="#back"
+                    class="previous-page border-color color-secondary"
+                    aria-label="Previous page"
+                  >
+                    <i class="left-arrow"></i>
+                  </a>
+                  <span class="current">
+                    <span>${start.format("MMMM")}</span>
+                    <var data-var="start-date-year"> ${start.format(
+                      "YYYY"
+                    )}</var> to
+                    <span>${end.format("MMMM")}</span>
+                    <var data-var="end-date-year"> ${end.format("YYYY")}</var>
+                  </span>
+                  <a
+                    href="#forward"
+                    class="next-page border-color color-secondary ${
+                      page == 1 ? "disabled" : ""
+                    }"
+                    aria-label="Next page"
+                    >
+                    <i class="right-arrow"></i>
+                  </a>
+                </div>
+              </div>
+            `;
+
+        for (
+          let m = end;
+          m.isSameOrAfter(start.date(1).hours(0).minutes(0).seconds(0));
+          m.subtract(1, "months")
+        ) {
+          const monthElm = $(`
+                <div class="month" id="${m.format("MMMM")}">
+                    <h4 class="month-title font-largest border-color">
+                        ${m.format("MMMM")}
+                        <var data-var="year">${m.format("YYYY")}</var>
+                    </h4>
+                    <div class="month-content"><div class="incident-history"><div class="incident-list"></div></div></div>
+                </div>
+              `);
+          monthsContainers[m.format("MMMM")] = monthElm.clone();
+        }
+
+        for (let month of data.months) {
+          for (let incident of month.incidents) {
+            const [start, end, tz] = getDateTime(
+              incident.timestamp,
+              month.year
+            );
+            const incidentListElm =
+              $(`<div class="incident-data incident-container">
+                    <a
+                      href="/incidents/${incident.code}"
+                        class="impact-${
+                          incident.impact
+                        } incident-title font-large"
+                        id="${incident.code}"
+                      >
+                        ${incident.name}
+                      </a>
+                      <div class="message incident-body color-primary">
+                        ${localizeDateTimeFromContent(incident.message)}
+                      </div>
+                      <div class="secondary font-small color-secondary">
+                        ${
+                          start && start.isValid() && end && end.isValid()
+                            ? `${start.format("MMM DD, HH:mm")} - ${end.format(
+                                start.format("MMM DD") !== end.format("MMM DD")
+                                  ? "MMM DD, HH:mm z"
+                                  : tz
+                                  ? "HH:mm z"
+                                  : "MMM DD, HH:mm z"
+                              )}`
+                            : start && start.isValid()
+                            ? start.format("MMM DD, HH:mm z")
+                            : incident.timestamp
+                        }
+                      </div>
+                    </div>`);
+            if (
+              monthsContainers[
+                end && end.isValid()
+                  ? end.format("MMMM")
+                  : start && start.isValid()
+                  ? start.format("MMMM")
+                  : month.name
+              ]
+            )
+              monthsContainers[
+                end && end.isValid()
+                  ? end.format("MMMM")
+                  : start && start.isValid()
+                  ? start.format("MMMM")
+                  : month.name
+              ]
+                .find(".incident-list")
+                .append(incidentListElm.clone());
+          }
+        }
+        for (let [k, v] of Object.entries(monthsContainers)) {
+          const incidentList = v.find(".incident-list").children();
+          if (!incidentList.length) {
+            v.find(".incident-list").append(
+              `<span class="small">No incidents reported for this month.</span>`
+            );
+          } else if (incidentList.length > 4) {
+            const expandElm = $(
+              `<div aria-expanded="false" aria-controls="${k}" class="expand-incidents font-small border-color color-secondary custom-focus" role="button" tabindex="0"/>`
+            );
+            expandElm.append(
+              `<span>+ Show All ${incidentList.length} Incidents</span>`
+            );
+            v.find(".incident-list .incident-data:gt(3)").hide();
+            v.find(".incident-history").append(expandElm.clone());
+          }
+        }
+
+        $(
+          ".history-backpage .history-header .pagination-container"
+        ).replaceWith(historyHeader);
+        $(".history-backpage .months-container")
+          .empty()
+          .append(Object.values(monthsContainers));
+        $(".history-backpage .history-header").css("display", "block");
+        $(".history-backpage .months-container").css("display", "block");
+      }
+
+      $(document).on(
+        "change",
+        ".atlaskit-checkbox-component",
+        async function (e) {
+          const page = parseInt(getParameterByName("page") || 1);
+          const filters = $(".atlaskit-checkbox-component:checked")
+            .map(function () {
+              return $(this).parent().next("span").text();
+            })
+            .toArray();
+          if ($(this).prop("checked")) {
+            $(this)
+              .next("svg")
+              .replaceWith(
+                `<svg viewBox="0 0 24 24" aria-label="" role="presentation" class="css-ttllud" style="color: var(--checkbox-background-color); fill: var(--checkbox-tick-color);">
+                    <g fill-rule="evenodd">
+                      <rect fill="currentColor" x="6" y="6" width="12" height="12" rx="2"></rect>
+                      <path d="M9.707 11.293a1 1 0 1 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l4-4a1 1 0 1 0-1.414-1.414L11 12.586l-1.293-1.293z" fill="inherit"></path>
+                    </g>
+                  </svg>`
+              );
+          } else {
+            $(this)
+              .next("svg")
+              .replaceWith(
+                `<svg viewBox="0 0 24 24" aria-label="" role="presentation" class="css-ttllud" style="color: var(--checkbox-background-color); fill: var(--checkbox-tick-color);">
+                    <g fill-rule="evenodd">
+                      <rect fill="currentColor" x="6" y="6" width="12" height="12" rx="2"></rect>
+                    </g>
+                  </svg>`
+              );
+          }
+          const status = await fillHistoryData(filters, page);
+          if (status) {
+            const url = new URL(location);
+            url.searchParams.delete("page");
+            url.searchParams.delete("filter");
+            if (filters.join()) url.searchParams.set("filter", filters.join());
+            if (page) url.searchParams.set("page", page);
+            history.pushState({}, "", decodeURIComponent(url));
+            if (page === 1) {
+              $(".pagination .next-page").addClass("disabled");
+            } else {
+              $(".pagination .next-page").removeClass("disabled");
+            }
+          }
+        }
+      );
+
+      $(document).on("click", ".expand-incidents", function () {
+        $(this).parent().find(".incident-list .incident-data:gt(3)").toggle();
+        if ($(this).text().includes("Show All")) {
+          $(this).empty().append(`<span>- Collapse Incidents</span>`);
+        } else {
+          $(this)
+            .empty()
+            .append(
+              `<span>+ Show All ${
+                $(this).parent().find(".incident-list").children().length
+              } Incidents</span>`
+            );
+        }
+      });
+
+      $(document).on("click", ".pagination a", async function (e) {
+        e.preventDefault();
+        const page = getParameterByName("page") || 1;
+        const filters = (getParameterByName("filter") || "").split(",");
+        const nextPage = $(this).hasClass("previous-page")
+          ? parseInt(page) + 1
+          : parseInt(page) - 1;
+        if (nextPage) {
+          const status = await fillHistoryData(filters, nextPage);
+          if (status) {
+            const url = new URL(location);
+            url.searchParams.delete("page");
+            url.searchParams.delete("filter");
+            if (filters.join()) url.searchParams.set("filter", filters.join());
+            if (nextPage) url.searchParams.set("page", nextPage);
+            history.pushState({}, "", decodeURIComponent(url));
+            if (nextPage === 1) {
+              $(".pagination .next-page").addClass("disabled");
+            } else {
+              $(".pagination .next-page").removeClass("disabled");
+            }
+          }
+        }
+      });
+
+      function getDateTime(dt, year) {
+        let end, tz;
+        let [start, endTz] = $(`<div>${dt}</div>`).text().trim().split("-");
+
+        start = start.trim();
+        format = year ? "YYYY MMM DD, HH:mm z" : "MMM DD, HH:mm z";
+
+        if (endTz) {
+          [end, tz] = endTz.includes(",")
+            ? [endTz, ""]
+            : endTz.trim().split(" ");
+          end = end.trim();
+          tz = tz.trim();
+          if (tz) end = `${end} ${tz}`;
+          if (!end.includes(",")) end = `${start.split(",")[0]}, ${end}`;
+          if (year) end = `${year} ${end}`;
+          end = timezoneConversion(end, format);
+        }
+
+        if (tz) start = `${start} ${tz}`;
+        if (year) start = `${year} ${start}`;
+        start = timezoneConversion(start, format);
+        return [start, end, tz];
+      }
+
+      function retrieveHistoryData(page, filter) {
+        return $.when(
+          $.getJSON(`/history.json?filter=${filter}&page=${page}`)
+        ).promise();
+      }
+
+      function getParameterByName(name) {
+        const queries = {};
+        $.each(document.location.search.substr(1).split("&"), function (c, q) {
+          const v = q.split("=");
+          if (q) queries[v[0].toString()] = v[1].toString();
+        });
+        return queries[name] ? decodeURIComponent(queries[name]) : null;
+      }
+
+      $(window).on("popstate", function (e) {
+        window.location = location.href;
+      });
+    }
+
+    if (window.location.href.indexOf("incidents/") > -1) {
+      // Localize the time on the incident page
+      try {
+        let [start, endTz] = $(".scheduled-for")
+          .text()
+          .split("for")
+          .at(-1)
+          .split("-");
+        let [end, tz] = endTz
+          ? endTz.includes(",")
+            ? [endTz, ""]
+            : endTz.trim().split(" ")
+          : ["", ""];
+        start = start.trim();
+        end = end.trim();
+        tz = tz.trim();
+        end = timezoneConversion(
+          tz ? `${start?.split(",")[0].trim()}, ${end} ${tz}` : end,
+          "MMM DD, HH:mm z",
+          undefined,
+          timezoneMapping[tz]
+        );
+        start = timezoneConversion(
+          tz ? `${start} ${tz}` : start,
+          "MMM DD, HH:mm z",
+          undefined,
+          timezoneMapping[tz]
+        );
+        if (start && start.isValid() && end && end.isValid()) {
+          $(".scheduled-for").text(
+            `Scheduled for ${start.format(
+              tz ? "MMM DD, HH:mm" : "MMM DD, HH:mm z"
+            )} - ${end.format(tz ? "HH:mm z" : "MMM DD, HH:mm z")}`
+          );
+        } else if (start && start.isValid() && !end) {
+          $(".scheduled-for").text(
+            `Scheduled for ${start.format(
+              tz ? "MMM DD, HH:mm" : "MMM DD, HH:mm z"
+            )}`
+          );
+        }
+      } catch (e) {
+        console.log(e);
+      }
+
+      $(".markdown-display").each(function () {
+        $(this).html(
+          $(this)
+            .html()
+            .split("\n")
+            .map((content) => localizeDateTimeFromContent(content))
+            .join("\n")
+        );
+      });
+
+      $(".whitespace-pre-wrap").each(function () {
+        $(this).html(localizeDateTimeFromContent($(this).html()));
+      });
+
+      $(".update-timestamp").each(function () {
+        try {
+          const dt = timezoneConversion(
+            $(this).text().split(".").at(-1).split("Posted").at(-1).trim(),
+            "MMM DD, YYYY - HH:mm z"
+          );
+          if (dt.isValid())
+            $(this).text(
+              `Posted ${dt.fromNow()}. ${dt.format("MMM DD, YYYY - HH:mm z")}`
+            );
+        } catch (e) {
+          console.log(e);
+        }
+      });
+      addLineBreaksToPage(".layout-content.status.status-incident .page-title");
+    }
+
+    addUniversalHeader();
+
+    modifyDashboardMetaData();
+
+    // /adsk-statuspage/test/index.html: local testing from inside pycharm builtin webserver.
+    if (
+      !["/", "/adsk-statuspage/test/index.html"].includes(
+        window.location.pathname
+      )
+    ) {
+      console.log("not main page: " + window.location.pathname);
+      return;
+    }
+    let api_path = "/api/v2";
+    if (window.location.pathname === "/adsk-statuspage/test/index.html") {
+      api_path = "/adsk-statuspage/test";
+    }
+
+    add_legend();
+
+    adjustStylingForContactUs();
+
+    build_components_table();
+
+    $("body").after($(hds_footer));
+    setTimeout(function () {
+      $("#cloudServiceNameHeader").click(function () {
+        sortComponentsByCloudService();
+      });
+    }, 1000);
+  });
+
+  function makeColorsConsistent() {
+    $("rect[fill='#87B340']").each(function () {
+      $(this).attr("fill", "blue");
+    });
+  }
+</script>
+  </div>
+
+
+  </div>
+
+
+
+
+
+
+
+    <script src="https://dka575ofm4ao0.cloudfront.net/assets/status_manifest-fe51120c5309a42b8fe23d0af40c6d1ddf533e0e24ebfb16557e15cd82189121.js"></script>
+    <div id="cpt-notification-container"></div>
+    
+
+
+
+
+    <!-- all of the content_for stuff -->
+      <script src="https://dka575ofm4ao0.cloudfront.net/assets/register_subscription_form-589b657fec607087fc5c740c568270907310bc4f6aaa20256e70f01b103025ca.js"></script>
+
+  <script type="text/javascript">
+      $(function() {
+          SP.currentPage.registerSubscriptionForm('email');
+
+
+
+      });
+
+
+
+
+
+  </script>
+  <script src="https://dka575ofm4ao0.cloudfront.net/assets/status_common-c1b99d73ee7ab0fea796bd170723c1daac1381095a7dd7501a38ce6f333d86b3.js"></script>
+    <script>
+      SP.pollForChanges('/api/v2/status.json');
+    </script>
+
+  <script>
+    $(function() {
+      $('.tool').tooltipster({
+        animationDuration: 100,
+        contentAsHTML: true,
+        delay: 100,
+        theme: 'tooltipster-borderless',
+        functionInit: function (instance, helper) {
+          var $origin = $(helper.origin),
+              dataOptions = $origin.attr('data-tooltip-config');
+          if (dataOptions){
+            dataOptions = JSON.parse(dataOptions);
+            $.each(dataOptions, function(name, option){
+                instance.option(name, option);
+            });
+          }
+        }
+      });
+      // clicks on first tab in subscribe popout since we won't know which is first
+      // upon construction in the ruby code
+      $('.updates-dropdown-nav > a').eq(0).click();
+
+      // twitter follow button needs some margin
+      $('.twitter-follow-button').css('margin-right', '6px');
+    });
+
+    $(function() {
+      // open/close component groups
+      HRB.utils.djshook('component-group-opener').on('click', function() {
+        var groupParentIndicator = $(this).find('.group-parent-indicator');
+        groupParentIndicator.toggleClass('fa-plus-square-o').toggleClass('fa-minus-square-o').end().parent().toggleClass('open');
+        toggleGroup(groupParentIndicator)
+      });
+    });
+
+    $(function() {
+      HRB.utils.djshook('component-group-opener').on('keydown', function(event) {
+        if (event.key !== "Enter" && event.key !== " ") {
+          return;
+        }
+        event.preventDefault()
+        var groupParentIndicator = $(this).find('.group-parent-indicator');
+        groupParentIndicator.toggleClass('fa-plus-square-o').toggleClass('fa-minus-square-o').end().parent().toggleClass('open');
+        toggleGroup(groupParentIndicator)
+      });
+    });
+
+    function toggleGroup(groupParentIndicator) {
+      var isOpen = groupParentIndicator.attr('aria-expanded')
+      if (isOpen == 'false') {
+          groupParentIndicator.attr('aria-expanded', 'true');
+        } else {
+          groupParentIndicator.attr('aria-expanded', 'false');
+        }
+    }
+
+    $(function() {
+      $(document).on('ajax:complete', '.modal.in', function(e) {
+        // Close the active modal.
+        $('.modal.in').modal('hide');
+      });
+    });
+
+  </script>
+
+
+      <script>
+  /** INITIALIZATION **/
+  var recaptchaIds = {}
+
+  // Unfortunately there's no unique selectors on the parent divs that recaptcha adds. The first unique selector
+  // is the iframe rendered 2 levels deep. So this waits until the iframes are added to the page, then finds
+  // the parent div and sets the z index so that it'll render above our modals & dropdowns from the start.
+  function setZIndex(captchaCount, startTime) {
+    // bail after 10s just in case so we don't do this forever if something whaky happens
+    if (new Date() - startTime > 10000) {
+      return;
+    }
+
+    var iframes = document.querySelectorAll('iframe[title="recaptcha challenge"]');
+    if (iframes.length != captchaCount) {
+      setTimeout(function() {
+        setZIndex(captchaCount, startTime);
+      }, 500);
+    }
+
+    for (var i = 0; i < iframes.length; i++) {
+      // incident subscribe modal is 1050, so this has to be above that
+      iframes[i].parentElement.parentElement.style.zIndex = "1100";
+    }
+  }
+
+  function updateCaptchaIframeTitle(captchaCount, startTime, updates=0) {
+
+    if (new Date() - startTime > 10000 || captchaCount === updates) {
+      return;
+    }
+    var iframesWithTitle = document.querySelectorAll('iframe[title="recaptcha challenge expires in two minutes"]');
+
+    if (iframesWithTitle.length != captchaCount) {
+      setTimeout(function() {
+        updateCaptchaIframeTitle(captchaCount, startTime, iframesWithTitle.length + updates);
+      }, 500);
+    }
+
+    for (var i = 0; i < iframesWithTitle.length; i++) {
+      iframesWithTitle[i].title = "recaptcha";
+    }
+  }
+
+  function addIncidentCaptcha() {
+    var incidentCaptcha = document.createElement('div');
+    incidentCaptcha.setAttribute('id', 'subscribe-incident-recaptcha');
+    incidentCaptcha.setAttribute('class', 'g-recaptcha');
+    incidentCaptcha.setAttribute('data-sitekey', '6LcZ-b0UAAAAAENi956aWzynTT2ZJ80dGU3F80Op');
+    incidentCaptcha.setAttribute('data-callback', 'submitIncidentSubscriberSuccess');
+    incidentCaptcha.setAttribute('data-error-callback', 'submitIncidentSubscriberError');
+    incidentCaptcha.setAttribute('data-size', 'invisible');
+    document.body.appendChild(incidentCaptcha);
+    var incidentCode = document.createElement('input');
+    incidentCode.setAttribute('type', 'hidden');
+    incidentCode.setAttribute('id', 'submit_incident_code');
+    document.body.appendChild(incidentCode);
+  }
+
+  var onloadCallback = function() {
+    // if there is an incident, then add incident captcha element
+    if (document.getElementsByClassName('modal-open-incident-subscribe').length > 0) {
+      addIncidentCaptcha();
+    }
+
+    var captchas = document.getElementsByClassName("g-recaptcha");
+
+    for(var i = 0; i < captchas.length; i++) {
+      var elId = captchas[i].id;
+      recaptchaIds[elId] = grecaptcha.enterprise.render(elId);
+    }
+
+    setZIndex(captchas.length, new Date());
+    updateCaptchaIframeTitle(captchas.length, new Date());
+  }
+
+
+  /** SUBSCRIBE DROPDOWN */
+
+  // callbacks for captcha success
+  function submitNewSubscriber(type, error) {
+    if (error) document.querySelector('#subscribe-form-' + type + ' #captcha_error').value = 'true';
+
+    document.getElementById('subscribe-form-' + type).dispatchEvent(new Event('submit', {bubbles: true, cancelable: true}));
+    grecaptcha.enterprise.reset(recaptchaIds['subscribe-btn-' + type]);
+  }
+  function submitNewEmailSubscriber(token) {
+    submitNewSubscriber('email');
+  }
+  function submitNewSmsSubscriber(token) {
+    submitNewSubscriber('sms');
+  }
+  function submitNewWebhookSubscriber(token) {
+    submitNewSubscriber('webhook');
+  }
+  function submitIncidentSubscriber(token, error) {
+    var incidentCode = document.getElementById('submit_incident_code').value;
+    var incidentForm = document.getElementById('subscribe-form-' + incidentCode);
+
+    incidentForm.querySelector('input[name="captcha_error"]').value = error;
+    incidentForm.querySelector('input[name="g-recaptcha-response"]').value = token;
+    incidentForm.dispatchEvent(new Event('submit', {bubbles: true, cancelable: true}));
+    grecaptcha.enterprise.reset(recaptchaIds['subscribe-incident-recaptcha']);
+  }
+  function submitIncidentSubscriberSuccess(token) {
+    submitIncidentSubscriber(token, 'false');
+  }
+
+  // callbacks if we get captcha network errors
+  function emailSubscriberCaptchaError(token) {
+    submitNewSubscriber('email', true);
+  }
+  function smsSubscriberCaptchaError(token) {
+    submitNewSubscriber('sms', true);
+  }
+  function webhookSubscriberCaptchaError(token) {
+    submitNewSubscriber('webhook', true);
+  }
+  function submitIncidentSubscriberError(token) {
+    submitIncidentSubscriber(token, 'true');
+  }
+
+  // tracking clicks
+  ['email', 'sms', 'webhook'].forEach(function(type) {
+    var el = document.getElementById('subscribe-btn-' + type);
+    el && el.addEventListener("click", function() {
+      $.ajax({
+        type: "POST",
+        url: "/subscriptions/track_attempt",
+        data: {
+          type: type
+        }
+      })
+    })
+  })
+
+  // form submission success callbacks
+  $('#subscribe-form-email').on('ajax:success', function(e, data, status, xhr){
+    if (data.type === 'success') {
+      SP.currentPage.updatesDropdown.hide();
+      document.getElementById('email').value = '';
+    }
+  });
+  $('#subscribe-form-sms').on('ajax:success', function(e, data, status, xhr){
+    if (data.type === 'success' && data.otp_flow !== true) {
+      SP.currentPage.updatesDropdown.hide();
+      document.getElementById('phone-number').value = '';
+    }
+  });
+  $('#subscribe-form-webhook').on('ajax:success', function(e, data, status, xhr){
+    if (data.type === 'success') {
+      SP.currentPage.updatesDropdown.hide();
+      document.getElementById('endpoint-webhooks').value = '';
+      document.getElementById('email-webhooks').value = '';
+    }
+  });
+
+  $('a.subscribe').on('click', function() {
+    document.body.style.overflow = "hidden";
+    document.body.style.height = "100vh";
+  });
+
+  $('div.modal-open-incident-subscribe').on('hidden', function(){
+    document.body.style.overflow = "";
+    document.body.style.height = "";
+  });
+
+  function submitCaptchaIncidentSubscribe(event) {
+    var incidentCode = event.target.id.split('-')[2];
+    event.preventDefault();
+
+    $.ajax({
+      type: "POST",
+      url: "/subscriptions/track_attempt",
+      data: {
+        type: 'incident'
+      }
+    })
+
+    document.getElementById('submit_incident_code').value = incidentCode;
+    grecaptcha.enterprise.execute(recaptchaIds['subscribe-incident-recaptcha']);
+  }
+</script>
+
+<script src='https://www.recaptcha.net/recaptcha/enterprise.js?onload=onloadCallback&render=explicit' async defer></script>
+
+
+    
+  <script src="https://dka575ofm4ao0.cloudfront.net/packs/common-c3ca024b93f2e64d6f01.chunk.js"></script>
+  <script src="https://dka575ofm4ao0.cloudfront.net/packs/globals-3e964b59fb236dbfabd1.chunk.js"></script>
+
+    <script src="https://dka575ofm4ao0.cloudfront.net/packs/runtime-845beefc293f0b2f3a9a.js"></script>
+    
+    
+
+
+    <script>
+  window.addEventListener('load', function () {
+    const urlParams = new URLSearchParams(window.location.search);
+    const messageToken = urlParams.get('slack_message_token');
+    const channelName = escape(urlParams.get('channel_name'));
+
+    if(!!messageToken) {
+      switch(messageToken) {
+        case 'slack_auth_error':
+          HRB.utils.notify('The Slack authorization attempt was unsuccessful. Try again.', {cssClass:'error'});
+          break;
+        case 'subscribers_disabled_error':
+          HRB.utils.notify('Slack subscriptions are not enabled on this page.', {cssClass:'error'});
+          break;
+        case 'direct_message_channel_error':
+          HRB.utils.notify('Subscriptions aren’t supported in direct messages. Try subscribing again and choose a channel instead.', {cssClass:'error'});
+          break
+        case 'duplicate_error':
+          HRB.utils.notify("You're already subscribed to get Slack notifications in that channel.", {cssClass:'error'});
+          break;
+        case 'duplicate_private_channel_error':
+          HRB.utils.notify(`You're already subscribed to get Slack notifications in #${channelName}. Invite the @Statuspage app to that channel to start getting status updates.`, {cssClass: 'error'});
+          break;
+        case 'default_success':
+          HRB.utils.notify("You're now subscribed to get Statuspage updates in Slack!", {cssClass:'success'});
+          break;
+        case 'private_channel_success':
+          HRB.utils.notify(`IMPORTANT: Invite the @Statuspage app to your Slack channel #${channelName} to start getting status updates.`, {cssClass:'success'});
+          break;
+      }
+    }
+  });
+</script>
+
+    
+<!-- FOR FLASH NOTICES -->
+
+<!-- FOR ERROR -->
+
+
+    <script>
+  $(function() {
+    var $link = $('<span class="color-secondary powered-by"><a class="color-secondary" target="_blank" rel="noopener noreferrer nofollow" href="https://www.atlassian.com/software/statuspage?utm_campaign=health.autodesk.com&amp;utm_content=SP-notifications&amp;utm_medium=powered-by&amp;utm_source=inapp">Powered by Atlassian Statuspage</a></span>');
+
+  	var setPoweredByStyles = function() {
+  		if (!$('.powered-by').length) {
+  			$link.appendTo($('.page-footer'))
+  		}
+  		$('.powered-by').attr('style', 'display: inline !important; visibility:visible !important; opacity: 1 !important; position:static !important; text-indent:0px !important; transform:scale(1) !important');
+  	}
+
+  	setInterval(setPoweredByStyles, 1000);
+  });
+</script>
+
+
+
+
+
+  </body>
+</html>

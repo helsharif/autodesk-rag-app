@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?xml version="1.0" encoding="UTF-8"?><html xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="topic-type" content="task-adsk">
+<meta name="helpsystempath" content="https://help.autodesk.com/view/ACAD_E/2022/ENU/">
+<meta name="product" content="ACAD_E">
+<meta name="release" content="2022">
+<meta name="book" content="GeneralUser">
+<meta name="component" content="AutoCAD-Electrical">
+<meta name="created" content="20/10/2021">
+<meta name="user-comments" content="disable">
+<meta name="experiencelevel" content="general">
+<meta name="audience" content="user">
+<meta name="modified" content="15/07/2015">
+<meta name="topicid" content="GUID-9527C579-9311-4F8C-B87B-D66474C29173">
+<meta name="language" content="ENU">
+<title>Circuit Builder: To Link a Child Contact to the Parent</title>
+
+	<link rel="stylesheet" type="text/css" href="/view/clientframework/client.css">
+	<script type="text/javascript" src="/view/clientframework/client.js"><!--filler--></script>
+</head>
+<body id="GUID-9527C579-9311-4F8C-B87B-D66474C29173">
+<div class="head">
+<div class="head-block">
+<div class="button-info"><span id="infoline">&nbsp;</span></div>
+<div class="ancestry">&nbsp;</div>
+<div class="head-text"><h1>Circuit Builder: To Link a Child Contact to the Parent</h1></div>
+</div>
+</div>
+
+<div class="body taskbody-adsk">
+<p class="p" id="GUID-9527C579-9311-4F8C-B87B-D66474C29173__GUID-F3998C39-E1EE-4DB4-ADB1-BA0E0F8F6472">As Circuit Builder dynamically builds the circuit, each component receives a component tag. A child contact must link to a parent component to receive the same component tag as the parent. </p>
+<p class="p" id="GUID-9527C579-9311-4F8C-B87B-D66474C29173__GUID-95C08922-69E3-4A00-A3C9-94B548FA690B">The parent and child components are automatically linked by Circuit Builder if they each have the same default tag value. For example, the motor starter coil and auxiliary contacts both have a default value &ldquo;M&rdquo;. </p>
+<p class="p" id="GUID-9527C579-9311-4F8C-B87B-D66474C29173__GUID-2A3D58B3-9F45-44BB-86D3-1D4F453AA777">There can be more than one parent/child relationship within the overall circuit with the same default tag. The overall circuit includes the main circuit template and any branching or nested circuit templates. For example, a reversing motor starter has two starter coils, forward and reverse. Each parent coil must link to the correct child auxiliary contacts and power contacts but they might all have the same default tag value, &ldquo;M&rdquo;. To accomplish the correct parent/child links follow these steps. </p>
+<ol class="ol" id="GUID-9527C579-9311-4F8C-B87B-D66474C29173__WS73099CC142F4875535A241551166AC8792F114B">
+<li class="li" id="GUID-9527C579-9311-4F8C-B87B-D66474C29173__LI_2412E1CB3F004B58851A2953C44A249A">Open the circuit template drawings that contain the parent and child marker blocks. There can be more than one circuit template drawing involved, for example a main template with power contacts and a nested template with the starter coils and interlocking auxiliary contacts. </li>
+<li class="li" id="GUID-9527C579-9311-4F8C-B87B-D66474C29173__LI_F3D28D2F144C48C3AC19536B6EF0A948">Find the correct marker block for each component that requires a new default tag link. </li>
+<li class="li" id="GUID-9527C579-9311-4F8C-B87B-D66474C29173__LI_875FDD72974F41299195E18F463B2230">Edit the MISC1 attribute value adding &ldquo;_PRETAG={new default tag link}&rdquo;. For example, add &ldquo;_PRETAG=MF&rdquo; for the forward motor coil and contacts, and &ldquo;_PRETAG=MR&rdquo; for the reverse motor coil and contacts. <div class="fig fignone" id="GUID-9527C579-9311-4F8C-B87B-D66474C29173__WS73099CC142F48755-4607E7CC11B1CFFF571-3EB0"><img class="image" id="GUID-9527C579-9311-4F8C-B87B-D66474C29173__IMAGE_BD24FEC805A0418B867E015F8D162480" width="304" height="393" src="../images/GUID-BE1037F1-55EF-4365-B4C0-773C2D9D4331.png"></div>
+ <div class="note note" id="GUID-9527C579-9311-4F8C-B87B-D66474C29173__GUID-F533CA01-AA95-4D8F-9403-0918506BF984">
+<span class="notetitle">Note:</span> The MISC1 attribute value can contain multiple special text flags which direct Circuit Builder to handle the component or underlying wire in a special way. When you add new values, do not overwrite any other special flag values. Separate each one with a semicolon. </div>
+ </li>
+<li class="li" id="GUID-9527C579-9311-4F8C-B87B-D66474C29173__LI_F15B6E364B7B4A0E98481CAFECF82555">Save the circuit template drawings. <p class="p" id="GUID-9527C579-9311-4F8C-B87B-D66474C29173__GUID-B17DC11A-4DAF-4E04-BDF1-B81FF87AB156">When Circuit Builder inserts the nested circuit containing the child contacts, it matches these predefined tag values with the correct parent coil. </p>
+ <div class="fig fignone" id="GUID-9527C579-9311-4F8C-B87B-D66474C29173__WS1A9193826455F5FF5CF1D02511B1D0009782D8B"><img class="image" id="GUID-9527C579-9311-4F8C-B87B-D66474C29173__IMAGE_87AB8875EE544F8C8CB601BE764C7569" width="369" height="258" src="../images/GUID-CA89F89D-9A8F-49E3-9CAD-14E4D33B246E.png"></div>
+ </li>
+</ol>
+</div>
+<div class="related-links">
+<div class="relinfo relconcepts">
+<h4 class="related">Related Concepts</h4>
+<ul><li><a class="link" href="GUID-F2340AAB-B324-48FB-A3CE-AF382488B5CE.htm">About Customizing Circuit Builder</a></li></ul>
+</div>
+<div class="relinfo relref">
+<h4 class="related">Related Reference</h4>
+<ul><li><a class="link" href="GUID-4544D942-376F-4762-B133-AA93AED0197D.htm">To Customize Circuit Builder Task List</a></li></ul>
+</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?xml version="1.0" encoding="UTF-8"?><html xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="topic-type" content="concept">
+<meta name="helpsystempath" content="https://help.autodesk.com/view/ARCHDESK/2022/ENU/">
+<meta name="product" content="ARCHDESK">
+<meta name="release" content="2022">
+<meta name="book" content="GeneralUser">
+<meta name="component" content="AutoCAD-Architecture">
+<meta name="created" content="23/3/2021">
+<meta name="applies-to" content="BLDSYS=2022">
+<meta name="user-comments" content="disable">
+<meta name="description" content="Check out and check in files to maintain versioning, prevent unauthorized modifications, and ensure drawing integrity.">
+<meta name="cmdname" content="AECVCOMPARE">
+<meta name="cmdname" content="AECVCOMPARENEWCOLOR">
+<meta name="cmdname" content="AECVCOMPAREOLDCOLOR">
+<meta name="cmdname" content="AECVCOMPAREUNCHANGEDCOLOR">
+<meta name="cmdname" content="AECVCOMPAREIGNORETEXT">
+<meta name="cmdname" content="AECVCOMPAREIGNOREHATCH">
+<meta name="modified" content="06/01/2021">
+<meta name="topicid" content="GUID-41737793-3370-448A-AC45-D33DE1EC9967">
+<meta name="language" content="ENU">
+<title>About Drawing Version Management in the Project Navigator</title>
+
+	<link rel="stylesheet" type="text/css" href="/view/clientframework/client.css">
+	<script type="text/javascript" src="/view/clientframework/client.js"><!--filler--></script>
+</head>
+<body id="GUID-41737793-3370-448A-AC45-D33DE1EC9967">
+<div class="head">
+<div class="head-block">
+<div class="button-info"><span id="infoline">&nbsp;</span></div>
+<div class="ancestry">&nbsp;</div>
+<div class="head-text"><h1>About Drawing Version Management in the Project Navigator</h1></div>
+</div>
+</div>
+
+<div class="body conbody">
+<p class="shortdesc">Check out and check in files to maintain versioning, prevent unauthorized modifications, and ensure drawing integrity. </p>
+<p class="p" id="GUID-41737793-3370-448A-AC45-D33DE1EC9967__GUID-E948EE59-EE5D-41B2-BE88-08D49EA87B47">Project Navigator allows drawing versioning for <span class="ph msgph prodname">AutoCAD Architecture 2022 toolset</span> and <span class="ph msgph prodname">AutoCAD MEP 2022 toolset</span> drawings. This ensures informed collaboration between multiple users and prevents unauthorized modifications to the drawings. </p>
+<p class="p" id="GUID-41737793-3370-448A-AC45-D33DE1EC9967__GUID-99EA5D70-FF3F-4A6F-AA2E-D506E4D03410">When a project involves multiple users working together on a set of drawings, it is essential to have a file locking and versioning mechanism to ensure that all changes are recorded and there are no access clashes. When you check out a drawing from the Project Navigator, other users only have read-only access to the drawing and can view the last saved version of the drawing, till you check the drawing back in. This ensures that there are no file access conflicts and each modification made to a drawing is recorded. </p>
+<p class="p" id="GUID-41737793-3370-448A-AC45-D33DE1EC9967__GUID-4BA7E868-E525-4BCC-ABCC-FEB59BD65229">Changes being made to the checked out drawing are not dynamically visible to other users and as the checked out file is saved, no xref notifications are sent to others which can be an interruption to their work. </p>
+<p class="p" id="GUID-41737793-3370-448A-AC45-D33DE1EC9967__GUID-08BB5402-C31E-443E-AFD9-902368A78998">Hovering over a file in the Project Navigator shows you the status of the file, the name of the drawing, its location, the size of the file, the date and time the file was last checked in, the name of the user who last checked-in the file, and the check in version history with the check-in comments. Red checkmarks indicate that the drawing is checked out by another user, and a green checkmark indicates that the drawing is checked out by you. </p>
+<p class="p" id="GUID-41737793-3370-448A-AC45-D33DE1EC9967__GUID-FED59652-CDAC-4CBA-9ECD-B37D91238923">When you check out a file, make modifications and check it back in, you are prompted to add comments on the changes you have made. This information is displayed in the Check-In Version History, along with your user name, your domain or computer name, and the date and time of the check-in. </p>
+<p class="p" id="GUID-41737793-3370-448A-AC45-D33DE1EC9967__GUID-A247B48A-0B42-4BBC-8093-3A6EA4C47BF5">Every time you check-in a file, <span class="ph msgph prodname">AutoCAD Architecture 2022 toolset</span> creates a backup file in the same folder where the drawing is stored, with the drawing name appended with check in time. If during the course of a project, you wish to revert to an earlier version of the drawing, the comments history makes it easier for you choose the backup file version you wish to roll back to. </p>
+</div>
+<div class="related-links">
+<div class="relinfo relconcepts">
+<h4 class="related">Related Concepts</h4>
+<ul>
+<li><a class="link" href="GUID-BDA8F9DF-B9C2-4014-B783-E12C9CAC90CD.htm">About Project Navigator</a></li>
+<li><a class="link" href="GUID-DE1F5CD8-0F9C-4322-AEEC-DEB66938DCC7.htm">FAQ: What is the default number of backup files in the Project Navigator and how can I change it?</a></li>
+<li><a class="link" href="GUID-1EBD6E2D-F9B3-4567-A2A0-E55365AEB7E0.htm">FAQ: How can I make a checked out file writable?</a></li>
+<li><a class="link" href="GUID-05B7D96F-6CCA-4263-857C-B4535F70FDAF.htm">FAQ: What is the difference between a locked file and a checked out file?</a></li>
+<li><a class="link" href="GUID-1067B1F9-4B7C-4FF9-88A3-6961B8326653.htm">About Drawing Management</a></li>
+</ul>
+</div>
+<div class="relinfo reltasks">
+<h4 class="related">Related Tasks</h4>
+<ul><li><a class="link" href="GUID-D3651157-74B2-4109-9CDA-F9CCC0587C00.htm">To Check Out and Check In Drawings from the Project Navigator</a></li></ul>
+</div>
+</div>
+
+</body>
+</html>

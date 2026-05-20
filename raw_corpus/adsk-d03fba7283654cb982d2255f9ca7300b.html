@@ -1,0 +1,238 @@
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <title>Autodesk - RegisterOnce</title>
+    <link rel="stylesheet" type="text/css" href="../styles/main.css" media="all"/>
+    <link rel="stylesheet" type="text/css" href="../styles/regOnce.css" media="all"/>
+    <meta name="robots" content="noindex" />
+    <SCRIPT LANGUAGE=JavaScript>
+        var warningString = "<B>WARNING:</B> Cookies are disabled for your Internet browser and we are unable to log you into your account.<BR> Please enable Cookies for your Internet browser and Login again.";
+        document.cookie = 'acceptsCookies=yes';
+        if (document.cookie == '') {
+            document.write(warningString);
+        } else {
+            document.cookie = 'acceptsCookies=yes; expires=Fri, 13-Apr-1970 00:00:00 GMT';
+        }
+    </SCRIPT>
+    <script src="/wsjs/utils.js"></script>
+    <script language="javascript">
+        if (document.layers) {
+            document.captureEvents(Event.MOUSEDOWN);
+            document.onmousedown = clickNS4;
+        }
+        else if (document.all && !document.getElementById) {
+            document.onmousedown = clickIE4;
+        }
+        document.oncontextmenu = new Function("return false")
+    </script>
+
+    <NOSCRIPT>
+        <B>WARNING:</B> Cookies are disabled for your Internet browser and we are unable to log you into your
+        account.<BR> Please enable Cookies for your Internet browser and Login again.
+    </NOSCRIPT>
+    <script language="JavaScript">
+        //--Get/Set cookie for Akamai
+        var akamai_cookie_name = "lb-info";
+        var akamai_cookie_value = "lb1-partnercenter.autodesk.com";
+
+        var akamai_cookie = get_cookie(akamai_cookie_name);
+        if (akamai_cookie != akamai_cookie_value) {
+            set_Cookie(akamai_cookie_name, akamai_cookie_value);
+        }
+
+        var languageinfo = navigator.language ? navigator.language : navigator.userLanguage;
+
+        function onLoad() {
+
+            // VA popup
+            function openVA() {
+                // Do some platform/browser sniffing to workaround
+                // window.open bugs in chrome (OSX) and safari
+                var is_osx = navigator.userAgent.indexOf("Mac OS X") != -1;
+                var is_chrome = navigator.userAgent.indexOf('Chrome') > -1;
+                var is_safari = navigator.userAgent.indexOf("Safari") > -1;
+                // Chrome has both "Chrome" and "Safari" in userAgent string
+                if (is_chrome && is_safari) is_safari = false;
+
+                // set default height
+                var height = "552";
+                // Account for window.open method bugs
+                // Account for window.open method bugs
+                if (is_osx && is_chrome) {
+                    height = "580";
+                } else if (is_safari) {
+                    height = "502";
+                }
+                // Generate url and open window
+	               // var url = "http://autodesk.creativevirtual15.com/autodesk/bot.html?isJSEnabled=1&businessArea=Root.Front%20Desk&startContext=Root.Front%20Desk";
+                    var url = "https://ava.autodesk.com";
+	                window.open(url, 'VA', 'width=581,height=' + height + ',titlebar=0,toolbar=0,location=0,status=0,resizable=1');
+            };
+
+            // add event listener to the ASK button
+            var vaEl = document.getElementById("vAgentBtn");
+            if (vaEl) {
+                if (vaEl.addEventListener) {
+                    vaEl.addEventListener("click", openVA);
+                } else {
+                    vaEl.attachEvent("onclick", openVA);
+                }
+            }
+        }
+    </script>
+
+
+    <script language="JavaScript">
+        function getStyleObject(objectId) {
+            if (document.getElementById && document.getElementById(objectId)) {
+                return document.getElementById(objectId).style;
+            } else if (document.all && document.all(objectId)) {
+                return document.all(objectId).style;
+            } else if (document.layers && document.layers[objectId]) {
+                return document.layers[objectId];
+            } else {
+                return false;
+            }
+
+        }
+        function changeObjectVisibility(objectId, newVisibility) {
+            var styleObject = getStyleObject(objectId);
+            if (styleObject) {
+                styleObject.visibility = newVisibility;
+            }
+        }
+
+
+    </script>
+
+    <script language="JavaScript">
+        if (parent.frames.length > 0) {
+            parent.location.href = "/";
+        }
+
+
+    </script>
+    <style>
+        .hide {
+            display: none;
+            visibility: hidden;
+        }
+    </style>
+
+
+
+
+</head>
+
+<body id="nobgrd" onLoad="onLoad()">
+
+<div id="container">
+    <h1 id="banner"><a href="#" title="Autodesk - RegisterOnce">Autodesk - RegisterOnce</a></h1>
+    <div id="heading">
+        <h2>Autodesk Product Registration and Activation</h2>
+    </div>
+    <div class="banner-message">
+        <div class="warning-icon-container">
+            <image class="warning-icon" src="../styles/images/warning-icon.png"/>
+        </div>
+        <div class="banner-content">We have upgraded our Sign In system. If you receive the error message
+            “Email address / username and password do not match.” while trying to register, click “Forgot?” — then
+            follow the instructions to choose a new password.</div>
+
+    </div>
+    <div id="content-box">
+        <div class="clearfix">
+            <div class="col-left">
+                <script type="text/javascript">
+
+                    var url = window.location.hostname;
+                    url = url.toLowerCase();
+                    if (!url.match("partnercenter")) {
+                    }
+
+
+                </script>
+
+
+               To register and activate licenses for <b>education institutions*</b>, click the "Register Now" button.<br/><br/>
+
+				*To activate other license types, <a href="https://www.autodesk.com/sign-in-activation-eng" target="_blank">sign in</a> to the product or enter <a href="https://www.autodesk.com/access-with-serial-number-eng" target="_blank"> a serial number</a>.
+				If you need to activate offline, see the instructions in <a href="https://knowledge.autodesk.com/customer-service/download-install/activate/manual-activation-registration/activation-codes" target="_blank"> Activate Offline with Activation Code (Perpetual)</a>.
+                <br/><br/>
+                 <!-- <br/><br/>Registered Autodesk users are able to access various Autodesk services including:
+                <ul class="bullet">
+                    <li>Product Registration and Activation</li>
+                    <li>Partner Center</li>
+                    <li>Web Support</li>
+                </ul>
+                -->
+
+            </div>
+            <div class="col-right">
+
+                    <div class="box_gray" style="margin-top: 35px;">
+
+                        <script type="text/javascript">
+
+                            var url = window.location.hostname;
+                            url = url.toLowerCase();
+                            if (!url.match("partnercenter")) {
+
+                            }
+
+
+                        </script>
+                        <form method="get" action="/o2login">
+
+                            <p style="text-align:center">
+                                <input class="button" id="o2LoginBtn"
+                                       style="background-color: #0696D7;display:inline-block; color: rgb(255, 255, 255); font-weight: bold;font-size: 120%; text-align: center; padding: 2px; border-radius: 5px 5px 5px 5px; position: relative; cursor: pointer; margin: 0px; height: 22.5px; width: 105px;"
+                                       type="submit" name="btnSubmit" value="Register Now"/>
+
+                            </p>
+
+                        </form>
+
+                    </div>
+                </>
+            </div>
+
+
+            <p style="clear: both;">The information you provide will be used by Autodesk to register and/or issue your
+                activation code, to keep you informed about our products and services, and to ensure that you benefit
+                from being an authorized Autodesk user. Autodesk does not sell or otherwise provide your information to
+                anyone outside of Autodesk or our Authorized Business Partners. If you wish to correct your registration
+                data, please click on the "Virtual Agent" button below to contact Autodesk or contact your local Autodesk office.</p>
+
+
+            <div class="col-left">
+<div id="virtualAgentContainer">
+<div id="vAgent" style="background-color: #f2f2f2;height: 55px;color: rgb(51, 51, 51);position: relative;margin: 0px;padding: 10px;text-align: center;width: 180px;">
+                       
+                       <img id="vAgentBtn" style="float:left;display:inline-block;color: rgb(255, 255, 255);font-weight: bold;font-size: 120%;text-align: center;padding: 5px;position: relative;cursor: pointer;margin: 0px;height: 55px;width: 60px;" src="../styles/images/AVA-avatar1.png">
+<div style="margin-top: 15px;width: 140px;height: 80px;">
+   <p style="margin-top: 0px;padding-left: 0px;width: 150px;margin-bottom: 0px;"> Questions?</p>
+					<p style="margin-top: 0px;padding-left: 0px;width: 138px;margin-bottom: 0px;"> <b>Ask Ava </b></p>
+					<p style="margin-top: 0px;padding-left: 0px;width: 190px;margin-bottom: 0px;height: 30px;padding-right: 0px;border-right-width: 20px;margin-right: 0px;"> Get an answer now</p></div>
+                       
+                   </div>
+               </div>
+            </div>
+        </div>
+    </div>
+    <div id="adsk81-footer">
+        <ul>
+            <li>&copy; Copyright 2019 Autodesk, Inc. All rights reserved.
+                <ul class="first">
+                    <li class="first"><a href="http://www.autodesk.com/trademark" target="ADSK_EXTRA_WINDOW">Legal
+                        Notices &amp; Trademark</a></li>
+                    <li><a href="http://www.autodesk.com/privacy" target="ADSK_EXTRA_WINDOW">Privacy Policy</a></li>
+                    <li><a href="http://www.autodesk.com/contact" target="ADSK_EXTRA_WINDOW">Contact Autodesk</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+</div>
+</body>
+</html>

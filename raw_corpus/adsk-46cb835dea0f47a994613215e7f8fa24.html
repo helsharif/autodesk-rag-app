@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Autodesk Drive</title>
+        <meta charset="utf-8" />
+        <meta name="description" content="Autodesk Drive" />
+        <meta name="keywords" content="autodesk drive, drive, autodesk, autocad, dwg, design, share, files, search, view, viewer, upload files, file sharing, cloud drive, online drive, cloud storage, dwg file" />
+        <meta
+            name="google-site-verification"
+            content="Ybi6Lo6hqOS6Vpaelt8chHHmn8xu0mOdCG1OjVb7Ywk"
+        />
+        <meta name="robots" content="all" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+        <link
+            rel="icon"
+            href="/v2.21.1/favicon.svg"
+            sizes="any"
+            type="image/svg+xml"
+        />
+        <link rel="preload" href="/v2.21.1/styles/drive.css" as="style" />
+        <link rel="stylesheet" href="/v2.21.1/styles/drive.css" />
+        <link rel="preconnect" href="https://damassets.autodesk.net" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://www.google-analytics.com" />
+    </head>
+    <body>
+        <div id="initial-load-spinner" class="sbl-circ-path"></div>
+        <div id="unsupported">
+            <div id="backdrop">
+                <h5>Please upgrade your Browser.</h5>
+                <div class="unsupported-block">
+                    <p>
+                        We built Autodesk Drive using the latest technologies
+                        that help us offer a better experience. Unfortunately,
+                        we do not support this browser.
+                    </p>
+                    <p class="title">
+                        Please download one of these free and up-to-date
+                        browsers:
+                    </p>
+                    <ul>
+                        <li>
+                            <a
+                                href="https://www.mozilla.com/firefox/"
+                                target="_blank"
+                                >Firefox</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                href="https://www.google.com/chrome/browser/desktop/"
+                                target="_blank"
+                                >Chrome</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                href="https://support.apple.com/en-us/HT204416"
+                                target="_blank"
+                                >Safari</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                href="https://www.microsoft.com/en-us/windows/microsoft-edge"
+                                target="_blank"
+                                >Microsoft Edge</a
+                            >
+                        </li>
+                    </ul>
+                </div>
+                <div class="unsupported-block">
+                    <p class="unsupported-instruction">
+                        Please check with your system administrator to update
+                        your browser if you cannot install updates yourself.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <style>
+            html,
+            body {
+                height: 100%;
+                width: 100%;
+                margin: 0;
+                overflow-x: hidden;
+                overflow-y: auto;
+            }
+            #unsupported {
+                height: 100%;
+                width: 100%;
+                overflow: auto;
+                display: none;
+                position: fixed;
+                z-index: 99999;
+            }
+            #backdrop {
+                height: 100%;
+                width: 100%;
+                padding: 20px;
+                background: #f2f2f2;
+                color: rgba(0, 0, 0, 0.87);
+                font-size: 15px;
+            }
+            .unsupported-block {
+                margin-top: 25px;
+            }
+            .unsupported-instruction {
+                font-style: italic;
+                font-weight: 400;
+            }
+            .sbl-circ-path {
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                height: 48px;
+                width: 48px;
+                color: rgba(90, 90, 90, 0.2);
+                position: relative;
+                display: inline-block;
+                border: 5px solid;
+                border-radius: 50%;
+                border-right-color: #48a0f8;
+                animation: rotate 1s linear infinite;
+            }
+            @keyframes rotate {
+                0% {
+                    transform: rotate(0);
+                }
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+            #adsk-eprivacy-privacy-settings-footer-container {
+                display: none;
+            }
+        </style>
+        <script>
+            try {
+                new Function('return (() => 10)();')();
+            } catch (ex) {
+                document.getElementById('unsupported').style.display = 'block';
+            }
+        </script>
+        <script src="/v2.21.1/drive.js" async></script>
+        <script
+            src="https://www.dropbox.com/static/api/2/dropins.js"
+            id="dropboxjs"
+            data-app-key="dhbuuj69at30u0o"
+            async
+            defer
+        ></script>
+        <script
+            src="//tags.tiqcdn.com/utag/autodesk/viewer/prod/utag.js"
+            async
+            defer
+        ></script>
+        <script>
+            const loader = document.getElementById('initial-load-spinner');
+            loader.parentNode.removeChild(loader);
+        </script>
+    </body>
+</html>

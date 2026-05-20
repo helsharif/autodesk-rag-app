@@ -1,0 +1,1206 @@
+
+<!DOCTYPE html>
+	<html 
+		lang="en-US" 
+		data-siteurl='https://blogs.autodesk.com/vault'
+		data-postsperpage='9'
+	>
+		<head>
+			<meta charset="UTF-8" />
+			<meta name="viewport" content="width=device-width" />
+			<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+			<script type="text/javascript">
+				var themeRootURL = "https://blogs.autodesk.com/vault/wp-content/themes/autodesk-classic";
+			</script>
+
+			<meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
+
+	<!-- This site is optimized with the Yoast SEO plugin v21.5 - https://yoast.com/wordpress/plugins/seo/ -->
+	<title>Under the Hood - All things PDM and PLM - Get under the hood of data management and product lifecycle management.</title>
+	<meta name="description" content="Get under the hood of data management and product lifecycle management." />
+	<link rel="canonical" href="https://blogs.autodesk.com/vault/" />
+	<link rel="next" href="https://blogs.autodesk.com/vault/page/2/" />
+	<meta property="og:locale" content="en_US" />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="Autodesk Vault" />
+	<meta property="og:description" content="Get under the hood of data management and product lifecycle management." />
+	<meta property="og:url" content="https://blogs.autodesk.com/vault/" />
+	<meta property="og:site_name" content="Under the Hood - All things PDM and PLM" />
+	<meta property="og:image" content="https://blogs.autodesk.com/vault/wp-content/uploads/sites/105/2023/09/26/autodesk-logo-1200x675-1.jpg" />
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="675" />
+	<meta property="og:image:type" content="image/jpeg" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:site" content="@AutodeskVault" />
+	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":"CollectionPage","@id":"https://blogs.autodesk.com/vault/","url":"https://blogs.autodesk.com/vault/","name":"Under the Hood - All things PDM and PLM - Get under the hood of data management and product lifecycle management.","isPartOf":{"@id":"https://blogs.autodesk.com/vault/#website"},"about":{"@id":"https://blogs.autodesk.com/vault/#organization"},"description":"Get under the hood of data management and product lifecycle management.","breadcrumb":{"@id":"https://blogs.autodesk.com/vault/#breadcrumb"},"inLanguage":"en-US"},{"@type":"BreadcrumbList","@id":"https://blogs.autodesk.com/vault/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home"}]},{"@type":"WebSite","@id":"https://blogs.autodesk.com/vault/#website","url":"https://blogs.autodesk.com/vault/","name":"Under the Hood - All things PDM and PLM","description":"Get under the hood of data management and product lifecycle management.","publisher":{"@id":"https://blogs.autodesk.com/vault/#organization"},"potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://blogs.autodesk.com/vault/?s={search_term_string}"},"query-input":"required name=search_term_string"}],"inLanguage":"en-US"},{"@type":"Organization","@id":"https://blogs.autodesk.com/vault/#organization","name":"Under the Hood - All things PDM and PLM","url":"https://blogs.autodesk.com/vault/","logo":{"@type":"ImageObject","inLanguage":"en-US","@id":"https://blogs.autodesk.com/vault/#/schema/logo/image/","url":"https://blogs.autodesk.com/vault/wp-content/uploads/sites/105/2023/09/26/autodesk-logo-696x696-1.jpg","contentUrl":"https://blogs.autodesk.com/vault/wp-content/uploads/sites/105/2023/09/26/autodesk-logo-696x696-1.jpg","width":1392,"height":1392,"caption":"Under the Hood - All things PDM and PLM"},"image":{"@id":"https://blogs.autodesk.com/vault/#/schema/logo/image/"},"sameAs":["https://www.facebook.com/autodeskvault/","https://twitter.com/AutodeskVault"]}]}</script>
+	<meta name="msvalidate.01" content="A87817384F8FEB633ED0EB37B19F1DB8" />
+	<meta name="google-site-verification" content="MAjEjBKqA-3tINbq4h0LECUbgaOV5P8hsl8aZIrMUkM" />
+	<!-- / Yoast SEO plugin. -->
+
+
+<link rel='dns-prefetch' href='//tags.tiqcdn.com' />
+<link rel="alternate" type="application/rss+xml" title="Under the Hood - All things PDM and PLM &raquo; Feed" href="https://blogs.autodesk.com/vault/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Under the Hood - All things PDM and PLM &raquo; Comments Feed" href="https://blogs.autodesk.com/vault/comments/feed/" />
+<link rel='stylesheet' id='wp-block-library-css' href='https://blogs.autodesk.com/vault/wp-includes/css/dist/block-library/style.min.css?ver=6.4.2' type='text/css' media='all' />
+<style id='classic-theme-styles-inline-css' type='text/css'>
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+</style>
+<style id='global-styles-inline-css' type='text/css'>
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);--wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);}:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flow > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-flow > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-flow > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-constrained > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-constrained > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)){max-width: var(--wp--style--global--content-size);margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignwide{max-width: var(--wp--style--global--wide-size);}body .is-layout-flex{display: flex;}body .is-layout-flex{flex-wrap: wrap;align-items: center;}body .is-layout-flex > *{margin: 0;}body .is-layout-grid{display: grid;}body .is-layout-grid > *{margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+.wp-block-navigation a:where(:not(.wp-element-button)){color: inherit;}
+:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}
+:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}
+.wp-block-pullquote{font-size: 1.5em;line-height: 1.6;}
+</style>
+<link rel='stylesheet' id='wsl-widget-css' href='https://blogs.autodesk.com/vault/wp-content/plugins/wordpress-social-login/assets/css/style.css?ver=6.4.2' type='text/css' media='all' />
+<link rel='stylesheet' id='wordpress-popular-posts-css-css' href='https://blogs.autodesk.com/vault/wp-content/plugins/wordpress-popular-posts/assets/css/wpp.css?ver=6.3.4' type='text/css' media='all' />
+<link rel='stylesheet' id='inventor-css' href='https://blogs.autodesk.com/vault/wp-content/themes/autodesk-classic/build/inventor.9dba68b05886f6010193.css' type='text/css' media='all' />
+<link rel='stylesheet' id='style-css' href='https://blogs.autodesk.com/vault/wp-content/themes/autodesk-classic/build/main.8b04191b931b6f4ce7d7.css' type='text/css' media='all' />
+<link rel='stylesheet' id='colorbox-styles-css' href='https://blogs.autodesk.com/vault/wp-content/themes/autodesk-classic/scripts/colorbox_assets/colorbox.css' type='text/css' media='all' />
+<script type="text/javascript" src="https://blogs.autodesk.com/vault/wp-includes/js/jquery/jquery.min.js?ver=3.7.1" id="jquery-core-js"></script>
+<script type="text/javascript" src="https://blogs.autodesk.com/vault/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1" id="jquery-migrate-js"></script>
+<script type="text/javascript" src="https://blogs.autodesk.com/vault/wp-content/plugins/wordpress-social-login/assets/js/widget.js?ver=6.4.2" id="wsl-widget-js"></script>
+<script type="application/json" id="wpp-json">
+
+{"sampling_active":0,"sampling_rate":100,"ajax_url":"https:\/\/blogs.autodesk.com\/vault\/wp-json\/wordpress-popular-posts\/v1\/popular-posts","api_url":"https:\/\/blogs.autodesk.com\/vault\/wp-json\/wordpress-popular-posts","ID":0,"token":"336201beaa","lang":0,"debug":0}
+
+</script>
+<script type="text/javascript" src="https://blogs.autodesk.com/vault/wp-content/plugins/wordpress-popular-posts/assets/js/wpp.min.js?ver=6.3.4" id="wpp-js-js"></script>
+<link rel="https://api.w.org/" href="https://blogs.autodesk.com/vault/wp-json/" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://blogs.autodesk.com/vault/xmlrpc.php?rsd" />
+            <style id="wpp-loading-animation-styles">@-webkit-keyframes bgslide{from{background-position-x:0}to{background-position-x:-200%}}@keyframes bgslide{from{background-position-x:0}to{background-position-x:-200%}}.wpp-widget-placeholder,.wpp-widget-block-placeholder,.wpp-shortcode-placeholder{margin:0 auto;width:60px;height:3px;background:#dd3737;background:linear-gradient(90deg,#dd3737 0%,#571313 10%,#dd3737 100%);background-size:200% auto;border-radius:3px;-webkit-animation:bgslide 1s infinite linear;animation:bgslide 1s infinite linear}</style>
+            <link rel="icon" href="https://blogs.autodesk.com/vault/wp-content/uploads/sites/105/2021/12/01/autodesk-symbol-32x32-1.svg" sizes="32x32" />
+<link rel="icon" href="https://blogs.autodesk.com/vault/wp-content/uploads/sites/105/2021/12/01/autodesk-symbol-32x32-1.svg" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://blogs.autodesk.com/vault/wp-content/uploads/sites/105/2021/12/01/autodesk-symbol-32x32-1.svg" />
+<meta name="msapplication-TileImage" content="https://blogs.autodesk.com/vault/wp-content/uploads/sites/105/2021/12/01/autodesk-symbol-32x32-1.svg" />
+		<style type="text/css" id="wp-custom-css">
+			.adk-bfeaturemasthead .adk-bfeature-timestamp {
+	display: none;
+}		</style>
+		
+			<svg display="none" width="0" height="0" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<defs>
+				
+		<symbol id="icon-svg-twitter" viewBox="0 0 1024 1024">
+			<title>twitter</title>
+			<path class="path1" d="M512 102.4c-226.304 0-409.6 183.296-409.6 409.6s183.296 409.6 409.6 409.6 409.6-183.296 409.6-409.6c0-226.304-183.296-409.6-409.6-409.6zM734.208 421.888c0 4.096 0 9.216 0 13.312 0 136.192-103.424 292.864-292.864 292.864-58.368 0-112.64-17.408-157.696-46.080 8.192 1.024 16.384 1.024 24.576 1.024 48.128 0 93.184-16.384 128-44.032-45.056-1.024-82.944-30.72-96.256-71.68 6.144 1.024 12.288 2.048 19.456 2.048 9.216 0 18.432-1.024 27.648-4.096-47.104-9.216-82.944-51.2-82.944-101.376 0 0 0-1.024 0-1.024 14.336 8.192 29.696 12.288 47.104 13.312-27.648-18.432-46.080-50.176-46.080-86.016 0-18.432 5.12-36.864 14.336-52.224 51.2 62.464 126.976 103.424 211.968 107.52-2.048-7.168-3.072-15.36-3.072-23.552 0-57.344 46.080-103.424 103.424-103.424 29.696 0 56.32 12.288 74.752 32.768 23.552-5.12 45.056-13.312 65.536-24.576-8.192 23.552-23.552 44.032-45.056 57.344 20.48-2.048 40.96-8.192 59.392-16.384-15.36 21.504-32.768 39.936-52.224 54.272z"></path>
+		</symbol>
+		
+		<symbol id="icon-svg-youtube" viewBox="0 0 1024 1024">
+			<title>youtube</title>
+			<path class="path1" d="M618.496 502.784l-152.576-95.232c0 0-24.576-15.36-29.696 17.408v180.224c0 0-4.096 33.792 27.648 24.576l154.624-97.28c0 0 17.408-14.336 0-29.696zM512 102.4c-226.304 0-409.6 183.296-409.6 409.6s183.296 409.6 409.6 409.6 409.6-183.296 409.6-409.6c0-226.304-183.296-409.6-409.6-409.6zM770.048 633.856c-9.216 67.584-68.608 67.584-68.608 67.584-16.384 1.024-191.488 6.144-191.488 6.144-53.248 2.048-193.536-8.192-193.536-8.192-57.344-6.144-62.464-64.512-62.464-64.512-7.168-22.528-7.168-120.832-7.168-120.832-1.024-71.68 10.24-130.048 10.24-130.048 16.384-52.224 65.536-49.152 65.536-49.152 179.2-13.312 377.856 0 377.856 0 58.368 4.096 69.632 57.344 69.632 57.344 17.408 107.52 0 241.664 0 241.664z"></path>
+		</symbol>
+		
+		<symbol id="icon-svg-facebook" viewBox="0 0 1024 1024">
+			<title>facebook</title>
+			<path class="path1" d="M512 104.448c-226.304 0-409.6 183.296-409.6 409.6 0 206.848 152.576 376.832 351.232 405.504v-289.792h-103.424v-119.808h103.424v-88.064c0-102.4 62.464-158.72 154.624-158.72 44.032 0 81.92 3.072 92.16 5.12v107.52h-63.488c-50.176 0-59.392 23.552-59.392 58.368v76.8h118.784l-15.36 119.808h-103.424v288.768c194.56-32.768 344.064-201.728 344.064-405.504 0-226.304-183.296-409.6-409.6-409.6z"></path>
+		</symbol>
+		
+		<symbol id="icon-svg-linkedin" viewBox="0 0 1024 1024">
+			<title>linkedin</title>
+			<path class="path1" d="M553.984 450.56v0c0 0 0 0 0 0v0zM512 102.4c-226.304 0-409.6 183.296-409.6 409.6s183.296 409.6 409.6 409.6 409.6-183.296 409.6-409.6-183.296-409.6-409.6-409.6zM408.576 692.224h-93.184v-282.624h93.184v282.624zM361.472 371.712v0c-31.744 0-52.224-21.504-52.224-49.152s20.48-49.152 53.248-49.152c31.744 0 52.224 21.504 52.224 49.152s-20.48 49.152-53.248 49.152zM746.496 692.224h-93.184v-151.552c0-37.888-13.312-63.488-47.104-63.488-25.6 0-40.96 17.408-48.128 33.792-2.048 6.144-3.072 14.336-3.072 22.528v157.696h-94.208c0 0 1.024-254.976 0-281.6h93.184v39.936c12.288-19.456 34.816-46.080 83.968-46.080 61.44 0 107.52 39.936 107.52 126.976v161.792z"></path>
+		</symbol>
+		
+		<symbol id="icon-svg-email" viewBox="0 0 1024 1024">
+			<title>email</title>
+			<path class="path1" d="M512 102.4c-226.304 0-409.6 183.296-409.6 409.6s183.296 409.6 409.6 409.6 409.6-183.296 409.6-409.6c0-226.304-183.296-409.6-409.6-409.6zM286.72 408.576l119.808 103.424-119.808 104.448v-207.872zM286.72 666.624l149.504-129.024 75.776 65.536 75.776-65.536 149.504 129.024h-450.56zM737.28 616.448l-119.808-104.448 119.808-103.424v207.872zM737.28 357.376l-225.28 195.584-225.28-195.584h450.56z"></path>
+		</symbol>
+		
+	</defs>
+</svg>
+
+			<script type="text/handlebars" class="article-grid-template">
+				{{#each posts}}
+				<div class="adk-bpost-item new">
+					<a href="{{link}}">
+						<div class="adk-bpost-item-thumb" 
+							{{#if _embedded.wp:featuredmedia }}
+								style="background-image:url('{{_embedded.wp:featuredmedia.[0].media_details.sizes.medium.source_url}}')"
+							{{/if}}
+						></div>
+						<h2 class="adk-bpost-item-title">{{{lettertruncate title.rendered 45}}}</h2>
+					</a>
+					<div class="adk-bpost-item-footer">
+						{{#if acf.primary_category}}
+								{{#ifdoesntequal acf.primary_category.name "Uncategorized"}}
+									<a class="adk-bcategory" href="/category/{{acf.primary_category.slug}}">
+										{{lettertruncate acf.primary_category.name 14}}
+									</a>
+								{{/ifdoesntequal}}
+						{{/if}}
+						{{#unless acf.primary_category}}
+							{{#if _embedded.wp:term.[0].[0]}}
+								{{#with _embedded.wp:term.[0].[0]}}
+									<a class="adk-bcategory" href="{{link}}">
+										{{lettertruncate name 14}}
+									</a>
+								{{/with}}
+							{{/if}}
+						{{/unless}}
+						<h5 class="adk-bcategory-footer-timestamp">
+							{{{formatDate date}}}
+						</h5>
+					</div>
+				</div>
+				{{/each}}
+			</script>
+		</head>
+
+		<body class="home blog page-container">
+
+			    <header class="header">
+        <div class="parsys iparsys utility-content">
+            <div class="responsive-navigation-element-display section">
+                <div class="decorative-box decorative_box_32b9">
+                    <div class="utility-full-width global-utility-bar" data-wat-link-section="">
+                        <div class="parsys box-content">
+                            <div class="responsive-grid section">
+                                <div class="row">
+                                    <div class="grid-columns">
+                                        <div class="responsive-column-0 responsive-column">
+                                            <div class="parsys column-content">
+                                                <div class="section utility-bar">
+
+                                                    <div class="clearfix">
+                                                        <div class="ub-identification-container">
+                                                            <div class="identification innerParsys">
+                                                                <div class="parsys innerParsys">
+                                                                    <div class="code section">
+                                                                        <div class="left wd-pv-8 wd-pl-20 wd-font-34">
+                                                                            <a href="http://www.autodesk.com/" target="_self" class="wd-light" data-wat-link="true" data-wat-loc="utilitynav" data-wat-val="adsk-logo" data-wat-tracking="1">
+																				<img
+																							alt='Autodesk home'
+																							loading='eager'
+																							class='custom-logo'
+																							height='18'
+																							role='img'
+																							src='https://blogs.autodesk.com/vault/wp-content/themes/autodesk-classic/images/autodesk-logo-transparent-background.svg'
+																							width='140'
+																						>																			</a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="ub-shortcuts-container ub-disabled">
+                                                            <div class="shortcuts innerParsys">
+                                                                <div class="parsys innerParsys">
+                                                                    <div class="code section">
+                                                                        <ul class="right wd-inline-list wd-ma-0 wd-pa-0">
+                                                                            <li class="global-menu-toggle-li">
+	                                                                            <a href="#" class="toggle-global-menu" data-wat-link="true" data-wat-loc="utilitynav" data-wat-val="globalnav:open">
+		                                                                            <i class="icon icon-menu"></i>
+		                                                                            <span>Menu</span>
+		                                                                        </a>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+							<div class="global-menu" data-wat-link-section="globalnav">
+							    <ul class="global-menu-header">
+							        <li>
+							            <a class="close-global-menu"  data-wat-loc="globalnav" data-wat-link="true" data-wat-val="globalnav:close" href="#">
+							                <div class='icon-stacked'>
+							                    <i class="icon icon-circle-o"></i>
+							                    <i class="icon icon-close"></i>
+							                </div>
+							            </a>
+							        </li>
+							    </ul>
+
+								<nav class="global-navigation">
+								    <ul>
+								      <li> <a href="#" class="visibility-toggle-1 visibility-hidden" data-visibility-target=".submenu-1" data-wat-loc="products:close" data-wat-val="products">Products</a>
+								        <ul class="submenu-1 visibility-target-hidden" data-wat-loc="products">
+								          <li><a href="http://www.autodesk.com/products" data-wat-val="all products and suites" class="wp-cta-go-arrow" target="_self">All products</a></li>
+								          <li><a href="#" class="visibility-toggle-2 visibility-visible" data-visibility-target=".submenu-1a">AutoCAD</a>
+								            <ul class="submenu-1a visibility-target-visible">
+								              <li><a href="http://www.autodesk.com/products/autocad/overview" data-wat-val="autocad:autocad" target="_self">AutoCAD</a></li>
+								              <li><a href="http://www.autodesk.com/products/autocad-lt/overview" data-wat-val="autocad:autocad lt" target="_self">AutoCAD LT</a></li>
+								              <li><a href="http://www.autodesk.com/products/autocad-360/overview" data-wat-val="autocad:autocad 360" target="_self">AutoCAD 360</a></li>
+								              <li><a href="http://www.autodesk.com/suites/autocad-design-suite/overview" data-wat-val="autocad:autocad design suite" target="_self">AutoCAD Design Suite</a></li>
+								              <li><a href="http://www.autodesk.com/products/all-autocad" data-wat-val="autocad:all autocad" target="_self">All AutoCAD</a></li>
+								            </ul>
+								          </li>
+								          <li><a href="http://www.autodesk.com/products/3ds-max/overview" data-wat-val="3ds max" target="_self">3ds Max</a></li>
+								          <li><a href="http://www.autodesk.com/suites/building-design-suite/overview" data-wat-val="building design suite" target="_self">Building Design Suite</a></li>
+								          <li><a href="http://www.autodesk.com/products/autocad-civil-3d/overview" data-wat-val="civil 3d" target="_self">Civil 3D</a></li>
+								
+								          <li><a href="http://www.autodesk.com/products/fusion-360/overview" data-wat-val="fusion 360" target="_self">Fusion 360</a></li>
+								
+								
+								          <li><a href="http://www.autodesk.com/products/inventor/overview" data-wat-val="inventor" target="_self">Inventor</a></li>
+								          <li><a href="http://www.autodesk.com/products/maya/overview" data-wat-val="maya" target="_self">Maya</a></li>
+								          <li><a href="http://www.autodesk.com/products/navisworks/overview" data-wat-val="navisworks" target="_self">Navisworks</a></li>
+								          <li><a href="http://www.autodesk.com/suites/product-design-suite/overview" data-wat-val="product design suite" target="_self">Product Design Suite</a></li>
+								          <li><a href="http://www.autodesk.com/products/revit-family/overview" data-wat-val="revit" target="_self">Revit</a></li>
+								          <li><a href="http://www.autodesk.com/products/sketchbook-pro/overview" data-wat-val="sketchbook pro" target="_self">SketchBook Pro</a></li>
+								         <!-- <li><a href="http://www.autodesk.com/content/autodesk/global/en/products.html" data-wat-val="all products and suites" target="_self">All products &amp; suites</a></li>-->
+								          <li> <a class="global-nav-category">File viewers</a> </li>
+								          <li><a href="http://www.autodesk.com/viewers/all-viewers" data-wat-val="All viewers" target="_self" class="wp-cta-go-arrow">All viewers</a></li>
+								          <li><a href="http://www.autodesk.com/products/dwg/viewers" data-wat-val="DWG" target="_self">DWG</a></li>
+								          <li><a href="http://usa.autodesk.com/adsk/servlet/pc/index?siteID=123112&amp;id=18520222" data-wat-val="DWF" target="_self">DWF</a></li>
+								
+								 <li><a href="https://360.autodesk.com/viewer" data-wat-val="Online viewer" target="_self">Online viewer</a></li>
+								
+								
+								          
+								          <li> <a class="global-nav-category">Solutions</a> </li>
+								          <li> <a href="#" class="visibility-toggle-2 visibility-hidden" data-visibility-target=".submenu-1b">Industry solutions</a>
+								            <ul class="submenu-1b visibility-target-hidden">
+								              <li><a href="http://www.autodesk.com/products/simulation/overview" data-wat-val="industry solutions:simulation" target="_self">Simulation</a></li>
+								              <li><a href="http://www.autodesk.com/solutions/building-information-modeling/overview" data-wat-val="industry solutions:Building Information Modeling (BIM)" target="_self">Building Information Modeling (BIM)</a></li>
+								              <li><a href="http://www.autodesk.com/solutions" data-wat-val="industry solutions:All solutions" target="_self">All solutions</a></li>
+								            </ul>
+								          </li>
+								          <li><a href="http://www.autodesk.com/360-cloud" data-wat-val="Cloud and collaboration" target="_self">Cloud &amp; collaboration</a></li>
+								          <li> <a href="#" class="visibility-toggle-2 visibility-hidden" data-visibility-target=".submenu-1c">Makers &amp; indie designers</a>
+								            <ul class="submenu-1c visibility-target-hidden">
+								              <li><a href="http://spark.autodesk.com" data-wat-val="Makers and indie designers:3D printing" target="_self">3D printing</a></li>
+								              <li><a href="http://www.autodesk.com/indie-game-maker/home" data-wat-val="Makers and indie designers:Indie game maker" target="_self">Indie game maker</a></li>
+								              <li><a href="http://www.autodesk.com/products/personal-design-and-creativity" data-wat-val="Makers and indie designers:Makers" target="_self">Makers</a></li>
+								            </ul>
+								          </li>
+								        </ul>
+								      </li>
+								      <li> <a href="#" class="visibility-toggle-1 visibility-hidden" data-visibility-target=".submenu-2" data-wat-loc="support and learning:open" data-wat-val="Support and learning">Support &amp; learning</a>
+								        <ul class="submenu-2 visibility-target-hidden" data-wat-loc="support and learning">
+								          <li> <a class="global-nav-category">Support</a> </li>
+								          <li><a href="http://knowledge.autodesk.com/support" data-wat-val="By product" target="_self">By product</a></li>
+								          <li><a href="http://knowledge.autodesk.com/support/system-requirements" data-wat-val="System requirements" target="_self">System requirements</a></li>
+								          <li><a href="http://knowledge.autodesk.com/downloads" data-wat-val="Updates hotfixes service packs" target="_self">Updates, hotfixes &amp; service packs</a></li>
+								          <li> <a class="global-nav-category" data-wat-val="Customer service">Customer service</a></li>
+								          <li><a href="http://knowledge.autodesk.com/customer-service" class="wp-cta-go-arrow" data-wat-val="All customer service" target="_self">All customer service</a></li>
+								          <li><a href="http://knowledge.autodesk.com/installation-and-licensing" data-wat-val="Installation activation licensing" target="_self">Installation, activation, licensing</a></li>
+								          <li><a href="http://knowledge.autodesk.com/topics/account-management" data-wat-val="Account management" target="_self">Account management</a></li>
+								          <li> <a class="global-nav-category">Events &amp; Training</a> </li>
+								          <li><a href="http://au.autodesk.com/au-online/overview" data-wat-val="Classes on demand" target="_self">Classes on demand</a></li>
+								          <li><a href="http://www.autodesk.com/events" data-wat-val="Events" target="_self">Events</a></li>
+								          <li><a href="http://www.autodesk.com/training-and-certification/overview" data-wat-val="Training and certification">Training &amp; certification</a></li>
+								          <li> <a class="global-nav-category">Community resources</a></li>
+								          <li><a href="http://www.autodesk.com/community" class="wp-cta-go-arrow" data-wat-val="All communities" target="_self">All communities</a></li>
+								          <li><a href="http://www.autodesk.com/blogs" data-wat-val="Blogs" target="_self">Blogs</a></li>
+								          <li><a href="http://www.autodesk.com/adnopen" data-wat-val="Developer network" target="_self">Developer network</a></li>
+								          <li><a href="http://forums.autodesk.com/t5/custom/page/page-id/Discussions-Page" data-wat-val="Forums" target="_self">Forums</a></li>
+								          <li><a href="http://www.autodesk.com/education/home" data-wat-val="Students and educators" target="_self">Students &amp; educators</a></li>
+								
+								          <li> <a class="global-nav-category">Services</a></li>
+								          <li><a href="http://www.autodesk.com/services-support/consulting/overview" data-wat-val="Consulting" target="_self">Consulting</a></li>
+								          <li><a href="http://partnerproducts.autodesk.com/catalog/default.asp" data-wat-val="Partner apps" target="_self">Partner apps</a></li>
+								        </ul>
+								      </li>
+								      <li> <a href="#" class="visibility-toggle-1 visibility-hidden" data-visibility-target=".submenu-3" data-wat-loc="downloads:open" data-wat-val="Downloads">Downloads</a>
+								        <ul class="submenu-3 visibility-target-hidden" data-wat-loc="downloads">
+								          <li> <a href="http://www.autodesk.com/free-trials" data-wat-val="Free product trials" target="_self">Free product trials</a></li>
+								          <li> <a href="http://www.autodesk.com/education/free-software/all" data-wat-val="Free student software" target="_self">Free student software</a></li>
+								          <li> <a href="http://www.autodesk.com/viewers/all-viewers" data-wat-val="File viewers" target="_self">File viewers</a></li>
+								          <li> <a href="http://knowledge.autodesk.com/downloads" data-wat-val="Updates and service packs" target="_self">Updates &amp; service packs</a></li>
+								        </ul>
+								      </li>
+								      <li> <a href="#" class="visibility-toggle-1 visibility-hidden" data-visibility-target=".submenu-4" data-wat-loc="buy:open" data-wat-val="Buy">Buy</a>
+								        <ul class="submenu-4 visibility-target-hidden" data-wat-loc="buy">
+								          
+								          <li> <a href="http://www.autodesk.com/store" data-wat-val="Buy online" target="_self">Buy online</a></li>
+								          <li> <a href="http://www.autodesk.com/resellers/locate-a-reseller?cntr=US" data-wat-val="Find a reseller" target="_self">Find a reseller</a></li>
+								          <li> <a href="http://www.autodesk.com/promotions" data-wat-val="Special offers" target="_self">Special offers</a></li>
+								          <li> <a href="http://www.autodesk.com/subscription/overview" data-wat-val="Subscription plans" target="_self">Subscription plans</a></li>
+								          <li> <a href="http://www.autodesk.com/support-offerings/overview" data-wat-val="Support offerings" target="_self">Support offerings</a></li>
+								          <li> <a class="global-nav-category">Options</a> </li>
+								          <li><a href="http://www.autodesk.com/education/learn-and-teach/authorized-academic-partner/find-a-partner" data-wat-val="Education" target="_self">Education</a></li>
+								          <li><a href="http://www.autodesk.com/financing" data-wat-val="Financing" target="_self">Financing</a></li>
+								        </ul>
+								      </li>
+								      <li> <a href="#" class="visibility-toggle-1 visibility-hidden" data-visibility-target=".submenu-5" data-wat-loc="about autodesk:open" data-wat-val="About Autodesk">About Autodesk</a>
+								        <ul class="submenu-5 visibility-target-hidden" data-wat-loc="about autodesk">
+								          <li> <a href="http://usa.autodesk.com/adsk/servlet/pc/index?id=1060484&amp;siteID=123112" data-wat-val="Careers" target="_self">Careers</a></li>
+								          <li> <a href="#" class="visibility-toggle-2 visibility-hidden" data-visibility-target=".submenu-5a">Company</a>
+								            <ul class="submenu-5a visibility-target-hidden">
+								              <li><a href="http://www.autodesk.com/company" data-wat-val="Company: About us" target="_self">About us</a></li>
+								              <li><a href="http://www.autodesk.com/company/newsroom/overview" data-wat-val="Company: Newsroom" target="_self">Newsroom</a></li>
+								              <li><a href="https://beta.autodesk.com/callout/?callid=73A1E2A95B1848FC8E4FE48D12A4D95A" data-wat-val="Company: Autodesk Labs" target="_self">Autodesk Labs</a></li>
+								            </ul>
+								          </li>
+								          <li> <a href="http://investors.autodesk.com/phoenix.zhtml?c=117861&amp;p=irol-irhome" data-wat-val="Investor relations" target="_self">Investor relations</a></li>
+								          <li> <a href="http://www.autodesk.com/trust/overview" data-wat-val="Trust center" target="_self">Trust center</a></li>
+								        </ul>
+								      </li>
+								    </ul>
+								  </nav>
+								  
+								  							 
+							    <!-- THE GLOBAL MENU FOOTER -->
+							 
+							    <ul class="global-menu-footer wd-list-style-type-none wd-pa-0 wd-uppercase" data-wat-loc="globalft">
+							        <li>
+							            <a href="http://www.autodesk.com/free-trials" data-wat-val="free trials"><i class="icon icon-download"></i>&nbsp;Free trials</a>
+							        </li>
+							        <li>
+							            <a href="http://www.autodesk.com/education/home" data-wat-val="Students and educators"><i class="icon icon-education-students"></i>&nbsp;Students and educators</a>
+							        </li>
+							        <li>
+							            <a href="http://www.autodesk.com/site-selector?country=US&locale=en_US" data-wat-val="Worldwide sites"><i class="icon icon-globe-international"></i>&nbsp;Worldwide sites</a>
+							        </li>
+							    </ul>
+							 
+							    <!-- THE GLOBAL MENU SOCIAL FOOTER -->
+							 
+							    <ul class="global-menu-footer-social">
+							        <li>
+							            <a href="https://www.facebook.com/autodesk" target="_blank" data-wat-link="true" data-wat-val="facebook"><i class="icon icon-facebook"></i></a>
+							        </li>
+							        <li>
+							            <a href="https://twitter.com/autodesk" target="_blank" data-wat-link="true" data-wat-val="twitter"><i class="icon icon-twitter"></i></a>
+							        </li>
+							        <li>
+							            <a href="https://www.linkedin.com/company/autodesk" target="_blank" data-wat-link="true" data-wat-val="linkedin"><i class="icon icon-linkedin"></i></a>
+							        </li>
+							        <li>
+							            <a href="https://www.youtube.com/user/Autodesk" target="_blank" data-wat-link="true" data-wat-val="youtube"><i class="icon icon-youtube"></i></a>
+							        </li>
+							    </ul>
+							 
+							</div>
+							<a class="close-global-menu" data-wat-val="globalnav:close"></a>
+							
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+			<div class="adk-bcurtain"></div>
+
+			
+<!--
+	wsl_render_auth_widget
+	WordPress Social Login 3.0.5.
+	http://wordpress.org/plugins/wordpress-social-login/
+-->
+
+<style type="text/css">
+.wp-social-login-connect-with{}.wp-social-login-provider-list{}.wp-social-login-provider-list a{}.wp-social-login-provider-list img{}.wsl_connect_with_provider{}</style>
+
+<div class="wp-social-login-widget">
+
+	<div class="wp-social-login-connect-with">Connect with:</div>
+
+	<div class="wp-social-login-provider-list">
+
+		<a rel="nofollow" href="javascript:void(0);" title="Connect with Autodesk" class="wp-social-login-provider wp-social-login-provider-autodesk" data-provider="Autodesk" role="button">
+			Autodesk
+		</a>
+
+	</div>
+
+	<div class="wp-social-login-widget-clearing"></div>
+
+</div>
+
+<input type="hidden" id="wsl_popup_base_url" value="https://blogs.autodesk.com/vault/wp-login.php?wpe-login=true&#038;action=wordpress_social_authenticate&#038;mode=login" />
+<input type="hidden" id="wsl_login_form_uri" value="https://blogs.autodesk.com/vault/wp-login.php?wpe-login=true" />
+
+<!-- wsl_render_auth_widget -->
+
+
+			<div class="adk-bwrapper cf">
+				<div class="adk-bheader">
+
+					<a href="https://blogs.autodesk.com/vault" class="adk-blogo-link">
+						<img src="https://blogs.autodesk.com/vault/wp-content/uploads/sites/105/2023/03/10/logo.png" class="adk-blogo" />
+													<h2 class="adk-blog-title">Under the Hood - All things PDM and PLM</h2>
+											</a>
+
+					<div class="bmobile-menu-toggle"></div>
+
+					<div class="bmobile-menu">
+
+						
+						<div class="menu-secondary-menu-container"><ul data-wat-link-section="secondary-menu" id="menu-secondary-menu" class="adk-bmobile-menu-bottom"><li id="menu-item-3248" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-3248"><a href="https://blogs.autodesk.com/vault" aria-current="page">Home</a></li>
+<li id="menu-item-3247" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3247"><a href="https://blogs.autodesk.com/vault/authors/">Authors</a></li>
+</ul></div>
+					</div>
+
+					<div class="menu-secondary-menu-container"><ul data-wat-link-section="secondary-menu" id="menu-secondary-menu-1" class="adk-btop-menu secondary-menu"><li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-3248"><a href="https://blogs.autodesk.com/vault" aria-current="page">Home</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3247"><a href="https://blogs.autodesk.com/vault/authors/">Authors</a></li>
+</ul></div>
+					<!-- .adk-btop-menu about authors resources contact -->
+
+					<div class="adk-bheader-bot">
+
+						<form role="search" method="get" class="search-form adk-bsearch" action="https://blogs.autodesk.com/vault/">
+	<input type="search" class="search-field" placeholder="Search …" value="" name="s" title="Search for:" />
+	<input type="submit" class="search-submit adk-bsearch-btn" value="" />
+</form>
+					</div>
+
+				</div>
+
+	<div class="adk-bfeaturemasthead" style="background-image:url(https://blogs.autodesk.com/vault/wp-content/uploads/sites/105/2023/12/06/autodesk-plm-image-1.jpg)">
+		<div class="adk-bfeature-overlay">
+
+						<a class="adk-bfeature-cat " href="https://blogs.autodesk.com/vault/category/fusion360manage/">
+				Fusion 360 Manage - All Posts			</a>
+			
+			
+			<h5  class="adk-bfeature-timestamp">about 1 month ago</h5>
+
+			<h3 class="adk-bfeature-title">
+				<a href="https://blogs.autodesk.com/vault/2023/10/whats-new-in-fusion-360-manage-october-2023-product-update/">
+					What’s New in Fusion 360 Manage – October 2023 Product Update				</a>
+			</h3>
+
+			<div class='adk-bfeature-excerpt'>
+				<p>Autodesk Fusion 360 Manage is a cloud <a href="https://www.autodesk.com/solutions/plm-product-lifecycle-management">product lifecycle management</a> solution in our PLM portfolio of products. As a cloud-based product, Fusion 360 Manage is regularly updated, providing new features and enhancements to users as soon as they are released.</p>
+<p>This post summarizes new functionality released during previous months that is available in Fusion 360 Manage.</p> 			</div>
+
+			<a class="adk-bfeature-read-more" href="https://blogs.autodesk.com/vault/2023/10/whats-new-in-fusion-360-manage-october-2023-product-update/">Read more</a>
+
+			<!--
+			<a class="adk-bfeature-author " href="https://blogs.autodesk.com/vault/author/amitabh/">
+				Amitabh Verma			</a>
+		-->
+
+		</div>
+			</div>
+
+
+<div class="adk-binner-wrapper">
+
+	<div class="adk-bhome-main">
+		<div class="adk-bfeatured-posts">
+			<h2 class="adk-bsection-title">
+				<span>Recent Posts</span>
+			</h2>
+
+			<div class="adk-bfeatured-post-wrapper">
+
+			
+				<div class="adk-bfeatured-post">
+					<a href="https://blogs.autodesk.com/vault/2023/12/autodesk-vault-2024-2-whats-new/" data-wat-link-section="current">
+						<div style="background-image:url('https://blogs.autodesk.com/vault/wp-content/uploads/sites/105/2023/12/06/vault.jpg');" class="adk-bfeatured-image"></div>
+					</a>
+					<div class="adk-bfeatured-content">
+
+												<div class="adk-bfeatured-pheader cf">
+							<a class='adk-bfeatured-cat' href='https://blogs.autodesk.com/vault/category/autodeskvaultposts/autodesk-vault-updates/'>Autodesk Vault - Updates</a>						</div>
+						
+
+						<h3 class="adk-bfeatured-title">
+							<a data-wat-link-section="current" href="https://blogs.autodesk.com/vault/2023/12/autodesk-vault-2024-2-whats-new/">
+								Autodesk Vault 2024.2 What’s New							</a>
+						</h3>
+
+						<p>Whether you’re among the many who have relied on Autodesk Vault for years, or just getting started, this post will show you what&#8217;s new in Vault 2024.2 to help you accelerate your overall design and data management experience. If you missed our previous Vault release posts this year, you can see them here: <a href="https://blogs.autodesk.com/vault/2023/03/autodesk-vault-2024-whats-new/">Vault 2024</a> and <a href="https://blogs.autodesk.com/vault/2023/07/autodesk-vault-2024-1-whats-new/">Vault 2024.1</a>.</p>
+
+						<a class="adk-bfeature-author " href="https://blogs.autodesk.com/vault/author/irvinhayes/">
+							Irvin Hayes Jr.						</a>
+
+						<div class="adk-bcomment-share">
+
+							<div class="share-icon"></div>
+
+							<ul class="social-share-content social-share-visibility-target-hidden" data-permalink=https://blogs.autodesk.com/vault/2023/12/autodesk-vault-2024-2-whats-new/ data-title="Autodesk Vault 2024.2 What’s New">
+    <li class="social-share-link">
+    	<a href="#" data-wat-social="facebook">
+	    	<svg class="icon-svg-facebook" viewBox="0 0 32 32"><use xlink:href="#icon-svg-facebook"></use></svg>
+	    	<span class="social-share-label">Facebook</span>
+	    </a>
+	</li>
+
+    <li class="social-share-link">
+    	<a href="#" data-wat-social="twitter">
+	    	<svg class="icon-svg-twitter" viewBox="0 0 32 32"><use xlink:href="#icon-svg-twitter"></use></svg>
+	    	<span class="social-share-label">Twitter</span>
+	    </a>
+	</li>
+
+    <li class="social-share-link">
+    	<a href="#" data-wat-social="linkedin">
+	    	<svg class="icon-svg-linkedin" viewBox="0 0 32 32"><use xlink:href="#icon-svg-linkedin"></use></svg>
+	    	<span class="social-share-label">LinkedIn</span>
+	    </a>
+	</li>
+
+    <li class="social-share-link">
+    	<a href="#" data-wat-social="email">
+	    	<svg class="icon-svg-email" viewBox="0 0 32 32"><use xlink:href="#icon-svg-email"></use></svg>
+	    	<span class="social-share-label">Email</span>
+	    </a>
+	</li>
+</ul>
+							<hr class="divider">
+
+							<a data-wat-link-section="current" href="https://blogs.autodesk.com/vault/2023/12/autodesk-vault-2024-2-whats-new/#comments-section">
+								<img class="comment-icon" src="https://blogs.autodesk.com/vault/wp-content/themes/autodesk-classic/images/comment-icon.png" />
+								<p class="comment-count">(0)</p>
+							</a>
+
+						</div>
+
+												<ul class="adk-btags">
+							<li><a href='https://blogs.autodesk.com/vault/tag/vault-whats-new/'>Vault What's New</a></li>						</ul>
+											</div>
+				</div>
+
+			
+				<div class="adk-bfeatured-post">
+					<a href="https://blogs.autodesk.com/vault/2023/11/whats-new-in-upchain-november-2023-product-update/" data-wat-link-section="current">
+						<div style="background-image:url('https://blogs.autodesk.com/vault/wp-content/uploads/sites/105/2023/07/26/autodesk-whats-new-upchain-1-768x596.jpg');" class="adk-bfeatured-image"></div>
+					</a>
+					<div class="adk-bfeatured-content">
+
+												<div class="adk-bfeatured-pheader cf">
+							<a class='adk-bfeatured-cat' href='https://blogs.autodesk.com/vault/category/upchain/'>Upchain</a>						</div>
+						
+
+						<h3 class="adk-bfeatured-title">
+							<a data-wat-link-section="current" href="https://blogs.autodesk.com/vault/2023/11/whats-new-in-upchain-november-2023-product-update/">
+								What’s New in Upchain – November 2023 Product Update							</a>
+						</h3>
+
+						<p>Upchain is a cloud data management solution in the Autodesk <a href="https://www.autodesk.com/solutions/plm-product-lifecycle-management" target="_blank" rel="noopener">product lifecycle management</a> (PLM) portfolio of products. New functionality in Upchain is released in a progressive and ongoing basis. This post summarizes new features and enhancements that were rolled out over the course of several months. Watch the video to see some of the updates in action and read on to learn more about what’s new in Upchain.   </p>
+
+						<a class="adk-bfeature-author " href="https://blogs.autodesk.com/vault/author/andreja/">
+							Andreja Schneider						</a>
+
+						<div class="adk-bcomment-share">
+
+							<div class="share-icon"></div>
+
+							<ul class="social-share-content social-share-visibility-target-hidden" data-permalink=https://blogs.autodesk.com/vault/2023/11/whats-new-in-upchain-november-2023-product-update/ data-title="What’s New in Upchain – November 2023 Product Update">
+    <li class="social-share-link">
+    	<a href="#" data-wat-social="facebook">
+	    	<svg class="icon-svg-facebook" viewBox="0 0 32 32"><use xlink:href="#icon-svg-facebook"></use></svg>
+	    	<span class="social-share-label">Facebook</span>
+	    </a>
+	</li>
+
+    <li class="social-share-link">
+    	<a href="#" data-wat-social="twitter">
+	    	<svg class="icon-svg-twitter" viewBox="0 0 32 32"><use xlink:href="#icon-svg-twitter"></use></svg>
+	    	<span class="social-share-label">Twitter</span>
+	    </a>
+	</li>
+
+    <li class="social-share-link">
+    	<a href="#" data-wat-social="linkedin">
+	    	<svg class="icon-svg-linkedin" viewBox="0 0 32 32"><use xlink:href="#icon-svg-linkedin"></use></svg>
+	    	<span class="social-share-label">LinkedIn</span>
+	    </a>
+	</li>
+
+    <li class="social-share-link">
+    	<a href="#" data-wat-social="email">
+	    	<svg class="icon-svg-email" viewBox="0 0 32 32"><use xlink:href="#icon-svg-email"></use></svg>
+	    	<span class="social-share-label">Email</span>
+	    </a>
+	</li>
+</ul>
+							<hr class="divider">
+
+							<a data-wat-link-section="current" href="https://blogs.autodesk.com/vault/2023/11/whats-new-in-upchain-november-2023-product-update/#comments-section">
+								<img class="comment-icon" src="https://blogs.autodesk.com/vault/wp-content/themes/autodesk-classic/images/comment-icon.png" />
+								<p class="comment-count">(0)</p>
+							</a>
+
+						</div>
+
+												<ul class="adk-btags">
+							<li><a href='https://blogs.autodesk.com/vault/tag/upchain-whats-new/'>Upchain What's New</a></li>						</ul>
+											</div>
+				</div>
+
+			
+				<div class="adk-bfeatured-post">
+					<a href="https://blogs.autodesk.com/vault/2023/10/explore-autodesk-cloud-plm-and-pdm-at-au-2023/" data-wat-link-section="current">
+						<div style="background-image:url('https://blogs.autodesk.com/vault/wp-content/uploads/sites/105/2023/10/11/Explore-Autodesk-cloud-PLM-and-PDM-at-AU-2023-768x512.jpg');" class="adk-bfeatured-image"></div>
+					</a>
+					<div class="adk-bfeatured-content">
+
+												<div class="adk-bfeatured-pheader cf">
+							<a class='adk-bfeatured-cat' href='https://blogs.autodesk.com/vault/category/autodesk-university/'>Autodesk University</a>						</div>
+						
+
+						<h3 class="adk-bfeatured-title">
+							<a data-wat-link-section="current" href="https://blogs.autodesk.com/vault/2023/10/explore-autodesk-cloud-plm-and-pdm-at-au-2023/">
+								Explore Autodesk Cloud PLM and PDM at AU 2023							</a>
+						</h3>
+
+						<p>When Design and Make professionals need to accelerate time to market, it’s critical to enhance collaboration, establish a single source of truth for product data, and build strong connections among people, processes, and data. That’s where Autodesk Fusion 360 Manage with Upchain comes in.</p>
+<p>This powerful cloud data and process management solution creates unique opportunities to speed up product development.</p>
+
+						<a class="adk-bfeature-author " href="https://blogs.autodesk.com/vault/author/christa_prokos/">
+							Christa Prokos						</a>
+
+						<div class="adk-bcomment-share">
+
+							<div class="share-icon"></div>
+
+							<ul class="social-share-content social-share-visibility-target-hidden" data-permalink=https://blogs.autodesk.com/vault/2023/10/explore-autodesk-cloud-plm-and-pdm-at-au-2023/ data-title="Explore Autodesk Cloud PLM and PDM at AU 2023">
+    <li class="social-share-link">
+    	<a href="#" data-wat-social="facebook">
+	    	<svg class="icon-svg-facebook" viewBox="0 0 32 32"><use xlink:href="#icon-svg-facebook"></use></svg>
+	    	<span class="social-share-label">Facebook</span>
+	    </a>
+	</li>
+
+    <li class="social-share-link">
+    	<a href="#" data-wat-social="twitter">
+	    	<svg class="icon-svg-twitter" viewBox="0 0 32 32"><use xlink:href="#icon-svg-twitter"></use></svg>
+	    	<span class="social-share-label">Twitter</span>
+	    </a>
+	</li>
+
+    <li class="social-share-link">
+    	<a href="#" data-wat-social="linkedin">
+	    	<svg class="icon-svg-linkedin" viewBox="0 0 32 32"><use xlink:href="#icon-svg-linkedin"></use></svg>
+	    	<span class="social-share-label">LinkedIn</span>
+	    </a>
+	</li>
+
+    <li class="social-share-link">
+    	<a href="#" data-wat-social="email">
+	    	<svg class="icon-svg-email" viewBox="0 0 32 32"><use xlink:href="#icon-svg-email"></use></svg>
+	    	<span class="social-share-label">Email</span>
+	    </a>
+	</li>
+</ul>
+							<hr class="divider">
+
+							<a data-wat-link-section="current" href="https://blogs.autodesk.com/vault/2023/10/explore-autodesk-cloud-plm-and-pdm-at-au-2023/#comments-section">
+								<img class="comment-icon" src="https://blogs.autodesk.com/vault/wp-content/themes/autodesk-classic/images/comment-icon.png" />
+								<p class="comment-count">(0)</p>
+							</a>
+
+						</div>
+
+												<ul class="adk-btags">
+							<li><a href='https://blogs.autodesk.com/vault/tag/pdm/'>PDM</a></li><li><a href='https://blogs.autodesk.com/vault/tag/plm/'>PLM</a></li>						</ul>
+											</div>
+				</div>
+
+			
+				<div class="adk-bfeatured-post">
+					<a href="https://blogs.autodesk.com/vault/2023/10/expand-your-autodesk-vault-knowledge-at-au-2023/" data-wat-link-section="current">
+						<div style="background-image:url('https://blogs.autodesk.com/vault/wp-content/uploads/sites/105/2023/10/02/autodesk_university_2017-0621-1910x1000-1-768x402.jpg');" class="adk-bfeatured-image"></div>
+					</a>
+					<div class="adk-bfeatured-content">
+
+												<div class="adk-bfeatured-pheader cf">
+							<a class='adk-bfeatured-cat' href='https://blogs.autodesk.com/vault/category/autodesk-university/'>Autodesk University</a>						</div>
+						
+
+						<h3 class="adk-bfeatured-title">
+							<a data-wat-link-section="current" href="https://blogs.autodesk.com/vault/2023/10/expand-your-autodesk-vault-knowledge-at-au-2023/">
+								Expand Your Autodesk Vault Knowledge at AU 2023							</a>
+						</h3>
+
+						<p>Whether you’re focused on immediate changes to stay competitive, near-term changes to succeed over the next few years, or transformation that can take you into the next decade and beyond, AU 2023 is the learning event of the year for Design and Make professionals. This can’t-miss conference will take place November 13-15 in Las Vegas,</p>
+
+						<a class="adk-bfeature-author " href="https://blogs.autodesk.com/vault/author/christa_prokos/">
+							Christa Prokos						</a>
+
+						<div class="adk-bcomment-share">
+
+							<div class="share-icon"></div>
+
+							<ul class="social-share-content social-share-visibility-target-hidden" data-permalink=https://blogs.autodesk.com/vault/2023/10/expand-your-autodesk-vault-knowledge-at-au-2023/ data-title="Expand Your Autodesk Vault Knowledge at AU 2023">
+    <li class="social-share-link">
+    	<a href="#" data-wat-social="facebook">
+	    	<svg class="icon-svg-facebook" viewBox="0 0 32 32"><use xlink:href="#icon-svg-facebook"></use></svg>
+	    	<span class="social-share-label">Facebook</span>
+	    </a>
+	</li>
+
+    <li class="social-share-link">
+    	<a href="#" data-wat-social="twitter">
+	    	<svg class="icon-svg-twitter" viewBox="0 0 32 32"><use xlink:href="#icon-svg-twitter"></use></svg>
+	    	<span class="social-share-label">Twitter</span>
+	    </a>
+	</li>
+
+    <li class="social-share-link">
+    	<a href="#" data-wat-social="linkedin">
+	    	<svg class="icon-svg-linkedin" viewBox="0 0 32 32"><use xlink:href="#icon-svg-linkedin"></use></svg>
+	    	<span class="social-share-label">LinkedIn</span>
+	    </a>
+	</li>
+
+    <li class="social-share-link">
+    	<a href="#" data-wat-social="email">
+	    	<svg class="icon-svg-email" viewBox="0 0 32 32"><use xlink:href="#icon-svg-email"></use></svg>
+	    	<span class="social-share-label">Email</span>
+	    </a>
+	</li>
+</ul>
+							<hr class="divider">
+
+							<a data-wat-link-section="current" href="https://blogs.autodesk.com/vault/2023/10/expand-your-autodesk-vault-knowledge-at-au-2023/#comments-section">
+								<img class="comment-icon" src="https://blogs.autodesk.com/vault/wp-content/themes/autodesk-classic/images/comment-icon.png" />
+								<p class="comment-count">(0)</p>
+							</a>
+
+						</div>
+
+												<ul class="adk-btags">
+							<li><a href='https://blogs.autodesk.com/vault/tag/autodesk-vault/'>Autodesk Vault</a></li>						</ul>
+											</div>
+				</div>
+
+						</div>
+		</div>
+
+		
+	<div class="adk-bsidebar">
+		
+				<div class="adk-bsidebar-signupin adk-bsidebar-item">
+			
+						
+			<div class="adk-bsidebar-signup-cta">
+				<a rel="nofollow" href="javascript:void(0);" title="Connect with Autodesk" class="wp-social-login-provider wp-social-login-provider-autodesk" data-wat-linkname="sign up" data-provider="Autodesk">Sign Up</a>
+				<p>Connect with peers and authors.</p>
+			</div>
+			<div class="adk-bsidebar-login">
+				<a rel="nofollow" href="javascript:void(0);" title="Connect with Autodesk" class="wp-social-login-provider wp-social-login-provider-autodesk" data-wat-linkname="login" data-provider="Autodesk">Login</a>
+				<img src="https://blogs.autodesk.com/vault/wp-content/themes/autodesk-classic/images/login-icon.png" class="login-icon" />
+			</div>
+			
+						
+		</div>
+	
+		<div class="adk-bsidebar-featured-links adk-bsidebar-item">
+							<h3 class="adk-bsidebar-item-title"> Looking for product updates?</h3>
+						<ul class="adk-bsidebar-link-list" data-wat-linksection="featuredblogs">
+										<li>
+							<a target="_blank" href="https://blogs.autodesk.com/vault/tag/vault-whats-new/">
+								Vault What's New							</a>
+						</li>
+											<li>
+							<a target="_blank" href="https://blogs.autodesk.com/vault/tag/upchain-whats-new/">
+								Upchain What's New							</a>
+						</li>
+											<li>
+							<a target="_blank" href="https://help.autodesk.com/view/PLM/ENU/?guid=WN-WHATSNEW-NEW">
+								Fusion 360 Manage What's New							</a>
+						</li>
+								</ul>
+		</div>
+	
+		<div class="adk-bsidebar-featured-links adk-bsidebar-item">
+							<h3 class="adk-bsidebar-item-title">Resources</h3>
+						<ul class="adk-bsidebar-link-list" data-wat-linksection="featuredblogs">
+										<li>
+							<a target="_blank" href="https://www.autodesk.com/webinars/dm/better-bom-management?mktvar004=6061672004&amp;internalc=true">
+								Join Live Webinar: Americas							</a>
+						</li>
+											<li>
+							<a target="_blank" href="https://www.autodesk.eu/webinars/dm/better-bom-management?mktvar002=6130931022&amp;utm_medium=affiliate&amp;utm_source=affiliate-pe&amp;utm_campaign=6130931dmemeaapacplmwebinar17jan2024&amp;utm_id=6130931022 ">
+								Join Live Webinar: Europe							</a>
+						</li>
+											<li>
+							<a target="_blank" href="https://www.autodesk.com/products/vault/overview">
+								Vault Product Center							</a>
+						</li>
+											<li>
+							<a target="_blank" href="https://www.youtube.com/channel/UConxSFGRWQa-6KExt1C6kQQ">
+								Autodesk PLM YouTube							</a>
+						</li>
+											<li>
+							<a target="_blank" href="https://www.autodesk.com/solutions/plm">
+								Learn about Autodesk PLM							</a>
+						</li>
+											<li>
+							<a target="_blank" href="https://www.autodesk.com/webinars?industries=industry--data-management">
+								Watch Past Webinars							</a>
+						</li>
+											<li>
+							<a target="_blank" href="https://www.autodesk.com/industry/manufacturing/vault-roadmap/overview">
+								Vault Roadmap							</a>
+						</li>
+											<li>
+							<a target="_blank" href="https://www.youtube.com/user/thevaultknowsall">
+								TheVaultKnowsAll YouTube							</a>
+						</li>
+											<li>
+							<a target="_blank" href="https://www.autodesk.com/products/fusion-360-manage-with-upchain/overview">
+								Fusion 360 Manage with Upchain Product Center							</a>
+						</li>
+								</ul>
+		</div>
+			
+		<div class="adk-bmobile-sidebar ">
+			
+						
+			<div class="adk-bmobile-sidebar-button adk-bmobile-bloginsignup">
+				<a rel="nofollow" href="javascript:void(0);" title="Connect with Autodesk" data-provider="Autodesk" class="wp-social-login-provider wp-social-login-provider-autodesk"></a>
+			</div>
+			
+						
+			<div class="adk-bmobile-sidebar-button adk-bmobile-blists">
+				
+				<div class="adk-bmobile-sidebar-content">
+					
+					<div class="adk-bsidebar-popular-header">
+						<div class="adk-bsidebar-tab active" data-target=".bmobile-most-views">
+							Most Views
+						</div>
+						<div class="adk-bsidebar-tab" data-target=".bmobile-most-shared">
+							Popular
+						</div>
+						<div class="adk-bsidebar-tab" data-target=".bmobile-saved">
+							Saved
+						</div>
+					</div>
+					
+					<div class="bmobile-most-views adk-bsidebar-popular-list active">
+											</div>
+					
+					<div class="bmobile-most-shared adk-bsidebar-popular-list">
+						<ul class="wpp-list">
+													</ul>
+					</div>
+					
+					<div class="bmobile-saved adk-bsidebar-popular-list">
+											</div>
+					
+				</div>
+				
+			</div>
+			
+			<div class="adk-bmobile-sidebar-button adk-bmobile-bfeatured">
+				
+				<div class="adk-bmobile-sidebar-content">
+					<h3 class="adk-bsidebar-item-title">Featured Links</h3>
+					<ul class="adk-bmobile-featured-links">
+						
+					</ul>
+				</div>
+				
+			</div>
+		
+		</div>
+		
+	</div>
+	
+
+	</div>
+
+	
+			<div class="adk-bfeatured-banner-wrapper">
+
+				<a data-wat-link="true" data-wat-loc="banner" data-wat-val="" href="">
+					<div class="adk-bfeatured-banner" style="background-image:url('')"></div>
+				</a>
+
+			</div>
+
+			
+		
+	
+	<div class="adk-post-grid-section adk-grid-home-section">
+		<h2 class="adk-bsection-title">
+			<span>Browse</span>
+		</h2>
+
+		
+		<div class="adk-bsection-category-browser cf">
+			<h5 class="adk-show-category-browser adk-show">Show Categories</h5>
+			<ul class="adk-category-browser-list" data-wat-linksection="categories">
+				
+					<li>
+						<a href="https://blogs.autodesk.com/vault/category/autodesk-news/">
+							Autodesk News						</a>
+					</li>
+
+				
+				
+					<li>
+						<a href="https://blogs.autodesk.com/vault/category/autodesk-university/">
+							Autodesk University						</a>
+					</li>
+
+				
+				
+					<li>
+						<a href="https://blogs.autodesk.com/vault/category/autodeskvaultposts/">
+							Autodesk Vault - All Posts						</a>
+					</li>
+
+				
+				
+					<li>
+						<a href="https://blogs.autodesk.com/vault/category/autodeskvaultposts/autodesk-vault-tips-tricks/">
+							Autodesk Vault - Tips &amp; Tricks						</a>
+					</li>
+
+				
+				
+					<li>
+						<a href="https://blogs.autodesk.com/vault/category/autodeskvaultposts/autodesk-vault-updates/">
+							Autodesk Vault - Updates						</a>
+					</li>
+
+				
+				
+					<li>
+						<a href="https://blogs.autodesk.com/vault/category/cad-integration/">
+							CAD Integration						</a>
+					</li>
+
+				
+				
+					<li>
+						<a href="https://blogs.autodesk.com/vault/category/fusion360manage/">
+							Fusion 360 Manage - All Posts						</a>
+					</li>
+
+				
+				
+					<li>
+						<a href="https://blogs.autodesk.com/vault/category/fusion-360-manage-tips-tricks/">
+							Fusion 360 Manage - Tips &amp; Tricks						</a>
+					</li>
+
+				
+				
+					<li>
+						<a href="https://blogs.autodesk.com/vault/category/fusion-360-manage-updates/">
+							Fusion 360 Manage - Updates​						</a>
+					</li>
+
+				
+				
+					<li>
+						<a href="https://blogs.autodesk.com/vault/category/fusion-360-manage-with-upchain/">
+							Fusion 360 Manage with Upchain						</a>
+					</li>
+
+				
+				
+					<li>
+						<a href="https://blogs.autodesk.com/vault/category/fusion-lifecycle-all-posts/">
+							Fusion Lifecycle - All Posts						</a>
+					</li>
+
+				
+				
+					<li>
+						<a href="https://blogs.autodesk.com/vault/category/plm/">
+							PLM						</a>
+					</li>
+
+				
+				
+					<li>
+						<a href="https://blogs.autodesk.com/vault/category/product-lifecycle-management/">
+							Product lifecycle management						</a>
+					</li>
+
+				
+				
+					<li>
+						<a href="https://blogs.autodesk.com/vault/category/upchain/">
+							Upchain						</a>
+					</li>
+
+				
+							</ul>
+		</div>
+
+
+				<div 
+			class="adk-post-grid"
+			data-exclude="4655,4692,4672,4652,4647,4655,4637,4622,4604,4591,4577,4564,4533,4522,4506"
+		>
+
+			<script type="text/javascript">
+				var adkBlog = window.adkBlog || {};
+				adkBlog.featuredIDs = [4655,4692,4672,4652,4647,4655];
+			</script>
+
+			<div class="adk-bpost-item">
+	<a href="https://blogs.autodesk.com/vault/2023/09/gain-insights-and-explore-real-world-perspectives-at-the-plm-summit-at-au-2023/">
+					<div style="background-image:url('https://blogs.autodesk.com/vault/wp-content/uploads/sites/105/2023/09/20/PLM-Summit-at-AU-2023-Blog-Post-Image-488x382.jpg')" class="adk-bpost-item-thumb"></div>
+				<h5 class="adk-bpost-item-title">Gain Insights and Explore Real-World Perspectives at the PLM Summit at AU 2023</h5>
+	</a>
+	<div class="adk-bpost-item-footer">
+					<a 
+				class="adk-bcategory" 
+				href="https://blogs.autodesk.com/vault/category/autodesk-university/"
+			>
+				Autodesk Universi...			</a>
+				<h5 class="adk-bcategory-footer-timestamp">
+			Sep 20, 2023		</h5>
+	</div>
+</div><div class="adk-bpost-item">
+	<a href="https://blogs.autodesk.com/vault/2023/08/whats-new-in-upchain-august-2023-product-update/">
+					<div style="background-image:url('https://blogs.autodesk.com/vault/wp-content/uploads/sites/105/2023/07/26/autodesk-whats-new-upchain-1-488x382.jpg')" class="adk-bpost-item-thumb"></div>
+				<h5 class="adk-bpost-item-title">What’s New in Upchain – August 2023 Product Update</h5>
+	</a>
+	<div class="adk-bpost-item-footer">
+					<a 
+				class="adk-bcategory" 
+				href="https://blogs.autodesk.com/vault/category/upchain/"
+			>
+				Upchain			</a>
+				<h5 class="adk-bcategory-footer-timestamp">
+			Aug 30, 2023		</h5>
+	</div>
+</div><div class="adk-bpost-item">
+	<a href="https://blogs.autodesk.com/vault/2023/07/whats-new-in-upchain-july-2023-product-update/">
+					<div style="background-image:url('https://blogs.autodesk.com/vault/wp-content/uploads/sites/105/2023/07/26/autodesk-whats-new-upchain-1-488x382.jpg')" class="adk-bpost-item-thumb"></div>
+				<h5 class="adk-bpost-item-title">What’s New in Upchain – July 2023 Product Update</h5>
+	</a>
+	<div class="adk-bpost-item-footer">
+					<a 
+				class="adk-bcategory" 
+				href="https://blogs.autodesk.com/vault/category/upchain/"
+			>
+				Upchain			</a>
+				<h5 class="adk-bcategory-footer-timestamp">
+			Jul 26, 2023		</h5>
+	</div>
+</div><div class="adk-bpost-item">
+	<a href="https://blogs.autodesk.com/vault/2023/07/autodesk-vault-2024-1-whats-new/">
+					<div style="background-image:url('https://blogs.autodesk.com/vault/wp-content/uploads/sites/105/2023/07/17/autodeks-vault-2024.1-whats-new-488x382.jpg')" class="adk-bpost-item-thumb"></div>
+				<h5 class="adk-bpost-item-title">Autodesk Vault 2024.1 What’s New</h5>
+	</a>
+	<div class="adk-bpost-item-footer">
+					<a 
+				class="adk-bcategory" 
+				href="https://blogs.autodesk.com/vault/category/autodeskvaultposts/autodesk-vault-updates/"
+			>
+				Autodesk Vault - ...			</a>
+				<h5 class="adk-bcategory-footer-timestamp">
+			Jul 17, 2023		</h5>
+	</div>
+</div><div class="adk-bpost-item">
+	<a href="https://blogs.autodesk.com/vault/2023/06/why-you-should-use-fusion-360-manage-modern-ui-item-details/">
+					<div style="background-image:url('https://blogs.autodesk.com/vault/wp-content/uploads/sites/105/2023/06/23/Why-You-Should-Use-Fusion-360-Manage-Modern-UI-Items-Details-488x382.jpeg')" class="adk-bpost-item-thumb"></div>
+				<h5 class="adk-bpost-item-title">Why You Should Use Fusion 360 Manage Modern UI &#8211; Item Details</h5>
+	</a>
+	<div class="adk-bpost-item-footer">
+					<a 
+				class="adk-bcategory" 
+				href="https://blogs.autodesk.com/vault/category/fusion360manage/"
+			>
+				Fusion 360 Manage...			</a>
+				<h5 class="adk-bcategory-footer-timestamp">
+			Jun 27, 2023		</h5>
+	</div>
+</div><div class="adk-bpost-item">
+	<a href="https://blogs.autodesk.com/vault/2023/05/whats-new-in-upchain-may-2023-product-update/">
+					<div style="background-image:url('https://blogs.autodesk.com/vault/wp-content/uploads/sites/105/2023/07/26/autodesk-whats-new-upchain-1-488x382.jpg')" class="adk-bpost-item-thumb"></div>
+				<h5 class="adk-bpost-item-title">What&#8217;s New in Upchain &#8211; May 2023 Product Update</h5>
+	</a>
+	<div class="adk-bpost-item-footer">
+					<a 
+				class="adk-bcategory" 
+				href="https://blogs.autodesk.com/vault/category/upchain/"
+			>
+				Upchain			</a>
+				<h5 class="adk-bcategory-footer-timestamp">
+			May 30, 2023		</h5>
+	</div>
+</div><div class="adk-bpost-item">
+	<a href="https://blogs.autodesk.com/vault/2023/05/why-you-should-use-fusion-360-manage-modern-ui-workspace-views/">
+					<div style="background-image:url('https://blogs.autodesk.com/vault/wp-content/uploads/sites/105/2023/05/25/Fusion-360-Manage-User-experience-488x382.jpg')" class="adk-bpost-item-thumb"></div>
+				<h5 class="adk-bpost-item-title">Why You Should Use Fusion 360 Manage Modern UI Workspace Views</h5>
+	</a>
+	<div class="adk-bpost-item-footer">
+					<a 
+				class="adk-bcategory" 
+				href="https://blogs.autodesk.com/vault/category/fusion360manage/"
+			>
+				Fusion 360 Manage...			</a>
+				<h5 class="adk-bcategory-footer-timestamp">
+			May 26, 2023		</h5>
+	</div>
+</div><div class="adk-bpost-item">
+	<a href="https://blogs.autodesk.com/vault/2023/05/how-to-access-your-data-with-the-vault-mobile-app/">
+					<div style="background-image:url('https://blogs.autodesk.com/vault/wp-content/uploads/sites/105/2023/05/11/AdobeStock_162084366-488x382.jpeg')" class="adk-bpost-item-thumb"></div>
+				<h5 class="adk-bpost-item-title">How to Access Your Data with the Vault Mobile App</h5>
+	</a>
+	<div class="adk-bpost-item-footer">
+					<a 
+				class="adk-bcategory" 
+				href="https://blogs.autodesk.com/vault/category/autodeskvaultposts/"
+			>
+				Autodesk Vault - ...			</a>
+				<h5 class="adk-bcategory-footer-timestamp">
+			May 11, 2023		</h5>
+	</div>
+</div><div class="adk-bpost-item">
+	<a href="https://blogs.autodesk.com/vault/2023/05/why-you-should-use-fusion-360-manage-modern-ui/">
+					<div style="background-image:url('https://blogs.autodesk.com/vault/wp-content/uploads/sites/105/2023/05/09/AdobeStock_192990120-488x382.jpeg')" class="adk-bpost-item-thumb"></div>
+				<h5 class="adk-bpost-item-title">Why You Should Use Fusion 360 Manage Modern UI</h5>
+	</a>
+	<div class="adk-bpost-item-footer">
+					<a 
+				class="adk-bcategory" 
+				href="https://blogs.autodesk.com/vault/category/fusion360manage/"
+			>
+				Fusion 360 Manage...			</a>
+				<h5 class="adk-bcategory-footer-timestamp">
+			May 09, 2023		</h5>
+	</div>
+</div>
+		</div>
+
+		<h5 class="no-articles-message">No more articles.</h5>
+
+		<div class="load-more-wrapper">
+			<div class="load-more-button">Load More</div>
+		</div>
+
+	</div>
+
+</div>
+
+
+</div>
+
+<div class="parsys iparsys legalfooter-content">
+	<div class="decorative-box">
+	    <div class="legal-footer wd-pv-20">
+	        <div class="parsys box-content">
+	            <div class="responsive-grid section">
+	                <div class="row">
+	                    <div class="grid-columns">
+	                        <div class="responsive-column-0 responsive-column">
+	                            <div class="parsys column-content">
+	                                <div class="text section">
+	                                    <p><a href="http://www.autodesk.com/company/legal-notices-trademarks/privacy-statement">Privacy/Cookies (Updated)</a> | <a href="http://www.autodesk.com/company/legal-notices-trademarks">Legal Notices &amp; Trademarks</a> | <a href="http://www.autodesk.com/reportpiracy">Report Noncompliance</a> | <a href="http://www.autodesk.com/sitemap">Site map</a> | © 2023 Autodesk Inc. All rights reserved</p>
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+</div>
+<style>
+.legalfooter-content {
+    position: static;
+    z-index: 999;
+}
+</style>
+
+<script type="text/javascript" src="https://tags.tiqcdn.com/utag/autodesk/adsk-blogs/prod/utag.js" id="utag-js"></script>
+<script type="text/javascript" src="https://blogs.autodesk.com/vault/wp-content/themes/autodesk-classic/scripts/jquery-1.11.3.min.js" id="jquery-1.11.3-js"></script>
+<script type="text/javascript" src="https://blogs.autodesk.com/vault/wp-content/themes/autodesk-classic/scripts/handlebars-v4.0.5.js" id="handlebars-v4.0.5-js"></script>
+<script type='module' src='https://blogs.autodesk.com/vault/wp-content/themes/autodesk-classic/build/adk-blog.YUS2OY7K.js'></script>'

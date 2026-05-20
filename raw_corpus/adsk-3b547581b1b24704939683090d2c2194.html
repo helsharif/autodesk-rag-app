@@ -1,0 +1,4595 @@
+<!DOCTYPE HTML>
+<html lang="ja-JP" data-env="prod" data-flex-incentives-enabled="disabled" data-new-buy-panel="disabled" data-minicart-promotion-enabled="disabled" data-odm-minicart-enabled="disabled" data-myab-ppg-enabled="disabled" data-subscription-ppg-enabled="enabled" data-promo-enabled="true" data-ppg-host="https://damassets.autodesk.net/ppg/prices">
+    <head>
+  <meta charset="UTF-8"/>
+  <meta name="headRosetta" content="true"/>
+  
+    
+<script type="text/javascript">/*
+ Copyright and licenses see https://www.dynatrace.com/company/trust-center/customers/reports/ */
+(function(){function Ha(){document.cookie="".concat("__dTCookie","=").concat("1",";SameSite=Lax");var La=-1!==document.cookie.indexOf("__dTCookie");document.cookie="".concat("__dTCookie","=").concat("1","; expires=Thu, 01-Jan-1970 00:00:01 GMT");return La}function Wa(){return void 0===Ya.dialogArguments?navigator.cookieEnabled||Ha():Ha()}function lb(){var La;if(Wa()){var Ra=Ya.dT_,Sa=null===Ra||void 0===Ra?void 0:Ra.platformPrefix;if(!Ra||Sa){var ra=null===Ra||void 0===Ra?void 0:Ra.minAgentVersion;
+ra&&"10277231024135831"<ra+""?window.console.log("[CookiePrefix/initConfig] Min agent version detected, and javascript agent is older - the javascript agent will not be initialized!"):(ra=(La={},La.cfg="domain=autodesk.com|reportUrl=/rb_dee0b18c-0606-403f-9634-093a46e2a879|app=f7a12a3012486f2d|agentId=69c99611b2b1ce88|featureHash=A27NVfhjqrux|vcv=2|xb=.*clicktale^bs..*|rdnt=1|uxrgce=1|bp=3|cuc=3xz3uffg|mel=100000|dpvc=1|md=mdcc1=bwindow.adsk_waf_s.Q.Integrate.s.Integrate.s.eVar83,mdcc2=cidentity-sso|ssv=4|lastModification=1702590743106|tp=500,50,0,1|agentUri=/ruxitagentjs_A27NVfhjqrux_10277231024135831.js|auto=1|domain=autodesk.com|rid=RID_1370533841|rpid=723137749|app=f7a12a3012486f2d",La.iCE=Wa,La.platformCookieOffset=null===Ra||void 0===Ra?void 0:Ra.platformCookieOffset,La),Sa&&(ra.platformPrefix=Sa),Ya.dT_=ra)}}}this.dT_&&dT_.prm&&dT_.prm();var Ya="undefined"!==typeof window?window:self,
+Ta;Ya.dT_&&!Ya.dT_.platformPrefix?Ya.dT_.gCP||(null===(Ta=Ya.console)||void 0===Ta?void 0:Ta.log("Duplicate agent injection detected, turning off redundant initConfig."),Ya.dT_.di=1):lb()})();
+(function(){function Ha(f,r,w){if(w||2===arguments.length)for(var W=0,H=r.length,wa;W<H;W++)!wa&&W in r||(wa||(wa=Array.prototype.slice.call(r,0,W)),wa[W]=r[W]);return f.concat(wa||Array.prototype.slice.call(r))}function Wa(f){var r;return function(){var w,W;if(r)return r;var H=null===(W=null===(w=gh.dT_)||void 0===w?void 0:w.gCP)||void 0===W?void 0:W.call(w);return r=w=H?"".concat(H,"_").concat(f):f}}function lb(){var f=0;try{f=Math.round(Ka.performance.timeOrigin)}catch(r){}if(0>=f||isNaN(f)||!isFinite(f)){Yd.push({severity:"Warning",
+type:"ptoi",text:"performance.timeOrigin is invalid, with a value of [".concat(f,"]. Falling back to performance.timing.navigationStart")});f=0;try{f=Ka.performance.timing.navigationStart}catch(r){}f=0>=f||isNaN(f)||!isFinite(f)?Ke:f}v=f;u=Ya;return v}function Ya(){return v}function Ta(){return u()}function La(){var f,r=0;if(null===(f=null===Ka||void 0===Ka?void 0:Ka.performance)||void 0===f?0:f.now)try{r=Math.round(Ka.performance.now())}catch(w){}return 0>=r||isNaN(r)||!isFinite(r)?(new Date).getTime()-
+u():r}function Ra(){var f;return!(null===(f=Ka.console)||void 0===f||!f.log)}function Sa(f,r){if(!r)return"";var w=f+"=";f=r.indexOf(w);if(0>f)return"";for(;0<=f;){if(0===f||" "===r.charAt(f-1)||";"===r.charAt(f-1))return w=f+w.length,f=r.indexOf(";",f),0<=f?r.substring(w,f):r.substring(w);f=r.indexOf(w,f+w.length)}return""}function ra(f){return Sa(f,document.cookie)}function cb(){}function Za(f,r){void 0===r&&(r=document.cookie);return Sa(f,r)}function ob(){}function ab(f,r){return function(){f.apply(r,
+arguments)}}function na(f){if(!(this instanceof na))throw new TypeError("Promises must be constructed via new");if("function"!==typeof f)throw new TypeError("not a function");this.ma=0;this.kc=!1;this.ra=void 0;this.Fa=[];Fa(f,this)}function ta(f,r){for(;3===f.ma;)f=f.ra;0===f.ma?f.Fa.push(r):(f.kc=!0,na.Eb(function(){var w=1===f.ma?r.Ee:r.Fe;if(null===w)(1===f.ma?db:da)(r.promise,f.ra);else{try{var W=w(f.ra)}catch(H){da(r.promise,H);return}db(r.promise,W)}}))}function db(f,r){try{if(r===f)throw new TypeError("A promise cannot be resolved with itself.");
+if(r&&("object"===typeof r||"function"===typeof r)){var w=r.then;if(r instanceof na){f.ma=3;f.ra=r;R(f);return}if("function"===typeof w){Fa(ab(w,r),f);return}}f.ma=1;f.ra=r;R(f)}catch(W){da(f,W)}}function da(f,r){f.ma=2;f.ra=r;R(f)}function R(f){2===f.ma&&0===f.Fa.length&&na.Eb(function(){f.kc||na.qc(f.ra)});for(var r=0,w=f.Fa.length;r<w;r++)ta(f,f.Fa[r]);f.Fa=null}function ka(f,r,w){this.Ee="function"===typeof f?f:null;this.Fe="function"===typeof r?r:null;this.promise=w}function Fa(f,r){var w=!1;
+try{f(function(W){w||(w=!0,db(r,W))},function(W){w||(w=!0,da(r,W))})}catch(W){w||(w=!0,da(r,W))}}function Ua(){Q.Eb=function(f){if("string"===typeof f)throw Error("Promise polyfill called _immediateFn with string");f()};Q.qc=function(){};return Q}function Ga(f,r){var w;void 0===r&&(r=[]);if(!f||"object"!==typeof f&&"function"!==typeof f)return!1;var W="number"!==typeof r?r:[],H=null,wa=[];switch("number"===typeof r?r:5){case 1:H="Boolean";break;case 2:H="Number";break;case 3:H="String";break;case 4:H=
+"Function";break;case 5:H="Object";break;case 6:H="Date";wa.push("getTime");break;case 7:H="Error";wa.push("name","message");break;case 8:H="Element";break;case 9:H="HTMLElement";break;case 10:H="HTMLImageElement";wa.push("complete");break;case 11:H="PerformanceEntry";break;case 12:H="PerformanceTiming";break;case 13:H="PerformanceResourceTiming";break;case 14:H="PerformanceNavigationTiming";break;case 15:H="CSSRule";wa.push("cssText","parentStyleSheet");break;case 16:H="CSSStyleSheet";wa.push("cssRules",
+"insertRule");break;case 17:H="Request";wa.push("url");break;case 18:H="Response";wa.push("ok","status","statusText");break;case 19:H="Set";wa.push("add","entries","forEach");break;case 20:H="Map";wa.push("set","entries","forEach");break;case 21:H="Worker";wa.push("addEventListener","postMessage","terminate");break;case 22:H="XMLHttpRequest";wa.push("open","send","setRequestHeader");break;case 23:H="SVGScriptElement";wa.push("ownerSVGElement","type");break;case 24:H="HTMLMetaElement";wa.push("httpEquiv",
+"content","name");break;case 25:H="HTMLHeadElement";break;case 26:H="ArrayBuffer";break;case 27:H="ShadowRoot",wa.push("host","mode")}r=H;if(!r)return!1;wa=wa.length?wa:W;if(!W.length)try{if(Ka[r]&&f instanceof Ka[r]||Object.prototype.toString.call(f)==="[object "+r+"]")return!0;if(f&&f.nodeType&&1===f.nodeType){var Cb=null===(w=f.ownerDocument.defaultView)||void 0===w?void 0:w[r];if("function"===typeof Cb&&f instanceof Cb)return!0}}catch(Ob){}for(w=0;w<wa.length;w++)if(W=wa[w],"string"!==typeof W&&
+"number"!==typeof W&&"symbol"!==typeof W||!(W in f))return!1;return!!wa.length}function Z(f,r,w,W){"undefined"===typeof W&&(W=N(r,!0));"boolean"===typeof W&&(W=N(r,W));f===Ka?Ia&&Ia(r,w,W):pb&&Ga(f,21)?Wb.call(f,r,w,W):f.addEventListener&&(f===Ka.document||f===Ka.document.documentElement?hb.call(f,r,w,W):Ia.call(f,r,w,W));W=!1;for(var H=kc.length;0<=--H;){var wa=kc[H];if(wa.object===f&&wa.event===r&&wa.H===w){W=!0;break}}W||kc.push({object:f,event:r,H:w})}function aa(f,r,w,W){for(var H=kc.length;0<=
+--H;){var wa=kc[H];if(wa.object===f&&wa.event===r&&wa.H===w){kc.splice(H,1);break}}"undefined"===typeof W&&(W=N(r,!0));"boolean"===typeof W&&(W=N(r,W));f===Ka?ib&&ib(r,w,W):f.removeEventListener&&(f===Ka.document||f===Ka.document.documentElement?bb.call(f,r,w,W):ib.call(f,r,w,W))}function N(f,r){var w=!1;try{if(Ia&&-1<Fc.indexOf(f)){var W=Object.defineProperty({},"passive",{get:function(){w=!0}});Ia("test",cb,W)}}catch(H){}return w?{passive:!0,capture:r}:r}function ua(){for(var f=kc,r=f.length;0<=
+--r;){var w=f[r];aa(w.object,w.event,w.H)}kc=[]}function X(f){return"function"===typeof f&&/{\s+\[native code]/.test(Function.prototype.toString.call(f))}function O(f,r){for(var w,W=[],H=2;H<arguments.length;H++)W[H-2]=arguments[H];return void 0!==Function.prototype.bind&&X(Function.prototype.bind)?(w=Function.prototype.bind).call.apply(w,Ha([f,r],W,!1)):function(){for(var wa=0;wa<arguments.length;wa++);return f.apply(r,(W||[]).concat(Array.prototype.slice.call(arguments)||[]))}}function E(){if(Kc){var f=
+new Kc;if(Hc)for(var r=0,w=nc;r<w.length;r++){var W=w[r];void 0!==Hc[W]&&(f[W]=O(Hc[W],f))}return f}return new Ka.XMLHttpRequest}function L(){document.cookie="".concat("__dTCookie","=").concat("1",";SameSite=Lax");var f=-1!==document.cookie.indexOf("__dTCookie");document.cookie="".concat("__dTCookie","=").concat("1","; expires=Thu, 01-Jan-1970 00:00:01 GMT");return f}function T(){return void 0===Ka.dialogArguments?navigator.cookieEnabled||L():L()}function S(){return Ka.dT_}function oa(f){f=encodeURIComponent(f);
+var r=[];if(f)for(var w=0;w<f.length;w++){var W=f.charAt(w);r.push($e[W]||W)}return r.join("")}function qa(f){-1<f.indexOf("^")&&(f=f.split("^^").join("^"),f=f.split("^dq").join('"'),f=f.split("^rb").join(">"),f=f.split("^lb").join("<"),f=f.split("^p").join("|"),f=f.split("^e").join("="),f=f.split("^s").join(";"),f=f.split("^c").join(","),f=f.split("^bs").join("\\"));return f}function V(){return vd}function Ca(f){vd=f}function $a(f){var r=ea("rid"),w=ea("rpid");r&&(f.rid=r);w&&(f.rpid=w)}function Lb(f){if(f=
+f.xb){f=qa(f);try{vd=new RegExp(f,"i")}catch(r){}}else vd=void 0}function Jb(f){return"n"===f||"s"===f||"l"===f?";SameSite=".concat(ie[f]):""}function Pb(f,r,w){var W=1,H=0;do document.cookie=f+'=""'+(r?";domain="+r:"")+";path="+w.substring(0,W)+"; expires=Thu, 01 Jan 1970 00:00:01 GMT;",W=w.indexOf("/",W),H++;while(-1!==W&&5>H)}function yb(){var f=(document.domain||location.hostname||"").split(".");return 1>=f.length?[]:f}function tc(f,r){r="dTValidationCookieValue;path=/;domain=".concat(f).concat(Jb(r));
+document.cookie="".concat(je(),"=").concat(r);return Za(je())?(Pb(je(),f,"/"),!0):!1}function cc(){if(Ka.MobileAgent||Ka.dynatraceMobile){var f=ra("dtAdkSettings");return lc(f).privacyState||null}return null}function fb(f,r){return!Bb()||S().overloadPrevention&&!G()?null:f.apply(this,r||[])}function Bb(){var f=cc();return 2===f||1===f?!1:!P("coo")||P("cooO")||G()}function Fb(f,r){try{Ka.sessionStorage.setItem(f,r)}catch(w){}}function Hb(f,r){fb(Fb,[f,r])}function Ib(f){try{return Ka.sessionStorage.getItem(f)}catch(r){}return null}
+function rb(f){try{Ka.sessionStorage.removeItem(f)}catch(r){}}function ac(f){document.cookie=f+'="";path=/'+(ea("domain")?";domain="+ea("domain"):"")+"; expires=Thu, 01 Jan 1970 00:00:01 GMT;"}function zc(f,r,w,W){r||0===r?(r=(r+"").replace(/[;\n\r]/g,"_"),f=f+"="+r+";path=/"+(ea("domain")?";domain="+ea("domain"):""),w&&(f+=";expires="+w.toUTCString()),f+=Jb(ea("cssm")),W&&"https:"===location.protocol&&(f+=";Secure"),document.cookie=f):ac(f)}function wb(f,r,w,W){fb(zc,[f,r,w,W])}function Sb(f){return-1===
+f.indexOf("v_4")?!1:!0}function jc(f){f=Za(ed(),f);f||((f=Ib(ed()))&&Sb(f)?hc(f):f="");return Sb(f)?f:""}function hc(f){wb(ed(),f,void 0,P("ssc"))}function xb(f){return(f=f||jc())?lc(f):{sessionId:"",serverId:"",overloadState:0,appState:{}}}function n(f){return xb(f).serverId}function y(f){return xb(f).sessionId}function G(){return 0<=navigator.userAgent.indexOf("RuxitSynthetic")}function z(f){var r={},w=0;for(f=f.split("|");w<f.length;w++){var W=f[w].split("=");2===W.length&&(r[W[0]]=decodeURIComponent(W[1].replace(/\+/g,
+" ")))}return r}function ba(){var f=ea("csu");return(f.indexOf("dbg")===f.length-3?f.substring(0,f.length-3):f)+"_"+ea("app")+"_Store"}function F(f,r,w){void 0===r&&(r={});var W=0;for(f=f.split("|");W<f.length;W++){var H=f[W],wa=H,Cb=H.indexOf("=");-1===Cb?r[wa]="1":(wa=H.substring(0,Cb),r[wa]=H.substring(Cb+1,H.length))}!w&&(w=r,W=w.spc)&&(f=document.createElement("textarea"),f.innerHTML=W,w.spc=f.value);return r}function ha(f){var r;return null!==(r=Rb[f])&&void 0!==r?r:Sd[f]}function P(f){f=ha(f);
+return"false"===f||"0"===f?!1:!!f}function ja(f){var r=ha(f);r=parseInt(r);isNaN(r)&&(r=Sd[f]);return r}function ea(f){return(ha(f)||"")+""}function Aa(f,r){Rb[f]=r+""}function eb(f){return Rb=f}function sb(f){var r=Rb[f];r&&(Rb[f]=0>r.indexOf("#"+f.toUpperCase())?r:"")}function Ub(f){var r=f.agentUri;r&&-1<r.indexOf("_")&&(r=/([a-zA-Z]*)[0-9]{0,4}_([a-zA-Z_0-9]*)_[0-9]+/g.exec(r))&&r.length&&2<r.length&&(f.csu=r[1],f.featureHash=r[2])}function qc(f){var r=S().platformCookieOffset;if("number"===typeof r){a:{var w=
+ea("cssm");var W=yb();if(W.length)for(r=W.slice(r);r.length;){if(tc(r.join("."),w)){w=r.join(".");break a}r.shift()}w=""}w&&(f.domain=w)}else if(w=f.domain||"",r=(r=location.hostname)&&w?r===w||-1!==r.indexOf("."+w,r.length-("."+w).length):!0,!w||!r){f.domainOverride||(f.domainOriginal=f.domain||"",f.domainOverride="".concat(location.hostname,",").concat(w),delete f.domain);a:{W=ea("cssm");var H=yb().reverse();if(H.length)for(var wa=H[0],Cb=1;Cb<=H.length;Cb++){if(tc(wa,W)){W=wa;break a}var Ob=H[Cb];
+Ob&&(wa="".concat(Ob,".").concat(wa))}W=""}W&&(f.domain=W);r||Yd.push({type:"dpi",severity:"Warning",text:'Configured domain "'.concat(w,'" is invalid for current location "').concat(location.hostname,'". Agent will use "').concat(f.domain,'" instead.')})}}function rc(f,r){qc(f);var w=Rb.pVO;w&&(f.pVO=w);r||(f.bp=(f.bp||Sd.bp)+"")}function xc(){return Rb}function Zc(f){return Sd[f]===ha(f)}function lc(f){var r,w={},W={sessionId:"",serverId:"",overloadState:0,appState:w},H=f.split("_");if(2<H.length&&
+0===H.length%2){f=+H[1];if(isNaN(f)||3>f)return W;f={};for(var wa=2;wa<H.length;wa++){var Cb=H[wa];0===Cb.indexOf($f)?w[Cb.substring(6).toLowerCase()]=+H[wa+1]:f[Cb]=H[wa+1];wa++}f.sn?(H=f.sn,H=H.length===Td||12>=H.length?H:""):H="hybrid";W.sessionId=H;if(f.srv){a:{H=f.srv.replace("-2D","-");if(!isNaN(+H)&&(wa=parseInt(H),-99<=wa&&99>=wa))break a;H=""}W.serverId=H}H=+f.ol;1===H&&ub(G());0<=H&&2>=H&&(W.overloadState=H);f=+f.prv;isNaN(f)||(W.privacyState=1>f||4<f?1:f);f=null===(r=ea("app"))||void 0===
+r?void 0:r.toLowerCase();r=w[f];isNaN(r)||0!==r||ub(G())}return W}function ub(f){var r=S();f||(r.disabled=!0,r.overloadPrevention=!0)}function Ab(){return wc()}function ec(f,r){function w(){delete wd[wa];f.apply(this,arguments)}for(var W=[],H=2;H<arguments.length;H++)W[H-2]=arguments[H];if("apply"in ag){W.unshift(w,r);var wa=ag.apply(Ka,W)}else wa=ag(w,r);wd[wa]=!0;return wa}function qb(f){delete wd[f];"apply"in we?we.call(Ka,f):we(f)}function Mb(f){qd.push(f)}function Oc(f){for(var r=qd.length;r--;)if(qd[r]===
+f){qd.splice(r,1);break}}function Zd(){return qd}function Bd(f,r){return bg(f,r)}function Kd(f){cg(f)}function Bc(f,r){if(!ke||!Le)return"";f=new ke([f],{type:r});return Le(f)}function Sc(f,r){return Ld?new Ld(f,r):void 0}function Ba(f){"function"===typeof f&&Me.push(f)}function I(){return Me}function ma(){return Ke}function za(f){return function(){for(var r=[],w=0;w<arguments.length;w++)r[w]=arguments[w];if("number"!==typeof r[0]||!wd[r[0]])try{return f.apply(this,r)}catch(W){return f(r[0])}}}function xa(){return Yd}
+function ya(){u=lb;Ka.performance&&(wc=function(){return Math.round(u()+La())});if(!wc||isNaN(wc())||0>=wc()||!isFinite(wc()))wc=function(){return(new Date).getTime()}}function Ma(){fe&&(Ka.clearTimeout=we,Ka.clearInterval=cg,fe=!1)}function sa(f,r){try{Ka.localStorage.setItem(f,r)}catch(w){}}function Ea(f){try{Ka.localStorage.removeItem(f)}catch(r){}}function gb(f){try{return Ka.localStorage.getItem(f)}catch(r){}return null}function Va(f){Bb()?f():(le||(le=[]),le.push(f))}function jb(f){return fb(f)}
+function ic(){if(P("coo")&&!Bb()){for(var f=0,r=le;f<r.length;f++)ec(r[f],0);le=[];Aa("cooO",!0)}}function Zb(){if(P("coo")&&Bb()){Aa("cooO",!1);ac(ed());ac(qf());ac("dtSa");ac("dtAdk");ac($c());ac(fd());try{rb(Md()),rb(fd()),Ea(Md()),Ea(fd()),rb($c()),rb(ed()),Ea(ba()),Ea("dtAdk")}catch(f){}}}function Gb(f,r){void 0===r&&(r=document.cookie||"");return r.split(f+"=").length-1}function $b(f,r){var w=Gb(f,r);if(1<w){r=ea("domain")||Ka.location.hostname;var W=Ka.location.hostname,H=Ka.location.pathname,
+wa=0,Cb=0;ld.add(f);do{var Ob=W.substring(wa);if(Ob!==r||"/"!==H){Pb(f,Ob===r?"":Ob,H);var fc=Gb(f);fc<w&&(ld.add(Ob),w=fc)}wa=W.indexOf(".",wa)+1;Cb++}while(0!==wa&&10>Cb&&1<w);ea("domain")&&1<w&&Pb(f,"",H)}}function Tc(){var f=document.cookie;$b(qf(),f);$b(ed(),f);$b(fd(),f);f=ld.size;0<f&&f!==Gf&&(Gf=f,Yd.push({severity:"Error",type:"dcn",text:"Duplicate cookie name".concat(1!==f?"s":""," detected: ").concat(yc())}))}function sd(){ld=new Set;Tc();Mb(function(f,r,w,W){0===ld.size||r||(f.av(W,"dCN",
+yc()),ld.clear(),Gf=0)})}function yc(){var f=[];ld.forEach(function(r){f.push(r)});return f.join(",")}function md(f){var r=f,w=Math.pow(2,32);return function(){r=(1664525*r+1013904223)%w;return r/w}}function Cd(f,r){return isNaN(f)||isNaN(r)?Math.floor(33*af()):Math.floor(af()*(r-f+1))+f}function $d(f){if(!f)return"";var r=Ka.crypto||Ka.msCrypto;if(r&&-1===navigator.userAgent.indexOf("Googlebot"))r=r.getRandomValues(new Uint8Array(f));else{r=[];for(var w=0;w<f;w++)r.push(Cd(0,32))}f=[];for(w=0;w<
+r.length;w++){var W=Math.abs(r[w]%32);f.push(String.fromCharCode(W+(9>=W?48:55)))}return f.join("")}function Dd(){return bf}function Ed(f){void 0===f&&(f=!0);jg=f}function Lc(f,r,w){var W=ja("pcl");W=f.length-W;0<W&&f.splice(0,W);W=n(Za(ed(),w));for(var H=[],wa=W?"".concat(W,"$"):"",Cb=0;Cb<f.length;Cb++){var Ob=f[Cb];"-"!==Ob.D&&H.push("".concat(wa).concat(Ob.frameId,"h").concat(Ob.D))}f=H.join("p");f||(jg&&(Ic(!0,"a",w),Ed(!1)),f+="".concat(W,"$").concat(bf,"h-"));f+="v".concat(r||Xc(w));r=f+"e0";
+wb(qf(),r,void 0,P("ssc"))}function bd(f,r){void 0===r&&(r=document.cookie);var w=Za(qf(),r);r=[];if(w&&"-"!==w){var W="";var H=0;for(w=w.split("p");H<w.length;H++){var wa=w[H],Cb=W;void 0===Cb&&(Cb="");var Ob=wa.indexOf("h");var fc=wa.indexOf("v"),Mc=wa.indexOf("e");W=wa.substring(wa.indexOf("$")+1,Ob);Ob=-1!==fc?wa.substring(Ob+1,fc):wa.substring(Ob+1);Cb||-1===fc||(Cb=-1!==Mc?wa.substring(fc+1,Mc):wa.substring(fc+1));wa=null;(fc=f)||(fc=parseInt(W.split("_")[0]),Mc=wc()%Hf,Mc<fc&&(Mc+=Hf),fc=fc+
+9E5>Mc);fc&&(wa={frameId:W,D:"-"===Ob?"-":parseInt(Ob),visitId:""});W=Cb;(Ob=wa)&&r.push(Ob)}for(f=0;f<r.length;f++)r[f].visitId=W}return r}function Uc(f,r){var w=document.cookie;r=bd(r,w);for(var W=!1,H=0;H<r.length;H++){var wa=r[H];wa.frameId===bf&&(wa.D=f,W=!0)}W||r.push({frameId:bf,D:f,visitId:""});Lc(r,void 0,w)}function Xc(f){return Vc(f)||Ic(!0,"c",f)}function Vc(f){if(ia(f)<=wc())return Ic(!0,"t",f);var r=Ud(f);if(!r)return Ic(!0,"c",f);var w=hh.exec(r);if(!w||3!==w.length||32!==w[1].length||
+isNaN(parseInt(w[2])))return Ic(!0,"i",f);Hb(Md(),r);return r}function nd(f,r){var w=wc();r=ca(r).Fc;f&&(r=w);B(w+If+"|"+r);p()}function me(f){var r="t"+(wc()-ia(f)),w=Ud(f),W=Ne();xd(W,f);xe(W,r,w)}function Ud(f){var r,w;return null!==(w=null===(r=bd(!0,f)[0])||void 0===r?void 0:r.visitId)&&void 0!==w?w:Ib(Md())}function Ne(){var f=$d(Td);try{f=f.replace(/[0-9]/g,function(r){return String.fromCharCode(Math.floor(2.5*parseInt(r)+65))})}catch(r){throw Ga(r,7),r;}return f+"-0"}function xd(f,r){var w=
+bd(!1,r);Lc(w,f,r);Hb(Md(),f);nd(!0)}function td(f,r,w){return Ic(f,r,w)}function Ic(f,r,w){f&&(Jf=!0);f=Ud(w);w=Ne();xd(w);xe(w,r,f);return w}function xe(f,r,w){if(Ud(document.cookie))for(var W=0,H=Xg;W<H.length;W++)(0,H[W])(f,Jf,r,w)}function Fd(f){Xg.push(f)}function p(f){ye&&qb(ye);ye=ec(x,ia(f)-wc())}function x(){var f=document.cookie;if(ia(f)<=wc())return fb(me,[f]),!0;Va(p);return!1}function B(f){var r=O(wb,null,fd(),f,void 0,P("ssc"));r();var w=Za(fd());""!==w&&f!==w&&(Tc(),r(),f===Za(fd())||
+kg||(Yd.push({severity:"Error",type:"dcn",text:"Could not sanitize cookies"}),kg=!0));Hb(fd(),f)}function K(f,r){(r=Za(f,r))||(r=Ib(f)||"");return r}function M(){var f=Vc()||"";Hb(Md(),f);f=K(fd());B(f);Ea(Md());Ea(fd())}function ca(f){var r={Nd:0,Fc:0};if(f=K(fd(),f))try{var w=f.split("|");2===w.length&&(r.Nd=parseInt(w[0]),r.Fc=parseInt(w[1]))}catch(W){}return r}function ia(f){f=ca(f);return Math.min(f.Nd,f.Fc+dg)}function va(f){If=f}function Oa(){var f=Jf;Jf=!1;return f}function Ja(){x()||nd(!1)}
+function mb(){var f=Za($c());f&&45===(null===f||void 0===f?void 0:f.length)||(f=gb($c())||Ib($c()),45!==(null===f||void 0===f?void 0:f.length)&&(Yg=!0,f=wc()+"",f+=$d(45-f.length)));Kb(f);return f}function Kb(f){if(P("dpvc")||P("pVO"))Hb($c(),f);else{var r=new Date;var w=r.getMonth()+Math.min(24,Math.max(1,ja("rvcl")));r.setMonth(w);w=$c();fb(sa,[w,f])}wb($c(),f,r,P("ssc"))}function uc(){return Yg}function sc(f){var r=Za($c());ac($c());rb($c());Ea($c());Aa("pVO",!0);Kb(r);f&&fb(sa,["dt-pVO","1"]);
+M()}function oc(){Ea("dt-pVO");P("pVO")&&(Aa("pVO",!1),mb());rb($c());M()}function Jc(f,r,w,W,H){var wa=document.createElement("script");wa.setAttribute("src",f);r&&wa.setAttribute("defer","defer");w&&(wa.onload=w);W&&(wa.onerror=W);H&&wa.setAttribute("id",H);wa.setAttribute("crossorigin","anonymous");f=document.getElementsByTagName("script")[0];f.parentElement.insertBefore(wa,f)}function gd(f,r){return ih+"/"+(r||Kf)+"_"+f+"_"+(ja("buildNumber")||S().version)+".js"}function hd(){var f,r;try{null===
+(r=null===(f=Ka.MobileAgent)||void 0===f?void 0:f.incrementActionCount)||void 0===r?void 0:r.call(f)}catch(w){}}function Gd(){var f,r=Ka.dT_;Ka.dT_=(f={},f.di=0,f.version="10277231024135831",f.cfg=r?r.cfg:"",f.iCE=r?T:function(){return navigator.cookieEnabled},f.ica=1,f.disabled=!1,f.overloadPrevention=!1,f.gAST=ma,f.ww=Sc,f.stu=Bc,f.nw=Ab,f.st=ec,f.si=Bd,f.aBPSL=Mb,f.rBPSL=Oc,f.gBPSL=Zd,f.aBPSCC=Ba,f.gBPSCC=I,f.buildType="dynatrace",f.gSSV=Ib,f.sSSV=Hb,f.rSSV=rb,f.rvl=Ea,f.iVSC=Sb,f.p3SC=lc,f.dC=
+ac,f.sC=wb,f.esc=oa,f.gSId=n,f.gDtc=y,f.gSC=jc,f.sSC=hc,f.gC=ra,f.cRN=Cd,f.cRS=$d,f.cfgO=xc,f.pCfg=z,f.pCSAA=F,f.cFHFAU=Ub,f.sCD=rc,f.bcv=P,f.ncv=ja,f.scv=ea,f.stcv=Aa,f.rplC=eb,f.cLSCK=ba,f.gFId=Dd,f.gBAU=gd,f.iS=Jc,f.eWE=Va,f.oEIE=jb,f.oEIEWA=fb,f.eA=ic,f.dA=Zb,f.iNV=uc,f.gVID=mb,f.dPV=sc,f.ePV=oc,f.sVIdUP=Ed,f.sVTT=va,f.sVID=xd,f.rVID=Vc,f.gVI=Xc,f.gNVIdN=td,f.gARnVF=Oa,f.cAUV=Ja,f.uVT=nd,f.aNVL=Fd,f.gPC=bd,f.cPC=Uc,f.sPC=Lc,f.clB=Ma,f.ct=qb,f.aRI=$a,f.iXB=Lb,f.gXBR=V,f.sXBR=Ca,f.de=qa,f.cCL=Ra,
+f.iEC=hd,f.rnw=La,f.gto=Ta,f.ael=Z,f.rel=aa,f.sup=N,f.cuel=ua,f.iAEPOO=Bb,f.iSM=G,f.gxwp=E,f.iIO=Ga,f.prm=Ua,f.cI=Kd,f.gidi=xa,f.iDCV=Zc,f.gCF=Za,f.gPSMB=cc,f.lvl=gb,f.gCP=(null===r||void 0===r?0:r.platformPrefix)?function(){return r.platformPrefix||""}:void 0,f.platformCookieOffset=null===r||void 0===r?void 0:r.platformCookieOffset,f)}function ze(){if(P("nsfnv")){var f=Za(ed());if(-1===f.indexOf("".concat(eg,"-"))){var r=lc(f).serverId;f=f.replace("".concat(eg).concat(r),"".concat(eg).concat("".concat(-1*
+Cd(2,99)).replace("-","-2D")));hc(f)}}}function cf(){Va(function(){if(!y()){var f=-1*Cd(2,99),r=$d(Td);hc("v_4".concat(eg).concat("".concat(f).replace("-","-2D"),"_sn_").concat(r))}});Fd(ze)}function Ve(){for(var f=[],r=0;r<arguments.length;r++)f[r]=arguments[r];Ka.console.log.apply(Ka.console,f)}this.dT_&&dT_.prm&&dT_.prm();var ne;(function(f){f[f.ENABLED=0]="ENABLED";f[f.DISABLED=1]="DISABLED";f[f.DELAYED=2]="DELAYED"})(ne||(ne={}));var rf;(function(f){f[f.BLOCKED_BY_PERCENTAGE=0]="BLOCKED_BY_PERCENTAGE";
+f[f.ENABLED=1]="ENABLED";f[f.BLOCKED=2]="BLOCKED"})(rf||(rf={}));var We;(function(f){f[f.NONE=1]="NONE";f[f.OFF=2]="OFF";f[f.PERFORMANCE=3]="PERFORMANCE";f[f.BEHAVIOR=4]="BEHAVIOR"})(We||(We={}));var lg;(function(f){f.OVERLOAD_PREVENTION="ol";f.PRIVACY_STATE="prv";f.SERVER_ID="srv";f.SESSION_ID="sn"})(lg||(lg={}));var Ae;(function(f){f.DYNATRACE_MOBILE="dynatraceMobile";f.MOBILE_AGENT="MobileAgent"})(Ae||(Ae={}));var mg;(function(f){f[f.ARRAY=0]="ARRAY";f[f.BOOLEAN=1]="BOOLEAN";f[f.NUMBER=2]="NUMBER";
+f[f.STRING=3]="STRING";f[f.FUNCTION=4]="FUNCTION";f[f.OBJECT=5]="OBJECT";f[f.DATE=6]="DATE";f[f.ERROR=7]="ERROR";f[f.ELEMENT=8]="ELEMENT";f[f.HTML_ELEMENT=9]="HTML_ELEMENT";f[f.HTML_IMAGE_ELEMENT=10]="HTML_IMAGE_ELEMENT";f[f.PERFORMANCE_ENTRY=11]="PERFORMANCE_ENTRY";f[f.PERFORMANCE_TIMING=12]="PERFORMANCE_TIMING";f[f.PERFORMANCE_RESOURCE_TIMING=13]="PERFORMANCE_RESOURCE_TIMING";f[f.PERFORMANCE_NAVIGATION_TIMING=14]="PERFORMANCE_NAVIGATION_TIMING";f[f.CSS_RULE=15]="CSS_RULE";f[f.CSS_STYLE_SHEET=16]=
+"CSS_STYLE_SHEET";f[f.REQUEST=17]="REQUEST";f[f.RESPONSE=18]="RESPONSE";f[f.SET=19]="SET";f[f.MAP=20]="MAP";f[f.WORKER=21]="WORKER";f[f.XML_HTTP_REQUEST=22]="XML_HTTP_REQUEST";f[f.SVG_SCRIPT_ELEMENT=23]="SVG_SCRIPT_ELEMENT";f[f.HTML_META_ELEMENT=24]="HTML_META_ELEMENT";f[f.HTML_HEAD_ELEMENT=25]="HTML_HEAD_ELEMENT";f[f.ARRAY_BUFFER=26]="ARRAY_BUFFER";f[f.SHADOW_ROOT=27]="SHADOW_ROOT"})(mg||(mg={}));var gh=window,qf=Wa("dtPC"),ed=Wa("dtCookie"),fd=Wa("rxvt"),$c=Wa("rxVisitor"),je=Wa("dTValidationCookie"),
+Ka="undefined"!==typeof window?window:self,v,u,A=setTimeout;na.prototype["catch"]=function(f){return this.then(null,f)};na.prototype.then=function(f,r){var w=new this.constructor(ob);ta(this,new ka(f,r,w));return w};na.prototype["finally"]=function(f){var r=this.constructor;return this.then(function(w){return r.resolve(f()).then(function(){return w})},function(w){return r.resolve(f()).then(function(){return r.reject(w)})})};na.all=function(f){return new na(function(r,w){function W(Ob,fc){try{if(fc&&
+("object"===typeof fc||"function"===typeof fc)){var Mc=fc.then;if("function"===typeof Mc){Mc.call(fc,function(Be){W(Ob,Be)},w);return}}H[Ob]=fc;0===--wa&&r(H)}catch(Be){w(Be)}}if(!f||"undefined"===typeof f.length)return w(new TypeError("Promise.all accepts an array"));var H=Array.prototype.slice.call(f);if(0===H.length)return r([]);for(var wa=H.length,Cb=0;Cb<H.length;Cb++)W(Cb,H[Cb])})};na.allSettled=function(f){return new this(function(r,w){function W(Cb,Ob){if(Ob&&("object"===typeof Ob||"function"===
+typeof Ob)){var fc=Ob.then;if("function"===typeof fc){fc.call(Ob,function(Mc){W(Cb,Mc)},function(Mc){H[Cb]={status:"rejected",reason:Mc};0===--wa&&r(H)});return}}H[Cb]={status:"fulfilled",value:Ob};0===--wa&&r(H)}if(!f||"undefined"===typeof f.length)return w(new TypeError(typeof f+" "+f+" is not iterable(cannot read property Symbol(Symbol.iterator))"));var H=Array.prototype.slice.call(f);if(0===H.length)return r([]);var wa=H.length;for(w=0;w<H.length;w++)W(w,H[w])})};na.resolve=function(f){return f&&
+"object"===typeof f&&f.constructor===na?f:new na(function(r){r(f)})};na.reject=function(f){return new na(function(r,w){w(f)})};na.race=function(f){return new na(function(r,w){if(!f||"undefined"===typeof f.length)return w(new TypeError("Promise.race accepts an array"));for(var W=0,H=f.length;W<H;W++)na.resolve(f[W]).then(r,w)})};na.Eb="function"===typeof setImmediate&&function(f){setImmediate(f)}||function(f){A(f,0)};na.qc=function(f){"undefined"!==typeof console&&console&&console.warn("Possible Unhandled Promise Rejection:",
+f)};var Q=na,pa;(function(f){f.ANCHOR="A";f.BUTTON="BUTTON";f.FORM="FORM";f.I_FRAME="IFRAME";f.IMAGE="IMG";f.INPUT="INPUT";f.LABEL="LABEL";f.LINK="LINK";f.OPTION="OPTION";f.SCRIPT="SCRIPT";f.SELECT="SELECT";f.STYLE="STYLE";f.TEXT_AREA="TEXTAREA"})(pa||(pa={}));var Ia,ib,hb,bb,pb=Ka.Worker,Wb=pb&&pb.prototype.addEventListener,kc=[],Fc=["touchstart","touchend","scroll"],Kc,nc="abort getAllResponseHeaders getResponseHeader open overrideMimeType send setRequestHeader".split(" "),Hc,$e={"!":"%21","~":"%7E",
+"*":"%2A","(":"%28",")":"%29","'":"%27",$:"%24",";":"%3B",",":"%2C"},vd,Cc,ie=(Cc={},Cc.l="Lax",Cc.s="Strict",Cc.n="None",Cc),Sd,Td=32,ud;(function(f){f.LAX="l";f.NONE="n";f.NOT_SET="0";f.STRICT="s"})(ud||(ud={}));var Md=Wa("rxvisitid"),Rb={},$f="app-3A",Ld=Ka.Worker,ke=Ka.Blob,Le=Ka.URL&&Ka.URL.createObjectURL,we,cg,ag,bg,fe=!1,qd,Me=[],Yd=[],Ke,sf,wd={},wc,le=[],ld,Gf=0,af,Kh,bf,Hf=6E8,jg=!1,hh=/([A-Z]+)-([0-9]+)/,Xg=[],If,dg,Jf=!1,ye,kg=!1,Yg=!1,ng,ih,Kf,eg="".concat("_","srv").concat("_");(function(){var f,
+r,w;if(!(11>document.documentMode)){var W=0>(null===(r=navigator.userAgent)||void 0===r?void 0:r.indexOf("RuxitSynthetic"));if(!Ka.dT_||!Ka.dT_.cfg||"string"!==typeof Ka.dT_.cfg||"initialized"in Ka.dT_&&Ka.dT_.initialized)(null===(w=Ka.dT_)||void 0===w?0:w.gCP)?Ve("[CookiePrefix/initCode] initCode with cookie prefix already initialized, not initializing initCode!"):Ve("InitConfig not found or agent already initialized! This is an injection issue."),Ka.dT_&&(Ka.dT_.di=3);else if(W)try{Gd();var H;Sd=
+(H={},H.ade="",H.aew=!0,H.apn="",H.agentLocation="",H.agentUri="",H.app="",H.async=!1,H.ase=!1,H.auto=!1,H.bp=3,H.bs=!1,H.buildNumber=0,H.csprv=!0,H.cepl=16E3,H.cls=!0,H.ccNcss=!1,H.coo=!1,H.cooO=!1,H.cssm="0",H.cwt="",H.cwtUrl="27pd8x1igg",H.cors=!1,H.csu="",H.cuc="",H.cce=!1,H.cux=!1,H.dataDtConfig="",H.debugName="",H.dvl=500,H.dASXH=!1,H.disableCookieManager=!1,H.dKAH=!1,H.disableLogging=!1,H.dmo=!1,H.doel=!1,H.dpch=!1,H.dpvc=!1,H.disableXhrFailures=!1,H.domain="",H.domainOverride="",H.domainOriginal=
+"",H.doNotDetect="",H.ds=!0,H.dsndb=!1,H.dsa=!1,H.dsss=!1,H.dssv=!0,H.earxa=!0,H.exp=!1,H.eni=!0,H.expw=!1,H.instr="",H.evl="",H.fa=!1,H.fvdi=!1,H.featureHash="",H.hvt=216E5,H.imm=!1,H.ign="",H.iub="",H.iqvn=!1,H.initializedModules="",H.lastModification=0,H.lupr=!0,H.lab=!1,H.legacy=!1,H.lt=!0,H.mb="",H.md="",H.mdp="",H.mdl="",H.mcepsl=100,H.mdn=5E3,H.mhl=4E3,H.mpl=1024,H.mmds=2E4,H.msl=3E4,H.bismepl=2E3,H.mel=200,H.mepp=10,H.moa=30,H.mrt=3,H.ntd=!1,H.nsfnv=!1,H.ncw=!1,H.oat=180,H.ote=!1,H.owasp=
+!1,H.pcl=20,H.pt=!0,H.perfbv=1,H.prfSmpl=0,H.pVO=!1,H.peti=!1,H.raxeh=!0,H.rdnt=0,H.nosr=!0,H.reportUrl="dynaTraceMonitor",H.rid="",H.ridPath="",H.rpid="",H.rcdec=12096E5,H.rtl=0,H.rtp=2,H.rtt=1E3,H.rtu=200,H.rvcl=24,H.sl=100,H.ssc=!1,H.svNB=!1,H.srad=!0,H.srbbv=1,H.srbw=!0,H.srdinitrec=!0,H.srmr=100,H.srms="1,1,,,",H.srsr=1E5,H.srtbv=3,H.srtd=1,H.srtr=500,H.srvr="",H.srvi=0,H.srwo=!1,H.srre="",H.srxcss=!0,H.srxicss=!0,H.srficros=!1,H.srif=!1,H.srmrc=!1,H.srsdom=!0,H.srcss=!0,H.srmcrl=1,H.srmcrv=
+10,H.st=3E3,H.spc="",H.syntheticConfig=!1,H.tal=0,H.tt=100,H.tvc=3E3,H.uxdce=!1,H.uxdcw=1500,H.uxrgce=!0,H.uxrgcm="100,25,300,3;100,25,300,3",H.uam=!1,H.uana="data-dtname,data-dtName",H.uanpi=0,H.pui=!1,H.usrvd=!0,H.vrt=!1,H.vcfi=!0,H.vcsb=!1,H.vcit=1E3,H.vct=50,H.vcx=50,H.vscl=0,H.vncm=1,H.xb="",H.chw="",H.xt=0,H.xhb="",H);var wa;Ua();var Cb;Kc=Ka.XMLHttpRequest;var Ob=null===(Cb=Ka.XMLHttpRequest)||void 0===Cb?void 0:Cb.prototype;if(Ob)for(Hc={},r=0,w=nc;r<w.length;r++){var fc=w[r];void 0!==Ob[fc]&&
+(Hc[fc]=Ob[fc])}Ia=Ka.addEventListener;ib=Ka.removeEventListener;hb=Ka.document.addEventListener;bb=Ka.document.removeEventListener;ag=Ka.setTimeout;bg=Ka.setInterval;fe||(we=Ka.clearTimeout,cg=Ka.clearInterval);var Mc=T?T():navigator.cookieEnabled,Be=1===lc(Za("dtAdkSettings")||(null===(wa=sf)||void 0===wa?void 0:wa.getItem("dtAdkSettings"))||"").overloadState;Ra();if(!(!Mc||Be?0:"complete"!==document.readyState||Ka.performance&&Ka.performance.timing))throw Error("Error during initCode initialization");
+try{sf=Ka.localStorage}catch(jh){}Yd=[];ya();Ke=wc();qd=[];wd={};fe||(Ka.clearTimeout=za(we),Ka.clearInterval=za(cg),fe=!0);var oe=Math.random(),df=Math.random();Kh=0!==oe&&0!==df&&oe!==df;if(-1!==navigator.userAgent.indexOf("Googlebot")){var Ce=performance.getEntriesByType("navigation")[0];wa=1;if(Ce){for(var Oe in Ce){var fg=Ce[Oe];"number"===typeof fg&&fg&&(wa=1===wa?fg:wa+fg)}var gg=Math.floor(1E4*wa)}else gg=wa;af=md(gg)}else Kh?af=Math.random:af=md(wc());bf=Ke%Hf+"_"+parseInt(Cd(0,1E3)+"");
+a:{var ae,Pe,ad=S().cfg;Rb={reportUrl:"dynaTraceMonitor",initializedModules:"",csu:"dtagent",dataDtConfig:"string"===typeof ad?ad:""};S().cfg=Rb;Rb.csu="ruxitagentjs";var Nd=Rb.dataDtConfig;Nd&&-1===Nd.indexOf("#CONFIGSTRING")&&(F(Nd,Rb),sb("domain"),sb("auto"),sb("app"),Ub(Rb));var Od=document.getElementsByTagName("script"),De=Od.length,Pd=-1===(Rb.dataDtConfig||"").indexOf("#CONFIGSTRING")?Rb:null;if(0<De)for(gg=0;gg<De;gg++)b:{Ce=void 0;var Zg=Od[gg];Oe=Pd;if(Zg.attributes){fg=Oe;var kh=Zg.src,
+lh=Zg.attributes.getNamedItem("data-dtconfig");if(lh){ad=void 0;Nd=kh;var Ig=lh.value;wa={};Rb.legacy="1";Ob=/([a-zA-Z]*)_([a-zA-Z_0-9]*)_([0-9]+)/g;Nd&&(ad=Ob.exec(Nd),null===ad||void 0===ad?0:ad.length)&&(wa.csu=ad[1],wa.featureHash=ad[2],wa.agentLocation=Nd.substring(0,Nd.indexOf(ad[1])-1),wa.buildNumber=ad[3]);if(Ig){F(Ig,wa,!0);var og=wa.agentUri;!Nd&&og&&(ad=Ob.exec(og),null===ad||void 0===ad?0:ad.length)&&(wa.csu=ad[1])}qc(wa);Ce=wa;if(!Oe)fg=Ce;else if(!Ce.syntheticConfig){Pd=Ce;break b}}Pd=
+fg}else Pd=Oe}if(Pd)for(var Lf in Pd)Object.prototype.hasOwnProperty.call(Pd,Lf)&&(Od=Lf,Rb[Od]=Pd[Od]);var Mf=ba();try{var pe=(Pd=sf)&&Pd.getItem(Mf);if(pe){var Qd=z(pe),tf=F(Qd.config||""),mh=Rb.lastModification||"0",nh=parseInt((tf.lastModification||Qd.lastModification||"0").substring(0,13)),pg="string"===typeof mh?parseInt(mh.substring(0,13)):mh;if(!mh||nh>=pg)if(tf.csu=Qd.name||ea("csu"),tf.featureHash=Qd.featureHash||ea("featureHash"),tf.agentUri&&Ub(tf),rc(tf,!0),Lb(tf),$a(tf),nh>(+Rb.lastModification||
+0)){var Jg=P("auto"),Nf=P("legacy");Rb=eb(tf);Rb.auto=Jg?"1":"0";Rb.legacy=Nf?"1":"0"}}}catch(jh){}rc(Rb);try{var Ee=Rb.ign;if(Ee&&(new RegExp(Ee)).test(Ka.location.href)){document.dT_=Ka.dT_=void 0;var Of=!1;break a}}catch(jh){}if(G()){var uf=navigator.userAgent,Vd=uf.lastIndexOf("RuxitSynthetic");if(-1===Vd)var Pf={};else{var Qe=uf.substring(Vd+14);if(-1===Qe.indexOf(" c"))Pf={};else{Mf={};pe=0;for(var qg=Qe.split(" ");pe<qg.length;pe++){var Kg=qg[pe];if("c"===Kg.charAt(0)){var Lg=Kg.substring(1),
+Lh=Lg.indexOf("="),$g=Lg.substring(0,Lh),Mh=Lg.substring(Lh+1);$g&&Mh&&(Mf[$g]=Mh)}}Pf=Mf}}Qe=void 0;for(Qe in Pf)Object.prototype.hasOwnProperty.call(Pf,Qe)&&Pf[Qe]&&(Rb[Qe]=Pf[Qe]);eb(Rb)}var vf=null===(Pe=(ae=S()).gCP)||void 0===Pe?void 0:Pe.call(ae),oh=ea("cuc");if(vf&&vf!==oh)throw Error("platformPrefix and cuc do not match!");Of=!0}if(!Of)throw Error("Error during config initialization");sd();ng=S().disabled;var be;if(!(be=ea("agentLocation")))a:{var Nh=ea("agentUri");if(Nh||document.currentScript){var wf=
+Nh||document.currentScript.src;if(wf){var ph=-1===wf.indexOf("_complete")?1:2,rg=wf.lastIndexOf("/");for(Of=0;Of<ph&&-1!==rg;Of++)wf=wf.substring(0,rg),rg=wf.lastIndexOf("/");be=wf;break a}}var Qf=location.pathname;be=Qf.substring(0,Qf.lastIndexOf("/"))}ih=be;Kf=ea("csu")||"ruxitagentjs";"true"===Za("dtUseDebugAgent")&&0>Kf.indexOf("dbg")&&(Kf=ea("debugName")||Kf+"dbg");if(!P("auto")&&!P("legacy")&&!ng){var qe=ea("agentUri")||gd(ea("featureHash"));if(P("async")||"complete"===document.readyState)Jc(qe,
+P("async"),void 0,void 0,"dtjsagent");else{var Ii="".concat("dtjsagent","dw");document.write('<script id="'.concat(Ii,'" type="text/javascript" src="').concat(qe,'">\x3c/script>'));document.getElementById(Ii)||Jc(qe,P("async"),void 0,void 0,"dtjsagent")}}Za(ed())&&Aa("cooO",!0);cf();Aa("pVO",!!gb("dt-pVO"));Va(mb);If=18E5;dg=ja("hvt")||216E5;fb(Uc,[1])}catch(jh){"platformPrefix and cuc do not match!"===jh.message?(be=Ka.dT_,Ka.dT_=(f={},f.minAgentVersion=be.minAgentVersion,f.platformPrefix=be.platformPrefix,
+f.platformCookieOffset=be.platformCookieOffset,f),Ve("[CookiePrefix/initCode] cuc and platformPrefix do not match, disabling agent!")):(delete Ka.dT_,Ve("JsAgent initCode initialization failed!",jh))}}})()})();
+</script><script type="text/javascript" src="/ruxitagentjs_A27NVfhjqrux_10277231024135831.js" defer="defer"></script><link rel="stylesheet" href="https://static-dc.autodesk.net/etc.clientlibs/v605.20231207.1619/dotcom/clientlibs/clientlib-rosetta.min.css" type="text/css">
+
+
+
+  <title>使用規約 | 一般規約 | Autodesk </title>
+
+  
+  <link rel="preconnect" href="https://swc.autodesk.com"/>
+  <link rel="preconnect" href="https://damassets.autodesk.net"/>
+  <link rel="preconnect" href="https://static-dc.autodesk.net"/>
+  <link rel="preconnect" href="https://tags.tiqcdn.com"/>
+  <link rel="dns-prefetch" href="https://app.digital-help-prd.autodesk.com"/>
+
+  <link rel="preload" href="https://swc.autodesk.com/pharmacopeia/fonts/ArtifaktLegend/v1.0/WOFF2/Artifakt%20Legend%20Extra%20Bold.woff2" as="font" type="font/woff2" crossorigin/>
+
+  
+  
+    
+    
+  
+
+  
+  <link rel="canonical" href="https://www.autodesk.com/company/terms-of-use/jp/general-terms"/>
+  
+    <link rel="alternate" hreflang="en-us" href="https://www.autodesk.com/company/terms-of-use/jp/general-terms"/>
+  
+    <link rel="alternate" hreflang="fr-ca" href="https://www.autodesk.com/ca-fr/company/terms-of-use/jp/general-terms"/>
+  
+    <link rel="alternate" hreflang="en-ca" href="https://www.autodesk.com/ca-en/company/terms-of-use/jp/general-terms"/>
+  
+    <link rel="alternate" hreflang="es-mx" href="https://www.autodesk.mx/company/terms-of-use/jp/general-terms"/>
+  
+    <link rel="alternate" hreflang="en-au" href="https://www.autodesk.com.au/company/terms-of-use/jp/general-terms"/>
+  
+    <link rel="alternate" hreflang="zh-cn" href="https://www.autodesk.com.cn/company/terms-of-use/jp/general-terms"/>
+  
+    <link rel="alternate" hreflang="ja-jp" href="https://www.autodesk.co.jp/company/terms-of-use/jp/general-terms"/>
+  
+    <link rel="alternate" hreflang="ko-kr" href="https://www.autodesk.co.kr/company/terms-of-use/jp/general-terms"/>
+  
+    <link rel="alternate" hreflang="zh-tw" href="https://www.autodesk.com.tw/company/terms-of-use/jp/general-terms"/>
+  
+    <link rel="alternate" hreflang="en-in" href="https://www.autodesk.in/company/terms-of-use/jp/general-terms"/>
+  
+    <link rel="alternate" hreflang="en-th" href="https://asean.autodesk.com/company/terms-of-use/jp/general-terms"/>
+  
+    <link rel="alternate" hreflang="en-id" href="https://asean.autodesk.com/company/terms-of-use/jp/general-terms"/>
+  
+    <link rel="alternate" hreflang="en-ph" href="https://asean.autodesk.com/company/terms-of-use/jp/general-terms"/>
+  
+    <link rel="alternate" hreflang="en-my" href="https://asean.autodesk.com/company/terms-of-use/jp/general-terms"/>
+  
+    <link rel="alternate" hreflang="en-nz" href="https://www.autodesk.co.nz/company/terms-of-use/jp/general-terms"/>
+  
+    <link rel="alternate" hreflang="en-sg" href="https://www.autodesk.com.sg/company/terms-of-use/jp/general-terms"/>
+  
+    <link rel="alternate" hreflang="en-hk" href="https://www.autodesk.com.hk/company/terms-of-use/jp/general-terms"/>
+  
+    <link rel="alternate" hreflang="en-ng" href="https://www.autodesk.com/za/company/terms-of-use/jp/general-terms"/>
+  
+    <link rel="alternate" hreflang="en-na" href="https://www.autodesk.com/za/company/terms-of-use/jp/general-terms"/>
+  
+    <link rel="alternate" hreflang="en-gh" href="https://www.autodesk.com/za/company/terms-of-use/jp/general-terms"/>
+  
+    <link rel="alternate" hreflang="en-za" href="https://www.autodesk.com/za/company/terms-of-use/jp/general-terms"/>
+  
+    <link rel="alternate" hreflang="en-il" href="https://www.autodesk.ae/company/terms-of-use/jp/general-terms"/>
+  
+    <link rel="alternate" hreflang="en-sa" href="https://www.autodesk.ae/company/terms-of-use/jp/general-terms"/>
+  
+    <link rel="alternate" hreflang="en-qa" href="https://www.autodesk.ae/company/terms-of-use/jp/general-terms"/>
+  
+    <link rel="alternate" hreflang="en-kw" href="https://www.autodesk.ae/company/terms-of-use/jp/general-terms"/>
+  
+    <link rel="alternate" hreflang="en-eg" href="https://www.autodesk.ae/company/terms-of-use/jp/general-terms"/>
+  
+    <link rel="alternate" hreflang="en-om" href="https://www.autodesk.ae/company/terms-of-use/jp/general-terms"/>
+  
+    <link rel="alternate" hreflang="en-ae" href="https://www.autodesk.ae/company/terms-of-use/jp/general-terms"/>
+  
+    <link rel="alternate" hreflang="pt-br" href="https://www.autodesk.com.br/company/terms-of-use/jp/general-terms"/>
+  
+    <link rel="alternate" hreflang="es-pe" href="https://latinoamerica.autodesk.com/company/terms-of-use/jp/general-terms"/>
+  
+    <link rel="alternate" hreflang="es-co" href="https://latinoamerica.autodesk.com/company/terms-of-use/jp/general-terms"/>
+  
+    <link rel="alternate" hreflang="es-cl" href="https://latinoamerica.autodesk.com/company/terms-of-use/jp/general-terms"/>
+  
+    <link rel="alternate" hreflang="es-uy" href="https://latinoamerica.autodesk.com/company/terms-of-use/jp/general-terms"/>
+  
+    <link rel="alternate" hreflang="es-ar" href="https://latinoamerica.autodesk.com/company/terms-of-use/jp/general-terms"/>
+  
+    <link rel="alternate" hreflang="cs-cz" href="https://www.autodesk.cz/company/terms-of-use/jp/general-terms"/>
+  
+    <link rel="alternate" hreflang="da-dk" href="https://www.autodesk.dk/company/terms-of-use/jp/general-terms"/>
+  
+    <link rel="alternate" hreflang="de-de" href="https://www.autodesk.de/company/terms-of-use/jp/general-terms"/>
+  
+    <link rel="alternate" hreflang="de-ch" href="https://www.autodesk.ch/company/terms-of-use/jp/general-terms"/>
+  
+    <link rel="alternate" hreflang="en-gb" href="https://www.autodesk.co.uk/company/terms-of-use/jp/general-terms"/>
+  
+    <link rel="alternate" hreflang="es-es" href="https://www.autodesk.es/company/terms-of-use/jp/general-terms"/>
+  
+    <link rel="alternate" hreflang="fr-be" href="https://www.autodesk.be/company/terms-of-use/jp/general-terms"/>
+  
+    <link rel="alternate" hreflang="fr-fr" href="https://www.autodesk.fr/company/terms-of-use/jp/general-terms"/>
+  
+    <link rel="alternate" hreflang="fr-ch" href="https://www.autodesk.ch/company/terms-of-use/jp/general-terms"/>
+  
+    <link rel="alternate" hreflang="hu-hu" href="https://www.autodesk.hu/company/terms-of-use/jp/general-terms"/>
+  
+    <link rel="alternate" hreflang="it-it" href="https://www.autodesk.it/company/terms-of-use/jp/general-terms"/>
+  
+    <link rel="alternate" hreflang="it-ch" href="https://www.autodesk.ch/company/terms-of-use/jp/general-terms"/>
+  
+    <link rel="alternate" hreflang="nl-be" href="https://www.autodesk.be/company/terms-of-use/jp/general-terms"/>
+  
+    <link rel="alternate" hreflang="en-ie" href="https://www.autodesk.eu/company/terms-of-use/jp/general-terms"/>
+  
+    <link rel="alternate" hreflang="en-nl" href="https://www.autodesk.eu/company/terms-of-use/jp/general-terms"/>
+  
+    <link rel="alternate" hreflang="nl-nl" href="https://www.autodesk.nl/company/terms-of-use/jp/general-terms"/>
+  
+    <link rel="alternate" hreflang="de-at" href="https://www.autodesk.de/company/terms-of-use/jp/general-terms"/>
+  
+    <link rel="alternate" hreflang="no-no" href="https://www.autodesk.no/company/terms-of-use/jp/general-terms"/>
+  
+    <link rel="alternate" hreflang="pl-pl" href="https://www.autodesk.pl/company/terms-of-use/jp/general-terms"/>
+  
+    <link rel="alternate" hreflang="pt-pt" href="https://www.autodesk.pt/company/terms-of-use/jp/general-terms"/>
+  
+    <link rel="alternate" hreflang="fi-fi" href="https://www.autodesk.fi/company/terms-of-use/jp/general-terms"/>
+  
+    <link rel="alternate" hreflang="sv-se" href="https://www.autodesk.se/company/terms-of-use/jp/general-terms"/>
+  
+    <link rel="alternate" hreflang="ru-ru" href="https://www.autodesk.com/company/terms-of-use/jp/general-terms"/>
+  
+    <link rel="alternate" hreflang="tr-tr" href="https://www.autodesk.com.tr/company/terms-of-use/jp/general-terms"/>
+  
+  
+    <link rel="alternate" hreflang="x-default" href="https://www.autodesk.com/company/terms-of-use/jp/general-terms"/>
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+  
+
+  <script type="text/javascript" data-uh="script" src="https://swc.autodesk.com/web-mfe/universal-header/v1/app.js" defer="defer"></script>
+
+  
+  <meta name="industry" content="mfg"/>
+  
+  <meta name="template" content="gen-fy21-page-standard"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+  
+  <meta itemprop="dateCreated" content="2021-02-25T17:21:16Z"/>
+  <meta itemprop="datePublished" content="2023-09-08T12:22:55Z"/>
+  <meta itemprop="dateModified" content="2023-07-12T12:55:29Z"/>
+  
+  <meta property="og:type" content="article"/>
+  <meta property="og:title" content="使用規約 | 一般規約 | Autodesk "/>
+  
+  <meta property="og:description"/>
+  <meta name="twitter:card" content="summary"/>
+  <meta name="twitter:title" content="使用規約 | 一般規約 | Autodesk "/>
+  <meta name="twitter:description"/>
+  
+  <meta name="twitter:site" content="@autodesk"/>
+  <meta name="twitter:creator" content="@autodesk"/>
+
+
+  
+  
+
+  
+  
+    <script type="text/javascript" name="cfpVendor" src="https://prd-cfp.autodesk.com/cfp-vendors/current/main.js" defer></script>
+    <script type="text/javascript" name="cfpCore" src="https://prd-cfp.autodesk.com/cfp-runtime/current/main.js" defer></script>
+  
+
+  
+  
+  
+
+  
+  <meta name="robots"/>
+
+  
+  <link rel="stylesheet" type="text/css" href="https://swc.autodesk.com/web-mfe/web-styles/rosetta/app.css"/>
+
+  
+  
+    <link rel="stylesheet" type="text/css" href="https://swc.autodesk.com/pharmacopeia/css/dhig2021/v0/dhig-global.css"/>
+  
+
+  
+  
+    
+    <script type="text/javascript">
+            if ( !window.CQ_Analytics ) {
+                window.CQ_Analytics = {};
+            }
+            if ( !CQ_Analytics.TestTarget ) {
+                CQ_Analytics.TestTarget = {};
+            }
+            CQ_Analytics.TestTarget.clientCode = 'autodesk';
+            CQ_Analytics.TestTarget.currentPagePath = '\/content\/autodesk\/global\/en\/company\/terms\u002Dof\u002Duse\/jp\/general\u002Dterms';
+        </script>
+    <script src="https://static-dc.autodesk.net/etc.clientlibs/v605.20231207.1619/cq/testandtarget/clientlibs/testandtarget/parameters.min.js"></script>
+<script src="https://static-dc.autodesk.net/etc.clientlibs/v605.20231207.1619/clientlibs/granite/jquery.min.js"></script>
+<script src="https://static-dc.autodesk.net/etc.clientlibs/v605.20231207.1619/cq/personalization/clientlib/personalization/integrations/commons.min.js"></script>
+<script src="https://static-dc.autodesk.net/etc.clientlibs/v605.20231207.1619/cq/testandtarget/clientlibs/testandtarget/atjs-integration.min.js"></script>
+
+
+    
+
+    
+    
+<script src="https://static-dc.autodesk.net/etc.clientlibs/v605.20231207.1619/dotcom/clientlibs/clientlib-dependencies.min.js" defer></script>
+
+
+
+    
+    
+<link rel="stylesheet" href="https://static-dc.autodesk.net/etc.clientlibs/v605.20231207.1619/dotcom/clientlibs/clientlib-dependencies.min.css" type="text/css">
+<link rel="stylesheet" href="https://static-dc.autodesk.net/etc.clientlibs/v605.20231207.1619/dotcom/clientlibs/clientlib-base.min.css" type="text/css">
+<link rel="stylesheet" href="https://static-dc.autodesk.net/etc.clientlibs/v605.20231207.1619/dotcom/clientlibs/clientlib-site.min.css" type="text/css">
+
+
+
+    
+
+
+  
+  
+    <link rel="stylesheet" type="text/css" href="https://swc.autodesk.com/web-mfe/mfe-product-price/app.css"/>
+
+
+
+  
+  <link rel="stylesheet" href="https://swc.autodesk.com/web-aem/rosetta-styles/company/terms-of-use/terms-of-use.css"/>
+
+
+  
+  
+  
+  <link rel="icon" type="image/png" href="https://static-dc.autodesk.net/etc.clientlibs/v605.20231207.1619/dotcom/clientlibs/clientlib-site/resources/images/favicons/app-icon-192.png" sizes="192x192"/>
+
+  <link rel="apple-touch-icon" type="image/png" href="https://static-dc.autodesk.net/etc.clientlibs/v605.20231207.1619/dotcom/clientlibs/clientlib-site/resources/images/favicons/touch-icon-180.png"/>
+
+  
+  <link rel="icon" type="image/svg+xml" href="https://static-dc.autodesk.net/etc.clientlibs/v605.20231207.1619/dotcom/clientlibs/clientlib-site/resources/images/favicons/favicon.svg"/>
+
+
+  
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div id="adobeTargetPublishMode"></div>
+  
+
+  <script type="text/javascript">
+            (function() {
+                window.ContextHub = window.ContextHub || {};
+
+                /* setting paths */
+                ContextHub.Paths = ContextHub.Paths || {};
+                ContextHub.Paths.CONTEXTHUB_PATH = "/conf/autodesk/settings/cloudsettings/contexthub";
+                ContextHub.Paths.RESOURCE_PATH = "\/content\/autodesk\/global\/en\/company\/terms\u002Dof\u002Duse\/jp\/general\u002Dterms\/_jcr_content\/contexthub";
+                ContextHub.Paths.SEGMENTATION_PATH = "\/conf\/autodesk\/settings\/wcm\/segments";
+                ContextHub.Paths.CQ_CONTEXT_PATH = "";
+
+                /* setting initial constants */
+                ContextHub.Constants = ContextHub.Constants || {};
+                ContextHub.Constants.ANONYMOUS_HOME = "/home/users/5/5pL3nkmSL9fWV2JEeggb";
+                ContextHub.Constants.MODE = "no-ui";
+            }());
+        </script><script src="/etc/cloudsettings.kernel.js/conf/autodesk/settings/cloudsettings/contexthub" type="text/javascript" defer></script>
+
+  <link rel="preload" href="/content/promotions/data/ja-JP/promo.json" as="fetch" type="application/json" crossorigin="anonymous"/>
+</head>
+    <body class=" page basicpage" id="rosetta" data-forge-client="uWlmiJuqQqVaAQjGdojc8Qxit4KVdorZ">
+        
+        <div id="dhig-svg-container" style="display: none"></div>
+        
+        <mfe-tooltip id="mfe-tooltip"></mfe-tooltip>
+        
+        
+
+
+
+        <svg width="0" height="0" style="position:absolute">
+  <defs>
+    <svg viewBox="0 0 140 23" id="autodesk-logo" xmlns="http://www.w3.org/2000/svg">
+      <linearGradient id="aa" gradientUnits="userSpaceOnUse" x1="1.87" y1="19.5" x2="14.31" y2="14.81">
+        <stop offset="0" stop-color="#269c90"></stop>
+        <stop offset=".09" stop-color="#43aea4"></stop>
+        <stop offset=".18" stop-color="#58bbb2"></stop>
+        <stop offset=".27" stop-color="#65c3bb"></stop>
+        <stop offset=".35" stop-color="#69c6be"></stop>
+      </linearGradient>
+      <path d="M5.9 17.1H1.8c-1.5 0-1.9-1-1.6-1.8v.1c-.2.7.1 1 .3 1.5.7 1.4 2.9 5.4 2.9 5.4.2.5.6.7 1.2.7 1.2 0 3.2-1.3 3.2-1.3l7.4-4.6H5.9z" fill="url(#aa)"></path>
+      <linearGradient id="ab" gradientUnits="userSpaceOnUse" x1="2.26" y1="17.59" x2="9.61" y2=".94">
+        <stop offset="0" stop-color="#d6de23"></stop>
+        <stop offset="0" stop-color="#d5de23"></stop>
+        <stop offset=".4" stop-color="#7fb842"></stop>
+        <stop offset=".51" stop-color="#7bb742"></stop>
+        <stop offset=".61" stop-color="#70b343"></stop>
+        <stop offset=".71" stop-color="#5cae44"></stop>
+        <stop offset=".81" stop-color="#41a645"></stop>
+        <stop offset=".91" stop-color="#1e9c47"></stop>
+        <stop offset=".98" stop-color="#009348"></stop>
+      </linearGradient>
+      <path d="M7.4.1c-.8 0-1 .5-1.1.6L.2 15.2c-.3.8 0 1.9 1.6 1.9h4.1L10.6 6C9.3 3 8.4.8 8.4.8c-.1-.1-.3-.7-1-.7z" fill="url(#ab)"></path>
+      <linearGradient id="ac" gradientUnits="userSpaceOnUse" x1="10.52" y1=".02" x2="19.95" y2="23.1">
+        <stop offset="0" stop-color="#4dbeed"></stop>
+        <stop offset=".4" stop-color="#289fd9"></stop>
+        <stop offset=".78" stop-color="#0b86ca"></stop>
+        <stop offset="1" stop-color="#007dc4"></stop>
+      </linearGradient>
+      <path d="M14.8.6c-.1-.1-.3-.6-1-.6H7.4c-.7 0-.9.4-1 .5 0 0 .2-.5 1-.5.7 0 1 .6 1 .7 0 0 .9 2.2 2.2 5.2 2.8 6.6 7.2 17.1 7.2 17.1h6.5S14.9.8 14.8.6z" fill="url(#ac)"></path>
+      <path d="M42.6 17.1h-2.5l-1.4-3.2h-6.3L31 17.1h-2.4l5.9-13.4h2.2l5.9 13.4zm-7-10.6l-2.3 5.3h4.6l-2.3-5.3zm28.7 10.6h-2.4V6h-4.2V3.8h11L67.8 6h-3.5v11.1zM109.1 6H102v3.4h4.6v2.1H102V15h7.1v2.1h-9.5V3.8h9.5V6zm16.8 11.1h-2.2V3.8h2.2v13.3zm-9.5-11.4c-1.4 0-2.5.4-2.5 1.3 0 1.1.7 1.4 3.2 2.2 2.8.9 4.2 1.8 4.2 4.1 0 2.5-2 4-4.9 4-2 0-3.8-.7-5.2-1.9l.9-2.1c1.3 1.1 2.8 1.8 4.4 1.8 1.4 0 2.5-.7 2.5-1.7 0-.9-.5-1.4-2.9-2.2-2.8-.9-4.5-1.9-4.5-4.1 0-2.3 2.1-3.5 4.8-3.5 2.7 0 4.2 1 4.4 1.1l-.8 1.9c-.7-.3-1.8-.9-3.6-.9zm12.4 4.5l5.9-6.4h-2.8l-6 6.4 6.6 6.9h2.9zM75.9 3.6c-3.8 0-6.9 3.1-6.9 6.9 0 3.8 3.1 6.9 6.9 6.9 3.8 0 6.9-3.1 6.9-6.9 0-3.9-3.1-6.9-6.9-6.9zm0 11.6c-2.6 0-4.5-2.1-4.5-4.7s1.9-4.7 4.5-4.7 4.5 2.1 4.5 4.7-1.9 4.7-4.5 4.7zM90.3 3.8h-5.1v13.3h5.1c3.8 0 6.9-2.9 6.9-6.7 0-3.8-3.1-6.6-6.9-6.6zm0 11.2h-2.7V6h2.7c2.6 0 4.5 1.9 4.5 4.5.1 2.6-1.8 4.5-4.5 4.5zm-35.2-3.8c0 4-2.3 6.1-5.7 6.1-3.4 0-5.7-2.1-5.7-6.1V3.8H46v7.7c0 2.3 1.4 3.7 3.4 3.7s3.4-1.4 3.4-3.7V3.8h2.4v7.4z" fill="#231f20"></path>
+      <g fill="#231f20">
+        <path d="M139.9 15.4c0-.9-.8-1.7-1.7-1.7-.9 0-1.7.8-1.7 1.7 0 .9.8 1.7 1.7 1.7.9 0 1.7-.7 1.7-1.7zm-.3 0c0 .8-.6 1.5-1.4 1.5-.8 0-1.4-.6-1.4-1.5 0-.8.6-1.5 1.4-1.5.8.1 1.4.7 1.4 1.5z"></path>
+        <path d="M138.9 16.3l-.4-.6c-.1-.1-.1-.2-.2-.2.3 0 .5-.2.5-.5s-.2-.5-.5-.5h-.6v1.8h.3v-.8c.1 0 .2 0 .3.2l.4.6h.2zm-.4-1.3c0 .3-.2.3-.4.3h-.2v-.6h.3c.2 0 .3.2.3.3z"></path>
+      </g>
+    </svg>
+  </defs>
+</svg>
+
+        
+<div class="root responsivegrid">
+
+
+<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+    
+    <div class="core-container aem-GridColumn aem-GridColumn--default--12">
+
+  
+  
+  
+  
+  <div id="container-3bd3572f48" class="cmp-container header-content fixed-header">
+    
+    <div class="mfe-universal-header"><div data-uh="container" data-uh-primarynav="false" data-minicart-enabled="true" data-uh-config="{&#34;scriptPath&#34;:&#34;https://swc.autodesk.com/web-mfe/universal-header/v1/app.js&#34;,&#34;property&#34;:&#34;dotcom&#34;,&#34;env&#34;:&#34;prd&#34;}" data-uh-searchparam="https://www.autodesk.co.jp" data-uh-cart-configs="{&#34;cartConfigs&#34;:{&#34;JP_ja&#34;:{&#34;specialTerms&#34;:[],&#34;cartLinkUrl&#34;:&#34;https://checkout.autodesk.com/ja-JP?visitorId={{visitorId}}&#34;,&#34;cartCountUrl&#34;:&#34;https://amart.oc.autodesk.com/services/v5/cart/{{visitorId}}|STORE-JP/count&#34;}}}" id="mfe-uh-container" class="mfe-uh-container header" data-domain-consolidation-enabled="disabled"></div>
+</div>
+<div class="promotion-banner">
+<div data-locale="ja-JP" class="promotions-placement__banner  "></div>
+</div>
+<div class="core-container">
+
+  
+  
+  
+  
+  <div id="container-a46aa0b8d8" class="cmp-container  ">
+    
+    <div class="experiencefragment">
+<div id="experiencefragment-07b71a2379" class="cmp-experiencefragment cmp-experiencefragment--top-navigation" data-ef-variation-path="/content/experience-fragments/autodesk/en/company/terms_of_use/jp/subscription_benefit/top-navigation/master" data-ef-all-variations="master">
+
+
+
+  
+
+
+
+<div class="xfpage-content-container">
+  
+  <div class="root responsivegrid">
+
+
+<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+    
+    <div class="navigation aem-GridColumn aem-GridColumn--default--12"><div data-cmp-is="navigation" class="cmp-navigation top-nav-alternative local-navigation navigation " id="navigation-f407573a6c" data-cmp-navigation-layout="top-nav">
+
+  
+
+  
+
+  
+
+  
+    <div class="top-navigation" data-wat-link-section="topNav">
+
+        <div class="top-nav-title">
+          <div class="row">
+            <a class="local-navigation-name ">
+              使用規約
+            </a>
+            <a class="mobile nav-toggle" href="#">
+              <svg class="top-nav-arrow icon-svg-arrow-dropdown">
+                <use xlink:href="/content/dam/autodesk/icons.svg#icon-svg-arrow-dropdown"></use>
+              </svg>
+            </a>
+          </div>
+        </div>
+      
+  <ul class="cmp-navigation__list">
+    <li class="cmp-navigation__listitem" data-cmp-hook-navigation="item" data-name="item_2" data-resource-type="dotcom/components/navigation/link">
+      <div class="cmp-navigation__panel" data-cmp-hook-navigation="panel" id="navigation-f407573a6c-item-20a715e904-panel"><div class="link">
+<a class="cmp-navigation-link  active " id="link-1057ddceae" href="/company/terms-of-use/jp/general-terms" data-trial-trigger="trialdownloads-plc" data-link-type="default" data-wat-val=" 一般規約" data-wat-link="true">
+  <span class="cmp-navigation-link__text">
+    
+     一般規約
+  </span>
+</a>
+
+
+
+
+
+    
+
+</div>
+</div>
+    </li>
+<li class="cmp-navigation__listitem" data-cmp-hook-navigation="item" data-name="item_3" data-resource-type="dotcom/components/navigation/link">
+      <div class="cmp-navigation__panel" data-cmp-hook-navigation="panel" id="navigation-f407573a6c-item-b27563881a-panel"><div class="link">
+<a class="cmp-navigation-link   " id="link-5476850d93" href="/company/terms-of-use/jp/special-terms" data-link-type="default" data-wat-val=" 特約">
+  <span class="cmp-navigation-link__text">
+    
+     特約
+  </span>
+</a>
+
+
+
+
+
+    
+
+</div>
+</div>
+    </li>
+<li class="cmp-navigation__listitem" data-cmp-hook-navigation="item" data-name="item_1615496879525" data-resource-type="dotcom/components/navigation/link">
+      <div class="cmp-navigation__panel" data-cmp-hook-navigation="panel" id="navigation-f407573a6c-item-4167f7f7a5-panel"><div class="link">
+<a class="cmp-navigation-link   " id="link-5c883bb6d8" href="/company/terms-of-use/jp/offering-types-and-benefits" data-link-type="default" data-wat-val="提供方法と特典">
+  <span class="cmp-navigation-link__text">
+    
+    提供方法と特典
+  </span>
+</a>
+
+
+
+
+
+    
+
+</div>
+</div>
+    </li>
+<li class="cmp-navigation__listitem" data-cmp-hook-navigation="item" data-name="item_1684493291996" data-resource-type="dotcom/components/navigation/link">
+      <div class="cmp-navigation__panel" data-cmp-hook-navigation="panel" id="navigation-f407573a6c-item-e4d5d5e1cb-panel"><div class="link">
+<a class="cmp-navigation-link   " id="link-2b05f31a6a" href="/company/terms-of-use/jp/acceptable-use" data-link-type="default" data-wat-loc="navigation" data-wat-val="acceptable use" data-wat-link="true">
+  <span class="cmp-navigation-link__text">
+    
+    利用規定
+  </span>
+</a>
+
+
+
+
+
+    
+
+</div>
+</div>
+    </li>
+<li class="cmp-navigation__listitem" data-cmp-hook-navigation="item" data-name="item_1615497167311" data-resource-type="dotcom/components/navigation">
+      <div class="cmp-navigation__panel" data-cmp-hook-navigation="panel" id="navigation-f407573a6c-item-b317572d57-panel"><div class="navigation"><div data-cmp-is="navigation" class="cmp-navigation dropdown-nav  " id="lang-hidden-med-up" data-cmp-navigation-layout="dropdown-nav">
+
+  
+
+  
+
+  
+
+  
+
+  
+  <div class="dropdown-navigation">
+    <a class="cmp-navigation__dropdown-button" href="javascript:void(0);" data-cmp-hook-navigation="button" data-wat-val="Language">
+      
+      <div>Language</div>
+      <svg class="cta-button-arrow icon-svg-arrow-down" data-cmp-hook-navigation="arrow">
+        <use xlink:href="/content/dam/autodesk/icons.svg#icon-svg-arrow-down"></use>
+      </svg>
+    </a>
+
+    <div class="cmp-navigation__dropdown-contents" data-cmp-hook-navigation="dropdown">
+  <ul class="cmp-navigation__list">
+    <li class="cmp-navigation__listitem" data-cmp-hook-navigation="item" data-name="item_1615497191355" data-resource-type="dotcom/components/navigation/link">
+      <div class="cmp-navigation__panel" data-cmp-hook-navigation="panel" id="lang-hidden-med-up-item-ef1c37253b-panel"><div class="link">
+<a class="cmp-navigation-link   " id="link-69af146309" href="/company/terms-of-use/en/general-terms" data-link-type="default" data-wat-val="english">
+  <span class="cmp-navigation-link__text">
+    
+    English
+  </span>
+</a>
+
+
+
+
+
+    
+
+</div>
+</div>
+    </li>
+<li class="cmp-navigation__listitem" data-cmp-hook-navigation="item" data-name="item_1615497195394" data-resource-type="dotcom/components/navigation/link">
+      <div class="cmp-navigation__panel" data-cmp-hook-navigation="panel" id="lang-hidden-med-up-item-3cbd3e79f5-panel"><div class="link">
+<a class="cmp-navigation-link   " id="link-c5288617ba" href="/company/terms-of-use/de/general-terms" data-link-type="default" data-wat-val="deutsch">
+  <span class="cmp-navigation-link__text">
+    
+    Deutsch
+  </span>
+</a>
+
+
+
+
+
+    
+
+</div>
+</div>
+    </li>
+<li class="cmp-navigation__listitem" data-cmp-hook-navigation="item" data-name="item_1615497260961" data-resource-type="dotcom/components/navigation/link">
+      <div class="cmp-navigation__panel" data-cmp-hook-navigation="panel" id="lang-hidden-med-up-item-7086904506-panel"><div class="link">
+<a class="cmp-navigation-link   " id="link-d08f772e57" href="/company/terms-of-use/es/general-terms" data-link-type="default" data-wat-val="español">
+  <span class="cmp-navigation-link__text">
+    
+    Español
+  </span>
+</a>
+
+
+
+
+
+    
+
+</div>
+</div>
+    </li>
+<li class="cmp-navigation__listitem" data-cmp-hook-navigation="item" data-name="item_1615497272663" data-resource-type="dotcom/components/navigation/link">
+      <div class="cmp-navigation__panel" data-cmp-hook-navigation="panel" id="lang-hidden-med-up-item-eb30df6238-panel"><div class="link">
+<a class="cmp-navigation-link   " id="link-8f2df5666d" href="/company/terms-of-use/fr/general-terms" data-link-type="default" data-wat-val="français">
+  <span class="cmp-navigation-link__text">
+    
+    Français
+  </span>
+</a>
+
+
+
+
+
+    
+
+</div>
+</div>
+    </li>
+<li class="cmp-navigation__listitem" data-cmp-hook-navigation="item" data-name="item_1615497287673" data-resource-type="dotcom/components/navigation/link">
+      <div class="cmp-navigation__panel" data-cmp-hook-navigation="panel" id="lang-hidden-med-up-item-eafd49879e-panel"><div class="link">
+<a class="cmp-navigation-link   " id="link-d30361e319" href="/company/terms-of-use/it/general-terms" data-link-type="default" data-wat-val="italiano">
+  <span class="cmp-navigation-link__text">
+    
+    Italiano
+  </span>
+</a>
+
+
+
+
+
+    
+
+</div>
+</div>
+    </li>
+<li class="cmp-navigation__listitem" data-cmp-hook-navigation="item" data-name="item_1615497308111" data-resource-type="dotcom/components/navigation/link">
+      <div class="cmp-navigation__panel" data-cmp-hook-navigation="panel" id="lang-hidden-med-up-item-48505c58a3-panel"><div class="link">
+<a class="cmp-navigation-link   " id="link-c623415bbf" href="/company/terms-of-use/pt/general-terms" data-link-type="default" data-wat-val="português">
+  <span class="cmp-navigation-link__text">
+    
+    Português
+  </span>
+</a>
+
+
+
+
+
+    
+
+</div>
+</div>
+    </li>
+<li class="cmp-navigation__listitem" data-cmp-hook-navigation="item" data-name="item_1615497313763" data-resource-type="dotcom/components/navigation/link">
+      <div class="cmp-navigation__panel" data-cmp-hook-navigation="panel" id="lang-hidden-med-up-item-4bbe78ab97-panel"><div class="link">
+<a class="cmp-navigation-link   " id="link-f11bf53e48" href="/company/terms-of-use/br/general-terms" data-link-type="default" data-wat-val="português brasileiro">
+  <span class="cmp-navigation-link__text">
+    
+    Português brasileiro
+  </span>
+</a>
+
+
+
+
+
+    
+
+</div>
+</div>
+    </li>
+<li class="cmp-navigation__listitem" data-cmp-hook-navigation="item" data-name="item_1615497340209" data-resource-type="dotcom/components/navigation/link">
+      <div class="cmp-navigation__panel" data-cmp-hook-navigation="panel" id="lang-hidden-med-up-item-34a481a559-panel"><div class="link">
+<a class="cmp-navigation-link   " id="link-8e8155e497" href="/company/terms-of-use/nl/general-terms" data-link-type="default" data-wat-val="nederlands">
+  <span class="cmp-navigation-link__text">
+    
+    Nederlands
+  </span>
+</a>
+
+
+
+
+
+    
+
+</div>
+</div>
+    </li>
+<li class="cmp-navigation__listitem" data-cmp-hook-navigation="item" data-name="item_1615497354121" data-resource-type="dotcom/components/navigation/link">
+      <div class="cmp-navigation__panel" data-cmp-hook-navigation="panel" id="lang-hidden-med-up-item-63af3e9059-panel"><div class="link">
+<a class="cmp-navigation-link   " id="link-3161bb7e28" href="/company/terms-of-use/cs/general-terms" data-link-type="default" data-wat-val="čeština">
+  <span class="cmp-navigation-link__text">
+    
+    Čeština
+  </span>
+</a>
+
+
+
+
+
+    
+
+</div>
+</div>
+    </li>
+<li class="cmp-navigation__listitem" data-cmp-hook-navigation="item" data-name="item_1615497374793" data-resource-type="dotcom/components/navigation/link">
+      <div class="cmp-navigation__panel" data-cmp-hook-navigation="panel" id="lang-hidden-med-up-item-c483f5cbf3-panel"><div class="link">
+<a class="cmp-navigation-link   " id="link-bf1e6c88fd" href="/company/terms-of-use/pl/general-terms" data-link-type="default" data-wat-val="polski">
+  <span class="cmp-navigation-link__text">
+    
+    Polski
+  </span>
+</a>
+
+
+
+
+
+    
+
+</div>
+</div>
+    </li>
+<li class="cmp-navigation__listitem" data-cmp-hook-navigation="item" data-name="item_1615497386384" data-resource-type="dotcom/components/navigation/link">
+      <div class="cmp-navigation__panel" data-cmp-hook-navigation="panel" id="lang-hidden-med-up-item-dfeb9531e9-panel"><div class="link">
+<a class="cmp-navigation-link   " id="link-7baa54b53a" href="/company/terms-of-use/hu/general-terms" data-link-type="default" data-wat-val="magyar">
+  <span class="cmp-navigation-link__text">
+    
+    Magyar
+  </span>
+</a>
+
+
+
+
+
+    
+
+</div>
+</div>
+    </li>
+<li class="cmp-navigation__listitem" data-cmp-hook-navigation="item" data-name="item_1615497411045" data-resource-type="dotcom/components/navigation/link">
+      <div class="cmp-navigation__panel" data-cmp-hook-navigation="panel" id="lang-hidden-med-up-item-f66460fb6d-panel"><div class="link">
+<a class="cmp-navigation-link  active " id="link-62c8d9b6b9" href="/company/terms-of-use/jp/general-terms" data-link-type="default" data-wat-val="日本語">
+  <span class="cmp-navigation-link__text">
+    
+    日本語
+  </span>
+</a>
+
+
+
+
+
+    
+
+</div>
+</div>
+    </li>
+<li class="cmp-navigation__listitem" data-cmp-hook-navigation="item" data-name="item_1615497416383" data-resource-type="dotcom/components/navigation/link">
+      <div class="cmp-navigation__panel" data-cmp-hook-navigation="panel" id="lang-hidden-med-up-item-401cee3a63-panel"><div class="link">
+<a class="cmp-navigation-link   " id="link-ccfdd8fde0" href="/company/terms-of-use/kr/general-terms" data-link-type="default" data-wat-val="한국어">
+  <span class="cmp-navigation-link__text">
+    
+    한국어
+  </span>
+</a>
+
+
+
+
+
+    
+
+</div>
+</div>
+    </li>
+<li class="cmp-navigation__listitem" data-cmp-hook-navigation="item" data-name="item_1615497426192" data-resource-type="dotcom/components/navigation/link">
+      <div class="cmp-navigation__panel" data-cmp-hook-navigation="panel" id="lang-hidden-med-up-item-b47dc590f1-panel"><div class="link">
+<a class="cmp-navigation-link   " id="link-a6d099cd32" href="/company/terms-of-use/cn/general-terms" data-link-type="default" data-wat-val="简体中文">
+  <span class="cmp-navigation-link__text">
+    
+    简体中文
+  </span>
+</a>
+
+
+
+
+
+    
+
+</div>
+</div>
+    </li>
+<li class="cmp-navigation__listitem" data-cmp-hook-navigation="item" data-name="item_1615497437339" data-resource-type="dotcom/components/navigation/link">
+      <div class="cmp-navigation__panel" data-cmp-hook-navigation="panel" id="lang-hidden-med-up-item-c394932f86-panel"><div class="link">
+<a class="cmp-navigation-link   " id="link-1ab800571a" href="/company/terms-of-use/cn2/general-terms" data-link-type="default" data-wat-val="繁體中文">
+  <span class="cmp-navigation-link__text">
+    
+    繁體中文
+  </span>
+</a>
+
+
+
+
+
+    
+
+</div>
+</div>
+    </li>
+
+  </ul>
+</div>
+  </div>
+
+
+  
+</div>
+
+</div>
+</div>
+    </li>
+
+  </ul>
+
+    </div>
+
+
+  
+
+  
+</div>
+
+</div>
+
+    
+</div>
+</div>
+
+</div>
+
+
+
+</div>
+
+
+    
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+  </div>
+
+
+</div>
+<div class="core-container aem-GridColumn aem-GridColumn--default--12">
+
+  
+  
+  
+  
+  <div id="container-aad03e66fd" class="cmp-container body-content ">
+    
+    <div class="core-container">
+
+  
+  
+  <div id="container-ee5d2b9a2d" class="cmp-container  ">
+    
+
+
+<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+    
+    <div class="text aem-GridColumn aem-GridColumn--default--12">
+<div id="text-7c57c1873b" class="cmp-text ">
+  <p><button id="backToTopBtn" class="wd-bg-pacific-blue wp-utility-scrollTo" data-target=".wp-banner-style-small">Back to top</button></p>
+
+</div>
+
+    
+
+</div>
+<div class="experiencefragment aem-GridColumn aem-GridColumn--default--12">
+<div id="experiencefragment-4a6632594f" class="cmp-experiencefragment cmp-experiencefragment--banner" data-ef-variation-path="/content/experience-fragments/autodesk/en/company/terms_of_use/jp/subscription_benefit/banner/master" data-ef-all-variations="master">
+
+
+
+  
+
+
+
+<div class="xfpage-content-container">
+  
+  <div class="root responsivegrid">
+
+
+<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+    
+    <div class="core-container aem-GridColumn aem-GridColumn--default--12">
+
+  
+  
+  
+  
+  <div id="container-63229a5ef3" class="cmp-container wp-banner-style-small  wd-bg-dark-black " style="background-image:url(https://damassets.autodesk.net/content/dam/autodesk/images/company/legal-notices-trademarks/tou-general-banner-1580x480-v1.jpg);">
+    
+    <div class="core-container">
+
+  
+  
+  <div id="container-738a5d7caf" class="cmp-container wp-banner-grid wd-fl  ">
+    
+
+
+<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 aem-Grid--large--12 ">
+    
+    <div class="title aem-GridColumn aem-GridColumn--default--12 aem-GridColumn--large--12">
+<div class="cmp-title" id="title-2cd675e228">
+  <h1 class="cmp-title__text wd-normal wd-font-40">
+     使用規約 </h1>
+</div>
+
+    
+
+</div>
+
+    
+</div>
+
+  </div>
+
+  
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+</div>
+</div>
+
+</div>
+
+
+
+</div>
+
+
+    
+
+</div>
+<div class="experiencefragment aem-GridColumn aem-GridColumn--default--12">
+<div id="experiencefragment-0b447629f4" class="cmp-experiencefragment cmp-experiencefragment--announcement-bar" data-ef-variation-path="/content/experience-fragments/autodesk/en/company/terms_of_use/jp/general-terms/announcement-bar/master" data-ef-all-variations="master">
+
+
+
+  
+
+
+
+<div class="xfpage-content-container">
+  
+  <div class="root responsivegrid">
+
+
+<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+    
+    <div class="core-container aem-GridColumn aem-GridColumn--default--12">
+
+  
+  
+  <div id="container-188566b299" class="cmp-container wp-announcement  wp-clickable ">
+    
+
+
+<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 aem-Grid--xlarge--12 ">
+    
+    <div class="core-container aem-GridColumn--xlarge--none aem-GridColumn--xlarge--12 aem-GridColumn aem-GridColumn--default--12 aem-GridColumn--offset--xlarge--0">
+
+  
+  
+  <div id="container-2ada6875a3" class="cmp-container wd-responsive-grid wd-pa-20 ">
+    
+
+
+<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 aem-Grid--xlarge--12 ">
+    
+    <div class="core-container aem-GridColumn--xlarge--none aem-GridColumn--xlarge--10 aem-GridColumn aem-GridColumn--default--12 aem-GridColumn--offset--xlarge--0">
+
+  
+  
+  
+  
+  <div id="container-464b580088" class="cmp-container  ">
+    
+    <div class="text">
+<div id="text-49b593f41b" class="cmp-text ">
+  <p class="wp-full-width wd-inline-icon wd-bold"><a href="https://www.autodesk.com/company/terms-of-use/terms-of-use-changes" data-wat-link="true" data-wat-loc="content" data-wat-val="announcement" target="_blank">2023年5月26日より、使用規約が変更になりました。</a></p>
+
+</div>
+
+    
+
+</div>
+
+    
+  </div>
+
+
+</div>
+<div class="core-container aem-GridColumn--xlarge--none aem-GridColumn aem-GridColumn--default--12 aem-GridColumn--xlarge--2 aem-GridColumn--offset--xlarge--0">
+
+  
+  
+  
+  
+  <div id="container-4ad7e7a4e6" class="cmp-container  ">
+    
+    <div class="text">
+<div id="text-5537391c03" class="cmp-text ">
+  <p class="wp-full-width wd-inline-icon wd-bold"><a href="https://www.autodesk.com/company/terms-of-use/terms-of-use-changes" data-wat-link="true" data-wat-loc="content" data-wat-val="announcement" target="_blank">詳細はこちら &gt;</a></p>
+
+</div>
+
+    
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+</div>
+
+  </div>
+
+  
+
+</div>
+
+    
+</div>
+
+  </div>
+
+  
+
+</div>
+
+    
+</div>
+</div>
+
+</div>
+
+
+
+</div>
+
+
+    
+
+</div>
+<div class="core-container aem-GridColumn aem-GridColumn--default--12">
+
+  
+  
+  <div id="container-919120e43c" class="cmp-container wp-content-box wd-mt-64 wd-pb-64 wd-color-black wd-responsive-grid wd-ph-20 ">
+    
+
+
+<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 aem-Grid--xlarge--12 ">
+    
+    <div class="core-container aem-GridColumn--xlarge--none aem-GridColumn aem-GridColumn--default--12 aem-GridColumn--xlarge--2 aem-GridColumn--offset--xlarge--0">
+
+  
+  
+  
+  
+  <div id="container-cae31610a5" class="cmp-container wp-sidebar wd-pa-12 ">
+    
+    <div class="experiencefragment">
+<div id="experiencefragment-170144f0f3" class="cmp-experiencefragment cmp-experiencefragment--left-sidebar" data-ef-variation-path="/content/experience-fragments/autodesk/en/company/terms_of_use/jp/general-terms/left-sidebar/master" data-ef-all-variations="master">
+
+
+
+  
+
+
+
+<div class="xfpage-content-container">
+  
+  <div class="root responsivegrid">
+
+
+<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+    
+    <div class="text aem-GridColumn aem-GridColumn--default--12">
+<div id="text-f5fc895529" class="cmp-text ">
+  <div id="sidebar"><h4 class="pc-brand hide-after-scroll">一般規約</h4>
+<div id="checkdiv"> </div>
+<div id="nav"><div id="scrollbar-container"><div id="scrollbar"> </div>
+</div>
+<ul class="wp-parent-contenair page-logo">
+<li><a class="wp-utility-scrollTo" data-target="#acceptance" href="#acceptance">承諾</a></li>
+<li><a class="wp-utility-scrollTo" data-target="#special-terms" href="#special-terms">特約</a></li>
+<li><a class="wp-utility-scrollTo" data-target="#refund" href="#refund">払い戻しのための返品</a></li>
+<li><a class="wp-utility-scrollTo" data-target="#account" href="#account">お客様のアカウント</a></li>
+<li><a class="wp-utility-scrollTo" data-target="#own" href="#own">お客様の所有権</a></li>
+<li><a class="wp-utility-scrollTo" data-target="#privacy" href="#privacy">プライバシー</a></li>
+<li><a class="wp-utility-scrollTo" data-target="#offering-term" href="#offering-term">提供期間</a></li>
+<li><a class="wp-utility-scrollTo" data-target="#offerings" href="#offerings">提供物</a></li>
+<li><a class="wp-utility-scrollTo" data-target="#versions" href="#versions">体験版</a></li>
+<li><a class="wp-utility-scrollTo" data-target="#feedback" href="#feedback">フィードバック</a></li>
+<li><a class="wp-utility-scrollTo" data-target="#use" href="#use">使用制限</a></li>
+<li><a class="wp-utility-scrollTo" data-target="#confidentiality" href="#confidentiality">機密保持</a></li>
+<li><a class="wp-utility-scrollTo" data-target="#rights" href="#rights">オートデスクの財産権</a></li>
+<li><a class="wp-utility-scrollTo" data-target="#warranty" href="#warranty">限定保証、免責事項、責任の制限</a></li>
+<li><a class="wp-utility-scrollTo" data-target="#indemnity" href="#indemnity">免責</a></li>
+<li><a class="wp-utility-scrollTo" data-target="#termination" href="#termination">期間、終了、停止</a></li>
+<li><a class="wp-utility-scrollTo" data-target="#misc" href="#misc"> 雑則</a></li>
+<li><a class="wp-utility-scrollTo" data-target="#definitions" href="#definitions">定義</a></li>
+<li><a class="wp-utility-scrollTo" data-target="#country">国/管轄区域固有の条件</a></li>
+</ul>
+</div>
+</div>
+
+</div>
+
+    
+
+</div>
+
+    
+</div>
+</div>
+
+</div>
+
+
+
+</div>
+
+
+    
+
+</div>
+
+    
+  </div>
+
+
+</div>
+<div class="core-container aem-GridColumn--xlarge--8 aem-GridColumn--xlarge--none aem-GridColumn aem-GridColumn--default--12 aem-GridColumn--offset--xlarge--0">
+
+  
+  
+  
+  
+  <div id="container-c65fbf9856" class="cmp-container wp-content-page wd-pa-12 ">
+    
+    <div class="experiencefragment">
+<div id="experiencefragment-5bb96ae574" class="cmp-experiencefragment cmp-experiencefragment--introduction" data-ef-variation-path="/content/experience-fragments/autodesk/en/company/terms_of_use/jp/general-terms/introduction/master" data-ef-all-variations="master">
+
+
+
+  
+
+
+
+<div class="xfpage-content-container">
+  
+  <div class="root responsivegrid">
+
+
+<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+    
+    <div class="core-container aem-GridColumn aem-GridColumn--default--12">
+
+  
+  
+  
+  
+  <div id="standard-subscription-benefits" class="cmp-container wp-parent legal-section ">
+    
+    <div class="core-container">
+
+  
+  
+  
+  
+  <div id="container-0cc357068b" class="cmp-container wd-mb-64 wd-bbw-1 wd-bc-smoke wd-pb-12 ">
+    
+    <div class="text">
+<div id="text-98367c84f0" class="cmp-text ">
+  <p class="wd-font-16 wd-mb-12"><span class="pc-brand">有効日: 2023 年 5 月 26 日</span><br />
+</p>
+
+</div>
+
+    
+
+</div>
+<div class="title">
+<div class="cmp-title" id="title-3d22f79aab">
+  <h3 class="cmp-title__text pc-brand wd-font-20">
+    一般規約</h3>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-65239c2bec" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12">本規約は、お客様の Autodesk アカウントおよびオートデスク製品に適用され、お客様と当社の間の拘束力を有する契約の一部となります。</p>
+<p><b style="">以下の第 17.4 条 (オートデスク当事者、準拠法、紛争解決) には、お客様とオートデスクとの間の紛争の解決を規定する可能性のある強制的な仲裁および集団訴訟の放棄の規定が含まれていることにご留意ください。本規約 (第 17.4 条を含む) をよくお読みください。</b></p>
+
+</div>
+
+    
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+</div>
+</div>
+
+</div>
+
+
+
+</div>
+
+
+    
+
+</div>
+<div class="experiencefragment">
+<div id="experiencefragment-e8960f1a5e" class="cmp-experiencefragment cmp-experiencefragment--acceptance" data-ef-variation-path="/content/experience-fragments/autodesk/en/company/terms_of_use/jp/general-terms/acceptance/master" data-ef-all-variations="master">
+
+
+
+  
+
+
+
+<div class="xfpage-content-container">
+  
+  <div class="root responsivegrid">
+
+
+<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+    
+    <div class="core-container aem-GridColumn aem-GridColumn--default--12">
+
+  
+  
+  
+  
+  <div id="acceptance" class="cmp-container wp-parent legal-section ">
+    
+    <div class="core-container">
+
+  
+  
+  
+  
+  <div id="container-6977ceefc1" class="cmp-container wd-mb-64 wd-bbw-1 wd-bc-smoke wd-pb-12 ">
+    
+    <div class="title">
+<div class="cmp-title" id="title-50a6e00a42">
+  <h3 class="cmp-title__text pc-brand wd-font-20">
+       1. 承諾</h3>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-888c6efd91" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12">アカウント登録またはサブスクリプション プロセス中に本一般規約を承諾するか、当社の提供物にアクセスまたは使用することにより、お客様は本一般規約およびその他の適用される条件に同意し、この拘束力のある契約の当事者であることに同意するものとします。本規約に同意しない場合は、当社の提供物にアクセスしたり、これを使用したりしてはなりません。</p>
+<p class="wd-font-14 wd-mv-12">お客様は、お客様が勤める会社またはその他の事業体を代表して (たとえば、従業員または請負業者として)、または、会社および事業体のいずれも存在しない場合は個人としてお客様自身 (いずれの場合も以下、「お客様」) のために、本規約に同意するものとします。お客様は、当該事業体 (存在する場合) およびお客様自身を代表して行動し、拘束する権利や権限 (および十分な法定年齢に達しているかなどの特性) を有することを表明し、保証します。その他の大文字で始まる用語は、以下の第 18 条 (定義) を含め、本規約で定義されています。</p>
+
+</div>
+
+    
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+</div>
+</div>
+
+</div>
+
+
+
+</div>
+
+
+    
+
+</div>
+<div class="experiencefragment">
+<div id="experiencefragment-f69edc055f" class="cmp-experiencefragment cmp-experiencefragment--additional-agreements-special-terms" data-ef-variation-path="/content/experience-fragments/autodesk/en/company/terms_of_use/jp/general-terms/additional-agreements-special-terms/master" data-ef-all-variations="master">
+
+
+
+  
+
+
+
+<div class="xfpage-content-container">
+  
+  <div class="root responsivegrid">
+
+
+<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+    
+    <div class="core-container aem-GridColumn aem-GridColumn--default--12">
+
+  
+  
+  
+  
+  <div id="special-terms" class="cmp-container wp-parent legal-section ">
+    
+    <div class="core-container">
+
+  
+  
+  
+  
+  <div id="container-19620aa5ab" class="cmp-container wd-mb-64 wd-bbw-1 wd-bc-smoke wd-pb-12 ">
+    
+    <div class="title">
+<div class="cmp-title" id="title-473027b6ca">
+  <h3 class="cmp-title__text pc-brand wd-font-20">
+    2. 特約</h3>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-4f84785f85" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12">一部の提供物には、<a href="https://www.autodesk.com/company/terms-of-use/jp/special-terms" target="_self"> 特約</a> または提供物のドキュメントに記載されている特約 (以下、「特約」) が適用される場合があります。</p>
+<p class="wd-font-14 wd-mv-12">お客様は、お客様が契約し、アクセスし、または使用する提供物に関する特約がある場合、これに同意するものとします。</p>
+
+</div>
+
+    
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+</div>
+</div>
+
+</div>
+
+
+
+</div>
+
+
+    
+
+</div>
+<div class="experiencefragment">
+<div id="experiencefragment-d98d6b7582" class="cmp-experiencefragment cmp-experiencefragment--right-of-return-for-refund" data-ef-variation-path="/content/experience-fragments/autodesk/en/company/terms_of_use/jp/general-terms/right-of-return-for-refund/master" data-ef-all-variations="master">
+
+
+
+  
+
+
+
+<div class="xfpage-content-container">
+  
+  <div class="root responsivegrid">
+
+
+<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+    
+    <div class="core-container aem-GridColumn aem-GridColumn--default--12">
+
+  
+  
+  
+  
+  <div id="refund" class="cmp-container wp-parent legal-section ">
+    
+    <div class="core-container">
+
+  
+  
+  
+  
+  <div id="container-48b29c2b89" class="cmp-container wd-mb-64 wd-bbw-1 wd-bc-smoke wd-pb-12 ">
+    
+    <div class="title">
+<div class="cmp-title" id="title-5c3822f112">
+  <h3 class="cmp-title__text pc-brand wd-font-20">
+    3. 払い戻しのための返品</h3>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-b82d669226" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12">一定期間において、お客様が (a) 本規約のいずれかに異議を唱える場合、(b) 購入または更新に適用されるオートデスクの購入または自動更新の条件に異議を唱える場合、または (c) お客様が契約した提供物に (理由の如何を問わず) 満足できない場合、お客様は提供物を返品し、<a href="https://www.autodesk.co.jp/customer/help" target="_blank">Autodesk Return Policy</a>. に基づいて払い戻しを受けることができます。</p>
+
+</div>
+
+    
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+</div>
+</div>
+
+</div>
+
+
+
+</div>
+
+
+    
+
+</div>
+<div class="experiencefragment">
+<div id="experiencefragment-a9d7de664d" class="cmp-experiencefragment cmp-experiencefragment--account" data-ef-variation-path="/content/experience-fragments/autodesk/en/company/terms_of_use/jp/general-terms/account/master" data-ef-all-variations="master">
+
+
+
+  
+
+
+
+<div class="xfpage-content-container">
+  
+  <div class="root responsivegrid">
+
+
+<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+    
+    <div class="core-container aem-GridColumn aem-GridColumn--default--12">
+
+  
+  
+  
+  
+  <div id="account" class="cmp-container wp-parent legal-section ">
+    
+    <div class="core-container">
+
+  
+  
+  
+  
+  <div id="container-2225e7ce8e" class="cmp-container wd-mb-64 wd-bbw-1 wd-bc-smoke wd-pb-12 ">
+    
+    <div class="title">
+<div class="cmp-title" id="title-4a94a53ea4">
+  <h3 class="cmp-title__text pc-brand wd-font-20">
+    4. お客様のアカウント</h3>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-acf9e12953" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12">お客様は、お客様またはお客様のアカウント (お客様の使用許諾対象ユーザーを含む) を通じて提供物を取得、アクセスまたは使用するすべての人について責任を負い、かつ、それらの各人がお客様と同様に本規約を遵守することについて責任を負います。場合によっては、お客様の使用許諾対象ユーザーは、提供物を取得、アクセス、または使用するために、個別アカウントを設定するか、適用される条件に同意する必要がありますが、お客様は引き続き責任を負います。また、ユーザー ID またはパスワードを保護し、共有しないことに同意するものとします (許可されたアカウント管理者を除く)。アカウントの不正使用が疑われる場合は、<a href="https://www.autodesk.co.jp/trust/contact-us" target="_blank">https://www.autodesk.com/trust/contact-us</a> までご連絡ください。</p>
+
+</div>
+
+    
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+</div>
+</div>
+
+</div>
+
+
+
+</div>
+
+
+    
+
+</div>
+<div class="experiencefragment">
+<div id="experiencefragment-7ce8114b05" class="cmp-experiencefragment cmp-experiencefragment--you-own-your-work" data-ef-variation-path="/content/experience-fragments/autodesk/en/company/terms_of_use/jp/general-terms/you-own-your-work/master" data-ef-all-variations="master">
+
+
+
+  
+
+
+
+<div class="xfpage-content-container">
+  
+  <div class="root responsivegrid">
+
+
+<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+    
+    <div class="core-container aem-GridColumn aem-GridColumn--default--12">
+
+  
+  
+  
+  
+  <div id="own" class="cmp-container wp-parent legal-section ">
+    
+    <div class="core-container">
+
+  
+  
+  
+  
+  <div id="container-3b7163449c" class="cmp-container wd-mb-64 wd-bbw-1 wd-bc-smoke wd-pb-12 ">
+    
+    <div class="title">
+<div class="cmp-title" id="title-58d6c0d7d7">
+  <h3 class="cmp-title__text pc-brand wd-font-20">
+    5. お客様の所有権</h3>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-e4a63238fc" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12">お客様は、お客様 (またはお客様の使用許諾対象ユーザー) が作成し、お客様 (またはお客様の使用許諾対象ユーザー) が提供物に提出またはアップロードしたファイル、設計、モデル、データセット、画像、ドキュメント、または同様の資料に対する所有権を保持するものとします。</p>
+
+</div>
+
+    
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+</div>
+</div>
+
+</div>
+
+
+
+</div>
+
+
+    
+
+</div>
+<div class="experiencefragment">
+<div id="experiencefragment-4f0c284328" class="cmp-experiencefragment cmp-experiencefragment--privacy" data-ef-variation-path="/content/experience-fragments/autodesk/en/company/terms_of_use/jp/general-terms/privacy/master" data-ef-all-variations="master">
+
+
+
+  
+
+
+
+<div class="xfpage-content-container">
+  
+  <div class="root responsivegrid">
+
+
+<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+    
+    <div class="core-container aem-GridColumn aem-GridColumn--default--12">
+
+  
+  
+  
+  
+  <div id="privacy" class="cmp-container wp-parent legal-section ">
+    
+    <div class="core-container">
+
+  
+  
+  
+  
+  <div id="container-0eb9312ea7" class="cmp-container wd-mb-64 wd-bbw-1 wd-bc-smoke wd-pb-12 ">
+    
+    <div class="title">
+<div class="cmp-title" id="title-407a149c6e">
+  <h3 class="cmp-title__text pc-brand wd-font-20">
+    6. プライバシー</h3>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-e77a7c2fa4" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12">オートデスクは、お客様のプライバシーを保護し、オートデスクがお客様の個人データをどのように取り扱うかをお客様に知らせることをお約束します。オートデスクの<a href="https://www.autodesk.com/company/legal-notices-trademarks/privacy-statement-jp" target="_self">個人情報保護方針</a>  では、(i) オートデスクによるお客様のまたはお客様に関する個人データの収集、利用、保管、処理の方法、および (ii) お客様によるお客様の個人データへのアクセスもしくは削除の要請方法を定めています。</p>
+<p class="wd-font-14 wd-mv-12">オートデスクは、一般データ保護規則に基づく個人データの処理者としてのオートデスクの義務を定めたデータ処理補遺 (当社の <a href="https://www.autodesk.co.jp/trust/privacy" target="_blank">Trust Center</a> で入手可能) を提供しています。</p>
+
+</div>
+
+    
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+</div>
+</div>
+
+</div>
+
+
+
+</div>
+
+
+    
+
+</div>
+<div class="experiencefragment">
+<div id="experiencefragment-8509784645" class="cmp-experiencefragment cmp-experiencefragment--offering-term" data-ef-variation-path="/content/experience-fragments/autodesk/en/company/terms_of_use/jp/general-terms/offering-term/master" data-ef-all-variations="master">
+
+
+
+  
+
+
+
+<div class="xfpage-content-container">
+  
+  <div class="root responsivegrid">
+
+
+<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+    
+    <div class="core-container aem-GridColumn aem-GridColumn--default--12">
+
+  
+  
+  
+  
+  <div id="offering-term" class="cmp-container wp-parent legal-section ">
+    
+    <div class="core-container">
+
+  
+  
+  
+  
+  <div id="container-4e00735236" class="cmp-container wd-mb-64 wd-bbw-1 wd-bc-smoke wd-pb-12 ">
+    
+    <div class="title">
+<div class="cmp-title" id="title-3f9f750a15">
+  <h3 class="cmp-title__text pc-brand wd-font-20">
+    7. 提供期間</h3>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-5b919d4ba9" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12">提供物の各サブスクリプションは、一定期間限定 (以下、「提供期間」) です。提供期間の長さは、提供物認証に示されます。</p>
+<p class="wd-font-14 wd-mv-12">一部のサブスクリプションは、自動的に更新される場合があります。自動更新を解除する場合は、<a href="https://www.autodesk.co.jp/support/account/manage/billing/cancel" target="_blank">Cancelling Automatic Renewal for Subscriptions</a>を参照してください。</p>
+
+</div>
+
+    
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+</div>
+</div>
+
+</div>
+
+
+
+</div>
+
+
+    
+
+</div>
+<div class="experiencefragment">
+<div id="experiencefragment-716643fff7" class="cmp-experiencefragment cmp-experiencefragment--offering" data-ef-variation-path="/content/experience-fragments/autodesk/en/company/terms_of_use/jp/general-terms/offering/master" data-ef-all-variations="master">
+
+
+
+  
+
+
+
+<div class="xfpage-content-container">
+  
+  <div class="root responsivegrid">
+
+
+<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+    
+    <div class="core-container aem-GridColumn aem-GridColumn--default--12">
+
+  
+  
+  
+  
+  <div id="offerings" class="cmp-container wp-parent legal-section ">
+    
+    <div class="core-container">
+
+  
+  
+  
+  
+  <div id="container-3f111524ab" class="cmp-container wd-mb-64 wd-bbw-1 wd-bc-smoke wd-pb-12 ">
+    
+    <div class="title">
+<div class="cmp-title" id="title-2c8efb9871">
+  <h3 class="cmp-title__text pc-brand wd-font-20">
+    8. 提供物</h3>
+</div>
+
+    
+
+</div>
+<div class="title">
+<div class="cmp-title" id="title-84f2a09a5d">
+  <h4 class="cmp-title__text wd-mt-12">
+    8.1	提供物に対する権利</h4>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-5d261e5492" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12">オートデスクがお客様にその利用を許可する、または提供するソフトウェアまたはクラウド サービスから構成される提供物について、本規約ならびに税金およびその他の手数料を含むすべての支払い義務を遵守することを条件として、オートデスクは、お客様に対し、(a) 提供期間中に限り、(b) 適用される特約に従い、(c) 許可された数、提供方法、地域、および提供物のサブスクライブ時に選択したタイプとレベルに指定されたその他の属性を含むサブスクリプションの範囲内で、提供物を使用する (およびお客様の使用許諾対象ユーザーに提供物の使用を許可する) 非独占的な権利を付与します。提供物認証でこれらの属性が指定されていない場合、その提供物には体験版の属性が含まれます。</p>
+<p class="wd-font-14 wd-mv-12">本規約により明示的に許可された場合、またはオートデスクが書面で明示的に許可した場合を除き、お客様は、(i) 契約上の禁止事項にかかわらず、適用される法律で明示的に許可されている場合を除き、提供物の全部または一部の複製、修正、翻案、翻訳、移植、派生物の作成、または (ii) 提供物の全部もしくは一部または提供物の機能を第三者にサブライセンス、譲渡、配布、送信、販売、リース、賃貸、貸与、またはその他の方法で利用可能 (サービス ビューロー ベースまたはその他の方法にかかわらず) にしないものとします。</p>
+<p class="wd-font-14 wd-mv-12">オートデスクがお客様にその利用を許可する、または提供するソフトウェア (アップデートまたはアップグレードを含む) は、限定的なサブスクリプション期間にわたってライセンスを許諾されるものであり、販売されるものではありません。お客様は、提供期間中、お客様のバックアップおよびアーカイブの目的に限り、お客様が契約したソフトウェアのアーカイブ用コピーを 1 部作成することができるものとします。</p>
+
+</div>
+
+    
+
+</div>
+<div class="title">
+<div class="cmp-title" id="title-1c06871e82">
+  <h4 class="cmp-title__text ">
+    8.2	ソフトウェアおよびクラウド サービスへのアクセス</h4>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-49e0705a79" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12">本規約の遵守を条件として、オートデスクは、提供期間中、お客様のアカウントまたはその他の電子的手段を通じて、お客様に提供物を利用できるようにします。オートデスクは、お客様のアカウント情報を誤ったアドレスに送信したことによりお客様または他者が被った損失またはその他の責任について責任を負いません。お客様は、提供物をアクティブ化、アクセス、または使用するために、お客様のアカウントにログインするか、オートデスクに追加情報を提供することを要求される場合があります。提供物によっては、お客様のコンピュータまたはその他のデバイスが、例えば、お客様のサブスクリプションの適切な使用を検証するため、お客様にサービス (第三者サービスを含む) へのアクセスを提供するため、またはアップデートもしくはアップグレードをダウンロードおよびインストールするために、すべてお客様に通知することなく、自動的に (断続的または定期的に) インターネットに接続する場合があります。お客様およびお客様の使用許諾対象ユーザーは、かかる接続、お客様のサブスクリプションの検証、ならびにアップデートおよびアップグレードの自動ダウンロードおよびインストールに同意するものとします。お客様は、特定の提供物 (提供物の運用またはセキュリティのために自動的なアップデートまたはアップグレードが要求されるものを含む) のアップデートまたはアップグレードの設定を調整できない場合があります。</p>
+<p class="wd-font-14 wd-mv-12">提供期間中、オートデスクは、ソフトウェアに対するアップデートもしくはアップグレードを利用可能にし、または提供することができます。お客様は、必須のアップデートを速やかにインストールするものとします。</p>
+
+</div>
+
+    
+
+</div>
+<div class="title">
+<div class="cmp-title" id="title-0aa0e28add">
+  <h4 class="cmp-title__text ">
+    8.3	オートデスク API </h4>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-d73b28ad8a" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12">提供物に関連して、お客様は、標準のアプリケーション プログラミング インタフェース、ソフトウェア開発キット、ツール、ライブラリ、スクリプト、サンプル ソース コード、および同様の開発者向け資料 (以下、総称して「API」) にアクセスできる場合があります。適用される特約 (ドキュメントを含む) に別段の定めがない限り、お客様は、(a) お客様がサブスクリプションを有し、API が提供されている提供物に対して、(b) 提供期間中、(c) API に固有の特約 (ドキュメントを含む) に従い、(d) お客様の内部ビジネスでの使用のみを目的として開発されるアプリケーション、サービス、モジュールまたはコンポーネントの場合に限り API の使用を認めるものとします。</p>
+
+</div>
+
+    
+
+</div>
+<div class="title">
+<div class="cmp-title" id="title-a549075750">
+  <h4 class="cmp-title__text ">
+    8.4	第三者素材およびサービスの使用</h4>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-5472d1b907" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12">オートデスクは、提供物に関連して、第三者のコンテンツ、設計、モデル、データセット、プロジェクト情報、ドキュメント、ライブラリ、オーディオ、リンク、データ、アプリケーション、その他のソフトウェア、サービス、またはその他の素材 (以下、総称して「第三者素材/サービス」) をお客様に提供する場合があります。第三者素材/サービスは、かかる第三者素材/サービス (たとえば、「バージョン情報ボックス」、.txt ファイル、または付随するライセンス条項)、第三者の登録ページ、または第三者素材/サービスが提供される提供物に関する特約 (ドキュメントを含む、以下総称して「第三者規約」) に記載されているさまざまな条件に準拠する場合があります。第三者規約がない場合、お客様による利用は、(a) お客様が第三者素材/サービスを受け取った提供物と同じ条件に従い、(b) お客様による当該提供物の使用に関連してのみ、(c) 提供期間に限定されます。お客様は、すべての第三者規約を決定、取得、および遵守する責任を単独で負います。オートデスクは、(i) 第三者素材/サービスまたはお客様による第三者素材/サービスの使用、および (ii) 第三者規約またはお客様によるかかる第三者規約の遵守について、一切の責任を負わず、表明または保証も行いません。</p>
+
+</div>
+
+    
+
+</div>
+<div class="title">
+<div class="cmp-title" id="title-f732d3fa64">
+  <h4 class="cmp-title__text ">
+    8.5	お客様のコンテンツの使用</h4>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-ded29212a0" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12">お客様が特定の提供物にアクセスもしくは使用するため、またはオートデスクがお客様に特定のサービスを提供するために、お客様が、お客様のコンテンツをアップロードまたはその他の方法で共有することを希望する場合があります。オートデスクの担当者は、(a) お客様の要求またはお客様の同意がある場合、(b) 提供物の提供および改善 (提供物の維持、保護、更新、またはその他の修正を含む) に関連する場合、(c) 法的義務、執行、調査または手続に関連する場合を除き、お客様のコンテンツを使用しません。オートデスクは、本規約の不遵守を含め、理由の如何を問わず、お客様のコンテンツをブロックまたは削除することができます。お客様がお客様のコンテンツを提供またはアクセス可能にする場合、お客様は、オートデスクおよびその被指名人が、お客様への提供物および本規約で意図されるその他の活動に関連して、お客様のコンテンツを使用、複製、修正、配布および利用可能にすることを許可するものとします。</p>
+<p>お客様は、(i) お客様のコンテンツおよび当該コンテンツを提供物に使用する行為が、適用されるすべての法律および規制および本規約に準拠していること、(ii) お客様のコンテンツがいかなる人物の知的財産権または所有権をも侵害または不正利用しないこと、および (iii) お客様のコンテンツのバックアップ コピーをお客様が常に確保していることを確認する責任を負います。お客様は、オンライン サービスが中断または停止する可能性があり、その結果、お客様のコンテンツを取得できない可能性があることを認めます。</p>
+<p class="wd-font-14 wd-mv-12">お客様は、以下に起因しもしくはこれに関係する請求、訴訟、または法的手続きのためにオートデスクが被りもしくは負担した一切の損失、責任、経費 (合理的な弁護士費用を含む) についてオートデスクを補償し、免責します (かつ、オートデスクの要求があれば、これらからオートデスクを擁護します)。(i) お客様のコンテンツ、(ii) お客様 (お客様の使用許諾対象ユーザーを含む) による提供物の利用 (出力または当該利用から生成されたその他の成果を含む)、および (iii) お客様 (お客様の使用許諾対象ユーザーを含む) による本規約 (追加規約、特約、その他の適用され得る規約を含む) の違反。</p>
+
+</div>
+
+    
+
+</div>
+<div class="title">
+<div class="cmp-title" id="title-f5cdac95f7">
+  <h4 class="cmp-title__text ">
+    8.6	お客様のコンテンツのコラボレーションと共有</h4>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-7ea960311e" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12">一部の提供物では、お客様のコンテンツの共有または公開を含む、お客様による他者とのコラボレーションが許可されています。お客様がお客様のコンテンツを共有または公開することを選択した場合、他者はお客様のコンテンツを使用、販売、複製、修正、配布、表示、送信、通信および利用可能にすることができる場合があり、アクセスを一時停止または終了しても、先に共有または公開されたお客様のコンテンツへのアクセスが削除または阻害されることはありません。お客様が、他者による当該アクセス権または当該権限を与えたくない場合は、提供物の共有、公開、またはその他のコラボレーション機能を使用せず、お客様の許可を適宜設定してください。フォーラムやギャラリーは公開されている場合があり、提出物は通常公開されていることに留意してください。</p>
+<p class="wd-font-14 wd-mv-12">提供物には、第三者素材/サービスへのリンクが含まれている場合があります。このようなリンクは、お客様の便宜のために提供されるものです。オートデスクは、かかる第三者がお客様のコンテンツをどのように処理するかを監視または管理しません。お客様は、第三者によるお客様のコンテンツへの適切なアクセス レベルを確保する責任を負います。お客様がお客様のコンテンツを第三者と共有することを許可した場合、オートデスクはお客様のコンテンツを当該第三者に提供することができます。ただし、オートデスクは、かかる第三者の行為に対して一切の責任を負いません。</p>
+
+</div>
+
+    
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+</div>
+</div>
+
+</div>
+
+
+
+</div>
+
+
+    
+
+</div>
+<div class="experiencefragment">
+
+
+
+    
+
+</div>
+<div class="experiencefragment">
+<div id="experiencefragment-04bfdd5923" class="cmp-experiencefragment cmp-experiencefragment--trial-versions" data-ef-variation-path="/content/experience-fragments/autodesk/en/company/terms_of_use/jp/general-terms/trial-versions/master" data-ef-all-variations="master">
+
+
+
+  
+
+
+
+<div class="xfpage-content-container">
+  
+  <div class="root responsivegrid">
+
+
+<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+    
+    <div class="core-container aem-GridColumn aem-GridColumn--default--12">
+
+  
+  
+  
+  
+  <div id="versions" class="cmp-container wp-parent legal-section ">
+    
+    <div class="core-container">
+
+  
+  
+  
+  
+  <div id="container-623e8333cf" class="cmp-container wd-mb-64 wd-bbw-1 wd-bc-smoke wd-pb-12 ">
+    
+    <div class="title">
+<div class="cmp-title" id="title-56dfc31ca4">
+  <h3 class="cmp-title__text pc-brand wd-font-20">
+    9. 体験版</h3>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-3520fa79bb" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12">オートデスクは、「再販禁止」、「無料」、「試用」、「体験」、「プレリリース」、「ベータ」、またはその他の類似の名称 (以下、総称して「体験版」) として記載された提供物 (または提供物の機能) を利用可能にし、または提供することができます。体験版のドキュメントまたは適用される特約に明示的に規定されている場合を除き、(a) 体験版にアクセスまたは使用できるのは、ダウンロードまたは受領から 30 日間のみであり、(b) お客様の使用は非営利的な評価目的に限定され、(c) 体験版の使用は、個人としてのお客様またはお客様が法人の場合、指定した従業員 1 名に限られ、(d) 体験版は、お客様が提供物を取得した地域内でのみ使用できるものとします。本規約の他の規定にかかわらず、(i) オートデスクは、体験版の継続または体験版の提供物への変換を含め、体験版に関するいかなる約束も行いません。(ii) オートデスクは、提供物を改善するために常に調査を行いますが、かかる調査が提供物として商業的にリリースされることを約束しません。(iii) 体験版には、完全なデータ損失またはシステム障害を引き起こす可能性のあるエラーや欠陥を含む、完全にテストされていないコードが含まれている場合があります。体験版のサブスクリプションには、サブスクリプション特典は含まれず、オートデスクは、予告なしにいつでも体験版を終了する権利を留保します。</p>
+
+</div>
+
+    
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+</div>
+</div>
+
+</div>
+
+
+
+</div>
+
+
+    
+
+</div>
+<div class="experiencefragment">
+<div id="experiencefragment-98b1a29a01" class="cmp-experiencefragment cmp-experiencefragment--feedback" data-ef-variation-path="/content/experience-fragments/autodesk/en/company/terms_of_use/jp/general-terms/feedback/master" data-ef-all-variations="master">
+
+
+
+  
+
+
+
+<div class="xfpage-content-container">
+  
+  <div class="root responsivegrid">
+
+
+<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+    
+    <div class="core-container aem-GridColumn aem-GridColumn--default--12">
+
+  
+  
+  
+  
+  <div id="feedback" class="cmp-container wp-parent legal-section ">
+    
+    <div class="core-container">
+
+  
+  
+  
+  
+  <div id="container-ec77293ddb" class="cmp-container wd-mb-64 wd-bbw-1 wd-bc-smoke wd-pb-12 ">
+    
+    <div class="title">
+<div class="cmp-title" id="title-cc743168fa">
+  <h3 class="cmp-title__text pc-brand wd-font-20">
+    10. フィードバック</h3>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-a9543fda66" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12">お客様がオートデスクに改善のためのアドバイス、提案、その他のフィードバック (以下、総称して「フィードバック」) を提供した場合、お客様は、フィードバック、ならびにフィードバックを利用したコラボレーショ ン資料およびオートデスクの製品やサービスの、それぞれの作成、使用、販売、販売の申し出、複製、修正、配布、提供、公開、公演、開示、およびその他の利用を行うための、非独占的、譲渡可能、取消不能、全世界を対象とする、ロイヤリティ不要のライセンス (サブライセンスを行う権利を含む) を本契約によってオートデスクに付与することになります。</p>
+
+</div>
+
+    
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+</div>
+</div>
+
+</div>
+
+
+
+</div>
+
+
+    
+
+</div>
+<div class="experiencefragment">
+<div id="experiencefragment-1cdb670363" class="cmp-experiencefragment cmp-experiencefragment--limitations-on-use" data-ef-variation-path="/content/experience-fragments/autodesk/en/company/terms_of_use/jp/general-terms/limitations-on-use/master" data-ef-all-variations="master">
+
+
+
+  
+
+
+
+<div class="xfpage-content-container">
+  
+  <div class="root responsivegrid">
+
+
+<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+    
+    <div class="core-container aem-GridColumn aem-GridColumn--default--12">
+
+  
+  
+  
+  
+  <div id="use" class="cmp-container wp-parent legal-section ">
+    
+    <div class="core-container">
+
+  
+  
+  
+  
+  <div id="container-23ce200792" class="cmp-container wd-mb-64 wd-bbw-1 wd-bc-smoke wd-pb-12 ">
+    
+    <div class="title">
+<div class="cmp-title" id="title-72f5817f59">
+  <h3 class="cmp-title__text pc-brand wd-font-20">
+    11. 使用制限</h3>
+</div>
+
+    
+
+</div>
+<div class="title">
+<div class="cmp-title" id="title-c416d467fa">
+  <h4 class="cmp-title__text wd-mt-12">
+    11.1 提供物はツールであること</h4>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-811c6b1fc8" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12">提供物はツールであり、お客様の設計、分析、シミュレーション、見積り、試験、その他の行為を支援することだけを目的としており、お客様の専門家としての判断またはお客様自身による独自の設計、分析、シミュレーション、見積り、試験、その他の行為 (製品のストレス、安全性、および有用性に関するものなどを含む) の代わりとなるものではありません。お客様は、提供物がお客様の特定の用途のために設計またはテストされていない可能性があること、および提供物および出力がお客様の制約の中でお客様が望む結果を達成しない可能性があることを了承します。お客様の意図する結果または成果の達成するために、(a) 提供物の使用がお客様の目的に適しているかどうかを判断し、(b) 提供物の適切な使用方法を決定し、(c)提供物およびその他のコンピュータ プログラムおよび素材を選択することは、お客様の責任です。お客様は、お客様とオートデスクとの間において、(i) お客様 (お客様の使用許諾対象ユーザーを含む) による提供物の利用およびあらゆる出力を含む提供物によって生じる結果、ならびに (ii) あらゆる出力 (洞察、推奨事項および提供物の支援を受けて設計されたあらゆる項目を含む) の信頼性、安全性、正確性、完全性、適用される法的要件および業界標準への準拠およびその他の特性を試験するための独立した手続の適切性の確立について、お客様が単独に責任を負うことを了承するものとします。オートデスクは、出力を含む、提供物の使用を通じて得られる成果について、如何なる形でも責任を負いません。</p>
+
+</div>
+
+    
+
+</div>
+<div class="title">
+<div class="cmp-title" id="title-76dc9c365e">
+  <h4 class="cmp-title__text ">
+    11.2 機密個人データ用に設計されていない提供物</h4>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-eb88456709" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12">提供物に関連するデータ保存機能は、社会保障番号、クレジットもしくはデビットカード番号、金融口座番号、運転免許証番号、医療情報もしくは健康保険情報、個人の特性に関するデータその他の個人データ(人種もしくは種族的出身、宗教もしくは哲学的信念、支持する政党もしくは政治的見解、遺伝的データもしくは生体情報、性的指向、または労働組合の会員資格を含む)、または不適切な開示もしくは利用が行われた場合、個人について暴露し、もしくは個人に対する損害の恐れをもたらすその他のデータ (以下、総称して「機密個人データ」) の保存に適していません。オートデスクが明示的に要求する場合 (例えば、サブスクリプションの購入に使用されるクレジットカード番号) を除き、お客様は、お客様による提供物の利用に関連して、機密個人データが含まれたファイルを含む、機密個人データをアップロードまたはその他の方法でオートデスクに提供しません。</p>
+
+</div>
+
+    
+
+</div>
+<div class="title">
+<div class="cmp-title" id="title-13f33c2c75">
+  <h4 class="cmp-title__text ">
+    11.3 提供物の利用の許容範囲</h4>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-e3ec9293a0" class="cmp-text ">
+  <p class=" wd-font-14 wd-mv-12">お客様は、<a href="https://www.autodesk.com/company/terms-of-use/jp/acceptable-use" target="_self">利用規約</a>  およびすべての適用される法律を遵守した場合にのみ、提供物にアクセスし、これを使用する (および提供物へのアクセスおよび使用を許可する) ものとします。</p>
+
+</div>
+
+    
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+</div>
+</div>
+
+</div>
+
+
+
+</div>
+
+
+    
+
+</div>
+<div class="experiencefragment">
+<div id="experiencefragment-be50c617bf" class="cmp-experiencefragment cmp-experiencefragment--confidentiality" data-ef-variation-path="/content/experience-fragments/autodesk/en/company/terms_of_use/jp/general-terms/confidentiality/master" data-ef-all-variations="master">
+
+
+
+  
+
+
+
+<div class="xfpage-content-container">
+  
+  <div class="root responsivegrid">
+
+
+<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+    
+    <div class="core-container aem-GridColumn aem-GridColumn--default--12">
+
+  
+  
+  
+  
+  <div id="confidentiality" class="cmp-container wp-parent legal-section ">
+    
+    <div class="core-container">
+
+  
+  
+  
+  
+  <div id="container-25132e96aa" class="cmp-container wd-mb-64 wd-bbw-1 wd-bc-smoke wd-pb-12 ">
+    
+    <div class="title">
+<div class="cmp-title" id="title-73fb51c4e9">
+  <h3 class="cmp-title__text pc-brand wd-font-20">
+    12. 機密保持</h3>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-e319d94601" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12">お客様またはオートデスク (以下、「開示当事者」) は、本規約に関連して、相手方当事者 (以下、「受領当事者」) に秘密情報を開示し、または利用可能にすることができます。受領当事者は、開示当事者の秘密情報に関して、同種の自身の秘密情報を保護するために使用するのと同程度の注意を払い (ただし、いかなる場合も合理的な注意を下回ることはない)、(a) 開示当事者の秘密情報を、提供物に関連してのみ使用し、(b) 開示当事者が書面で別途許可した場合を除き、開示当事者の秘密情報へのアクセスを、その従業員、コンサルタント、請負業者、サービスプロバイダー、専門アドバイザー、および提供物に関連する目的で当該アクセスを必要とし、受領当事者との間で本規約と同等以上の秘密保持義務を負う個人に限定します。受領当事者は、法律により強制された場合、開示当事者の秘密情報を開示することができます。受領当事者は、かかる強制的な開示について (法的に許可されている範囲で) 開示当事者に事前に通知し、かかる開示を制限するための合理的な措置を講じるものとします。また、オートデスクは、オートデスクが関与する法的手続きの一環として、またはお客様の要求に応じて、政府または規制機関の要求 (召喚状または裁判所命令を含む) に従うために、お客様の秘密情報を開示する場合があります。お客様の要求に応じて開示が行われた場合、お客様は、お客様の秘密情報の編集およびアクセス提供のための費用を負担する場合があります。</p>
+
+</div>
+
+    
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+</div>
+</div>
+
+</div>
+
+
+
+</div>
+
+
+    
+
+</div>
+<div class="experiencefragment">
+<div id="experiencefragment-b1024bfddf" class="cmp-experiencefragment cmp-experiencefragment--autodesk-proprietary-rights" data-ef-variation-path="/content/experience-fragments/autodesk/en/company/terms_of_use/jp/general-terms/autodesk-proprietary-rights/master" data-ef-all-variations="master">
+
+
+
+  
+
+
+
+<div class="xfpage-content-container">
+  
+  <div class="root responsivegrid">
+
+
+<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+    
+    <div class="core-container aem-GridColumn aem-GridColumn--default--12">
+
+  
+  
+  
+  
+  <div id="rights" class="cmp-container wp-parent legal-section ">
+    
+    <div class="core-container">
+
+  
+  
+  
+  
+  <div id="container-abe1edb788" class="cmp-container wd-mb-64 wd-bbw-1 wd-bc-smoke wd-pb-12 ">
+    
+    <div class="title">
+<div class="cmp-title" id="title-50fb202222">
+  <h3 class="cmp-title__text pc-brand wd-font-20">
+    13. オートデスクの財産権</h3>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-c818707838" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12">お客様は、オートデスクならびにそのライセンサーおよびサプライヤが、(a) オートデスクがお客様に提供する提供物、ドキュメント、API、およびその他の情報または素材 (前述のコピーを含む)、(b) 上記のいずれかに基づき、そこから派生し、またはその他の方法で使用される素材またはその他の情報 (メトリックを含む)、および (c) 上記のいずれかに関連する企業秘密、著作権、商標、特許、およびその他の知的財産または所有権に基づくすべての権利の所有権およびこれに関するすべての権利を有することを認め、同意するものとします。提供物および API の構造および構成、基礎となるアルゴリズムおよびその他の内部構造、プロトコル、データ構造およびその他の外部構造、ならびにソース コードは、オートデスクの専有および秘密情報に相当するものであり、お客様は、オートデスクの書面による事前の同意なしに、これらの情報を第三者に開示せず、本規約に定める提供物の通常の閲覧および使用に必要な目的以外に使用しないものとします。お客様は、オートデスクが提供または承認するインタフェース以外の方法で提供物にアクセスしたり、アクセスを試みたりしてはなりません。さらに、契約上で禁止されているにもかかわらず適用される法律で明示的に許可されている場合を除き、お客様は、逆コンパイル、逆アセンブル、およびその他のリバース エンジニアリングを行わず、また、提供物または API の構造および構成、基礎となるアルゴリズムおよびその他の内部構造、プロトコル、データ構造およびその他の外部構造、ならびにソース コードをその他の方法で発見、知得または研究する試みを行わないものとします。オートデスクは、お客様による提供物へのアクセスまたは使用を可能にするために、その他の秘密情報および専有情報 (そのように表示されているか、または状況に応じてそのように理解されているかを問わない) を利用可能にしたり、アクセスを提供したりすることができ、かかる情報はオートデスクの秘密情報とみなされます。</p>
+<p>お客様は、本規約 (特約を含む) に基づいてお客様に明示的に付与された権利のみを有するものとします。明示的に付与されていないすべての権利は、オートデスクおよびそのライセンサーならびにサプライヤが留保し、オートデスクおよびそのライセンサーならびにサプライヤは、その他の権利を明示的に放棄します (また、お客様は主張しないことに同意するものとします)。</p>
+<p>第 13 条に反するいかなる行為も、お客様は行ってはならず、また、第三者がかかる行為を行うことを承認、推奨または支援してはなりません。</p>
+
+</div>
+
+    
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+</div>
+</div>
+
+</div>
+
+
+
+</div>
+
+
+    
+
+</div>
+<div class="experiencefragment">
+<div id="experiencefragment-9c69ef3fb6" class="cmp-experiencefragment cmp-experiencefragment--warranty-disclaimers-limitations-on-liability" data-ef-variation-path="/content/experience-fragments/autodesk/en/company/terms_of_use/jp/general-terms/warranty-disclaimers-limitations-on-liability/master" data-ef-all-variations="master">
+
+
+
+  
+
+
+
+<div class="xfpage-content-container">
+  
+  <div class="root responsivegrid">
+
+
+<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+    
+    <div class="core-container aem-GridColumn aem-GridColumn--default--12">
+
+  
+  
+  
+  
+  <div id="warranty" class="cmp-container wp-parent legal-section ">
+    
+    <div class="core-container">
+
+  
+  
+  
+  
+  <div id="container-1bfe0cb565" class="cmp-container wd-mb-64 wd-bbw-1 wd-bc-smoke wd-pb-12 ">
+    
+    <div class="title">
+<div class="cmp-title" id="title-f4e38a8ffb">
+  <h3 class="cmp-title__text pc-brand wd-font-20">
+    14. 限定保証、免責事項、責任の制限</h3>
+</div>
+
+    
+
+</div>
+<div class="title">
+<div class="cmp-title" id="title-04d196e33e">
+  <h4 class="cmp-title__text wd-mt-12">
+    14.1 限定保証</h4>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-775b894673" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12">オートデスクは、いかなる有料サブスクリプションについても、契約した提供物がお客様に利用可能になった日およびその後 90 日間、または提供期間がそれよりも短い場合は当該短期の期間 (以下、「保証期間」)、提供物が提供物のエンドユーザー向けドキュメントに記載されている一般的な特徴および機能を提供することを保証します。オートデスクによる本保証の違反に対するオートデスクのすべての義務および責任、ならびにお客様の唯一かつ排他的な救済は、オートデスクがその選択により、(a) 違反の是正を合理的に試みること、または (b) 影響を受けたサブスクリプションについて受領した金額を払い戻し、かかるサブスクリプションを終了することです。お客様は、提供物に関するいかなる保証請求も、その適用される保証期間内に行うものとし、かかる保証期間後にお客様が行う保証請求は、除外されるものとします。</p>
+
+</div>
+
+    
+
+</div>
+<div class="title">
+<div class="cmp-title" id="title-06a006f146">
+  <h4 class="cmp-title__text ">
+    14.2 免責事項</h4>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-551ca472e6" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12"><b>上記の第 14.1 条 (限定保証) 条に定める明示的な限定保証、および追加規約または特約にそのように定める明示的な保証を除き、適用される法律により認められる最大限の範囲で、(a) 提供物 (関連ソフトウェア、クラウド サービス、ドキュメント、API またはその他の素材を含む) は、「現状有姿」「瑕疵も含め」、いかなる種類の保証または条件もなく提供し、(b) オートデスク、そのライセンサーおよびサプライヤは、商品性、十分な品質、特定目的への適合性、権原および非侵害、または平穏享受に関する黙示の保証、法令により黙示される保証もしくは条件、または取引の過程、取引の使用もしくは業界標準に基づく保証もしくは条件を含め、明示または暗示、口頭または書面による、あらゆる種類の保証、表明、条件、または約束を、あらゆる提供物またはあらゆる出力に関して、一切行わず、お客様は、これを受けないものとします。</b>本規約 (追加規約または特約を含む) に含まれない、提供物 (その機能性または性能に関する記述を含む) または出力に関するオートデスクまたはその第三者代理人、代表者もしくはサービス プロバイダーによる記述、またはお客様とのその他の通信 (洞察、推奨、指針、評価、予測、推定または意見を含む) は、情報提供のみを目的としており、保証、表明、条件、またはその他の約束を構成するものではありません。上記の一般性を制限することなく、オートデスクおよびそのライセンサーならびにサプライヤは、(i) 提供物もしくは出力、またはお客様のそれに対するアクセスもしくはその使用が、利用可能であり、中断されず、適時で、誤りがなく、安全で、正確で、信頼でき、もしくは完全であること、(ii) 提供物が特定のパフォーマンス、可用性またはサービス レベルの基準を満たすこと、(iii) お客様のコンテンツが紛失もしくは損傷しないこと、または (iv) エラーもしくは欠陥が修正されること、または特定のサポート要求がお客様のニーズもしくは期待に応えるように解決されることについては、保証またはその他の約束をしません。また、明確にするために、(1) 提供物に関する「無制限」のアクセス、使用、保存、その他の言及は、提供物の技術的制限に従うものとし、(2) 一部の提供物または機能は、場所 (地域を含む) または言語によって利用できない場合があります。</p>
+
+</div>
+
+    
+
+</div>
+<div class="title">
+<div class="cmp-title" id="title-ec94c0cefe">
+  <h4 class="cmp-title__text ">
+    14.3 責任の制限</h4>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-756deb2150" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12"><b>オートデスク、そのライセンサーまたはサプライヤのいずれも、偶発的、特別、間接的、派生的、もしくは懲罰的損害、利益もしくは収益の損失、事業の中断もしくは利用の喪失、代替品もしくはサービスもしくはその他の補償の調達費用、出力の故障もしくは欠陥、データもしくはお客様のコンテンツの損失、破損、削除 (もしくは削除の失敗)、または不可抗力に起因する損害について (直接的または間接的に) 一切の責任を負わないものとします。提供物またはその出力に関するオートデスク並びにそのライセンサーおよびサプライヤの累積責任は、いかなる場合においても、(a) 責任を生じさせる事象または状況が最初に発生する前の 1 年間にお客様が提供物に対して支払ったまたは支払うべき金額、または (b) 1000 米ドルのいずれか大きい方を超えないものとします。お客様は、本規約における免責事項および責任の制限が、お客様とオートデスクとの間の取引の不可欠な要素を構成すること、およびオートデスクが本規約のそれぞれに対するお客様の同意なしに提供物を提供しないことを認め、これに同意するものとします。本規約における責任の制限は、契約、不法行為 (過失および厳格責任を含む)、補償、償還請求、制定法、またはその他に基づくか否かを問わず、また、オートデスクが責任の可能性について知らされていた場合または当該責任が予見可能であった場合でも、また、本規約における制限付き救済処置がその本質的な目的を逸脱したかどうかにかかわらず、損害その他の責任について、その原因の如何を問わず、適用法により認められる最大限の範囲で適用されるものとします。</b></p>
+<p><b> </b></p>
+<p class="wd-font-14 wd-mv-12"><b>本規約のいかなる規定も、(i) オートデスクの故意の不法行為もしくは重大な過失に起因する死亡もしくは人身傷害、または (ii) オートデスクの詐欺に起因するお客様の損害もしくは損失に対するオートデスクの責任を制限または除外するものではありません。また、オートデスクは、適用法で制限が認められない範囲(適用法によって除外できない法定保証、条件、救済、または責任など)で、お客様の保証、お客様のその他の権利および救済、または損害もしくは損失に対するオートデスクの責任を制限しようとはしません。本規約は、お客様に特定の法的権利を付与し、お客様はこの他にも、以下の第 19 条 (国/管轄区域固有の条件) に記載されている法的権利を含む、管轄区域ごとに異なるその他の法的権利を有する場合があります。</b></p>
+
+</div>
+
+    
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+</div>
+</div>
+
+</div>
+
+
+
+</div>
+
+
+    
+
+</div>
+<div class="experiencefragment">
+<div id="experiencefragment-b147e07cbd" class="cmp-experiencefragment cmp-experiencefragment--indemnity" data-ef-variation-path="/content/experience-fragments/autodesk/en/company/terms_of_use/jp/general-terms/indemnity/master" data-ef-all-variations="master">
+
+
+
+  
+
+
+
+<div class="xfpage-content-container">
+  
+  <div class="root responsivegrid">
+
+
+<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+    
+    <div class="core-container aem-GridColumn aem-GridColumn--default--12">
+
+  
+  
+  
+  
+  <div id="indemnity" class="cmp-container wp-parent legal-section ">
+    
+    <div class="core-container">
+
+  
+  
+  
+  
+  <div id="container-7af57b8257" class="cmp-container wd-mb-64 wd-bbw-1 wd-bc-smoke wd-pb-12 ">
+    
+    <div class="title">
+<div class="cmp-title" id="title-4e48b7b685">
+  <h3 class="cmp-title__text pc-brand wd-font-20">
+    15. 免責</h3>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-c8d1eb6e8e" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12">本規約に従い、オートデスクは、対象提供物が第三者の特許権、著作権、商標権もしくは企業秘密に関する権利を侵害していると主張する当該第三者がお客様に対して提起した請求 (以下、「IP クレーム」) に対してお客様を防御し、オートデスクは、当該 IP クレームの結果としてお客様に対して最終的に裁定された損害賠償額 (またはオートデスクが書面で合意した和解金額) を支払います。ただし、お客様は、(a) IP クレームについてオートデスクに速やかに通知し、(b) IP クレームの防御および解決についてオートデスクに単独の支配権を与え、(c) その防御および解決に関連してオートデスクが要請するあらゆる支援および協力をオートデスクに速やかに提供するものとします。これらの防御および支払い義務は、(i) IP クレームが、オートデスクによって提供されたものではないソフトウェア、ハードウェア、データ、素材、もしくはサービスと対象提供物との併用、もしくはこれらと対象提供物との組み合わせに起因し、もしくはそれに基づく場合、(ii) IP クレームが対象提供物に完全には組み込まれていない方法もしくはプロセスを対象としている場合、(iii) IP クレームで申し立てられた侵害を回避するアップデートもしくはアップグレードが利用可能である場合、または (iv) お客様に本規約に対する違反があった場合には適用されません。オートデスクが提供物に関連する侵害申立に関する情報を受け取った場合、オートデスクは、その裁量により、(1) 提供物を修正または交換し、(2) お客様による提供物の継続的な使用のためのライセンスを取得し、および/または (3) お客様による提供物のサブスクリプションを終了し、終了したサブスクリプションの提供期間の残りの部分に適用される前払い料金を払い戻します。本第 15 条は、第三者の知的財産権の侵害に対するオートデスクの唯一の義務およびお客様の唯一の救済策を規定します。</p>
+
+</div>
+
+    
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+</div>
+</div>
+
+</div>
+
+
+
+</div>
+
+
+    
+
+</div>
+<div class="experiencefragment">
+<div id="experiencefragment-66d4d193ea" class="cmp-experiencefragment cmp-experiencefragment--term-termination-suspension" data-ef-variation-path="/content/experience-fragments/autodesk/en/company/terms_of_use/jp/general-terms/term-termination-suspension/master" data-ef-all-variations="master">
+
+
+
+  
+
+
+
+<div class="xfpage-content-container">
+  
+  <div class="root responsivegrid">
+
+
+<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+    
+    <div class="core-container aem-GridColumn aem-GridColumn--default--12">
+
+  
+  
+  
+  
+  <div id="termination" class="cmp-container wp-parent legal-section ">
+    
+    <div class="core-container">
+
+  
+  
+  
+  
+  <div id="container-d1c02cb84c" class="cmp-container wd-mb-64 wd-bbw-1 wd-bc-smoke wd-pb-12 ">
+    
+    <div class="title">
+<div class="cmp-title" id="title-3538875e08">
+  <h3 class="cmp-title__text pc-brand wd-font-20">
+    16. 期間、終了、停止</h3>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-44c8e326cf" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12">本規約は、上記の第 1 条 (承諾) に従って承諾された最初の日に有効になり、本第 16 条を含む本規約の規定に従って終了しない限り、無期限に有効であるものとします。</p>
+
+</div>
+
+    
+
+</div>
+<div class="title">
+<div class="cmp-title" id="title-01cdfa39f4">
+  <h4 class="cmp-title__text ">
+    16.1 お客様の終了する権利</h4>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-6553895a32" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12">お客様は、オートデスクが本規約に対する重大な違反を犯し、違反を書面によって通知した後 30 日以内にかかる違反を是正しない場合、お客様のサブスクリプションおよび本規約を終了することができます。</p>
+
+</div>
+
+    
+
+</div>
+<div class="title">
+<div class="cmp-title" id="title-d321b5b9a2">
+  <h4 class="cmp-title__text ">
+    16.2 サブスクリプションまたはアカウントを終了または一時停止するオートデスクの権利</h4>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-9dccb25f31" class="cmp-text ">
+  <p class=" wd-font-14 wd-mv-12">オートデスクは、以下の場合に、お客様のサブスクリプションもしくはその他の提供物の一部もしくは全部を終了 (またはお客様のアクセスおよび利用を無効化もしくは一時停止) し、または本規約およびお客様のアカウントを終了することができます。(a) お客様が現在の有料サブスクリプションを有していない場合、(b) お客様がオートデスクに支払うべき金額 (手数料および税を含む) を適時に支払っていない場合、(c) お客様 (お客様の使用許諾対象ユーザーを含む) が本規約に重大な違反をし、違反を書面によって通知した後 30 日以内に当該違反を是正しなかった場合、または (d) お客様が破産もしくは倒産手続きの対象となった場合、支払不能となった場合、お客様の債権者ともしくはお客様の債権者に影響を与える取り決め (債権者の利益のための譲渡を含む) をした場合、または清算手続きを開始した場合。本規約は、お客様が清算に入った場合、オートデスクによるさらなる通知または措置なしに自動的に終了するものとします。オートデスクは、お客様 (またはお客様の使用許諾対象ユーザー) の作為もしくは不作為、またはお客様のコンテンツが、(i) セキュリティ リスクをもたらす、違法行為に該当する、または提供物、システム、もしくは他のユーザーに悪影響を及ぼす、(ii) 技術的保護の有効性を改ざん、除去、無効化、またはその他の方法で制限することを構成または可能にする、または (iii) オートデスク、そのサプライヤ、再販業者、販売業者、ユーザー、もしくは類似の第三者に責任を負わせる恐れがあるとオートデスクが誠実に判断した場合、お客様の提供物およびお客様のコンテンツへのアクセスおよび利用を直ちに無効化または停止することができます。</p>
+
+</div>
+
+    
+
+</div>
+<div class="title">
+<div class="cmp-title" id="title-6c8747cfff">
+  <h4 class="cmp-title__text ">
+    16.3 サブスクリプションの終了の効果</h4>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-3f8ec4626c" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12">理由を問わず、サブスクリプションその他の提供物が満了しまたは解除された場合、提供物に関するお客様の権利 (関係するソフトウェア ライセンス、クラウド サービスへのアクセスおよび特典を含む) は終了します。この時点で、お客様は、提供物のすべてのアクセスおよび利用を中止し、かつ当該提供物に関係する素材 (関係するソフトウェア、ドキュメント、API、その他のオートデスクから受領した素材を含む) の一切のコピーのアンインストールを行います。さらに、オートデスクの要求に応じて、お客様は、当該コピーを破棄またはオートデスクもしくはお客様が提供物を取得した当事者へ返却します。お客様は、自己が当該すべてのコピーを返却または破棄したことの証拠を保持します。サブスクリプションの満了または解除に関連して、(a) お客様が本規約を遵守しており、かつ支払対象の料金 (例えば、オートデスクが提供する支援に対するオートデスクの最新の専門サービス料金) を支払った場合 (該当する場合)、オートデスクは、お客様の便宜のため、一部のクラウド サービスにつき、お客様がクラウド サービス満了または解除後にお客様のコンテンツを回復できる短期の期間 (例えば、30 日間) をお客様に提供する場合があり、かつ (b) そうでなければ、オートデスクは通知を要せず、一切のお客様のコンテンツ (それらのバックアップその他のコピーを含む) を削除できるものとします。</p>
+
+</div>
+
+    
+
+</div>
+<div class="title">
+<div class="cmp-title" id="title-65077a34ed">
+  <h4 class="cmp-title__text ">
+    16.4 規約またはアカウントの終了の効果</h4>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-1fb8d5e585" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12">理由の如何を問わず、本規約が終了した場合、(a) お客様のアカウント、お客様のサブスクリプション、およびその他の提供物 (お客様の使用許諾対象ユーザーのものを含む) は直ちに終了し、(b) サブスクリプションまたはその他の提供物の満了または終了に関する上記の効果は、お客様のアカウントに付属するすべてのサブスクリプションおよびその他の提供物に対して適用されます。お客様の支払い義務、お客様またはお客様のアカウントを通じて提供物を取得、アクセス、または使用する者 (お客様の使用許諾対象ユーザーを含む) に対するお客様の責任 (第 4 条 (お客様のアカウント) に記載されている責任を含む)、および本一般規約の以下の条項は、理由の如何を問わず終了後も存続します。第 5 条 (お客様の所有権)、第 8.3 条 (オートデスク API)、第 8.4 条 (第三者素材およびサービスの使用)、第 8.5 条 (お客様のコンテンツの使用)、第 8.6 条 (お客様のコンテンツのコラボレーションと共有)、第 10 条 (フィードバック)、第 11 条 (使用制限)、第 12 条 (機密保持)、第 13 条 (オートデスクの財産権)、第 14.2 条 (免責事項)、第 14.3 条 (責任の制限)、第 16.3 条 (サブスクリプションの終了の効果)、本第 16.4 条、第 17 条 (雑則)、第 17.4 条 (オートデスク当事者、準拠法、紛争解決)、第 18 条 (定義)、および第 19 条 (国/管轄区域固有の条件)。</p>
+
+</div>
+
+    
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+</div>
+</div>
+
+</div>
+
+
+
+</div>
+
+
+    
+
+</div>
+<div class="experiencefragment">
+<div id="experiencefragment-9bebc329b4" class="cmp-experiencefragment cmp-experiencefragment--miscellaneous" data-ef-variation-path="/content/experience-fragments/autodesk/en/company/terms_of_use/jp/general-terms/miscellaneous/master" data-ef-all-variations="master">
+
+
+
+  
+
+
+
+<div class="xfpage-content-container">
+  
+  <div class="root responsivegrid">
+
+
+<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+    
+    <div class="core-container aem-GridColumn aem-GridColumn--default--12">
+
+  
+  
+  
+  
+  <div id="misc" class="cmp-container wp-parent legal-section ">
+    
+    <div class="core-container">
+
+  
+  
+  
+  
+  <div id="container-8b10912746" class="cmp-container wd-mb-64 wd-bbw-1 wd-bc-smoke wd-pb-12 ">
+    
+    <div class="title">
+<div class="cmp-title" id="title-5382f86fcf">
+  <h3 class="cmp-title__text pc-brand wd-font-20">
+    17. 雑則</h3>
+</div>
+
+    
+
+</div>
+<div class="title">
+<div class="cmp-title" id="title-c818851452">
+  <h4 class="cmp-title__text wd-mt-12">
+    17.1 提供物への変更</h4>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-93d08212a6" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12">オートデスクは、(a) 提供物 (提供物に関連する特典、特徴、機能またはサポート サービスを含む) を変更、中止または代替し、または (b) ライセンス キー、権限、または提供物へのアクセスもしくは使用を管理もしくは測定するその他の手段を追加もしくは変更する権利を随時有します。オートデスクは、該当するリリース ノートまたはその他のドキュメントにおいて、提供物に対する重大な変更をお客様に通知するよう努めます。</p>
+
+</div>
+
+    
+
+</div>
+<div class="title">
+<div class="cmp-title" id="title-792faa231d">
+  <h4 class="cmp-title__text ">
+    17.2 規約の変更</h4>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-9dfede163b" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12">適用される法律で認められる最大限の範囲において、オートデスクは、本規約を随時変更する権利を留保し、お客様はオートデスクが本規約を変更する場合があることを認めるものとします。オートデスクは、本規約の変更を、本サイトへの掲載を含め、お客様に通知する(以下、「規約変更通知」)よう努めます。規約変更通知を含む、このサイトの更新を定期的に確認することは、お客様の責任です。本規約に明示的に規定されている場合を除き、本規約の変更がお客様に重大な悪影響を及ぼし、お客様が当該変更に同意しない場合、お客様は、規約変更通知から 30 日以内にオートデスクにその拒否を通知することにより、変更を拒否することができます。このような状況下でお客様が変更を拒否した場合、(a) 変更の影響を受ける提供物へのお客様のアクセスおよび使用は、(i) 該当する提供期間の終了まで、または (ii) 規約変更通知から 180 日のいずれか早い日まで、変更直前に有効な条件に引き続き準拠し (セキュリティ、プライバシー、または法令遵守の理由で変更が行われた場合は、変更は直ちに有効になります)、(b) 関連するサブスクリプション特典を含む、当該提供物に対するお客様の権利はその時点で終了するものとします。お客様によるこのような終了において、オートデスク (またはお客様がお客様のサブスクリプションを購入した当事者) は、影響を受ける提供物に関するお客様のサブスクリプションの残りの提供期間に適用される前払い料金の日割り計算された部分を、終了の効力発生日以降に払い戻すものとします。いずれの場合も、サブスクリプションが更新または延長された場合、その時点の規約に基づくものとします。お客様またはオートデスクによる通知は、以下に定めるところに従って提供されます。ただし、お客様は、拒否の通知を電子メールで (上記の 30 日間以内に) 以下の電子メールアドレス <a href="mailto:Terms.Modification.Rejection@autodesk.com">Terms.Modification.Rejection@autodesk.com</a> に提出することができ、または本規約変更通知で指定されたその他の方法で提供することもできます。</p>
+<p class="wd-font-14 wd-mv-12">上記にかかわらず、特約、提供方法および特典、またはその他の方針にその変更に関する異なる条件または手順が含まれている場合、オートデスクの選択により、変更はそこに記載されている通りに処理することができます。</p>
+<p class="wd-font-14 wd-mv-12">お客様は、提供物およびサブスクリプション特典に関するお客様の約束が、将来の特徴もしくは機能 (または将来の特徴もしくは機能に関する口頭または書面による声明) の提供を条件としないことを認めます。</p>
+
+</div>
+
+    
+
+</div>
+<div class="title">
+<div class="cmp-title" id="title-f6e98583c4">
+  <h4 class="cmp-title__text ">
+    17.3 規約の言語、解釈</h4>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-8324694b72" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12">本規約を解釈する際は、本規約の英語版を使用し、本規約に関連するあらゆる通知またはその他の連絡は英語で提供されます。本規約において言及する「日数 (日間) 」は、別途定める場合を除き、暦日数に従うものとします。「含む」および「例えば」または「例」、ならびに類似した表現については、限定的または排他的な内容を意味するものではなく、「これに限定されない」という表現が含まれているかに関わらず、「これに限定されない」という条件のもとに示されるものとします。条項およびその他の見出しは、参照の便宜を図ることのみを目的としたものであり、何らかの規定の意味を解釈する目的で使用されるものではありません。本規約において提供されるあらゆる権利および救済手段は累積的であり、準拠法のもとで認められるその他の権利または救済の代わりではなく、それらに付加されるものです。</p>
+
+</div>
+
+    
+
+</div>
+<div class="title">
+<div class="cmp-title" id="title-f486337ab0">
+  <h4 class="cmp-title__text ">
+     17.4 オートデスク当事者、準拠法、紛争解決</h4>
+</div>
+
+    
+
+</div>
+<div class="title">
+<div class="cmp-title" id="title-58326d30a1">
+  <h4 class="cmp-title__text wd-mt-12">
+    (a) 一般条項</h4>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-f46ee2cc97" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12">お客様の主たる事業所の所在地 (または、お客様が個人の場合は、お客様の居住地) に応じて、本規約はお客様と以下に定めるオートデスク当事者との間で締結されます。当事者の権利、義務および請求を含む本規約の準拠法は、以下に定めるとおりとします。同様に、本規約の違反、履行、終了、執行、解釈、または有効性 (および契約、厳格責任を含む不法行為、競争法などに基づくかどうか) を含む、かつ本規約の紛争解決規定の範囲または適用性の決定を含む、本規約に起因または関連するあらゆる紛争または請求は、以下に規定する法律、場所および紛争解決プロセスによって最終的に決定されます (以下の第 19 条 (国/管轄区域固有の条件) に指定される場合は除きます)。</p>
+
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-8f5c5eaf8f" class="cmp-text ">
+  <div class="wp-responsive-table-wrap"><div class="box-content parsys"><div class="responsive-table section"><table class="ct">
+<tbody><tr><td><p class="wd-font-14"><b>お客様の主たる事業所 (または、お客様が個人の場合は、お客様の居住地) </b></p>
+</td>
+<td><p class="wd-font-14"><b>「オートデスク当事者」という言及が意味するオートデスク事業体</b></p>
+</td>
+<td><p class="wd-font-14"><b>準拠法</b></p>
+</td>
+<td><p class="wd-font-14"><b>紛争解決のための専属的合意管轄権/法廷地:</b></p>
+</td>
+</tr><tr><td><p class="wd-font-14">米国およびカナダ</p>
+</td>
+<td><p class="wd-font-14">デラウェア州の法人であるAutodesk, Inc.</p>
+</td>
+<td><p class="wd-font-14">(i) カリフォルニア州法、および (ii) 支配する範囲で米国の連邦法</p>
+</td>
+<td><p class="wd-font-14">ADR Services, Inc. (以下、「ADR Services」) は、下記第 17.4 (b) 条に従い、また (当該条項と矛盾しない範囲で) 仲裁申立通知が提出された時点で有効な ADR Services の仲裁規則に従って、仲裁を実施するものとします。仲裁地は、サンフランシスコとします。</p>
+</td>
+</tr><tr><td><p class="wd-font-14">中国本土、香港、およびマカオ </p>
+</td>
+<td><p class="wd-font-14">デラウェア州の法人であるAutodesk, Inc.</p>
+</td>
+<td><p class="wd-font-14">シンガポール</p>
+</td>
+<td><p class="wd-font-14">仲裁は、仲裁申立通知が提出された時点で、シンガポール国際仲裁センター (以下、「SIAC」) により、有効な SIAC の仲裁規則に従い管理されます。仲裁地は、シンガポールとします。</p>
+</td>
+</tr><tr><td><p class="wd-font-14">中国本土、香港、およびマカオを除く、アジア、オセアニア、またはアジア太平洋地域</p>
+</td>
+<td><p class="wd-font-14">デラウェア州の法人であるAutodesk, Inc.</p>
+</td>
+<td><p class="wd-font-14">シンガポール</p>
+</td>
+<td><p class="wd-font-14">シンガポールの裁判所</p>
+</td>
+</tr><tr><td><p class="wd-font-14">ヨーロッパ、中東、およびアフリカ</p>
+</td>
+<td><p class="wd-font-14">アイルランドの法人であるAutodesk Ireland Operations Unlimited Company</p>
+</td>
+<td><p class="wd-font-14">アイルランド</p>
+</td>
+<td><p class="wd-font-14">アイルランドの裁判所</p>
+</td>
+</tr><tr><td><p class="wd-font-14">メキシコ、南米、中米、カリブ海地域、南極大陸を含む全世界 (上記の国または地域を除く)。</p>
+</td>
+<td><p class="wd-font-14">デラウェア州の法人であるAutodesk, Inc.</p>
+</td>
+<td><p class="wd-font-14">(i) カリフォルニア州法、および (ii) 支配する範囲で米国の連邦法</p>
+</td>
+<td><p class="wd-font-14">(i) サンフランシスコにあるカリフォルニア州北部地区連邦地方裁判所、または (ii) カリフォルニア州サンフランシスコ郡の裁判所。</p>
+</td>
+</tr></tbody></table>
+</div>
+</div>
+</div>
+
+</div>
+
+    
+
+</div>
+<div class="title">
+<div class="cmp-title" id="title-66afd238e5">
+  <h4 class="cmp-title__text wd-mt-12">
+    (b) 米国およびカナダにおける拘束力のある仲裁および紛争解決</h4>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-0118ea7146" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12">お客様の主たる事業所 (お客様が個人の場合は、お客様の住居地) が米国またはカナダにある場合、以下の非公式な紛争解決および拘束力のある仲裁規定がお客様に適用されます。</p>
+
+</div>
+
+    
+
+</div>
+<div class="title">
+<div class="cmp-title" id="title-2718351d76">
+  <h4 class="cmp-title__text ">
+    (i) 非公式の紛争解決と拘束力のある仲裁</h4>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-d69d680594" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12">オートデスクは、いかなる請求または紛争 (以下、「請求」) も非公式に解決するよう努めます。お客様またはオートデスクが、提供物または本規約に起因または関連する請求を有する場合、お客様およびオートデスクは、まず、以下に説明する方法で請求の通知を行い、他方当事者と協力して問題の円満な解決を図ることにより、請求を非公式に解決しようとします。請求の通知の受領後 30 日以内に非公式な紛争解決を通じた請求の解決がなされなかった場合、いずれの当事者も正式な紛争解決に進むことができるものとします。</p>
+<p class="wd-font-14 wd-mv-12">お客様およびオートデスクは、提供物または本規約に起因または関連するあらゆる請求の拘束力のある個別仲裁に合意し、法廷に出廷し、裁判官または陪審員の前で裁判を受ける権利を放棄します。州法ではなく、手続き規定を含む米国連邦仲裁法が、この紛争解決規定の解釈と執行を規定します。仲裁は、ADR Services の規則に従い、第 17.4 条に定めるところにより、ADR Services によって行われます。仲裁を開始するには、当事者は、ADR Services の規則で要求される詳細な請求および救済の要求を記載したし書面による仲裁要求 (以下、「要求書」) を送付する必要があります。お客様からオートデスクへの要求書は、Autodesk, Inc., The Landmark @ One Market, Suite 400, San Francisco, California 94105 USA, Attention: Chief Legal Officer 宛に送付する必要があります。オートデスクからお客様に対する要求書は、上記の非公式の紛争解決手続きにおいてお客様が提供した住所に送付するか、または住所が提供されていない場合には、以下の第 17.11 条 (通知) に定めるところに従って送付する必要があります。</p>
+
+</div>
+
+    
+
+</div>
+<div class="title">
+<div class="cmp-title" id="title-365e0e10a8">
+  <h4 class="cmp-title__text ">
+    (ii) 拘束力のある仲裁の手数料</h4>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-51fe0ae13c" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12">いずれの当事者により支払われた手数料 (弁護士費用を含む) および費用が、(1) お客様またはオートデスクが第 17.4 条のいずれかの規定に違反した、(2) お客様もしくはオートデスクの請求の内容またはお客様もしくはオートデスクが求めた救済が軽微であったか不適切な目的のために行われた、または (3) 再配分が適用法に基づいて別途許可されているという、決定に従って仲裁人の命令により再配分される場合を除き、すべての仲裁手数料の支払いは、ADR Services の規則に準拠するものとします。オートデスクがお客様に対して請求を提起した場合、オートデスクは、当該請求に関連するすべての ADR services の手数料を支払います。お客様がオートデスクに対して請求を提起する場合、お客様とオートデスクは、これらの料金を均等に分割するものとします。さらに、お客様が当該 ADR Services の手数料の一部を支払うことができないと仲裁人が判断した場合、オートデスクは、お客様に変わって当該手数料を支払うものとします。</p>
+
+</div>
+
+    
+
+</div>
+<div class="title">
+<div class="cmp-title" id="title-85c27ac4c5">
+  <h4 class="cmp-title__text ">
+    (iii) 集団申立て</h4>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-0e7eb27ab3" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12">お客様がオートデスクに対して、少なくとも 24 人の他の顧客もしくはユーザーの請求に類似する請求を提起する場合、またはお客様およびオートデスクに対する請求権を有する他の少なくとも 24 人の顧客またはユーザーが、同一の弁護士または相互に調整する弁護士によって代理されている場合 (いずれの場合も以下、「集団申立て」)、お客様とオートデスクは、以下のプロトコルに合意します。</p>
+<p>ADR Services は、集団申立てに含まれる各請求にランダムに連番を割り当て、その後、1～10 番の請求を「初期テスト ケース」とし、仲裁に進むこととします。申立手数料は、初期テスト ケースに対してのみ支払われ、その他のすべての請求については、提出手数料が (その他の請求についての仲裁人による検討とともに) 保留され、お客様またはオートデスクのいずれも、かかる申立手数料を支払うことを要求されることはありません。仲裁人は、仲裁人により当該期間が延長されない限り、最初の審問前会議から 180 日以内に、初期テスト ケースの最終裁定を下すものとします。その後、初期テストケースの結果は調停者に渡され、調停者と当事者は、調停者の任命から 90 日 (以下、「調停期間」) 以内に、残りの請求を解決するための解決策または実質的な方法について合意するものとします。当事者が調停期間中に残りの請求を解決できない場合、いずれの当事者も拘束力のある仲裁プロセスを放棄し、残りの請求を法廷で進めることを選択できるものとします。放棄の通知は、調停期間の終了後 60 日以内に書面で行わなければなりません。放棄の通知がない限り、残りの請求は、集団申立てで請求に割り当てられた連番によって決定された順序で個別に仲裁されます。各請求の申立手数料は、かかる請求の仲裁の開始時に支払うものとします。</p>
+
+</div>
+
+    
+
+</div>
+<div class="title">
+<div class="cmp-title" id="title-68186b5be2">
+  <h4 class="cmp-title__text wd-mt-12">
+    (iv) 仲裁可能性の決定、権利の行使</h4>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-6397ca938f" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12">仲裁人は、あらゆる請求の仲裁可能性を決定する権利を有します。</p>
+<p class="wd-font-14 wd-mv-12">上記の仲裁規定にかかわらず、各当事者は、管轄権を有する裁判所において、自身またはそのライセンサーの特許権、著作権、または商標権を行使することができるものとします。</p>
+
+</div>
+
+    
+
+</div>
+<div class="title">
+<div class="cmp-title" id="title-ac0c861ead">
+  <h4 class="cmp-title__text ">
+    (c) 集団訴訟または統合訴訟の放棄</h4>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-1edfe92e76" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12">提供物または本規約に起因または関連するすべての請求は、集団ベースではなく、個人ベースで仲裁または訴訟を起こさなければなりません。複数の顧客またはユーザーの請求は、他の顧客またはユーザーの請求と共同で仲裁または訴訟を提起することも、統合することもできません。</p>
+
+</div>
+
+    
+
+</div>
+<div class="title">
+<div class="cmp-title" id="title-2544d8c120">
+  <h4 class="cmp-title__text ">
+    (d) 差止命令およびその他の衡平法上の救済措置</h4>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-843018a808" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12">本規約の他の規定にかかわらず、請求が上記第 17.4 (a) 条 (一般条項) に基づき指定された裁判所における解決の対象となる場合、オートデスクは、利用可能な裁判所を含む、あらゆる管轄区域または法廷地において、差止命令による救済およびその他の衡平法上の救済 (または同等の救済) を申請することができます。請求が仲裁の対象となる場合、いずれの当事者も、仲裁前の差押または差止命令を含む、当事者の権利を維持するために必要な保全措置を管轄裁判所に申請することができ、かかる要請は、仲裁合意と両立しない、または仲裁合意を放棄したとみなされないものとします。</p>
+
+</div>
+
+    
+
+</div>
+<div class="title">
+<div class="cmp-title" id="title-0afdb912aa">
+  <h4 class="cmp-title__text ">
+    17.5 不可抗力</h4>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-0db0d85546" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12">いずれの当事者も、天災、地震、火災、パンデミック、洪水、制裁、禁輸、ストライキ、ロックアウト、またはその他の労働争議、暴動、サプライヤもしくはライセンサーの利用不能もしくは遅延、反乱、テロリストもしくはその他の悪意のある行為もしくは犯罪行為、戦争、インターネットもしくは第三者のインターネット接続またはインフラの障害もしくは中断、停電、民事および政府当局の行為または命令、および悪天候 (以下、「不可抗力」) を含む不測の事態または合理的な支配を超える事由による遅延または不履行について、いかなる責任も負わないものとします。影響を受ける当事者は、相手方に対して、履行不能について (可能な場合) 速やかに書面による通知を行い、結果として生じる履行の遅延を制限するために合理的な努力を払うものとします。</p>
+
+</div>
+
+    
+
+</div>
+<div class="title">
+<div class="cmp-title" id="title-cbc63355ff">
+  <h4 class="cmp-title__text ">
+    17.6 輸出</h4>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-b48fe7458b" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12">お客様が提供物を取得、アクセス、または使用する場合、お客様は、米国およびお客様またはお客様のコンテンツに適用される法律を管轄するその他の国の輸出管理および国際貿易に関する法律および規制を遵守するものとします。お客様は、米国制裁地域内から、またはお客様が米国政府の制限当事者リストに掲載されている場合、いかなる提供物にもアクセスしたり使用したりしてはなりません。お客様は、いかなる提供物についても、米国内で制限された最終用途のために取得、アクセスもしくは使用する場合、または個人もしくは団体に取得、アクセスもしくは使用を許可する場合、その前に、米国政府およびその他の必要な承認を取得するものとします。制限された最終用途には、核兵器、化学兵器、生物兵器、またはそれらを運搬できるミサイル システムに関する作業が含まれます。お客様は、機密情報を構成する、または国際武器取引規則 (以下、「ITAR」) またはそれに相当する外国の規制の対象となるコンテンツまたは素材 (お客様のコンテンツを含む) をアップロードまたはその他の方法でオートデスクに提供してはなりません。お客様は、お客様の所在地から米国へ、または米国からお客様の所在地へ、合法的に転送できないコンテンツまたは素材をアップロードし、またはその他の方法でオートデスクに提供してはなりません。お客様は、お客様のコンテンツに適用されるすべての輸出管理要件の遵守について単独で責任を負うものとし、お客様は、本提供物を使用して、お客様のコンテンツまたはその他のコンテンツもしくは素材を、米国の法律およびその他の適用法に基づいて合法的に受領できない国、団体またはその他の当事者に提供してはなりません。オートデスクは、輸出管理関連の追加的な保証の要求に従わなかった場合、または制裁措置および/もしくは輸出管理関連の法律および規制が製品、サービスおよび/もしくはその他の金銭的利益の提供を制限するとオートデスクが独自の裁量で判断した場合、お客様の提供物を一時停止または終了する権利を留保します。</p>
+
+</div>
+
+    
+
+</div>
+<div class="title">
+<div class="cmp-title" id="title-4d2ae6fdfb">
+  <h4 class="cmp-title__text ">
+    17.7 政府</h4>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-3c8e4ee7fc" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12">本第 17.7 条は、お客様が米国連邦政府またはその他の政府機関である場合に適用されます。 提供物は、米国連邦政府規則集第 48 巻第 2.101 条および第 48 巻第 252.227-7014 (a) (1) 条で定義され、第 48 巻第 12.212 条および第 227.7202 条で使用されている「商用コンピュータ ソフトウェア」であり、サービスの場合は第 48 巻第 2.101 条で定義されている「商用サービス」です。提供物および関連するドキュメントは、本規約に従い、本規約に基づき他のすべてのオートデスク顧客およびその使用許諾対象ユーザーに付与される権利のみを条件として、お客様による使用またはお客様の代理による使用のために、お客様およびお客様の使用許諾対象ユーザーに対して提供されます。本規約は、政府機関のお客様および使用許諾対象ユーザーに適用されます。ただし、お客様の管轄区域の法律により、お客様が本規約のいずれかの規定を承諾することが禁止されている場合を除きます。  本規約のいずれかの規定が前述のように禁止されている場合、当該規定は、記載された規定に最大限の効力を与えながらも、適用法に準拠するために合理的に必要な範囲でのみ修正されたものとみなされます。</p>
+
+</div>
+
+    
+
+</div>
+<div class="title">
+<div class="cmp-title" id="title-158a818cc4">
+  <h4 class="cmp-title__text ">
+    17.8  コンプライアンスの検証</h4>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-df530628ed" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12">オートデスクは、お客様による本規約の遵守を検証する権利を留保し、自己の裁量で、お客様による提供物の非準拠使用に関する報告書を提供すること、および/または遠隔もしくは現場での監査を実施すること (当該行為はいずれも以下「検証」) により、これを行うことができます。</p>
+<p class="wd-font-14 wd-mv-12">遠隔での監査または現場での監査が必要な場合、オートデスクまたはその代理人は、お客様に対し、電磁的記録による通知を行います。お客様は、オートデスクが承認したツールを使用して、お客様の提供物にアクセスするすべてのデバイスから情報を収集し、かつお客様の使用許諾対象ユーザーから必要なアクセスおよび同意を得る必要があります。監査通知から 15 暦日以内に、お客様は監査結果を通知当事者に提出する必要があります。監査結果には、マシン ID、シリアル番号、Autodesk ID、NT/Windows ユーザー名、デバイス ID、およびお客様の提供物に関連するその他の情報が含まれていなければなりません。</p>
+<p class="wd-font-14 wd-mv-12">検証を通じて、オートデスクが、お客様が本規約に違反していると判断した場合、お客様は、少なくとも、特定された不遵守の価値と検証を完了するためのオートデスクの合理的な費用の合計に相当する新しい提供物を直ちに購入しなければなりません。</p>
+<p class="wd-font-14 wd-mv-12">本第 17.8 条を遵守しないことは、本規約の重大な違反となります。オートデスクは、上記第 16.2条に定めるとおり、お客様の提供物へのアクセスを停止および/または終了する権利、ならびに上記第 17.4 条 (オートデスク当事者、準拠法、紛争解決) に定めるとおり、法律上または衡平法上利用できるその他の救済策を求める権利を有します。</p>
+
+</div>
+
+    
+
+</div>
+<div class="title">
+<div class="cmp-title" id="title-c0e0f48c33">
+  <h4 class="cmp-title__text ">
+    17.9  譲渡</h4>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-03343872ed" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12">お客様は、オートデスクの書面による事前の同意なしに、本規約または本規約に基づくお客様の権利もしくは義務を (法律の運用によるか否かを問わず) 譲渡またはその他の方法で移転することができず、お客様がオートデスクの書面による同意なしに他の個人または団体によって買収され、または支配されるようになった場合 (株式の取得、合併またはその他の取引によるかを問わない)、オートデスクは、本規約 (本規約におけるお客様の権利を含む) を終了することができます。オートデスクは、組織再編、合併、資産売却、または提供物もしくは関連事業の全部もしくは一部を含むその他の取引の一環として、本規約を (お客様の同意またはお客様への通知なしに) 譲渡またはその他の方法で移転することができます。</p>
+
+</div>
+
+    
+
+</div>
+<div class="title">
+<div class="cmp-title" id="title-f3e393880d">
+  <h4 class="cmp-title__text ">
+    17.10  分離可能性</h4>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-04689b4b7d" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12">本規約のいずれかの規定が適用法の下で執行不能とされた場合、(a) 当該規定は、適用法に準拠しつつ本規約に定める当事者の意図を最大限に反映させるために合理的に必要な範囲内で修正されたとみなされ、(b) 当該規定は、他の管轄区域における執行可能性に影響を及ぼすことなく、執行不能であると判断された管轄区域に関してのみ効力を有しないものとします。</p>
+<p> </p>
+
+</div>
+
+    
+
+</div>
+<div class="title">
+<div class="cmp-title" id="title-b4605659da">
+  <h4 class="cmp-title__text ">
+    17.11  通知</h4>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-c00d5bef8f" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12">お客様によるオートデスクへのあらゆる通知は、郵便または郵送サービスにより、Autodesk, Inc, The Landmark @ One Market, Ste. 400, San Francisco, CA 94105 USA, Attention: Chief Legal Officer 宛に送られます。当該通知は、オートデスクが受領した時点で有効となります。</p>
+<p class="wd-font-14 wd-mv-12">本規約 (追加規約または特約を含む) に明示的に別段の定めがある場合を除き、オートデスクからお客様に対する通知は、(a) お客様のアカウントに関連付けられた登録済み電子メールアドレスへの電子メール、(b) お客様のアカウントへの投稿、(c) 提供物内での投稿 (例えば、提供物通知機能またはサインイン通知を通じて)、(d) お客様のアカウントに関連付けられた住所への郵便もしくは配送サービス、または (e) お客様への特定の通知を伴うオートデスクが合理的と判断するその他の方法で提供します。オートデスクからお客様に対する通知は、(i) 電子メールによる通知の場合は送信されてから 1 日後、(ii) その他の通知の場合は、掲載または送信されてから 5 日後に有効となります。お客様は、適用法により認められている場合、お客様の顧客情報フォームに記載された住所 (または顧客情報フォームが提供されていない場合は、オートデスクが知っているお客様の最後の住所) に送付される書留郵便により、お客様に対する送達が行われることに同意するものとします。</p>
+
+</div>
+
+    
+
+</div>
+<div class="title">
+<div class="cmp-title" id="title-a2bcde9d41">
+  <h4 class="cmp-title__text ">
+    17.12  完全合意、権利不放棄</h4>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-2fc897d7b0" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12">本規約は、あらゆる追加規約および特約 (これらは本規約において参照により組み込まれます) を含め、本規約の主題に関するお客様とオートデスクとの間の完全な合意を構成します (そして、事前または同時期のあらゆる合意、協議、通信、表明、保証、広告または理解を統合し、これに取って代わります)。提供物へのアクセスまたは使用は、本規約の適用を明示的に条件としており、その他の条件は明示的に拒否されます。</p>
+<p class="wd-font-14 wd-mv-12">本一般規約と特約との間に矛盾がある場合、その主題に関しては、特約が優先されます。これらの一般規約または特約と追加規約の間に矛盾がある場合、追加規約に規定されている範囲で、その主題に関して追加規約が優先されるものとします。</p>
+<p class="wd-font-14 wd-mv-12">本規約のいずれかを執行または行使しなかった場合でも、かかる放棄が書面で指定され、放棄が主張された当事者によって署名されない限り、かかる規定の放棄とはみなされません。</p>
+
+</div>
+
+    
+
+</div>
+<div class="title">
+<div class="cmp-title" id="title-a97639cbd0">
+  <h4 class="cmp-title__text ">
+    17.13  DMCA</h4>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-286cd14ce3" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12">1998 年に制定されたデジタル ミレニアム著作権法 (以下、「DMCA」) は、インターネットに掲載されている素材が米国の著作権法の下で自己の権利を侵害していると考える著作権所有者に救済手段を提供するものです。オートデスクによって、またはオートデスクを通じて提供された素材がお客様の著作権を侵害していると誠実に信じる場合、お客様 (またはお客様の代理人) は、オートデスクに対し、素材を削除するか、素材へのアクセスを遮断するよう求める通知をオートデスクに送付することができます。何者かがお客様に対して著作権侵害の通知を不当に提出したと誠実に信じる場合、DMCA はお客様がオートデスクに異議を申し立てる通知を送信することを許可します。通知および異議申し立て通知は、DMCA によって課されるその時点での法的要件を満たす必要があります。詳細については、<a href="https://www.copyright.gov/" target="_blank">http://www.copyright.gov/</a> <a href="https://www.autodesk.com/research/overview">（英語）</a>を参照してください。通知および異議申し立て通知は、次の宛先に送付してください。</p>
+<p class="wd-font-14 wd-mv-12">著作権侵害に関する代理人<br />
+Autodesk, Inc.</p>
+<p class="wd-font-14 wd-mv-12">The Landmark @<br />
+One Market, Ste. 400<br />
+San Francisco, CA 94105<br />
+USA</p>
+<p class="wd-font-14 wd-mv-12"><br />
+E-mail:  <a href="mailto:copyright.agent@autodesk.com">copyright.agent@autodesk.com<br />
+ </a>電話:  +1 (415) 507.5000<br />
+Fax:  + 1 (415) 507.6128</p>
+<p class="wd-font-14 wd-mv-12">オートデスクは、お客様が通知または異議申し立て通知を提出する前に、お客様の法律顧問に相談することをお勧めします。</p>
+
+</div>
+
+    
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+</div>
+</div>
+
+</div>
+
+
+
+</div>
+
+
+    
+
+</div>
+<div class="experiencefragment">
+<div id="experiencefragment-1fbdad4cc6" class="cmp-experiencefragment cmp-experiencefragment--definitions" data-ef-variation-path="/content/experience-fragments/autodesk/en/company/terms_of_use/jp/general-terms/definitions/master" data-ef-all-variations="master">
+
+
+
+  
+
+
+
+<div class="xfpage-content-container">
+  
+  <div class="root responsivegrid">
+
+
+<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+    
+    <div class="core-container aem-GridColumn aem-GridColumn--default--12">
+
+  
+  
+  
+  
+  <div id="definitions" class="cmp-container wp-parent legal-section ">
+    
+    <div class="core-container">
+
+  
+  
+  
+  
+  <div id="container-af7cbd1d8b" class="cmp-container wd-mb-64 wd-bbw-1 wd-bc-smoke wd-pb-12 ">
+    
+    <div class="title">
+<div class="cmp-title" id="title-abd9c3dbcb">
+  <h3 class="cmp-title__text pc-brand wd-font-20">
+    18 定義</h3>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-513eeb4fd4" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12">「お客様のコンテンツ」とは、(a) お客様 (またはお客様の使用許諾対象ユーザー) が提供物に提出またはアップロードしたファイル、設計、モデル、データセット、画像、ドキュメント、または類似の素材、および (b) お客様自身の生データまたは未加工情報に基づいて提供物の使用から生成したお客様の特定の出力を意味します。</p>
+<p class="wd-font-14 wd-mv-12">「アップグレード」とは、オートデスクが決定する、提供物の新バージョン、または提供物に対するアドオンもしくは提供物に関連する追加製品を意味します。</p>
+<p class="wd-font-14 wd-mv-12">「アップデート」とは、セキュリティ フィックス、ホット フィックス、パッチ、およびその他の更新(アップグレードの間にリリースされた新しい特徴、新機能、その他の変更を含む) を意味します。</p>
+<p class="wd-font-14 wd-mv-12">「オートデスク」とは、デラウェア州 (米国) の法人である Autodesk, Inc.、ならびにその子会社およびその他の関連会社を意味します。</p>
+<p class="wd-font-14 wd-mv-12">「オートデスク当事者」とは、上記第 17.4 条 (オートデスク当事者、準拠法、紛争解決) で特定される特定のオートデスクの事業体を意味します。</p>
+<p class="wd-font-14 wd-mv-12">「クラウドサービス」とは、サブスクリプションの一部として提供されるか否か、および有料で提供されるか否かを問わず、オートデスクが提供する Web またはクラウド ベースのサービスを意味します。クラウドサービスには、SaaS (Software as a Service)、データのリモート ストレージまたは処理が含まれる場合があります。</p>
+<p>「ソフトウェア」とは、サブスクリプションの一部として提供されるか否か、および有償で提供されるか否かを問わず、オートデスクが提供するモジュール、コンポーネント、特徴および機能を含む、ソフトウェアまたは類似の素材を意味します。ソフトウェアには、アップデートとアップグレードが含まれます。</p>
+<p class="wd-font-14 wd-mv-12">「ドキュメント」とは、その時点で最新のエンドユーザー向けドキュメント (オンライン、印刷物、またはその他のドキュメントを含む)、および提供物に関する技術的または法的な要件を意味します。</p>
+<p>「メトリック」とは、あらゆる提供物へのアクセスおよび使用 (お客様のアクセスおよび使用を含む) に関するデータおよびその他の情報を意味します。メトリックには、特徴、機能、ストレージ、インデックスの使用に関する情報、およびお客様のコンテンツの使用状況、ボリューム、タイプ、ストレージ、処理に関する情報が含まれます (ただし、お客様のコンテンツ自体は含まれません)。メトリックに個人データが含まれる場合、当該個人データの取り扱いは、<a href="https://www.autodesk.com/company/legal-notices-trademarks/privacy-statement-jp" target="_blank">プライバシーに関する声明</a>  に従って行われます。</p>
+<p class="wd-font-14 wd-mv-12">「規約」 (「本規約」を含む) とは、本一般規約および本一般規約で参照されるその他の規約をいい、これには特約、追加規約 (該当する場合)、ならびにその他の適用される規約が含まれます。</p>
+<p class="wd-font-14 wd-mv-12">「顧客情報フォーム」とは、お客様のアカウント、サブスクリプションまたはその他の提供物に関連して、お客様が記入し、直接的または間接的にオートデスク (または再販業者、販売業者、もしくはその他の第三者) に提出されるフォームを意味します。</p>
+<p class="wd-font-14 wd-mv-12">「使用許諾対象ユーザー」または「お客様の使用許諾対象ユーザー」とは、(a) お客様 (お客様が個人の場合)、および (b) お客様が提供物のサブスクリプションを取得した特定個人 (お客様の個々の従業員、コンサルタント、および請負業者、ならびに提供物にアクセスし使用するその他の個人など) を意味します。提供物により、お客様が当該提供物の使用許諾対象ユーザーを指定することができる場合、お客様は、当該使用許諾対象ユーザーがかかる提供物にアクセスし使用する前に、当該使用許諾対象ユーザーに本規約の適用について通知を行い、当該使用許諾対象ユーザーから同意を得る責任を負うものとします。</p>
+<p class="wd-font-14 wd-mv-12">「出力」とは、提供物の使用によって、または提供物の使用を通じて作成または生成されたすべての結果、作業成果物、設計、プロトタイプ、またはその他の項目を意味し、かかる結果、作業成果物、設計、プロトタイプ、またはその他の項目に基づく、または使用するすべての製品、部品、またはサービスを含みます。</p>
+<p>「政府機関」とは、米国連邦政府、州、地方自治体、またはその他の政治的下位区分を含む国または政府、および政府に関連する事業体、団体、機関、委員会、部門、理事会、局、または司法機関、およびその職員または役人を意味します。</p>
+<p class="wd-font-14 wd-mv-12">「対象提供物」とは、過去 12 か月間にお客様がオートデスクに 100 米ドルを超えるサブスクリプション料金を支払った提供物を意味し、お客様によって、またはお客様の指示によって変更された提供物、および第三者素材/サービスを除きます。</p>
+<p>「地域」とは、お客様がサブスクリプションを取得した国または管轄区域を意味します。オートデスクは、提供物認証において、該当する地域を表示することがあります。地域の定義に関する追加情報については、以下の第 19 条 (国/管轄区域固有の条件) を参照してください。</p>
+<p class="wd-font-14 wd-mv-12">「追加規約」とは、オートデスクの事業体と直接締結された、本規約を明示的に補足または修正する契約 (エンタープライズ ビジネス契約など) を意味します。</p>
+<p class="wd-font-14 wd-mv-12">「提供物認証」とは、提供物の名称、提供物タイプ、ならびにお客様のサブスクリプションの使用許可数、地域および期間 (該当する場合) を記載した、オートデスクによる 1 つ以上の指定を意味します。提供物認証は、(a) オートデスクによりお客様に対して発行され、お客様のアカウントに掲載され、電子メールにより送信され、またはお客様が利用できるその他の方法で提供される確認書またはその他の通知で提供され、(b) 提供物内またはオートデスクの梱包上もしくは梱包に付され、または (c) 請求によりオートデスクから取得できます。提供物認証には、再販業者、販売業者、またはその他の第三者が提供する指定、確認、梱包、その他の文書は含まれません。</p>
+<p class="wd-font-14 wd-mv-12">「提供物」とは、オートデスクが提供するソフトウェア、クラウドサービス、特典、ならびに当該項目のサブスクリプションを意味します。</p>
+<p class="wd-font-14 wd-mv-12">「提供方法」とは、サブスクリプションに対してオートデスクが指定するライセンス タイプ (シングル ユーザー、マルチ ユーザー、フレックスなど) を意味します。提供方法は、<a href="https://www.autodesk.com/company/terms-of-use/jp/offering-types-and-benefits" target="_blank">提供方法と特典</a> に記載されています。</p>
+<p class="wd-font-14 wd-mv-12">「特典」とは、オートデスクがお客様またはお客様の使用許諾対象ユーザーに提供するあらゆる特典を意味します。特典は通常、お客様が契約する提供物の種類またはレベルに基づいて提供されます。特典には、アップデートおよびアップグレードへのアクセス、以前のバージョンに対する権利、追加のソフトウェアまたはクラウド サービス、プレリリース バージョン、API、グローバル使用権、テクニカル サポート、トレーニング、ウェビナー、フォーラム、イベント、ギャラリー、ニュースレター、および使用データが含まれる場合があります。特典には、シングル サインオンやお客様のプロファイル、セキュリティ設定、リンクされたアカウントおよび基本設定の管理などのアカウント特典が含まれる場合があります。</p>
+<p class="wd-font-14 wd-mv-12">「秘密情報」とは、一般に知られていない情報のうち、(a) 開示当事者が受領当事者に書面で提供または開示し、かつ (b) 開示当事者が書面で機密として指定した情報を意味します。上記にもかかわらず、秘密情報には、(i) (1) 開示当事者に対して負うべき義務に違反することなく公知となった情報、(2) 開示当事者に対する義務に違反することなく (かつ開示当事者に対して機密保持義務を負うことなく)、開示当事者から受領する前に受領当事者が知得した情報、(3) 開示当事者に対して負う義務に違反することなく (かつ開示当事者に対して機密保持義務を負うことなく) 第三者から受領された情報、(4) 受領当事者が独自に開発した情報、(ii) お客様が提供物を通じて第三者に送信し、または第三者がアクセスすることを許可したお客様のコンテンツ、または (iii) フィードバックが含まれません。オートデスクの秘密情報には、いかなる場合においても、(A) あらゆる提供物および関連する製品計画、技術およびその他の技術情報 (API、および API を使用、開示もしくは API の使用に基づくお客様の開発の要素を含む)、および (B) 商談の、非公開の側面が含まれます。</p>
+
+</div>
+
+    
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+</div>
+</div>
+
+</div>
+
+
+
+</div>
+
+
+    
+
+</div>
+<div class="experiencefragment">
+<div id="experiencefragment-3c7be4b3d7" class="cmp-experiencefragment cmp-experiencefragment--country-specific-terms" data-ef-variation-path="/content/experience-fragments/autodesk/en/company/terms_of_use/jp/general-terms/country-specific-terms/master" data-ef-all-variations="master">
+
+
+
+  
+
+
+
+<div class="xfpage-content-container">
+  
+  <div class="root responsivegrid">
+
+
+<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+    
+    <div class="core-container aem-GridColumn aem-GridColumn--default--12">
+
+  
+  
+  
+  
+  <div id="country" class="cmp-container wp-parent legal-section ">
+    
+    <div class="core-container">
+
+  
+  
+  
+  
+  <div id="container-9550ead969" class="cmp-container wd-mb-64 wd-bbw-1 wd-bc-smoke wd-pb-12 ">
+    
+    <div class="title">
+<div class="cmp-title" id="title-29a8bd0d8c">
+  <h3 class="cmp-title__text pc-brand wd-font-20">
+    19. 国/管轄区域固有の条件</h3>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-bea8a93bdb" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12">本規約の他の規定にかかわらず、お客様の主たる事業所 (またはお客様が個人の場合、お客様の居住地) が以下に定める国または管轄区域にある場合、当該国または管轄区域について以下に定める規約がお客様に適用されます。</p>
+
+</div>
+
+    
+
+</div>
+<div class="title">
+<div class="cmp-title" id="title-088c803bcb">
+  <h4 class="cmp-title__text ">
+    19.1	英国、欧州連合および欧州経済領域の加盟国</h4>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-8195d4988a" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12">(a)   お客様が欧州連合または欧州自由貿易連合の加盟国でサブスクリプションを取得した場合、かかるサブスクリプションに適用される「地域」は、欧州連合および欧州自由貿易連合のすべての国です。</p>
+<p class="wd-font-14 wd-mv-12">(b)  お客様の主たる事業所 (またはお客様が個人の場合、お客様の居住地) が欧州連合または欧州経済領域の加盟国にあり、かつ加盟国において提供物の使用に関してお客様と第三者との間で訴訟手続きが存在する場合、お客様は、(i) かかる訴訟手続きについて速やかに書面でオートデスクに通知し、かつ (ii) オートデスクが書面で要求しない限り、かかる手続きに関する第三者通知をオートデスクに送達しないものとします。</p>
+<p class="wd-font-14 wd-mv-12">(c)    本規約のいかなる規定も、(i) オートデスクの過失または故意の違法行為に起因する死亡または人身傷害に対するオートデスクの責任、(ii) オートデスクの詐欺、故意の違法行為または重大な過失によりお客様に生じたその他の損害、(iii) 該当する場合、欧州連合または欧州経済領域の加盟国の適用制定法 (ドイツ製造物責任法など) による製品の欠陥に対するオートデスクの厳格責任、または (iv) 適用法に基づいて排除または制限できないその他の責任を、除外または制限しません。</p>
+<p class="wd-font-14 wd-mv-12">(d)   お客様が消費者として Autodesk Ireland Operations Unlimited Company (以下、「オートデスク アイルランド」) と契約し、英国または欧州連合もしくは欧州経済領域の加盟国のいずれかの居住者である場合、以下の規定が適用されます。当該規定が本規約の他の規定と矛盾する場合には、当該規定が優先して適用されるものとします。</p>
+<p class="wd-font-14 wd-mv-12">      (i) 準拠法および管轄裁判所。お客様が英国に居住する消費者である場合、本規約は英国法に準拠するものとします。お客様が欧州連合または欧州経済領域の加盟国である国に居住する消費者である場合、本規約はアイルランドの法律に準拠するものとします。本規約のいかなる規定も、お客様が居住する国の法律によりお客様に付与された保護の内、当該国の法律に基づく契約によって除外されないものをお客様から奪うものではありません。オートデスク アイルランドは、お客様が居住する国の裁判所においてのみ、お客様に対して提供物に関する請求を提起することができ、お客様は、アイルランドの裁判所またはお客様が居住する国の裁判所のいずれかにおいて、オートデスク アイルランドに対して提供物に関する請求を提起する権利を有します。いかなる場合においても、お客様およびオートデスク アイルランドは、本規定に従って、元の請求が係属する裁判所において反訴を提起する権利を有します。</p>
+<p class="wd-font-14 wd-mv-12">      (ii) 譲渡。オートデスクが本規約を譲渡またはその他の方法で移転する場合、オートデスクは、当該移転について事前にお客様に通知し、当該移転が本規約に基づくお客様の権利を害しないことを保証します。お客様は、当該移転の通知の受領から 30 日以内に本規約 (本規約に基づくサブスクリプションを含む) を終了し、英国の居住者である場合は、影響を受けるサブスクリプションの残りの提供期間に適用される前払い料金の日割り計算された部分の払い戻しを受けることができます。お客様が本規約 (ならびに本規約に基づくお客様の権利および義務) を他の事業体に譲渡またはその他の方法で移転することを希望する場合、お客様は、当該移転に対する同意を求める書面による通知をオートデスクに送付しなければなりません。当該移転に対するオートデスクの同意は、(1) 譲渡先が本規約を遵守することをお客様が証明すること、(2) 譲渡先の遵守に対して引き続き責任を負うことをお客様が同意すること、および (3) 本規約の対象となる提供物に今後アクセスまたは使用しないことをお客様が同意することを条件とし、かつ (4) オートデスクが合理的とみなすその他の条件を前提とします。</p>
+<p class="wd-font-14 wd-mv-12">      (iii) 規約の変更。オートデスクが本規約のいずれかを変更する場合 (適用法もしくは規制を遵守するために必要な場合か、正当な商業的、技術的、セキュリティ上もしくは運用上の理由による場合かを問わない)、オートデスクは、その発効日に先立ち、お客様に対して当該変更について合理的な通知を行います。</p>
+<p class="wd-font-14 wd-mv-12 wd-ml-32">(1)   お客様が欧州連合加盟国または欧州経済地域に居住する消費者である場合、お客様は、以下の電子メールアドレス  <a href="mailto:Terms.Modification.Rejection@autodesk.com" target="_blank">Terms.Modification.Rejection@autodesk.com</a> に (発効日から 30 日以内に) 電子メールで拒否の通知を行うことにより、またはその他の方法で、変更通知に指定されている当該変更 (法律または規則により義務付けられているものを除く) を拒否することができるものとします。お客様が当該期間内に拒否の通知を行わない場合、お客様に適用される法律の下で明示的な同意が必要でない限り、通知された変更に同意したものとみなされます。</p>
+<p class="wd-font-14 wd-mv-12 wd-ml-32">(2)  お客様が英国に居住する消費者であり、かかる変更に同意しない場合、お客様は、通知された発効日前に本規約を終了し、影響を受けるサブスクリプションの残りの提供期間に適用される前払い料金の日割り計算された部分の払い戻しを受けることができます。</p>
+<p class="wd-font-14 wd-mv-12">      (iv) 提供物の変更。お客様は、オートデスクが、適用法令を遵守するために必要な場合、正当な商業的、技術的、セキュリティ上もしくは運営上の理由のため、またはお客様の提供物へのアクセスおよび利用について何らかの改善を行うために、お客様が契約している提供物を随時変更 (一時停止または撤回を含む) できることを認めます。既存のサブスクリプションについては、かかる変更はお客様に対する追加費用なしに行われ、オートデスクは、適用法に基づいて義務付けられている場合には、明確かつ理解しやすい方法で、かかる変更について合理的な事前通知を行います。当該変更に同意しない場合、お客様は、(1) お客様が提供物変更の通知を受領した日または (2) 変更の発効日のいずれか遅い日から 30 日以内に、変更後の提供物のサブスクリプションを終了することができ、未使用の提供期間について日割りの払い戻しを受けるものとします。</p>
+<p class="wd-font-14 wd-mv-12">      (v) オートデスクの責任。上記第 14.3 条 (責任の制限) および上記第 17.12 条 (完全合意、権利不放棄) にかかわらず、かかる条項は、以下の事項に関するオートデスクのお客様に対する責任を排除するものではありません。(1) オートデスクがお客様に対して行った提供物に関する任意の声明における不実表示であって、お客様が提供物の購入に際して依拠したもの、(2) お客様が居住する国の法律によりオートデスクが提供物の購入前にお客様に提供することが義務付けられている提供物に関する契約前の情報を提供しなかったこと、(3) 該当する場合、英国法上排除または制限できない黙示の条件 (デジタル コンテンツの十分な品質、特定目的への適合性、デジタル コンテンツに関する契約前の情報への適合性またはオートデスクの供給権に関する黙示の条件を含む) に対するオートデスクの違反、または (4) 該当する場合、英国法上排除または制限できない派生的損失または間接的損失。<br />
+</p>
+<p class="wd-font-14 wd-mv-12">      (vi) 法定保証。お客様は、お客様に適用される法律に基づき、お客様とオートデスクとの間の事前の合意により除外または制限することができない法定保証権を有する場合があります。当該保証の権利は、本規約の影響を受けないものとします。オートデスクは、提供物に関して、さらなる黙示的または法定の保証または条件を提供しないものとし、適用法で認められる最大限の範囲で、すべての黙示的な保証および条件を明示的に放棄します。<br />
+</p>
+<p class="wd-font-14 wd-mv-12">      (vii) 消費者の撤回権。適用法に基づき、欧州連合または欧州経済領域の加盟国に居住する消費者は、購入から 14 日以内に提供物のサブスクリプションを撤回する制定法上の権利を有します。この権利がどのように適用されるかについては、 <a href="https://damassets.autodesk.net/content/dam/autodesk/www/company/terms-of-use/EU-and-EEA-Consumer-Right.pdf" target="_blank">Consumer Right of Withdrawal Information</a> <a href="https://www.autodesk.com/research/overview">（英語）</a>で説明されています。上記第 3 条 (払い戻しのための返品) に基づきオートデスクが自主的にお客様に付与する、お客様のより有利な払い戻しのための返品に関する権利は、この法定の撤回権の影響を受けないことに留意してください。</p>
+<p class="wd-font-14 wd-mv-12">(e)   問い合わせ。オートデスク アイルランドに連絡するには、+353 1 571 8800 に電話をするか、 <a href="mailto:Autodesk.Ireland.Inquiries@autodesk.com">Autodesk.Ireland.Inquiries@autodesk.com</a> に電子メールを送信するか、Autodesk Ireland Operations Unlimited Company, 1 Windmill Lane, 2nd Floor, Dublin, Ireland D02 F206 宛てに書面でご連絡ください。</p>
+<p class="wd-font-14 wd-mv-12">(f)   また、本規約における地域に関する制限にかかわらず、本規約は、適用法によって明示的に許可された国境を越えたアクセスまたは使用 (欧州連合の加盟国において、欧州連合の別の加盟国で購入した提供物へのアクセスまたは使用など) を制限するものではありません。</p>
+
+</div>
+
+    
+
+</div>
+<div class="title">
+<div class="cmp-title" id="title-165024614d">
+  <h4 class="cmp-title__text ">
+    19.2	オーストラリア</h4>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-0c372d7242" class="cmp-text ">
+  <p class="wd-font-14 wd-mv-12">本規約は、上記第 17.4 条 (オートデスク当事者、準拠法、紛争解決) に定めるお客様とオートデスク当事者との間の契約を形成し、提供物へのお客様のアクセスおよび使用を規定するものです。ただし、お客様は、当該提供物の購入に関して、現地のオートデスク関連会社、子会社、またはそれらの再販業者、販売業者もしくは類似の第三者との間で追加規約を締結している場合があります。オーストラリアの消費者によるそのような購入については、以下の規定が適用されます。</p>
+<p class="wd-font-14 wd-mv-12">(a)   上記第 14.1 条 (限定保証) に定める保証は、Autodesk Australia Pty Ltd、またはお客様の見積書、請求書、もしくは提供物認証に記載されているオートデスクの子会社もしくは関連会社によって提供されます。上記第 14 条 (限定保証) に規定されている保証に基づく請求を行うには、見積書、請求書、またはその他の提供物認証に記載されている住所および連絡先を使用するか、Autodesk Australia Pty Ltd (住所: Level 17, 1 Denison Street, North Sydney, NSW 2060, Australia、電話: (02) 9844 8000、電子メール:   <a href="mailto:Autodesk.Australia.Warranty.Claims@autodesk.com" target="_blank">Autodesk.Australia.Warranty.Claims@autodesk.com</a>) までご連絡ください。当社に連絡する前に、お客様の提供物の詳細、シリアル番号、購入場所、不具合の詳細、および返品連絡先の詳細をご準備ください。上記第 14 条 (限定保証) に規定されている保証は、お客様が法律上有するその他の権利および救済措置に追加されるものです。</p>
+<p class="wd-font-14 wd-mv-12">(b)   当社の商品およびサービスには、オーストラリア消費者法の下で除外することができない保証が付されています。サービスの重大な不具合については、次の権利が発生します。</p>
+<p class="wd-font-14 wd-mv-12">    (i) 当社とのサービス契約を解除すること、および</p>
+<p class="wd-font-14 wd-mv-12">    (ii) 未使用分の払い戻し、またはその減少した価値の補償を受けること。</p>
+<p class="wd-font-14 wd-mv-12">(c) また、商品に重大な不具合がある場合、返金または交換を選択する権利があります。商品またはサービスの不具合が重大な不具合に該当しない場合、お客様は、合理的な時間内に不具合を是正させる権利を有します。是正が行われない場合、お客様は商品代金の返金、およびサービスに関する契約の解除と未使用分の払い戻しを受ける権利を有します。また、お客様は、商品またはサービスの不具合から合理的に予見可能なその他の損失または損害についても補償を受ける権利を有します。</p>
+<p class="wd-font-14 wd-mv-12">(d)   オートデスクは、ユーザー エラーに対して責任を負わず、そのような問題があれば、サポート リセラー、ディストリビューターまたは類似の第三者に (存在する場合) 照会することができます。お客様は、当社がその時点でお客様に提供した住所に、お客様自身の費用負担で提供物を返却するよう求められる場合があります。</p>
+<p class="wd-font-14 wd-mv-12">(e)   本規約の他のいかなる規定にもかかわらず、提供物がオーストラリアにおける競争消費者法 (CTH) またはその他の適用法 (以下、「当該法律」) の強制的な保証の対象となり、当該法律がこれらの保証または条件の違反に対するオートデスクの責任を制限することを認めている場合、当該保証の違反に対するオートデスクの責任は、オートデスクの選択により、当該提供物の修理、交換または再実施 (またはそれに要する費用) に制限されます。</p>
+
+</div>
+
+    
+
+</div>
+<div class="title">
+<div class="cmp-title" id="title-f51b640c1d">
+  <h4 class="cmp-title__text ">
+    19.3	中国本土、香港、およびマカオ</h4>
+</div>
+
+    
+
+</div>
+<div class="text">
+<div id="text-4217702c8c" class="cmp-text ">
+  <p class=" wd-font-14 wd-mv-12">お客様が中国本土でサブスクリプションを取得した場合、当該サブスクリプションの「地域」は中国本土です。同様に、お客様が香港でサブスクリプションを取得した場合、当該サブスクリプションの「地域」は香港であり、お客様がマカオでサブスクリプションを取得した場合、当該サブスクリプションの「地域」はマカオです。</p>
+
+</div>
+
+    
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+</div>
+</div>
+
+</div>
+
+
+
+</div>
+
+
+    
+
+</div>
+<div class="experiencefragment">
+
+
+
+    
+
+</div>
+<div class="experiencefragment">
+
+
+
+    
+
+</div>
+<div class="experiencefragment">
+
+
+
+    
+
+</div>
+<div class="experiencefragment">
+
+
+
+    
+
+</div>
+
+    
+  </div>
+
+
+</div>
+<div class="core-container aem-GridColumn--xlarge--none aem-GridColumn aem-GridColumn--default--12 aem-GridColumn--xlarge--2 aem-GridColumn--offset--xlarge--0">
+
+  
+  
+  
+  
+  <div id="container-db66c2d0d8" class="cmp-container  ">
+    
+    <div class="experiencefragment">
+<div id="experiencefragment-89ac508fcf" class="cmp-experiencefragment cmp-experiencefragment--language-sidebar" data-ef-variation-path="/content/experience-fragments/autodesk/en/company/terms_of_use/jp/general-terms/language-sidebar/master" data-ef-all-variations="master">
+
+
+
+  
+
+
+
+<div class="xfpage-content-container">
+  
+  <div class="root responsivegrid">
+
+
+<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+    
+    <div class="text aem-GridColumn aem-GridColumn--default--12">
+<div id="text-4d9d0177aa" class="cmp-text ">
+  <div class="hide-for-small"><div class="wp-print-btn"><img class="legal-print-icn" src="https://damassets.autodesk.net/content/dam/autodesk/icons/printer-blue.png"/></div>
+<div class="wp-product-finder"><div id="lang-sidebar" class="wp-filter legal-language-dropdown"><div class="wp-filter-container"><p class="wd-font-14"><a data-countrycode="en" href="/company/terms-of-use/en/general-terms">English</a></p>
+<p class="wd-font-14"><a data-countrycode="de" href="/company/terms-of-use/de/general-terms">Deutsch</a></p>
+<p class="wd-font-14"><a data-countrycode="es" href="/company/terms-of-use/es/general-terms">Español</a></p>
+<p class="wd-font-14"><a data-countrycode="fr" href="/company/terms-of-use/fr/general-terms" id="legal-lang-fr">Français</a></p>
+<p class="wd-font-14"><a data-countrycode="it" href="/company/terms-of-use/it/general-terms">Italiano</a></p>
+<p class="wd-font-14 hide"><a data-countrycode="pt" href="/company/terms-of-use/pt/general-terms">Português</a></p>
+<p class="wd-font-14"><a data-countrycode="br" href="/company/terms-of-use/br/general-terms">Português</a></p>
+<p class="wd-font-14 hide"><a data-countrycode="nl" href="/company/terms-of-use/nl/general-terms">Nederlands</a></p>
+<p class="wd-font-14"><a data-countrycode="cs" href="/company/terms-of-use/cs/general-terms">Čeština</a></p>
+<p class="wd-font-14"><a data-countrycode="pl" href="/company/terms-of-use/pl/general-terms">Polski</a></p>
+<p class="wd-font-14 hide"><a data-countrycode="hu" href="/company/terms-of-use/hu/general-terms">Magyar</a></p>
+<p class="wd-font-14"><a data-countrycode="jp" href="/company/terms-of-use/jp/general-terms">日本語</a></p>
+<p class="wd-font-14"><a data-countrycode="kr" href="/company/terms-of-use/kr/general-terms">한국어</a></p>
+<p class="wd-font-14"><a data-countrycode="cn" href="/company/terms-of-use/cn/general-terms">简体中文</a></p>
+<p class="wd-font-14"><a data-countrycode="cn2" href="/company/terms-of-use/cn2/general-terms">繁體中文</a></p>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+
+    
+
+</div>
+
+    
+</div>
+</div>
+
+</div>
+
+
+
+</div>
+
+
+    
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+</div>
+
+  </div>
+
+  
+
+</div>
+
+    
+</div>
+
+  </div>
+
+  
+
+</div>
+
+    
+  </div>
+
+
+</div>
+<div class="core-container aem-GridColumn aem-GridColumn--default--12">
+
+  
+  
+  
+  
+  <div id="container-d8c2a83961" class="cmp-container footer-content ">
+    
+    <div class="core-container">
+
+  
+  
+  
+  
+  <div id="container-fe08fa8356" class="cmp-container  ">
+    
+    <div class="experiencefragment">
+<div id="experiencefragment-1bfa27233c" class="cmp-experiencefragment cmp-experiencefragment--universal-footer" data-ef-variation-path="/content/experience-fragments/autodesk/ja/universal-footer/master" data-ef-all-variations="master">
+
+
+<div class="xfpage-content-container">
+  
+  <div class="root container responsivegrid">
+
+    
+    
+    
+    <div id="container-4b1fe99c8c" class="cmp-container">
+        
+        <div class="universal-footer"><div class="footer">
+    <link rel="stylesheet" href="https://swc-stg.autodesk.com/web-mfe/universal-footer/development/v1/app.css" defer type="text/css"/>
+    <div id="universal-footer-example" class="cmp-footer">
+      <div class="inner-footer dhig-theme--light">
+          <div class="cmp-mega-footer dhig-py-7" data-wat-link-section="megafooter">
+  <div class="page-container-wrapper">
+    <div class="page-container">
+      <div class="column-container dhig-grid sm:dhig-grid-cols-1 md:dhig-grid-cols-4 md:dhig-gap-3 lg:dhig-grid-cols-4 lg:dhig-gap-3">
+        <div class="column mega-footer-column-1-2 md:dhig-col-span-2 lg:dhig-col-span-2" data-wat-loc="autodesk">
+          <div class="dhig-grid sm:dhig-grid-cols-1 md:dhig-grid-cols-2 md:dhig-gap-3 lg:dhig-grid-cols-2 lg:dhig-gap-3">
+            <input type="checkbox"/>
+            <div class="mega-footer-column-1">
+              <div class="mega-footer-column__title">
+                <img class="mega-footer-column__title-image-arrow-right" src="https://swc.autodesk.com/pharmacopeia/svg/icons/v0/icons/utility/caret-right.svg" alt=""/>
+                <img class="mega-footer-column__title-image-arrow-down" src="https://swc.autodesk.com/pharmacopeia/svg/icons/v0/icons/utility/caret-down.svg" alt=""/>
+                <div>
+<div id="mega-footer-column-1-title" class="cmp-text dhig-typography-headline-small">
+  <div class="cmp-text-editable">
+    <p>オートデスク</p>
+
+  </div>
+</div>
+
+
+    
+
+</div>
+              </div>
+              <div><div class="mega-footer-column" id="mega-footer-column-91f85c8235">
+  
+  <div id="mega-footer-column-91f85c8235-item-5c90a69c65" class="mega-footer-column-item dhig-pb-3"><div class=" cmp-text-link dhig-typography-body-copy-small" id="investor-relations">
+  
+  <a class="cmp-text-link__link MuiTypography-root MuiLink-root MuiLink-underlineHover " id="link-investor-relations" data-wat-loc="footer" data-wat-val="investor relations" data-wat-link="true" target="_blank" href="https://investors.autodesk.com/">
+    
+    <span class="cmp-text-link__link-text">IR 情報（英語)</span>
+    <svg class="cmp-text-link__link-icon-right MuiSvgIcon-root DhigSvgIcon--size-- inline">
+      <use href="#dhig--icons--utility--external" xlink:href="#dhig--icons--utility--external"></use>
+    </svg>
+  </a>
+
+
+  
+  
+</div>
+
+
+
+
+</div>
+<div id="mega-footer-column-91f85c8235-item-371f36884c" class="mega-footer-column-item dhig-pb-3"><div class=" cmp-text-link dhig-typography-body-copy-small" id="newsroom">
+  
+  <a class="cmp-text-link__link MuiTypography-root MuiLink-root MuiLink-underlineHover " id="link-newsroom" data-wat-loc="footer" data-wat-val="newsroom" data-wat-link="true" target="_blank" href="https://blogs.autodesk.com/autodesk-news-japan/">
+    
+    <span class="cmp-text-link__link-text">ニュースルーム</span>
+    <svg class="cmp-text-link__link-icon-right MuiSvgIcon-root DhigSvgIcon--size-- inline">
+      <use href="#dhig--icons--utility--external" xlink:href="#dhig--icons--utility--external"></use>
+    </svg>
+  </a>
+
+
+  
+  
+</div>
+
+
+
+
+</div>
+<div id="mega-footer-column-91f85c8235-item-99e0626b02" class="mega-footer-column-item dhig-pb-3"><div class=" cmp-text-link dhig-typography-body-copy-small" id="diversity-belonging">
+  
+  <a class="cmp-text-link__link MuiTypography-root MuiLink-root MuiLink-underlineHover " id="link-diversity-belonging" data-wat-loc="footer" data-wat-val="diversity and belonging" data-wat-link="true" href="https://www.autodesk.com/company/diversity-and-belonging">
+    
+    <span class="cmp-text-link__link-text">多様性と帰属意識（英語）</span>
+    
+  </a>
+
+
+  
+  
+</div>
+
+
+
+
+</div>
+
+</div>
+</div>
+              <div class="mega-footer-socials mega-footer-socials-desktop" aria-label="social media" tabindex="0">
+                <div>
+<div id="text-8d1be4b128" class="cmp-text dhig-typography-body-copy-small">
+  <div class="cmp-text-editable">
+    <ul class="dhig-grid-cols-1 xl:dhig-list-item xl:dhig-space-y-4 md:dhig-flex md:dhig-gap-7">
+<li><a href="https://www.autodesk.com/social-media" class="MuiTypography-root MuiLink-root MuiLink-underlineHover" data-wat-val="social media" target="_blank" id="coral-id-1288"><img src="https://swc.autodesk.com/pharmacopeia/svg/icons/v0/icons/social/facebook-circle.svg" alt=""/><img src="https://swc.autodesk.com/pharmacopeia/svg/icons/v0/icons/social/instagram-circle.svg" alt="" style="letter-spacing: 0.0px;"/><img src="https://swc.autodesk.com/pharmacopeia/svg/icons/v0/icons/social/twitter-circle.svg" alt="" style="letter-spacing: 0.0px;"/><img src="https://swc.autodesk.com/pharmacopeia/svg/icons/v0/icons/social/linkedin-circle.svg" alt="" style="letter-spacing: 0.0px;"/><img src="https://swc.autodesk.com/pharmacopeia/svg/icons/v0/icons/social/youtube.svg" alt="" style="letter-spacing: 0.0px;"/></a></li>
+</ul>
+
+  </div>
+</div>
+
+
+    
+
+</div>
+              </div>
+            </div>
+            <div class="mega-footer-column-2">
+              <div><div class="mega-footer-column" id="mega-footer-column-45226d9e15">
+  
+  <div id="mega-footer-column-45226d9e15-item-ba6b90c3bb" class="mega-footer-column-item dhig-pb-3"><div class=" cmp-text-link dhig-typography-body-copy-small" id="contact-us">
+  
+  <a class="cmp-text-link__link MuiTypography-root MuiLink-root MuiLink-underlineHover " id="link-contact-us" data-wat-loc="footer" data-wat-val="contact us" data-wat-link="true" href="https://www.autodesk.co.jp/company/contact-us">
+    
+    <span class="cmp-text-link__link-text">お問い合わせ</span>
+    
+  </a>
+
+
+  
+  
+</div>
+
+
+
+
+</div>
+<div id="mega-footer-column-45226d9e15-item-7604d40607" class="mega-footer-column-item dhig-pb-3"><div class=" cmp-text-link dhig-typography-body-copy-small" id="students-educators">
+  
+  <a class="cmp-text-link__link MuiTypography-root MuiLink-root MuiLink-underlineHover " id="link-students-educators" data-wat-val="students and educators" href="https://www.autodesk.co.jp/education/home">
+    
+    <span class="cmp-text-link__link-text">学生および教育者</span>
+    
+  </a>
+
+
+  
+  
+</div>
+
+
+
+
+</div>
+<div id="mega-footer-column-45226d9e15-item-ec65e495f1" class="mega-footer-column-item dhig-pb-3"><div class=" cmp-text-link dhig-typography-body-copy-small" id="affiliate-program">
+  
+  <a class="cmp-text-link__link MuiTypography-root MuiLink-root MuiLink-underlineHover " id="link-affiliate-program" data-wat-loc="footer" data-wat-val="affiliate program" data-wat-link="true" href="https://www.autodesk.co.jp/affiliate-program/overview">
+    
+    <span class="cmp-text-link__link-text">アフィリエイト プログラム</span>
+    
+  </a>
+
+
+  
+  
+</div>
+
+
+
+
+</div>
+<div id="mega-footer-column-45226d9e15-item-2a8bbd4d1f" class="mega-footer-column-item dhig-pb-3"><div class=" cmp-text-link dhig-typography-body-copy-small" id="autodesk-research">
+  
+  <a class="cmp-text-link__link MuiTypography-root MuiLink-root MuiLink-underlineHover " id="link-autodesk-research" data-wat-loc="footer" data-wat-val="autodesk research" data-wat-link="true" target="_blank" href="https://www.research.autodesk.com/">
+    
+    <span class="cmp-text-link__link-text">Autodesk Research（英語）</span>
+    <svg class="cmp-text-link__link-icon-right MuiSvgIcon-root DhigSvgIcon--size-- inline">
+      <use href="#dhig--icons--utility--external" xlink:href="#dhig--icons--utility--external"></use>
+    </svg>
+  </a>
+
+
+  
+  
+</div>
+
+
+
+
+</div>
+
+</div>
+</div>
+            </div>
+          </div>
+        </div>
+        <div class="column mega-footer-column-3" data-wat-loc="how to buy">
+          <input type="checkbox"/>
+          <div class="mega-footer-column__title">
+            <img class="mega-footer-column__title-image-arrow-right" src="https://swc.autodesk.com/pharmacopeia/svg/icons/v0/icons/utility/caret-right.svg" alt=""/>
+            <img class="mega-footer-column__title-image-arrow-down" src="https://swc.autodesk.com/pharmacopeia/svg/icons/v0/icons/utility/caret-down.svg" alt=""/>
+            <div>
+<div id="mega-footer-column-3-title" class="cmp-text dhig-typography-headline-small">
+  <div class="cmp-text-editable">
+    <p>購入方法</p>
+
+  </div>
+</div>
+
+
+    
+
+</div>
+          </div>
+          <div><div class="mega-footer-column" id="mega-footer-column-0bb1f186c7">
+  
+  <div id="mega-footer-column-0bb1f186c7-item-d1321e64b8" class="mega-footer-column-item dhig-pb-3"><div class=" cmp-text-link dhig-typography-body-copy-small" id="view-all-products">
+  
+  <a class="cmp-text-link__link MuiTypography-root MuiLink-root MuiLink-underlineHover " id="link-view-all-products" data-wat-val="view all products" href="https://www.autodesk.co.jp/products">
+    
+    <span class="cmp-text-link__link-text">すべての製品を表示</span>
+    
+  </a>
+
+
+  
+  
+</div>
+
+
+
+
+</div>
+<div id="mega-footer-column-0bb1f186c7-item-f34d9127c9" class="mega-footer-column-item dhig-pb-3"><div class=" cmp-text-link dhig-typography-body-copy-small" id="buying-with-autodesk">
+  
+  <a class="cmp-text-link__link MuiTypography-root MuiLink-root MuiLink-underlineHover " id="link-buying-with-autodesk" data-wat-val="buying with autodesk" href="https://www.autodesk.co.jp/benefits/overview">
+    
+    <span class="cmp-text-link__link-text">オートデスクで購入</span>
+    
+  </a>
+
+
+  
+  
+</div>
+
+
+
+
+</div>
+<div id="mega-footer-column-0bb1f186c7-item-ed28fea094" class="mega-footer-column-item dhig-pb-3"><div class=" cmp-text-link dhig-typography-body-copy-small" id="renewal-options">
+  
+  <a class="cmp-text-link__link MuiTypography-root MuiLink-root MuiLink-underlineHover " id="link-renewal-options" data-wat-val="renewal options" href="https://www.autodesk.co.jp/renewal">
+    
+    <span class="cmp-text-link__link-text">更新オプション</span>
+    
+  </a>
+
+
+  
+  
+</div>
+
+
+
+
+</div>
+<div id="mega-footer-column-0bb1f186c7-item-c519eb0c6c" class="mega-footer-column-item dhig-pb-3"><div class=" cmp-text-link dhig-typography-body-copy-small" id="find-reseller">
+  
+  <a class="cmp-text-link__link MuiTypography-root MuiLink-root MuiLink-underlineHover " id="link-find-reseller" data-wat-val="find a reseller" href="https://www.autodesk.co.jp/partners/locate-a-reseller">
+    
+    <span class="cmp-text-link__link-text">認定販売パートナーを探す</span>
+    
+  </a>
+
+
+  
+  
+</div>
+
+
+
+
+</div>
+<div id="mega-footer-column-0bb1f186c7-item-24bfcfd88d" class="mega-footer-column-item dhig-pb-3"><div class=" cmp-text-link dhig-typography-body-copy-small" id="sales-refunds">
+  
+  <a class="cmp-text-link__link MuiTypography-root MuiLink-root MuiLink-underlineHover " id="link-sales-refunds" data-wat-val="sales and refunds" href="https://www.autodesk.co.jp/customer/help">
+    
+    <span class="cmp-text-link__link-text">販売および返金</span>
+    
+  </a>
+
+
+  
+  
+</div>
+
+
+
+
+</div>
+<div id="mega-footer-column-0bb1f186c7-item-0fae2002ce" class="mega-footer-column-item dhig-pb-3"><div class=" cmp-text-link dhig-typography-body-copy-small" id="choose-subsciption">
+  
+  <a class="cmp-text-link__link MuiTypography-root MuiLink-root MuiLink-underlineHover " id="link-choose-subsciption" data-wat-val="choose your subscription plan" href="https://www.autodesk.co.jp/plans">
+    
+    <span class="cmp-text-link__link-text">サブスクリプション期間を選択する</span>
+    
+  </a>
+
+
+  
+  
+</div>
+
+
+
+
+</div>
+<div id="mega-footer-column-0bb1f186c7-item-f4ee1a65dc" class="mega-footer-column-item dhig-pb-3"><div class=" cmp-text-link dhig-typography-body-copy-small" id="pay-as-go">
+  
+  <a class="cmp-text-link__link MuiTypography-root MuiLink-root MuiLink-underlineHover " id="link-pay-as-go" data-wat-val="pay as you go with flex" href="https://www.autodesk.co.jp/buying/flex">
+    
+    <span class="cmp-text-link__link-text">従量課金制で利用できる Flex</span>
+    
+  </a>
+
+
+  
+  
+</div>
+
+
+
+
+</div>
+
+</div>
+</div>
+
+        </div>
+        <div class="column mega-footer-column-4" data-wat-loc="support">
+          <input type="checkbox"/>
+          <div class="mega-footer-column__title">
+            <img class="mega-footer-column__title-image-arrow-right" src="https://swc.autodesk.com/pharmacopeia/svg/icons/v0/icons/utility/caret-right.svg" alt=""/>
+            <img class="mega-footer-column__title-image-arrow-down" src="https://swc.autodesk.com/pharmacopeia/svg/icons/v0/icons/utility/caret-down.svg" alt=""/>
+            <div>
+<div id="mega-footer-column-4-title" class="cmp-text dhig-typography-headline-small">
+  <div class="cmp-text-editable">
+    <p>サポート</p>
+
+  </div>
+</div>
+
+
+    
+
+</div>
+          </div>
+          <div><div class="mega-footer-column" id="mega-footer-column-e980fe1b04">
+  
+  <div id="mega-footer-column-e980fe1b04-item-755dbdd8a1" class="mega-footer-column-item dhig-pb-3"><div class=" cmp-text-link dhig-typography-body-copy-small" id="product-support">
+  
+  <a class="cmp-text-link__link MuiTypography-root MuiLink-root MuiLink-underlineHover " id="link-product-support" data-wat-val="product support" href="https://www.autodesk.co.jp/support">
+    
+    <span class="cmp-text-link__link-text">製品サポート</span>
+    
+  </a>
+
+
+  
+  
+</div>
+
+
+
+
+</div>
+<div id="mega-footer-column-e980fe1b04-item-69e0602c8a" class="mega-footer-column-item dhig-pb-3"><div class=" cmp-text-link dhig-typography-body-copy-small" id="manage-account">
+  
+  <a class="cmp-text-link__link MuiTypography-root MuiLink-root MuiLink-underlineHover " id="link-manage-account" data-wat-val="manage your account" href="https://manage.autodesk.com">
+    
+    <span class="cmp-text-link__link-text">自分のアカウントを管理する</span>
+    
+  </a>
+
+
+  
+  
+</div>
+
+
+
+
+</div>
+<div id="mega-footer-column-e980fe1b04-item-f962f9a770" class="mega-footer-column-item dhig-pb-3"><div class=" cmp-text-link dhig-typography-body-copy-small" id="download-software">
+  
+  <a class="cmp-text-link__link MuiTypography-root MuiLink-root MuiLink-underlineHover " id="link-download-software" data-wat-val="download and install software" href="https://manage.autodesk.com/products">
+    
+    <span class="cmp-text-link__link-text">ソフトウェアをダウンロードしてインストールする</span>
+    
+  </a>
+
+
+  
+  
+</div>
+
+
+
+
+</div>
+<div id="mega-footer-column-e980fe1b04-item-d67a4502e4" class="mega-footer-column-item dhig-pb-3"><div class=" cmp-text-link dhig-typography-body-copy-small" id="covid-resources">
+  
+  <a class="cmp-text-link__link MuiTypography-root MuiLink-root MuiLink-underlineHover " id="link-covid-resources" data-wat-val="covid-19 resources" href="https://www.autodesk.co.jp/covid-19/resource-center">
+    
+    <span class="cmp-text-link__link-text">COVID-19 関連のリソース</span>
+    
+  </a>
+
+
+  
+  
+</div>
+
+
+
+
+</div>
+<div id="mega-footer-column-e980fe1b04-item-f7b094ad43" class="mega-footer-column-item dhig-pb-3"><div class=" cmp-text-link dhig-typography-body-copy-small" id="education-support">
+  
+  <a class="cmp-text-link__link MuiTypography-root MuiLink-root MuiLink-underlineHover " id="link-education-support" data-wat-val="education support" href="https://www.autodesk.co.jp/education/support">
+    
+    <span class="cmp-text-link__link-text">教育サポート</span>
+    
+  </a>
+
+
+  
+  
+</div>
+
+
+
+
+</div>
+<div id="mega-footer-column-e980fe1b04-item-6adc0384e7" class="mega-footer-column-item dhig-pb-3"><div class=" cmp-text-link dhig-typography-body-copy-small" id="text-link-small">
+  
+  <a class="cmp-text-link__link MuiTypography-root MuiLink-root MuiLink-underlineHover " id="link-text-link-small" data-wat-loc="footer" data-wat-val="Contact support" data-wat-link="true" href="https://www.autodesk.co.jp/support/contact-support">
+    
+    <span class="cmp-text-link__link-text">サポートへのお問い合わせ</span>
+    
+  </a>
+
+
+  
+  
+</div>
+
+
+
+
+</div>
+
+</div>
+</div>
+
+        </div>
+      </div>
+      <div class="mega-footer-socials mega-footer-socials-mobile" aria-label="social media" tabindex="0">
+        <div>
+<div id="text-8d1be4b128" class="cmp-text dhig-typography-body-copy-small">
+  <div class="cmp-text-editable">
+    <ul class="dhig-grid-cols-1 xl:dhig-list-item xl:dhig-space-y-4 md:dhig-flex md:dhig-gap-7">
+<li><a href="https://www.autodesk.com/social-media" class="MuiTypography-root MuiLink-root MuiLink-underlineHover" data-wat-val="social media" target="_blank" id="coral-id-1288"><img src="https://swc.autodesk.com/pharmacopeia/svg/icons/v0/icons/social/facebook-circle.svg" alt=""/><img src="https://swc.autodesk.com/pharmacopeia/svg/icons/v0/icons/social/instagram-circle.svg" alt="" style="letter-spacing: 0.0px;"/><img src="https://swc.autodesk.com/pharmacopeia/svg/icons/v0/icons/social/twitter-circle.svg" alt="" style="letter-spacing: 0.0px;"/><img src="https://swc.autodesk.com/pharmacopeia/svg/icons/v0/icons/social/linkedin-circle.svg" alt="" style="letter-spacing: 0.0px;"/><img src="https://swc.autodesk.com/pharmacopeia/svg/icons/v0/icons/social/youtube.svg" alt="" style="letter-spacing: 0.0px;"/></a></li>
+</ul>
+
+  </div>
+</div>
+
+
+    
+
+</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+          <div class="cmp-legal-footer dhig-py-6" data-wat-link-section="legalfooter">
+  <div class="page-container-wrapper">
+    <div class="page-container dhig-flex">
+      <div>
+<div id="text-d5696c8306" class="cmp-text dhig-typography-body-copy-smaller">
+  <div class="cmp-text-editable">
+    <p><a data-wat-val="privacy" href="https://www.autodesk.com/company/terms-of-use/jp/general-terms" target="_blank" id="coral-id-677" class="MuiTypography-root MuiLink-root MuiLink-underlineHover">プライバシー</a> | <a data-wat-val="cookie preferences" data-opt-in-preferences="true">Cookie の基本設定</a> | <a data-wat-val="report noncompliance" href="https://www.autodesk.co.jp/genuine/report-piracy">不正コピーの報告</a> | <a data-wat-val="terms of use" href="https://www.autodesk.com/company/terms-of-use/jp/general-terms" target="_blank" class="MuiTypography-root MuiLink-root MuiLink-underlineHover">使用規約</a> | <a data-wat-val="legal" href="https://www.autodesk.com/company/legal-notices-trademarks" target="_blank" class="MuiTypography-root MuiLink-root MuiLink-underlineHover">法律情報（英語）</a> | <a id="coral-id-657" class="MuiTypography-root MuiLink-root MuiLink-underlineHover" href="https://www.autodesk.co.jp/company/legal-notices-trademarks/specified-commercial-transactions-act">特定商取引法に基づく表示</a> | <span class="cmp-legal-footer__copyright">© 2023 Autodesk Inc. All rights reserved​</span></p>
+
+  </div>
+</div>
+
+
+    
+
+</div>
+    </div>
+  </div>
+</div>
+
+      </div>
+    </div>
+</div>
+</div>
+
+        
+    </div>
+
+</div>
+
+</div>
+</div>
+
+
+    
+
+</div>
+
+    
+  </div>
+
+
+</div>
+
+    
+  </div>
+
+
+</div>
+<div class="universal-help-module aem-GridColumn aem-GridColumn--default--12">
+    
+
+
+<script>
+    window.adskUniversalHelpOptions = {
+        language: "ja_JP",
+        pageTitle: "general\u002Dterms",
+        product: ""
+    };
+</script>
+</div>
+
+    
+</div>
+</div>
+
+
+        
+        <div style="display: none;">
+
+</div>
+        
+
+  
+  
+    
+<script src="https://static-dc.autodesk.net/etc.clientlibs/v605.20231207.1619/core/wcm/components/commons/site/clientlibs/container.min.js" defer></script>
+<script src="https://static-dc.autodesk.net/etc.clientlibs/v605.20231207.1619/dotcom/clientlibs/clientlib-base.min.js" defer></script>
+<script src="https://static-dc.autodesk.net/etc.clientlibs/v605.20231207.1619/dotcom/clientlibs/clientlib-site.min.js" defer></script>
+
+
+
+
+  
+  
+    <script type="text/javascript" src="https://swc.autodesk.com/web-mfe/mfe-product-price/app.js" defer></script>
+
+
+
+  
+  <script type="text/javascript" src="https://swc.autodesk.com/web-aem/company/terms-of-use/terms-of-use.js" defer></script>
+
+
+  
+  
+  <script type="text/javascript">
+    window.adsk = window.adsk || {};
+    adsk.webSDK = adsk.webSDK || {};
+    adsk.anyWherewebSDK = adsk.anyWherewebSDK || {};
+    adsk.webSDK.css="https:\/\/emsfs.autodesk.com\/utility\/dlm\/prod\/SDK\/3_34\/adsk.fxsdk.min.css";
+    adsk.webSDK.script="https:\/\/emsfs.autodesk.com\/utility\/dlm\/prod\/SDK\/3_34\/adsk.fxsdk.min.js";
+    adsk.webSDK.jquery="https:\/\/emsfs.autodesk.com\/utility\/dlm\/prod\/SDK\/3_34\/jqt\/jquery\u002Dui.min.1.9.1.js";
+    adsk.webSDK.isWebSDKDirectDownloadUrl = false;
+    adsk.anyWherewebSDK.script="https:\/\/emsfs.autodesk.com\/utility\/websdk\/1\/prd\/latest\/websdk.js";
+  </script>
+
+  
+  
+    <script type="text/javascript">
+      ((window.adsk = window.adsk || {}).api = window.adsk.api || {}).universalHelp = window.adsk.api.universalHelp || {};
+      window.adsk.api.universalHelp.scriptPath = "https:\/\/app.digital\u002Dhelp\u002Dprd.autodesk.com\/universal\u002Dhelp\/current\/uhm\u002Dprd.min.js";
+      window.adsk.api.universalHelp.enabled = "true";
+    </script>
+  
+
+  
+    <script type="text/javascript">
+      window.digitalData = JSON.parse('{"pageInstanceID":"prod","page":{"countryCode":"jp","destinationURL":"https://www.autodesk.com/content/autodesk/global/en/company/terms-of-use/jp/general-terms.html","languageCode":"ja","pageName":"general-terms","continentCode":"apac"},"version":{"versionNumber":"1.0"},"user":{"authSystem":"","oxygenGuid":"","loginStatus":""},"products":[]}');
+      if (digitalData && digitalData.hasOwnProperty('page') && digitalData.page.destinationURL) {
+        digitalData.page.destinationURL = document.URL;
+      }
+    </script>
+
+    
+
+    <script type="text/javascript" name="tealiumAdobeVisitor:url" src="//tags.tiqcdn.com/utag/autodesk/lib-adobevisitorapi/prod/utag.sync.js"></script>
+
+    <script type="text/javascript" name="tealiumFooterSync:url" src="//tags.tiqcdn.com/utag/autodesk/lib-target/prod/utag.sync.js"></script>
+
+    
+      
+        
+        <script type="text/javascript" name="tealium:url" src="//tags.tiqcdn.com/utag/autodesk/global-sites/prod/utag.js" defer></script>
+        
+      
+    
+  
+
+
+        
+
+    </body>
+</html>

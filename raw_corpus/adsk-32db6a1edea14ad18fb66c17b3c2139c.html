@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" /><script type="text/javascript">(window.NREUM||(NREUM={})).init={ajax:{deny_list:["bam.nr-data.net"]}};(window.NREUM||(NREUM={})).loader_config={licenseKey:"NRJS-a041a7477f71e30d528",applicationID:"1016776418"};;/*! For license information please see nr-loader-rum-1.249.0.min.js.LICENSE.txt */
+(()=>{var e,t,r={234:(e,t,r)=>{"use strict";r.d(t,{P_:()=>v,Mt:()=>b,C5:()=>s,DL:()=>A,OP:()=>S,lF:()=>T,Yu:()=>x,Dg:()=>m,CX:()=>c,GE:()=>_,sU:()=>R});var n=r(8632),i=r(9567);const a={beacon:n.ce.beacon,errorBeacon:n.ce.errorBeacon,licenseKey:void 0,applicationID:void 0,sa:void 0,queueTime:void 0,applicationTime:void 0,ttGuid:void 0,user:void 0,account:void 0,product:void 0,extra:void 0,jsAttributes:{},userAttributes:void 0,atts:void 0,transactionName:void 0,tNamePlain:void 0},o={};function s(e){if(!e)throw new Error("All info objects require an agent identifier!");if(!o[e])throw new Error("Info for ".concat(e," was never set"));return o[e]}function c(e,t){if(!e)throw new Error("All info objects require an agent identifier!");o[e]=(0,i.D)(t,a);const r=(0,n.ek)(e);r&&(r.info=o[e])}const u=e=>{if(!e||"string"!=typeof e)return!1;try{document.createDocumentFragment().querySelector(e)}catch{return!1}return!0};var d=r(7056),l=r(50);const f="[data-nr-mask]",g=()=>{const e={mask_selector:"*",block_selector:"[data-nr-block]",mask_input_options:{color:!1,date:!1,"datetime-local":!1,email:!1,month:!1,number:!1,range:!1,search:!1,tel:!1,text:!1,time:!1,url:!1,week:!1,textarea:!1,select:!1,password:!0}};return{feature_flags:[],proxy:{assets:void 0,beacon:void 0},privacy:{cookies_enabled:!0},ajax:{deny_list:void 0,block_internal:!0,enabled:!0,harvestTimeSeconds:10,autoStart:!0},distributed_tracing:{enabled:void 0,exclude_newrelic_header:void 0,cors_use_newrelic_header:void 0,cors_use_tracecontext_headers:void 0,allowed_origins:void 0},session:{domain:void 0,expiresMs:d.oD,inactiveMs:d.Hb},ssl:void 0,obfuscate:void 0,jserrors:{enabled:!0,harvestTimeSeconds:10,autoStart:!0},metrics:{enabled:!0,autoStart:!0},page_action:{enabled:!0,harvestTimeSeconds:30,autoStart:!0},page_view_event:{enabled:!0,autoStart:!0},page_view_timing:{enabled:!0,harvestTimeSeconds:30,long_task:!1,autoStart:!0},session_trace:{enabled:!0,harvestTimeSeconds:10,autoStart:!0},harvest:{tooManyRequestsDelay:60},session_replay:{autoStart:!0,enabled:!1,harvestTimeSeconds:60,sampling_rate:50,error_sampling_rate:50,collect_fonts:!1,inline_images:!1,inline_stylesheet:!0,mask_all_inputs:!0,get mask_text_selector(){return e.mask_selector},set mask_text_selector(t){u(t)?e.mask_selector="".concat(t,",").concat(f):""===t||null===t?e.mask_selector=f:(0,l.Z)("An invalid session_replay.mask_selector was provided. '*' will be used.",t)},get block_class(){return"nr-block"},get ignore_class(){return"nr-ignore"},get mask_text_class(){return"nr-mask"},get block_selector(){return e.block_selector},set block_selector(t){u(t)?e.block_selector+=",".concat(t):""!==t&&(0,l.Z)("An invalid session_replay.block_selector was provided and will not be used",t)},get mask_input_options(){return e.mask_input_options},set mask_input_options(t){t&&"object"==typeof t?e.mask_input_options={...t,password:!0}:(0,l.Z)("An invalid session_replay.mask_input_option was provided and will not be used",t)}},spa:{enabled:!0,harvestTimeSeconds:10,autoStart:!0}}},p={},h="All configuration objects require an agent identifier!";function v(e){if(!e)throw new Error(h);if(!p[e])throw new Error("Configuration for ".concat(e," was never set"));return p[e]}function m(e,t){if(!e)throw new Error(h);p[e]=(0,i.D)(t,g());const r=(0,n.ek)(e);r&&(r.init=p[e])}function b(e,t){if(!e)throw new Error(h);var r=v(e);if(r){for(var n=t.split("."),i=0;i<n.length-1;i++)if("object"!=typeof(r=r[n[i]]))return;r=r[n[n.length-1]]}return r}const y={accountID:void 0,trustKey:void 0,agentID:void 0,licenseKey:void 0,applicationID:void 0,xpid:void 0},w={};function A(e){if(!e)throw new Error("All loader-config objects require an agent identifier!");if(!w[e])throw new Error("LoaderConfig for ".concat(e," was never set"));return w[e]}function _(e,t){if(!e)throw new Error("All loader-config objects require an agent identifier!");w[e]=(0,i.D)(t,y);const r=(0,n.ek)(e);r&&(r.loader_config=w[e])}const x=(0,n.mF)().o;var D=r(385),k=r(6818);const E={buildEnv:k.Re,customTransaction:void 0,disabled:!1,distMethod:k.gF,isolatedBacklog:!1,loaderType:void 0,maxBytes:3e4,offset:Math.floor(D._A?.performance?.timeOrigin||D._A?.performance?.timing?.navigationStart||Date.now()),onerror:void 0,origin:""+D._A.location,ptid:void 0,releaseIds:{},session:void 0,xhrWrappable:"function"==typeof D._A.XMLHttpRequest?.prototype?.addEventListener,version:k.q4,denyList:void 0},j={};function S(e){if(!e)throw new Error("All runtime objects require an agent identifier!");if(!j[e])throw new Error("Runtime for ".concat(e," was never set"));return j[e]}function R(e,t){if(!e)throw new Error("All runtime objects require an agent identifier!");j[e]=(0,i.D)(t,E);const r=(0,n.ek)(e);r&&(r.runtime=j[e])}function T(e){return function(e){try{const t=s(e);return!!t.licenseKey&&!!t.errorBeacon&&!!t.applicationID}catch(e){return!1}}(e)}},9567:(e,t,r)=>{"use strict";r.d(t,{D:()=>i});var n=r(50);function i(e,t){try{if(!e||"object"!=typeof e)return(0,n.Z)("Setting a Configurable requires an object as input");if(!t||"object"!=typeof t)return(0,n.Z)("Setting a Configurable requires a model to set its initial properties");const r=Object.create(Object.getPrototypeOf(t),Object.getOwnPropertyDescriptors(t)),a=0===Object.keys(r).length?e:r;for(let o in a)if(void 0!==e[o])try{Array.isArray(e[o])&&Array.isArray(t[o])?r[o]=Array.from(new Set([...e[o],...t[o]])):"object"==typeof e[o]&&"object"==typeof t[o]?r[o]=i(e[o],t[o]):r[o]=e[o]}catch(e){(0,n.Z)("An error occurred while setting a property of a Configurable",e)}return r}catch(e){(0,n.Z)("An error occured while setting a Configurable",e)}}},6818:(e,t,r)=>{"use strict";r.d(t,{Re:()=>i,gF:()=>a,q4:()=>n});const n="1.249.0",i="PROD",a="CDN"},385:(e,t,r)=>{"use strict";r.d(t,{Nk:()=>d,Tt:()=>s,_A:()=>a,cv:()=>l,iS:()=>o,il:()=>n,ux:()=>c,v6:()=>i,w1:()=>u});const n="undefined"!=typeof window&&!!window.document,i="undefined"!=typeof WorkerGlobalScope&&("undefined"!=typeof self&&self instanceof WorkerGlobalScope&&self.navigator instanceof WorkerNavigator||"undefined"!=typeof globalThis&&globalThis instanceof WorkerGlobalScope&&globalThis.navigator instanceof WorkerNavigator),a=n?window:"undefined"!=typeof WorkerGlobalScope&&("undefined"!=typeof self&&self instanceof WorkerGlobalScope&&self||"undefined"!=typeof globalThis&&globalThis instanceof WorkerGlobalScope&&globalThis),o=(a?.document?.readyState,Boolean("hidden"===a?.document?.visibilityState)),s=(a?.location,/iPad|iPhone|iPod/.test(a.navigator?.userAgent)),c=s&&"undefined"==typeof SharedWorker,u=((()=>{const e=a.navigator?.userAgent?.match(/Firefox[/\s](\d+\.\d+)/);Array.isArray(e)&&e.length>=2&&e[1]})(),Boolean(n&&window.document.documentMode)),d=!!a.navigator?.sendBeacon,l=Math.floor(a?.performance?.timeOrigin||a?.performance?.timing?.navigationStart||Date.now())},1117:(e,t,r)=>{"use strict";r.d(t,{w:()=>a});var n=r(50);const i={agentIdentifier:"",ee:void 0};class a{constructor(e){try{if("object"!=typeof e)return(0,n.Z)("shared context requires an object as input");this.sharedContext={},Object.assign(this.sharedContext,i),Object.entries(e).forEach((e=>{let[t,r]=e;Object.keys(i).includes(t)&&(this.sharedContext[t]=r)}))}catch(e){(0,n.Z)("An error occured while setting SharedContext",e)}}}},8e3:(e,t,r)=>{"use strict";r.d(t,{L:()=>d,R:()=>c});var n=r(8325),i=r(1284),a=r(4322),o=r(3325);const s={};function c(e,t){const r={staged:!1,priority:o.p[t]||0};u(e),s[e].get(t)||s[e].set(t,r)}function u(e){e&&(s[e]||(s[e]=new Map))}function d(){let e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:"",t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"feature";if(u(e),!e||!s[e].get(t))return o(t);s[e].get(t).staged=!0;const r=[...s[e]];function o(t){const r=e?n.ee.get(e):n.ee,o=a.X.handlers;if(r.backlog&&o){var s=r.backlog[t],c=o[t];if(c){for(var u=0;s&&u<s.length;++u)l(s[u],c);(0,i.D)(c,(function(e,t){(0,i.D)(t,(function(t,r){r[0].on(e,r[1])}))}))}delete o[t],r.backlog[t]=null,r.emit("drain-"+t,[])}}r.every((e=>{let[t,r]=e;return r.staged}))&&(r.sort(((e,t)=>e[1].priority-t[1].priority)),r.forEach((t=>{let[r]=t;s[e].delete(r),o(r)})))}function l(e,t){var r=e[1];(0,i.D)(t[r],(function(t,r){var n=e[0];if(r[0]===n){var i=r[1],a=e[3],o=e[2];i.apply(a,o)}}))}},8325:(e,t,r)=>{"use strict";r.d(t,{A:()=>c,ee:()=>u});var n=r(8632),i=r(2210),a=r(234);class o{constructor(e){this.contextId=e}}var s=r(3117);const c="nr@context:".concat(s.a),u=function e(t,r){var n={},s={},d={},f=!1;try{f=16===r.length&&(0,a.OP)(r).isolatedBacklog}catch(e){}var g={on:h,addEventListener:h,removeEventListener:function(e,t){var r=n[e];if(!r)return;for(var i=0;i<r.length;i++)r[i]===t&&r.splice(i,1)},emit:function(e,r,n,i,a){!1!==a&&(a=!0);if(u.aborted&&!i)return;t&&a&&t.emit(e,r,n);for(var o=p(n),c=v(e),d=c.length,l=0;l<d;l++)c[l].apply(o,r);var f=b()[s[e]];f&&f.push([g,e,r,o]);return o},get:m,listeners:v,context:p,buffer:function(e,t){const r=b();if(t=t||"feature",g.aborted)return;Object.entries(e||{}).forEach((e=>{let[n,i]=e;s[i]=t,t in r||(r[t]=[])}))},abort:l,aborted:!1,isBuffering:function(e){return!!b()[s[e]]},debugId:r,backlog:f?{}:t&&"object"==typeof t.backlog?t.backlog:{}};return g;function p(e){return e&&e instanceof o?e:e?(0,i.X)(e,c,(()=>new o(c))):new o(c)}function h(e,t){n[e]=v(e).concat(t)}function v(e){return n[e]||[]}function m(t){return d[t]=d[t]||e(g,t)}function b(){return g.backlog}}(void 0,"globalEE"),d=(0,n.fP)();function l(){u.aborted=!0,u.backlog={}}d.ee||(d.ee=u)},5546:(e,t,r)=>{"use strict";r.d(t,{E:()=>n,p:()=>i});var n=r(8325).ee.get("handle");function i(e,t,r,i,a){a?(a.buffer([e],i),a.emit(e,t,r)):(n.buffer([e],i),n.emit(e,t,r))}},4322:(e,t,r)=>{"use strict";r.d(t,{X:()=>a});var n=r(5546);a.on=o;var i=a.handlers={};function a(e,t,r,a){o(a||n.E,i,e,t,r)}function o(e,t,r,i,a){a||(a="feature"),e||(e=n.E);var o=t[a]=t[a]||{};(o[r]=o[r]||[]).push([e,i])}},3239:(e,t,r)=>{"use strict";r.d(t,{bP:()=>s,iz:()=>c,m$:()=>o});var n=r(385);let i=!1,a=!1;try{const e={get passive(){return i=!0,!1},get signal(){return a=!0,!1}};n._A.addEventListener("test",null,e),n._A.removeEventListener("test",null,e)}catch(e){}function o(e,t){return i||a?{capture:!!e,passive:i,signal:t}:!!e}function s(e,t){let r=arguments.length>2&&void 0!==arguments[2]&&arguments[2],n=arguments.length>3?arguments[3]:void 0;window.addEventListener(e,t,o(r,n))}function c(e,t){let r=arguments.length>2&&void 0!==arguments[2]&&arguments[2],n=arguments.length>3?arguments[3]:void 0;document.addEventListener(e,t,o(r,n))}},3117:(e,t,r)=>{"use strict";r.d(t,{a:()=>n});const n=(0,r(4402).Rl)()},4402:(e,t,r)=>{"use strict";r.d(t,{Rl:()=>o,ky:()=>s});var n=r(385);const i="xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx";function a(e,t){return e?15&e[t]:16*Math.random()|0}function o(){const e=n._A?.crypto||n._A?.msCrypto;let t,r=0;return e&&e.getRandomValues&&(t=e.getRandomValues(new Uint8Array(30))),i.split("").map((e=>"x"===e?a(t,r++).toString(16):"y"===e?(3&a()|8).toString(16):e)).join("")}function s(e){const t=n._A?.crypto||n._A?.msCrypto;let r,i=0;t&&t.getRandomValues&&(r=t.getRandomValues(new Uint8Array(e)));const o=[];for(var s=0;s<e;s++)o.push(a(r,++i).toString(16));return o.join("")}},7056:(e,t,r)=>{"use strict";r.d(t,{Bq:()=>n,Hb:()=>a,oD:()=>i});const n="NRBA",i=144e5,a=18e5},7894:(e,t,r)=>{"use strict";function n(){return Math.round(performance.now())}r.d(t,{z:()=>n})},50:(e,t,r)=>{"use strict";function n(e,t){"function"==typeof console.warn&&(console.warn("New Relic: ".concat(e)),t&&console.warn(t))}r.d(t,{Z:()=>n})},2825:(e,t,r)=>{"use strict";r.d(t,{N:()=>d,T:()=>l});var n=r(8325),i=r(5546),a=r(3325),o=r(385);const s="newrelic";const c={stn:[a.D.sessionTrace],err:[a.D.jserrors,a.D.metrics],ins:[a.D.pageAction],spa:[a.D.spa],sr:[a.D.sessionReplay,a.D.sessionTrace]},u=new Set;function d(e,t){const r=n.ee.get(t);e&&"object"==typeof e&&(u.has(t)||(Object.entries(e).forEach((e=>{let[t,n]=e;c[t]?c[t].forEach((e=>{n?(0,i.p)("feat-"+t,[],void 0,e,r):(0,i.p)("block-"+t,[],void 0,e,r),(0,i.p)("rumresp-"+t,[Boolean(n)],void 0,e,r)})):n&&(0,i.p)("feat-"+t,[],void 0,void 0,r),l[t]=Boolean(n)})),Object.keys(c).forEach((e=>{void 0===l[e]&&(c[e]?.forEach((t=>(0,i.p)("rumresp-"+e,[!1],void 0,t,r))),l[e]=!1)})),u.add(t),function(){let e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{};try{o._A.dispatchEvent(new CustomEvent(s,{detail:e}))}catch(e){}}({loaded:!0})))}const l={}},2210:(e,t,r)=>{"use strict";r.d(t,{X:()=>i});var n=Object.prototype.hasOwnProperty;function i(e,t,r){if(n.call(e,t))return e[t];var i=r();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,t,{value:i,writable:!0,enumerable:!1}),i}catch(e){}return e[t]=i,i}},1284:(e,t,r)=>{"use strict";r.d(t,{D:()=>n});const n=(e,t)=>Object.entries(e||{}).map((e=>{let[r,n]=e;return t(r,n)}))},4351:(e,t,r)=>{"use strict";r.d(t,{P:()=>a});var n=r(8325);const i=()=>{const e=new WeakSet;return(t,r)=>{if("object"==typeof r&&null!==r){if(e.has(r))return;e.add(r)}return r}};function a(e){try{return JSON.stringify(e,i())}catch(e){try{n.ee.emit("internal-error",[e])}catch(e){}}}},3960:(e,t,r)=>{"use strict";r.d(t,{KB:()=>o,b2:()=>a});var n=r(3239);function i(){return"undefined"==typeof document||"complete"===document.readyState}function a(e,t){if(i())return e();(0,n.bP)("load",e,t)}function o(e){if(i())return e();(0,n.iz)("DOMContentLoaded",e)}},8632:(e,t,r)=>{"use strict";r.d(t,{EZ:()=>d,ce:()=>a,ek:()=>u,fP:()=>o,gG:()=>l,h5:()=>c,mF:()=>s});var n=r(7894),i=r(385);const a={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net"};function o(){return i._A.NREUM||(i._A.NREUM={}),void 0===i._A.newrelic&&(i._A.newrelic=i._A.NREUM),i._A.NREUM}function s(){let e=o();return e.o||(e.o={ST:i._A.setTimeout,SI:i._A.setImmediate,CT:i._A.clearTimeout,XHR:i._A.XMLHttpRequest,REQ:i._A.Request,EV:i._A.Event,PR:i._A.Promise,MO:i._A.MutationObserver,FETCH:i._A.fetch}),e}function c(e,t){let r=o();r.initializedAgents??={},t.initializedAt={ms:(0,n.z)(),date:new Date},r.initializedAgents[e]=t}function u(e){let t=o();return t.initializedAgents?.[e]}function d(e,t){o()[e]=t}function l(){return function(){let e=o();const t=e.info||{};e.info={beacon:a.beacon,errorBeacon:a.errorBeacon,...t}}(),function(){let e=o();const t=e.init||{};e.init={...t}}(),s(),function(){let e=o();const t=e.loader_config||{};e.loader_config={...t}}(),o()}},7956:(e,t,r)=>{"use strict";r.d(t,{N:()=>i});var n=r(3239);function i(e){let t=arguments.length>1&&void 0!==arguments[1]&&arguments[1],r=arguments.length>2?arguments[2]:void 0,i=arguments.length>3?arguments[3]:void 0;(0,n.iz)("visibilitychange",(function(){if(t)return void("hidden"===document.visibilityState&&e());e(document.visibilityState)}),r,i)}},3081:(e,t,r)=>{"use strict";r.d(t,{gF:()=>a,mY:()=>i,t9:()=>n,vz:()=>s,xS:()=>o});const n=r(3325).D.metrics,i="sm",a="cm",o="storeSupportabilityMetrics",s="storeEventMetrics"},7633:(e,t,r)=>{"use strict";r.d(t,{t:()=>n});const n=r(3325).D.pageViewEvent},9251:(e,t,r)=>{"use strict";r.d(t,{t:()=>n});const n=r(3325).D.pageViewTiming},5938:(e,t,r)=>{"use strict";r.d(t,{W:()=>i});var n=r(8325);class i{constructor(e,t,r){this.agentIdentifier=e,this.aggregator=t,this.ee=n.ee.get(e),this.featureName=r,this.blocked=!1}}},7530:(e,t,r)=>{"use strict";r.d(t,{j:()=>b});var n=r(3325),i=r(234),a=r(5546),o=r(8325),s=r(7894),c=r(8e3),u=r(3960),d=r(385),l=r(50),f=r(3081),g=r(8632);function p(){const e=(0,g.gG)();["setErrorHandler","finished","addToTrace","addRelease","addPageAction","setCurrentRouteName","setPageViewName","setCustomAttribute","interaction","noticeError","setUserId","setApplicationVersion","start","recordReplay","pauseReplay"].forEach((t=>{e[t]=function(){for(var r=arguments.length,n=new Array(r),i=0;i<r;i++)n[i]=arguments[i];return function(t){for(var r=arguments.length,n=new Array(r>1?r-1:0),i=1;i<r;i++)n[i-1]=arguments[i];let a=[];return Object.values(e.initializedAgents).forEach((e=>{e.exposed&&e.api[t]&&a.push(e.api[t](...n))})),a.length>1?a:a[0]}(t,...n)}}))}var h=r(2825);const v=e=>{const t=e.startsWith("http");e+="/",r.p=t?e:"https://"+e};let m=!1;function b(e){let t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},b=arguments.length>2?arguments[2]:void 0,y=arguments.length>3?arguments[3]:void 0,{init:w,info:A,loader_config:_,runtime:x={loaderType:b},exposed:D=!0}=t;const k=(0,g.gG)();A||(w=k.init,A=k.info,_=k.loader_config),(0,i.Dg)(e.agentIdentifier,w||{}),(0,i.GE)(e.agentIdentifier,_||{}),A.jsAttributes??={},d.v6&&(A.jsAttributes.isWorker=!0),(0,i.CX)(e.agentIdentifier,A);const E=(0,i.P_)(e.agentIdentifier),j=[A.beacon,A.errorBeacon];m||(E.proxy.assets&&(v(E.proxy.assets),j.push(E.proxy.assets)),E.proxy.beacon&&j.push(E.proxy.beacon),p(),(0,g.EZ)("activatedFeatures",h.T)),x.denyList=[...E.ajax.deny_list||[],...E.ajax.block_internal?j:[]],(0,i.sU)(e.agentIdentifier,x),void 0===e.api&&(e.api=function(e,t){t||(0,c.R)(e,"api");const g={};var p=o.ee.get(e),h=p.get("tracer"),v="api-",m=v+"ixn-";function b(t,r,n,a){const o=(0,i.C5)(e);return null===r?delete o.jsAttributes[t]:(0,i.CX)(e,{...o,jsAttributes:{...o.jsAttributes,[t]:r}}),A(v,n,!0,a||null===r?"session":void 0)(t,r)}function y(){}["setErrorHandler","finished","addToTrace","addRelease"].forEach((e=>{g[e]=A(v,e,!0,"api")})),g.addPageAction=A(v,"addPageAction",!0,n.D.pageAction),g.setCurrentRouteName=A(v,"routeName",!0,n.D.spa),g.setPageViewName=function(t,r){if("string"==typeof t)return"/"!==t.charAt(0)&&(t="/"+t),(0,i.OP)(e).customTransaction=(r||"http://custom.transaction")+t,A(v,"setPageViewName",!0)()},g.setCustomAttribute=function(e,t){let r=arguments.length>2&&void 0!==arguments[2]&&arguments[2];if("string"==typeof e){if(["string","number","boolean"].includes(typeof t)||null===t)return b(e,t,"setCustomAttribute",r);(0,l.Z)("Failed to execute setCustomAttribute.\nNon-null value must be a string, number or boolean type, but a type of <".concat(typeof t,"> was provided."))}else(0,l.Z)("Failed to execute setCustomAttribute.\nName must be a string type, but a type of <".concat(typeof e,"> was provided."))},g.setUserId=function(e){if("string"==typeof e||null===e)return b("enduser.id",e,"setUserId",!0);(0,l.Z)("Failed to execute setUserId.\nNon-null value must be a string type, but a type of <".concat(typeof e,"> was provided."))},g.setApplicationVersion=function(e){if("string"==typeof e||null===e)return b("application.version",e,"setApplicationVersion",!1);(0,l.Z)("Failed to execute setApplicationVersion. Expected <String | null>, but got <".concat(typeof e,">."))},g.start=e=>{try{const t=e?"defined":"undefined";(0,a.p)(f.xS,["API/start/".concat(t,"/called")],void 0,n.D.metrics,p);const r=Object.values(n.D);if(void 0===e)e=r;else{if((e=Array.isArray(e)&&e.length?e:[e]).some((e=>!r.includes(e))))return(0,l.Z)("Invalid feature name supplied. Acceptable feature names are: ".concat(r));e.includes(n.D.pageViewEvent)||e.push(n.D.pageViewEvent)}e.forEach((e=>{p.emit("".concat(e,"-opt-in"))}))}catch(e){(0,l.Z)("An unexpected issue occurred",e)}},g.recordReplay=function(){(0,a.p)(f.xS,["API/recordReplay/called"],void 0,n.D.metrics,p),(0,a.p)("recordReplay",[],void 0,n.D.sessionReplay,p)},g.pauseReplay=function(){(0,a.p)(f.xS,["API/pauseReplay/called"],void 0,n.D.metrics,p),(0,a.p)("pauseReplay",[],void 0,n.D.sessionReplay,p)},g.interaction=function(){return(new y).get()};var w=y.prototype={createTracer:function(e,t){var r={},i=this,o="function"==typeof t;return(0,a.p)(f.xS,["API/createTracer/called"],void 0,n.D.metrics,p),(0,a.p)(m+"tracer",[(0,s.z)(),e,r],i,n.D.spa,p),function(){if(h.emit((o?"":"no-")+"fn-start",[(0,s.z)(),i,o],r),o)try{return t.apply(this,arguments)}catch(e){throw h.emit("fn-err",[arguments,this,e],r),e}finally{h.emit("fn-end",[(0,s.z)()],r)}}}};function A(e,t,r,i){return function(){return(0,a.p)(f.xS,["API/"+t+"/called"],void 0,n.D.metrics,p),i&&(0,a.p)(e+t,[(0,s.z)(),...arguments],r?null:this,i,p),r?void 0:this}}function _(){r.e(75).then(r.bind(r,7438)).then((t=>{let{setAPI:r}=t;r(e),(0,c.L)(e,"api")})).catch((()=>(0,l.Z)("Downloading runtime APIs failed...")))}return["actionText","setName","setAttribute","save","ignore","onEnd","getContext","end","get"].forEach((e=>{w[e]=A(m,e,void 0,n.D.spa)})),g.noticeError=function(e,t){"string"==typeof e&&(e=new Error(e)),(0,a.p)(f.xS,["API/noticeError/called"],void 0,n.D.metrics,p),(0,a.p)("err",[e,(0,s.z)(),!1,t],void 0,n.D.jserrors,p)},d.il?(0,u.b2)((()=>_()),!0):_(),g}(e.agentIdentifier,y)),void 0===e.exposed&&(e.exposed=D),m=!0}},1926:(e,t,r)=>{r.nc=(()=>{try{return document?.currentScript?.nonce}catch(e){}return""})()},3325:(e,t,r)=>{"use strict";r.d(t,{D:()=>n,p:()=>i});const n={ajax:"ajax",jserrors:"jserrors",metrics:"metrics",pageAction:"page_action",pageViewEvent:"page_view_event",pageViewTiming:"page_view_timing",sessionReplay:"session_replay",sessionTrace:"session_trace",spa:"spa"},i={[n.pageViewEvent]:1,[n.pageViewTiming]:2,[n.metrics]:3,[n.jserrors]:4,[n.ajax]:5,[n.sessionTrace]:6,[n.pageAction]:7,[n.spa]:8,[n.sessionReplay]:9}}},n={};function i(e){var t=n[e];if(void 0!==t)return t.exports;var a=n[e]={exports:{}};return r[e](a,a.exports,i),a.exports}i.m=r,i.d=(e,t)=>{for(var r in t)i.o(t,r)&&!i.o(e,r)&&Object.defineProperty(e,r,{enumerable:!0,get:t[r]})},i.f={},i.e=e=>Promise.all(Object.keys(i.f).reduce(((t,r)=>(i.f[r](e,t),t)),[])),i.u=e=>"nr-rum-1.249.0.min.js",i.o=(e,t)=>Object.prototype.hasOwnProperty.call(e,t),e={},t="NRBA-1.249.0.PROD:",i.l=(r,n,a,o)=>{if(e[r])e[r].push(n);else{var s,c;if(void 0!==a)for(var u=document.getElementsByTagName("script"),d=0;d<u.length;d++){var l=u[d];if(l.getAttribute("src")==r||l.getAttribute("data-webpack")==t+a){s=l;break}}if(!s){c=!0;var f={75:"sha512-HcXyAuaRbdfES7GuZJPwimpBfHQYAggUt+9f7v0xmtqSP1pSPK/chshT+kmNNfPfvD1QbPyikVNC4frs8IQYkw=="};(s=document.createElement("script")).charset="utf-8",s.timeout=120,i.nc&&s.setAttribute("nonce",i.nc),s.setAttribute("data-webpack",t+a),s.src=r,0!==s.src.indexOf(window.location.origin+"/")&&(s.crossOrigin="anonymous"),f[o]&&(s.integrity=f[o])}e[r]=[n];var g=(t,n)=>{s.onerror=s.onload=null,clearTimeout(p);var i=e[r];if(delete e[r],s.parentNode&&s.parentNode.removeChild(s),i&&i.forEach((e=>e(n))),t)return t(n)},p=setTimeout(g.bind(null,void 0,{type:"timeout",target:s}),12e4);s.onerror=g.bind(null,s.onerror),s.onload=g.bind(null,s.onload),c&&document.head.appendChild(s)}},i.r=e=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},i.p="https://js-agent.newrelic.com/",(()=>{var e={50:0,832:0};i.f.j=(t,r)=>{var n=i.o(e,t)?e[t]:void 0;if(0!==n)if(n)r.push(n[2]);else{var a=new Promise(((r,i)=>n=e[t]=[r,i]));r.push(n[2]=a);var o=i.p+i.u(t),s=new Error;i.l(o,(r=>{if(i.o(e,t)&&(0!==(n=e[t])&&(e[t]=void 0),n)){var a=r&&("load"===r.type?"missing":r.type),o=r&&r.target&&r.target.src;s.message="Loading chunk "+t+" failed.\n("+a+": "+o+")",s.name="ChunkLoadError",s.type=a,s.request=o,n[1](s)}}),"chunk-"+t,t)}};var t=(t,r)=>{var n,a,[o,s,c]=r,u=0;if(o.some((t=>0!==e[t]))){for(n in s)i.o(s,n)&&(i.m[n]=s[n]);if(c)c(i)}for(t&&t(r);u<o.length;u++)a=o[u],i.o(e,a)&&e[a]&&e[a][0](),e[a]=0},r=self["webpackChunk:NRBA-1.249.0.PROD"]=self["webpackChunk:NRBA-1.249.0.PROD"]||[];r.forEach(t.bind(null,0)),r.push=t.bind(null,r.push.bind(r))})(),(()=>{"use strict";i(1926);var e=i(50);class t{#e(e){return"Call to agent api ".concat(e," failed. The agent is not currently initialized.")}addPageAction(t,r){(0,e.Z)(this.#e("addPageAction"))}setPageViewName(t,r){(0,e.Z)(this.#e("setPageViewName"))}setCustomAttribute(t,r,n){(0,e.Z)(this.#e("setCustomAttribute"))}noticeError(t,r){(0,e.Z)(this.#e("noticeError"))}setUserId(t){(0,e.Z)(this.#e("setUserId"))}setApplicationVersion(t){(0,e.Z)(this.#e("setApplicationVersion"))}setErrorHandler(t){(0,e.Z)(this.#e("setErrorHandler"))}finished(t){(0,e.Z)(this.#e("finished"))}addRelease(t,r){(0,e.Z)(this.#e("addRelease"))}start(t){(0,e.Z)(this.#e("start"))}recordReplay(){(0,e.Z)(this.#e("recordReplay"))}pauseReplay(){(0,e.Z)(this.#e("pauseReplay"))}}var r=i(3325),n=i(234);const a=Object.values(r.D);function o(e){const t={};return a.forEach((r=>{t[r]=function(e,t){return!1!==(0,n.Mt)(t,"".concat(e,".enabled"))}(r,e)})),t}var s=i(7530);var c=i(8e3),u=i(5938),d=i(3960),l=i(385);class f extends u.W{constructor(e,t,r){let i=!(arguments.length>3&&void 0!==arguments[3])||arguments[3];super(e,t,r),this.auto=i,this.abortHandler=void 0,this.featAggregate=void 0,this.onAggregateImported=void 0,!1===(0,n.Mt)(this.agentIdentifier,"".concat(this.featureName,".autoStart"))&&(this.auto=!1),this.auto&&(0,c.R)(e,r)}importAggregator(){let t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{};if(this.featAggregate)return;if(!this.auto)return void this.ee.on("".concat(this.featureName,"-opt-in"),(()=>{(0,c.R)(this.agentIdentifier,this.featureName),this.auto=!0,this.importAggregator()}));const r=l.il&&!0===(0,n.Mt)(this.agentIdentifier,"privacy.cookies_enabled");let a;this.onAggregateImported=new Promise((e=>{a=e}));const o=async()=>{let n;try{if(r){const{setupAgentSession:e}=await i.e(75).then(i.bind(i,3228));n=e(this.agentIdentifier)}}catch(t){(0,e.Z)("A problem occurred when starting up session manager. This page will not start or extend any session.",t)}try{if(!this.shouldImportAgg(this.featureName,n))return(0,c.L)(this.agentIdentifier,this.featureName),void a(!1);const{lazyFeatureLoader:e}=await i.e(75).then(i.bind(i,8582)),{Aggregate:r}=await e(this.featureName,"aggregate");this.featAggregate=new r(this.agentIdentifier,this.aggregator,t),a(!0)}catch(t){(0,e.Z)("Downloading and initializing ".concat(this.featureName," failed..."),t),this.abortHandler?.(),(0,c.L)(this.agentIdentifier,this.featureName),a(!1)}};l.il?(0,d.b2)((()=>o()),!0):o()}shouldImportAgg(e,t){return e!==r.D.sessionReplay||!!n.Yu.MO&&(!1!==(0,n.Mt)(this.agentIdentifier,"session_trace.enabled")&&(!!t?.isNew||!!t?.state.sessionReplayMode))}}var g=i(7633);class p extends f{static featureName=g.t;constructor(e,t){let r=!(arguments.length>2&&void 0!==arguments[2])||arguments[2];super(e,t,g.t,r),this.importAggregator()}}var h=i(1117),v=i(1284);class m extends h.w{constructor(e){super(e),this.aggregatedData={}}store(e,t,r,n,i){var a=this.getBucket(e,t,r,i);return a.metrics=function(e,t){t||(t={count:0});return t.count+=1,(0,v.D)(e,(function(e,r){t[e]=b(r,t[e])})),t}(n,a.metrics),a}merge(e,t,r,n,i){var a=this.getBucket(e,t,n,i);if(a.metrics){var o=a.metrics;o.count+=r.count,(0,v.D)(r,(function(e,t){if("count"!==e){var n=o[e],i=r[e];i&&!i.c?o[e]=b(i.t,n):o[e]=function(e,t){if(!t)return e;t.c||(t=y(t.t));return t.min=Math.min(e.min,t.min),t.max=Math.max(e.max,t.max),t.t+=e.t,t.sos+=e.sos,t.c+=e.c,t}(i,o[e])}}))}else a.metrics=r}storeMetric(e,t,r,n){var i=this.getBucket(e,t,r);return i.stats=b(n,i.stats),i}getBucket(e,t,r,n){this.aggregatedData[e]||(this.aggregatedData[e]={});var i=this.aggregatedData[e][t];return i||(i=this.aggregatedData[e][t]={params:r||{}},n&&(i.custom=n)),i}get(e,t){return t?this.aggregatedData[e]&&this.aggregatedData[e][t]:this.aggregatedData[e]}take(e){for(var t={},r="",n=!1,i=0;i<e.length;i++)t[r=e[i]]=w(this.aggregatedData[r]),t[r].length&&(n=!0),delete this.aggregatedData[r];return n?t:null}}function b(e,t){return null==e?function(e){e?e.c++:e={c:1};return e}(t):t?(t.c||(t=y(t.t)),t.c+=1,t.t+=e,t.sos+=e*e,e>t.max&&(t.max=e),e<t.min&&(t.min=e),t):{t:e}}function y(e){return{t:e,min:e,max:e,sos:e*e,c:1}}function w(e){return"object"!=typeof e?[]:(0,v.D)(e,A)}function A(e,t){return t}var _=i(8632),x=i(4402),D=i(4351);var k=i(5546),E=i(7956),j=i(3239),S=i(7894),R=i(9251);class T extends f{static featureName=R.t;constructor(e,t){let r=!(arguments.length>2&&void 0!==arguments[2])||arguments[2];super(e,t,R.t,r),l.il&&((0,E.N)((()=>(0,k.p)("docHidden",[(0,S.z)()],void 0,R.t,this.ee)),!0),(0,j.bP)("pagehide",(()=>(0,k.p)("winPagehide",[(0,S.z)()],void 0,R.t,this.ee))),this.importAggregator())}}var I=i(3081);class N extends f{static featureName=I.t9;constructor(e,t){let r=!(arguments.length>2&&void 0!==arguments[2])||arguments[2];super(e,t,I.t9,r),this.importAggregator()}}new class extends t{constructor(t){let r=arguments.length>1&&void 0!==arguments[1]?arguments[1]:(0,x.ky)(16);super(),l._A?(this.agentIdentifier=r,this.sharedAggregator=new m({agentIdentifier:this.agentIdentifier}),this.features={},(0,_.h5)(r,this),this.desiredFeatures=new Set(t.features||[]),this.desiredFeatures.add(p),(0,s.j)(this,t,t.loaderType||"agent"),this.run()):(0,e.Z)("Failed to initial the agent. Could not determine the runtime environment.")}get config(){return{info:(0,n.C5)(this.agentIdentifier),init:(0,n.P_)(this.agentIdentifier),loader_config:(0,n.DL)(this.agentIdentifier),runtime:(0,n.OP)(this.agentIdentifier)}}run(){try{const t=o(this.agentIdentifier),n=[...this.desiredFeatures];n.sort(((e,t)=>r.p[e.featureName]-r.p[t.featureName])),n.forEach((n=>{if(t[n.featureName]||n.featureName===r.D.pageViewEvent){const i=function(e){switch(e){case r.D.ajax:return[r.D.jserrors];case r.D.sessionTrace:return[r.D.ajax,r.D.pageViewEvent];case r.D.sessionReplay:return[r.D.sessionTrace];case r.D.pageViewTiming:return[r.D.pageViewEvent];default:return[]}}(n.featureName);i.every((e=>t[e]))||(0,e.Z)("".concat(n.featureName," is enabled but one or more dependent features has been disabled (").concat((0,D.P)(i),"). This may cause unintended consequences or missing data...")),this.features[n.featureName]=new n(this.agentIdentifier,this.sharedAggregator)}}))}catch(t){(0,e.Z)("Failed to initialize all enabled instrument classes (agent aborted) -",t);for(const e in this.features)this.features[e].abortHandler?.();const r=(0,_.fP)();return delete r.initializedAgents[this.agentIdentifier]?.api,delete r.initializedAgents[this.agentIdentifier]?.features,delete this.sharedAggregator,r.ee?.abort(),delete r.ee?.get(this.agentIdentifier),!1}}addToTrace(t){(0,e.Z)("Call to agent api addToTrace failed. The session trace feature is not currently initialized.")}setCurrentRouteName(t){(0,e.Z)("Call to agent api setCurrentRouteName failed. The spa feature is not currently initialized.")}interaction(){(0,e.Z)("Call to agent api interaction failed. The spa feature is not currently initialized.")}}({features:[p,T,N],loaderType:"lite"})})()})();</script>
+<style id="gutenberg-palette">:root .has-primary-black-color{color:#000000}:root .has-primary-black-background-color{background-color:#000000}:root .has-primary-white-color{color:#FFFFFF}:root .has-primary-white-background-color{background-color:#FFFFFF}:root .has-clay-color{color:#D74E26}:root .has-clay-background-color{background-color:#D74E26}:root .has-plant-color{color:#2BC275}:root .has-plant-background-color{background-color:#2BC275}:root .has-iris-color{color:#5F60FF}:root .has-iris-background-color{background-color:#5F60FF}:root .has-gold-color{color:#FFC21A}:root .has-gold-background-color{background-color:#FFC21A}:root .has-dark-slate-color{color:#666666}:root .has-dark-slate-background-color{background-color:#666666}:root .has-light-slate-color{color:#CCCCCC}:root .has-light-slate-background-color{background-color:#CCCCCC}:root .has-slate-100-color{color:#F9F9F9}:root .has-slate-100-background-color{background-color:#F9F9F9}:root .has-slate-200-color{color:#DEDEDE}:root .has-slate-200-background-color{background-color:#DEDEDE}:root .has-slate-400-color{color:#BFBFBF}:root .has-slate-400-background-color{background-color:#BFBFBF}:root .has-slate-600-color{color:#333333}:root .has-slate-600-background-color{background-color:#333333}:root .has-slate-700-color{color:#212121}:root .has-slate-700-background-color{background-color:#212121}:root .has-slate-800-color{color:#161616}:root .has-slate-800-background-color{background-color:#161616}</style>
+<link rel="canonical" href="https://www.autodesk.com/autodesk-university/" />
+<link rel="shortlink" href="https://www.autodesk.com/autodesk-university/" />
+<meta name="Generator" content="Drupal 9 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="/autodesk-university/profiles/auonline/themes/custom/auo_theme/autodesk-symbol-32x32.svg" type="image/svg+xml" />
+<link rel="alternate" hreflang="en" href="https://www.autodesk.com/autodesk-university/" />
+
+    <title>Homepage | Autodesk University</title>
+    <link rel="stylesheet" media="all" href="/autodesk-university/sites/default/files/auo2/css/css_uplHRE5IVFhtFfGz7OXoETqYvdyrmUOdj61Ysc6bsmc.css" />
+<link rel="stylesheet" media="all" href="/autodesk-university/sites/default/files/auo2/css/css_SUMnhxZ5nNJ4ceY3WrpU8KMC-tQkPGvX1Tl4gxFhz5k.css" />
+
+    
+  </head>
+  <body>
+        <a href="#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    <div id="page" data-wat-link-section="page-content">
+  <!-- Header -->
+  <header id="header" class="header" role="banner" aria-label="Site header">
+            <div>
+    <div id="block-auo-theme-header-menu">
+  
+    
+      <section>
+  <div class="au-text-base site-header">
+    <div class="au-bg-black site-header__top-row">
+      <div class="menu-top-bar au-flex au-justify-between au-container au-py-2.5 au-h-[56px]">
+        <div class="menu-top-left au-flex au-items-center au-relative">
+          <div class="toggle-nav-wrapper au-flex au-items-center lg:au-hidden">
+            <button class="toggle-nav" aria-label="Toggle primary navigation">
+              <svg xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                height="24"
+                width="24">
+                <path stroke="#fff"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.505"
+                  d="M3 5h18M3 12h18M3 19h18"
+                  class="toggle-icon au-mr-3.5" />
+              </svg>
+            </button>
+          </div>
+          <a href="/"
+            class="au-flex au-absolute lg:au-static au-left-[50px] site-header__logo">
+            <img src="https://damassets.autodesk.net/content/dam/autodesk/logos/autodesk-logo-wht.svg"
+              class="au-w-[124px]"
+              alt="Autodesk Home Page" />
+          </a>
+        </div>
+
+        <div class="menu-top-right au-flex au-w-[100%] lg:au-w-auto">
+          <div class="au-search au-search--mobile au-w-[100%] au-flex au-justify-end au-items-center lg:au-hidden">
+            <div class="au-menu-item search-menu-item au-flex au-justify-end">
+              <a href="https://www.autodesk.com/autodesk-university/search" class="m-search-menu-item">
+                <span></span>
+              </a>
+              <form method="get"
+                action="https://www.autodesk.com/autodesk-university/search"
+                class="head-search-form au-flex au-justify-start lg:au-mr-10 au-w-[25px] lg:au-h-auto au-overflow-hidden au-z-1">
+                <label class="head-search-ico au-cursor-pointer">
+                  <input type="submit" name="" class="au-hidden" />
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M19.9996 18.3557C19.9846 18.5897 19.8848 18.8103 19.7189 18.9762L19.037 19.6969C18.882 19.8697 18.6669 19.9771 18.4354 19.9971C18.3869 20.004 18.3376 19.9985 18.2919 19.9809C18.2463 19.9634 18.2059 19.9345 18.1746 19.897L13.1408 15.1129L13.0606 15.173C11.5248 16.2279 9.67904 16.7384 7.81832 16.623C5.95759 16.5076 4.18935 15.7729 2.79622 14.5364C1.4031 13.2998 0.465526 11.6328 0.133371 9.80176C-0.198785 7.97075 0.0936546 6.08144 0.963944 4.43584C1.83423 2.79025 3.23213 1.48336 4.93418 0.724091C6.63623 -0.035181 8.54418 -0.203003 10.353 0.247446C12.1619 0.697895 13.7673 1.74061 14.9125 3.20892C16.0577 4.67724 16.6767 6.48637 16.6705 8.34715C16.6779 10.1022 16.1227 11.8136 15.0862 13.2313L15.026 13.3114L15.0461 13.4715L19.8994 18.0755C19.968 18.1523 20.004 18.2528 19.9996 18.3557ZM2.35122 8.34715C2.35122 9.52297 2.70055 10.6724 3.35504 11.6501C4.00953 12.6277 4.93979 13.3897 6.02817 13.8397C7.11655 14.2897 8.31417 14.4074 9.46959 14.178C10.625 13.9486 11.6863 13.3824 12.5193 12.551C13.3523 11.7195 13.9196 10.6602 14.1495 9.50698C14.3793 8.35374 14.2613 7.15839 13.8105 6.07206C13.3597 4.98574 12.5962 4.05725 11.6167 3.40399C10.6372 2.75074 9.48562 2.40207 8.30756 2.40207C6.72895 2.40566 5.21602 3.03317 4.09977 4.14731C2.98352 5.26145 2.35482 6.77152 2.35122 8.34715Z" fill="#F3F3F3"/>
+</svg>
+
+                </label>
+                <input type="text"
+                  name="query"
+                  required
+                  placeholder=""
+                  class="search-input au-bg-black au-ml-2 au-px-2 au-text-white" />
+              </form>
+            </div>
+          </div>
+          <div class="au-lang-switcher au-flex au-items-center">
+            <a class="global-header__language-switcher" href="#">
+              <div class="global-header__globe-icon">
+                <svg viewBox="0 0 24 24">
+                  <path stroke="#fff"
+                    stroke-linejoin="round"
+                    stroke-width="1.3"
+                    d="M22 12H2m20 0c0-1.821-.487-3.53-1.338-5M22 12c0 1.821-.487 3.53-1.338 5M12 22V2m0 20c11.5-10 0-20 0-20m0 20C.5 12 12 2 12 2m0 20a9.996 9.996 0 0 0 8.662-5M12 22a9.996 9.996 0 0 1-8.662-5M2 12c0-1.821.487-3.53 1.338-5M2 12c0 1.821.487 3.53 1.338 5M12 2a9.996 9.996 0 0 1 8.662 5M12 2a9.996 9.996 0 0 0-8.662 5m17.324 0H3.338m17.324 10H3.338" />
+                </svg>
+              </div>
+            </a>
+            <ul class="language-switcher-language-page-ct"><li hreflang="en" data-drupal-link-system-path="node/18" class="is-active"><a href="/autodesk-university/node/18" class="language-link is-active" hreflang="en" data-drupal-link-system-path="node/18">English</a></li><li hreflang="de" data-drupal-link-system-path="node/31"><a href="/autodesk-university/de/node/31" class="language-link" hreflang="de" data-drupal-link-system-path="node/31">Deutsch</a></li><li hreflang="ja" data-drupal-link-system-path="node/32"><a href="/autodesk-university/ja/node/32" class="language-link" hreflang="ja" data-drupal-link-system-path="node/32">日本語</a></li><li hreflang="fr" data-drupal-link-system-path="node/30"><a href="/autodesk-university/fr/node/30" class="language-link" hreflang="fr" data-drupal-link-system-path="node/30">Français</a></li><li hreflang="es" data-drupal-link-system-path="node/28"><a href="/autodesk-university/es/node/28" class="language-link" hreflang="es" data-drupal-link-system-path="node/28">Español</a></li><li hreflang="zh-hans" data-drupal-link-system-path="node/34"><a href="/autodesk-university/zh-hans/node/34" class="language-link" hreflang="zh-hans" data-drupal-link-system-path="node/34">简体中文</a></li><li hreflang="ko" data-drupal-link-system-path="node/33"><a href="/autodesk-university/ko/node/33" class="language-link" hreflang="ko" data-drupal-link-system-path="node/33">한국어</a></li></ul>
+          </div>
+          <div class="global-header__user-menu au-flex au-items-center">
+            <div  class="aufeComponent usermenu"
+  data-component="UserMenu"
+  >
+</div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="au-menu-container">
+      <div class="menu-top-left au-hidden">
+        <button class="lg:au-hidden toggle-nav"
+          aria-label="Toggle primary navigation">
+          <svg xmlns="http://www.w3.org/2000/svg"
+            width="17"
+            height="17"
+            viewBox="0 0 16 16"
+            class="close-icon au-mr-3.5">
+            <path fill="#4d4d4d"
+              d="M16 .9l-.8-.9L8 7.2.8 0 0 .9 7.2 8 0 15.1l.8.9L8 8.8l7.2 7.2.8-.9L8.8 8z"></path>
+          </svg>
+        </button>
+        <a href="/" class="au-flex">
+          <img src="https://damassets.autodesk.net/content/dam/autodesk/logos/autodesk-logo-blk.svg"
+            class="au-w-[124px]"
+            alt="Autodesk Home Page" />
+        </a>
+      </div>
+
+      <div class="au-nav-container lg:au-bg-black au-text-white au-py-[5px] au-hidden lg:au-block">
+        <div class="au-flex au-flex-col lg:au-flex-row au-justify-between au-container lg:au-relative">
+          <div class="au-flex au-flex-col lg:au-flex-row lg:au-items-center au-nav-container__left lg:au-flex-shrink-0">
+            <div class="au-menu-item">
+              <a href="/autodesk-university/"
+                class="au-flex au-items-center au-nav-aulink">
+                <span>Autodesk University</span>
+              </a>
+            </div>
+
+            <ul class="au-flex au-flex-col lg:au-flex-row">
+                              <li class="au-menu-item">
+                                    <a href="https://conferences.autodesk.com/flow/autodesk/au2023/web/page/overview" class="au-text-white au-flex lg:au-ml-8 au-group au-relative">                    AU 2023 Overview
+                    <span class="au-hidden lg:group-hover:au-flex au-absolute au-bottom-[-4px] au-left-0 au-h-[2px] au-w-full au-bg-white au-bg-opacity-80">
+
+                    </span>
+                  </a>
+                </li>
+                              <li class="au-menu-item">
+                                    <a href="https://www.autodesk.com/autodesk-university/search" class="au-text-white au-flex lg:au-ml-8 au-group au-relative">                    On-demand sessions
+                    <span class="au-hidden lg:group-hover:au-flex au-absolute au-bottom-[-4px] au-left-0 au-h-[2px] au-w-full au-bg-white au-bg-opacity-80">
+
+                    </span>
+                  </a>
+                </li>
+                          </ul>
+          </div>
+
+          <div class="au-flex au-flex-col lg:au-flex-row lg:au-items-center lg:au-w-[100%] lg:au-justify-end au-relative">
+            <div class="au-menu-item search-menu-item lg:au-w-[60px] au-search-bar">
+              <a href="https://www.autodesk.com/autodesk-university/search"
+                class="lg:au-hidden m-search-menu-item lg:au-w-[100%] lg:au-justify-end lg:au-flex">
+                <span></span>
+              </a>
+              <form method="get"
+                action="https://www.autodesk.com/autodesk-university/search"
+                class="head-search-form au-flex au-justify-start lg:au-mr-10 au-h-0 lg:au-h-auto au-overflow-hidden">
+                <label class="head-search-ico au-cursor-pointer">
+                  <input type="submit" name="" class="au-hidden" />
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M19.9996 18.3557C19.9846 18.5897 19.8848 18.8103 19.7189 18.9762L19.037 19.6969C18.882 19.8697 18.6669 19.9771 18.4354 19.9971C18.3869 20.004 18.3376 19.9985 18.2919 19.9809C18.2463 19.9634 18.2059 19.9345 18.1746 19.897L13.1408 15.1129L13.0606 15.173C11.5248 16.2279 9.67904 16.7384 7.81832 16.623C5.95759 16.5076 4.18935 15.7729 2.79622 14.5364C1.4031 13.2998 0.465526 11.6328 0.133371 9.80176C-0.198785 7.97075 0.0936546 6.08144 0.963944 4.43584C1.83423 2.79025 3.23213 1.48336 4.93418 0.724091C6.63623 -0.035181 8.54418 -0.203003 10.353 0.247446C12.1619 0.697895 13.7673 1.74061 14.9125 3.20892C16.0577 4.67724 16.6767 6.48637 16.6705 8.34715C16.6779 10.1022 16.1227 11.8136 15.0862 13.2313L15.026 13.3114L15.0461 13.4715L19.8994 18.0755C19.968 18.1523 20.004 18.2528 19.9996 18.3557ZM2.35122 8.34715C2.35122 9.52297 2.70055 10.6724 3.35504 11.6501C4.00953 12.6277 4.93979 13.3897 6.02817 13.8397C7.11655 14.2897 8.31417 14.4074 9.46959 14.178C10.625 13.9486 11.6863 13.3824 12.5193 12.551C13.3523 11.7195 13.9196 10.6602 14.1495 9.50698C14.3793 8.35374 14.2613 7.15839 13.8105 6.07206C13.3597 4.98574 12.5962 4.05725 11.6167 3.40399C10.6372 2.75074 9.48562 2.40207 8.30756 2.40207C6.72895 2.40566 5.21602 3.03317 4.09977 4.14731C2.98352 5.26145 2.35482 6.77152 2.35122 8.34715Z" fill="#F3F3F3"/>
+</svg>
+
+                </label>
+                <input type="text"
+                  name="query"
+                  required
+                  placeholder=""
+                  class="search-input au-bg-black au-ml-2 au-px-2 au-text-white" />
+              </form>
+            </div>
+            <div class="au-self-center au-hidden lg:au-block lg:au-flex-shrink-0">
+              <a href="https://www.autodesk.com/autodesk-university/search?fields.year=2023"
+                class="button__link au-py-[5px] au-pl-[13px] au-pr-12 au-rounded-sm au-text-sm au-flex au-items-center">
+                Watch AU 2023
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  </div>
+
+  </div>
+
+      </header>
+
+  <!-- Main -->
+  <div id="main-wrapper" class="">
+          <div id="main" class="">
+        <div class="">
+          
+          <main>
+            <section class="au-relative">
+              <a id="main-content" tabindex="-1"></a>
+                <div>
+    <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-auo-theme-content">
+  
+    
+      <article role="article">  
+  
+  
+<div class="wp-block-group">
+<div class="wp-block-auonline-banner-tiles  banner-tiles">
+<div class="wp-block-auonline-banner-tiles-main  banner-tiles-main au-relative au-z-1 au-flex au-justify-end au-flex-col"><div class="banner-tiles-main__content md:au-max-w-lg au-text-white au-py-14 au-px-6 md:au-px-9 lg:au-px-14">
+<div class="wp-block-auonline-spacer auo-spacer au-mb-24"> </div>
+
+
+
+<div class="wp-block-auonline-spacer auo-spacer au-mb-11"> </div>
+
+
+
+<div class="wp-block-auonline-spacer auo-spacer au-mb-8"> </div>
+
+
+
+<div class="wp-block-auonline-spacer auo-spacer au-mb-8"> </div>
+
+
+
+<h2 style="font-size:40px"><meta charset="utf-8"><meta charset="utf-8"><meta charset="utf-8">AU 2023 General Session&nbsp;Day 1<strong>&nbsp;</strong></h2>
+
+
+
+<p style="font-size:17px"><meta charset="utf-8"><meta charset="utf-8">Catch up on Autodesk&nbsp;news and announcements&nbsp;from Autodesk leaders and&nbsp;customers at AU 2023&nbsp;General Session Day 1.&nbsp;​</p>
+
+
+
+<div class="wp-block-auonline-spacer auo-spacer au-mb-4"> </div>
+
+
+
+<div class="wp-block-button"><a class="wp-block-button__link has-black-color has-text-color has-background" href="https://www.autodesk.com/autodesk-university/class/General-Session-Day-1-2023#video" style="background-color:#ffc21a"><strong>Watch now</strong></a></div>
+</div><div class="banner-tiles-main__img au-media-cover-bk au-dark-overlay"><div>
+  
+  
+            <div>    <picture>
+                  <source srcset="/autodesk-university/sites/default/files/auo2/styles/extra_large/public/2023-11/au2023-hero-v1.webp?itok=jRXFaWVq 1x" media="(min-width: 1200px)" type="image/webp"/>
+              <source srcset="/autodesk-university/sites/default/files/auo2/styles/large/public/2023-11/au2023-hero-v1.webp?itok=m3mDAaBy 1x" media="(min-width: 640px)" type="image/webp"/>
+              <source srcset="/autodesk-university/sites/default/files/auo2/styles/small/public/2023-11/au2023-hero-v1.webp?itok=3kr41n0m 1x, /autodesk-university/sites/default/files/auo2/styles/small_2x/public/2023-11/au2023-hero-v1.webp?itok=V3ymRqwp 2x" type="image/webp"/>
+              <source srcset="/autodesk-university/sites/default/files/auo2/styles/extra_large/public/2023-11/au2023-hero-v1.jpg?itok=jRXFaWVq 1x" media="(min-width: 1200px)" type="image/jpeg"/>
+              <source srcset="/autodesk-university/sites/default/files/auo2/styles/large/public/2023-11/au2023-hero-v1.jpg?itok=m3mDAaBy 1x" media="(min-width: 640px)" type="image/jpeg"/>
+              <source srcset="/autodesk-university/sites/default/files/auo2/styles/small/public/2023-11/au2023-hero-v1.jpg?itok=3kr41n0m 1x, /autodesk-university/sites/default/files/auo2/styles/small_2x/public/2023-11/au2023-hero-v1.jpg?itok=V3ymRqwp 2x" type="image/jpeg"/>
+                  <img src="/autodesk-university/sites/default/files/auo2/styles/extra_large/public/2023-11/au2023-hero-v1.jpg?itok=jRXFaWVq" alt="AU 2023" />
+
+  </picture>
+
+</div>
+      
+</div>
+</div></div>
+
+
+
+<div class="wp-block-auonline-banner-tiles-list  banner-tiles-list au-text-white au-relative au-z-1"><div class="banner-tiles-list__content au-h-full au-flex au-flex-col">
+<div class="wp-block-columns">
+<div class="wp-block-column">
+<a href="https://www.autodesk.com/autodesk-university/search?query=industry+forum&amp;fields.year=2023" class="wp-block-auonline-banner-tiles-list-item  banner-tiles-list-item au-relative au-text-center md:au-text-left"><h2><br>Watch AU 2023 Industry Forums<strong> </strong>​</h2><p>Learn how Autodesk’s Design &amp; Make Platform is transforming AEC, design and manufacturing, media, construction, and engineering.​&nbsp;&nbsp;</p><div class="banner-tiles-list-item__img au-media-cover-bk"><img src="/autodesk-university/sites/default/files/auo2/styles/large/public/2023-11/au-homepage_grid-image_03_850x575px_new_v01.png?itok=IayCFZwk" alt=""/></div></a>
+</div>
+
+
+
+<div class="wp-block-column">
+<a href="https://www.autodesk.com/autodesk-university/search?fields.year=2023" class="wp-block-auonline-banner-tiles-list-item  banner-tiles-list-item au-relative au-text-center md:au-text-left"><h2><br>AU 2023 Year-Round Learning</h2><p>Gain new skills and explore bold ideas with on-demand sessions, classes, and Theater Talks led by industry and product experts. ​&nbsp;&nbsp;</p><div class="banner-tiles-list-item__img au-media-cover-bk"><img src="/autodesk-university/sites/default/files/auo2/styles/large/public/2023-11/au-homepage_grid-image_01_850x575px_new_v01.png?itok=wCOSA51E" alt=""/></div></a>
+</div>
+</div>
+
+
+
+<div class="wp-block-columns">
+<div class="wp-block-column">
+<a href="https://www.autodesk.com/community" class="wp-block-auonline-banner-tiles-list-item  banner-tiles-list-item au-relative au-text-center md:au-text-left"><h2><meta charset="utf-8"><br>Join the community</h2><p><meta charset="utf-8">Connect with Autodesk Community programs that will help you solve problems, share expertise, and more.&nbsp;&nbsp;</p><div class="banner-tiles-list-item__img au-media-cover-bk"><img src="/autodesk-university/sites/default/files/auo2/styles/large/public/2023-11/au-homepage_grid-image_04_850x575px_new_v01.png?itok=CpRL1Qpj" alt=""/></div></a>
+</div>
+
+
+
+<div class="wp-block-column">
+<a href="https://www.autodesk.com/autodesk-university/blog" class="wp-block-auonline-banner-tiles-list-item  banner-tiles-list-item au-relative au-text-center md:au-text-left"><h2><meta charset="utf-8"><br><br><br>Stay connected</h2><p>Follow updates on AU 2023. <br><meta charset="utf-8">Read the blog.                                                    &nbsp;&nbsp;</p><div class="banner-tiles-list-item__img au-media-cover-bk"><img src="/autodesk-university/sites/default/files/auo2/styles/large/public/2023-11/au-homepage_grid-image_02_850x575px_new_v01.png?itok=Xc255mnZ" alt=""/></div></a>
+</div>
+</div>
+</div></div>
+</div>
+</div>
+
+
+
+<div style="background-color:#fff" class="wp-block-auonline-box au-px-0 au-py-12 md:au-px-16 box
+  au-text-black has-text-align-left au-py-10 md:au-p-16"><div class="au-container au-mx-auto au-w-full ">
+<div class="wp-block-auonline-heading-link 
+  undefined
+ heading
+ heading__dark
+ container
+ au-py-[5px]" id=""><h2 class="heading__title au-mb-[5px] has-medium-font-size">Thought leadership from AU</h2><div class="heading__sub au-flex au-mb-[5px]"><svg width="20" height="20" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path class="icon-path" d="M10.4628 6.38037L14.0824 10M14.0824 10L10.4628 13.6197M14.0824 10H5.91699" stroke="#DEDEDE" strokewidth="1.5" strokelinecap="round" strokelinejoin="round"></path></svg><div class="heading__subTitle au-text-gray-400 au-pl-[9px]"><a href="https://www.autodesk.com/autodesk-university/conference/theater-talks" data-type="URL" data-id="https://www.autodesk.com/autodesk-university/conference/theater-talks">See all AU 2023 Theater Talks</a></div></div></div>
+
+
+
+<div class="wp-block-auonline-spacer auo-spacer au-mb-4"> </div>
+
+
+
+<div class="wp-block-auonline-theater-talks aurrComponent" data-component="TheaterTalks" data-categories="[]"></div>
+
+
+
+<p></p>
+</div></div>
+
+
+
+<div class="wp-block-auonline-spacer auo-spacer au-mb-11"> </div>
+
+
+
+<div class="wp-block-auonline-container-w-sidebar  auo-container-w-sidebar au-container">
+<div class="wp-block-auonline-container-w-sidebar--sidebar"><aside class=" sidebar">
+<div class="wp-block-auonline-container-w-sidebar--menu  sidebar-menu idebar-menu-save"></div>
+
+
+
+<div class="wp-block-auonline-container-w-sidebar--menu  sidebar-menu idebar-menu-save">
+<h2>Industries</h2>
+
+
+
+<ul><li><a href="https://www.autodesk.com/autodesk-university/architecture-building-engineering" data-type="URL" data-id="https://www.autodesk.com/autodesk-university/architecture-building-engineering">Architecture &amp; Building Engineering</a></li><li><a href="https://www.autodesk.com/autodesk-university/construction" data-type="URL" data-id="https://www.autodesk.com/autodesk-university/construction">Construction</a></li><li><a href="https://www.autodesk.com/autodesk-university/product-design-manufacturing" data-type="URL" data-id="https://www.autodesk.com/autodesk-university/product-design-manufacturing">Product Design &amp; Manufacturing</a></li><li><a href="https://www.autodesk.com/autodesk-university/civil-infrastructure" data-type="URL" data-id="https://www.autodesk.com/autodesk-university/civil-infrastructure">Civil Infrastructure</a></li><li><a href="https://www.autodesk.com/autodesk-university/media-entertainment" data-type="URL" data-id="https://www.autodesk.com/autodesk-university/media-entertainment">Media &amp; Entertainment</a></li><li><a href="https://www.autodesk.com/autodesk-university/autocad-general-design" data-type="URL" data-id="https://www.autodesk.com/autodesk-university/autocad-general-design">AutoCAD &amp; General Design</a></li><li><a href="https://www.autodesk.com/autodesk-university/forge" data-type="URL" data-id="https://www.autodesk.com/autodesk-university/forge">Autodesk Platform Services</a></li></ul>
+
+
+
+<h2><br>More learning</h2>
+
+
+
+<ul><li><a href="https://www.autodesk.com/autodesk-university/blog" data-type="URL" data-id="https://www.autodesk.com/autodesk-university/blog">Read the AU blog</a></li><li><a href="https://forums.autodesk.com/" data-type="URL" data-id="https://forums.autodesk.com/">Autodesk Forums</a></li><li><a href="https://www.autodesk.com/certification/overview" data-type="URL" data-id="https://www.autodesk.com/certification/overview">Interested in a certification?</a></li><li><a href="https://www.autodesk.com/autodesk-university/advisory-council" data-type="URL" data-id="https://www.autodesk.com/autodesk-university/advisory-council"></a></li></ul>
+</div>
+</aside></div>
+
+
+
+<div class="wp-block-auonline-container-w-sidebar--main  auo-container-w-sidebar__main">
+<div class="wp-block-auonline-heading-link 
+  undefined
+ heading
+ heading__dark
+ container
+ au-py-[5px]" id=""><h2 class="heading__title au-mb-[5px] has-medium-font-size">Featured articles</h2><div class="heading__sub au-flex au-mb-[5px]"><svg width="20" height="20" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path class="icon-path" d="M10.4628 6.38037L14.0824 10M14.0824 10L10.4628 13.6197M14.0824 10H5.91699" stroke="#DEDEDE" strokewidth="1.5" strokelinecap="round" strokelinejoin="round"></path></svg><div class="heading__subTitle au-text-gray-400 au-pl-[9px]"><a href="https://www.autodesk.com/autodesk-university/search?fields.recordtype=article" data-type="URL" data-id="https://www.autodesk.com/autodesk-university/search?fields.recordtype=article">See all articles</a></div></div></div>
+
+
+
+<div class="wp-block-auonline-spacer auo-spacer au-mb-4"> </div>
+
+
+
+<div class="wp-block-auonline-featured-articles aurrComponent" data-component="FeaturedArticles" data-baseurl="https://api.au-uw2-prd.autodesk.com" data-taxonomytermid="" data-industry="" data-topic="" data-product="" data-langcode="en" data-max="5" data-largecardidx="0"></div>
+
+
+
+<span class="wp-block-auonline-anchor-id  anchor-id au-block" id="live-webinar"></span>
+
+
+
+<div class="wp-block-auonline-spacer auo-spacer au-mb-8"> </div>
+
+
+
+<div class="wp-block-auonline-heading-link 
+  undefined
+ heading
+ heading__dark
+ container
+ au-py-[5px]" id=""><h2 class="heading__title au-mb-[5px] has-medium-font-size">Upcoming events</h2><div class="heading__sub au-flex au-mb-[5px]"><svg width="20" height="20" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path class="icon-path" d="M10.4628 6.38037L14.0824 10M14.0824 10L10.4628 13.6197M14.0824 10H5.91699" stroke="#DEDEDE" strokewidth="1.5" strokelinecap="round" strokelinejoin="round"></path></svg><div class="heading__subTitle au-text-gray-400 au-pl-[9px]"><a href="https://www.autodesk.com/webinars" data-type="URL" data-id="https://www.autodesk.com/webinars">See more events </a></div></div></div>
+
+
+
+<div class="wp-block-auonline-spacer auo-spacer au-mb-4"> </div>
+
+
+
+<div class="wp-block-auonline-upcoming-events aurrComponent" data-component="UpcomingEvents" data-langcode="en" data-categories="[]"></div>
+
+
+
+<div class="wp-block-auonline-spacer auo-spacer au-mb-8"> </div>
+
+
+
+<div class="wp-block-auonline-box au-px-0 au-py-12 md:au-px-16 box
+  au-text-white has-text-align-left has-border"><div class="au-container au-mx-auto au-w-full ">
+<div class="wp-block-auonline-spacer auo-spacer au-mb-8"> </div>
+
+
+
+<div class="wp-block-columns">
+<div class="wp-block-column">
+<h2 style="font-size:27px"><meta charset="utf-8">Design and make anything with Autodesk AI</h2>
+
+
+
+<p><meta charset="utf-8"><meta charset="utf-8">Leveraging AI technology is no longer a nice to have. It’s an absolute necessity. Our customers across industries face growing pressure to accelerate their work while becoming more sustainable, reducing costs, and enhancing quality. That’s where Autodesk AI comes in. Integrated into our products and native to our Design and Make Platform, it empowers users to boost productivity and equips them with the tools to be more innovative and ambitious in their projects.</p>
+
+
+
+<div class="wp-block-auonline-spacer auo-spacer au-mb-8"> </div>
+
+
+
+<div class="wp-block-buttons">
+<div class="wp-block-button is-style-au-outline"><a class="wp-block-button__link has-primary-white-color has-text-color" href="https://www.autodesk.com/solutions/autodesk-ai" target="_blank" rel="noreferrer noopener"><meta charset="utf-8"><strong>Learn about Autodesk AI</strong></a></div>
+</div>
+</div>
+</div>
+</div><div class="box__bk-img au-media-cover-bk au-dark-overlay"><div>
+  
+  
+            <div>    <picture>
+                  <source srcset="/autodesk-university/sites/default/files/auo2/styles/extra_large/public/2023-11/adsk-ai-v1.webp?itok=ss3IvSAO 1x" media="(min-width: 1200px)" type="image/webp"/>
+              <source srcset="/autodesk-university/sites/default/files/auo2/styles/large/public/2023-11/adsk-ai-v1.webp?itok=-wywi0I5 1x" media="(min-width: 640px)" type="image/webp"/>
+              <source srcset="/autodesk-university/sites/default/files/auo2/styles/small/public/2023-11/adsk-ai-v1.webp?itok=Vmpm13aE 1x, /autodesk-university/sites/default/files/auo2/styles/small_2x/public/2023-11/adsk-ai-v1.webp?itok=68psgrC- 2x" type="image/webp"/>
+              <source srcset="/autodesk-university/sites/default/files/auo2/styles/extra_large/public/2023-11/adsk-ai-v1.jpg?itok=ss3IvSAO 1x" media="(min-width: 1200px)" type="image/jpeg"/>
+              <source srcset="/autodesk-university/sites/default/files/auo2/styles/large/public/2023-11/adsk-ai-v1.jpg?itok=-wywi0I5 1x" media="(min-width: 640px)" type="image/jpeg"/>
+              <source srcset="/autodesk-university/sites/default/files/auo2/styles/small/public/2023-11/adsk-ai-v1.jpg?itok=Vmpm13aE 1x, /autodesk-university/sites/default/files/auo2/styles/small_2x/public/2023-11/adsk-ai-v1.jpg?itok=68psgrC- 2x" type="image/jpeg"/>
+                  <img src="/autodesk-university/sites/default/files/auo2/styles/extra_large/public/2023-11/adsk-ai-v1.jpg?itok=ss3IvSAO" alt="Autodesk AI" />
+
+  </picture>
+
+</div>
+      
+</div>
+</div></div>
+
+
+
+<div class="wp-block-auonline-spacer auo-spacer au-mb-11"> </div>
+
+
+
+<div class="wp-block-columns">
+<div class="wp-block-column">
+<h2 style="font-size:27px"><meta charset="utf-8">The Future of AI: Interview with Ameca, the humanoid robot</h2>
+
+
+
+<p style="font-size:17px"><meta charset="utf-8"><meta charset="utf-8">Interested in learning where AI is headed and what it means for Design and Make professionals? Our own Dara Treseder, Chief Marketing Officer at Autodesk talks with the AI-powered Ameca robot (designed with Inventor) live from AU in Las Vegas. </p>
+</div>
+
+
+
+<div class="wp-block-column">
+<div class="au-container au-mx-auto au-flex au-flex-col "><div class="p3sdk-container p3sdk-debug-not au-w-full" player_id="au-brightcove-video-6341072928112" player_type="brightcove" data-videoid="6341072928112"><div class="p3sdk-interactive-transcript" use_video_id="1" file_id="6341072928112" project_id="10846" light_scroll="true" scroll_locked="false"><div class="main-video-wrapper au-flex au-w-full"><div class="au-w-1/3  media-content__pane hidden"><div class="media-content__pane-inner"><div class="p3sdk-interactive-transcript-header"><button type="button">Close transcript</button></div><div class="p3sdk-interactive-transcript-content"></div></div></div><div class="video-container au-w-full"><div class="brightcove-react-player-loader"></div></div></div></div></div></div>
+</div>
+</div>
+
+
+
+<div class="wp-block-auonline-spacer auo-spacer au-mb-11"> </div>
+
+
+
+<div class="wp-block-auonline-heading-link 
+  undefined
+ heading
+ heading__dark
+ container
+ au-py-[5px]" id=""><h2 class="heading__title au-mb-[5px] has-medium-font-size">Learn on demand. Anytime. Anywhere.</h2><div class="heading__sub au-flex au-mb-[5px]"><svg width="20" height="20" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path class="icon-path" d="M10.4628 6.38037L14.0824 10M14.0824 10L10.4628 13.6197M14.0824 10H5.91699" stroke="#DEDEDE" strokewidth="1.5" strokelinecap="round" strokelinejoin="round"></path></svg><div class="heading__subTitle au-text-gray-400 au-pl-[9px]"><a href="https://www.autodesk.com/autodesk-university/au-online" data-type="URL" data-id="https://www.autodesk.com/autodesk-university/au-online">See all classes</a></div></div></div>
+
+
+
+<div class="wp-block-auonline-spacer auo-spacer au-mb-4"> </div>
+
+
+
+<div class="wp-block-auonline-featured-classes aurrComponent" data-component="FeaturedClasses" data-v="1" data-baseurl="https://api.au-uw2-prd.autodesk.com/services/" data-libraryid="urn:adsk.content:library:78756fcf-e6f3-4184-abdd-04afc0337a02" data-parentid="urn:adsk.content:node:eabd8321-4590-4d61-88c5-73ad65eba36a" data-locale="en" data-event=" " data-year="2023" data-max="12"></div>
+</div>
+</div>
+
+
+
+<div class="wp-block-auonline-spacer auo-spacer au-mb-11"> </div>
+
+
+
+<div style="background-color:black" class="wp-block-auonline-box au-px-0 au-py-12 md:au-px-16 box
+  au-text-white has-text-align-left au-py-10 md:au-p-16"><div class="au-container au-mx-auto au-w-full ">
+<div class="wp-block-auonline-heading-link 
+  undefined
+ heading
+ heading__light
+ container
+ au-py-[5px]" id=""><h2 class="heading__title au-mb-[5px] has-medium-font-size">Featured playlists</h2></div>
+
+
+
+<div class="wp-block-auonline-spacer auo-spacer au-mb-8"> </div>
+
+
+
+<div class="wp-block-auonline-playlists auo-playlists">
+<div class="wp-block-auonline-playlist auo-playlist-item"><a class="auo-playlist-item-inner" style="background-image:url(&quot;https://live-pantheon2-au.autodesk.com/autodesk-university/profiles/auonline/themes/custom/auo_theme/ui/dist/822f72879c73f35c8831.png&quot;)" href="https://www.autodesk.com/autodesk-university/playlist#playlistid=2ca3558e-7b4b-4852-8665-39dc350a3dd3"><div class="title">Top 10 AU 2023 M&amp;E Sessions</div><img src="https://live-pantheon2-au.autodesk.com/autodesk-university/profiles/auonline/themes/custom/auo_theme/ui/dist/5bf4dadbe31d4b734767.svg" class="icon" alt=""/></a></div>
+
+
+
+<div class="wp-block-auonline-playlist auo-playlist-item"><a class="auo-playlist-item-inner" style="background-image:url(&quot;https://live-au-online2.pantheonsite.io/autodesk-university/profiles/auonline/themes/custom/auo_theme/ui/dist/822f72879c73f35c8831.png&quot;)" href="https://www.autodesk.com/autodesk-university/playlist#playlistid=1d70240e-ab81-4a18-86a1-a9d4da269e39"><div class="title">AU 2022 digital experience: On-demand sessions</div><img src="https://live-au-online2.pantheonsite.io/autodesk-university/profiles/auonline/themes/custom/auo_theme/ui/dist/5bf4dadbe31d4b734767.svg" class="icon" alt=""/></a></div>
+
+
+
+<div class="wp-block-auonline-playlist auo-playlist-item"><a class="auo-playlist-item-inner" style="background-image:url(&quot;https://live-au-online2.pantheonsite.io/autodesk-university/profiles/auonline/themes/custom/auo_theme/ui/dist/bf980ba392be5d4807db.png&quot;)" href="https://www.autodesk.com/autodesk-university/playlist#playlistid=f2279e8c-6e69-4e1d-a0af-512d0541dca4"><div class="title">AU 2022 Theater Talks: Explore pioneering projects and industry-changing innovations</div><img src="https://live-au-online2.pantheonsite.io/autodesk-university/profiles/auonline/themes/custom/auo_theme/ui/dist/5bf4dadbe31d4b734767.svg" class="icon" alt=""/></a></div>
+
+
+
+<div class="wp-block-auonline-playlist auo-playlist-item"><a class="auo-playlist-item-inner" style="background-image:url(&quot;https://live-pantheon2-au.autodesk.com/autodesk-university/profiles/auonline/themes/custom/auo_theme/ui/dist/822f72879c73f35c8831.png&quot;)" href="https://www.autodesk.com/autodesk-university/playlist#playlistid=828571f8-48d7-4dda-b86f-2ec5d4dacc10"><div class="title">Best of AU 2022: Top-Rated First-Time Speakers</div><img src="https://live-pantheon2-au.autodesk.com/autodesk-university/profiles/auonline/themes/custom/auo_theme/ui/dist/5bf4dadbe31d4b734767.svg" class="icon" alt=""/></a></div>
+
+
+
+<div class="wp-block-auonline-playlist auo-playlist-item"><a class="auo-playlist-item-inner" style="background-image:url(&quot;https://live-pantheon2-au.autodesk.com/autodesk-university/profiles/auonline/themes/custom/auo_theme/ui/dist/bf980ba392be5d4807db.png&quot;)" href="https://www.autodesk.com/autodesk-university/playlist#playlistid=e25d344a-8c74-46a6-b0b5-588cd483fb4c"><div class="title">Best of AU 2022: Top-Rated Industry Talks</div><img src="https://live-pantheon2-au.autodesk.com/autodesk-university/profiles/auonline/themes/custom/auo_theme/ui/dist/5bf4dadbe31d4b734767.svg" class="icon" alt=""/></a></div>
+
+
+
+<div class="wp-block-auonline-playlist auo-playlist-item"><a class="auo-playlist-item-inner" style="background-image:url(&quot;https://live-pantheon2-au.autodesk.com/autodesk-university/profiles/auonline/themes/custom/auo_theme/ui/dist/45daffa1239a78a5a64d.png&quot;)" href="https://www.autodesk.com/autodesk-university/playlist#playlistid=18a8f24c-a1ee-4da6-bb2f-b95b3f775384"><div class="title">Best of AU 2022: Top Rated Autodesk led APS Classes</div><img src="https://live-pantheon2-au.autodesk.com/autodesk-university/profiles/auonline/themes/custom/auo_theme/ui/dist/5bf4dadbe31d4b734767.svg" class="icon" alt=""/></a></div>
+</div>
+</div></div>
+
+ 
+
+</article>
+
+  </div>
+
+  </div>
+
+            </section>
+          </main>
+        </div>
+      </div>
+      </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="">
+        <div>
+    <div id="block-auo-theme-footer-menu">
+  
+    
+      
+<footer class="footer au-clear-both au-pt-10 au-pb-6 md:au-pt-[90px] md:au-pb-[50px] au-bg-[#ececec]">
+  <div class="footer__inner au-container au-mx-auto au-px-[20px] au-max-w-inner">
+    <div class="footer__columns md:au-pb-[40px] au-flex au-flex-wrap au-justify-between">
+                      <div class="
+                    footer__column
+                    footer__column--0
+                    footer__column--follow%20us
+                    au-pb-[20px]
+                    au-w-[100%] sm:au-w-[48%] lg:au-w-[23%]
+                ">
+                      <div class="footer__menu-headline au-font-bold au-text-lg au-leading-normal au-mb-2">
+              Follow Us
+            </div>
+                                <ul class="footer__menu">
+                              <li class="footer__menu-item">
+                  <a href="https://www.linkedin.com/showcase/autodesk-university/"
+                    class="footer__menu-link hover:au-underline">
+                    LinkedIn
+                  </a>
+                </li>
+                              <li class="footer__menu-item">
+                  <a href="https://twitter.com/AutodeskU"
+                    class="footer__menu-link hover:au-underline">
+                    Twitter
+                  </a>
+                </li>
+                              <li class="footer__menu-item">
+                  <a href="https://www.facebook.com/AutodeskUniversity"
+                    class="footer__menu-link hover:au-underline">
+                    Facebook
+                  </a>
+                </li>
+                              <li class="footer__menu-item">
+                  <a href="https://instagram.com/autodeskuniversity/"
+                    class="footer__menu-link hover:au-underline">
+                    Instagram
+                  </a>
+                </li>
+                              <li class="footer__menu-item">
+                  <a href="https://www.youtube.com/user/AutodeskUniversity"
+                    class="footer__menu-link hover:au-underline">
+                    Youtube
+                  </a>
+                </li>
+                              <li class="footer__menu-item">
+                  <a href="https://www.autodesk.com/autodesk-university/blog"
+                    class="footer__menu-link hover:au-underline">
+                    Blog
+                  </a>
+                </li>
+                              <li class="footer__menu-item">
+                  <a href="mailto:au.info@autodeskuniversity.com"
+                    class="footer__menu-link hover:au-underline">
+                    Email
+                  </a>
+                </li>
+                          </ul>
+                  </div>
+                      <div class="
+                    footer__column
+                    footer__column--1
+                    footer__column--about%20au
+                    au-pb-[20px]
+                    au-w-[100%] sm:au-w-[48%] lg:au-w-[23%]
+                ">
+                      <div class="footer__menu-headline au-font-bold au-text-lg au-leading-normal au-mb-2">
+              About AU
+            </div>
+                                <ul class="footer__menu">
+                              <li class="footer__menu-item">
+                  <a href="https://www.autodesk.com/autodesk-university/conference/overview"
+                    class="footer__menu-link hover:au-underline">
+                    AU 2023 Conference
+                  </a>
+                </li>
+                              <li class="footer__menu-item">
+                  <a href="https://www.autodesk.com/autodesk-university/conference/sponsors"
+                    class="footer__menu-link hover:au-underline">
+                    Sponsors and Exhibitors
+                  </a>
+                </li>
+                              <li class="footer__menu-item">
+                  <a href="https://www.autodesk.com/autodesk-university/advisory-council"
+                    class="footer__menu-link hover:au-underline">
+                    AU Advisory Council
+                  </a>
+                </li>
+                              <li class="footer__menu-item">
+                  <a href="https://www.autodesk.com/autodesk-university/au-community-rules"
+                    class="footer__menu-link hover:au-underline">
+                    AU Community Rules
+                  </a>
+                </li>
+                              <li class="footer__menu-item">
+                  <a href="https://www.autodesk.com/autodesk-university/faq"
+                    class="footer__menu-link hover:au-underline">
+                    FAQ
+                  </a>
+                </li>
+                              <li class="footer__menu-item">
+                  <a href="https://www.autodesk.com/autodesk-university/blog"
+                    class="footer__menu-link hover:au-underline">
+                    AU Blog
+                  </a>
+                </li>
+                              <li class="footer__menu-item">
+                  <a href="https://www.autodesk.com/autodesk-university/conference/mobile-app"
+                    class="footer__menu-link hover:au-underline">
+                    Mobile App
+                  </a>
+                </li>
+                              <li class="footer__menu-item">
+                  <a href="https://www.autodesk.com/autodesk-university/contact-us"
+                    class="footer__menu-link hover:au-underline">
+                    Contact Us
+                  </a>
+                </li>
+                          </ul>
+                  </div>
+                      <div class="
+                    footer__column
+                    footer__column--2
+                    footer__column--learn%20online
+                    au-pb-[20px]
+                    au-w-[100%] sm:au-w-[48%] lg:au-w-[23%]
+                ">
+                      <div class="footer__menu-headline au-font-bold au-text-lg au-leading-normal au-mb-2">
+              Learn Online
+            </div>
+                                <ul class="footer__menu">
+                              <li class="footer__menu-item">
+                  <a href="https://www.autodesk.com/autodesk-university/search"
+                    class="footer__menu-link hover:au-underline">
+                    Keynotes
+                  </a>
+                </li>
+                              <li class="footer__menu-item">
+                  <a href="https://www.autodesk.com/autodesk-university/search?submit=Submit&amp;query=autocad"
+                    class="footer__menu-link hover:au-underline">
+                    AutoCAD Sessions
+                  </a>
+                </li>
+                              <li class="footer__menu-item">
+                  <a href="https://www.autodesk.com/autodesk-university/?submit=Submit&amp;query=bim+360"
+                    class="footer__menu-link hover:au-underline">
+                    BIM 360 Sessions
+                  </a>
+                </li>
+                              <li class="footer__menu-item">
+                  <a href="https://www.autodesk.com/autodesk-university/search?submit=Submit&amp;query=Dynamo"
+                    class="footer__menu-link hover:au-underline">
+                    Dynamo Sessions
+                  </a>
+                </li>
+                              <li class="footer__menu-item">
+                  <a href="https://www.autodesk.com/autodesk-university/search?submit=Submit&amp;query=Forge"
+                    class="footer__menu-link hover:au-underline">
+                    Forge Sessions
+                  </a>
+                </li>
+                              <li class="footer__menu-item">
+                  <a href="https://www.autodesk.com/autodesk-university/search?submit=Submit&amp;query=Fusion+360"
+                    class="footer__menu-link hover:au-underline">
+                    Fusion 360 Sessions
+                  </a>
+                </li>
+                              <li class="footer__menu-item">
+                  <a href="https://www.autodesk.com/autodesk-university/search?submit=Submit&amp;query=Revit"
+                    class="footer__menu-link hover:au-underline">
+                    Revit Sessions
+                  </a>
+                </li>
+                          </ul>
+                  </div>
+                      <div class="
+                    footer__column
+                    footer__column--3
+                    footer__column--autodesk
+                    au-pb-[20px]
+                    au-w-[100%] sm:au-w-[48%] lg:au-w-[23%]
+                ">
+                      <div class="footer__menu-headline au-font-bold au-text-lg au-leading-normal au-mb-2">
+              Autodesk
+            </div>
+                                <ul class="footer__menu">
+                              <li class="footer__menu-item">
+                  <a href="https://www.autodesk.com/company"
+                    class="footer__menu-link hover:au-underline">
+                    About
+                  </a>
+                </li>
+                              <li class="footer__menu-item">
+                  <a href="https://www.autodesk.com/careers"
+                    class="footer__menu-link hover:au-underline">
+                    Careers
+                  </a>
+                </li>
+                              <li class="footer__menu-item">
+                  <a href="https://www.autodesk.com/store-footer-help-download?mktvar004=ilt_wwm_amer_us_nc__Footer_ShoppingWithUs_DLSoftware#download-info"
+                    class="footer__menu-link hover:au-underline">
+                    Free product trials
+                  </a>
+                </li>
+                              <li class="footer__menu-item">
+                  <a href="https://www.autodesk.com/buy-online"
+                    class="footer__menu-link hover:au-underline">
+                    Buy products online
+                  </a>
+                </li>
+                              <li class="footer__menu-item">
+                  <a href="https://knowledge.autodesk.com/"
+                    class="footer__menu-link hover:au-underline">
+                    Support &amp; learning
+                  </a>
+                </li>
+                              <li class="footer__menu-item">
+                  <a href="http://news.autodesk.com/"
+                    class="footer__menu-link hover:au-underline">
+                    Newsroom
+                  </a>
+                </li>
+                          </ul>
+                  </div>
+          </div>
+    <div class="footer__bottom au-pt-[20px] au-flex au-flex-wrap sm:au-flex-nowrap au-border-t au-border-solid au-border-gray-400">
+      <div class="footer__copyright au-text-center sm:au-text-left sm:au-mr-[20px]">
+        <p>© Copyright 2023 Autodesk, Inc. All rights reserved.&nbsp;<a href="https://www.autodesk.com/company/legal-notices-trademarks">Legal Notices &amp; Trademarks</a>&nbsp;|&nbsp;<a href="https://www.autodesk.com/company/legal-notices-trademarks/privacy-statement">Privacy</a></p>
+
+        <p class="au-mt-4 au-text-sm">
+          <a href="javascript:;"
+            data-opt-in-preferences
+            data-wat-linkname="manage-privacy-settings-footer-link">
+            Privacy Settings
+          </a>
+          &nbsp;|&nbsp;
+          <a data-wat-linkname="manage-ccpa-settings-footer-link"
+            href="https://www.autodesk.com/company/legal-notices-trademarks/ccpa-do-not-sell">
+            Do not sell my personal information
+          </a>
+        </p>
+      </div>
+      <div class="footer__logo au-w-[180px] au-h-[30px] au-mx-auto au-mb-[20px] sm:au-mb-0 sm:au-mr-0 au-flex-shrink-0 au-order-n1 sm:au-order-none">
+        <img src="https://damassets.autodesk.net/content/dam/autodesk/logos/autodesk-logo-blk.svg" alt="Autodesk Logo" />
+      </div>
+    </div>
+  </div>
+</footer>
+
+  </div>
+
+  </div>
+
+    </div>
+  </footer>
+
+  
+</div>
+
+  </div>
+
+    <script type="text/javascript">window._privacyUserLanguage = "en";</script>
+<script type="text/javascript">    (function(a,b,c,d){
+    a='https://tags.tiqcdn.com/utag/autodesk/forge-cms/prod/utag.js';
+    b=document;c='script';d=b.createElement(c);d.src=a;d.type='text/java'+c;d.async=true;
+    a=b.getElementsByTagName(c)[0];a.parentNode.insertBefore(d,a);
+    })();</script>
+
+    <script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/autodesk-university\/","scriptPath":null,"pathPrefix":"","currentPath":"node\/18","currentPathIsAdmin":false,"isFront":true,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"auoAnalyticsRetainMarketingParameters":{"status":true,"parameters":["stateToken","utm_stateToken","__stateToken","utm_campaign","utm_id","utm_medium","utm_source","__leadid","__mkt_tok","__mktvar002","__pass","__refid","__vycustom_id","__vyemail","utm_leadid","utm_mkt_tok","utm_mktvar002","utm_pass","utm_refid","utm_vycustom_id","utm_vyemail","urlParamToken","__urlParamToken","mktvar002"],"exclude":["admin"]},"clientside_validation_jquery":{"validate_all_ajax_forms":2,"force_validate_on_blur":false,"messages":{"required":"This field is required.","remote":"Please fix this field.","email":"Please enter a valid email address.","url":"Please enter a valid URL.","date":"Please enter a valid date.","dateISO":"Please enter a valid date (ISO).","number":"Please enter a valid number.","digits":"Please enter only digits.","equalTo":"Please enter the same value again.","maxlength":"Please enter no more than {0} characters.","minlength":"Please enter at least {0} characters.","rangelength":"Please enter a value between {0} and {1} characters long.","range":"Please enter a value between {0} and {1}.","max":"Please enter a value less than or equal to {0}.","min":"Please enter a value greater than or equal to {0}.","step":"Please enter a multiple of {0}."}},"auo_community":{"data-src":"\/autodesk-university\/cl\/static\/js\/dh-community-library.js","data-env":"production","data-libraryid":"urn:adsk.content:library:78756fcf-e6f3-4184-abdd-04afc0337a02","data-config":"{}","data-uploadlock":0,"data-collectionslock":0,"data-communitylock":1},"user":{"uid":0,"permissionsHash":"31d435dfd40c8ab293d13496f18bb4539f9d4053af5c7aa4ffade2f1bb5f7199"}}</script>
+<script src="/autodesk-university/sites/default/files/auo2/js/js_73wkHuLzToZ6CfMnQ8CcD46h4uJP3yDkxuCiJjSWPDI.js"></script>
+<script src="https://prod-rum.apm.autodesk.com/au_prod.js" crossorigin="anonymous"></script>
+
+  <script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","licenseKey":"NRJS-a041a7477f71e30d528","applicationID":"1016776418","transactionName":"MQZSbBBSXkMEVUVdWwhMcVsWWl9eSnJDQUQHD2xWDVdVbCZZX0BGCQ9cXRBvfl8BU2ddUREgX1YWQV9cCVNDGQoQClVP","queueTime":0,"applicationTime":145,"atts":"HUFRGlhITU0=","errorBeacon":"bam.nr-data.net","agent":""}</script></body>
+</html>
