@@ -1,0 +1,101 @@
+---
+source_file: "raw_corpus/adsk-dacf5a2fd27e4e99bd67324b57d4ee5f.html"
+relative_source_path: "adsk-dacf5a2fd27e4e99bd67324b57d4ee5f.html"
+title: "Buy Autodesk Software | Get Prices & Buy Online | Official Autodesk Store"
+cleaned_format: "markdown"
+extraction_method: "beautifulsoup_fallback"
+raw_char_count: 985265
+cleaned_char_count: 4913
+---
+
+# Buy Autodesk Software | Get Prices & Buy Online | Official Autodesk Store
+
+## Get your free access now!
+
+You are eligible for free access on the educational products page.
+
+[Chat with sales](http://www.autodesk.com/products?userFlow=preSalesAi&userFlowLinkKey=linkToChatAi)
+
+- [Pay as you go with Autodesk Flex for occasional product use](/buying/flex)
+
+- [Explore the terms that best suit your needs](/buying/terms-payments)
+
+- [Stay up to date with our promotions and special offers](/promotions#stay-up-to-date-on-our-offers)
+
+- Why buy with Autodesk? [Visit the Autodesk Buying Center](/buying/overview)
+
+### Frequently Asked Questions
+
+| Field | Value |
+| --- | --- |
+|  | What is Autodesk software used for? |
+
+Autodesk’s broad portfolio of products and services enables our customers to foster innovation, optimize and improve their designs, save time and money, improve quality, communicate plans, and collaborate with others.
+
+Our software for architecture, engineering, and construction improves the way buildings, factories, and infrastructure are designed, built, and used.
+
+Our product development and manufacturing software provides manufacturers in automotive, transportation, industrial machinery, consumer products, and building products with comprehensive digital engineering solutions that bring together data from all phases of the product development and production lifecycle.
+
+Our digital media and entertainment products provide tools for digital sculpting, modeling, animation, effects, rendering, and compositing for design visualization, visual effects, and games production.
+
+| Field | Value |
+| --- | --- |
+|  | What is the difference between AutoCAD and Autodesk? |
+
+Autodesk is the company that makes software for people who make things. AutoCAD is one of the software subscriptions that Autodesk has developed and offers to designers around the globe. AutoCAD is computer-aided design (CAD) software that architects, engineers, and construction professionals rely on to create precise 2D and 3D drawings..
+
+| Field | Value |
+| --- | --- |
+|  | How can I convert my Autodesk software trial to a paid subscription? |
+
+Launch your trial, click the SUBSCRIBE NOW button, and follow the necessary steps to purchase your subscription. Once your purchase is complete, simply relaunch the product to have immediate access to your subscription. No need to download or install the product again. For additional help, visit the [Autodesk Knowledge Network.](https://knowledge.autodesk.com/customer-service/download-install/activate/convert-trial-to-subscription?st=trial)
+
+| Field | Value |
+| --- | --- |
+|  | Can I switch to subscription from a maintenance plan? |
+
+Yes. To help customers transition to a named user plan, new trade-in offers will be available starting May 2020. [Learn more about our trade-in offers](https://www.autodesk.com/campaigns/transition-to-named-user) .
+
+| Field | Value |
+| --- | --- |
+|  | How do I renew my license? |
+
+Software renewal varies depending on how you purchased your subscription. For detailed renewal instructions, visit [How to renew your subscription](https://www.autodesk.com/renewal#renew-subscription) .
+
+| Field | Value |
+| --- | --- |
+|  | Where can I buy Autodesk software? |
+
+We’re glad you asked!
+
+Your fastest option is to subscribe to any of our most popular Autodesk products directly on this page.
+
+Talk to a sales representative by calling 1-844-664-8618.
+
+Find an [authorized reseller](https://www.autodesk.com/partners/locate-a-reseller) .
+
+| Field | Value |
+| --- | --- |
+|  | Can I install Autodesk software on multiple computers? |
+
+Your subscription software can be installed on up to three devices. However, only the named user can sign in and use that software on a single computer at any given time. Please refer to the [Terms of Use](https://www.autodesk.com/company/terms-of-use/en/subscription-types#single) for more information.
+
+| Field | Value |
+| --- | --- |
+|  | Can I buy Autodesk software without a subscription? |
+
+Autodesk software is only available as a subscription. Learn more about the [benefits of subscription](https://www.autodesk.com/subscription) .
+
+| Field | Value |
+| --- | --- |
+|  | Who uses Autodesk software? |
+
+Autodesk is a global leader in design and make software for the architecture, engineering, construction, media and entertainment, and manufacturing industries. If you’ve ever driven a high-performance car, admired a towering skyscraper, used a smartphone, or watched a great film, chances are you’ve experienced what millions of Autodesk customers have built with our software.
+
+| Field | Value |
+| --- | --- |
+|  | What happened to perpetual licenses? |
+
+As of August 1, 2016, we have phased out perpetual licenses of our software for Autodesk products worldwide. Take advantage of subscription benefits by purchasing [here](https://www.autodesk.com/products) .
+
+## Products A-Z list

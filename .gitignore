@@ -14,3 +14,8 @@ streamlit*.log
 eval_status/
 /cobb_county_testset.csv
 instructions/
+retrieval_indexes/chroma_autodesk_cleaned_corpus/
+retrieval_indexes/bm25_autodesk_cleaned_corpus/
+*.pkl
+*.sqlite3
+*.sqlite

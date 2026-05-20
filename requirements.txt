@@ -1,23 +1,57 @@
+# Web app UI for the RAG prototype.
 streamlit>=1.40,<1.41
+
+# Local configuration and secret loading from .env files.
 python-dotenv>=1.0,<2.0
+
+# HTTP client for fetching web pages and optional API integrations.
 requests>=2.31,<3.0
+
+# Core RAG orchestration and integrations.
 langchain>=0.2.12,<0.4
 langchain-community>=0.2.11,<0.4
 langchain-openai>=0.1.20,<0.4
 langchain-chroma>=0.1.2,<0.3
 langchain-text-splitters>=0.2.2,<0.4
+
+# Experiment tracking and evaluation run logging.
 langsmith>=0.3,<1.0
+
+# Local vector database for dense semantic retrieval.
 chromadb>=0.6.3,<0.7.0
+
+# Chroma telemetry dependency pinned for compatibility.
 posthog>=2.4,<6.0
+
+# Corpus EDA, metrics, and tabular evaluation outputs.
 pandas>=2.0,<3.0
 numpy>=1.26,<3.0
+
+# Progress bars for multicore corpus preprocessing notebooks.
+tqdm>=4.65,<5.0
+
+# HTML parsing and boilerplate-aware text extraction for Autodesk web pages.
+beautifulsoup4>=4.12,<5.0
+trafilatura>=2.0,<3.0
+
+# PDF parsing support for possible future document ingestion.
 pypdf>=4.3,<6.0
-tiktoken>=0.7,<1.0
-docling>=2.15,<3.0
-sentence-transformers>=3.0,<4.0
 pymupdf>=1.24,<2.0
+
+# Token counting for chunk sizing and prompt budgeting.
+tiktoken>=0.7,<1.0
+
+# Structure-aware parsing for document and HTML ingestion experiments.
+docling>=2.15,<3.0
+
+# Local embedding and re-ranking model support.
+sentence-transformers>=3.0,<4.0
+
+# Sparse keyword retrieval for hybrid BM25 plus vector search.
 rank-bm25>=0.2.2,<0.3
 
 # Docling's current layout model uses rt_detr_v2, which requires Transformers 4.49+.
 transformers>=4.49,<5.0
+
+# Tokenizer backend used by Transformers and embedding models.
 tokenizers>=0.21,<0.22

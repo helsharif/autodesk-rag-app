@@ -1,0 +1,82 @@
+---
+source_file: "raw_corpus/adsk-7cffbc6f9e2d4b6690ab0e3c72faf8c6.html"
+relative_source_path: "adsk-7cffbc6f9e2d4b6690ab0e3c72faf8c6.html"
+title: "Trial Intake"
+cleaned_format: "markdown"
+extraction_method: "trafilatura"
+raw_char_count: 1579717
+cleaned_char_count: 1941
+---
+
+# Trial Intake
+
+tifScreenCountLabel
+
+# Free Trial
+
+I will be using this software for
+
+tifScreenCountLabel
+
+I will be using this software for
+
+Confirm your eligibility with SheerID today.
+
+You don’t need to download the software.
+
+tifScreenCountLabel
+
+[your account](https://manage.autodesk.com/active-trials) to see if you have already started your trial.
+
+Enter a phone number where you want a security code sent. Codes can be sent by voice call or SMS.
+
+We're unable to send a code to this number.
+
+This phone number is already in use.
+
+Code is incorrect, please retry.
+
+We're unable to verify the code. Please click on 'Resend code' to try again.
+
+You’ve reached the maximum attempts. Please try again after 10 minutes.
+
+30 days from date of download
+
+tifScreenCountLabel
+
+30 days from date of download
+
+tifScreenCountLabel
+
+30 days from date of download
+
+tifScreenCountLabel
+
+All fields are required
+
+30 days from date of download
+
+30 days from date of download
+
+30 days from date of download
+
+[your account](https://manage.autodesk.com/products).
+Need help with a product you’re downloading? Get more information on [installation](https://www.autodesk.com/support/download-install/individuals/configure-install/install-your-product) or find answers at our [Trial Connect](https://forums.autodesk.com/t5/trial-download-installation-and/bd-p/trialthree) Community.
+
+Plan, design, construct, and manage buildings with powerful tools for Building Information Modeling.
+
+Software for 2D and 3D CAD. Subscription includes AutoCAD, specialized toolsets, and apps.
+
+Control outcomes with clash detection and advanced coordination, 5D analysis, and simulation tools.
+
+You can view your active trials from your [account](https://manage.autodesk.com/cep/#products-services/trials).
+
+Please click cancel and try again later.
+
+30 days from date of download
+
+30 days from date of download
+
+30 days from date of download
+
+30 days from date of download

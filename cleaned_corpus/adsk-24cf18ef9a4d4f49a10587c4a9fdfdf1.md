@@ -1,0 +1,57 @@
+---
+source_file: "raw_corpus/adsk-24cf18ef9a4d4f49a10587c4a9fdfdf1.html"
+relative_source_path: "adsk-24cf18ef9a4d4f49a10587c4a9fdfdf1.html"
+title: "Autodesk Revit LT Software | Get Prices & Buy Official Revit LT 2023"
+cleaned_format: "markdown"
+extraction_method: "trafilatura"
+raw_char_count: 415314
+cleaned_char_count: 3908
+---
+
+# Autodesk Revit LT Software | Get Prices & Buy Official Revit LT 2023
+
+Revit LT is used to design, document, visualize, and deliver architecture and engineering projects for individuals and teams working in CAD and BIM.
+
+A BIM (Building Information Modeling) solution for the self-starter, Revit LT™ is a cost-effective project workhorse for the small architecture studio or solo practitioner.
+
+Get all the design to documentation power of Revit at a fraction of the cost.
+
+Win more work where BIM is required.
+
+Accelerate production workflows and standardize deliverables to reduce rework.
+
+With tools for sketching, model family creation, scheduling, annotating, and document production, Revit LT drives efficient BIM workflows for architectural design.
+
+Qualify and win projects with a BIM approach. Impress clients in design review with 3D visualization and data-rich documentation, and effectively protect timelines and fees with Revit LT’s productivity and coordination tools.
+
+Manage and integrate CAD and BIM data into clear, coordinated, and complete design deliverables. Purchase Revit LT and AutoCAD LT together in the AutoCAD Revit LT Suite and save big compared to standalone subscriptions.
+
+Use 3D modeling tools for architectural design to inspire your creativity, reduce rework, and boost productivity for you and your firm.
+
+Save time on design and documentation with professional-grade CAD and BIM tools. Save money when you buy Revit LT and AutoCAD LT paired together in a suite.
+
+Revit LT is used to design, document, visualize, and deliver architecture and engineering projects for individuals and teams working in CAD and BIM.
+
+Revit LT is used by architects, engineers, contractors, consultants, project and BIM managers, and design and engineering professionals and students all over the world..
+
+Revit LT offers a simplified BIM tool for creating 3D architectural designs and documentation. It provides basic structural modeling, interoperability, and data management, as well as presentation and visualization features. By comparison, Revit unlocks all features, including advanced simulation and analysis, as well as worksharing and collaboration, MEP, and construction modeling toolsets.
+
+Your Revit LT subscription gives you access to install and use the 3 previous versions. Available downloads are listed in your [Autodesk Account](https://profile.autodesk.com/) after subscribing. See also [previous releases available for subscribers ](https://knowledge.autodesk.com/customer-service/account-management/users-software/previous-versions/eligible-previous-version-subscription)
+
+With a subscription to Revit LT software, you can install it on up to 3 computers or other devices. However, only the named user can sign in and use that software on a single computer at any given time. Please refer to the[ Software License Agreement](https://www.autodesk.com/company/terms-of-use/en/general-terms) for more information.
+
+Launch your trial software and click Subscribe Now on the trial screen or [buy Revit LT here](#buy). When buying your subscription, enter the same email address and password combination you used to sign in to your trial. [Learn more about converting a trial to a paid subscription](https://knowledge.autodesk.com/customer-service/download-install/activate/convert-trial-to-subscription).
+
+The price of an annual Revit LT subscription is and the price of a monthly Revit LT subscription is . The price of a 3-year Revit LT subscription is . Revit LT also comes bundled together with AutoCAD LT as the AutoCAD Revit LT Suite. The price of an annual AutoCAD Revit LT Suite subscription is and the price of a monthly AutoCAD Revit LT Suite subscription is . The price of a 3-year AutoCAD Revit LT Suite subscription is .
+
+Revit
+
+Revit LT
+
+Modeling toolsets for architecture, structure, MEP, and construction
+
+Collaboration
+
+Documentation
+
+Simulation and analysis
