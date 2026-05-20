@@ -71,7 +71,9 @@ build_retrieval_indexes.py
 Main indexing approach:
 
 - Loads configuration from `.env`.
-- Uses Docling-driven document-aware chunking where available.
+- Uses Docling-first document-aware parsing and chunking where available.
+- Avoids Docling `HybridChunker` by default because it can trigger tokenizer sequence-length warnings on long technical pages.
+- Prefers Docling structure-aware chunking/export followed by the project heading-aware chunk-size guard.
 - Uses OpenAI embeddings for dense vector search.
 - Stores dense embeddings in persistent ChromaDB.
 - Builds a local BM25 keyword index for lexical search.
@@ -122,6 +124,7 @@ DOCLING_BATCH_SIZE=1
 DOCLING_MAX_PAGES=250
 DOCLING_PAGE_CHUNK_SIZE=30
 DOCLING_PAGE_OVERLAP=5
+DOCLING_USE_HYBRID_CHUNKER=false
 ```
 
 The indexing workflow should respect these values before falling back to defaults.
@@ -155,7 +158,31 @@ Hybrid retrieval combines dense vector results and BM25 results, preferably usin
 
 Chunking is intended to be context-aware rather than blind fixed-size splitting.
 
-The updated indexing pipeline should use Docling for document-aware chunking where practical and should preserve:
+The latest indexing update avoids Docling `HybridChunker` by default because it can emit warnings such as:
+
+```text
+Token indices sequence length is longer than the specified maximum sequence length for this model (580 > 512)
+```
+
+That warning is caused by Docling's chunker/tokenizer path, not by OpenAI embeddings. The current approach keeps Docling in the pipeline but avoids the warning-prone hybrid chunker path unless explicitly enabled.
+
+Current Docling strategy:
+
+1. Use Docling to convert/read each cleaned Markdown or text document.
+2. Prefer structure-aware Docling chunking or Docling export where supported by the installed Docling version.
+3. Apply the project heading-aware splitter and chunk-size guard after Docling export.
+4. Fall back to the raw Markdown heading-aware splitter only when Docling conversion fails for a specific file.
+5. Record the chunking method in both the document and chunk manifests.
+
+The default behavior is controlled by:
+
+```text
+DOCLING_USE_HYBRID_CHUNKER=false
+```
+
+Keep this set to `false` unless there is a specific reason to test HybridChunker again.
+
+The chunking workflow preserves:
 
 - Source file path
 - Relative source path
@@ -167,6 +194,7 @@ The updated indexing pipeline should use Docling for document-aware chunking whe
 - Approximate token count
 - Source metadata
 - Source URL if available
+- Chunking method used
 
 Chunk text should include lightweight context before embedding, for example:
 
@@ -264,7 +292,7 @@ Relevant lessons carried forward:
 Based on lessons from the Cobb County RAG app, the proposed system includes:
 
 - HTML boilerplate removal with BeautifulSoup and Trafilatura.
-- Docling-driven or document-aware chunking over cleaned Markdown.
+- Docling-first document-aware parsing over cleaned Markdown, with HybridChunker disabled by default and heading-aware chunk-size guards.
 - OpenAI embeddings using `text-embedding-3-small`.
 - Chroma as the persistent vector database.
 - Local BM25 keyword index.
@@ -300,6 +328,7 @@ Monitoring should support rerunning golden-dataset tests when:
 - The corpus is updated.
 - HTML cleaning rules change.
 - Docling/chunking logic changes.
+- `DOCLING_USE_HYBRID_CHUNKER` behavior changes.
 - Retrieval fusion logic changes.
 - Generation prompts or guardrails change.
 
@@ -322,7 +351,47 @@ python corpus_cleaning_pipeline.py
 python build_retrieval_indexes.py
 ```
 
-Before indexing, confirm that `.env` contains the required OpenAI and retrieval settings.
+Before indexing, confirm that `.env` contains the required OpenAI and retrieval settings. Keep `DOCLING_USE_HYBRID_CHUNKER=false` unless intentionally testing HybridChunker, because the default structure-aware/export path avoids the Docling 512-token warning seen during chunking.
+
+## Troubleshooting
+
+### Docling 512-token warning during chunking
+
+If the console shows warnings like this during `Chunking documents`:
+
+```text
+Token indices sequence length is longer than the specified maximum sequence length for this model (580 > 512)
+```
+
+the warning is coming from Docling's tokenizer/chunker path, not from OpenAI embeddings.
+
+Recommended fix:
+
+```text
+DOCLING_USE_HYBRID_CHUNKER=false
+```
+
+Then rerun the updated `notebook_02_build_retrieval_indexes.ipynb` or `build_retrieval_indexes.py`.
+
+The updated indexing pipeline avoids the warning-prone HybridChunker path by default and instead uses Docling conversion/export plus the project's heading-aware chunk-size guard. This keeps the benefits of Docling document parsing while avoiding tokenizer warnings from a 512-token chunker model.
+
+### OpenAI embedding requirements
+
+OpenAI embeddings require an API key available in the environment or `.env`:
+
+```text
+OPENAI_API_KEY=...
+EMBEDDING_PROVIDER=openai
+OPENAI_EMBEDDING_MODEL=text-embedding-3-small
+```
+
+Embedding throughput is controlled by:
+
+```text
+EMBEDDING_BATCH_SIZE=32
+EMBEDDING_BATCH_DELAY_SECONDS=3.0
+EMBEDDING_MAX_RETRIES=8
+```
 
 ## Git And Git LFS Notes
 

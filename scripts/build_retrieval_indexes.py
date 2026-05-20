@@ -128,6 +128,7 @@ DOCLING_BATCH_SIZE = env_int("DOCLING_BATCH_SIZE", 1)
 DOCLING_MAX_PAGES = env_int("DOCLING_MAX_PAGES", 250)
 DOCLING_PAGE_CHUNK_SIZE = env_int("DOCLING_PAGE_CHUNK_SIZE", 30)
 DOCLING_PAGE_OVERLAP = env_int("DOCLING_PAGE_OVERLAP", 5)
+DOCLING_USE_HYBRID_CHUNKER = env_bool("DOCLING_USE_HYBRID_CHUNKER", False)
 
 MIN_RELEVANCE_SCORE = env_float("MIN_RELEVANCE_SCORE", 0.30)
 
@@ -173,6 +174,7 @@ CONFIG = {
     "DOCLING_MAX_PAGES": DOCLING_MAX_PAGES,
     "DOCLING_PAGE_CHUNK_SIZE": DOCLING_PAGE_CHUNK_SIZE,
     "DOCLING_PAGE_OVERLAP": DOCLING_PAGE_OVERLAP,
+    "DOCLING_USE_HYBRID_CHUNKER": DOCLING_USE_HYBRID_CHUNKER,
     "MIN_RELEVANCE_SCORE": MIN_RELEVANCE_SCORE,
 }
 
@@ -533,12 +535,27 @@ def chunk_document(
 # %% [markdown]
 # ## 5. Docling-Based Chunking
 #
-# This section routes each cleaned document through Docling. It first tries
-# Docling's `HybridChunker` API when available. If the installed Docling version
-# exposes different interfaces or cannot chunk a specific Markdown/text file,
-# the code falls back to Docling conversion/export plus the conservative
-# Markdown-aware splitter above. Only if Docling conversion itself fails for a
-# file does it use the raw Markdown fallback and record that warning.
+# This section routes each cleaned document through Docling, but it intentionally
+# avoids Docling's `HybridChunker` by default. `HybridChunker` commonly loads a
+# Hugging Face tokenizer with a 512-token maximum sequence length, which can
+# produce repeated warnings such as:
+#
+# `Token indices sequence length is longer than the specified maximum sequence length for this model (580 > 512)`
+#
+# Those warnings are not coming from OpenAI embeddings. They happen during the
+# Docling chunking/tokenization step before OpenAI embedding begins. Because this
+# project embeds with OpenAI `text-embedding-3-small`, the 512-token tokenizer
+# limit is the wrong constraint for this indexing pipeline.
+#
+# Preferred flow:
+#
+# 1. Convert the cleaned Markdown/text file with Docling.
+# 2. Try Docling's structure-first `HierarchicalChunker` when available.
+# 3. Apply this project's character-overlap size guard using `CHUNK_SIZE` and
+#    `CHUNK_OVERLAP`.
+# 4. If Docling chunking is unavailable, export the Docling document to Markdown
+#    and use the conservative heading-aware splitter.
+# 5. Only if Docling conversion fails for a file, fall back to raw Markdown.
 
 # %%
 def _docling_converter() -> Any:
@@ -587,17 +604,19 @@ def docling_document_to_markdown(doc: Any) -> str:
     return str(doc)
 
 
-def _import_docling_hybrid_chunker() -> Any | None:
+def _import_docling_chunker(class_name: str) -> Any | None:
     import importlib
 
-    for module_name in (
+    module_names = (
         "docling.chunking",
         "docling_core.transforms.chunker",
+        "docling_core.transforms.chunker.hierarchical_chunker",
         "docling_core.transforms.chunker.hybrid_chunker",
-    ):
+    )
+    for module_name in module_names:
         try:
             module = importlib.import_module(module_name)
-            chunker = getattr(module, "HybridChunker", None)
+            chunker = getattr(module, class_name, None)
             if chunker is not None:
                 return chunker
         except Exception:
@@ -606,10 +625,21 @@ def _import_docling_hybrid_chunker() -> Any | None:
 
 
 def _chunk_text_from_docling_chunk(chunk: Any) -> str:
+    # Some Docling chunk objects expose `text`; others require `textualize`.
     for attr in ("text", "content", "page_content"):
         value = getattr(chunk, attr, None)
         if value:
             return clean_chunk_text(str(value))
+
+    method = getattr(chunk, "textualize", None)
+    if callable(method):
+        try:
+            value = method()
+            if value:
+                return clean_chunk_text(str(value))
+        except Exception:
+            pass
+
     method = getattr(chunk, "export_to_markdown", None)
     if callable(method):
         try:
@@ -618,6 +648,7 @@ def _chunk_text_from_docling_chunk(chunk: Any) -> str:
                 return clean_chunk_text(str(value))
         except Exception:
             pass
+
     return clean_chunk_text(str(chunk))
 
 
@@ -635,52 +666,35 @@ def _heading_path_from_docling_chunk(chunk: Any, fallback_title: str) -> str:
     return fallback_title
 
 
-def try_docling_hybrid_chunking(
-    doc: Any,
+def _make_chunks_from_docling_raw_chunks(
+    raw_chunks: list[Any],
     raw_metadata: dict[str, str],
     relative_path: str,
     source_file: str,
-) -> tuple[list[dict[str, Any]], str]:
-    HybridChunker = _import_docling_hybrid_chunker()
-    if HybridChunker is None:
-        return [], "docling_hybrid_chunker_not_available"
-
+    method_name: str,
+) -> list[dict[str, Any]]:
     title = raw_metadata.get("title") or Path(relative_path).stem
-
-    try:
-        # Docling's constructor signature has changed across releases, so keep
-        # this deliberately minimal and let .env drive Docling behavior.
-        chunker = HybridChunker()
-    except Exception as exc:
-        return [], f"docling_hybrid_chunker_init_failed: {type(exc).__name__}: {exc}"
-
-    try:
-        try:
-            raw_chunks = list(chunker.chunk(dl_doc=doc))
-        except TypeError:
-            try:
-                raw_chunks = list(chunker.chunk(document=doc))
-            except TypeError:
-                raw_chunks = list(chunker.chunk(doc))
-    except Exception as exc:
-        return [], f"docling_hybrid_chunking_failed: {type(exc).__name__}: {exc}"
-
     chunks: list[dict[str, Any]] = []
+
     for raw_chunk in raw_chunks:
         text_piece = _chunk_text_from_docling_chunk(raw_chunk)
         if not text_piece:
             continue
-        # Docling chunks can be larger than desired depending on version. Apply
-        # the same max-size guard while preserving Docling-derived heading info.
+
         heading_path = _heading_path_from_docling_chunk(raw_chunk, title)
+
+        # Docling structure chunks can still be larger than the target retrieval
+        # unit. Apply the project-level size guard after Docling has identified
+        # the structural unit.
         for piece in split_large_text(
             text_piece,
             max_chars=min(MAX_CHUNK_CHARS, CHUNK_SIZE_CHARS),
             overlap_chars=CHUNK_OVERLAP_CHARS,
         ):
             piece = clean_chunk_text(piece)
-            if len(piece) < 1:
+            if not piece:
                 continue
+
             chunk_index = len(chunks)
             context = (
                 f"Title: {title}\n"
@@ -689,8 +703,9 @@ def try_docling_hybrid_chunking(
             )
             embedding_text = f"{context}{piece}"
             chunk_hash = hashlib.sha1(
-                f"{relative_path}|docling|{chunk_index}|{piece}".encode("utf-8")
+                f"{relative_path}|{method_name}|{chunk_index}|{piece}".encode("utf-8")
             ).hexdigest()[:16]
+
             chunks.append(
                 {
                     "chunk_id": f"autodesk_{chunk_hash}",
@@ -707,10 +722,92 @@ def try_docling_hybrid_chunking(
                     "cleaned_format": raw_metadata.get("cleaned_format", "markdown"),
                     "source_metadata_json": json.dumps(raw_metadata, ensure_ascii=False),
                     "source_url": raw_metadata.get("source_url", ""),
-                    "chunking_method": "docling_hybrid_chunker",
+                    "chunking_method": method_name,
                 }
             )
 
+    return chunks
+
+
+def try_docling_hierarchical_chunking(
+    doc: Any,
+    raw_metadata: dict[str, str],
+    relative_path: str,
+    source_file: str,
+) -> tuple[list[dict[str, Any]], str]:
+    """Use Docling's structure-first chunker without a 512-token tokenizer."""
+    HierarchicalChunker = _import_docling_chunker("HierarchicalChunker")
+    if HierarchicalChunker is None:
+        return [], "docling_hierarchical_chunker_not_available"
+
+    try:
+        chunker = HierarchicalChunker()
+    except Exception as exc:
+        return [], f"docling_hierarchical_chunker_init_failed: {type(exc).__name__}: {exc}"
+
+    try:
+        try:
+            raw_chunks = list(chunker.chunk(dl_doc=doc))
+        except TypeError:
+            try:
+                raw_chunks = list(chunker.chunk(document=doc))
+            except TypeError:
+                raw_chunks = list(chunker.chunk(doc))
+    except Exception as exc:
+        return [], f"docling_hierarchical_chunking_failed: {type(exc).__name__}: {exc}"
+
+    chunks = _make_chunks_from_docling_raw_chunks(
+        raw_chunks=raw_chunks,
+        raw_metadata=raw_metadata,
+        relative_path=relative_path,
+        source_file=source_file,
+        method_name="docling_hierarchical_chunker",
+    )
+    return chunks, "docling_hierarchical_chunker"
+
+
+def try_docling_hybrid_chunking(
+    doc: Any,
+    raw_metadata: dict[str, str],
+    relative_path: str,
+    source_file: str,
+) -> tuple[list[dict[str, Any]], str]:
+    """Optional legacy HybridChunker path.
+
+    Keep this disabled by default because it is the source of the 512-token
+    warning in this OpenAI-embedding pipeline. Enable only by setting
+    `DOCLING_USE_HYBRID_CHUNKER=true` in `.env`.
+    """
+    if not DOCLING_USE_HYBRID_CHUNKER:
+        return [], "docling_hybrid_chunker_disabled_to_avoid_512_tokenizer_warning"
+
+    HybridChunker = _import_docling_chunker("HybridChunker")
+    if HybridChunker is None:
+        return [], "docling_hybrid_chunker_not_available"
+
+    try:
+        chunker = HybridChunker()
+    except Exception as exc:
+        return [], f"docling_hybrid_chunker_init_failed: {type(exc).__name__}: {exc}"
+
+    try:
+        try:
+            raw_chunks = list(chunker.chunk(dl_doc=doc))
+        except TypeError:
+            try:
+                raw_chunks = list(chunker.chunk(document=doc))
+            except TypeError:
+                raw_chunks = list(chunker.chunk(doc))
+    except Exception as exc:
+        return [], f"docling_hybrid_chunking_failed: {type(exc).__name__}: {exc}"
+
+    chunks = _make_chunks_from_docling_raw_chunks(
+        raw_chunks=raw_chunks,
+        raw_metadata=raw_metadata,
+        relative_path=relative_path,
+        source_file=source_file,
+        method_name="docling_hybrid_chunker",
+    )
     return chunks, "docling_hybrid_chunker"
 
 
@@ -726,7 +823,8 @@ def chunk_document_via_docling(
 
     try:
         doc = docling_convert(source_path)
-        chunks, method = try_docling_hybrid_chunking(
+
+        chunks, method = try_docling_hierarchical_chunking(
             doc=doc,
             raw_metadata=raw_metadata,
             relative_path=relative_path,
@@ -736,6 +834,18 @@ def chunk_document_via_docling(
             return raw_metadata, chunks, method, ""
 
         warnings.append(method)
+
+        chunks, method = try_docling_hybrid_chunking(
+            doc=doc,
+            raw_metadata=raw_metadata,
+            relative_path=relative_path,
+            source_file=source_file,
+        )
+        if chunks:
+            return raw_metadata, chunks, method, "; ".join(warnings)
+
+        warnings.append(method)
+
         docling_markdown = docling_document_to_markdown(doc)
         metadata, chunks = chunk_document(docling_markdown, relative_path, source_file)
         merged_metadata = {**raw_metadata, **metadata}
@@ -1097,6 +1207,7 @@ summary_lines = [
     f"- Docling accelerator device: `{DOCLING_ACCELERATOR_DEVICE}`",
     f"- Docling num threads: `{DOCLING_NUM_THREADS}`",
     f"- Docling OCR enabled: `{DOCLING_DO_OCR}`",
+    f"- Docling HybridChunker enabled: `{DOCLING_USE_HYBRID_CHUNKER}`",
     f"- Minimum relevance score: `{MIN_RELEVANCE_SCORE}`",
     "",
     "## Notes",
