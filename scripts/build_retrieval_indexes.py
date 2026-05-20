@@ -110,6 +110,7 @@ LLM_PROVIDER = env_str("LLM_PROVIDER", "openai").lower()
 EMBEDDING_PROVIDER = env_str("EMBEDDING_PROVIDER", "openai").lower()
 OPENAI_MODEL = env_str("OPENAI_MODEL", "gpt-4.1-mini")
 OPENAI_EMBEDDING_MODEL = env_str("OPENAI_EMBEDDING_MODEL", "text-embedding-3-small")
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 EMBEDDING_MODEL_NAME = env_str("EMBEDDING_MODEL_NAME", OPENAI_EMBEDDING_MODEL)
 
 CHROMA_COLLECTION_NAME = env_str("CHROMA_COLLECTION_NAME", "autodesk-rag")
@@ -160,6 +161,7 @@ CONFIG = {
     "EMBEDDING_PROVIDER": EMBEDDING_PROVIDER,
     "OPENAI_MODEL": OPENAI_MODEL,
     "OPENAI_EMBEDDING_MODEL": OPENAI_EMBEDDING_MODEL,
+    "OPENAI_API_KEY_LOADED": bool(OPENAI_API_KEY),
     "EMBEDDING_MODEL_NAME": EMBEDDING_MODEL_NAME,
     "CHROMA_COLLECTION_NAME": CHROMA_COLLECTION_NAME,
     "BATCH_SIZE": BATCH_SIZE,
@@ -256,8 +258,14 @@ if torch is not None:
 
 if EMBEDDING_PROVIDER != "openai":
     raise ValueError(
-        f"EMBEDDING_PROVIDER={EMBEDDING_PROVIDER!r}; this notebook is configured "
+        f"EMBEDDING_PROVIDER={EMBEDDING_PROVIDER!r}; this script is configured "
         "to build embeddings with OpenAI. Set EMBEDDING_PROVIDER=openai in .env."
+    )
+
+if not OPENAI_API_KEY:
+    raise ValueError(
+        "OPENAI_API_KEY was not found after loading .env. "
+        "Add OPENAI_API_KEY=your_key_here to the project .env file, then rerun the script."
     )
 
 print(f"Docling available: {DOCLING_AVAILABLE}")
@@ -1003,7 +1011,7 @@ def chunk_to_chroma_metadata(chunk: dict[str, Any]) -> dict[str, str | int | flo
     }
 
 
-openai_client = OpenAI()
+openai_client = OpenAI(api_key=OPENAI_API_KEY)
 embedding_dimension: int | None = None
 
 print(f"Embedding provider: {EMBEDDING_PROVIDER}")
@@ -1214,7 +1222,7 @@ summary_lines = [
     "",
     "- Chunking is routed through Docling first. The notebook records the chunking method per document and per chunk.",
     "- If Docling conversion/chunking fails for a specific cleaned Markdown file, the raw Markdown heading-aware fallback is used for that file and recorded in the manifests.",
-    "- Embeddings are created with OpenAI, so an `OPENAI_API_KEY` must be available in the environment or `.env`.",
+    "- Embeddings are created with OpenAI, so `OPENAI_API_KEY` must be available in the environment or `.env`. Typo aliases such as `OPENAI_API_KEY` are intentionally not supported.",
     "- GPU settings apply to Docling where supported. BM25 and tokenization remain CPU-bound.",
 ]
 
