@@ -48,10 +48,11 @@ except Exception:
 # where they match this project. The notebook falls back to safe local defaults
 # and does not print secrets or overwrite `.env`.
 #
-# The cleaned corpus is already Markdown/text, so this workflow uses
-# Markdown-aware parsing and chunking as the primary approach. Docling is checked
-# and recorded as an available document representation option, but it is not
-# forced into a PDF-style parsing workflow where it would add little value.
+# The cleaned corpus is already Markdown/text, but chunk generation is routed
+# through Docling first so the index can benefit from document-aware structure.
+# If Docling cannot process a specific Markdown/text file, the notebook records
+# the issue and uses the conservative Markdown-aware fallback only for that file.
+# Embeddings are created with OpenAI using the provider/model settings in `.env`.
 
 # %%
 load_dotenv()
@@ -100,22 +101,35 @@ CHROMA_DIR = Path(
 BM25_DIR = Path(env_str("BM25_DIR", str(INDEX_ROOT_DIR / "bm25_autodesk_cleaned_corpus")))
 MANIFEST_DIR = Path(env_str("MANIFEST_DIR", str(INDEX_ROOT_DIR / "manifests")))
 
-CHUNK_SIZE_CHARS = env_int("CHUNK_SIZE_CHARS", env_int("CHUNK_SIZE", 2500))
-CHUNK_OVERLAP_CHARS = env_int("CHUNK_OVERLAP_CHARS", env_int("CHUNK_OVERLAP", 300))
+CHUNK_SIZE_CHARS = env_int("CHUNK_SIZE_CHARS", env_int("CHUNK_SIZE", 3500))
+CHUNK_OVERLAP_CHARS = env_int("CHUNK_OVERLAP_CHARS", env_int("CHUNK_OVERLAP", 500))
 MIN_CHUNK_CHARS = env_int("MIN_CHUNK_CHARS", 300)
-MAX_CHUNK_CHARS = env_int("MAX_CHUNK_CHARS", 4000)
+MAX_CHUNK_CHARS = env_int("MAX_CHUNK_CHARS", max(4000, CHUNK_SIZE_CHARS))
 
-# Keep indexing fully local by default. Existing OpenAI/Gemini embedding
-# provider variables are app-level settings and are intentionally not used here.
-EMBEDDING_MODEL_NAME = env_str(
-    "EMBEDDING_MODEL_NAME",
-    env_str("LOCAL_EMBEDDING_MODEL_NAME", "sentence-transformers/all-MiniLM-L6-v2"),
-)
-CHROMA_COLLECTION_NAME = env_str("CHROMA_COLLECTION_NAME", "autodesk_cleaned_corpus")
+LLM_PROVIDER = env_str("LLM_PROVIDER", "openai").lower()
+EMBEDDING_PROVIDER = env_str("EMBEDDING_PROVIDER", "openai").lower()
+OPENAI_MODEL = env_str("OPENAI_MODEL", "gpt-4.1-mini")
+OPENAI_EMBEDDING_MODEL = env_str("OPENAI_EMBEDDING_MODEL", "text-embedding-3-small")
+EMBEDDING_MODEL_NAME = env_str("EMBEDDING_MODEL_NAME", OPENAI_EMBEDDING_MODEL)
 
-BATCH_SIZE = env_int("BATCH_SIZE", env_int("EMBEDDING_BATCH_SIZE", 64))
+CHROMA_COLLECTION_NAME = env_str("CHROMA_COLLECTION_NAME", "autodesk-rag")
+
+BATCH_SIZE = env_int("BATCH_SIZE", env_int("EMBEDDING_BATCH_SIZE", 32))
+EMBEDDING_BATCH_DELAY_SECONDS = env_float("EMBEDDING_BATCH_DELAY_SECONDS", 3.0)
+EMBEDDING_MAX_RETRIES = env_int("EMBEDDING_MAX_RETRIES", 8)
+
 N_WORKERS = env_int("N_WORKERS", max(1, (os.cpu_count() or 2) - 1))
 OVERWRITE_EXISTING_INDEXES = env_bool("OVERWRITE_EXISTING_INDEXES", False)
+
+DOCLING_ACCELERATOR_DEVICE = env_str("DOCLING_ACCELERATOR_DEVICE", "cuda")
+DOCLING_NUM_THREADS = env_int("DOCLING_NUM_THREADS", 4)
+DOCLING_DO_OCR = env_bool("DOCLING_DO_OCR", False)
+DOCLING_BATCH_SIZE = env_int("DOCLING_BATCH_SIZE", 1)
+DOCLING_MAX_PAGES = env_int("DOCLING_MAX_PAGES", 250)
+DOCLING_PAGE_CHUNK_SIZE = env_int("DOCLING_PAGE_CHUNK_SIZE", 30)
+DOCLING_PAGE_OVERLAP = env_int("DOCLING_PAGE_OVERLAP", 5)
+
+MIN_RELEVANCE_SCORE = env_float("MIN_RELEVANCE_SCORE", 0.30)
 
 FILE_EXTENSIONS = (".md", ".txt")
 IGNORE_FILENAMES = {
@@ -141,11 +155,25 @@ CONFIG = {
     "CHUNK_OVERLAP_CHARS": CHUNK_OVERLAP_CHARS,
     "MIN_CHUNK_CHARS": MIN_CHUNK_CHARS,
     "MAX_CHUNK_CHARS": MAX_CHUNK_CHARS,
+    "LLM_PROVIDER": LLM_PROVIDER,
+    "EMBEDDING_PROVIDER": EMBEDDING_PROVIDER,
+    "OPENAI_MODEL": OPENAI_MODEL,
+    "OPENAI_EMBEDDING_MODEL": OPENAI_EMBEDDING_MODEL,
     "EMBEDDING_MODEL_NAME": EMBEDDING_MODEL_NAME,
     "CHROMA_COLLECTION_NAME": CHROMA_COLLECTION_NAME,
     "BATCH_SIZE": BATCH_SIZE,
+    "EMBEDDING_BATCH_DELAY_SECONDS": EMBEDDING_BATCH_DELAY_SECONDS,
+    "EMBEDDING_MAX_RETRIES": EMBEDDING_MAX_RETRIES,
     "N_WORKERS": N_WORKERS,
     "OVERWRITE_EXISTING_INDEXES": OVERWRITE_EXISTING_INDEXES,
+    "DOCLING_ACCELERATOR_DEVICE": DOCLING_ACCELERATOR_DEVICE,
+    "DOCLING_NUM_THREADS": DOCLING_NUM_THREADS,
+    "DOCLING_DO_OCR": DOCLING_DO_OCR,
+    "DOCLING_BATCH_SIZE": DOCLING_BATCH_SIZE,
+    "DOCLING_MAX_PAGES": DOCLING_MAX_PAGES,
+    "DOCLING_PAGE_CHUNK_SIZE": DOCLING_PAGE_CHUNK_SIZE,
+    "DOCLING_PAGE_OVERLAP": DOCLING_PAGE_OVERLAP,
+    "MIN_RELEVANCE_SCORE": MIN_RELEVANCE_SCORE,
 }
 
 pd.DataFrame([CONFIG]).T.rename(columns={0: "value"})
@@ -164,11 +192,11 @@ REQUIRED_PACKAGES = {
     "tqdm": "tqdm",
     "chromadb": "chromadb",
     "rank-bm25": "rank_bm25",
-    "sentence-transformers": "sentence_transformers",
+    "openai": "openai",
+    "docling": "docling",
 }
 
 OPTIONAL_PACKAGES = {
-    "docling": "docling",
     "torch": "torch",
 }
 
@@ -212,7 +240,7 @@ if not deps[deps["required"] & ~deps["available"]].empty:
     raise RuntimeError("Install missing required packages before building indexes.")
 
 import chromadb
-from sentence_transformers import SentenceTransformer
+from openai import OpenAI
 
 try:
     import torch
@@ -224,11 +252,19 @@ DEVICE_NOTE = "auto"
 if torch is not None:
     DEVICE_NOTE = "cuda" if torch.cuda.is_available() else "cpu"
 
+if EMBEDDING_PROVIDER != "openai":
+    raise ValueError(
+        f"EMBEDDING_PROVIDER={EMBEDDING_PROVIDER!r}; this notebook is configured "
+        "to build embeddings with OpenAI. Set EMBEDDING_PROVIDER=openai in .env."
+    )
+
 print(f"Docling available: {DOCLING_AVAILABLE}")
-print(f"SentenceTransformers device availability: {DEVICE_NOTE}")
+print(f"Configured Docling accelerator: {DOCLING_ACCELERATOR_DEVICE}")
+print(f"Detected torch device availability: {DEVICE_NOTE}")
+print(f"OpenAI embedding model: {OPENAI_EMBEDDING_MODEL}")
 print(
-    "GPU can speed up embedding generation when available; BM25 and Markdown "
-    "parsing are CPU/string-processing workloads."
+    "OpenAI embeddings are created via API. GPU settings apply to Docling where "
+    "supported, while BM25 remains CPU/string-processing."
 )
 
 # %% [markdown]
@@ -266,11 +302,11 @@ docs_df.head()
 # %% [markdown]
 # ## 4. Markdown Metadata And Structure Parsing
 #
-# Cleaned documents start with YAML-style provenance metadata. The parser below
-# preserves that metadata, extracts a title, and splits content primarily by
-# Markdown headings. It is deliberately conservative: short technical statements,
-# tables, list items, and code blocks are not discarded just because they are
-# compact.
+# Cleaned documents start with YAML-style provenance metadata. Docling is used
+# first to read the cleaned Markdown/text document and, where available, to
+# generate document-aware chunks. A conservative Markdown-aware splitter remains
+# available as a per-file fallback so a single Docling conversion issue does not
+# stop the indexing run.
 
 # %%
 FRONTMATTER_RE = re.compile(r"^---\s*\n(.*?)\n---\s*\n?", re.S)
@@ -493,6 +529,232 @@ def chunk_document(
 
     return metadata, chunks
 
+
+# %% [markdown]
+# ## 5. Docling-Based Chunking
+#
+# This section routes each cleaned document through Docling. It first tries
+# Docling's `HybridChunker` API when available. If the installed Docling version
+# exposes different interfaces or cannot chunk a specific Markdown/text file,
+# the code falls back to Docling conversion/export plus the conservative
+# Markdown-aware splitter above. Only if Docling conversion itself fails for a
+# file does it use the raw Markdown fallback and record that warning.
+
+# %%
+def _docling_converter() -> Any:
+    """Create a Docling DocumentConverter using the installed Docling version."""
+    from docling.document_converter import DocumentConverter
+
+    # Docling reads many settings from environment variables. Set them here so
+    # notebook config and .env stay aligned.
+    os.environ["DOCLING_ACCELERATOR_DEVICE"] = str(DOCLING_ACCELERATOR_DEVICE)
+    os.environ["DOCLING_NUM_THREADS"] = str(DOCLING_NUM_THREADS)
+    os.environ["DOCLING_DO_OCR"] = str(DOCLING_DO_OCR).lower()
+    os.environ["DOCLING_BATCH_SIZE"] = str(DOCLING_BATCH_SIZE)
+    os.environ["DOCLING_MAX_PAGES"] = str(DOCLING_MAX_PAGES)
+    os.environ["DOCLING_PAGE_CHUNK_SIZE"] = str(DOCLING_PAGE_CHUNK_SIZE)
+    os.environ["DOCLING_PAGE_OVERLAP"] = str(DOCLING_PAGE_OVERLAP)
+
+    return DocumentConverter()
+
+
+_DOCLING_CONVERTER_CACHE: Any | None = None
+
+
+def get_docling_converter() -> Any:
+    global _DOCLING_CONVERTER_CACHE
+    if _DOCLING_CONVERTER_CACHE is None:
+        _DOCLING_CONVERTER_CACHE = _docling_converter()
+    return _DOCLING_CONVERTER_CACHE
+
+
+def docling_convert(path: Path) -> Any:
+    converter = get_docling_converter()
+    result = converter.convert(str(path))
+    return getattr(result, "document", result)
+
+
+def docling_document_to_markdown(doc: Any) -> str:
+    for method_name in ("export_to_markdown", "export_to_text", "export_to_md"):
+        method = getattr(doc, method_name, None)
+        if callable(method):
+            try:
+                value = method()
+                if value:
+                    return str(value)
+            except Exception:
+                continue
+    return str(doc)
+
+
+def _import_docling_hybrid_chunker() -> Any | None:
+    import importlib
+
+    for module_name in (
+        "docling.chunking",
+        "docling_core.transforms.chunker",
+        "docling_core.transforms.chunker.hybrid_chunker",
+    ):
+        try:
+            module = importlib.import_module(module_name)
+            chunker = getattr(module, "HybridChunker", None)
+            if chunker is not None:
+                return chunker
+        except Exception:
+            continue
+    return None
+
+
+def _chunk_text_from_docling_chunk(chunk: Any) -> str:
+    for attr in ("text", "content", "page_content"):
+        value = getattr(chunk, attr, None)
+        if value:
+            return clean_chunk_text(str(value))
+    method = getattr(chunk, "export_to_markdown", None)
+    if callable(method):
+        try:
+            value = method()
+            if value:
+                return clean_chunk_text(str(value))
+        except Exception:
+            pass
+    return clean_chunk_text(str(chunk))
+
+
+def _heading_path_from_docling_chunk(chunk: Any, fallback_title: str) -> str:
+    meta = getattr(chunk, "meta", None)
+    headings = None
+    if meta is not None:
+        headings = getattr(meta, "headings", None)
+        if headings is None and isinstance(meta, dict):
+            headings = meta.get("headings")
+    if headings:
+        if isinstance(headings, (list, tuple)):
+            return " > ".join(str(h).strip() for h in headings if str(h).strip())
+        return str(headings)
+    return fallback_title
+
+
+def try_docling_hybrid_chunking(
+    doc: Any,
+    raw_metadata: dict[str, str],
+    relative_path: str,
+    source_file: str,
+) -> tuple[list[dict[str, Any]], str]:
+    HybridChunker = _import_docling_hybrid_chunker()
+    if HybridChunker is None:
+        return [], "docling_hybrid_chunker_not_available"
+
+    title = raw_metadata.get("title") or Path(relative_path).stem
+
+    try:
+        # Docling's constructor signature has changed across releases, so keep
+        # this deliberately minimal and let .env drive Docling behavior.
+        chunker = HybridChunker()
+    except Exception as exc:
+        return [], f"docling_hybrid_chunker_init_failed: {type(exc).__name__}: {exc}"
+
+    try:
+        try:
+            raw_chunks = list(chunker.chunk(dl_doc=doc))
+        except TypeError:
+            try:
+                raw_chunks = list(chunker.chunk(document=doc))
+            except TypeError:
+                raw_chunks = list(chunker.chunk(doc))
+    except Exception as exc:
+        return [], f"docling_hybrid_chunking_failed: {type(exc).__name__}: {exc}"
+
+    chunks: list[dict[str, Any]] = []
+    for raw_chunk in raw_chunks:
+        text_piece = _chunk_text_from_docling_chunk(raw_chunk)
+        if not text_piece:
+            continue
+        # Docling chunks can be larger than desired depending on version. Apply
+        # the same max-size guard while preserving Docling-derived heading info.
+        heading_path = _heading_path_from_docling_chunk(raw_chunk, title)
+        for piece in split_large_text(
+            text_piece,
+            max_chars=min(MAX_CHUNK_CHARS, CHUNK_SIZE_CHARS),
+            overlap_chars=CHUNK_OVERLAP_CHARS,
+        ):
+            piece = clean_chunk_text(piece)
+            if len(piece) < 1:
+                continue
+            chunk_index = len(chunks)
+            context = (
+                f"Title: {title}\n"
+                f"Section: {heading_path}\n"
+                f"Source: {relative_path}\n\n"
+            )
+            embedding_text = f"{context}{piece}"
+            chunk_hash = hashlib.sha1(
+                f"{relative_path}|docling|{chunk_index}|{piece}".encode("utf-8")
+            ).hexdigest()[:16]
+            chunks.append(
+                {
+                    "chunk_id": f"autodesk_{chunk_hash}",
+                    "source_file": source_file,
+                    "relative_source_path": relative_path,
+                    "title": title,
+                    "heading_path": heading_path,
+                    "chunk_index": chunk_index,
+                    "chunk_text": piece,
+                    "embedding_text": embedding_text,
+                    "chunk_char_count": len(piece),
+                    "embedding_char_count": len(embedding_text),
+                    "approx_token_count": estimate_tokens(embedding_text),
+                    "cleaned_format": raw_metadata.get("cleaned_format", "markdown"),
+                    "source_metadata_json": json.dumps(raw_metadata, ensure_ascii=False),
+                    "source_url": raw_metadata.get("source_url", ""),
+                    "chunking_method": "docling_hybrid_chunker",
+                }
+            )
+
+    return chunks, "docling_hybrid_chunker"
+
+
+def chunk_document_via_docling(
+    source_path: Path,
+    relative_path: str,
+    source_file: str,
+) -> tuple[dict[str, str], list[dict[str, Any]], str, str]:
+    raw_text = source_path.read_text(encoding="utf-8", errors="replace")
+    raw_metadata, _ = parse_frontmatter(raw_text)
+
+    warnings: list[str] = []
+
+    try:
+        doc = docling_convert(source_path)
+        chunks, method = try_docling_hybrid_chunking(
+            doc=doc,
+            raw_metadata=raw_metadata,
+            relative_path=relative_path,
+            source_file=source_file,
+        )
+        if chunks:
+            return raw_metadata, chunks, method, ""
+
+        warnings.append(method)
+        docling_markdown = docling_document_to_markdown(doc)
+        metadata, chunks = chunk_document(docling_markdown, relative_path, source_file)
+        merged_metadata = {**raw_metadata, **metadata}
+        for chunk in chunks:
+            chunk["source_metadata_json"] = json.dumps(merged_metadata, ensure_ascii=False)
+            chunk["source_url"] = merged_metadata.get("source_url", chunk.get("source_url", ""))
+            chunk["chunking_method"] = "docling_export_markdown_heading_splitter"
+        return merged_metadata, chunks, "docling_export_markdown_heading_splitter", "; ".join(warnings)
+
+    except Exception as exc:
+        warnings.append(f"docling_conversion_failed: {type(exc).__name__}: {exc}")
+        metadata, chunks = chunk_document(raw_text, relative_path, source_file)
+        merged_metadata = {**raw_metadata, **metadata}
+        for chunk in chunks:
+            chunk["source_metadata_json"] = json.dumps(merged_metadata, ensure_ascii=False)
+            chunk["source_url"] = merged_metadata.get("source_url", chunk.get("source_url", ""))
+            chunk["chunking_method"] = "raw_markdown_heading_splitter_fallback"
+        return merged_metadata, chunks, "raw_markdown_heading_splitter_fallback", "; ".join(warnings)
+
 # %% [markdown]
 # ## 5. Build Chunk Manifest
 #
@@ -502,11 +764,16 @@ def chunk_document(
 # %%
 def process_document(row: pd.Series) -> tuple[dict[str, Any], list[dict[str, Any]]]:
     source_file = row["source_file"]
+    source_path = Path(source_file)
     relative_path = row["relative_source_path"]
     file_size = row["file_size_bytes"]
     try:
-        text = Path(source_file).read_text(encoding="utf-8", errors="replace")
-        metadata, chunks = chunk_document(text, relative_path, source_file)
+        raw_text = source_path.read_text(encoding="utf-8", errors="replace")
+        metadata, chunks, chunking_method, warning = chunk_document_via_docling(
+            source_path=source_path,
+            relative_path=relative_path,
+            source_file=source_file,
+        )
         return (
             {
                 "source_file": source_file,
@@ -515,9 +782,10 @@ def process_document(row: pd.Series) -> tuple[dict[str, Any], list[dict[str, Any
                 "document_title": metadata.get("title")
                 or (chunks[0]["title"] if chunks else Path(relative_path).stem),
                 "num_chunks_generated": len(chunks),
-                "total_characters": len(text),
+                "total_characters": len(raw_text),
                 "status": "indexed" if chunks else "skipped",
-                "warning_or_error": "" if chunks else "no_nonempty_chunks_generated",
+                "chunking_method": chunking_method,
+                "warning_or_error": warning if warning else ("" if chunks else "no_nonempty_chunks_generated"),
             },
             chunks,
         )
@@ -531,6 +799,7 @@ def process_document(row: pd.Series) -> tuple[dict[str, Any], list[dict[str, Any
                 "num_chunks_generated": 0,
                 "total_characters": 0,
                 "status": "failed",
+                "chunking_method": "failed",
                 "warning_or_error": f"{type(exc).__name__}: {exc}\n{traceback.format_exc()}",
             },
             [],
@@ -594,9 +863,11 @@ print(f"Manifest directory: {MANIFEST_DIR}")
 # %% [markdown]
 # ## 7. Build ChromaDB Vector Index
 #
-# Chroma stores the context-prefixed chunk text and scalar metadata. The
-# embedding model is a local SentenceTransformers model by default. The model can
-# be swapped later by setting `EMBEDDING_MODEL_NAME` in `.env`.
+# Chroma stores the context-prefixed chunk text and scalar metadata. Embeddings
+# are created with OpenAI using `OPENAI_EMBEDDING_MODEL` from `.env`
+# (`text-embedding-3-small` by default here). Batching, delay, and retry behavior
+# are controlled by `EMBEDDING_BATCH_SIZE`, `EMBEDDING_BATCH_DELAY_SECONDS`, and
+# `EMBEDDING_MAX_RETRIES`.
 
 # %%
 def chroma_scalar(value: Any) -> str | int | float | bool:
@@ -618,13 +889,18 @@ def chunk_to_chroma_metadata(chunk: dict[str, Any]) -> dict[str, str | int | flo
         "approx_token_count": int(chunk["approx_token_count"]),
         "cleaned_format": chroma_scalar(chunk["cleaned_format"]),
         "source_url": chroma_scalar(chunk.get("source_url", "")),
+        "chunking_method": chroma_scalar(chunk.get("chunking_method", "")),
     }
 
 
-embedding_model = SentenceTransformer(EMBEDDING_MODEL_NAME)
-embedding_dimension = int(embedding_model.get_sentence_embedding_dimension())
-print(f"Embedding model: {EMBEDDING_MODEL_NAME}")
-print(f"Embedding dimension: {embedding_dimension}")
+openai_client = OpenAI()
+embedding_dimension: int | None = None
+
+print(f"Embedding provider: {EMBEDDING_PROVIDER}")
+print(f"OpenAI embedding model: {OPENAI_EMBEDDING_MODEL}")
+print(f"Embedding batch size: {BATCH_SIZE}")
+print(f"Embedding batch delay seconds: {EMBEDDING_BATCH_DELAY_SECONDS}")
+print(f"Embedding max retries: {EMBEDDING_MAX_RETRIES}")
 
 chroma_client = chromadb.PersistentClient(path=str(CHROMA_DIR))
 if OVERWRITE_EXISTING_INDEXES:
@@ -637,12 +913,41 @@ collection = chroma_client.get_or_create_collection(
     name=CHROMA_COLLECTION_NAME,
     metadata={
         "description": "Autodesk cleaned corpus chunks",
-        "embedding_model": EMBEDDING_MODEL_NAME,
-        "embedding_dimension": embedding_dimension,
+        "embedding_provider": EMBEDDING_PROVIDER,
+        "embedding_model": OPENAI_EMBEDDING_MODEL,
     },
 )
 
-# %%
+
+def embed_texts_openai(texts: list[str]) -> list[list[float]]:
+    """Create OpenAI embeddings with retries and fixed delay between retries."""
+    if not texts:
+        return []
+
+    last_error: Exception | None = None
+    for attempt in range(1, EMBEDDING_MAX_RETRIES + 1):
+        try:
+            response = openai_client.embeddings.create(
+                model=OPENAI_EMBEDDING_MODEL,
+                input=texts,
+            )
+            # Preserve input order using the index returned by the API.
+            sorted_data = sorted(response.data, key=lambda item: item.index)
+            return [item.embedding for item in sorted_data]
+        except Exception as exc:
+            last_error = exc
+            wait_seconds = EMBEDDING_BATCH_DELAY_SECONDS * attempt
+            print(
+                f"OpenAI embedding attempt {attempt}/{EMBEDDING_MAX_RETRIES} failed: "
+                f"{type(exc).__name__}: {exc}. Retrying in {wait_seconds:.1f}s."
+            )
+            time.sleep(wait_seconds)
+
+    raise RuntimeError(
+        f"OpenAI embedding failed after {EMBEDDING_MAX_RETRIES} attempts"
+    ) from last_error
+
+
 embedded_success: dict[str, bool] = {}
 
 ids = chunk_manifest_df["chunk_id"].tolist()
@@ -655,12 +960,9 @@ for start in tqdm(range(0, len(ids), BATCH_SIZE), desc="Embedding and upserting 
     batch_docs = documents[start:end]
     batch_metas = metadatas[start:end]
     try:
-        embeddings = embedding_model.encode(
-            batch_docs,
-            batch_size=BATCH_SIZE,
-            show_progress_bar=False,
-            normalize_embeddings=True,
-        ).tolist()
+        embeddings = embed_texts_openai(batch_docs)
+        if embeddings and embedding_dimension is None:
+            embedding_dimension = len(embeddings[0])
         collection.upsert(
             ids=batch_ids,
             documents=batch_docs,
@@ -669,11 +971,15 @@ for start in tqdm(range(0, len(ids), BATCH_SIZE), desc="Embedding and upserting 
         )
         for chunk_id in batch_ids:
             embedded_success[chunk_id] = True
+        if EMBEDDING_BATCH_DELAY_SECONDS > 0 and end < len(ids):
+            time.sleep(EMBEDDING_BATCH_DELAY_SECONDS)
     except Exception as exc:
         print(f"Embedding/upsert failed for batch {start}:{end}: {exc}")
         for chunk_id in batch_ids:
             embedded_success[chunk_id] = False
 
+embedding_dimension = int(embedding_dimension or 0)
+print(f"Embedding dimension: {embedding_dimension}")
 print(f"Chroma collection count: {collection.count():,}")
 
 # %% [markdown]
@@ -706,6 +1012,7 @@ bm25_metadata = {
         "chunk_char_count": int(row["chunk_char_count"]),
         "approx_token_count": int(row["approx_token_count"]),
         "preview": row["chunk_text"][:500],
+        "chunking_method": row.get("chunking_method", ""),
     }
     for _, row in chunk_manifest_df.iterrows()
 }
@@ -749,6 +1056,7 @@ chunk_manifest_save_cols = [
     "chunk_index",
     "chunk_char_count",
     "approx_token_count",
+    "chunking_method",
     "first_300_characters",
     "embedded_successfully",
     "added_to_bm25_successfully",
@@ -777,7 +1085,8 @@ summary_lines = [
     f"- Average chunk length: `{chunk_manifest_df['chunk_char_count'].mean():.1f}`",
     f"- Shortest chunk length: `{int(chunk_manifest_df['chunk_char_count'].min())}`",
     f"- Longest chunk length: `{int(chunk_manifest_df['chunk_char_count'].max())}`",
-    f"- Embedding model used: `{EMBEDDING_MODEL_NAME}`",
+    f"- Embedding provider: `{EMBEDDING_PROVIDER}`",
+    f"- OpenAI embedding model used: `{OPENAI_EMBEDDING_MODEL}`",
     f"- Embedding dimension: `{embedding_dimension}`",
     f"- Chroma collection name: `{CHROMA_COLLECTION_NAME}`",
     f"- Chroma persistence directory: `{CHROMA_DIR.as_posix()}`",
@@ -785,12 +1094,17 @@ summary_lines = [
     f"- BM25 persistence directory: `{BM25_DIR.as_posix()}`",
     f"- BM25 chunk count: `{len(bm25_chunk_ids):,}`",
     f"- Docling available: `{DOCLING_AVAILABLE}`",
+    f"- Docling accelerator device: `{DOCLING_ACCELERATOR_DEVICE}`",
+    f"- Docling num threads: `{DOCLING_NUM_THREADS}`",
+    f"- Docling OCR enabled: `{DOCLING_DO_OCR}`",
+    f"- Minimum relevance score: `{MIN_RELEVANCE_SCORE}`",
     "",
     "## Notes",
     "",
-    "- The corpus is already cleaned Markdown/text, so Markdown-aware parsing is the primary chunking strategy.",
-    "- Docling is available for future document-aware ingestion experiments, but this notebook avoids unnecessary PDF-style conversion.",
-    "- GPU can improve embedding throughput when SentenceTransformers can use CUDA. BM25 and parsing remain CPU-bound.",
+    "- Chunking is routed through Docling first. The notebook records the chunking method per document and per chunk.",
+    "- If Docling conversion/chunking fails for a specific cleaned Markdown file, the raw Markdown heading-aware fallback is used for that file and recorded in the manifests.",
+    "- Embeddings are created with OpenAI, so an `OPENAI_API_KEY` must be available in the environment or `.env`.",
+    "- GPU settings apply to Docling where supported. BM25 and tokenization remain CPU-bound.",
 ]
 
 summary_path.write_text("\n".join(summary_lines), encoding="utf-8")
@@ -837,9 +1151,7 @@ def result_from_chunk(
 
 
 def search_vector(query: str, k: int = 10) -> list[dict[str, Any]]:
-    query_embedding = embedding_model.encode(
-        [query], show_progress_bar=False, normalize_embeddings=True
-    ).tolist()[0]
+    query_embedding = embed_texts_openai([query])[0]
     results = collection.query(
         query_embeddings=[query_embedding],
         n_results=k,
@@ -852,7 +1164,8 @@ def search_vector(query: str, k: int = 10) -> list[dict[str, Any]]:
         row = result_from_chunk(chunk_id, i + 1, score, "vector_score")
         if not row["preview"]:
             row["preview"] = preview(results.get("documents", [[]])[0][i])
-        output.append(row)
+        if score >= MIN_RELEVANCE_SCORE:
+            output.append(row)
     return output
 
 

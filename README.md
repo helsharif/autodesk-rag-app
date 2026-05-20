@@ -2,9 +2,15 @@
 
 ## Project Overview
 
-This project will build a retrieval augmented generation (RAG) application over a corpus of Autodesk HTML webpages. The goal is to provide grounded, accurate answers to customer questions about Autodesk software products, ranging from general product questions to technical usage questions.
+This project builds a retrieval-augmented generation (RAG) application over a corpus of Autodesk HTML webpages. The goal is to provide grounded, accurate answers to customer questions about Autodesk software products, ranging from general product questions to technical usage questions.
 
-The app will be developed step by step, beginning with corpus exploration and moving toward parsing, retrieval, generation, evaluation, and deployment.
+The project follows a step-by-step workflow inspired by lessons learned from the Cobb County RAG app:
+
+1. Clean raw Autodesk HTML pages into RAG-ready Markdown.
+2. Build retrieval indexes from the cleaned corpus.
+3. Use hybrid retrieval with dense vector search and BM25 keyword search.
+4. Generate grounded answers with strict evidence constraints.
+5. Evaluate retrieval and answer quality using a golden dataset and RAGAS/LangSmith.
 
 ## Business Problem
 
@@ -14,7 +20,165 @@ Longer term, this type of tool could also reduce support burden by helping users
 
 ## Available Data
 
-- Corpus of Autodesk webpages stored as HTML files.
+- Raw Autodesk webpage corpus stored as HTML files in `raw_corpus/`.
+- Cleaned Markdown corpus generated into `cleaned_corpus/`.
+- Retrieval indexes generated into `retrieval_indexes/`.
+
+## Current Pipeline Status
+
+The project now includes the first two major pipeline stages:
+
+### 1. Corpus Cleaning
+
+The corpus cleaning pipeline converts raw Autodesk HTML files into cleaner Markdown documents.
+
+Primary files:
+
+```text
+notebook_01_corpus_cleaning.ipynb
+corpus_cleaning_pipeline.py
+```
+
+Main cleaning approach:
+
+- BeautifulSoup removes deterministic boilerplate, including scripts, styles, navigation, headers, footers, hidden elements, cookie banners, and repeated page chrome.
+- Trafilatura extracts main content as Markdown.
+- BeautifulSoup fallback logic preserves tables, headings, lists, links, and code-like blocks when Trafilatura is too sparse.
+- Cleaned files are written to `cleaned_corpus/`.
+- Cleaning diagnostics are written to `cleaned_corpus_info/`.
+
+Important generated outputs:
+
+```text
+cleaned_corpus/
+cleaned_corpus_info/cleaning_manifest.csv
+cleaned_corpus_info/cleaning_summary.md
+cleaned_corpus_info/before_after_processing_stats.md
+cleaned_corpus_info/repeated_line_candidates.csv
+```
+
+### 2. Retrieval Index Building
+
+The retrieval indexing pipeline builds both dense and lexical retrieval indexes from the cleaned corpus.
+
+Primary files:
+
+```text
+notebook_02_build_retrieval_indexes.ipynb
+build_retrieval_indexes.py
+```
+
+Main indexing approach:
+
+- Loads configuration from `.env`.
+- Uses Docling-driven document-aware chunking where available.
+- Uses OpenAI embeddings for dense vector search.
+- Stores dense embeddings in persistent ChromaDB.
+- Builds a local BM25 keyword index for lexical search.
+- Includes retrieval sanity-check helpers for vector, BM25, and hybrid search.
+- Saves document-level and chunk-level manifests for reproducibility.
+
+Important generated outputs:
+
+```text
+retrieval_indexes/
+    chroma_autodesk_cleaned_corpus/
+    bm25_autodesk_cleaned_corpus/
+    manifests/
+        indexing_manifest.csv
+        chunk_manifest.csv
+        indexing_summary.md
+```
+
+## Environment Configuration
+
+The project uses a `.env` file for model, embedding, Chroma, Docling, chunking, and retrieval settings.
+
+Current important `.env` variables include:
+
+```text
+LLM_PROVIDER=openai
+EMBEDDING_PROVIDER=openai
+
+OPENAI_MODEL=gpt-4.1-mini
+OPENAI_EMBEDDING_MODEL=text-embedding-3-small
+
+EMBEDDING_BATCH_SIZE=32
+EMBEDDING_BATCH_DELAY_SECONDS=3.0
+EMBEDDING_MAX_RETRIES=8
+
+CHROMA_COLLECTION_NAME=autodesk-rag
+STREAMLIT_HOST_PORT=8502
+
+CHUNK_SIZE=3500
+CHUNK_OVERLAP=500
+RETRIEVER_K=10
+MIN_RELEVANCE_SCORE=0.30
+
+DOCLING_ACCELERATOR_DEVICE=cuda
+DOCLING_NUM_THREADS=4
+DOCLING_DO_OCR=false
+DOCLING_BATCH_SIZE=1
+DOCLING_MAX_PAGES=250
+DOCLING_PAGE_CHUNK_SIZE=30
+DOCLING_PAGE_OVERLAP=5
+```
+
+The indexing workflow should respect these values before falling back to defaults.
+
+## Embedding And Retrieval Design
+
+The current retrieval system uses a hybrid search architecture:
+
+### Dense Semantic Retrieval
+
+- Embedding provider: OpenAI
+- Embedding model: `text-embedding-3-small`
+- Vector database: ChromaDB
+- Chroma collection: `autodesk-rag`
+
+Dense retrieval is useful for semantic matches where the user query and source text use different wording.
+
+### Lexical Retrieval
+
+- BM25 keyword index
+- Local persisted artifacts
+- Technical-token-aware tokenizer
+
+BM25 is useful for exact Autodesk terminology, product names, API names, error codes, parameters, and short technical phrases.
+
+### Hybrid Retrieval
+
+Hybrid retrieval combines dense vector results and BM25 results, preferably using reciprocal rank fusion (RRF). This follows the Cobb County RAG lesson that BM25 often catches exact technical terms that embeddings can miss, while dense retrieval improves semantic recall.
+
+## Docling Chunking
+
+Chunking is intended to be context-aware rather than blind fixed-size splitting.
+
+The updated indexing pipeline should use Docling for document-aware chunking where practical and should preserve:
+
+- Source file path
+- Relative source path
+- Document title
+- Heading hierarchy
+- Section context
+- Chunk index
+- Character count
+- Approximate token count
+- Source metadata
+- Source URL if available
+
+Chunk text should include lightweight context before embedding, for example:
+
+```text
+Title: <document title>
+Section: <heading path>
+Source: <relative source path>
+
+<chunk text>
+```
+
+This improves retrieval quality because the embedding includes both the local passage and its document/section context.
 
 ## Exploratory Data Analysis
 
@@ -30,6 +194,9 @@ Initial EDA should answer the following questions:
 - Is cleaning required, and how much?
 - How prevalent is technical Autodesk-specific jargon in the corpus?
 - Is useful metadata available?
+- How much character/file-size reduction was achieved after cleaning?
+- How many chunks were generated after indexing?
+- Which files produce unusually short or unusually long chunks?
 
 ## Success Criteria
 
@@ -42,7 +209,17 @@ RAG quality will be evaluated with RAGAS metrics:
 - Context precision: target 0.70+
 - Context recall: target 0.70+
 
-Latency is also important, though deep latency optimization may be beyond the scope of this take-home project.
+Additional engineering metrics:
+
+- Retrieval latency
+- Answer latency
+- Index build time
+- Average chunk length
+- Chroma collection size
+- BM25 index size
+- Percentage of queries with sufficient retrieved evidence above `MIN_RELEVANCE_SCORE`
+
+Latency is important, though deep latency optimization may be beyond the scope of this take-home project.
 
 ### Evaluation Dataset
 
@@ -73,21 +250,34 @@ These are beyond the scope of the take-home project but are useful future metric
 
 This project is similar to the Cobb County RAG app previously developed to answer user queries from Cobb County Building and Fire code documents. The target performance metrics and system design are influenced by lessons learned from that project.
 
+Relevant lessons carried forward:
+
+- Clean, structured chunks matter as much as the model.
+- Hybrid retrieval is stronger than vector-only retrieval for technical corpora.
+- Strict answer prompts reduce hallucination.
+- Evidence sufficiency checks help avoid unsupported answers.
+- Deterministic neighbor/section-aware chunk expansion is safer than dumping large irrelevant context windows.
+- Manifests and diagnostics are essential for debugging retrieval failures.
+
 ## Proposed Model Architecture
 
 Based on lessons from the Cobb County RAG app, the proposed system includes:
 
-- Docling or context-aware parsing for HTML content.
-- Context-aware chunking.
+- HTML boilerplate removal with BeautifulSoup and Trafilatura.
+- Docling-driven or document-aware chunking over cleaned Markdown.
+- OpenAI embeddings using `text-embedding-3-small`.
+- Chroma as the persistent vector database.
+- Local BM25 keyword index.
 - Hybrid retrieval:
   - BM25 keyword search.
   - Dense semantic vector search.
-- Chroma as the vector database.
-- Deterministic nearest-neighbor chunk retrieval.
-- Re-ranking.
+  - Reciprocal rank fusion or similar score/rank fusion.
+- Configurable retrieval depth using `RETRIEVER_K`.
+- Minimum relevance filtering using `MIN_RELEVANCE_SCORE`.
+- Optional re-ranking.
 - Strict evidence checking and guardrails.
-- Grounded answer generation.
-- A separate web-search-only option limited to Autodesk domain websites.
+- Grounded answer generation using OpenAI model settings from `.env`.
+- A separate web-search-only option limited to Autodesk domain websites, if needed.
 
 ## Evaluation And Monitoring
 
@@ -98,12 +288,71 @@ Evaluation should include:
 - RAGAS context precision.
 - RAGAS context recall.
 - Latency.
+- Retrieval hit inspection.
+- Failed-query analysis.
+- No-answer rate.
+- Evidence sufficiency rate.
 
 Monitoring should support rerunning golden-dataset tests when:
 
 - The model changes.
+- The embedding model changes.
 - The corpus is updated.
-- Parsing, chunking, retrieval, or generation logic changes.
+- HTML cleaning rules change.
+- Docling/chunking logic changes.
+- Retrieval fusion logic changes.
+- Generation prompts or guardrails change.
+
+## Local Development Workflow
+
+Recommended order:
+
+```bash
+# 1. Clean raw Autodesk HTML files.
+jupyter notebook notebook_01_corpus_cleaning.ipynb
+
+# 2. Build Chroma and BM25 retrieval indexes.
+jupyter notebook notebook_02_build_retrieval_indexes.ipynb
+```
+
+Or run the companion scripts if available:
+
+```bash
+python corpus_cleaning_pipeline.py
+python build_retrieval_indexes.py
+```
+
+Before indexing, confirm that `.env` contains the required OpenAI and retrieval settings.
+
+## Git And Git LFS Notes
+
+Generated retrieval indexes can become large. Recommended practice:
+
+- Commit source code, notebooks, prompts, README, and small manifests normally.
+- Do not commit large generated vector databases unless there is a specific reason.
+- If large generated index files must be uploaded to GitHub, use Git LFS.
+- Keep reproducible generated index folders in `.gitignore` when practical.
+
+Suggested `.gitignore` entries:
+
+```text
+retrieval_indexes/chroma_autodesk_cleaned_corpus/
+retrieval_indexes/bm25_autodesk_cleaned_corpus/
+*.pkl
+*.sqlite3
+*.sqlite
+```
+
+Suggested Git LFS commands if large index artifacts must be versioned:
+
+```bash
+git lfs install
+git lfs track "*.pkl"
+git lfs track "*.sqlite3"
+git lfs track "*.sqlite"
+git lfs track "retrieval_indexes/**"
+git add .gitattributes
+```
 
 ## Deployment
 
@@ -113,3 +362,22 @@ The application is expected to be deployed with:
 - A private GitHub repository.
 - Password protection for app access.
 
+The current `.env` includes:
+
+```text
+STREAMLIT_HOST_PORT=8502
+```
+
+This is useful for local Docker/Streamlit port configuration.
+
+## Next Steps
+
+Recommended next steps:
+
+1. Run the updated indexing notebook/script and inspect `retrieval_indexes/manifests/indexing_summary.md`.
+2. Test hybrid retrieval with representative Autodesk questions.
+3. Build or adapt the Streamlit RAG interface.
+4. Add strict grounded-answer prompts and evidence sufficiency checks.
+5. Generate a 50-question golden dataset.
+6. Evaluate with RAGAS and LangSmith.
+7. Iterate on cleaning, chunking, retrieval depth, and prompts based on failure analysis.
