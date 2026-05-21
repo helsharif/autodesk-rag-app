@@ -1,0 +1,826 @@
+"""
+Generates autodesk_testset.csv — Autodesk RAG Golden Dataset (50 test cases).
+
+Production rules applied:
+  - Ground truths sourced strictly from local corpus documents.
+  - Inline sourcing: document title cited within the answer.
+  - Format: 2-3 short paragraphs per answer.
+  - Negative constraint used when information is not found in corpus or web sources.
+"""
+import csv
+import os
+
+OUTPUT_PATH = os.path.join(os.path.dirname(__file__), "autodesk_testset.csv")
+
+# Each tuple: (question, ground_truth)
+# Source abbreviations used inline:
+#   [LT-Product]  = "Autodesk AutoCAD LT 2024 | Get Prices & Subscribe To AutoCAD LT"
+#   [PrevVer]     = "Autodesk Account Basics | Previous Product Versions | Available Versions"
+#   [Fusion-Comp] = "Compare Fusion 360 vs Fusion 360 for Personal Use | Autodesk"
+#   [Fusion-Mfg]  = "Autodesk Fusion Manufacturing Cloud | Autodesk Fusion"
+#   [ArchProd]    = "Benefits of the Architecture Toolset | AutoCAD | Autodesk"
+#   [ElecCase]    = "Martz Technologies, Inc.| AutoCAD Electrical Toolset| Autodesk"
+#   [Q3FY24]      = "AUTODESK, INC. ANNOUNCES FISCAL 2024 THIRD QUARTER RESULTS"
+#   [RevitLT]     = "Autodesk Revit LT Software | Get Prices & Buy Official Revit LT 2023"
+#   [ThomasH]     = "Thomas & Hutton | Site Development Drives the Future of Building Design"
+#   [TradeIn]     = "Trade in Your Perpetual License | Global Promotions | Autodesk"
+#   [ECAD]        = "Autodesk Fusion 360 | ECAD and MCAD | Software Collaboration Tools"
+#   [BIMCollab]   = "BIM Coordination & Collaboration | Autodesk BIM Collaborate"
+#   [RevitLT-FAQ] = "Autodesk Revit LT Software" FAQ section
+
+TEST_CASES = [
+    # ══════════════════════════════════════════════════════════
+    # REQUIRED FIRST 6
+    # ══════════════════════════════════════════════════════════
+    (
+        "What does Fusion 360 do?",
+        (
+            "According to the document 'Autodesk Fusion Manufacturing Cloud | Autodesk Fusion', Autodesk Fusion "
+            "(formerly known as Autodesk Fusion 360) is design, engineering, electronics, and manufacturing software "
+            "all-in-one. It connects the entire product development process into one cloud-based platform with "
+            "integrated 3D CAD, CAM, CAE, and PCB."
+            "\n\n"
+            "The document 'Compare Fusion 360 vs Fusion 360 for Personal Use | Autodesk' further describes it as "
+            "professional cloud CAD, CAM, CAE, and PCB software that includes all design and 3D modeling tools, plus "
+            "a fully featured CAM, CAE, and PCB development platform. The 'Autodesk Fusion 360 | ECAD and MCAD | "
+            "Software Collaboration Tools' page adds that Fusion 360 enables ECAD and MCAD designers to work "
+            "natively and independently on the same design project within the same design management platform."
+            "\n\n"
+            "In summary, Fusion 360 is a unified cloud-based platform covering product concept, detailed design, "
+            "simulation, electronics, and manufacturing — used by product designers, mechanical engineers, and "
+            "manufacturing professionals throughout the product lifecycle."
+        ),
+    ),
+    (
+        "What's the difference between AutoCAD and Revit?",
+        (
+            "Based on the document 'Thomas & Hutton | Site Development Drives the Future of Building Design | "
+            "Autodesk', AutoCAD is described as Autodesk's 'software to design anything,' creating precise 2D "
+            "drawings and 3D models. In the same case study, external architects used Revit for BIM (Building "
+            "Information Modeling), which 'seamlessly interfaced with AutoCAD' — illustrating that AutoCAD is a "
+            "general-purpose design and drafting tool while Revit is purpose-built for BIM."
+            "\n\n"
+            "The document 'Autodesk Revit LT Software | Get Prices & Buy Official Revit LT 2023' clarifies the "
+            "distinction further: Revit is used to 'design, document, visualize, and deliver architecture and "
+            "engineering projects' in a BIM context, with tools for 3D modeling, scheduling, annotating, and "
+            "document production. The 'BIM Coordination & Collaboration | Autodesk BIM Collaborate' page notes that "
+            "Revit supports cloud work-sharing for design teams, automatic clash detection, and issue assignment "
+            "across multi-disciplinary models."
+            "\n\n"
+            "In short, AutoCAD is a flexible 2D/3D drafting tool used across many industries, while Revit is a "
+            "BIM-focused platform for architecture, structure, and MEP design that produces an intelligent, "
+            "coordinated building model rather than standalone drawings."
+        ),
+    ),
+    (
+        "Does AutoCAD LT do 3d?",
+        (
+            "No. According to the document 'Autodesk AutoCAD LT 2024 | Get Prices & Subscribe To AutoCAD LT', "
+            "AutoCAD LT is CAD software used for precise 2D drafting, design, and documentation. It explicitly "
+            "states: 'One of the biggest differences between AutoCAD and AutoCAD LT is that AutoCAD LT provides "
+            "precision 2D drafting and documentation capabilities, while AutoCAD also provides 3D functionalities.'"
+            "\n\n"
+            "The same document also notes that AutoCAD LT does not include third-party connections, development "
+            "tools, or the seven specialized toolsets available in full AutoCAD. AutoCAD LT does support some "
+            "customization through AutoLISP, and it can run on Microsoft Windows, Apple macOS, and Linux."
+            "\n\n"
+            "Therefore, AutoCAD LT is strictly a 2D drafting tool. Users who need 3D modeling capabilities must "
+            "use full AutoCAD or another product such as Fusion 360 or Inventor."
+        ),
+    ),
+    (
+        "What's the latest release for Maya?",
+        (
+            "According to the document 'Autodesk Account Basics | Previous Product Versions | Available Versions', "
+            "the current (latest) release of Autodesk Maya is Maya 2024. The document lists Maya 2024 in the "
+            "table of products alongside its eligible previous versions."
+            "\n\n"
+            "The same document confirms that subscribers to Maya 2024 are eligible to download and use the "
+            "following three previous releases: Maya 2023, Maya 2022, and Maya 2020. For subscribers who switched "
+            "from maintenance plan seats of Autodesk Maya with Softimage, previous versions with Softimage "
+            "integration (Maya 2023, 2022, and 2020 with Softimage) are also available."
+        ),
+    ),
+    (
+        "Can I use fusion 360 on a Mac?",
+        (
+            "Yes. Autodesk's support documentation (autodesk.com) confirms that Fusion 360 (Autodesk Fusion) is "
+            "compatible with macOS. A specific Autodesk support article titled 'End of life for Autodesk Fusion on "
+            "macOS 11 (Big Sur) — Effective March 2024' confirms that macOS support exists and that support for "
+            "macOS 11 Big Sur ended in March 2024, meaning users must be on macOS 12 (Monterey) or a newer "
+            "Apple-supported version to continue using the software."
+            "\n\n"
+            "Within the cleaned corpus documents, the document 'Autodesk Account Basics | Previous Product Versions "
+            "| Available Versions' also lists 'AutoCAD for Mac 2024' and 'AutoCAD LT for Mac 2024' as separate "
+            "product entries, confirming Autodesk's broader cross-platform macOS support across its portfolio. "
+            "For specific current macOS hardware and version requirements for Fusion, users should consult the "
+            "official Autodesk system requirements page."
+        ),
+    ),
+    (
+        "What are the differences between Standard, Premium, and Enterprise subscription plans?",
+        (
+            "The document 'Trade in Your Perpetual License | Global Promotions | Autodesk' states: 'Our Premium "
+            "plan is designed to help businesses that manage 50 or more subscriptions operate more efficiently. "
+            "From single sign-on to 24/7 support, save time and increase security.' This identifies the core "
+            "Premium differentiators: SSO and around-the-clock support, for organisations managing 50+ subscriptions."
+            "\n\n"
+            "According to Autodesk's plans page (autodesk.com/asean/plans), Standard is the default plan included "
+            "with all product subscriptions at no additional cost, providing 8-hour business-hour support and "
+            "self-help resources. Premium adds 24/7 live support, Single Sign-On (SSO), and Usage Reporting for "
+            "informed licence management. Enterprise is available via an Enterprise Business Agreement (EBA) and "
+            "includes all Premium features plus personalised assistance from dedicated Autodesk experts."
+            "\n\n"
+            "The document 'AUTODESK, INC. ANNOUNCES FISCAL 2024 THIRD QUARTER RESULTS' references Autodesk signing "
+            "its 'largest-ever EBA' in Q3 FY2024, driven by record Enterprise-tier performance in construction and "
+            "water verticals — indicating the strategic importance of the Enterprise tier for large organisations."
+        ),
+    ),
+
+    # ══════════════════════════════════════════════
+    # SIMPLE (fact-based) — questions 7-21
+    # ══════════════════════════════════════════════
+    (
+        "What productivity gain does the AutoCAD Architecture toolset provide compared to basic AutoCAD?",
+        (
+            "According to the document 'Benefits of the Architecture Toolset | AutoCAD | Autodesk', Autodesk "
+            "commissioned a study that compared basic AutoCAD to the Architecture toolset when performing nine "
+            "tasks commonly used by architects. Results showed that 'the Architecture toolset provided over 61% "
+            "overall productivity gain compared with basic AutoCAD, when these tasks were performed by an "
+            "experienced AutoCAD user.'"
+            "\n\n"
+            "The same document attributes this productivity gain to features including: a huge library of thousands "
+            "of predefined building objects (wall styles, windows, doors); automatic generation of elevations and "
+            "sections without projecting lines; automatic room outlines and ceiling grids; and additional sheet set "
+            "management tools."
+        ),
+    ),
+    (
+        "What operating systems does AutoCAD LT support?",
+        (
+            "According to the document 'Autodesk AutoCAD LT 2024 | Get Prices & Subscribe To AutoCAD LT', "
+            "AutoCAD LT can run on Microsoft Windows, Apple macOS, and Linux. Every AutoCAD LT subscription "
+            "also includes AutoCAD on the web and AutoCAD on mobile; mobile runs on iOS, Android, and Windows."
+            "\n\n"
+            "The same document notes that AutoCAD LT can be installed on up to 3 computers or devices, but only "
+            "the named user can sign in and use that software on a single computer at any given time."
+        ),
+    ),
+    (
+        "What was Autodesk's total revenue in Q3 fiscal 2024?",
+        (
+            "According to the document 'AUTODESK, INC. ANNOUNCES FISCAL 2024 THIRD QUARTER RESULTS', Autodesk "
+            "reported total revenue of $1,414 million in the third quarter of fiscal 2024 (period ended "
+            "October 31, 2023). This represented a 10 percent increase year-over-year (13 percent at constant "
+            "exchange rates)."
+            "\n\n"
+            "The same document breaks down revenue by product family: AEC at $675 million (up 17%), AutoCAD and "
+            "AutoCAD LT combined at $372 million (up 5%), Manufacturing at $269 million (up 6%), and Media and "
+            "Entertainment at $73 million (down 6%). Recurring revenue represented 98 percent of total revenue."
+        ),
+    ),
+    (
+        "How many previous versions can an AutoCAD LT subscriber access?",
+        (
+            "According to the document 'Autodesk AutoCAD LT 2024 | Get Prices & Subscribe To AutoCAD LT', an "
+            "AutoCAD LT subscription gives access to install and use the 3 previous versions of AutoCAD LT."
+            "\n\n"
+            "The document 'Autodesk Account Basics | Previous Product Versions | Available Versions' confirms "
+            "this for AutoCAD LT 2024 specifically, listing the three eligible previous versions as AutoCAD LT "
+            "2023, AutoCAD LT 2022, and AutoCAD LT 2021. Downloads are listed in the user's Autodesk Account "
+            "after subscribing."
+        ),
+    ),
+    (
+        "What is Autodesk Flame used for and what platforms does it support?",
+        (
+            "According to the document 'Autodesk Account Basics | Previous Product Versions | Available Versions', "
+            "Flame 2024 is listed as a current Autodesk product, with previous versions Flame 2023, 2022, and 2021 "
+            "available. However, detailed feature descriptions for Flame were not found in the reviewed corpus "
+            "documents."
+            "\n\n"
+            "Based on Autodesk's product pages (autodesk.com), Flame is a visual effects and finishing solution "
+            "for film, TV, and commercials. It supports Windows, macOS, and Linux — making it one of the few "
+            "Autodesk products available on all three major operating systems."
+        ),
+    ),
+    (
+        "When was ArtCAM discontinued by Autodesk?",
+        (
+            "According to Autodesk's product documentation found in the reviewed corpus, Autodesk ArtCAM was "
+            "discontinued as of July 7, 2018. From that date, Autodesk no longer supported ArtCAM with "
+            "software updates or new releases."
+            "\n\n"
+            "The product reached end-of-life in 2018. No further information about replacement recommendations "
+            "was found in the available corpus documents."
+        ),
+    ),
+    (
+        "What operating systems does Autodesk 3ds Max run on?",
+        (
+            "The document 'Autodesk Account Basics | Previous Product Versions | Available Versions' confirms "
+            "that '3DS Max 2024' is the current version, with previous versions 2023, 2022, and 2021 available. "
+            "However, explicit operating system support details for 3ds Max were not found in the reviewed "
+            "corpus documents."
+            "\n\n"
+            "According to Autodesk's product documentation (autodesk.com), 3ds Max runs exclusively on "
+            "Windows — specifically Windows 10 and Windows 11. It does not have a macOS or Linux version, "
+            "unlike some other Autodesk products such as Flame or AutoCAD LT."
+        ),
+    ),
+    (
+        "What is Autodesk MotionBuilder used for?",
+        (
+            "The document 'Autodesk Account Basics | Previous Product Versions | Available Versions' lists "
+            "MotionBuilder 2024 as a current product with previous versions 2023, 2022, and 2020 available. "
+            "Beyond version availability, detailed feature descriptions for MotionBuilder were not found in "
+            "the reviewed corpus documents."
+            "\n\n"
+            "Based on Autodesk's product pages (autodesk.com), MotionBuilder is a 3D character animation "
+            "software used for processing motion capture data, retargeting animations to character rigs, and "
+            "real-time character animation. It supports Windows and Linux, and integrates with Maya and 3ds Max "
+            "for production pipeline use."
+        ),
+    ),
+    (
+        "What is Autodesk Inventor used for?",
+        (
+            "The document 'Autodesk Account Basics | Previous Product Versions | Available Versions' lists "
+            "Inventor Professional 2024 (and previous versions 2023, 2022, 2021) as a current Autodesk product. "
+            "A brief mention in the corpus describes Inventor-to-Fusion 360 workflows including generative "
+            "design, simulation, electronics, and manufacturing."
+            "\n\n"
+            "However, a detailed description of Inventor's core capabilities was not found in the reviewed "
+            "corpus documents. According to Autodesk's product pages (autodesk.com), Inventor is professional "
+            "3D mechanical CAD software for product design, offering parametric modeling, sheet metal design, "
+            "simulation, and model-based definition (MBD) for manufacturing."
+        ),
+    ),
+    (
+        "What is Autodesk Navisworks used for?",
+        (
+            "The document 'BIM Coordination & Collaboration | Autodesk BIM Collaborate' references Navisworks "
+            "directly: 'Easily access issues across Navisworks and Revit to fix models, validate designs, and "
+            "close out issues.' This places Navisworks in the context of multi-discipline model coordination "
+            "and issue resolution in construction projects."
+            "\n\n"
+            "The document 'Autodesk Account Basics | Previous Product Versions | Available Versions' lists "
+            "both Navisworks Manage 2024 and Navisworks Simulate 2024 as current products, confirming two "
+            "available versions. Detailed capability descriptions were not found in the reviewed corpus; "
+            "per autodesk.com, Navisworks is used for project coordination, clash detection, 4D simulation, "
+            "and model review in the AEC industry."
+        ),
+    ),
+    (
+        "What is the Autodesk Education Community?",
+        (
+            "The document 'Autodesk Account Basics | Previous Product Versions | Available Versions' references "
+            "the Autodesk Education Community and states that 'eligible students and educators have free "
+            "educational access to use Autodesk software and services through a renewable 1-year Education plan.'"
+            "\n\n"
+            "The same document provides a link to the Education Community and notes it is accessible via the "
+            "Autodesk Account portal. The document confirms the plan is renewable annually for eligible users. "
+            "Further detail on which specific products are included in the Education plan was not found in the "
+            "reviewed corpus."
+        ),
+    ),
+    (
+        "What is Autodesk Civil 3D used for?",
+        (
+            "The document 'Thomas & Hutton | Site Development Drives the Future of Building Design | Autodesk' "
+            "provides a practical illustration of Civil 3D usage: 'Civil 3D allowed for quick generation of "
+            "plans for signature and submittal to the agencies' and 'Civil 3D supported building information "
+            "modeling (BIM) for the civil engineering design and construction documentation.' The case study "
+            "credits Civil 3D with saving approximately six months on the overall project schedule."
+            "\n\n"
+            "The document 'Autodesk Account Basics | Previous Product Versions | Available Versions' lists "
+            "Civil 3D 2024 as the current version, with previous versions 2023, 2022, and 2021 available. "
+            "Additional Civil 3D feature details (corridor modeling, drainage design, terrain modeling from "
+            "point clouds) were confirmed via autodesk.com but were not explicitly described in the reviewed "
+            "corpus documents."
+        ),
+    ),
+    (
+        "What is Revit LT and how does it compare to full Revit?",
+        (
+            "According to the document 'Autodesk Revit LT Software | Get Prices & Buy Official Revit LT 2023', "
+            "Revit LT is 'a BIM (Building Information Modeling) solution for the self-starter' and 'a "
+            "cost-effective project workhorse for the small architecture studio or solo practitioner.' It is "
+            "used to design, document, visualize, and deliver architecture and engineering projects."
+            "\n\n"
+            "The same document explains the difference from full Revit: 'Revit LT offers a simplified BIM tool "
+            "for creating 3D architectural designs and documentation. It provides basic structural modeling, "
+            "interoperability, and data management, as well as presentation and visualization features. By "
+            "comparison, Revit unlocks all features, including advanced simulation and analysis, as well as "
+            "worksharing and collaboration, MEP, and construction modeling toolsets.'"
+        ),
+    ),
+    (
+        "What does the Autodesk Premium plan offer?",
+        (
+            "The document 'Trade in Your Perpetual License | Global Promotions | Autodesk' states: 'Our Premium "
+            "plan is designed to help businesses that manage 50 or more subscriptions operate more efficiently. "
+            "From single sign-on to 24/7 support, save time and increase security.'"
+            "\n\n"
+            "According to Autodesk's plans documentation (autodesk.com), Premium adds three specific benefits "
+            "beyond Standard: 24/7 live support (available nights and weekends), Single Sign-On (SSO) for "
+            "security and streamlined access, and Usage Reporting that shows software usage by frequency, "
+            "version, and product. Premium costs approximately $300 USD per eligible product subscription "
+            "per year as an upgrade from Standard."
+        ),
+    ),
+    (
+        "What is the Autodesk Vault product used for?",
+        (
+            "The document 'Autodesk Account Basics | Previous Product Versions | Available Versions' lists "
+            "multiple Vault products at their 2024 versions: Vault Basic Client, Vault Basic Server, Vault "
+            "Office, Vault Workgroup, Vault Professional, and Enterprise Add-on for Vault — confirming the "
+            "product line exists and is actively maintained."
+            "\n\n"
+            "Detailed descriptions of Vault's capabilities were not found in the reviewed corpus documents. "
+            "According to Autodesk's product pages (autodesk.com), Vault is a design data management solution "
+            "for manufacturing organisations, providing version control, lifecycle management, and workflow "
+            "automation for engineering files from Inventor and AutoCAD."
+        ),
+    ),
+
+    # ══════════════════════════════════════════════
+    # REASONING — questions 22-35
+    # ══════════════════════════════════════════════
+    (
+        "Why might an architect choose Revit over AutoCAD for a building project?",
+        (
+            "Based on the document 'Thomas & Hutton | Site Development Drives the Future of Building Design', "
+            "architectural teams used Revit for BIM workflows while AutoCAD served as the general-purpose "
+            "design platform, noting they 'seamlessly interfaced.' The case study shows that BIM-capable tools "
+            "like Revit and Civil 3D enabled the team to meet tight deadlines that would have been difficult "
+            "with drawing-only tools."
+            "\n\n"
+            "The document 'Autodesk Revit LT Software' explains that Revit enables architects to 'win more work "
+            "where BIM is required' and uses tools for 'sketching, model family creation, scheduling, annotating, "
+            "and document production' — driving 'efficient BIM workflows for architectural design.' Unlike "
+            "AutoCAD's drafting-based approach, Revit's 3D model automatically generates coordinated "
+            "documentation across views. The document notes Revit LT can 'impress clients in design review "
+            "with 3D visualization and data-rich documentation.'"
+        ),
+    ),
+    (
+        "What are the trade-offs between Autodesk Flex tokens and annual subscriptions?",
+        (
+            "The document 'Autodesk Account Basics | Previous Product Versions | Available Versions' confirms "
+            "that Flex users are also eligible to access previous versions of Autodesk software, a benefit "
+            "shared with annual subscribers. However, detailed pricing comparisons between Flex and annual "
+            "subscriptions were not explicitly laid out in the reviewed corpus documents."
+            "\n\n"
+            "Based on Autodesk's Flex documentation (autodesk.com), Flex uses a pay-as-you-go token system "
+            "where each product has a daily token cost. This benefits infrequent users who need occasional "
+            "access to multiple tools without committing to annual subscriptions. For heavy daily users, "
+            "annual subscriptions offer more predictable costs. The optimal approach is a hybrid: annual "
+            "subscriptions for core tools used regularly and Flex tokens for specialised tools used occasionally."
+        ),
+    ),
+    (
+        "Why is generative design in Fusion 360 valuable for manufacturing companies?",
+        (
+            "The document 'Autodesk Fusion Manufacturing Cloud | Autodesk Fusion' describes Fusion's cloud "
+            "as enabling 'advanced automation, AI capabilities, and streamlining of workflows' — including "
+            "CAD, CAM, CAE, and more connected in 'one unified experience.' This unified approach directly "
+            "underpins generative design, which runs as a cloud-based process."
+            "\n\n"
+            "Detailed generative design benefits (weight reduction, manufacturing constraint optimisation, "
+            "unlimited cloud solves) were not explicitly described in the reviewed corpus documents. According "
+            "to Autodesk's Fusion product pages (autodesk.com), generative design uses AI to automatically "
+            "explore thousands of optimised design options constrained by manufacturing methods and materials, "
+            "which reduces material cost and accelerates design exploration for manufacturing companies."
+        ),
+    ),
+    (
+        "How should a small engineering firm decide between individual Autodesk subscriptions and an industry collection?",
+        (
+            "The document 'Trade in Your Perpetual License | Global Promotions | Autodesk' states that "
+            "'Autodesk Industry Collections provide a comprehensive software package, including an invaluable "
+            "set of integrated tools, all at one great price. Users with multiple Autodesk products should "
+            "consider the value of an industry collection.' This indicates collections are intended for "
+            "multi-tool users."
+            "\n\n"
+            "A firm should compare the cost of individual product subscriptions against the collection price. "
+            "If engineers regularly use two or more products included in the same collection — for example, "
+            "Revit and Civil 3D in the AEC Collection, or Inventor and AutoCAD in the Product Design and "
+            "Manufacturing Collection — the collection typically offers better value. For tools used only "
+            "occasionally, Autodesk Flex tokens may be more cost-effective than maintaining a full subscription."
+        ),
+    ),
+    (
+        "Why is Autodesk Forma most valuable at the earliest stages of an AEC project?",
+        (
+            "The document 'BIM Coordination & Collaboration | Autodesk BIM Collaborate' describes a project "
+            "lifecycle where models are coordinated and issues are resolved before construction — suggesting "
+            "that early-stage tools that inform design decisions reduce costly rework. A separate corpus "
+            "document about Forma (adsk-2348b52e0184498b97c24a7bba7c339a) notes that as of November 2023, "
+            "the 'Forma-Revit integration is poised for several enhancements, including advanced support for "
+            "floor plans and constraints, and additional BIM elements.'"
+            "\n\n"
+            "According to Autodesk's Forma product pages (autodesk.com), Forma provides AI-powered real-time "
+            "environmental analysis (sun hours, daylight, noise, wind) of early massing concepts. Its value "
+            "at the concept stage is that design changes are cheapest before detailed design begins, and the "
+            "Forma-to-Revit sync means early decisions can flow directly into detailed design work."
+        ),
+    ),
+    (
+        "What factors should an organisation consider when choosing between AutoCAD Standard, Premium, and Enterprise plans?",
+        (
+            "The document 'Trade in Your Perpetual License | Global Promotions | Autodesk' confirms that the "
+            "Premium plan requires managing '50 or more subscriptions' and delivers 'single sign-on to 24/7 "
+            "support.' This sets a clear threshold: Standard is appropriate for smaller teams; Premium is "
+            "for organisations at or above 50 eligible subscriptions that need SSO and round-the-clock support."
+            "\n\n"
+            "The document 'AUTODESK, INC. ANNOUNCES FISCAL 2024 THIRD QUARTER RESULTS' references the "
+            "'largest-ever EBA' signed during Q3 FY2024, confirming that the Enterprise tier (via EBA) is "
+            "the path for very large organisations seeking customised agreements and dedicated expert support. "
+            "Smaller organisations would typically start on Standard and assess Premium only when 24/7 support "
+            "and SSO become business requirements."
+        ),
+    ),
+    (
+        "How does AutoCAD LT differ from full AutoCAD for electrical engineering firms?",
+        (
+            "The document 'Martz Technologies, Inc.| AutoCAD Electrical Toolset| Autodesk' provides a "
+            "direct comparison through a customer case study. Martz Technologies used AutoCAD LT for 20 years "
+            "and found 'CAD standards amongst our team have always been challenging.' A 2,400-point, 260-page "
+            "drawing set took six months with multiple people using AutoCAD LT."
+            "\n\n"
+            "After switching to AutoCAD with the Electrical toolset, the same firm completed a new project "
+            "involving three hydraulic presses in approximately 550 hours total — including training and "
+            "customisation — gaining capabilities like intelligent wire referencing, BOM generation, batch "
+            "description editing via Excel, and a shared global symbol library. The document notes that the "
+            "document 'Autodesk AutoCAD LT 2024' confirms LT does not include the seven specialized toolsets, "
+            "explaining the gap in capability."
+        ),
+    ),
+    (
+        "Why does Autodesk maintain three service tiers (Standard, Premium, Enterprise) rather than one plan?",
+        (
+            "The document 'Trade in Your Perpetual License' describes Premium as explicitly targeting "
+            "businesses that 'manage 50 or more subscriptions' — indicating the tiers are designed to match "
+            "organisational scale and complexity, not just budget. A small team has different support needs "
+            "than an enterprise managing hundreds of seats across a global workforce."
+            "\n\n"
+            "The document 'AUTODESK, INC. ANNOUNCES FISCAL 2024 THIRD QUARTER RESULTS' references Autodesk's "
+            "'largest-ever EBA' driven by construction and water verticals, confirming that the Enterprise "
+            "tier responds to the complexity of large-organisation deployments that require negotiated terms "
+            "and personalised guidance — a need that a single flat plan could not accommodate efficiently."
+        ),
+    ),
+    (
+        "How does Fusion 360's cloud-based approach benefit distributed product development teams?",
+        (
+            "The document 'Autodesk Fusion Manufacturing Cloud | Autodesk Fusion' states that the Fusion "
+            "industry cloud 'will provide a single source of project data across your organization and supply "
+            "chain through the Autodesk Data Model. By ensuring everyone has access to the same data, you can "
+            "eliminate repetitive tasks and processes, accelerate productivity, and provide critical real-time "
+            "insights about product development and business operations.'"
+            "\n\n"
+            "The same document notes that Fusion 'will streamline information access, and facilitate seamless "
+            "data connectivity across the entire organization, regardless of discipline or location' — a "
+            "direct benefit for geographically distributed teams. The document 'Autodesk Fusion 360 | ECAD and "
+            "MCAD' adds that Fusion enables ECAD and MCAD designers to work 'natively and independently on the "
+            "same project and within the same design management platform.'"
+        ),
+    ),
+    (
+        "What does Autodesk's Q3 FY2024 financial performance reveal about its product families?",
+        (
+            "The document 'AUTODESK, INC. ANNOUNCES FISCAL 2024 THIRD QUARTER RESULTS' reports total revenue "
+            "of $1,414 million (up 10% YoY) for Q3 FY2024. AEC was the largest and fastest-growing segment at "
+            "$675 million (up 17%), reflecting strong demand for BIM-based workflows. AutoCAD and AutoCAD LT "
+            "combined reached $372 million (up 5%), Manufacturing $269 million (up 6%), and Media and "
+            "Entertainment $73 million (down 6%)."
+            "\n\n"
+            "The same document highlights that recurring revenue represented 98% of total revenue — confirming "
+            "the near-complete transition to subscription licensing. Autodesk CEO Andrew Anagnost noted the "
+            "'largest-ever EBA signed during the quarter, and record contributions from our construction and "
+            "water verticals to our overall EBA performance,' underlining both the AEC segment's dominance "
+            "and the Enterprise tier's strategic importance."
+        ),
+    ),
+    (
+        "How does Civil 3D's BIM approach benefit infrastructure project teams compared to traditional CAD?",
+        (
+            "The document 'Thomas & Hutton | Site Development Drives the Future of Building Design | Autodesk' "
+            "provides a real-world example: Civil 3D 'allowed for quick generation of plans for signature and "
+            "submittal to the agencies,' saving approximately six months on the project schedule. The case "
+            "study also notes Civil 3D 'supported building information modeling (BIM) for the civil engineering "
+            "design and construction documentation.'"
+            "\n\n"
+            "The document emphasises that Civil 3D contributed to all five schools opening on schedule despite "
+            "complications including asbestos abatement, property acquisition issues, and hurricane-season "
+            "delays — demonstrating the resilience that BIM-enabled documentation provides over traditional "
+            "manual CAD approaches. Specific parametric and automated features of Civil 3D (corridor modelling, "
+            "terrain from point clouds) were confirmed via autodesk.com but not detailed in the reviewed corpus."
+        ),
+    ),
+    (
+        "Why would a manufacturing company prefer the Product Design and Manufacturing Collection over individual licences?",
+        (
+            "The document 'Trade in Your Perpetual License | Global Promotions | Autodesk' states that "
+            "'Autodesk Industry Collections provide a comprehensive software package, including an invaluable "
+            "set of integrated tools, all at one great price. Users with multiple Autodesk products should "
+            "consider the value of an industry collection.' This directly supports the collection value "
+            "proposition for multi-tool users."
+            "\n\n"
+            "For manufacturing companies needing Inventor (mechanical design), AutoCAD (2D drafting), and "
+            "Fusion 360 (cloud CAD/CAM/CAE), the Product Design and Manufacturing Collection bundles these "
+            "at a price more economical than separate individual licences, simplifies account management, "
+            "and ensures licensing compatibility across the full design-to-manufacture workflow."
+        ),
+    ),
+    (
+        "What does Fusion 360 for Personal Use offer, and who qualifies?",
+        (
+            "According to the document 'Compare Fusion 360 vs Fusion 360 for Personal Use | Autodesk', "
+            "Fusion 360 for personal use is 'free online CAD for qualifying non-commercial users as a 3-year "
+            "subscription.' A hobbyist user 'must generate less than $1,000 USD in annual revenue, using "
+            "Fusion 360 for home-based, non-commercial design, manufacturing, and fabrication projects.'"
+            "\n\n"
+            "The same document states it is a 'limited use version' that includes 'cloud-based design and 3D "
+            "modeling tools' with 'limited functionality,' while the paid commercial Fusion 360 'includes all "
+            "design and 3D modeling tools, plus a fully featured CAM, CAE, and PCB development platform.' "
+            "Users who generate more than $1,000/year must purchase the commercial subscription."
+        ),
+    ),
+    (
+        "How do AutoCAD's specialised toolsets change its value over AutoCAD LT for specific industries?",
+        (
+            "The document 'Benefits of the Architecture Toolset | AutoCAD | Autodesk' confirms that the "
+            "Architecture toolset provides over 61% productivity gain versus basic AutoCAD for experienced "
+            "architectural users. The document 'Martz Technologies, Inc.| AutoCAD Electrical Toolset' "
+            "demonstrates that switching from AutoCAD LT to AutoCAD with the Electrical toolset reduced a "
+            "comparable six-month project to approximately 550 hours, thanks to intelligent wire referencing, "
+            "automated BOMs, and batch description editing."
+            "\n\n"
+            "The document 'Autodesk AutoCAD LT 2024' confirms AutoCAD LT 'does not include third party "
+            "connections, development tools, or the seven specialized toolsets' — making these toolsets "
+            "exclusive to full AutoCAD. For industries where a toolset applies (architecture, electrical, "
+            "MEP, civil mapping), the productivity gains justify the price difference between AutoCAD LT "
+            "and full AutoCAD."
+        ),
+    ),
+
+    # ══════════════════════════════════════════════
+    # MULTI-CONTEXT — questions 36-50
+    # ══════════════════════════════════════════════
+    (
+        "Comparing AutoCAD LT, AutoCAD, and Revit: which is most suitable for a multi-discipline building project?",
+        (
+            "For a multi-discipline building project, AutoCAD LT is the least suitable. The document 'Autodesk "
+            "AutoCAD LT 2024' confirms it provides only 2D drafting with no 3D capabilities and no access to "
+            "the seven specialized toolsets. Full AutoCAD offers 2D and 3D CAD with specialised toolsets and "
+            "collaboration features, making it capable of comprehensive documentation."
+            "\n\n"
+            "Revit is the most appropriate choice for multi-discipline work. The document 'Autodesk Revit LT "
+            "Software' explains that full Revit 'unlocks all features, including advanced simulation and "
+            "analysis, as well as worksharing and collaboration, MEP, and construction modeling toolsets' — "
+            "enabling multiple disciplines to work in a coordinated model. The 'Thomas & Hutton' case study "
+            "shows Revit (for BIM) and AutoCAD working together, with Civil 3D for site design, demonstrating "
+            "that tools can complement each other within a project team."
+        ),
+    ),
+    (
+        "What is the relationship between the AEC Collection and individual products like Revit, Civil 3D, and Navisworks?",
+        (
+            "The document 'Trade in Your Perpetual License | Global Promotions | Autodesk' states that "
+            "'Autodesk Industry Collections provide a comprehensive software package, including an invaluable "
+            "set of integrated tools, all at one great price.' The 'Thomas & Hutton' case study illustrates "
+            "the collection in practice: a single project team used AutoCAD, Civil 3D (for BIM-based civil "
+            "documentation), and Revit (for architectural BIM) — all products that are included in the "
+            "AEC Collection."
+            "\n\n"
+            "The document 'AUTODESK, INC. ANNOUNCES FISCAL 2024 THIRD QUARTER RESULTS' confirms the AEC "
+            "segment generated $675 million in Q3 FY2024 (up 17% YoY), the largest product family — "
+            "reflecting strong enterprise demand for integrated AEC workflows that collection pricing "
+            "makes accessible."
+        ),
+    ),
+    (
+        "How does Autodesk BIM Collaborate connect Revit design models to construction coordination?",
+        (
+            "The document 'BIM Coordination & Collaboration | Autodesk BIM Collaborate' describes a "
+            "workflow where teams 'upload multi-disciplinary models and automatically detect clashes' with "
+            "'automatic grouping and dynamic clash tolerance filters.' It also enables teams to 'design "
+            "together, using Revit cloud work-sharing and collaboration for AutoCAD Plant 3D and Civil 3D.'"
+            "\n\n"
+            "The same document notes that 'issues created in either Autodesk BIM Collaborate or Navisworks "
+            "can be assigned and contextualized in either of those tools and resolved in Revit. That "
+            "resolution then makes its way back to Autodesk BIM Collaborate for reporting and future project "
+            "forecasting.' This confirms BIM Collaborate serves as the coordination hub connecting Revit "
+            "models, Navisworks clash detection, and project issue management."
+        ),
+    ),
+    (
+        "How do Autodesk's subscription service tiers (Standard, Premium, Enterprise) affect large AEC enterprises?",
+        (
+            "The document 'Trade in Your Perpetual License' confirms Premium is for organisations managing "
+            "50 or more subscriptions and delivers SSO and 24/7 support. The document 'AUTODESK, INC. "
+            "ANNOUNCES FISCAL 2024 THIRD QUARTER RESULTS' reports that Autodesk signed its 'largest-ever EBA "
+            "during the quarter' with 'record contributions from our construction and water verticals to our "
+            "overall EBA performance' — showing Enterprise-tier agreements are especially prevalent in the "
+            "AEC sector."
+            "\n\n"
+            "For a large AEC enterprise with hundreds of Revit, AutoCAD, Civil 3D, and Navisworks seats, "
+            "the Premium plan provides governance through SSO and data-driven licence management via usage "
+            "reporting, while the Enterprise EBA provides negotiated terms and dedicated Autodesk expert "
+            "support for optimising complex multi-product deployments."
+        ),
+    ),
+    (
+        "How does AutoCAD ECAD integration with Fusion 360 benefit electronics and mechanical design teams?",
+        (
+            "The document 'Autodesk Fusion 360 | ECAD and MCAD | Software Collaboration Tools' states that "
+            "'Fusion 360 enables ECAD and MCAD designers to work independently and natively on the same "
+            "project and within the same design management platform. You never have to integrate any third "
+            "party software, translate, exchange, or export STEP, XDF, or IDF files, ever.'"
+            "\n\n"
+            "The same document explains that 'with integrated ECAD and MCAD in Fusion 360, 3D PCB data such "
+            "as board copper, core material, and components can be analyzed, verified, and validated on the "
+            "MCAD side to make sure they meet the product design specifications.' The document 'Autodesk "
+            "Fusion Manufacturing Cloud' further notes that the industry cloud will connect 'CAD, CAM, CAE, "
+            "PCB, data management (PLM, PDM), MES, and more' into a unified experience."
+        ),
+    ),
+    (
+        "How does Autodesk's Q3 FY2024 performance reflect the strategic importance of AEC versus Manufacturing?",
+        (
+            "The document 'AUTODESK, INC. ANNOUNCES FISCAL 2024 THIRD QUARTER RESULTS' reports AEC revenue "
+            "of $675 million (up 17% YoY) versus Manufacturing revenue of $269 million (up 6% YoY). AEC was "
+            "more than twice the size of Manufacturing and grew nearly three times faster, making it the "
+            "dominant product family. The AEC segment also contributed disproportionately to the record EBA "
+            "performance noted by CEO Andrew Anagnost."
+            "\n\n"
+            "AutoCAD and AutoCAD LT combined at $372 million (up 5%) form the second-largest revenue line — "
+            "larger than Manufacturing alone — indicating the continued strategic importance of the core "
+            "drafting product family even at its mature stage. These results suggest Autodesk's near-term "
+            "growth is predominantly AEC-driven, supported by BIM adoption and construction digitisation "
+            "initiatives."
+        ),
+    ),
+    (
+        "How do Revit LT and full Revit serve different segments of the architecture market?",
+        (
+            "The document 'Autodesk Revit LT Software | Get Prices & Buy Official Revit LT 2023' positions "
+            "Revit LT as 'a cost-effective project workhorse for the small architecture studio or solo "
+            "practitioner,' offering basic structural modeling, interoperability, data management, "
+            "presentation, and visualization features. The document notes it allows architects to 'win more "
+            "work where BIM is required' and can be 'purchased together with AutoCAD LT as the AutoCAD "
+            "Revit LT Suite.'"
+            "\n\n"
+            "The same document states that full Revit 'unlocks all features, including advanced simulation "
+            "and analysis, as well as worksharing and collaboration, MEP, and construction modeling toolsets' "
+            "— making it appropriate for larger firms doing integrated multi-discipline BIM. The pairing of "
+            "Revit LT with AutoCAD LT in a suite targets budget-conscious small practices that need both "
+            "2D drafting and basic BIM capability."
+        ),
+    ),
+    (
+        "How does Autodesk's Fusion industry cloud strategy differ from standalone product subscriptions?",
+        (
+            "The document 'Autodesk Fusion Manufacturing Cloud | Autodesk Fusion' describes the industry "
+            "cloud vision as integrating 'CAD, CAM, CAE, PCB, data management (PLM, PDM), MES, and more' "
+            "into 'one unified experience, enabling advanced automation, AI capabilities, and streamlining "
+            "of workflows.' This is explicitly different from standalone product subscriptions that cover "
+            "one domain — the industry cloud aims for end-to-end product lifecycle connectivity."
+            "\n\n"
+            "The document adds that the Fusion industry cloud 'will provide a single source of project data "
+            "across your organization and supply chain through the Autodesk Data Model,' enabling real-time "
+            "insights across product development and business operations. By contrast, the document 'Compare "
+            "Fusion 360 vs Fusion 360 for Personal Use' describes the current Fusion 360 subscription as "
+            "professional cloud CAD, CAM, CAE, and PCB — a subset of what the broader industry cloud promises."
+        ),
+    ),
+    (
+        "Why would a company choose full AutoCAD over AutoCAD LT when the Electrical toolset is needed?",
+        (
+            "The document 'Martz Technologies, Inc.| AutoCAD Electrical Toolset| Autodesk' demonstrates "
+            "concretely why the Electrical toolset justifies the upgrade. In the case study, switching from "
+            "AutoCAD LT to AutoCAD with the Electrical toolset enabled the company to batch-modify 2,400 "
+            "I/O points via Excel, use a shared global symbol library, and generate automatically "
+            "synchronised BOMs — capabilities impossible in AutoCAD LT."
+            "\n\n"
+            "The document 'Autodesk AutoCAD LT 2024' confirms that AutoCAD LT 'does not include third party "
+            "connections, development tools, or the seven specialized toolsets' — meaning the Electrical "
+            "toolset is exclusively available with full AutoCAD. The productivity delta was substantial: "
+            "a 2,400-point drawing set that took six months in AutoCAD LT was succeeded by a more complex "
+            "project completed in approximately 550 hours with the Electrical toolset."
+        ),
+    ),
+    (
+        "How do Autodesk's subscription types (personal, commercial, education) address different user needs?",
+        (
+            "The document 'Compare Fusion 360 vs Fusion 360 for Personal Use | Autodesk' describes three "
+            "distinct tiers: (1) Fusion 360 for personal use — free for non-commercial users generating less "
+            "than $1,000/year; includes cloud-based design and 3D modeling with limited functionality. "
+            "(2) Commercial Fusion 360 — paid subscription including full CAD, CAM, CAE, and PCB platform "
+            "for professional use. (3) Education access — the document 'Autodesk Account Basics | Previous "
+            "Product Versions' references a renewable 1-year Education plan for eligible students and "
+            "educators via the Autodesk Education Community."
+            "\n\n"
+            "These tiers address distinct needs: hobbyists and students can learn and create at low or no "
+            "cost, while professionals and businesses pay for the full commercial tool set. The restriction "
+            "that personal use is only for non-commercial projects (under $1,000/year revenue) creates a "
+            "clear boundary between casual and commercial use, protecting Autodesk's commercial revenue "
+            "while supporting the learning community."
+        ),
+    ),
+    (
+        "How does the combination of AutoCAD and Revit serve a project like the Thomas and Hutton school design?",
+        (
+            "The document 'Thomas & Hutton | Site Development Drives the Future of Building Design | Autodesk' "
+            "describes a project delivering five schools on schedule. Thomas & Hutton used AutoCAD as 'the "
+            "common design platform' that 'allowed Thomas & Hutton to share files and collaborate seamlessly "
+            "with other contractors,' creating 'precise 2D drawings and 3D models.' Civil 3D supported BIM "
+            "for civil engineering design, and external architects used Revit for BIM, which 'seamlessly "
+            "interfaced with AutoCAD.'"
+            "\n\n"
+            "This real-world example shows AutoCAD handling the general-purpose design and inter-contractor "
+            "file sharing role, while Revit served the architectural BIM role. The coexistence of both tools "
+            "on the same project — plus Civil 3D for infrastructure and a custom GIS app for site planning — "
+            "illustrates how Autodesk's product portfolio is designed to work together across disciplines "
+            "within a single project team."
+        ),
+    ),
+    (
+        "How does Autodesk's transition to recurring subscription revenue affect its financial profile?",
+        (
+            "The document 'AUTODESK, INC. ANNOUNCES FISCAL 2024 THIRD QUARTER RESULTS' reports that "
+            "'recurring revenue represents 98 percent of total' revenue in Q3 FY2024, with 'subscription "
+            "plan revenue' at $1,314 million of the $1,414 million total. This near-complete shift to "
+            "recurring revenue creates a highly predictable revenue base compared to the lumpy, upfront "
+            "nature of perpetual licence sales."
+            "\n\n"
+            "The same document reports 'remaining performance obligations (RPO) increased 12 percent to "
+            "$5.24 billion' — representing contracted future revenue that provides long-term visibility. "
+            "The document also notes that Autodesk signed its 'largest-ever EBA' during the quarter, "
+            "driven by construction and water verticals. Together, the high recurring revenue share, "
+            "growing RPO, and expanding enterprise agreements confirm that Autodesk's subscription "
+            "model now fully defines its financial structure."
+        ),
+    ),
+    (
+        "How do AutoCAD LT's platform limitations affect its suitability for team-based engineering projects?",
+        (
+            "The document 'Autodesk AutoCAD LT 2024 | Get Prices & Subscribe To AutoCAD LT' confirms that "
+            "AutoCAD LT 'does not include third party connections, development tools, or the seven specialized "
+            "toolsets.' This means teams cannot access domain-specific automation (electrical schematics, "
+            "MEP design, plant design) within AutoCAD LT, limiting the tool to basic 2D drafting."
+            "\n\n"
+            "The 'Martz Technologies' case study illustrates the team-based limitation directly: sharing and "
+            "standardising symbol libraries across laptops was challenging in AutoCAD LT, with engineers "
+            "working from inconsistent local copies. After switching to AutoCAD with the Electrical toolset, "
+            "the team gained a centralised global symbol library accessible to all engineers — a fundamental "
+            "improvement in team-based standardisation that AutoCAD LT could not provide."
+        ),
+    ),
+    (
+        "How does Autodesk's cloud strategy connect products like Fusion 360, BIM Collaborate, and the Fusion industry cloud?",
+        (
+            "The document 'Autodesk Fusion Manufacturing Cloud | Autodesk Fusion' positions the Fusion "
+            "industry cloud as an 'end-to-end cloud-based solution' that 'unifies data, technologies, and "
+            "workflows across the entire product lifecycle' including CAD, CAM, CAE, PCB, PDM, PLM, and MES. "
+            "It is built on the Autodesk Data Model for a 'single source of project data' and uses 'open APIs "
+            "such as Autodesk Platform Services' to connect with third-party software."
+            "\n\n"
+            "The document 'BIM Coordination & Collaboration | Autodesk BIM Collaborate' describes a parallel "
+            "cloud layer for the AEC side: Revit cloud work-sharing, automatic clash detection, and issue "
+            "tracking connected to Navisworks. Together, these documents reveal Autodesk's strategy of "
+            "building product-family-specific industry clouds (Fusion for manufacturing; BIM Collaborate "
+            "for AEC) on a shared cloud platform (Autodesk Platform Services), enabling data flow both "
+            "within and across product families."
+        ),
+    ),
+
+    # ─── 50th question ───
+    (
+        "How does Fusion 360's integrated ECAD and MCAD platform support teams developing electronics-integrated products?",
+        (
+            "The document 'Autodesk Fusion 360 | ECAD and MCAD | Software Collaboration Tools' states that "
+            "'Fusion 360 enables ECAD and MCAD designers to work independently and natively on the same "
+            "project and within the same design management platform. You never have to integrate any third "
+            "party software, translate, exchange, or export STEP, XDF, or IDF files, ever.' This eliminates "
+            "the manual file translation steps that typically slow down electronics-integrated product teams."
+            "\n\n"
+            "The same document explains that 'with integrated ECAD and MCAD in Fusion 360, 3D PCB data such "
+            "as board copper, core material, and components can be analyzed, verified, and validated on the "
+            "MCAD side to make sure they meet the product design specifications.' The document 'Autodesk "
+            "Fusion Manufacturing Cloud' adds that the Fusion cloud will further unify 'CAD, CAM, CAE, PCB, "
+            "data management (PLM, PDM), MES, and more' — extending this integration across the entire "
+            "product development and manufacturing lifecycle."
+        ),
+    ),
+]
+
+with open(OUTPUT_PATH, "w", newline="", encoding="utf-8") as f:
+    writer = csv.writer(f, quoting=csv.QUOTE_ALL)
+    writer.writerow(["question", "ground_truth"])
+    for q, gt in TEST_CASES:
+        writer.writerow([q, gt])
+
+print(f"SUCCESS: wrote {len(TEST_CASES)} rows to {OUTPUT_PATH}")

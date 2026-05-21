@@ -14,3 +14,4 @@ streamlit*.log
 eval_status/
 /cobb_county_testset.csv
 instructions/
+example_app/

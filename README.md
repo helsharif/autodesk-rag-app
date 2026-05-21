@@ -26,7 +26,45 @@ Longer term, this type of tool could also reduce support burden by helping users
 
 ## Current Pipeline Status
 
-The project now includes the first two major pipeline stages:
+The project now includes the corpus pipeline, retrieval indexes, a Streamlit Agentic RAG app, and a fixed golden evaluation set.
+
+### Run the Streamlit App
+
+The app lives at:
+
+```text
+app/streamlit_app.py
+```
+
+Run it locally with:
+
+```bash
+streamlit run app/streamlit_app.py --server.port=8502
+```
+
+Open:
+
+```text
+http://localhost:8502
+```
+
+The interface has three tabs:
+
+- **Ask** — chat with the Autodesk RAG agent.
+- **Settings & Eval** — view the active retrieval configuration and launch background evaluation.
+- **About the App** — explain the architecture and guardrails.
+
+The default retrieval backend is **Option 3: Docling + Chroma + BM25 Hybrid Search**. It searches the existing Chroma index at `retrieval_indexes/chroma_autodesk_cleaned_corpus`, searches the BM25 artifacts at `retrieval_indexes/bm25_autodesk_cleaned_corpus`, fuses rankings with Reciprocal Rank Fusion, expands same-document neighboring chunks, runs a strict evidence adequacy gate, and uses SerpAPI web fallback when local evidence is incomplete or freshness is required.
+
+Evaluation uses the fixed dataset at `eval_testset/autodesk_testset.csv` and persists results under:
+
+```text
+eval_results/docling_chroma_bm25_hybrid_results.json
+eval_status/docling_chroma_bm25_hybrid_status.json
+eval_results/eval_results_log.csv
+```
+
+The `example_app/` folder is reference material only. The production app code for this project is under `app/` and `src/`.
 
 ### 1. Corpus Cleaning
 
@@ -90,6 +128,73 @@ retrieval_indexes/
         indexing_manifest.csv
         chunk_manifest.csv
         indexing_summary.md
+```
+
+### 3. Golden Dataset Generation
+
+The golden dataset is a 50-question evaluation test set used to measure retrieval and answer quality with RAGAS and LangSmith.
+
+Primary files:
+
+```text
+eval_testset/generate_testset.py
+eval_testset/autodesk_testset.csv
+```
+
+#### Production process
+
+`generate_testset.py` encodes all 50 `(question, ground_truth)` pairs directly as a `TEST_CASES` list of Python tuples and writes them to `autodesk_testset.csv` (columns: `question`, `ground_truth`). The script is standalone — no LLM API calls at runtime — because ground truths were authored manually by reading the cleaned corpus documents and applying the production rules below.
+
+**Why Claude, not OpenAI, authored the ground truths:** To reduce evaluator bias, the evaluation dataset was produced using a Claude model (Anthropic) rather than the OpenAI model used by the app. This means the evaluator and the app use different LLM families, reducing the risk that the app scores well simply because it mimics its own training signal.
+
+#### Question difficulty tiers
+
+The 50 questions are divided into four tiers of increasing complexity:
+
+| Tier | Questions | Description |
+|------|-----------|-------------|
+| Required (first 6) | Q1–Q6 | Questions specified by Autodesk interviewers: Fusion 360, AutoCAD vs Revit, AutoCAD LT 3D, Maya release, Fusion on Mac, subscription plans |
+| Simple fact-based | Q7–Q21 | Direct lookup questions: productivity gains, OS support, revenue figures, previous version counts, product descriptions |
+| Reasoning | Q22–Q35 | Why/how questions requiring inference across one or two documents: trade-off analysis, design decisions, architectural choices |
+| Multi-context | Q36–Q50 | Multi-hop questions requiring synthesis across three or more corpus documents or product families |
+
+#### Production rules
+
+All ground truths follow four strict rules:
+
+1. **Corpus-first grounding** — the primary source for every answer is a specific local corpus document, cited by its full document title inline within the answer text (e.g., `"According to the document 'Autodesk AutoCAD LT 2024 | Get Prices & Subscribe To AutoCAD LT'..."`). This allows RAGAS faithfulness metrics to verify that the RAG app retrieves and cites the same evidence.
+
+2. **Inline sourcing** — document titles are embedded directly in the answer body rather than in footnotes. This format is compatible with RAGAS answer relevance and faithfulness scoring, which compare retrieved context against the ground truth answer.
+
+3. **Answer format** — each ground truth is 2–3 short paragraphs. The first paragraph cites the primary corpus document; subsequent paragraphs add supporting corpus evidence or acknowledge gaps.
+
+4. **Negative constraint** — when a specific fact was not found in the reviewed corpus documents, the answer explicitly states this (e.g., `"Detailed capability descriptions were not found in the reviewed corpus documents."`) and may cite autodesk.com as a secondary source. This prevents inflated recall scores from answers that assume the corpus is complete.
+
+#### Source abbreviations used in the script
+
+The script header defines short source aliases used during authoring for traceability:
+
+```text
+[LT-Product]  = "Autodesk AutoCAD LT 2024 | Get Prices & Subscribe To AutoCAD LT"
+[PrevVer]     = "Autodesk Account Basics | Previous Product Versions | Available Versions"
+[Fusion-Comp] = "Compare Fusion 360 vs Fusion 360 for Personal Use | Autodesk"
+[Fusion-Mfg]  = "Autodesk Fusion Manufacturing Cloud | Autodesk Fusion"
+[ArchProd]    = "Benefits of the Architecture Toolset | AutoCAD | Autodesk"
+[ElecCase]    = "Martz Technologies, Inc.| AutoCAD Electrical Toolset| Autodesk"
+[Q3FY24]      = "AUTODESK, INC. ANNOUNCES FISCAL 2024 THIRD QUARTER RESULTS"
+[RevitLT]     = "Autodesk Revit LT Software | Get Prices & Buy Official Revit LT 2023"
+[ThomasH]     = "Thomas & Hutton | Site Development Drives the Future of Building Design"
+[TradeIn]     = "Trade in Your Perpetual License | Global Promotions | Autodesk"
+[ECAD]        = "Autodesk Fusion 360 | ECAD and MCAD | Software Collaboration Tools"
+[BIMCollab]   = "BIM Coordination & Collaboration | Autodesk BIM Collaborate"
+```
+
+#### Generated output
+
+```text
+eval_testset/
+    generate_testset.py      — source of truth; re-run to regenerate the CSV
+    autodesk_testset.csv     — 50 rows, columns: question, ground_truth
 ```
 
 ## Environment Configuration
@@ -251,21 +356,16 @@ Latency is important, though deep latency optimization may be beyond the scope o
 
 ### Evaluation Dataset
 
-The project should use an advanced LLM to mine the corpus and produce a 50-question golden dataset with varying levels of difficulty and complexity.
+A 50-question golden dataset has been produced and is available at `eval_testset/autodesk_testset.csv`. See [Golden Dataset Generation](#3-golden-dataset-generation) for full production details, logic, and design decisions.
 
-The golden dataset should include:
+Summary of what is in the dataset:
 
-- General product and usage questions.
-- Technical questions.
-- Multi-hop or cross-page questions where appropriate.
-- The specific questions requested by Autodesk or interviewers.
+- 6 required questions specified by Autodesk interviewers.
+- 15 simple fact-based questions (direct corpus lookups).
+- 14 reasoning questions (inference across one or two documents).
+- 15 multi-context/multi-hop questions (synthesis across three or more documents).
 
-To reduce evaluator bias, the LLM used to generate or evaluate the golden dataset should differ from the LLM used in the app. For example:
-
-- App model: OpenAI model.
-- Evaluation or dataset generation model: Claude Sonnet or Claude Opus.
-
-LangSmith should be used to track evaluation runs.
+Evaluator bias is controlled: ground truths were authored using a Claude model (Anthropic) while the app uses OpenAI models. LangSmith should be used to track evaluation runs.
 
 ### Business Metrics
 
@@ -447,6 +547,6 @@ Recommended next steps:
 2. Test hybrid retrieval with representative Autodesk questions.
 3. Build or adapt the Streamlit RAG interface.
 4. Add strict grounded-answer prompts and evidence sufficiency checks.
-5. Generate a 50-question golden dataset.
+5. ~~Generate a 50-question golden dataset.~~ **Done** — see `eval_testset/autodesk_testset.csv`.
 6. Evaluate with RAGAS and LangSmith.
 7. Iterate on cleaning, chunking, retrieval depth, and prompts based on failure analysis.
