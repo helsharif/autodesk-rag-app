@@ -80,6 +80,10 @@ class Settings:
     reranker_top_n: int = field(default_factory=lambda: _env_int("RERANKER_TOP_N", "5"))
     reranker_batch_size: int = field(default_factory=lambda: _env_int("RERANKER_BATCH_SIZE", "16"))
     serpapi_api_key: str | None = field(default_factory=lambda: os.getenv("SERPAPI_API_KEY") or None)
+    langsmith_api_key: str | None = field(default_factory=lambda: os.getenv("LANGSMITH_API_KEY") or None)
+    langsmith_tracing: str | None = field(default_factory=lambda: os.getenv("LANGSMITH_TRACING") or None)
+    langsmith_project: str | None = field(default_factory=lambda: os.getenv("LANGSMITH_PROJECT") or None)
+    langsmith_endpoint: str | None = field(default_factory=lambda: os.getenv("LANGSMITH_ENDPOINT") or None)
     eval_judge_model: str = field(default_factory=lambda: _env_str("EVAL_JUDGE_MODEL", "gpt-5.1"))
     eval_judge_delay_seconds: float = field(default_factory=lambda: _env_float("EVAL_JUDGE_DELAY_SECONDS", "1.0"))
     eval_judge_max_retries: int = field(default_factory=lambda: _env_int("EVAL_JUDGE_MAX_RETRIES", "8"))
@@ -91,6 +95,14 @@ def get_settings() -> Settings:
         os.environ.setdefault("OPENAI_API_KEY", settings.openai_api_key)
     if settings.serpapi_api_key:
         os.environ.setdefault("SERPAPI_API_KEY", settings.serpapi_api_key)
+    if settings.langsmith_api_key:
+        os.environ.setdefault("LANGSMITH_API_KEY", settings.langsmith_api_key)
+    if settings.langsmith_tracing:
+        os.environ.setdefault("LANGSMITH_TRACING", settings.langsmith_tracing)
+    if settings.langsmith_project:
+        os.environ.setdefault("LANGSMITH_PROJECT", settings.langsmith_project)
+    if settings.langsmith_endpoint:
+        os.environ.setdefault("LANGSMITH_ENDPOINT", settings.langsmith_endpoint)
     os.environ.setdefault("ANONYMIZED_TELEMETRY", "False")
     os.environ.setdefault("CHROMA_ANONYMIZED_TELEMETRY", "False")
     os.environ.setdefault("HF_HUB_DISABLE_SYMLINKS_WARNING", "1")

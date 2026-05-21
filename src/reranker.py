@@ -1,4 +1,4 @@
-"""Cross-encoder reranking for local retrieval results."""
+"""Cross-encoder reranking for retrieval results."""
 
 from __future__ import annotations
 
@@ -20,7 +20,7 @@ def rerank_documents(
     sources: list[RetrievedSource],
     settings: Settings | None = None,
 ) -> tuple[list[Document], list[RetrievedSource]]:
-    """Rerank expanded local context blocks with a SentenceTransformers CrossEncoder."""
+    """Rerank retrieved context blocks with a SentenceTransformers CrossEncoder."""
 
     settings = settings or get_settings()
     if not settings.reranker_enabled or len(docs) <= 1:
@@ -41,7 +41,13 @@ def rerank_documents(
         metadata["cross_encoder_model"] = settings.reranker_model
         metadata["cross_encoder_score"] = float(score)
         metadata["pre_rerank_position"] = index + 1
-        scored.append((float(score), Document(page_content=doc.page_content, metadata=metadata), source))
+        scored.append(
+            (
+                float(score),
+                Document(page_content=doc.page_content, metadata=metadata),
+                RetrievedSource(source.source, source.page, float(score), source.snippet),
+            )
+        )
 
     scored.sort(key=lambda item: item[0], reverse=True)
     return [doc for _, doc, _ in scored[:limit]], [source for _, _, source in scored[:limit]]

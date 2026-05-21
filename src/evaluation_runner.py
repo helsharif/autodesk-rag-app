@@ -28,7 +28,20 @@ def main() -> int:
 
     try:
         results = run_evaluation(args.collection_name, search_mode=args.search_mode, progress_callback=progress)
-        _write_status(status_path, {"status": "complete", "phase": "complete", "message": "Evaluation complete.", "current": results.get("question_count"), "total": results.get("question_count"), "started_at_utc": started, "finished_at_utc": _now()})
+        _write_status(
+            status_path,
+            {
+                "status": "complete",
+                "phase": "complete",
+                "message": "Evaluation complete.",
+                "current": results.get("question_count"),
+                "total": results.get("question_count"),
+                "started_at_utc": started,
+                "finished_at_utc": _now(),
+                "experiment_url": results.get("experiment_url"),
+                "dataset_name": results.get("dataset_name"),
+            },
+        )
         return 0
     except Exception as exc:
         _write_status(status_path, {"status": "error", "phase": "error", "message": "Evaluation failed.", "error": str(exc), "traceback": traceback.format_exc(limit=8), "finished_at_utc": _now()})

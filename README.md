@@ -54,9 +54,9 @@ The interface has three tabs:
 - **Settings & Eval** — choose the active search mode and launch background evaluation.
 - **About the App** — explain the architecture and guardrails.
 
-All three search modes use the same local hybrid retrieval backend: the app searches the existing Chroma index at `retrieval_indexes/chroma_autodesk_cleaned_corpus`, searches the BM25 artifacts at `retrieval_indexes/bm25_autodesk_cleaned_corpus`, fuses rankings with Reciprocal Rank Fusion, expands same-document neighboring chunks, and runs a strict evidence adequacy gate.
+All three search modes use the same local hybrid retrieval backend: the app searches the existing Chroma index at `retrieval_indexes/chroma_autodesk_cleaned_corpus`, searches the BM25 artifacts at `retrieval_indexes/bm25_autodesk_cleaned_corpus`, fuses rankings with Reciprocal Rank Fusion, and expands same-document neighboring chunks.
 
-After the local adequacy gate passes, the app reranks the expanded local context blocks with the open-source SentenceTransformers cross-encoder `cross-encoder/ms-marco-MiniLM-L6-v2`. This second-stage reranker runs only over the small expanded candidate set and keeps the best `RERANKER_TOP_N` blocks for final answer generation.
+Before the adequacy gate runs, the app reranks the evidence candidate set with the open-source SentenceTransformers cross-encoder `cross-encoder/ms-marco-MiniLM-L6-v2`. In Option 1, that candidate set contains expanded local chunks only. In Options 2 and 3, individual web result snippets are converted into evidence blocks and reranked together with the expanded local chunks. The reranker keeps the best `RERANKER_TOP_N` evidence blocks for the strict adequacy gate and final answer generation.
 
 The Settings & Eval radio button controls the web policy:
 
@@ -66,9 +66,9 @@ The Settings & Eval radio button controls the web policy:
 | 2 | Local Document Search + Autodesk.com | Uses local documents and always incorporates SerpAPI Google results restricted to `autodesk.com/*` pages. This mode keeps web evidence official-source focused. |
 | 3 | Local Document Search + Open Web Search | Uses local documents and always incorporates open web search results. Open-web retrieval is capped at 3 results to reduce latency and noise. |
 
-For Option 2, web search uses up to 5 `autodesk.com` results. For Option 3, open web search uses up to 3 results. Local document retrieval remains the primary evidence source in every mode.
+For Option 2, web search uses up to 5 `autodesk.com` results. For Option 3, open web search uses up to 3 results. Local document retrieval remains the primary evidence source in every mode, but in web-enabled modes the cross-encoder can promote web snippets into the final evidence set when they are more relevant than local chunks.
 
-Option 3 is useful when an answer may require broader web evidence, but it is less authoritative than Option 2 because open-web results can mix official Autodesk pages with third-party or stale pages. For current/latest questions, the adequacy gate checks web evidence separately; if the web evidence independently contains the exact current fact, it is allowed to override older local corpus evidence rather than letting stale local context cause a false refusal. Option 2 remains the preferred mode for official Autodesk product/version/pricing answers.
+Option 3 is useful when an answer may require broader web evidence, but it is less authoritative than Option 2 because open-web results can mix official Autodesk pages with third-party or stale pages. For current/latest questions, the adequacy gate checks the reranked web evidence separately; if the web evidence independently contains the exact current fact, it is allowed to override older local corpus evidence rather than letting stale local context cause a false refusal. Option 2 remains the preferred mode for official Autodesk product/version/pricing answers.
 
 Evaluation uses the fixed dataset at `eval_testset/autodesk_testset.csv` and persists results under:
 
@@ -81,6 +81,8 @@ eval_status/docling_chroma_bm25_hybrid_autodesk_web_status.json
 eval_status/docling_chroma_bm25_hybrid_open_web_status.json
 eval_results/eval_results_log.csv
 ```
+
+When evaluation is launched from Settings & Eval, the app now creates or reuses a LangSmith dataset named from the golden dataset hash, runs the selected search mode as a LangSmith experiment, applies LLM-as-judge evaluators for faithfulness, answer relevance, context precision, and context recall, and then caches the resulting scores locally for the Streamlit dashboard. The dashboard status file is updated during the background run so progress can be refreshed while the 50 questions are being answered and scored.
 
 The `example_app/` folder is reference material only. The production app code for this project is under `app/` and `src/`.
 
@@ -290,17 +292,17 @@ Hybrid retrieval combines dense vector results and BM25 results, preferably usin
 
 ### Cross-Encoder Reranking
 
-After retrieval, deterministic context expansion, and the local adequacy gate, the app reranks local evidence with `cross-encoder/ms-marco-MiniLM-L6-v2` from the `sentence-transformers` library. The reranker scores `(query, passage)` pairs and sorts the expanded local context blocks by cross-encoder relevance before final generation.
+After local retrieval and deterministic context expansion, the app reranks evidence with `cross-encoder/ms-marco-MiniLM-L6-v2` from the `sentence-transformers` library. The reranker scores `(query, passage)` pairs and sorts the candidate evidence blocks by cross-encoder relevance before the adequacy gate and final generation.
 
-This is a second-stage reranker, not a retriever. Chroma and BM25 still find the initial candidate set; Reciprocal Rank Fusion still combines dense and lexical rankings; neighbor expansion still protects chunk-boundary context. The cross-encoder then selects the strongest local evidence blocks from that small candidate set.
+This is a second-stage reranker, not a retriever. Chroma and BM25 still find the initial local candidate set; Reciprocal Rank Fusion still combines dense and lexical rankings; neighbor expansion still protects chunk-boundary context. In Option 1, the cross-encoder selects the strongest local evidence blocks. In Options 2 and 3, SerpAPI web results are converted into individual evidence blocks and reranked together with local chunks, so web snippets can compete directly with local evidence before the strict adequacy gate runs.
 
 ### Runtime Search Modes
 
 The Streamlit app exposes three runtime search modes:
 
 - **Option 1: Local Document Search** — local Chroma + BM25 only. This is the default and fastest mode.
-- **Option 2: Local Document Search + Autodesk.com** — local Chroma + BM25 plus official Autodesk web results on every query.
-- **Option 3: Local Document Search + Open Web Search** — local Chroma + BM25 plus capped open-web results on every query.
+- **Option 2: Local Document Search + Autodesk.com** — local Chroma + BM25 plus official Autodesk web results on every query. Local and web evidence are reranked together before adequacy checking.
+- **Option 3: Local Document Search + Open Web Search** — local Chroma + BM25 plus capped open-web results on every query. Local and web evidence are reranked together before adequacy checking.
 
 The same strict answer-generation rules apply in all modes: every factual claim must be supported by supplied local excerpts, supplied web snippets, or runtime context. If the supplied evidence is insufficient, the app returns the fixed no-answer response.
 

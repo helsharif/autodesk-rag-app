@@ -98,12 +98,50 @@ PAGE_OPTIONS = ["Ask", "Settings & Eval", "About the App"]
 EVAL_AUTO_REFRESH_SECONDS = 20
 
 
+def get_query_param(name: str, default: str) -> str:
+    value = st.query_params.get(name, default)
+    if isinstance(value, list):
+        return str(value[0]) if value else default
+    return str(value)
+
+
 def _init_state() -> None:
-    st.session_state.setdefault("selected_page", "Ask")
-    st.session_state.setdefault("collection_name", HYBRID_BACKEND_NAME)
-    st.session_state.setdefault("search_mode_label", OPTION_1_LABEL)
-    st.session_state.setdefault("search_mode", LOCAL_ONLY_MODE)
+    query_page = get_query_param("page", "Ask")
+    if query_page not in PAGE_OPTIONS:
+        query_page = "Ask"
+    st.session_state.setdefault("selected_page", query_page)
+
+    query_mode = get_query_param("mode", OPTION_1_LABEL)
+    if query_mode not in SEARCH_MODE_OPTIONS:
+        query_mode = OPTION_1_LABEL
+    st.session_state.setdefault("search_mode_label", query_mode)
+    st.session_state.setdefault("search_mode", SEARCH_MODE_OPTIONS[query_mode])
+    st.session_state.setdefault("collection_name", COLLECTION_OPTIONS[query_mode])
     st.session_state.setdefault("messages", [])
+
+
+def sync_query_state(page: str | None = None, mode_label: str | None = None) -> None:
+    if page and st.query_params.get("page") != page:
+        st.query_params["page"] = page
+    if mode_label and st.query_params.get("mode") != mode_label:
+        st.query_params["mode"] = mode_label
+
+
+def on_page_change() -> None:
+    selected_page = st.session_state.get("selected_page", "Ask")
+    if selected_page not in PAGE_OPTIONS:
+        selected_page = "Ask"
+    sync_query_state(page=selected_page, mode_label=st.session_state.get("search_mode_label", OPTION_1_LABEL))
+
+
+def on_search_mode_change() -> None:
+    selected_label = st.session_state.get("search_mode_label", OPTION_1_LABEL)
+    if selected_label not in SEARCH_MODE_OPTIONS:
+        selected_label = OPTION_1_LABEL
+    st.session_state.search_mode_label = selected_label
+    st.session_state.search_mode = SEARCH_MODE_OPTIONS[selected_label]
+    st.session_state.collection_name = COLLECTION_OPTIONS[selected_label]
+    sync_query_state(mode_label=selected_label)
 
 
 @st.cache_resource(show_spinner=False)
@@ -195,13 +233,17 @@ def render_settings_eval() -> None:
     st.subheader("Settings & Eval")
     labels = list(SEARCH_MODE_OPTIONS)
     current_label = st.session_state.get("search_mode_label", OPTION_1_LABEL)
-    selected = st.radio(
+    if st.session_state.get("search_mode_label") != current_label:
+        st.session_state.search_mode_label = current_label
+    st.radio(
         "Retrieval configuration",
         labels,
         index=labels.index(current_label) if current_label in labels else 0,
         horizontal=False,
+        key="search_mode_label",
+        on_change=on_search_mode_change,
     )
-    st.session_state.search_mode_label = selected
+    selected = st.session_state.get("search_mode_label", OPTION_1_LABEL)
     st.session_state.search_mode = SEARCH_MODE_OPTIONS[selected]
     st.session_state.collection_name = COLLECTION_OPTIONS[selected]
     st.info(_mode_explanation(st.session_state.search_mode))
@@ -270,7 +312,12 @@ def _eval_status_filename(search_mode: str) -> str:
 
 def _render_metrics(results: dict) -> None:
     metrics = results.get("metrics", {})
+    _metric_styles()
     st.caption(f"Last run: {results.get('timestamp_utc', 'unknown')} UTC | Questions: {results.get('question_count', 'unknown')}")
+    if results.get("dataset_name"):
+        st.caption(f"LangSmith dataset: {results['dataset_name']}")
+    if results.get("experiment_url"):
+        st.markdown(f"[Open LangSmith experiment]({results['experiment_url']})")
     cols = st.columns(5)
     for col, label, key in zip(cols, ["Faithfulness", "Answer Relevance", "Context Precision", "Context Recall"], ["faithfulness", "answer_relevancy", "context_precision", "context_recall"]):
         with col:
@@ -279,30 +326,126 @@ def _render_metrics(results: dict) -> None:
         avg = _num(metrics.get("average_latency"))
         p50 = _num(metrics.get("p50_latency"))
         p99 = _num(metrics.get("p99_latency"))
-        st.metric("Latency", "N/A" if avg is None else f"{avg:.1f} | {p50:.1f} | {p99:.1f}", "Avg | P50 | P99")
+        _latency_card(avg, p50, p99)
     if results.get("rows"):
         with st.expander("Evaluation details"):
             st.dataframe(results["rows"], use_container_width=True)
 
 
+def _metric_styles() -> None:
+    st.markdown(
+        """
+        <style>
+        .rag-metric-label {
+            color: #111827;
+            font-size: 0.92rem;
+            line-height: 1.25;
+            margin-bottom: 0.35rem;
+        }
+        .rag-metric-value {
+            color: #111827;
+            font-size: 2.15rem;
+            line-height: 1.05;
+            margin-bottom: 0.35rem;
+        }
+        .rag-metric-status {
+            font-size: 0.95rem;
+            font-weight: 500;
+            line-height: 1.25;
+        }
+        .rag-metric-good {
+            color: #15803d;
+        }
+        .rag-metric-moderate {
+            color: #8a6d00;
+        }
+        .rag-metric-low {
+            color: #991b1b;
+        }
+        .rag-metric-muted {
+            color: #6b7280;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
+
+
 def _metric_card(label: str, value) -> None:
     score = _num(value)
     if score is None:
-        st.metric(label, "N/A")
-    else:
-        band = "Strong" if score >= 0.8 else "Moderate" if score >= 0.6 else "Needs attention"
-        st.metric(label, f"{score:.2f}", band)
+        _custom_metric(label, "N/A", "No score", "rag-metric-muted", "-")
+        return
+    band, css_class, icon = _quality_band(score)
+    _custom_metric(label, f"{score:.2f}", band, css_class, icon)
+
+
+def _latency_card(avg: float | None, p50: float | None, p99: float | None) -> None:
+    if avg is None:
+        _custom_metric("Latency", "N/A", "No score", "rag-metric-muted", "-")
+        return
+    band, css_class, icon = _latency_band(avg)
+    p50_text = "N/A" if p50 is None else f"{p50:.1f}"
+    p99_text = "N/A" if p99 is None else f"{p99:.1f}"
+    _custom_metric("Latency", f"{avg:.1f} | {p50_text} | {p99_text}", f"{band} Avg | P50 | P99", css_class, icon)
+
+
+def _custom_metric(label: str, value: str, status: str, css_class: str, icon: str) -> None:
+    st.markdown(
+        f"""
+        <div class="rag-metric">
+            <div class="rag-metric-label">{label}</div>
+            <div class="rag-metric-value">{value}</div>
+            <div class="rag-metric-status {css_class}">{icon} {status}</div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+
+def _quality_band(score: float) -> tuple[str, str, str]:
+    if score >= 0.8:
+        return "Strong", "rag-metric-good", "✓"
+    if score >= 0.6:
+        return "Moderate", "rag-metric-moderate", "●"
+    return "Needs attention", "rag-metric-low", "!"
+
+
+def _latency_band(avg_seconds: float) -> tuple[str, str, str]:
+    if avg_seconds <= 10:
+        return "Strong", "rag-metric-good", "✓"
+    if avg_seconds <= 25:
+        return "Moderate", "rag-metric-moderate", "●"
+    return "Needs attention", "rag-metric-low", "!"
 
 
 def _render_status(status: dict) -> None:
     if status.get("status") == "running":
-        st.info(f"Evaluation running: {status.get('phase', 'running')}. {status.get('message', '')}")
+        phase = str(status.get("phase") or "running").replace("_", " ").title()
+        message = status.get("message", "")
+        st.info(f"Evaluation running: {phase}. {message}")
         total = int(status.get("total") or 50)
         current = int(status.get("current") or 0)
         st.progress(min(max(current / total, 0), 1), text=f"{current} of {total} questions processed")
+        if status.get("question"):
+            st.caption(f"Current question: {status['question']}")
+        if status.get("started_at_utc"):
+            st.caption(f"Started: {status['started_at_utc']} UTC | Elapsed: {_elapsed_since(status['started_at_utc'])}")
+        if status.get("updated_at_utc"):
+            st.caption(f"Last status update: {status['updated_at_utc']} UTC")
+        if status.get("execution_time") is not None:
+            st.caption(f"Last question latency: {float(status['execution_time']):.1f} seconds")
+        st.caption(
+            f"This dashboard refreshes every {EVAL_AUTO_REFRESH_SECONDS} seconds while evaluation is running. "
+            "Use Refresh now if your browser pauses background timers."
+        )
+        if st.button("Refresh now", type="secondary"):
+            st.rerun()
         components.html(f"<script>setTimeout(() => window.parent.location.reload(), {EVAL_AUTO_REFRESH_SECONDS * 1000});</script>", height=0)
     elif status.get("status") == "complete":
         st.success(f"Last evaluation completed at {status.get('finished_at_utc', 'unknown')} UTC.")
+        if status.get("experiment_url"):
+            st.markdown(f"[Open LangSmith experiment]({status['experiment_url']})")
     elif status.get("status") == "error":
         st.error(f"Last evaluation failed: {status.get('error', 'Unknown error')}")
 
@@ -310,6 +453,19 @@ def _render_status(status: dict) -> None:
 def _start_eval(search_mode: str) -> None:
     settings = get_settings()
     settings.eval_status_dir.mkdir(parents=True, exist_ok=True)
+    started = _now_utc()
+    _write_eval_status(
+        settings.eval_status_dir / _eval_status_filename(search_mode),
+        {
+            "status": "running",
+            "phase": "launching",
+            "message": "Launching background LangSmith evaluator.",
+            "current": 0,
+            "total": 50,
+            "started_at_utc": started,
+            "updated_at_utc": started,
+        },
+    )
     executable = sys.executable
     if sys.platform.startswith("win"):
         pythonw = Path(sys.executable).with_name("pythonw.exe")
@@ -330,6 +486,34 @@ def _start_eval(search_mode: str) -> None:
         ],
         **kwargs,
     )
+
+
+def _write_eval_status(path: Path, payload: dict) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temp_path = path.with_suffix(".tmp")
+    temp_path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+    temp_path.replace(path)
+
+
+def _now_utc() -> str:
+    return datetime.now(timezone.utc).isoformat(timespec="seconds")
+
+
+def _elapsed_since(timestamp: str) -> str:
+    try:
+        started = datetime.fromisoformat(timestamp.replace("Z", "+00:00"))
+        if started.tzinfo is None:
+            started = started.replace(tzinfo=timezone.utc)
+        elapsed_seconds = max(int((datetime.now(timezone.utc) - started.astimezone(timezone.utc)).total_seconds()), 0)
+    except Exception:
+        return "unknown"
+    minutes, seconds = divmod(elapsed_seconds, 60)
+    hours, minutes = divmod(minutes, 60)
+    if hours:
+        return f"{hours}h {minutes}m"
+    if minutes:
+        return f"{minutes}m {seconds}s"
+    return f"{seconds}s"
 
 
 def _load_json(path: Path) -> dict | None:
@@ -363,7 +547,14 @@ def render_about() -> None:
 
 
 _init_state()
-page = st.radio("Navigation", PAGE_OPTIONS, horizontal=True, label_visibility="collapsed", key="selected_page")
+page = st.radio(
+    "Navigation",
+    PAGE_OPTIONS,
+    horizontal=True,
+    label_visibility="collapsed",
+    key="selected_page",
+    on_change=on_page_change,
+)
 if page == "Ask":
     render_ask()
 elif page == "Settings & Eval":
