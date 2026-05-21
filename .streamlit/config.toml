@@ -1,2 +1,5 @@
 [server]
 fileWatcherType = "auto"
+
+[theme]
+primaryColor = "#333333"

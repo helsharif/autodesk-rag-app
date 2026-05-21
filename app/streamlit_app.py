@@ -2,10 +2,13 @@
 
 from __future__ import annotations
 
+import csv
+import html
 import json
 import os
 import subprocess
 import sys
+import textwrap
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -85,8 +88,94 @@ st.set_page_config(page_title="Autodesk Agentic RAG", page_icon="ADSK", layout="
 st.markdown(
     """
     <style>
-    div[data-testid="stForm"] {border:1px solid rgba(17,24,39,.12); border-radius:.5rem; padding:1rem; background:#fff;}
-    div[data-testid="stTextInput"] input {font-size:1.02rem; min-height:3.1rem;}
+    :root {
+        --autodesk-near-black: rgb(51, 51, 51);
+        --autodesk-near-black-hover: rgb(31, 31, 31);
+        --autodesk-gold: rgb(212, 175, 55);
+        --autodesk-gold-dark: rgb(138, 109, 0);
+    }
+
+    div[data-testid="stForm"] {
+        border: 1px solid rgba(17, 24, 39, .12);
+        border-radius: .5rem;
+        padding: 1rem;
+        background: #fff;
+    }
+
+    div[data-testid="stTextInput"] input {
+        font-size: 1.02rem;
+        min-height: 3.1rem;
+    }
+
+    div[data-testid="stTextInput"] input:focus,
+    textarea:focus {
+        border-color: var(--autodesk-near-black) !important;
+        box-shadow: 0 0 0 1px var(--autodesk-near-black) !important;
+    }
+
+    a,
+    a:visited {
+        color: var(--autodesk-near-black);
+    }
+
+    a:hover {
+        color: var(--autodesk-near-black-hover);
+    }
+
+    div[data-testid="stBaseButton-primary"] button,
+    button[data-testid="stBaseButton-primary"],
+    button[kind="primary"],
+    div[data-testid="stFormSubmitButton"] button {
+        background-color: var(--autodesk-near-black) !important;
+        border-color: var(--autodesk-near-black) !important;
+        color: #fff !important;
+    }
+
+    div[data-testid="stBaseButton-primary"] button:hover,
+    button[data-testid="stBaseButton-primary"]:hover,
+    button[kind="primary"]:hover,
+    div[data-testid="stFormSubmitButton"] button:hover {
+        background-color: var(--autodesk-near-black-hover) !important;
+        border-color: var(--autodesk-near-black-hover) !important;
+        color: #fff !important;
+    }
+
+    div[data-testid="stBaseButton-primary"] button:focus,
+    button[data-testid="stBaseButton-primary"]:focus,
+    button[kind="primary"]:focus,
+    div[data-testid="stFormSubmitButton"] button:focus {
+        box-shadow: 0 0 0 .2rem rgba(51, 51, 51, .18) !important;
+    }
+
+    div[data-testid="stChatMessageAvatarUser"],
+    div[data-testid="stChatMessageAvatarAssistant"] {
+        background-color: var(--autodesk-near-black) !important;
+    }
+
+    input[type="radio"] {
+        accent-color: var(--autodesk-gold);
+    }
+
+    div[role="radiogroup"] label {
+        color: #111827 !important;
+    }
+
+    div[role="radiogroup"] label [aria-checked="true"],
+    div[role="radiogroup"] label:has(input[type="radio"]:checked) > div:first-child {
+        border-color: var(--autodesk-gold) !important;
+        background-color: var(--autodesk-gold) !important;
+    }
+
+    div[role="radiogroup"] label [aria-checked="true"] svg,
+    div[role="radiogroup"] label:has(input[type="radio"]:checked) svg {
+        fill: var(--autodesk-gold) !important;
+        color: var(--autodesk-gold) !important;
+    }
+
+    div[role="radiogroup"] label:hover [aria-checked="false"],
+    div[role="radiogroup"] label:hover > div:first-child {
+        border-color: var(--autodesk-gold-dark) !important;
+    }
     </style>
     """,
     unsafe_allow_html=True,
@@ -329,7 +418,168 @@ def _render_metrics(results: dict) -> None:
         _latency_card(avg, p50, p99)
     if results.get("rows"):
         with st.expander("Evaluation details"):
-            st.dataframe(results["rows"], use_container_width=True)
+            _render_evaluation_details(results["rows"])
+
+
+def _render_evaluation_details(rows: list[dict]) -> None:
+    ordered_rows = _ordered_eval_rows(rows)
+    st.caption("Rows are sorted to match `eval_testset/autodesk_testset.csv`; the first six rows are the required reviewer questions.")
+    st.markdown(_evaluation_details_table(ordered_rows), unsafe_allow_html=True)
+
+
+def _ordered_eval_rows(rows: list[dict]) -> list[dict]:
+    order = _testset_question_order()
+    return sorted(rows, key=lambda row: order.get(str(row.get("inputs.question") or ""), 10_000))
+
+
+@st.cache_data(show_spinner=False)
+def _testset_question_order() -> dict[str, int]:
+    path = get_settings().eval_testset_path
+    try:
+        with path.open("r", encoding="utf-8", newline="") as file:
+            reader = csv.DictReader(file)
+            return {str(row.get("question") or "").strip(): index for index, row in enumerate(reader, start=1)}
+    except Exception:
+        return {}
+
+
+def _evaluation_details_table(rows: list[dict]) -> str:
+    table_rows = []
+    order = _testset_question_order()
+    for fallback_index, row in enumerate(rows, start=1):
+        question = str(row.get("inputs.question") or "")
+        row_number = order.get(question, fallback_index)
+        answer = str(row.get("outputs.answer") or "")
+        reference = str(row.get("reference.answer") or "")
+        faithfulness = _format_score(row.get("feedback.faithfulness"))
+        relevance = _format_score(row.get("feedback.answer_relevancy"))
+        precision = _format_score(row.get("feedback.context_precision"))
+        recall = _format_score(row.get("feedback.context_recall"))
+        latency = _format_seconds(row.get("outputs.execution_time") or row.get("execution_time"))
+        source_mode = _format_source_mode(row)
+        error = str(row.get("outputs.error") or row.get("error") or "")
+        if error:
+            error_block = f"<div class=\"eval-error\">{html.escape(error)}</div>"
+        else:
+            error_block = ""
+        table_rows.append(
+            "<tr>"
+            f"<td class=\"eval-num\">{row_number}</td>"
+            f"<td class=\"eval-question\">{html.escape(question)}</td>"
+            f"<td class=\"eval-answer\">{html.escape(answer)}</td>"
+            f"<td class=\"eval-reference\">{html.escape(reference)}</td>"
+            f"<td class=\"eval-scores\">"
+            f"<div>Faithfulness: {faithfulness}</div>"
+            f"<div>Relevance: {relevance}</div>"
+            f"<div>Precision: {precision}</div>"
+            f"<div>Recall: {recall}</div>"
+            f"<div>Latency: {latency}</div>"
+            f"<div>Evidence: {source_mode}</div>"
+            f"{error_block}"
+            "</td>"
+            "</tr>"
+        )
+    prefix = textwrap.dedent(
+        """
+        <style>
+        .eval-review-table {
+            border-collapse: collapse;
+            width: 100%;
+            table-layout: fixed;
+            font-family: "Source Sans Pro", Arial, sans-serif;
+            font-size: 0.9rem;
+            line-height: 1.45;
+        }
+        .eval-review-table * {
+            font-family: inherit !important;
+            font-size: inherit !important;
+            line-height: inherit !important;
+        }
+        .eval-review-table th {
+            background: #f3f4f6;
+            border: 1px solid #d1d5db;
+            color: #111827;
+            font-weight: 700;
+            padding: 0.7rem;
+            text-align: left;
+            vertical-align: top;
+        }
+        .eval-review-table td {
+            border: 1px solid #d1d5db;
+            color: #111827;
+            padding: 0.85rem;
+            vertical-align: top;
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
+            word-break: normal;
+        }
+        .eval-num {
+            width: 3.5rem;
+            text-align: center;
+            font-weight: 700;
+        }
+        .eval-question {
+            width: 18%;
+            font-weight: 650;
+        }
+        .eval-answer {
+            width: 34%;
+        }
+        .eval-reference {
+            width: 27%;
+            color: #374151;
+        }
+        .eval-scores {
+            width: 16%;
+        }
+        .eval-error {
+            color: #991b1b;
+            font-weight: 650;
+            margin-top: 0.5rem;
+        }
+        </style>
+        <table class="eval-review-table">
+            <thead>
+                <tr>
+                    <th class="eval-num">#</th>
+                    <th class="eval-question">Question</th>
+                    <th class="eval-answer">App Answer</th>
+                    <th class="eval-reference">Reference Answer</th>
+                    <th class="eval-scores">Scores</th>
+                </tr>
+            </thead>
+            <tbody>
+        """
+    ).strip()
+    suffix = textwrap.dedent(
+        """
+            </tbody>
+        </table>
+        """
+    ).strip()
+    return f"{prefix}\n{'\n'.join(table_rows)}\n{suffix}"
+
+
+def _format_score(value) -> str:
+    score = _num(value)
+    return "N/A" if score is None else f"{score:.2f}"
+
+
+def _format_seconds(value) -> str:
+    seconds = _num(value)
+    return "N/A" if seconds is None else f"{seconds:.1f}s"
+
+
+def _format_source_mode(row: dict) -> str:
+    used_local = bool(row.get("outputs.used_local"))
+    used_web = bool(row.get("outputs.used_web"))
+    if used_local and used_web:
+        return "local + web"
+    if used_local:
+        return "local"
+    if used_web:
+        return "web"
+    return "no reliable source"
 
 
 def _metric_styles() -> None:
