@@ -4,13 +4,19 @@ from __future__ import annotations
 
 import argparse
 import json
+import threading
+import time
 import traceback
+import uuid
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
 from src.config import get_settings
 from src.evaluation import run_evaluation
+
+
+_STATUS_WRITE_LOCK = threading.Lock()
 
 
 def main() -> int:
@@ -24,7 +30,10 @@ def main() -> int:
     _write_status(status_path, {"status": "running", "phase": "starting", "message": "Starting evaluation.", "current": 0, "total": 50, "started_at_utc": started, "updated_at_utc": started})
 
     def progress(update: dict[str, Any]) -> None:
-        _write_status(status_path, {"status": "running", "started_at_utc": started, "updated_at_utc": _now(), **update})
+        try:
+            _write_status(status_path, {"status": "running", "started_at_utc": started, "updated_at_utc": _now(), **update})
+        except OSError:
+            pass
 
     try:
         results = run_evaluation(args.collection_name, search_mode=args.search_mode, progress_callback=progress)
@@ -50,9 +59,25 @@ def main() -> int:
 
 def _write_status(path: Path, payload: dict[str, Any]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    temp = path.with_suffix(".tmp")
-    temp.write_text(json.dumps(payload, indent=2), encoding="utf-8")
-    temp.replace(path)
+    content = json.dumps(payload, indent=2)
+    with _STATUS_WRITE_LOCK:
+        temp = path.with_name(f"{path.stem}.{threading.get_ident()}.{uuid.uuid4().hex}.tmp")
+        try:
+            temp.write_text(content, encoding="utf-8")
+            for attempt in range(5):
+                try:
+                    temp.replace(path)
+                    return
+                except PermissionError:
+                    if attempt == 4:
+                        raise
+                    time.sleep(0.05 * (attempt + 1))
+        finally:
+            try:
+                if temp.exists():
+                    temp.unlink()
+            except OSError:
+                pass
 
 
 def _now() -> str:
