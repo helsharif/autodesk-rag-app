@@ -22,6 +22,7 @@ import os
 import pickle
 import re
 import shutil
+import tempfile
 import time
 import traceback
 from collections import defaultdict
@@ -640,6 +641,14 @@ def docling_convert(path: Path) -> Any:
     return getattr(result, "document", result)
 
 
+def docling_convert_markdown_body(markdown_body: str, source_path: Path) -> Any:
+    """Convert front-matter-stripped Markdown so YAML metadata cannot become chunks."""
+    with tempfile.TemporaryDirectory(prefix="autodesk_docling_") as temp_dir:
+        temp_path = Path(temp_dir) / source_path.name
+        temp_path.write_text(markdown_body.strip() + "\n", encoding="utf-8")
+        return docling_convert(temp_path)
+
+
 def docling_document_to_markdown(doc: Any) -> str:
     for method_name in ("export_to_markdown", "export_to_text", "export_to_md"):
         method = getattr(doc, method_name, None)
@@ -875,12 +884,12 @@ def chunk_document_via_docling(
     source_file: str,
 ) -> tuple[dict[str, str], list[dict[str, Any]], str, str]:
     raw_text = source_path.read_text(encoding="utf-8", errors="replace")
-    raw_metadata, _ = parse_frontmatter(raw_text)
+    raw_metadata, raw_body = parse_frontmatter(raw_text)
 
     warnings: list[str] = []
 
     try:
-        doc = docling_convert(source_path)
+        doc = docling_convert_markdown_body(raw_body, source_path)
 
         chunks, method = try_docling_hierarchical_chunking(
             doc=doc,
