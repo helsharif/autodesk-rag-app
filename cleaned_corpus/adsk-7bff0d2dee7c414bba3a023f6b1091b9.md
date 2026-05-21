@@ -4,8 +4,17 @@ relative_source_path: "adsk-7bff0d2dee7c414bba3a023f6b1091b9.html"
 title: "Bifrost for Autodesk Maya | Get Prices & Buy Official | Bifrost for Maya 2024"
 cleaned_format: "markdown"
 extraction_method: "trafilatura"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 1
+subheading_count: 0
+headings: "h1: Bifrost for Autodesk Maya | Get Prices & Buy Official | Bifrost for Maya 2024"
+subheadings: ""
 raw_char_count: 227820
 cleaned_char_count: 5131
+tfidf_keyword_count: 12
+tfidf_keywords: "bifrost | maya | effects | usd | visual programming | graph | procedural | maya subscription | scattering | explosions | visual | particles"
 ---
 
 # Bifrost for Autodesk Maya | Get Prices & Buy Official | Bifrost for Maya 2024

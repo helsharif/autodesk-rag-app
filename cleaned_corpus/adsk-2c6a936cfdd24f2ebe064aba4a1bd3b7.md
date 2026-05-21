@@ -4,8 +4,17 @@ relative_source_path: "adsk-2c6a936cfdd24f2ebe064aba4a1bd3b7.html"
 title: "Autodesk Sustainability | Sustainable Design | Autodesk"
 cleaned_format: "markdown"
 extraction_method: "beautifulsoup_fallback"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 8
+subheading_count: 7
+headings: "h1: Autodesk Sustainability | Sustainable Design | Autodesk | h2: Making a positive impact | h2: Creating a sustainable future | h2: Technology for a rapidly changing world | h2: Catalyzing innovation through philanthropy | h2: Walking the talk in our operations | h2: Inspiring people to make their mark | h2: Stories that inspire"
+subheadings: "Making a positive impact | Creating a sustainable future | Technology for a rapidly changing world | Catalyzing innovation through philanthropy | Walking the talk in our operations | Inspiring people to make their mark | Stories that inspire"
 raw_char_count: 84714
 cleaned_char_count: 3449
+tfidf_keyword_count: 12
+tfidf_keywords: "sustainable | winery | unhcr | image courtesy | sustainability | courtesy | innovators | image | oak | silver oak | silver | rural"
 ---
 
 # Autodesk Sustainability | Sustainable Design | Autodesk

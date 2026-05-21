@@ -4,8 +4,17 @@ relative_source_path: "adsk-6fd9ed2e081e479e9d0c349c9b90bdba.html"
 title: "How to Estimate Construction Costs - Digital Builder"
 cleaned_format: "markdown"
 extraction_method: "trafilatura"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 1
+subheading_count: 0
+headings: "h1: How to Estimate Construction Costs - Digital Builder"
+subheadings: ""
 raw_char_count: 168649
 cleaned_char_count: 8363
+tfidf_keyword_count: 12
+tfidf_keywords: "costs | project | construction | estimating | cost | budget | construction cost | estimates | estimate | scope | project scope | materials"
 ---
 
 # How to Estimate Construction Costs - Digital Builder

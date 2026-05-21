@@ -4,8 +4,17 @@ relative_source_path: "adsk-a43e6f31b3fe44fcbda9e7aa31225dc3.html"
 title: "Plant 3D Toolset In Autodesk AutoCAD | Features"
 cleaned_format: "markdown"
 extraction_method: "trafilatura"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 1
+subheading_count: 0
+headings: "h1: Plant 3D Toolset In Autodesk AutoCAD | Features"
+subheadings: ""
 raw_char_count: 174369
 cleaned_char_count: 2764
+tfidf_keyword_count: 12
+tfidf_keywords: "plant | piping | plant 3d | 3d toolset | project-specific | directly 3d | toolset | 3d model | industry-standard | plant design | create | model"
 ---
 
 # Plant 3D Toolset In Autodesk AutoCAD | Features

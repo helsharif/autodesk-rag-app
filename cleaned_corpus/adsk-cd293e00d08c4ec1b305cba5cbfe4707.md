@@ -4,8 +4,17 @@ relative_source_path: "adsk-cd293e00d08c4ec1b305cba5cbfe4707.html"
 title: "Inventor Trial Support"
 cleaned_format: "markdown"
 extraction_method: "trafilatura"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 1
+subheading_count: 0
+headings: "h1: Inventor Trial Support"
+subheadings: ""
 raw_char_count: 262111
 cleaned_char_count: 744
+tfidf_keyword_count: 12
+tfidf_keywords: "assembly | design | create | create 3d | design data | 3d model | inventor | drawing | bracket | data | wheel | keyboard shortcuts"
 ---
 
 # Inventor Trial Support

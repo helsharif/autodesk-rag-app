@@ -4,8 +4,17 @@ relative_source_path: "adsk-8637b0d3b41f41efbbfdebb66fa73a4b.html"
 title: "Quarterly Results | Autodesk, Inc."
 cleaned_format: "markdown"
 extraction_method: "trafilatura"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 30
+subheading_count: 28
+headings: "h1: Quarterly Results | Autodesk, Inc. | h1: Quarterly Results | h3: Q3 | h3: Q2 | h3: Q1 | h3: Q4 | h3: Q3 | h3: Q2 | h3: Q1 | h3: Q4 | h3: Q3 | h3: Q2 | h3: Q1 | h3: Q4 | h3: Q3 | h3: Q2 | h3: Q1 | h3: Q4 | h3: Q3 | h3: Q2 | h3: Q1 | h3: Q4 | h3: Q3 | h3: Q2 | h3: Q1 | h3: Q4 | h3: Q3 | h3: Q2 | h3: Q1 | h3: Q4"
+subheadings: "Q3 | Q2 | Q1 | Q4 | Q3 | Q2 | Q1 | Q4 | Q3 | Q2 | Q1 | Q4 | Q3 | Q2 | Q1 | Q4 | Q3 | Q2 | Q1 | Q4 | Q3 | Q2 | Q1 | Q4 | Q3 | Q2 | Q1 | Q4"
 raw_char_count: 294794
 cleaned_char_count: 10835
+tfidf_keyword_count: 1
+tfidf_keywords: "results"
 ---
 
 # Quarterly Results | Autodesk, Inc.

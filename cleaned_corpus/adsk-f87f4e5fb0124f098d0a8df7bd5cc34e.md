@@ -4,8 +4,17 @@ relative_source_path: "adsk-f87f4e5fb0124f098d0a8df7bd5cc34e.html"
 title: "Fusion 360 Signal Integrity Extension for PCB | Autodesk"
 cleaned_format: "markdown"
 extraction_method: "beautifulsoup_rich_fallback"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 8
+subheading_count: 7
+headings: "h1: Fusion 360 Signal Integrity Extension for PCB | Autodesk | h3: What is the Autodesk Fusion Signal Integrity Extension? | h2: Benefits of the Autodesk Fusion Signal Integrity Extension | h3: Make reliable products | h3: Accelerate development cycle | h3: Lower physical testing costs | h2: Included Signal Integrity Tools | h2: Autodesk Fusion Signal Integrity Extension Frequently asked questions (FAQs)"
+subheadings: "What is the Autodesk Fusion Signal Integrity Extension? | Benefits of the Autodesk Fusion Signal Integrity Extension | Make reliable products | Accelerate development cycle | Lower physical testing costs | Included Signal Integrity Tools | Autodesk Fusion Signal Integrity Extension Frequently asked questions (FAQs)"
 raw_char_count: 407870
 cleaned_char_count: 6676
+tfidf_keyword_count: 12
+tfidf_keywords: "signal | signal integrity | integrity | pcb | integrity extension | extension | fusion | impedance | pcb design | signals | design | electromagnetic"
 ---
 
 # Fusion 360 Signal Integrity Extension for PCB | Autodesk

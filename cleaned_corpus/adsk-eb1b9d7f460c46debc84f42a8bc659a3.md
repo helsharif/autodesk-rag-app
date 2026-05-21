@@ -4,8 +4,17 @@ relative_source_path: "adsk-eb1b9d7f460c46debc84f42a8bc659a3.html"
 title: "Product Design Software | Product Design Tools | Autodesk"
 cleaned_format: "markdown"
 extraction_method: "trafilatura"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 1
+subheading_count: 0
+headings: "h1: Product Design Software | Product Design Tools | Autodesk"
+subheadings: ""
 raw_char_count: 149729
 cleaned_char_count: 7973
+tfidf_keyword_count: 12
+tfidf_keywords: "product design | design | product | design software | software | manufacturing | collection | manufacturing collection | design manufacturing | cad | includes | inventor"
 ---
 
 # Product Design Software | Product Design Tools | Autodesk

@@ -4,8 +4,17 @@ relative_source_path: "adsk-5d7160ec60c24eceadfc9cd68c443bf3.html"
 title: "Architecture, Engineering and Construction (AEC) Collection 2024 | Autodesk"
 cleaned_format: "markdown"
 extraction_method: "trafilatura"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 1
+subheading_count: 0
+headings: "h1: Architecture, Engineering and Construction (AEC) Collection 2024 | Autodesk"
+subheadings: ""
 raw_char_count: 673059
 cleaned_char_count: 4512
+tfidf_keyword_count: 12
+tfidf_keywords: "year | price | year 465 | design | 465 year | collection | products standalone | standalone price | price compare | compare collection | total price | year save"
 ---
 
 # Architecture, Engineering and Construction (AEC) Collection 2024 | Autodesk

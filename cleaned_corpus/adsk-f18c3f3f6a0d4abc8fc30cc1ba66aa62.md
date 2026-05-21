@@ -4,8 +4,17 @@ relative_source_path: "adsk-f18c3f3f6a0d4abc8fc30cc1ba66aa62.html"
 title: "Point Layout Software | Get Prices & Buy Official Point Layout 2023 | Autodesk"
 cleaned_format: "markdown"
 extraction_method: "beautifulsoup_rich_fallback"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 7
+subheading_count: 6
+headings: "h1: Point Layout Software | Get Prices & Buy Official Point Layout 2023 | Autodesk | h2: What is Point Layout? | h2: What you can do with Point Layout | h3: Save time with automatic point creation | h3: Export, import, and compare model data | h3: Verify and validate layout with BIM | h2: Frequently asked questions (FAQs)"
+subheadings: "What is Point Layout? | What you can do with Point Layout | Save time with automatic point creation | Export, import, and compare model data | Verify and validate layout with BIM | Frequently asked questions (FAQs)"
 raw_char_count: 365100
 cleaned_char_count: 3123
+tfidf_keyword_count: 12
+tfidf_keywords: "layout | point layout | point | as-built | construction | bim | min | points | accuracy | video | trial | conditions"
 ---
 
 # Point Layout Software | Get Prices & Buy Official Point Layout 2023 | Autodesk

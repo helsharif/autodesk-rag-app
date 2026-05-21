@@ -4,8 +4,17 @@ relative_source_path: "adsk-1360d0aebebf4bbf9cc901dcb6c0493f.html"
 title: "InfraWorks Key Features 2024 | Autodesk"
 cleaned_format: "markdown"
 extraction_method: "trafilatura"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 1
+subheading_count: 0
+headings: "h1: InfraWorks Key Features 2024 | Autodesk"
+subheadings: ""
 raw_char_count: 144374
 cleaned_char_count: 3633
+tfidf_keyword_count: 12
+tfidf_keywords: "bridge | parametric | style | traffic | infraworks | girder | elevation | palette | components | roads | model | design"
 ---
 
 # InfraWorks Key Features 2024 | Autodesk

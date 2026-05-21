@@ -4,8 +4,17 @@ relative_source_path: "adsk-153244e3aef54acd9aa992b3598fdccf.html"
 title: "Download Design Review | DWF Viewer | Autodesk"
 cleaned_format: "markdown"
 extraction_method: "beautifulsoup_rich_fallback"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 6
+subheading_count: 4
+headings: "h1: Download Design Review | DWF Viewer | Autodesk | h2: Free download | h1: Download Autodesk Design Review | h2: Tips for a successful download | h2: Related information | h2: Mobile app"
+subheadings: "Free download | Tips for a successful download | Related information | Mobile app"
 raw_char_count: 693849
 cleaned_char_count: 1240
+tfidf_keyword_count: 12
+tfidf_keywords: "design review | download | dwf | viewer | review | temporarily | track changes | design | 3d files | turn active | active applications | including virus"
 ---
 
 # Download Design Review | DWF Viewer | Autodesk

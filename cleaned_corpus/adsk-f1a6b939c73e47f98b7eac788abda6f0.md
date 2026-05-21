@@ -4,8 +4,17 @@ relative_source_path: "adsk-f1a6b939c73e47f98b7eac788abda6f0.html"
 title: "Cookie Statement"
 cleaned_format: "markdown"
 extraction_method: "trafilatura"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 1
+subheading_count: 0
+headings: "h1: Cookie Statement"
+subheadings: ""
 raw_char_count: 113712
 cleaned_char_count: 2793
+tfidf_keyword_count: 12
+tfidf_keywords: "cookies | advertising | interests | cookie | relevant | websites | preferences | provide | targeted advertising | opt-out | targeted | functionality"
 ---
 
 # Cookie Statement

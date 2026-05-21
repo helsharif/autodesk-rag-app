@@ -4,8 +4,17 @@ relative_source_path: "adsk-7e57fef278ca4cceb190dc42cbdccfcf.html"
 title: "Frequently Asked Questions | Autodesk"
 cleaned_format: "markdown"
 extraction_method: "trafilatura"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 4
+subheading_count: 3
+headings: "h1: Frequently Asked Questions | Autodesk | h2: Applications and interviews | h2: Working at Autodesk | h2: Students and new grads"
+subheadings: "Applications and interviews | Working at Autodesk | Students and new grads"
 raw_char_count: 117360
 cleaned_char_count: 7216
+tfidf_keyword_count: 12
+tfidf_keywords: "internship | interview | employees | office | sure | hiring | role | suggest | skills | job | hybrid | in-person"
 ---
 
 # Frequently Asked Questions | Autodesk

@@ -786,9 +786,9 @@ def render_about() -> None:
     st.write("This portfolio app answers Autodesk-related questions with an agentic RAG workflow: local hybrid retrieval searches Chroma and BM25, deterministic neighbor expansion reduces chunk-boundary misses, and a strict adequacy gate refuses unsupported answers.")
     st.write("The Settings & Eval tab controls the web policy. Option 1 is local-only. Option 2 always adds autodesk.com web evidence. Option 3 always adds open web evidence. The final answer model receives only supplied excerpts, web snippets when enabled, and runtime date context.")
     st.table([
-        {"Layer": "Retrieval", "Implementation": "Chroma dense semantic search + BM25 keyword search + Reciprocal Rank Fusion"},
+        {"Layer": "Retrieval", "Implementation": f"Chroma dense semantic search + BM25 keyword search + weighted RRF ({settings.hybrid_vector_weight:.2f} vector / {settings.hybrid_bm25_weight:.2f} BM25) over {settings.hybrid_candidate_k} candidates each"},
         {"Layer": "Context", "Implementation": "Previous/current/next same-document chunk expansion with budget limits"},
-        {"Layer": "Reranking", "Implementation": "SentenceTransformers CrossEncoder `cross-encoder/ms-marco-MiniLM-L6-v2` after the local adequacy gate"},
+        {"Layer": "Reranking", "Implementation": "SentenceTransformers CrossEncoder `cross-encoder/ms-marco-MiniLM-L6-v2` before the adequacy gate"},
         {"Layer": "Generation", "Implementation": f"OpenAI `{settings.openai_model}` with strict source-grounded prompt"},
         {"Layer": "Evaluation", "Implementation": f"50-question golden dataset with five-point LLM judge scoring using `{settings.eval_judge_model}`"},
         {"Layer": "Web policy", "Implementation": "Autodesk.com mode uses up to 5 web results; open-web mode uses up to 3."},

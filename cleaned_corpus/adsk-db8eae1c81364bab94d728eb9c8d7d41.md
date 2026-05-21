@@ -4,8 +4,17 @@ relative_source_path: "adsk-db8eae1c81364bab94d728eb9c8d7d41.html"
 title: "Technology Centers | Autodesk"
 cleaned_format: "markdown"
 extraction_method: "beautifulsoup_rich_fallback"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 8
+subheading_count: 7
+headings: "h1: Technology Centers | Autodesk | h2: About the Technology Centers | h2: Building a shared vision of the future | h2: The Outsight Network | h2: State-of-the-art facilities | h2: News and updates | h2: A resident’s perspective | h2: Technology Center locations"
+subheadings: "About the Technology Centers | Building a shared vision of the future | The Outsight Network | State-of-the-art facilities | News and updates | A resident’s perspective | Technology Center locations"
 raw_char_count: 115499
 cleaned_char_count: 4236
+tfidf_keyword_count: 12
+tfidf_keywords: "technology centers | technology | centers | network | design | boston | equipment | design make | teams | generative design | generative | fabrication"
 ---
 
 # Technology Centers | Autodesk

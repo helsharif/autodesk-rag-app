@@ -4,8 +4,17 @@ relative_source_path: "adsk-9d1b19b2ec4c4fd0b4f11fdede4781a9.html"
 title: "Key Financial & Safety Metrics for Subcontractor Qualification"
 cleaned_format: "markdown"
 extraction_method: "trafilatura"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 1
+subheading_count: 0
+headings: "h1: Key Financial & Safety Metrics for Subcontractor Qualification"
+subheadings: ""
 raw_char_count: 159526
 cleaned_char_count: 5946
+tfidf_keyword_count: 12
+tfidf_keywords: "cash | ratio | formula | revenue | indicates | capital | total | assets | liabilities | company | working | profit"
 ---
 
 # Key Financial & Safety Metrics for Subcontractor Qualification

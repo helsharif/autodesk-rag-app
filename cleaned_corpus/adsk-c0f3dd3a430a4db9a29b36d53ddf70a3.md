@@ -4,8 +4,17 @@ relative_source_path: "adsk-c0f3dd3a430a4db9a29b36d53ddf70a3.html"
 title: "Autodesk Forma"
 cleaned_format: "markdown"
 extraction_method: "trafilatura"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 1
+subheading_count: 0
+headings: "h1: Autodesk Forma"
+subheadings: ""
 raw_char_count: 3156741
 cleaned_char_count: 4313
+tfidf_keyword_count: 10
+tfidf_keywords: "min read | read product | read | min | product | read industry | forma | insights | industry | team"
 ---
 
 # Autodesk Forma

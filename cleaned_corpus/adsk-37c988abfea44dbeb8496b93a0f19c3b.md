@@ -4,8 +4,17 @@ relative_source_path: "adsk-37c988abfea44dbeb8496b93a0f19c3b.html"
 title: "Miron Enhances Coordination by Modernizing Data Management"
 cleaned_format: "markdown"
 extraction_method: "trafilatura"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 1
+subheading_count: 0
+headings: "h1: Miron Enhances Coordination by Modernizing Data Management"
+subheadings: ""
 raw_char_count: 143079
 cleaned_char_count: 6582
+tfidf_keyword_count: 12
+tfidf_keywords: "miron | project | virtual construction | construction | schedule | coordination | virtual | time | coordinate | data | specialist | says"
 ---
 
 # Miron Enhances Coordination by Modernizing Data Management

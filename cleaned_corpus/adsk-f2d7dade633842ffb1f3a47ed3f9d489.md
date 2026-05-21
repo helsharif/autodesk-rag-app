@@ -4,8 +4,17 @@ relative_source_path: "adsk-f2d7dade633842ffb1f3a47ed3f9d489.html"
 title: "BIM Coordination & Collaboration | Autodesk BIM Collaborate"
 cleaned_format: "markdown"
 extraction_method: "trafilatura"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 1
+subheading_count: 0
+headings: "h1: BIM Coordination & Collaboration | Autodesk BIM Collaborate"
+subheadings: ""
 raw_char_count: 232539
 cleaned_char_count: 2623
+tfidf_keyword_count: 12
+tfidf_keywords: "issues | bim | clashes | bim collaborate | project | collaborate | coordination | clash | models | design | revit cloud | trades"
 ---
 
 # BIM Coordination & Collaboration | Autodesk BIM Collaborate

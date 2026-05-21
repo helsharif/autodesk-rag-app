@@ -4,8 +4,17 @@ relative_source_path: "adsk-5fa2e474e6c14f4bbc8b228c66ccee94.html"
 title: "Autodesk Inventor Tolerance Analysis Software 2024 | Get Prices & Buy"
 cleaned_format: "markdown"
 extraction_method: "trafilatura"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 1
+subheading_count: 0
+headings: "h1: Autodesk Inventor Tolerance Analysis Software 2024 | Get Prices & Buy"
+subheadings: ""
 raw_char_count: 376553
 cleaned_char_count: 3772
+tfidf_keyword_count: 12
+tfidf_keywords: "tolerance | inventor tolerance | tolerance analysis | inventor | analysis | tolerances | analysis software | manufacturing | fit | informed decisions | make informed | results"
 ---
 
 # Autodesk Inventor Tolerance Analysis Software 2024 | Get Prices & Buy

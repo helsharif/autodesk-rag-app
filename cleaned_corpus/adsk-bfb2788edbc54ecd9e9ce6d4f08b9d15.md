@@ -4,8 +4,17 @@ relative_source_path: "adsk-bfb2788edbc54ecd9e9ce6d4f08b9d15.html"
 title: "Johnson Controls | High-performance Building Design | Autodesk"
 cleaned_format: "markdown"
 extraction_method: "trafilatura"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 1
+subheading_count: 0
+headings: "h1: Johnson Controls | High-performance Building Design | Autodesk"
+subheadings: ""
 raw_char_count: 91083
 cleaned_char_count: 1230
+tfidf_keyword_count: 12
+tfidf_keywords: "johnson | johnson controls | controls | energy | energy analysis | smart | building | analysis | expert | insight | built | cloud-based"
 ---
 
 # Johnson Controls | High-performance Building Design | Autodesk

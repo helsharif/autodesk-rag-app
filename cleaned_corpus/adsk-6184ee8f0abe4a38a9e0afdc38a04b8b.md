@@ -4,8 +4,17 @@ relative_source_path: "adsk-6184ee8f0abe4a38a9e0afdc38a04b8b.html"
 title: "Customer Help | Buying, Shopping, Delivery, & Payment | Autodesk"
 cleaned_format: "markdown"
 extraction_method: "trafilatura"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 1
+subheading_count: 0
+headings: "h1: Customer Help | Buying, Shopping, Delivery, & Payment | Autodesk"
+subheadings: ""
 raw_char_count: 161639
 cleaned_char_count: 1959
+tfidf_keyword_count: 12
+tfidf_keywords: "account | password | account enter | email | enter | purchase | email address | accounts | administrator | use | address | administrator account"
 ---
 
 # Customer Help | Buying, Shopping, Delivery, & Payment | Autodesk

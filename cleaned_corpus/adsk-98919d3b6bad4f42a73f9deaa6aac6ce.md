@@ -4,8 +4,17 @@ relative_source_path: "adsk-98919d3b6bad4f42a73f9deaa6aac6ce.html"
 title: "Autodesk e-Learning Resources for Distance Learning | Autodesk"
 cleaned_format: "markdown"
 extraction_method: "trafilatura"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 7
+subheading_count: 6
+headings: "h1: Autodesk e-Learning Resources for Distance Learning | Autodesk | h2: Autodesk software options for remote learning | h3: Desktop | h3: Cloud-based | h3: Browser-based and Chromebooks | h3: Web apps | h3: Mobile apps"
+subheadings: "Autodesk software options for remote learning | Desktop | Cloud-based | Browser-based and Chromebooks | Web apps | Mobile apps"
 raw_char_count: 80084
 cleaned_char_count: 3461
+tfidf_keyword_count: 12
+tfidf_keywords: "app | mobile | web | apps | fusion | fusion team | students | desktop | easy-to-use | products | autocad | access"
 ---
 
 # Autodesk e-Learning Resources for Distance Learning | Autodesk

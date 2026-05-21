@@ -4,8 +4,17 @@ relative_source_path: "adsk-f4a5d48b78f74f6f8f921ec70da49eee.html"
 title: "Autodesk MotionBuilder Software | Get Prices & Buy Official MotionBuilder 2024"
 cleaned_format: "markdown"
 extraction_method: "trafilatura"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 1
+subheading_count: 0
+headings: "h1: Autodesk MotionBuilder Software | Get Prices & Buy Official MotionBuilder 2024"
+subheadings: ""
 raw_char_count: 376690
 cleaned_char_count: 3201
+tfidf_keyword_count: 12
+tfidf_keywords: "motionbuilder | motionbuilder subscription | character | 3d character | animation | animations | characters | capture edit | subscription | character animation | capture | linux details"
 ---
 
 # Autodesk MotionBuilder Software | Get Prices & Buy Official MotionBuilder 2024

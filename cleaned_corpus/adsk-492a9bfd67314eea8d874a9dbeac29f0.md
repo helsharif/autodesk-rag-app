@@ -4,8 +4,17 @@ relative_source_path: "adsk-492a9bfd67314eea8d874a9dbeac29f0.html"
 title: "Fusion 360 for Manufacturing Software | Get Prices & Buy Official Fusion 360 for Manufacturing | Autodesk"
 cleaned_format: "markdown"
 extraction_method: "beautifulsoup_fallback"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 13
+subheading_count: 12
+headings: "h1: Fusion 360 for Manufacturing Software | Get Prices & Buy Official Fusion 360 for Manufacturing | Autodesk | h2: What is Fusion 360 for Manufacturing? | h2: Manufacturing offering benefits | h3: Advanced CAM capabilities | h3: Built-in change management | h3: Enhanced tools and automation | h2: See what's included | h3: Manufacturing Extension | h3: Design Extension | h3: Manage Extension | h2: Frequently asked questions (FAQs) | h2: Fusion 360 for Manufacturing | h3: Fusion 360 for Manufacturing includes:"
+subheadings: "What is Fusion 360 for Manufacturing? | Manufacturing offering benefits | Advanced CAM capabilities | Built-in change management | Enhanced tools and automation | See what's included | Manufacturing Extension | Design Extension | Manage Extension | Frequently asked questions (FAQs) | Fusion 360 for Manufacturing | Fusion 360 for Manufacturing includes:"
 raw_char_count: 385126
 cleaned_char_count: 3602
+tfidf_keyword_count: 12
+tfidf_keywords: "manufacturing | 360 manufacturing | fusion 360 | fusion | extension | nesting | design | organizations | offering | machining | product | fabrication"
 ---
 
 # Fusion 360 for Manufacturing Software | Get Prices & Buy Official Fusion 360 for Manufacturing | Autodesk

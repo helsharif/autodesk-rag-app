@@ -4,8 +4,17 @@ relative_source_path: "adsk-f119af59a7cd4eaa99c8b1e911a69c0b.html"
 title: "Construction Quality Management Software | Autodesk Construction Cloud"
 cleaned_format: "markdown"
 extraction_method: "trafilatura"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 1
+subheading_count: 0
+headings: "h1: Construction Quality Management Software | Autodesk Construction Cloud"
+subheadings: ""
 raw_char_count: 234430
 cleaned_char_count: 2941
+tfidf_keyword_count: 12
+tfidf_keywords: "quality | issues | resolve | construction | quality management | checklists | quality control | proactive | rework | reduce | rfis | track"
 ---
 
 # Construction Quality Management Software | Autodesk Construction Cloud

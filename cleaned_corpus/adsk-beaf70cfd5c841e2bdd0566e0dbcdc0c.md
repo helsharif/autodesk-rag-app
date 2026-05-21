@@ -4,8 +4,17 @@ relative_source_path: "adsk-beaf70cfd5c841e2bdd0566e0dbcdc0c.html"
 title: "CUBE 3: a cloud-based way of working is the way of the future for its business - Autodesk Forma"
 cleaned_format: "markdown"
 extraction_method: "trafilatura"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 1
+subheading_count: 0
+headings: "h1: CUBE 3: a cloud-based way of working is the way of the future for its business - Autodesk Forma"
+subheadings: ""
 raw_char_count: 3115100
 cleaned_char_count: 9162
+tfidf_keyword_count: 12
+tfidf_keywords: "cube | forma | clients | client | team | conversations | work | architect | communication | design | able | sun"
 ---
 
 # CUBE 3: a cloud-based way of working is the way of the future for its business - Autodesk Forma

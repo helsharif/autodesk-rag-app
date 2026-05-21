@@ -4,8 +4,17 @@ relative_source_path: "adsk-9ea6fb74cd8a4aca8668c9d976c93d9b.html"
 title: "The Future of Connected Bridge Design Starts Now"
 cleaned_format: "markdown"
 extraction_method: "trafilatura"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 4
+subheading_count: 3
+headings: "h1: The Future of Connected Bridge Design Starts Now | h3: Bridging the collaboration gap | h3: The bridge design workflow | h3: Efficient and collaborative workflow"
+subheadings: "Bridging the collaboration gap | The bridge design workflow | Efficient and collaborative workflow"
 raw_char_count: 170770
 cleaned_char_count: 5797
+tfidf_keyword_count: 12
+tfidf_keywords: "bridge | bridge design | design | workflow | civil | bridges | road | design projects | project | team | design workflow | teams"
 ---
 
 # The Future of Connected Bridge Design Starts Now

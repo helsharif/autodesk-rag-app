@@ -4,8 +4,17 @@ relative_source_path: "adsk-891da5efa3c14ace87adf61e4987d7f9.html"
 title: "Spreadsheet to PLC I/O Utility Dialog Box"
 cleaned_format: "markdown"
 extraction_method: "trafilatura"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 5
+subheading_count: 4
+headings: "h1: Spreadsheet to PLC I/O Utility Dialog Box | h2: List of Options | h4: Settings | h4: Ladder Reference Numbering | h4: Module Placement"
+subheadings: "List of Options | Settings | Ladder Reference Numbering | Module Placement"
 raw_char_count: 18268
 cleaned_char_count: 4800
+tfidf_keyword_count: 12
+tfidf_keywords: "plc | drawing | module | line reference | file | column | number | reference | wdi | increment | dialog box | dialog"
 ---
 
 # Spreadsheet to PLC I/O Utility Dialog Box

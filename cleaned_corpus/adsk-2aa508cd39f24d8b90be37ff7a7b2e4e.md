@@ -4,8 +4,17 @@ relative_source_path: "adsk-2aa508cd39f24d8b90be37ff7a7b2e4e.html"
 title: "Technology And Developer Partners | Autodesk"
 cleaned_format: "markdown"
 extraction_method: "beautifulsoup_rich_fallback"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 6
+subheading_count: 5
+headings: "h1: Technology And Developer Partners | Autodesk | h2: Autodesk Platform Services (formerly Forge) | h2: Autodesk Developer Network (ADN) | h2: Design and Manufacturing Partnerships | h2: Autodesk App Store | h2: Independent Software Vendors (ISVs)"
+subheadings: "Autodesk Platform Services (formerly Forge) | Autodesk Developer Network (ADN) | Design and Manufacturing Partnerships | Autodesk App Store | Independent Software Vendors (ISVs)"
 raw_char_count: 109778
 cleaned_char_count: 1461
+tfidf_keyword_count: 12
+tfidf_keywords: "solutions | developer | forge | platform services | services | app store | millions | software | apps | platform | manufacturing | hardware"
 ---
 
 # Technology And Developer Partners | Autodesk

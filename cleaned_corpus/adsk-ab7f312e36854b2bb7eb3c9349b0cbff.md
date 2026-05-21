@@ -4,8 +4,17 @@ relative_source_path: "adsk-ab7f312e36854b2bb7eb3c9349b0cbff.html"
 title: "Page | Building Performance Analysis and Energy Modeling | Autodesk"
 cleaned_format: "markdown"
 extraction_method: "trafilatura"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 1
+subheading_count: 0
+headings: "h1: Page | Building Performance Analysis and Energy Modeling | Autodesk"
+subheadings: ""
 raw_char_count: 734710
 cleaned_char_count: 1410
+tfidf_keyword_count: 12
+tfidf_keywords: "aia | firm | page | building performance | projects | design | commitment | performance | building | clients | architects engineers | energy"
 ---
 
 # Page | Building Performance Analysis and Energy Modeling | Autodesk

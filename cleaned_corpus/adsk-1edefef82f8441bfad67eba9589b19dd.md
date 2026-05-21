@@ -4,8 +4,17 @@ relative_source_path: "adsk-1edefef82f8441bfad67eba9589b19dd.html"
 title: "Autodesk Account Basics | Billing and Orders | Cancel Subscription"
 cleaned_format: "markdown"
 extraction_method: "trafilatura"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 4
+subheading_count: 3
+headings: "h1: Autodesk Account Basics | Billing and Orders | Cancel Subscription | h2: Turn off automatic renewal | h2: Restart a subscription | h2: Cancel a free trial"
+subheadings: "Turn off automatic renewal | Restart a subscription | Cancel a free trial"
 raw_char_count: 120796
 cleaned_char_count: 1956
+tfidf_keyword_count: 12
+tfidf_keywords: "subscription | turn | billing orders | 30 days | cancel | expired | expiration date | follow | follow instructions | date | billing | expiration"
 ---
 
 # Autodesk Account Basics | Billing and Orders | Cancel Subscription

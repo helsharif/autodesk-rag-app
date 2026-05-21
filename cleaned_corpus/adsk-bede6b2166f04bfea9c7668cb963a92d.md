@@ -4,8 +4,17 @@ relative_source_path: "adsk-bede6b2166f04bfea9c7668cb963a92d.html"
 title: "3D Animation Software | What is 3D Animation? | Autodesk"
 cleaned_format: "markdown"
 extraction_method: "beautifulsoup_rich_fallback"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 30
+subheading_count: 29
+headings: "h1: 3D Animation Software | What is 3D Animation? | Autodesk | h3: What is 3D animation? | h3: 3D animation pipeline | h3: Principles of animation | h2: Benefits of 3D animation software | h3: Beautiful results | h3: Artist-friendly workflows | h3: Powerful toolsets | h2: 3D animation software features | h3: Asset modeling | h3: Character animation | h3: Dynamics and effects | h2: Autodesk solutions for 3D animation | h2: Examples of 3D animation software in use | h3: 3D animation short | h3: 3D animation simulations | h3: 3D animation rigging | h3: 3D-animated film | h2: Solutions for creating quality 3D animation | h3: 3D modeling | h3: Motion capture | h3: 3D rendering | h3: Project management | h2: Free 3D animation software resources | h3: [Autodesk Media & Entertainment YouTube channel](https://www.youtube.com/@AutodeskME) | h3: [Animation resource guide](https://area.autodesk.com/inspire/articles/xNVK8JZUB) | h3: [AREA 3D animation resources](https://area.autodesk.com/) | h3: [Intro to Maya](https://area.autodesk.com/learn/courses/maya-intro/) | h3: [3D animation remote workflows](https://area.autodesk.com/inspire/articles/remote-workflows-before-remote-workflows-t... | h2: Frequently asked questions (FAQ) on 3D animation software"
+subheadings: "What is 3D animation? | 3D animation pipeline | Principles of animation | Benefits of 3D animation software | Beautiful results | Artist-friendly workflows | Powerful toolsets | 3D animation software features | Asset modeling | Character animation | Dynamics and effects | Autodesk solutions for 3D animation | Examples of 3D animation software in use | 3D animation short | 3D animation simulations | 3D animation rigging | 3D-animated film | Solutions for creating quality 3D animation | 3D modeling | Motion capture | 3D rendering | Project management | Free 3D animation software resources | [Autodesk Media & Entertainment YouTube channel](https://www.youtube.com/@AutodeskME) | [Animation resource guide](https://area.autodesk.com/inspire/articles/xNVK8JZUB) | [AREA 3D animation resources](https://area.autodesk.com/) | [Intro to Maya](https://area.autodesk.com/learn/courses/maya-intro/) | [3D animation remote workflows](https://area.autodesk.com/inspire/articles/remote-workflows-before-remote-workflows-t... | Frequently asked questions (FAQ) on 3D animation software"
 raw_char_count: 182604
 cleaned_char_count: 14168
+tfidf_keyword_count: 12
+tfidf_keywords: "animation | 3d animation | animation software | character | software | characters | modeling | rendering | image courtesy | pipeline | courtesy | artists"
 ---
 
 # 3D Animation Software | What is 3D Animation? | Autodesk

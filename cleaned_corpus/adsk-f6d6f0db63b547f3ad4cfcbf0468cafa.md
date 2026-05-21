@@ -4,8 +4,17 @@ relative_source_path: "adsk-f6d6f0db63b547f3ad4cfcbf0468cafa.html"
 title: "Silver Oak Cellars | Building a sustainable winery | Autodesk"
 cleaned_format: "markdown"
 extraction_method: "beautifulsoup_rich_fallback"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 6
+subheading_count: 5
+headings: "h1: Silver Oak Cellars | Building a sustainable winery | Autodesk | h2: A devastating fire creates a new opportunity for a California winery | h2: “Stewards of the land” benefit from advances in sustainable technologies | h2: Meeting the challenges of sustainable building with BIM | h2: Are you ready to build more sustainably? | h2: Share this story"
+subheadings: "A devastating fire creates a new opportunity for a California winery | “Stewards of the land” benefit from advances in sustainable technologies | Meeting the challenges of sustainable building with BIM | Are you ready to build more sustainably? | Share this story"
 raw_char_count: 89332
 cleaned_char_count: 8002
+tfidf_keyword_count: 12
+tfidf_keywords: "winery | oak | silver oak | silver | water | facility | says | building | solar | green | sustainability | sustainable"
 ---
 
 # Silver Oak Cellars | Building a sustainable winery | Autodesk

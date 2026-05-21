@@ -4,8 +4,17 @@ relative_source_path: "adsk-6b691ceb0f8e457b95b67d355fbde6dd.html"
 title: "Fusion 360 with PowerShape | 2024 New Features | Autodesk"
 cleaned_format: "markdown"
 extraction_method: "trafilatura"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 1
+subheading_count: 0
+headings: "h1: Fusion 360 with PowerShape | 2024 New Features | Autodesk"
+subheadings: ""
 raw_char_count: 211014
 cleaned_char_count: 6271
+tfidf_keyword_count: 12
+tfidf_keywords: "solid | electrode | edm | models | meshes | stl | surfaces | imported | video | min | modeling | complex"
 ---
 
 # Fusion 360 with PowerShape | 2024 New Features | Autodesk

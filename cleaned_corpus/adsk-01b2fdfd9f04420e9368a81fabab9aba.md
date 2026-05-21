@@ -4,8 +4,17 @@ relative_source_path: "adsk-01b2fdfd9f04420e9368a81fabab9aba.html"
 title: "Autodesk Fusion 360 with PowerShape | Get Prices and Buy PowerShape 2024"
 cleaned_format: "markdown"
 extraction_method: "trafilatura"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 1
+subheading_count: 0
+headings: "h1: Autodesk Fusion 360 with PowerShape | Get Prices and Buy PowerShape 2024"
+subheadings: ""
 raw_char_count: 182796
 cleaned_char_count: 3507
+tfidf_keyword_count: 12
+tfidf_keywords: "powershape | 360 powershape | fusion 360 | fusion | molds | molds tools | dies | tools dies | cnc | modeling | cam | tools"
 ---
 
 # Autodesk Fusion 360 with PowerShape | Get Prices and Buy PowerShape 2024

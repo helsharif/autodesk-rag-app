@@ -4,8 +4,17 @@ relative_source_path: "adsk-2ba670dca2244da7a94f9eb6ed5f9f75.html"
 title: "Autodesk Customer Success Hub"
 cleaned_format: "markdown"
 extraction_method: "trafilatura"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 8
+subheading_count: 6
+headings: "h1: Autodesk Customer Success Hub | h1: Revit Quick Start Guide | h2: Next steps | h3: Account Administrators | h3: Pre-recorded coaching | h3: Autodesk Solution Adoption Advisor | h3: Autodesk University Online | h2: Course modules"
+subheadings: "Next steps | Account Administrators | Pre-recorded coaching | Autodesk Solution Adoption Advisor | Autodesk University Online | Course modules"
 raw_char_count: 556511
 cleaned_char_count: 3969
+tfidf_keyword_count: 12
+tfidf_keywords: "elements | revit | learn | model | place | success | views | element | project | customer success | view | sketch"
 ---
 
 # Autodesk Customer Success Hub

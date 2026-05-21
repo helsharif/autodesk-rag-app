@@ -1,17 +1,20 @@
 # Before / After Corpus Processing Stats
 
-Generated: 2026-05-20T18:27:04
+Generated: 2026-05-21T10:45:04
 
 ## Size Overview
 
 - Raw HTML file count: 1,218
-- Cleaned Markdown file count: 1,218
+- Initially cleaned Markdown file count before purge: 1,218
+- Retained cleaned Markdown file count after purge: 974
+- Purged cleaned Markdown file count: 244
+- Cleaned file count reduction from purge: 20.03%
 - Raw corpus file size: 317,998,415 bytes (303.27 MB)
-- Cleaned corpus Markdown size: 5,131,997 bytes (4.89 MB)
-- Approximate file size reduction: 98.39%
+- Cleaned corpus Markdown size: 4,579,926 bytes (4.37 MB)
+- Approximate file size reduction: 98.56%
 - Raw character count: 317,446,072
-- Cleaned character count: 4,417,311
-- Approximate character reduction: 98.61%
+- Cleaned character count: 3,574,578
+- Approximate character reduction: 98.87%
 
 ## Interpretation For RAG
 
@@ -19,7 +22,7 @@ The cleaned corpus should be much smaller than the raw HTML corpus because scrip
 
 The cleaning process preserves headings, lists, links, tables, and code-like blocks where possible. These structures are useful for heading-aware chunking, source citation, and technical answer grounding.
 
-Very short cleaned files should be inspected manually. Some may be legitimate short reference pages, while others may indicate over-aggressive extraction or raw pages with little useful content.
+After enrichment, the pipeline purges very small cleaned Markdown files and known non-English documents so downstream retrieval indexes focus on substantive English Autodesk content. Deleted files are listed in `purged_cleaned_documents.csv`.
 
 ## Extraction Method Counts
 
@@ -52,31 +55,31 @@ Very short cleaned files should be inspected manually. Some may be legitimate sh
 | adsk-a6a5e4cfc66f4370baf1e2348a0981de.html |                      1925976 |                        1949 |          1924027 |           99.9  | trafilatura              |
 | adsk-60b5544cccf24560a73a87902cc564d2.html |                      1908162 |                        1835 |          1906327 |           99.9  | trafilatura              |
 | adsk-78c3e69579864d99b2d41bfc7043eed7.html |                      1834361 |                        1817 |          1832544 |           99.9  | trafilatura              |
-| adsk-45dc94ca846d4577be9e5d0886420172.html |                      1828717 |                         101 |          1828616 |           99.99 | trafilatura_short        |
-| adsk-a0e50a4d29b94fef8dd716eee7abc9c1.html |                      1828717 |                         101 |          1828616 |           99.99 | trafilatura_short        |
 | adsk-0ed32d8dbdfc4a17b269cf489b007f30.html |                      1828717 |                         101 |          1828616 |           99.99 | trafilatura_short        |
+| adsk-a0e50a4d29b94fef8dd716eee7abc9c1.html |                      1828717 |                         101 |          1828616 |           99.99 | trafilatura_short        |
+| adsk-45dc94ca846d4577be9e5d0886420172.html |                      1828717 |                         101 |          1828616 |           99.99 | trafilatura_short        |
 
 ## Shortest Cleaned Documents
 
-| relative_path                              | title   |   char_count_after_cleaning | extraction_method_used   | warnings                                                  |
-|:-------------------------------------------|:--------|----------------------------:|:-------------------------|:----------------------------------------------------------|
-| adsk-e08af7ff3aea46cea0af46e855ec2897.html | Help    |                           6 | trafilatura_short        | very_short_trafilatura_output; very_short_cleaned_content |
-| adsk-e0e436ff1fe44aa0b80db3f62de7f40e.html | Help    |                           6 | trafilatura_short        | very_short_trafilatura_output; very_short_cleaned_content |
-| adsk-daa0751387554d45b90d69a413e3e2b6.html | Help    |                           6 | trafilatura_short        | very_short_trafilatura_output; very_short_cleaned_content |
-| adsk-e4c92773fe2c40fc83e28ad83b1ee753.html | Help    |                           6 | trafilatura_short        | very_short_trafilatura_output; very_short_cleaned_content |
-| adsk-7a400be914304e0f9d9fbdd0a3b65787.html | Help    |                           6 | trafilatura_short        | very_short_trafilatura_output; very_short_cleaned_content |
-| adsk-80784b97fcac4b4bbf4a457268b60f3d.html | Help    |                           6 | trafilatura_short        | very_short_trafilatura_output; very_short_cleaned_content |
-| adsk-696fe1d2f60042409d71cb93527af37b.html | Help    |                           6 | trafilatura_short        | very_short_trafilatura_output; very_short_cleaned_content |
-| adsk-164ee172c97b4c2ea4e601225f923cc8.html | Help    |                           6 | trafilatura_short        | very_short_trafilatura_output; very_short_cleaned_content |
-| adsk-8f1d6760a8434698b7d0757c003695d3.html | Help    |                           6 | trafilatura_short        | very_short_trafilatura_output; very_short_cleaned_content |
-| adsk-cede02128f824713851aa1141f146165.html | Help    |                           6 | trafilatura_short        | very_short_trafilatura_output; very_short_cleaned_content |
-| adsk-1d06a6f6e80148a4988ac94d82026003.html | Help    |                           6 | trafilatura_short        | very_short_trafilatura_output; very_short_cleaned_content |
-| adsk-916466d8179c4f9a80f9119fbc82caac.html | Help    |                           6 | trafilatura_short        | very_short_trafilatura_output; very_short_cleaned_content |
-| adsk-3ec5a8c1aa904e1591c46b0baa7626a6.html | News    |                           6 | trafilatura_short        | very_short_trafilatura_output; very_short_cleaned_content |
-| adsk-c0b469fc51f14089bc7131e1801f29d0.html | Help    |                           6 | trafilatura_short        | very_short_trafilatura_output; very_short_cleaned_content |
-| adsk-bfdbeba8da8c4c898230b907f77f9b8d.html | Help    |                           6 | trafilatura_short        | very_short_trafilatura_output; very_short_cleaned_content |
-| adsk-20e1da1a402248e0ab3f987e6d1591c6.html | Help    |                           6 | trafilatura_short        | very_short_trafilatura_output; very_short_cleaned_content |
-| adsk-2de5c0bb931e41f4bf8bbd0ec5922534.html | Help    |                           6 | trafilatura_short        | very_short_trafilatura_output; very_short_cleaned_content |
-| adsk-2e06fd9df8af4b9ea3ca4fc2606fdc0a.html | Help    |                           6 | trafilatura_short        | very_short_trafilatura_output; very_short_cleaned_content |
-| adsk-2fe0150c5d424a5093286729d8944e67.html | Help    |                           6 | trafilatura_short        | very_short_trafilatura_output; very_short_cleaned_content |
-| adsk-98e95bb2be6a4fb29a9e5bc2f319dbc0.html | Help    |                           6 | trafilatura_short        | very_short_trafilatura_output; very_short_cleaned_content |
+| relative_path                              | title                                   |   char_count_after_cleaning | extraction_method_used   | warnings                                                  |
+|:-------------------------------------------|:----------------------------------------|----------------------------:|:-------------------------|:----------------------------------------------------------|
+| adsk-19696090678a46c4aeee13c626b78358.html | Generative design Archives              |                          28 | trafilatura_short        | very_short_trafilatura_output; very_short_cleaned_content |
+| adsk-bde74d738109446ab3420848b73cebf3.html | Smart manufacturing Archives            |                          30 | trafilatura_short        | very_short_trafilatura_output; very_short_cleaned_content |
+| adsk-9d62b8985ddf44baa34e03495eea8e46.html | Design Visualization Archives           |                          31 | trafilatura_short        | very_short_trafilatura_output; very_short_cleaned_content |
+| adsk-d166a5a1ed7d4b3b833d5264f5e1eaa5.html | Custom Manufacturing Archives           |                          31 | trafilatura_short        | very_short_trafilatura_output; very_short_cleaned_content |
+| adsk-306d35ca49a0472e9300cf72c6f88bda.html | How to Renew your Premium plan          |                          32 | trafilatura_short        | very_short_trafilatura_output; very_short_cleaned_content |
+| adsk-0966028aeb674e83add24a3ba3a4361d.html | Sustainability in AEC Archives          |                          32 | trafilatura_short        | very_short_trafilatura_output; very_short_cleaned_content |
+| adsk-606ecba32b9b46c090392148a6d9784b.html | Media & Entertainment Archives          |                          32 | trafilatura_short        | very_short_trafilatura_output; very_short_cleaned_content |
+| adsk-5457db7805d84d72a953364fca41f9c0.html | Autodesk Moldflow Certification         |                          33 | trafilatura_short        | very_short_trafilatura_output; very_short_cleaned_content |
+| adsk-fb3a6e96a9ab4644a149a5a3712374b0.html | Sustainability in PD&M Archives         |                          33 | trafilatura_short        | very_short_trafilatura_output; very_short_cleaned_content |
+| adsk-ca523875e52b48529046a4c7089b28ec.html | Flame Family system requirements        |                          34 | trafilatura_short        | very_short_trafilatura_output; very_short_cleaned_content |
+| adsk-21c6e6cea84a4b7c8a3d103e4ee58703.html | What is the future of SketchBook?       |                          35 | trafilatura_short        | very_short_trafilatura_output; very_short_cleaned_content |
+| adsk-098e9a351e524634b450862861140de3.html | System requirements for Autodesk Maya   |                          39 | trafilatura_short        | very_short_trafilatura_output; very_short_cleaned_content |
+| adsk-f0702460015846dda0f1065e8e2be249.html | Inventor Engineer-to-Order | Autodesk   |                          39 | trafilatura_short        | very_short_trafilatura_output; very_short_cleaned_content |
+| adsk-61b6c979d84c496ab0ff25deac4be1a4.html | Autodesk Forma Learning Hub & Support   |                          39 | trafilatura_short        | very_short_trafilatura_output; very_short_cleaned_content |
+| adsk-ea2ae6835a9c4dfc8e19cf41f1b06ce5.html | System Requirements for Autodesk Forma  |                          40 | trafilatura_short        | very_short_trafilatura_output; very_short_cleaned_content |
+| adsk-7e02ac69f1d54ed4ab14f95a359fed52.html | Genuine Autodesk | Report nonvalid use  |                          40 | trafilatura_short        | very_short_trafilatura_output; very_short_cleaned_content |
+| adsk-2fcb34e959814b48b2fbf7c85029b872.html | ReCap Photo Frequently Asked Questions  |                          40 | trafilatura_short        | very_short_trafilatura_output; very_short_cleaned_content |
+| adsk-3f7e75aa6ef747bab1339841016864e1.html | System requirements for Autodesk EAGLE  |                          40 | trafilatura_short        | very_short_trafilatura_output; very_short_cleaned_content |
+| adsk-d0fe77933b1249d5a6f4bf34983fa77f.html | System requirements for AutoCAD LT 2024 |                          41 | trafilatura_short        | very_short_trafilatura_output; very_short_cleaned_content |
+| adsk-8bb54c2d03ff4c3b9798655b090742ea.html | Product Design & Manufacturing Archives |                          41 | trafilatura_short        | very_short_trafilatura_output; very_short_cleaned_content |

@@ -4,8 +4,17 @@ relative_source_path: "adsk-fe0fa921f78e48289cfbde5fe9d65a00.html"
 title: "Construction Technology Data Analytics | Autodesk Construction Cloud"
 cleaned_format: "markdown"
 extraction_method: "trafilatura"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 1
+subheading_count: 0
+headings: "h1: Construction Technology Data Analytics | Autodesk Construction Cloud"
+subheadings: ""
 raw_char_count: 195888
-cleaned_char_count: 1251
+cleaned_char_count: 1373
+tfidf_keyword_count: 12
+tfidf_keywords: "risk | factors | quality | rfis | project | leaders | construction | safety | prioritize | resolve | risks | action"
 ---
 
 # Construction Technology Data Analytics | Autodesk Construction Cloud
@@ -19,5 +28,7 @@ RFI Risk Factors helps teams identify RFIs that pose the greatest risk to projec
 Quality Risk Factors enables project leaders to understand high risk quality problems and actions to mitigate risk to maintain quality control, while monitoring issue status, activity, and quality checklist conformance.
 
 Safety Risk Factors enable project leaders to get instant visibility into high risk areas of their project and take immediate action to resolve problematic safety behaviors and hazards before serious incidents happen.
+
+Comprehensive field and project management software that delivers a broad, deep and connected set of tools for builders.
 
 Connect decision-makers and construction teams to improve design quality and constructibility from the office to the field.

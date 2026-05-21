@@ -4,8 +4,17 @@ relative_source_path: "adsk-d22aadf2523d4dd8bc21a49fc7b56c37.html"
 title: "Autodesk Educator Resources"
 cleaned_format: "markdown"
 extraction_method: "beautifulsoup_rich_fallback"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 14
+subheading_count: 13
+headings: "h1: Autodesk Educator Resources | h3: Access the Autodesk Education plan | h2: Educator learning content | h3: Explore teaching and learning resources for educators | h2: Professional development | h3: Industry-validated certifications | h3: Free instructor-led workshops | h3: Transforming manufacturing e-book | h2: Unlock your free product access | h2: Connect with us | h4: [YouTube](https://www.youtube.com/@AutodeskEd) | h4: [X (Twitter)](https://twitter.com/AutodeskEDU) | h4: [Facebook](https://www.facebook.com/AutodeskEducation) | h4: [Instagram](https://www.instagram.com/autodeskedu/)"
+subheadings: "Access the Autodesk Education plan | Educator learning content | Explore teaching and learning resources for educators | Professional development | Industry-validated certifications | Free instructor-led workshops | Transforming manufacturing e-book | Unlock your free product access | Connect with us | [YouTube](https://www.youtube.com/@AutodeskEd) | [X (Twitter)](https://twitter.com/AutodeskEDU) | [Facebook](https://www.facebook.com/AutodeskEducation) | [Instagram](https://www.instagram.com/autodeskedu/)"
 raw_char_count: 87747
 cleaned_char_count: 2542
+tfidf_keyword_count: 12
+tfidf_keywords: "software cloud-based | cloud-based services | educators | services subject | services | free | certifications | professional | learning | cloud-based | educator | resources"
 ---
 
 # Autodesk Educator Resources

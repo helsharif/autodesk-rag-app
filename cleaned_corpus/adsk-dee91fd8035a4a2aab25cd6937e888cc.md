@@ -4,8 +4,17 @@ relative_source_path: "adsk-dee91fd8035a4a2aab25cd6937e888cc.html"
 title: "Compare PowerMill Standard vs Ultimate | Autodesk"
 cleaned_format: "markdown"
 extraction_method: "beautifulsoup_table_fallback"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 3
+subheading_count: 1
+headings: "h1: Compare PowerMill Standard vs Ultimate | Autodesk | h2: Compare products | h1: Compare the features in Fusion 360 with PowerMill"
+subheadings: "Compare products"
 raw_char_count: 369245
 cleaned_char_count: 2695
+tfidf_keyword_count: 12
+tfidf_keywords: "machining | powermill | 5-axis | compare | fusion 360 | fusion | 3-axis | programming | 360 powermill | simulation | collision | milling"
 ---
 
 # Compare PowerMill Standard vs Ultimate | Autodesk

@@ -4,8 +4,17 @@ relative_source_path: "adsk-f0ef4d59f8b047dc89a88db1feb9e8cb.html"
 title: "Deploy content to collections | Autodesk"
 cleaned_format: "markdown"
 extraction_method: "trafilatura"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 3
+subheading_count: 2
+headings: "h1: Deploy content to collections | Autodesk | h2: Distribute a deployment based on the application model | h2: Distribute a deployment based on the package model"
+subheadings: "Distribute a deployment based on the application model | Distribute a deployment based on the package model"
 raw_char_count: 134817
 cleaned_char_count: 5452
+tfidf_keyword_count: 12
+tfidf_keywords: "device collection | select | client | deployment | device | package | option | cache | deploy | application | collection | clients"
 ---
 
 # Deploy content to collections | Autodesk

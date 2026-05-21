@@ -4,8 +4,17 @@ relative_source_path: "adsk-0d4d477ce8a64c2ba4fbcf883e62e94e.html"
 title: "Autodesk Fusion 360 With PowerInspect 2024 | Get Prices & Buy"
 cleaned_format: "markdown"
 extraction_method: "trafilatura"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 1
+subheading_count: 0
+headings: "h1: Autodesk Fusion 360 With PowerInspect 2024 | Get Prices & Buy"
+subheadings: ""
 raw_char_count: 158904
 cleaned_char_count: 3450
+tfidf_keyword_count: 12
+tfidf_keywords: "powerinspect | 360 powerinspect | fusion 360 | fusion | inspection | parts | measurement | control | use | machine | measure | verification"
 ---
 
 # Autodesk Fusion 360 With PowerInspect 2024 | Get Prices & Buy

@@ -4,8 +4,17 @@ relative_source_path: "adsk-8e75caadaf5043cab3512ea6e45dbe7a.html"
 title: "Official CAD Training and Certification | Autodesk"
 cleaned_format: "markdown"
 extraction_method: "trafilatura"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 1
+subheading_count: 0
+headings: "h1: Official CAD Training and Certification | Autodesk"
+subheadings: ""
 raw_char_count: 94715
 cleaned_char_count: 2110
+tfidf_keyword_count: 12
+tfidf_keywords: "training | authorized | authorized training | instructors | partners | academic | approved | help locate | learning partner | training centers | partner | regional"
 ---
 
 # Official CAD Training and Certification | Autodesk

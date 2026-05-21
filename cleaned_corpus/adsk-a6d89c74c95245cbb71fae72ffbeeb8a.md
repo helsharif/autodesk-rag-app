@@ -4,8 +4,17 @@ relative_source_path: "adsk-a6d89c74c95245cbb71fae72ffbeeb8a.html"
 title: "Student and Education Software | 1-Year License | Autodesk Education Community"
 cleaned_format: "markdown"
 extraction_method: "trafilatura"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 2
+subheading_count: 1
+headings: "h1: Student and Education Software | 1-Year License | Autodesk Education Community | h2: Active products"
+subheadings: "Active products"
 raw_char_count: 771574
 cleaned_char_count: 1038
+tfidf_keyword_count: 12
+tfidf_keywords: "subscriptions | available subscriptions | software cloud-based | cloud-based services | remaining | title | assigned | education | subscription | terms | accurate | license"
 ---
 
 # Student and Education Software | 1-Year License | Autodesk Education Community

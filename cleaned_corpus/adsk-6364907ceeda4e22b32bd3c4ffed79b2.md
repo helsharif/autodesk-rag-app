@@ -4,8 +4,17 @@ relative_source_path: "adsk-6364907ceeda4e22b32bd3c4ffed79b2.html"
 title: "Trial Intake"
 cleaned_format: "markdown"
 extraction_method: "trafilatura"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 2
+subheading_count: 0
+headings: "h1: Trial Intake | h1: Free Trial"
+subheadings: ""
 raw_char_count: 1599617
 cleaned_char_count: 1725
+tfidf_keyword_count: 12
+tfidf_keywords: "date download | days date | 30 days | date | days | tifscreencountlabel | download | code | download tifscreencountlabel | download 30 | try | tifscreencountlabel 30"
 ---
 
 # Trial Intake

@@ -4,8 +4,17 @@ relative_source_path: "adsk-3cdf294ee7fc4fd393fce3f8ea23ce6c.html"
 title: "Map 3D Toolset In Autodesk AutoCAD | Features"
 cleaned_format: "markdown"
 extraction_method: "trafilatura"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 1
+subheading_count: 0
+headings: "h1: Map 3D Toolset In Autodesk AutoCAD | Features"
+subheadings: ""
 raw_char_count: 159130
 cleaned_char_count: 1972
+tfidf_keyword_count: 12
+tfidf_keywords: "data | gis | gis data | map 3d | map | spatial | 3d toolset | mapping | intelligent | use | cleanup | coordinate"
 ---
 
 # Map 3D Toolset In Autodesk AutoCAD | Features

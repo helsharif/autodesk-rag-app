@@ -4,8 +4,17 @@ relative_source_path: "adsk-6ecfd19f71e74ccbbe38271b92cb2eae.html"
 title: "Events | Autodesk, Inc."
 cleaned_format: "markdown"
 extraction_method: "trafilatura"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 2
+subheading_count: 0
+headings: "h1: Events | Autodesk, Inc. | h1: Events"
+subheadings: ""
 raw_char_count: 196932
 cleaned_char_count: 768
+tfidf_keyword_count: 12
+tfidf_keywords: "pdt | events | edt | presentations | jun | forward-looking | nov | date | mar | forward-looking statements | aug | est"
 ---
 
 # Events | Autodesk, Inc.

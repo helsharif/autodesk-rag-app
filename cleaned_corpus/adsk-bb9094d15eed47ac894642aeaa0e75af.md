@@ -4,8 +4,17 @@ relative_source_path: "adsk-bb9094d15eed47ac894642aeaa0e75af.html"
 title: "Our Company Culture & Values | Autodesk Culture"
 cleaned_format: "markdown"
 extraction_method: "trafilatura"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 1
+subheading_count: 0
+headings: "h1: Our Company Culture & Values | Autodesk Culture"
+subheadings: ""
 raw_char_count: 111700
 cleaned_char_count: 1112
+tfidf_keyword_count: 12
+tfidf_keywords: "culture | company | belonging | contribute | employees | passion | new possible | actively | unlocking | environment | customers | succeed"
 ---
 
 # Our Company Culture & Values | Autodesk Culture

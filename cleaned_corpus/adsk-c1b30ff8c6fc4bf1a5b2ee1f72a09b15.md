@@ -4,8 +4,17 @@ relative_source_path: "adsk-c1b30ff8c6fc4bf1a5b2ee1f72a09b15.html"
 title: "How 3 Global Architecture and Engineering Firms Are Revitalizing Work in 2020"
 cleaned_format: "markdown"
 extraction_method: "trafilatura"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 1
+subheading_count: 0
+headings: "h1: How 3 Global Architecture and Engineering Firms Are Revitalizing Work in 2020"
+subheadings: ""
 raw_char_count: 118738
 cleaned_char_count: 9831
+tfidf_keyword_count: 12
+tfidf_keywords: "says | offices | staff | firm | firms | cloud | bim 360 | covid-19 | migration | bim | projects | europe"
 ---
 
 # How 3 Global Architecture and Engineering Firms Are Revitalizing Work in 2020

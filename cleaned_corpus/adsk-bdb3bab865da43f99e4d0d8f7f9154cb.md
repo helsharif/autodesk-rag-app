@@ -4,8 +4,17 @@ relative_source_path: "adsk-bdb3bab865da43f99e4d0d8f7f9154cb.html"
 title: "Return-to-the-workplace | Autodesk technology helping AEC address COVID-19"
 cleaned_format: "markdown"
 extraction_method: "trafilatura"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 2
+subheading_count: 1
+headings: "h1: Return-to-the-workplace | Autodesk technology helping AEC address COVID-19 | h2: Lead your firm today and into the future"
+subheadings: "Lead your firm today and into the future"
 raw_char_count: 121818
 cleaned_char_count: 2427
+tfidf_keyword_count: 12
+tfidf_keywords: "covid-19 | air | thought | aec | offices | movement | construction | people | leaders | trends | changing | safety"
 ---
 
 # Return-to-the-workplace | Autodesk technology helping AEC address COVID-19

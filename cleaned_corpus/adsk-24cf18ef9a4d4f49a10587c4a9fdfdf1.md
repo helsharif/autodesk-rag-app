@@ -4,8 +4,17 @@ relative_source_path: "adsk-24cf18ef9a4d4f49a10587c4a9fdfdf1.html"
 title: "Autodesk Revit LT Software | Get Prices & Buy Official Revit LT 2023"
 cleaned_format: "markdown"
 extraction_method: "trafilatura"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 1
+subheading_count: 0
+headings: "h1: Autodesk Revit LT Software | Get Prices & Buy Official Revit LT 2023"
+subheadings: ""
 raw_char_count: 415314
 cleaned_char_count: 3908
+tfidf_keyword_count: 12
+tfidf_keywords: "revit lt | revit | lt suite | bim | suite | lt subscription | autocad revit | subscription | autocad | lt autocad | cad bim | price"
 ---
 
 # Autodesk Revit LT Software | Get Prices & Buy Official Revit LT 2023

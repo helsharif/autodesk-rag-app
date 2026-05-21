@@ -4,8 +4,17 @@ relative_source_path: "adsk-1f2bf23ad8e54efa8ad756cd0dfad4e7.html"
 title: "Autodesk Certificate of Insurance | Autodesk"
 cleaned_format: "markdown"
 extraction_method: "beautifulsoup_rich_fallback"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 3
+subheading_count: 2
+headings: "h1: Autodesk Certificate of Insurance | Autodesk | h2: Evidence of insurance | h2: Frequently asked questions"
+subheadings: "Evidence of insurance | Frequently asked questions"
 raw_char_count: 105085
 cleaned_char_count: 4168
+tfidf_keyword_count: 12
+tfidf_keywords: "insurance | certificate | policy | coverage | information | does | electronic | additional | provide | yes | policies | website"
 ---
 
 # Autodesk Certificate of Insurance | Autodesk

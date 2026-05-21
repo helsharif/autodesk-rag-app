@@ -4,8 +4,17 @@ relative_source_path: "adsk-8ead6d6dd56f42cdbdc1eeb2b0f0f58e.html"
 title: "Strategic Foresight | Autodesk Research"
 cleaned_format: "markdown"
 extraction_method: "trafilatura"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 3
+subheading_count: 2
+headings: "h1: Strategic Foresight | Autodesk Research | h2: Our other Research Areas | h2: The latest in Strategic Foresight"
+subheadings: "Our other Research Areas | The latest in Strategic Foresight"
 raw_char_count: 129300
 cleaned_char_count: 1168
+tfidf_keyword_count: 12
+tfidf_keywords: "research | strategic | future | customers | industry futures | steep | futures | political | scientists | research areas | leverages | anticipate"
 ---
 
 # Strategic Foresight | Autodesk Research

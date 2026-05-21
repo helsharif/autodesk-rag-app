@@ -102,6 +102,8 @@ Main cleaning approach:
 - BeautifulSoup removes deterministic boilerplate, including scripts, styles, navigation, headers, footers, hidden elements, cookie banners, and repeated page chrome.
 - Trafilatura extracts main content as Markdown.
 - BeautifulSoup fallback logic preserves tables, headings, lists, links, and code-like blocks when Trafilatura is too sparse.
+- Cleaned Markdown front matter is enriched without an LLM using deterministic heading extraction, Lingua language detection, and corpus-level TF-IDF keywords.
+- After enrichment, cleaned Markdown files under 600 bytes and known non-English documents are purged from `cleaned_corpus/`.
 - Cleaned files are written to `cleaned_corpus/`.
 - Cleaning diagnostics are written to `cleaned_corpus_info/`.
 
@@ -112,6 +114,7 @@ cleaned_corpus/
 cleaned_corpus_info/cleaning_manifest.csv
 cleaned_corpus_info/cleaning_summary.md
 cleaned_corpus_info/before_after_processing_stats.md
+cleaned_corpus_info/purged_cleaned_documents.csv
 cleaned_corpus_info/repeated_line_candidates.csv
 ```
 
@@ -134,7 +137,7 @@ Main indexing approach:
 - Prefers Docling structure-aware chunking/export followed by the project heading-aware chunk-size guard.
 - Uses OpenAI embeddings for dense vector search.
 - Stores dense embeddings in persistent ChromaDB.
-- Builds a local BM25 keyword index for lexical search.
+- Builds a local BM25 keyword index for lexical search. BM25 uses chunk text plus enriched cleaned-corpus metadata such as subheadings, document headings, TF-IDF keywords, and language fields.
 - Includes retrieval sanity-check helpers for vector, BM25, and hybrid search.
 - Saves document-level and chunk-level manifests for reproducibility.
 
@@ -240,6 +243,10 @@ STREAMLIT_HOST_PORT=8502
 CHUNK_SIZE=3500
 CHUNK_OVERLAP=500
 RETRIEVER_K=10
+HYBRID_CANDIDATE_K=30
+HYBRID_VECTOR_WEIGHT=0.65
+HYBRID_BM25_WEIGHT=0.35
+HYBRID_MAX_PER_SOURCE=3
 MIN_RELEVANCE_SCORE=0.30
 
 CONTEXT_EXPANSION_ENABLED=true
@@ -286,9 +293,11 @@ Dense retrieval is useful for semantic matches where the user query and source t
 
 BM25 is useful for exact Autodesk terminology, product names, API names, error codes, parameters, and short technical phrases.
 
+During index building, BM25 uses a dedicated lexical text field, `bm25_text`, rather than the dense embedding text alone. This field includes the normal chunk text plus selected enriched front-matter fields from cleaning: `subheadings`, `headings`, `tfidf_keywords`, `document_language`, and `document_language_name`. The Chroma/vector embedding text remains lighter, with only title, section, source, and passage text, so metadata keywords help lexical recall without over-steering semantic embeddings.
+
 ### Hybrid Retrieval
 
-Hybrid retrieval combines dense vector results and BM25 results, preferably using reciprocal rank fusion (RRF). This follows the Cobb County RAG lesson that BM25 often catches exact technical terms that embeddings can miss, while dense retrieval improves semantic recall.
+Hybrid retrieval combines dense vector results and BM25 results using weighted reciprocal rank fusion (RRF). By default, the app retrieves a deeper candidate pool of 30 dense semantic chunks and 30 BM25 keyword chunks, then fuses them with a 0.65 vector weight and 0.35 BM25 weight. It also caps the final fused local list to 3 chunks per source document before context expansion. This keeps BM25's exact-term strength while reducing cases where title keyword matches or one very high-scoring document overwhelm more semantically relevant body-text evidence.
 
 ### Cross-Encoder Reranking
 
@@ -359,6 +368,23 @@ Source: <relative source path>
 ```
 
 This improves retrieval quality because the embedding includes both the local passage and its document/section context.
+
+BM25 receives a slightly richer lexical context:
+
+```text
+Title: <document title>
+Section: <heading path>
+Source: <relative source path>
+Subheadings: <front-matter subheadings>
+Document headings: <front-matter headings>
+Document keywords: <front-matter TF-IDF keywords>
+Document language: <language code>
+Document language name: <language name>
+
+<chunk text>
+```
+
+This keeps BM25 aware of corpus-level and document-level lexical signals while preserving a cleaner vector embedding input.
 
 ## Exploratory Data Analysis
 

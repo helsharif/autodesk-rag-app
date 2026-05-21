@@ -4,8 +4,17 @@ relative_source_path: "adsk-6e42a9e81abc472bb380cd2f211afc7e.html"
 title: "Film: Nordic Office of Architecture – how new technology opens up new opportunities for design, collaboration and business - Autodesk Forma"
 cleaned_format: "markdown"
 extraction_method: "trafilatura"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 2
+subheading_count: 1
+headings: "h1: Film: Nordic Office of Architecture – how new technology opens up new opportunities for design, collaboration and bus... | h4: Shaping thriving societies"
+subheadings: "Shaping thriving societies"
 raw_char_count: 3109220
 cleaned_char_count: 4425
+tfidf_keyword_count: 12
+tfidf_keywords: "nordic | architecture | office | new | white | technology | new technology | phase | architects | forma | new opportunities | firm"
 ---
 
 # Film: Nordic Office of Architecture – how new technology opens up new opportunities for design, collaboration and business - Autodesk Forma

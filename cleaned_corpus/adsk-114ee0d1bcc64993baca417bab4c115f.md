@@ -4,8 +4,17 @@ relative_source_path: "adsk-114ee0d1bcc64993baca417bab4c115f.html"
 title: "Work With An Autodesk Partner| Autodesk"
 cleaned_format: "markdown"
 extraction_method: "trafilatura"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 2
+subheading_count: 1
+headings: "h1: Work With An Autodesk Partner| Autodesk | h2: Connect with a Specialized Partner"
+subheadings: "Connect with a Specialized Partner"
 raw_char_count: 111165
 cleaned_char_count: 1488
+tfidf_keyword_count: 12
+tfidf_keywords: "partners | authorized | business | training | solutions | deliver | authorized training | instructors | training centers | alliance | customers | services"
 ---
 
 # Work With An Autodesk Partner| Autodesk

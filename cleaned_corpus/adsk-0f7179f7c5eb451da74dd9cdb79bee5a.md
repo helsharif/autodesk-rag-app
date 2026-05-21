@@ -4,8 +4,17 @@ relative_source_path: "adsk-0f7179f7c5eb451da74dd9cdb79bee5a.html"
 title: "Stop & Restart Autodesk License Server | Autodesk"
 cleaned_format: "markdown"
 extraction_method: "trafilatura"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 7
+subheading_count: 6
+headings: "h1: Stop & Restart Autodesk License Server | Autodesk | h2: From a Windows license server | h3: Stop the server | h3: Restart the server | h2: From a macOS or Linux license server | h3: Stop the server | h3: Restart the server"
+subheadings: "From a Windows license server | Stop the server | Restart the server | From a macOS or Linux license server | Stop the server | Restart the server"
 raw_char_count: 130740
 cleaned_char_count: 1099
+tfidf_keyword_count: 12
+tfidf_keywords: "server | stop | license server | license | restart | lmtools | start | tab | enter following | terminal | license file | force"
 ---
 
 # Stop & Restart Autodesk License Server | Autodesk

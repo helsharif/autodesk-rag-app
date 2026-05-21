@@ -56,9 +56,17 @@ def bm25_index_exists(settings: Settings | None = None) -> bool:
 def search_documents(query: str, k: int | None = None, collection_name: str | None = None) -> tuple[list[Document], list[RetrievedSource]]:
     settings = get_settings()
     top_k = k or settings.retriever_k
-    dense_ranked = _search_dense(query, top_k, settings)
-    bm25_ranked = _search_bm25(query, max(top_k * 4, 20), settings)
-    return _fuse_ranked_results([dense_ranked, bm25_ranked], top_k)
+    candidate_k = max(top_k, settings.hybrid_candidate_k)
+    dense_ranked = _search_dense(query, candidate_k, settings)
+    bm25_ranked = _search_bm25(query, candidate_k, settings)
+    return _fuse_ranked_results(
+        [
+            (dense_ranked, settings.hybrid_vector_weight),
+            (bm25_ranked, settings.hybrid_bm25_weight),
+        ],
+        top_k,
+        max_per_source=settings.hybrid_max_per_source,
+    )
 
 
 def has_sufficient_retrieval(sources: list[RetrievedSource]) -> bool:
@@ -83,7 +91,7 @@ def _search_dense(query: str, k: int, settings: Settings) -> list[tuple[str, Doc
         return []
     collection = get_chroma_collection(settings)
     query_embedding = get_embeddings(settings).embed_query(query)
-    results = collection.query(query_embeddings=[query_embedding], n_results=max(k * 2, k), include=["documents", "metadatas", "distances"])
+    results = collection.query(query_embeddings=[query_embedding], n_results=k, include=["documents", "metadatas", "distances"])
     ids = results.get("ids", [[]])[0]
     documents = results.get("documents", [[]])[0]
     metadatas = results.get("metadatas", [[]])[0]
@@ -95,6 +103,8 @@ def _search_dense(query: str, k: int, settings: Settings) -> list[tuple[str, Doc
         metadata = dict(metadatas[index] or {}) if index < len(metadatas) else {}
         metadata.setdefault("chunk_id", chunk_id)
         doc = Document(page_content=documents[index] or "", metadata=metadata)
+        if _is_low_value_metadata_chunk(doc):
+            continue
         source = _source_from_document(doc, score)
         ranked.append((_document_identity(doc, source), doc, source))
     return ranked
@@ -124,6 +134,8 @@ def _search_bm25(query: str, k: int, settings: Settings) -> list[tuple[str, Docu
         if doc is None:
             doc = Document(page_content=str(metadata.get("preview") or ""), metadata=metadata)
         doc.metadata.setdefault("chunk_id", chunk_id)
+        if _is_low_value_metadata_chunk(doc):
+            continue
         source = _source_from_document(doc, float(scores[idx]) / max_score if max_score else 0.0)
         ranked.append((_document_identity(doc, source), doc, source))
     return ranked
@@ -142,24 +154,30 @@ def _fetch_chroma_by_ids(ids: list[str], settings: Settings) -> dict[str, Docume
     return found
 
 
-def _fuse_ranked_results(ranked_sets: list[list[tuple[str, Document, RetrievedSource]]], top_k: int, rrf_k: int = 60) -> tuple[list[Document], list[RetrievedSource]]:
+def _fuse_ranked_results(ranked_sets: list[tuple[list[tuple[str, Document, RetrievedSource]], float]], top_k: int, rrf_k: int = 60, max_per_source: int = 0) -> tuple[list[Document], list[RetrievedSource]]:
     scores: dict[str, float] = {}
     best_docs: dict[str, Document] = {}
     best_sources: dict[str, RetrievedSource] = {}
-    for ranked in ranked_sets:
+    for ranked, weight in ranked_sets:
         seen: set[str] = set()
         for rank, (doc_id, doc, source) in enumerate(ranked, start=1):
             if doc_id in seen:
                 continue
             seen.add(doc_id)
-            scores[doc_id] = scores.get(doc_id, 0.0) + 1.0 / (rrf_k + rank)
+            scores[doc_id] = scores.get(doc_id, 0.0) + weight * (1.0 / (rrf_k + rank))
             if doc_id not in best_sources or source.score > best_sources[doc_id].score:
                 best_docs[doc_id] = doc
                 best_sources[doc_id] = source
     if not scores:
         return [], []
     max_score = max(scores.values()) or 1.0
-    ranked_ids = sorted(scores, key=lambda doc_id: scores[doc_id], reverse=True)[:top_k]
+    ranked_ids = _select_diverse_ranked_ids(
+        sorted(scores, key=lambda doc_id: scores[doc_id], reverse=True),
+        best_docs,
+        best_sources,
+        top_k,
+        max_per_source,
+    )
     docs = [best_docs[doc_id] for doc_id in ranked_ids]
     sources = []
     for doc_id in ranked_ids:
@@ -182,6 +200,60 @@ def _source_from_document(doc: Document, score: float) -> RetrievedSource:
 def _document_identity(doc: Document, source: RetrievedSource) -> str:
     metadata = doc.metadata or {}
     return "::".join(str(part) for part in (metadata.get("chunk_id") or "", source.source, metadata.get("chunk_index") or "0"))
+
+
+def _select_diverse_ranked_ids(
+    ranked_ids: list[str],
+    docs_by_id: dict[str, Document],
+    sources_by_id: dict[str, RetrievedSource],
+    top_k: int,
+    max_per_source: int,
+) -> list[str]:
+    if max_per_source <= 0:
+        return ranked_ids[:top_k]
+    selected: list[str] = []
+    counts: dict[str, int] = {}
+    deferred: list[str] = []
+    for doc_id in ranked_ids:
+        source_key = _source_key(docs_by_id[doc_id], sources_by_id[doc_id])
+        if counts.get(source_key, 0) < max_per_source:
+            selected.append(doc_id)
+            counts[source_key] = counts.get(source_key, 0) + 1
+        else:
+            deferred.append(doc_id)
+        if len(selected) == top_k:
+            return selected
+    for doc_id in deferred:
+        if len(selected) == top_k:
+            break
+        selected.append(doc_id)
+    return selected
+
+
+def _source_key(doc: Document, source: RetrievedSource) -> str:
+    metadata = doc.metadata or {}
+    return str(metadata.get("source_file") or metadata.get("relative_source_path") or source.source)
+
+
+def _is_low_value_metadata_chunk(doc: Document) -> bool:
+    body = _body_text(doc.page_content or "").strip().lower()
+    if not body:
+        return True
+    metadata_prefixes = (
+        "source_file:",
+        "relative_source_path:",
+        "title:",
+        "cleaned_format:",
+        "extraction_method:",
+        "raw_char_count:",
+        "cleaned_char_count:",
+    )
+    return body.startswith(metadata_prefixes)
+
+
+def _body_text(text: str) -> str:
+    parts = text.split("\n\n", 1)
+    return parts[1] if len(parts) > 1 else text
 
 
 def _tokenize(text: str) -> list[str]:

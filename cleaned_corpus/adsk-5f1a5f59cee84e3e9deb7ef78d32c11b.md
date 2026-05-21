@@ -4,8 +4,17 @@ relative_source_path: "adsk-5f1a5f59cee84e3e9deb7ef78d32c11b.html"
 title: "Included Software | Autodesk Architecture, Engineering and Construction Collection"
 cleaned_format: "markdown"
 extraction_method: "beautifulsoup_rich_fallback"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 12
+subheading_count: 11
+headings: "h1: Included Software | Autodesk Architecture, Engineering and Construction Collection | h2: Included software in the AEC Collection | h2: Integrate workflows for powerful project outcomes | h2: Included software in the AEC Collection | h2: Engineer the best structural solutions | h2: Included software in the AEC Collection | h2: Connect design to detailing for MEP systems | h2: Included software in the AEC Collection | h2: How the AEC Collection works for civil engineers | h2: Included software in the AEC Collection | h2: BIM workflows help improve project quality and reduce rework | h2: Frequently asked questions (FAQs)"
+subheadings: "Included software in the AEC Collection | Integrate workflows for powerful project outcomes | Included software in the AEC Collection | Engineer the best structural solutions | Included software in the AEC Collection | Connect design to detailing for MEP systems | Included software in the AEC Collection | How the AEC Collection works for civil engineers | Included software in the AEC Collection | BIM workflows help improve project quality and reduce rework | Frequently asked questions (FAQs)"
 raw_char_count: 479627
 cleaned_char_count: 6159
+tfidf_keyword_count: 12
+tfidf_keywords: "collection | aec collection | aec | included software | learn try | try free | product learn | design | try | select product | tools | included"
 ---
 
 # Included Software | Autodesk Architecture, Engineering and Construction Collection

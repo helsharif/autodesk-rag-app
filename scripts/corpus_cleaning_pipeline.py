@@ -34,6 +34,7 @@ import re
 import traceback
 from collections import Counter, defaultdict
 from datetime import datetime
+from functools import lru_cache
 from pathlib import Path
 from typing import Any
 
@@ -66,6 +67,17 @@ TABLE_FALLBACK_ABSOLUTE_MAX_CHARS = 150_000
 RICH_FALLBACK_MIN_TRAFILATURA_CHARS = 1_000
 RICH_FALLBACK_MIN_MULTIPLIER = 2.5
 RICH_FALLBACK_ABSOLUTE_MAX_CHARS = 80_000
+METADATA_MAX_HEADINGS = 30
+METADATA_MAX_HEADING_CHARS = 120
+LANGUAGE_DETECTION_MIN_CHARS = 200
+TFIDF_MAX_KEYWORDS = 12
+TFIDF_MAX_FEATURES = 8_000
+TFIDF_NGRAM_RANGE = (1, 2)
+TFIDF_MIN_DF = 2
+TFIDF_EXCLUDED_TERMS = {"autodesk", "www", "com", "https", "http"}
+PURGE_MIN_MARKDOWN_BYTES = 600
+PURGE_NON_ENGLISH_DOCUMENTS = True
+RETAIN_UNKNOWN_LANGUAGE_DOCUMENTS = True
 
 BOILERPLATE_KEYWORDS = [
     "breadcrumb",
@@ -147,6 +159,8 @@ REQUIRED_PACKAGES = {
     "beautifulsoup4": "bs4",
     "lxml": "lxml",
     "trafilatura": "trafilatura",
+    "lingua-language-detector": "lingua",
+    "scikit-learn": "sklearn",
     "tqdm": "tqdm",
     "pandas": "pandas",
 }
@@ -161,7 +175,7 @@ def check_dependencies() -> None:
     if missing:
         print("Missing required packages:", ", ".join(missing))
         print("Install suggestion:")
-        print("pip install beautifulsoup4 lxml trafilatura tqdm pandas")
+        print("pip install beautifulsoup4 lxml trafilatura lingua-language-detector scikit-learn tqdm pandas")
         raise ImportError(f"Missing required packages: {missing}")
     print("All required packages are available.")
 
@@ -173,6 +187,8 @@ check_dependencies()
 import pandas as pd
 import trafilatura
 from bs4 import BeautifulSoup, Comment
+from lingua import LanguageDetectorBuilder
+from sklearn.feature_extraction.text import TfidfVectorizer
 from tqdm.auto import tqdm
 
 
@@ -606,6 +622,36 @@ def yaml_quote(value: Any) -> str:
     return f'"{text}"'
 
 
+FRONTMATTER_RE = re.compile(r"^---\s*\n(.*?)\n---\s*\n?", re.S)
+
+
+def parse_metadata_value(value: str) -> Any:
+    text = value.strip()
+    if text.lower() == "null":
+        return None
+    if len(text) >= 2 and text[0] == '"' and text[-1] == '"':
+        return text[1:-1].replace('\\"', '"').replace("\\\\", "\\")
+    if re.fullmatch(r"-?\d+", text):
+        return int(text)
+    if re.fullmatch(r"-?\d+\.\d+", text):
+        return float(text)
+    return text.strip("'")
+
+
+def parse_metadata_block(text: str) -> tuple[dict[str, Any], str]:
+    match = FRONTMATTER_RE.match(text)
+    if not match:
+        return {}, text
+
+    metadata: dict[str, Any] = {}
+    for line in match.group(1).splitlines():
+        if ":" not in line:
+            continue
+        key, value = line.split(":", 1)
+        metadata[key.strip()] = parse_metadata_value(value)
+    return metadata, text[match.end() :]
+
+
 def ensure_title_heading(content: str, title: str) -> str:
     content = normalize_markdown(content)
     title = compact_whitespace(title)
@@ -618,15 +664,237 @@ def ensure_title_heading(content: str, title: str) -> str:
     return normalize_markdown(f"# {title}\n\n{content}")
 
 
+def trim_metadata_text(value: str, max_chars: int = METADATA_MAX_HEADING_CHARS) -> str:
+    text = compact_whitespace(value)
+    if len(text) <= max_chars:
+        return text
+    return text[: max_chars - 3].rstrip() + "..."
+
+
+def extract_heading_metadata(content: str) -> tuple[list[str], list[str]]:
+    headings: list[str] = []
+    subheadings: list[str] = []
+    in_code_block = False
+    for line in content.splitlines():
+        stripped = line.strip()
+        if stripped.startswith("```"):
+            in_code_block = not in_code_block
+            continue
+        if in_code_block:
+            continue
+        match = re.match(r"^(#{1,6})\s+(.+?)\s*$", stripped)
+        if not match:
+            continue
+        level = len(match.group(1))
+        heading_text = trim_metadata_text(match.group(2))
+        if not heading_text:
+            continue
+        headings.append(f"h{level}: {heading_text}")
+        if level > 1:
+            subheadings.append(heading_text)
+        if len(headings) >= METADATA_MAX_HEADINGS:
+            break
+    return headings, subheadings
+
+
+def join_metadata_list(values: list[str], max_items: int = METADATA_MAX_HEADINGS) -> str:
+    selected = values[:max_items]
+    suffix = " | ..." if len(values) > max_items else ""
+    return " | ".join(selected) + suffix
+
+
+@lru_cache(maxsize=1)
+def get_language_detector():
+    return LanguageDetectorBuilder.from_all_languages().build()
+
+
+def detect_document_language(content: str) -> dict[str, Any]:
+    text = compact_whitespace(re.sub(r"[#*_`>\[\]()|]+", " ", content))
+    if len(text) < LANGUAGE_DETECTION_MIN_CHARS:
+        return {
+            "document_language": "",
+            "document_language_name": "",
+            "document_language_confidence": None,
+        }
+
+    detector = get_language_detector()
+    language = detector.detect_language_of(text)
+    if language is None:
+        return {
+            "document_language": "",
+            "document_language_name": "",
+            "document_language_confidence": None,
+        }
+
+    confidence = None
+    for value in detector.compute_language_confidence_values(text):
+        if value.language == language:
+            confidence = round(float(value.value), 4)
+            break
+
+    return {
+        "document_language": language.iso_code_639_1.name.lower(),
+        "document_language_name": language.name.replace("_", " ").title(),
+        "document_language_confidence": confidence,
+    }
+
+
 def add_metadata_block(content: str, metadata: dict[str, Any]) -> str:
     lines = ["---"]
     for key, value in metadata.items():
-        if isinstance(value, (int, float)) and not isinstance(value, bool):
+        if value is None:
+            lines.append(f"{key}: null")
+        elif isinstance(value, (int, float)) and not isinstance(value, bool):
             lines.append(f"{key}: {value}")
         else:
             lines.append(f"{key}: {yaml_quote(value)}")
     lines.append("---")
     return "\n".join(lines) + "\n\n" + normalize_markdown(content) + "\n"
+
+
+def normalize_tfidf_text(text: str) -> str:
+    text = re.sub(r"```.*?```", " ", text, flags=re.S)
+    text = re.sub(r"\[[^\]]+\]\([^)]+\)", " ", text)
+    text = re.sub(r"https?://\S+", " ", text)
+    text = re.sub(r"^#{1,6}\s+", " ", text, flags=re.M)
+    return compact_whitespace(text)
+
+
+def select_tfidf_keywords(feature_names: list[str], row, max_keywords: int = TFIDF_MAX_KEYWORDS) -> list[str]:
+    if row.nnz == 0:
+        return []
+    keyword_scores = zip(row.indices, row.data)
+    ranked = sorted(keyword_scores, key=lambda item: item[1], reverse=True)
+    keywords: list[str] = []
+    seen: set[str] = set()
+    for feature_index, _score in ranked:
+        term = feature_names[feature_index].strip().lower()
+        if not term or term in seen:
+            continue
+        tokens = term.split()
+        if any(token in TFIDF_EXCLUDED_TERMS for token in tokens):
+            continue
+        if len(term) < 3 or not re.search(r"[a-zA-Z]", term):
+            continue
+        keywords.append(term)
+        seen.add(term)
+        if len(keywords) >= max_keywords:
+            break
+    return keywords
+
+
+def enrich_cleaned_files_with_tfidf(manifest: pd.DataFrame) -> pd.DataFrame:
+    success_manifest = manifest[manifest["processing_status"].eq("success")].copy()
+    records: list[dict[str, Any]] = []
+    documents: list[str] = []
+
+    for row in success_manifest.itertuples(index=False):
+        output_path = Path(row.planned_output_path)
+        if not output_path.exists():
+            continue
+        text = output_path.read_text(encoding="utf-8", errors="replace")
+        metadata, body = parse_metadata_block(text)
+        normalized = normalize_tfidf_text(body)
+        if not normalized:
+            continue
+        records.append({"path": output_path, "metadata": metadata, "body": body, "relative_path": row.relative_path})
+        documents.append(normalized)
+
+    if not documents:
+        manifest["tfidf_keywords"] = ""
+        return manifest
+
+    min_df = TFIDF_MIN_DF if len(documents) >= TFIDF_MIN_DF else 1
+    vectorizer = TfidfVectorizer(
+        stop_words="english",
+        ngram_range=TFIDF_NGRAM_RANGE,
+        min_df=min_df,
+        max_features=TFIDF_MAX_FEATURES,
+        token_pattern=r"(?u)\b[a-zA-Z0-9][a-zA-Z0-9+.-]{1,}\b",
+    )
+    matrix = vectorizer.fit_transform(documents)
+    feature_names = vectorizer.get_feature_names_out().tolist()
+    keywords_by_relative_path: dict[str, str] = {}
+
+    for index, record in enumerate(records):
+        keywords = select_tfidf_keywords(feature_names, matrix.getrow(index))
+        keyword_text = join_metadata_list(keywords, TFIDF_MAX_KEYWORDS)
+        record["metadata"]["tfidf_keyword_count"] = len(keywords)
+        record["metadata"]["tfidf_keywords"] = keyword_text
+        output_text = add_metadata_block(record["body"], record["metadata"])
+        record["path"].write_text(output_text, encoding="utf-8")
+        keywords_by_relative_path[record["relative_path"]] = keyword_text
+
+    manifest["tfidf_keywords"] = manifest["relative_path"].map(keywords_by_relative_path).fillna("")
+    return manifest
+
+
+def purge_low_value_cleaned_files(manifest: pd.DataFrame) -> pd.DataFrame:
+    manifest = manifest.copy()
+    for column in ["purge_reason", "cleaned_file_size_bytes", "document_language"]:
+        if column not in manifest.columns:
+            manifest[column] = ""
+
+    purge_records: list[dict[str, Any]] = []
+    success_mask = manifest["processing_status"].eq("success")
+
+    for index, row in manifest.loc[success_mask].iterrows():
+        output_path = Path(row["planned_output_path"])
+        if not output_path.exists():
+            continue
+
+        file_size = output_path.stat().st_size
+        text = output_path.read_text(encoding="utf-8", errors="replace")
+        metadata, _body = parse_metadata_block(text)
+        language = str(metadata.get("document_language") or "").strip().lower()
+        reasons: list[str] = []
+
+        if file_size < PURGE_MIN_MARKDOWN_BYTES:
+            reasons.append(f"markdown_file_size_below_{PURGE_MIN_MARKDOWN_BYTES}_bytes")
+        if PURGE_NON_ENGLISH_DOCUMENTS:
+            if language and language != "en":
+                reasons.append(f"non_english_language_{language}")
+            elif not language and not RETAIN_UNKNOWN_LANGUAGE_DOCUMENTS:
+                reasons.append("unknown_document_language")
+
+        manifest.at[index, "cleaned_file_size_bytes"] = file_size
+        manifest.at[index, "document_language"] = language
+
+        if not reasons:
+            continue
+
+        reason_text = "; ".join(reasons)
+        output_path.unlink()
+        existing_warnings = str(manifest.at[index, "warnings"] or "").strip()
+        manifest.at[index, "processing_status"] = "purged"
+        manifest.at[index, "purge_reason"] = reason_text
+        manifest.at[index, "warnings"] = "; ".join([value for value in [existing_warnings, reason_text] if value])
+        purge_records.append(
+            {
+                "relative_path": row["relative_path"],
+                "planned_output_path": row["planned_output_path"],
+                "cleaned_file_size_bytes": file_size,
+                "document_language": language,
+                "purge_reason": reason_text,
+            }
+        )
+
+    CLEANED_CORPUS_INFO_DIR.mkdir(parents=True, exist_ok=True)
+    purge_report_path = CLEANED_CORPUS_INFO_DIR / "purged_cleaned_documents.csv"
+    purge_df = pd.DataFrame(
+        purge_records,
+        columns=[
+            "relative_path",
+            "planned_output_path",
+            "cleaned_file_size_bytes",
+            "document_language",
+            "purge_reason",
+        ],
+    )
+    purge_df.to_csv(purge_report_path, index=False)
+    print(f"Purged {len(purge_df):,} low-value cleaned Markdown file(s).")
+    print(f"Saved purge report to {purge_report_path}")
+    return manifest
 
 
 # %% [markdown]
@@ -681,6 +949,8 @@ def process_one_file(source_path: Path) -> dict[str, Any]:
         content_len = len(extracted)
         result["char_count_after_cleaning"] = content_len
         result["extraction_method_used"] = method
+        headings, subheadings = extract_heading_metadata(extracted)
+        language_metadata = detect_document_language(extracted)
 
         extra_warnings = []
         if warnings:
@@ -694,6 +964,11 @@ def process_one_file(source_path: Path) -> dict[str, Any]:
             "title": title,
             "cleaned_format": OUTPUT_FORMAT,
             "extraction_method": method,
+            **language_metadata,
+            "heading_count": len(headings),
+            "subheading_count": len(subheadings),
+            "headings": join_metadata_list(headings),
+            "subheadings": join_metadata_list(subheadings),
             "raw_char_count": result["char_count_before_cleaning"],
             "cleaned_char_count": content_len,
         }
@@ -735,6 +1010,10 @@ def process_corpus(source_files: list[Path]) -> pd.DataFrame:
             results.append(future.result())
 
     manifest = pd.DataFrame(results).sort_values("relative_path").reset_index(drop=True)
+    print("Adding corpus-level TF-IDF keywords to cleaned document metadata.")
+    manifest = enrich_cleaned_files_with_tfidf(manifest)
+    print("Purging very small and non-English cleaned Markdown files.")
+    manifest = purge_low_value_cleaned_files(manifest)
     CLEANED_CORPUS_INFO_DIR.mkdir(parents=True, exist_ok=True)
     manifest_path = CLEANED_CORPUS_INFO_DIR / "cleaning_manifest.csv"
     manifest.to_csv(manifest_path, index=False)
@@ -764,8 +1043,15 @@ def build_diagnostics(manifest: pd.DataFrame) -> tuple[dict[str, Any], pd.DataFr
     success_mask = manifest["processing_status"].eq("success")
     skipped_mask = manifest["processing_status"].eq("skipped")
     failed_mask = manifest["processing_status"].eq("failed")
+    purged_mask = manifest["processing_status"].eq("purged")
     cleaned_counts = pd.to_numeric(manifest["char_count_after_cleaning"], errors="coerce").fillna(0)
-    short_mask = success_mask & (cleaned_counts < MIN_ACCEPTABLE_CLEANED_CHARS)
+    short_mask = (success_mask | purged_mask) & (cleaned_counts < MIN_ACCEPTABLE_CLEANED_CHARS)
+    initially_cleaned_count = int((success_mask | purged_mask).sum())
+    retained_cleaned_count = int(success_mask.sum())
+    purged_count = int(purged_mask.sum())
+    file_count_reduction_pct = (
+        purged_count / initially_cleaned_count * 100 if initially_cleaned_count else 0
+    )
 
     total_raw_chars = safe_sum(manifest["char_count_before_cleaning"])
     total_cleaned_chars = safe_sum(manifest.loc[success_mask, "char_count_after_cleaning"])
@@ -774,6 +1060,10 @@ def build_diagnostics(manifest: pd.DataFrame) -> tuple[dict[str, Any], pd.DataFr
     summary = {
         "raw_html_files_found": len(manifest),
         "successfully_cleaned": int(success_mask.sum()),
+        "initially_cleaned_before_purge": initially_cleaned_count,
+        "retained_cleaned_after_purge": retained_cleaned_count,
+        "purged_after_cleaning": purged_count,
+        "cleaned_file_count_reduction_percentage": round(file_count_reduction_pct, 2),
         "skipped": int(skipped_mask.sum()),
         "failed": int(failed_mask.sum()),
         "very_short_extracted_content": int(short_mask.sum()),
@@ -830,7 +1120,10 @@ Generated: {datetime.now().isoformat(timespec='seconds')}
 ## Overall Results
 
 - Raw HTML files found: {summary['raw_html_files_found']:,}
-- Successfully cleaned: {summary['successfully_cleaned']:,}
+- Initially cleaned before purge: {summary['initially_cleaned_before_purge']:,}
+- Retained cleaned Markdown files after purge: {summary['retained_cleaned_after_purge']:,}
+- Purged after cleaning: {summary['purged_after_cleaning']:,}
+- Cleaned file count reduction from purge: {summary['cleaned_file_count_reduction_percentage']}%
 - Skipped: {summary['skipped']:,}
 - Failed: {summary['failed']:,}
 - Very short cleaned documents: {summary['very_short_extracted_content']:,}
@@ -845,6 +1138,10 @@ Generated: {datetime.now().isoformat(timespec='seconds')}
 ## Extraction Method Counts
 
 {pd.Series(method_counts, name='count').to_markdown()}
+
+## Purge Policy
+
+After cleaning and metadata enrichment, the pipeline deletes cleaned Markdown files smaller than {PURGE_MIN_MARKDOWN_BYTES:,} bytes. It also deletes cleaned Markdown files whose `document_language` header is a known non-English language. Documents with unknown language are {'retained' if RETAIN_UNKNOWN_LANGUAGE_DOCUMENTS else 'purged'}.
 
 ## Largest Character Reductions
 
@@ -868,7 +1165,10 @@ Generated: {datetime.now().isoformat(timespec='seconds')}
 ## Size Overview
 
 - Raw HTML file count: {len(manifest):,}
-- Cleaned Markdown file count: {int(success_mask.sum()):,}
+- Initially cleaned Markdown file count before purge: {summary['initially_cleaned_before_purge']:,}
+- Retained cleaned Markdown file count after purge: {summary['retained_cleaned_after_purge']:,}
+- Purged cleaned Markdown file count: {summary['purged_after_cleaning']:,}
+- Cleaned file count reduction from purge: {summary['cleaned_file_count_reduction_percentage']:.2f}%
 - Raw corpus file size: {file_size_raw:,} bytes ({file_size_raw / (1024**2):.2f} MB)
 - Cleaned corpus Markdown size: {cleaned_file_size:,} bytes ({cleaned_file_size / (1024**2):.2f} MB)
 - Approximate file size reduction: {file_size_reduction_pct:.2f}%
@@ -882,7 +1182,7 @@ The cleaned corpus should be much smaller than the raw HTML corpus because scrip
 
 The cleaning process preserves headings, lists, links, tables, and code-like blocks where possible. These structures are useful for heading-aware chunking, source citation, and technical answer grounding.
 
-Very short cleaned files should be inspected manually. Some may be legitimate short reference pages, while others may indicate over-aggressive extraction or raw pages with little useful content.
+After enrichment, the pipeline purges very small cleaned Markdown files and known non-English documents so downstream retrieval indexes focus on substantive English Autodesk content. Deleted files are listed in `purged_cleaned_documents.csv`.
 
 ## Extraction Method Counts
 

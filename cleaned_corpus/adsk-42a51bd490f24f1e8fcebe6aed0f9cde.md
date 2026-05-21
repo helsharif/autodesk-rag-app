@@ -4,8 +4,17 @@ relative_source_path: "adsk-42a51bd490f24f1e8fcebe6aed0f9cde.html"
 title: "The Ventilator Project - COVID-19 Response"
 cleaned_format: "markdown"
 extraction_method: "trafilatura"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 1
+subheading_count: 0
+headings: "h1: The Ventilator Project - COVID-19 Response"
+subheadings: ""
 raw_char_count: 253834
 cleaned_char_count: 3967
+tfidf_keyword_count: 12
+tfidf_keywords: "ventilator | mantel | ventilator project | says | project | people | covid-19 | supply chain | chain | supply | team | image courtesy"
 ---
 
 # The Ventilator Project - COVID-19 Response

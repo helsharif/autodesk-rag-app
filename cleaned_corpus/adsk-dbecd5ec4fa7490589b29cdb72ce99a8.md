@@ -4,8 +4,17 @@ relative_source_path: "adsk-dbecd5ec4fa7490589b29cdb72ce99a8.html"
 title: "Legal Notices & Trademarks | Autodesk"
 cleaned_format: "markdown"
 extraction_method: "beautifulsoup_rich_fallback"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 10
+subheading_count: 9
+headings: "h1: Legal Notices & Trademarks | Autodesk | h3: Access & Use | h4: Access & Use includes: | h3: Intellectual Property | h4: Intellectual Property includes: | h3: Compliance | h3: Privacy | h3: Government Affairs | h3: Certificate of insurance | h3: Event Terms"
+subheadings: "Access & Use | Access & Use includes: | Intellectual Property | Intellectual Property includes: | Compliance | Privacy | Government Affairs | Certificate of insurance | Event Terms"
 raw_char_count: 107025
 cleaned_char_count: 2616
+tfidf_keyword_count: 12
+tfidf_keywords: "section | contains | covering | statement | notices | intellectual | intellectual property | property | access use | privacy | political | compliance"
 ---
 
 # Legal Notices & Trademarks | Autodesk

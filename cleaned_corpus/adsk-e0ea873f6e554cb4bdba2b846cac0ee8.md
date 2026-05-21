@@ -4,8 +4,17 @@ relative_source_path: "adsk-e0ea873f6e554cb4bdba2b846cac0ee8.html"
 title: "About Display System"
 cleaned_format: "markdown"
 extraction_method: "trafilatura"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 1
+subheading_count: 0
+headings: "h1: About Display System"
+subheadings: ""
 raw_char_count: 8068
 cleaned_char_count: 2401
+tfidf_keyword_count: 12
+tfidf_keywords: "display | object | default | components | settings | drawing | override | door | component | style | particular | tab"
 ---
 
 # About Display System

@@ -4,8 +4,17 @@ relative_source_path: "adsk-2f405b4ea07c4bb093966f69e1faecab.html"
 title: "Fusion 360 Manage with Upchain 2023 | Get Prices & Buy | Autodesk"
 cleaned_format: "markdown"
 extraction_method: "trafilatura"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 1
+subheading_count: 0
+headings: "h1: Fusion 360 Manage with Upchain 2023 | Get Prices & Buy | Autodesk"
+subheadings: ""
 raw_char_count: 413963
 cleaned_char_count: 3016
+tfidf_keyword_count: 12
+tfidf_keywords: "manage upchain | upchain | data | plm | 360 manage | data process | process management | product data | pdm | product | manage | fusion 360"
 ---
 
 # Fusion 360 Manage with Upchain 2023 | Get Prices & Buy | Autodesk

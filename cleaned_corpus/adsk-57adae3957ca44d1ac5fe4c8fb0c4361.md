@@ -4,8 +4,17 @@ relative_source_path: "adsk-57adae3957ca44d1ac5fe4c8fb0c4361.html"
 title: "Autodesk Trust Center"
 cleaned_format: "markdown"
 extraction_method: "trafilatura"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 2
+subheading_count: 1
+headings: "h1: Autodesk Trust Center | h2: Get help with your Autodesk product or service"
+subheadings: "Get help with your Autodesk product or service"
 raw_char_count: 71871
 cleaned_char_count: 1006
+tfidf_keyword_count: 12
+tfidf_keywords: "product service | troubleshoot issues | community forums | knowledge network | troubleshoot | genuine | service | forums | visit | protect | help | join"
 ---
 
 # Autodesk Trust Center

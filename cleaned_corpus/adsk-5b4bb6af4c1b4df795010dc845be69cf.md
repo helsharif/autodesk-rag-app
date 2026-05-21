@@ -4,8 +4,17 @@ relative_source_path: "adsk-5b4bb6af4c1b4df795010dc845be69cf.html"
 title: "Settings for Autodesk Desktop App | Administrator Installation"
 cleaned_format: "markdown"
 extraction_method: "trafilatura"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 3
+subheading_count: 2
+headings: "h1: Settings for Autodesk Desktop App | Administrator Installation | h2: Enable or disable installation of the Autodesk desktop app | h2: Specify the Autodesk desktop app settings for network devices"
+subheadings: "Enable or disable installation of the Autodesk desktop app | Specify the Autodesk desktop app settings for network devices"
 raw_char_count: 130314
 cleaned_char_count: 1039
+tfidf_keyword_count: 12
+tfidf_keywords: "desktop app | app | desktop | settings | installer | deployment | file | classic | disable | specify | installation | enable"
 ---
 
 # Settings for Autodesk Desktop App | Administrator Installation

@@ -4,8 +4,17 @@ relative_source_path: "adsk-ca9923eca03f4ab08d7c10105d4cbe7f.html"
 title: "Construction Schedule Management Software| Autodesk Construction Cloud"
 cleaned_format: "markdown"
 extraction_method: "trafilatura"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 1
+subheading_count: 0
+headings: "h1: Construction Schedule Management Software| Autodesk Construction Cloud"
+subheadings: ""
 raw_char_count: 203673
 cleaned_char_count: 3673
+tfidf_keyword_count: 12
+tfidf_keywords: "schedule | construction | schedules | project | activities | management software | management | scheduling | software | field | construction projects | critical"
 ---
 
 # Construction Schedule Management Software| Autodesk Construction Cloud

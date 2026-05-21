@@ -4,8 +4,17 @@ relative_source_path: "adsk-b9b2aa5c7dd041f28f677f229aff3ca0.html"
 title: "About Creating and Editing Layer Standards"
 cleaned_format: "markdown"
 extraction_method: "trafilatura"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 1
+subheading_count: 0
+headings: "h1: About Creating and Editing Layer Standards"
+subheadings: ""
 raw_char_count: 7473
 cleaned_char_count: 1994
+tfidf_keyword_count: 12
+tfidf_keywords: "layer | layer standard | standard | layer standards | discipline | value | standards | major | rules | names | field | edition"
 ---
 
 # About Creating and Editing Layer Standards

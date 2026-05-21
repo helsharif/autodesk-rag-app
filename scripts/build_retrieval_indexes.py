@@ -353,6 +353,38 @@ def markdown_title(body: str, metadata: dict[str, str], fallback: str) -> str:
     return Path(fallback).stem
 
 
+def metadata_search_value(metadata: dict[str, str], key: str) -> str:
+    value = str(metadata.get(key, "") or "").strip()
+    if not value or value.lower() == "null":
+        return ""
+    return value
+
+
+def bm25_context_from_metadata(
+    metadata: dict[str, str],
+    title: str,
+    heading_path: str,
+    relative_path: str,
+) -> str:
+    lines = [
+        f"Title: {title}",
+        f"Section: {heading_path}",
+        f"Source: {relative_path}",
+    ]
+    enriched_fields = [
+        ("Subheadings", "subheadings"),
+        ("Document headings", "headings"),
+        ("Document keywords", "tfidf_keywords"),
+        ("Document language", "document_language"),
+        ("Document language name", "document_language_name"),
+    ]
+    for label, key in enriched_fields:
+        value = metadata_search_value(metadata, key)
+        if value:
+            lines.append(f"{label}: {value}")
+    return "\n".join(lines) + "\n\n"
+
+
 def normalize_heading_text(text: str) -> str:
     text = re.sub(r"\s+", " ", text).strip()
     text = text.strip("#").strip()
@@ -513,6 +545,13 @@ def chunk_document(
                 f"Source: {relative_path}\n\n"
             )
             embedding_text = f"{context}{piece}"
+            bm25_context = bm25_context_from_metadata(
+                metadata=metadata,
+                title=title,
+                heading_path=section.heading_path,
+                relative_path=relative_path,
+            )
+            bm25_text = f"{bm25_context}{piece}"
             chunk_index = len(chunks)
             chunk_hash = hashlib.sha1(
                 f"{relative_path}|{chunk_index}|{piece}".encode("utf-8")
@@ -528,8 +567,10 @@ def chunk_document(
                     "chunk_index": chunk_index,
                     "chunk_text": piece,
                     "embedding_text": embedding_text,
+                    "bm25_text": bm25_text,
                     "chunk_char_count": len(piece),
                     "embedding_char_count": len(embedding_text),
+                    "bm25_char_count": len(bm25_text),
                     "approx_token_count": estimate_tokens(embedding_text),
                     "cleaned_format": metadata.get("cleaned_format", "markdown"),
                     "source_metadata_json": json.dumps(metadata, ensure_ascii=False),
@@ -710,6 +751,13 @@ def _make_chunks_from_docling_raw_chunks(
                 f"Source: {relative_path}\n\n"
             )
             embedding_text = f"{context}{piece}"
+            bm25_context = bm25_context_from_metadata(
+                metadata=raw_metadata,
+                title=title,
+                heading_path=heading_path,
+                relative_path=relative_path,
+            )
+            bm25_text = f"{bm25_context}{piece}"
             chunk_hash = hashlib.sha1(
                 f"{relative_path}|{method_name}|{chunk_index}|{piece}".encode("utf-8")
             ).hexdigest()[:16]
@@ -724,8 +772,10 @@ def _make_chunks_from_docling_raw_chunks(
                     "chunk_index": chunk_index,
                     "chunk_text": piece,
                     "embedding_text": embedding_text,
+                    "bm25_text": bm25_text,
                     "chunk_char_count": len(piece),
                     "embedding_char_count": len(embedding_text),
+                    "bm25_char_count": len(bm25_text),
                     "approx_token_count": estimate_tokens(embedding_text),
                     "cleaned_format": raw_metadata.get("cleaned_format", "markdown"),
                     "source_metadata_json": json.dumps(raw_metadata, ensure_ascii=False),
@@ -1106,6 +1156,9 @@ print(f"Chroma collection count: {collection.count():,}")
 # The tokenizer keeps technical tokens such as API names, model identifiers,
 # numbers, file-like strings, and slash/dash/hash terms. Stopword removal is
 # intentionally minimal to avoid discarding domain-specific short tokens.
+# BM25 uses a lexical-only text field that augments each chunk with enriched
+# front matter such as TF-IDF keywords and subheadings. Dense embeddings keep
+# the lighter title/section/source prefix defined during chunking.
 
 # %%
 def bm25_tokenize(text: str) -> list[str]:
@@ -1113,7 +1166,9 @@ def bm25_tokenize(text: str) -> list[str]:
     return [token for token in tokens if len(token) > 1 or token in {"c", "r"}]
 
 
-bm25_texts = chunk_manifest_df["embedding_text"].tolist()
+bm25_texts = chunk_manifest_df.get("bm25_text", chunk_manifest_df["embedding_text"]).fillna(
+    chunk_manifest_df["embedding_text"]
+).tolist()
 bm25_chunk_ids = chunk_manifest_df["chunk_id"].tolist()
 bm25_tokenized_corpus = [
     bm25_tokenize(text) for text in tqdm(bm25_texts, desc="Tokenizing BM25 corpus")
@@ -1128,9 +1183,11 @@ bm25_metadata = {
         "heading_path": row["heading_path"],
         "chunk_index": int(row["chunk_index"]),
         "chunk_char_count": int(row["chunk_char_count"]),
+        "bm25_char_count": int(row.get("bm25_char_count", row.get("embedding_char_count", 0))),
         "approx_token_count": int(row["approx_token_count"]),
         "preview": row["chunk_text"][:500],
         "chunking_method": row.get("chunking_method", ""),
+        "source_metadata_json": row.get("source_metadata_json", ""),
     }
     for _, row in chunk_manifest_df.iterrows()
 }

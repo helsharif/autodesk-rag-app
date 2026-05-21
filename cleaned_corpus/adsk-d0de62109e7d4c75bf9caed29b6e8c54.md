@@ -4,8 +4,17 @@ relative_source_path: "adsk-d0de62109e7d4c75bf9caed29b6e8c54.html"
 title: "The Big Room | Autodesk Construction Cloud"
 cleaned_format: "markdown"
 extraction_method: "trafilatura"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 1
+subheading_count: 0
+headings: "h1: The Big Room | Autodesk Construction Cloud"
+subheadings: ""
 raw_char_count: 183962
 cleaned_char_count: 684
+tfidf_keyword_count: 12
+tfidf_keywords: "room | big | construction cloud | construction | cloud | world | industry | recognized | grow | construction professionals | stage | voice"
 ---
 
 # The Big Room | Autodesk Construction Cloud

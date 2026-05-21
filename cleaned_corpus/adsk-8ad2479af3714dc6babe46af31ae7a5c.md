@@ -4,8 +4,17 @@ relative_source_path: "adsk-8ad2479af3714dc6babe46af31ae7a5c.html"
 title: "Benefits of the Mechanical Toolset | AutoCAD | Autodesk"
 cleaned_format: "markdown"
 extraction_method: "trafilatura"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 1
+subheading_count: 0
+headings: "h1: Benefits of the Mechanical Toolset | AutoCAD | Autodesk"
+subheadings: ""
 raw_char_count: 183540
 cleaned_char_count: 1058
+tfidf_keyword_count: 12
+tfidf_keywords: "logo | trademarks | autocad | logo autocad | tests | autocad lt | names | specifications | notice | results | mechanical toolset | product"
 ---
 
 # Benefits of the Mechanical Toolset | AutoCAD | Autodesk

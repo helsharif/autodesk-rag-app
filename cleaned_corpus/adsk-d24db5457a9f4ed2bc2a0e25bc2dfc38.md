@@ -4,8 +4,17 @@ relative_source_path: "adsk-d24db5457a9f4ed2bc2a0e25bc2dfc38.html"
 title: "Construction Submittal Software | Autodesk Construction Cloud"
 cleaned_format: "markdown"
 extraction_method: "trafilatura"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 1
+subheading_count: 0
+headings: "h1: Construction Submittal Software | Autodesk Construction Cloud"
+subheadings: ""
 raw_char_count: 229220
 cleaned_char_count: 4309
+tfidf_keyword_count: 12
+tfidf_keywords: "submittal | submittals | construction submittal | construction | project | documents | construction submittals | project documents | process | review | log | track"
 ---
 
 # Construction Submittal Software | Autodesk Construction Cloud

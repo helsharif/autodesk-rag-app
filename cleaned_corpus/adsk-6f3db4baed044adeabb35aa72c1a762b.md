@@ -4,8 +4,17 @@ relative_source_path: "adsk-6f3db4baed044adeabb35aa72c1a762b.html"
 title: "BuildingConnected | Autodesk Construction Cloud"
 cleaned_format: "markdown"
 extraction_method: "trafilatura"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 1
+subheading_count: 0
+headings: "h1: BuildingConnected | Autodesk Construction Cloud"
+subheadings: ""
 raw_char_count: 241427
 cleaned_char_count: 1567
+tfidf_keyword_count: 12
+tfidf_keywords: "buildingconnected | bid | subcontractors | ryan companies | ryan | tradetapp | risk | improve | subcontractor | choose | preconstruction | qualified"
 ---
 
 # BuildingConnected | Autodesk Construction Cloud

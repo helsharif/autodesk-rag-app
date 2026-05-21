@@ -4,8 +4,17 @@ relative_source_path: "adsk-ec4956a9aaa34f9cb8a7f5b4963abe2e.html"
 title: "Plastic Injection Molding Software | Autodesk"
 cleaned_format: "markdown"
 extraction_method: "trafilatura"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 1
+subheading_count: 0
+headings: "h1: Plastic Injection Molding Software | Autodesk"
+subheadings: ""
 raw_char_count: 149296
 cleaned_char_count: 1130
+tfidf_keyword_count: 12
+tfidf_keywords: "injection molding | molding | injection | answer | simulations | look | simulation software | concurrently | simulation | cad | cad file | likelihood"
 ---
 
 # Plastic Injection Molding Software | Autodesk

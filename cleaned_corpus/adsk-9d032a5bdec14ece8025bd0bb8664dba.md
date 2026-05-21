@@ -4,8 +4,17 @@ relative_source_path: "adsk-9d032a5bdec14ece8025bd0bb8664dba.html"
 title: "From In-House to Off-the-Shelf: USD in production at Animal Logic | Autodesk University"
 cleaned_format: "markdown"
 extraction_method: "beautifulsoup_table_fallback"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 4
+subheading_count: 2
+headings: "h1: From In-House to Off-the-Shelf: USD in production at Animal Logic | Autodesk University | h1: From In-House to Off-the-Shelf: USD in production at Animal Logic | h2: Description | h2: Key Learnings"
+subheadings: "Description | Key Learnings"
 raw_char_count: 211437
 cleaned_char_count: 1791
+tfidf_keyword_count: 12
+tfidf_keywords: "usd | plugin | logic | maya | description | production | in-house | scene | share | understand | integrated | production pipeline"
 ---
 
 # From In-House to Off-the-Shelf: USD in production at Animal Logic | Autodesk University

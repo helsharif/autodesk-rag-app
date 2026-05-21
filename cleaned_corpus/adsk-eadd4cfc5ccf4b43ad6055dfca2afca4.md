@@ -4,8 +4,17 @@ relative_source_path: "adsk-eadd4cfc5ccf4b43ad6055dfca2afca4.html"
 title: "Sitemap | Autodesk"
 cleaned_format: "markdown"
 extraction_method: "trafilatura"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 1
+subheading_count: 0
+headings: "h1: Sitemap | Autodesk"
+subheadings: ""
 raw_char_count: 138337
 cleaned_char_count: 1621
+tfidf_keyword_count: 12
+tfidf_keywords: "viewers | products | mobile | autocad | mobile apps | buying | support | customer | certification | mobile app | collection | apps"
 ---
 
 # Sitemap | Autodesk

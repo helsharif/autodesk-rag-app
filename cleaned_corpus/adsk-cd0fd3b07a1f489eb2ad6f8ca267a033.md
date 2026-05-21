@@ -4,8 +4,17 @@ relative_source_path: "adsk-cd0fd3b07a1f489eb2ad6f8ca267a033.html"
 title: "Fusion Manufacturing Extension | Autodesk"
 cleaned_format: "markdown"
 extraction_method: "beautifulsoup_fallback"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 19
+subheading_count: 18
+headings: "h1: Fusion Manufacturing Extension | Autodesk | h3: What is the Autodesk Fusion Manufacturing Extension? | h2: Why subscribe to the Autodesk Fusion Manufacturing Extension? | h3: Shorten project delivery times | h3: Produce better quality parts | h3: Avoid overpriced software | h2: See how the Manufacturing Extension can help your business | h2: Key capabilities in the Autodesk Fusion Manufacturing Extension | h3: Milling and turning | h3: Automated machining | h3: Toolpath modifications | h3: Part inspection and setup | h3: Associative nesting | h3: Multi-sheet nesting | h3: Integrated 3D printing | h3: 3D print simulation | h2: Leading manufacturers choose Autodesk Fusion | h2: Technical partnerships deliver extra value | h2: Autodesk Fusion Manufacturing Extension FAQs"
+subheadings: "What is the Autodesk Fusion Manufacturing Extension? | Why subscribe to the Autodesk Fusion Manufacturing Extension? | Shorten project delivery times | Produce better quality parts | Avoid overpriced software | See how the Manufacturing Extension can help your business | Key capabilities in the Autodesk Fusion Manufacturing Extension | Milling and turning | Automated machining | Toolpath modifications | Part inspection and setup | Associative nesting | Multi-sheet nesting | Integrated 3D printing | 3D print simulation | Leading manufacturers choose Autodesk Fusion | Technical partnerships deliver extra value | Autodesk Fusion Manufacturing Extension FAQs"
 raw_char_count: 449023
 cleaned_char_count: 7221
+tfidf_keyword_count: 12
+tfidf_keywords: "fusion manufacturing | manufacturing extension | extension | manufacturing | fusion | machining | additive | additive manufacturing | cnc | nesting | cnc machining | 3d printing"
 ---
 
 # Fusion Manufacturing Extension | Autodesk

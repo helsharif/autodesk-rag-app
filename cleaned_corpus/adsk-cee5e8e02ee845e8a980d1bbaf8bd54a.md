@@ -4,8 +4,17 @@ relative_source_path: "adsk-cee5e8e02ee845e8a980d1bbaf8bd54a.html"
 title: "Download FormIt 2023 | FormIt Pro Free Trial | Autodesk Official"
 cleaned_format: "markdown"
 extraction_method: "beautifulsoup_rich_fallback"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 6
+subheading_count: 5
+headings: "h1: Download FormIt 2023 | FormIt Pro Free Trial | Autodesk Official | h2: Start with a sketch. Discover FormIt Pro. | h2: Download FormIt Pro for students | h4: [Get free software for students and educators](https://www.autodesk.com/education/edu-software/overview?sorting=featu... | h4: [Get help accessing student and education software](https://knowledge.autodesk.com/customer-service/account-managemen... | h2: Frequently asked questions (FAQs)"
+subheadings: "Start with a sketch. Discover FormIt Pro. | Download FormIt Pro for students | [Get free software for students and educators](https://www.autodesk.com/education/edu-software/overview?sorting=featu... | [Get help accessing student and education software](https://knowledge.autodesk.com/customer-service/account-managemen... | Frequently asked questions (FAQs)"
 raw_char_count: 118471
 cleaned_char_count: 3691
+tfidf_keyword_count: 12
+tfidf_keywords: "formit | formit pro | trial | pro | download | method | trial period | free | sketch | period | ideas | free trial"
 ---
 
 # Download FormIt 2023 | FormIt Pro Free Trial | Autodesk Official

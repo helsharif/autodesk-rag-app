@@ -4,8 +4,17 @@ relative_source_path: "adsk-dacf5a2fd27e4e99bd67324b57d4ee5f.html"
 title: "Buy Autodesk Software | Get Prices & Buy Online | Official Autodesk Store"
 cleaned_format: "markdown"
 extraction_method: "beautifulsoup_fallback"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 4
+subheading_count: 3
+headings: "h1: Buy Autodesk Software | Get Prices & Buy Online | Official Autodesk Store | h2: Get your free access now! | h3: Frequently Asked Questions | h2: Products A-Z list"
+subheadings: "Get your free access now! | Frequently Asked Questions | Products A-Z list"
 raw_char_count: 985265
 cleaned_char_count: 4913
+tfidf_keyword_count: 12
+tfidf_keywords: "field value | software | value | field | subscription | products | buy | value buy | visit field | software architecture | perpetual licenses | free access"
 ---
 
 # Buy Autodesk Software | Get Prices & Buy Online | Official Autodesk Store

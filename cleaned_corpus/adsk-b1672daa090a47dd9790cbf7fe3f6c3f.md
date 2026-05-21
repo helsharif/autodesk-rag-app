@@ -4,8 +4,17 @@ relative_source_path: "adsk-b1672daa090a47dd9790cbf7fe3f6c3f.html"
 title: "Children's Privacy Statement"
 cleaned_format: "markdown"
 extraction_method: "trafilatura"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 1
+subheading_count: 1
+headings: "h3: Children's Privacy Statement"
+subheadings: "Children's Privacy Statement"
 raw_char_count: 141253
 cleaned_char_count: 2984
+tfidf_keyword_count: 12
+tfidf_keywords: "children | privacy | children privacy | privacy statement | statement | applications | personal data | applicable law | data | personal | law | processing"
 ---
 
 ### Children's Privacy Statement

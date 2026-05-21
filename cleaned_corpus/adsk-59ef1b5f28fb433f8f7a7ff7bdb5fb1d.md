@@ -4,8 +4,17 @@ relative_source_path: "adsk-59ef1b5f28fb433f8f7a7ff7bdb5fb1d.html"
 title: "Autodesk Customer Success Hub"
 cleaned_format: "markdown"
 extraction_method: "trafilatura"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 5
+subheading_count: 3
+headings: "h1: Autodesk Customer Success Hub | h1: Introduction to ShotGrid | h4: Before you start | h4: About the author | h2: Course modules"
+subheadings: "Before you start | About the author | Course modules"
 raw_char_count: 550924
 cleaned_char_count: 4190
+tfidf_keyword_count: 12
+tfidf_keywords: "shotgrid | entity | pages | navigate | page | permission | list | content | learn | course | users | information"
 ---
 
 # Autodesk Customer Success Hub

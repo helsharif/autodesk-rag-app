@@ -4,8 +4,17 @@ relative_source_path: "adsk-376ef7a5dc824957a54e5afa1d9fd1ce.html"
 title: "AutoCAD ObjectARX SDK"
 cleaned_format: "markdown"
 extraction_method: "trafilatura"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 10
+subheading_count: 9
+headings: "h1: AutoCAD ObjectARX SDK | h2: Execute faster drawing operations and gain improved interoperability | h2: System requirements | h3: ObjectARX 2024 | h4: Windows | h4: MacOS | h2: Tutorials | h2: Licensing | h2: FAQ | h2: Community and support"
+subheadings: "Execute faster drawing operations and gain improved interoperability | System requirements | ObjectARX 2024 | Windows | MacOS | Tutorials | Licensing | FAQ | Community and support"
 raw_char_count: 63779
 cleaned_char_count: 2316
+tfidf_keyword_count: 12
+tfidf_keywords: "objectarx | macos | memory | disk space | autocad | disk | recommended | sdk | processor | display | space | graphics"
 ---
 
 # AutoCAD ObjectARX SDK

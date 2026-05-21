@@ -4,8 +4,17 @@ relative_source_path: "adsk-21b0fec19bed4eb3bd8433ea000bfef9.html"
 title: "Assemble BIM Data | Autodesk Construction Cloud"
 cleaned_format: "markdown"
 extraction_method: "trafilatura"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 1
+subheading_count: 0
+headings: "h1: Assemble BIM Data | Autodesk Construction Cloud"
+subheadings: ""
 raw_char_count: 236086
 cleaned_char_count: 2200
+tfidf_keyword_count: 12
+tfidf_keywords: "assemble | model | project | quantities | mckinstry | organize | model objects | cloud-based platform | organize project | construction | cloud-based | time savings"
 ---
 
 # Assemble BIM Data | Autodesk Construction Cloud

@@ -4,8 +4,17 @@ relative_source_path: "adsk-32db6a1edea14ad18fb66c17b3c2139c.html"
 title: "Homepage | Autodesk University"
 cleaned_format: "markdown"
 extraction_method: "trafilatura"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 1
+subheading_count: 0
+headings: "h1: Homepage | Autodesk University"
+subheadings: ""
 raw_char_count: 82966
 cleaned_char_count: 409
+tfidf_keyword_count: 12
+tfidf_keywords: "talks | au 2023 | sessions | best | aps | classes | led | thought | leadership | innovations | featured | on-demand"
 ---
 
 # Homepage | Autodesk University

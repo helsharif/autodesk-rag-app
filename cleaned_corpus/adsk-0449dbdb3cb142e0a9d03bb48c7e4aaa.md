@@ -4,8 +4,17 @@ relative_source_path: "adsk-0449dbdb3cb142e0a9d03bb48c7e4aaa.html"
 title: "Revit Lt Key Features 2022 | Upcoming Advanced Features 2023 | Autodesk"
 cleaned_format: "markdown"
 extraction_method: "trafilatura"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 1
+subheading_count: 0
+headings: "h1: Revit Lt Key Features 2022 | Upcoming Advanced Features 2023 | Autodesk"
+subheadings: ""
 raw_char_count: 160553
 cleaned_char_count: 3296
+tfidf_keyword_count: 12
+tfidf_keywords: "revit lt | schedules | views | video | revit | idea | min | documentation | design | sheets | visibility | parameters"
 ---
 
 # Revit Lt Key Features 2022 | Upcoming Advanced Features 2023 | Autodesk

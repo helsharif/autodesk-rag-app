@@ -4,8 +4,17 @@ relative_source_path: "adsk-5cc583e7f0fa4562b1cc2f50b1cab35b.html"
 title: "Navisworks | Get Prices & Buy Navisworks 2023 | Autodesk"
 cleaned_format: "markdown"
 extraction_method: "trafilatura"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 1
+subheading_count: 0
+headings: "h1: Navisworks | Get Prices & Buy Navisworks 2023 | Autodesk"
+subheadings: ""
 raw_char_count: 424151
 cleaned_char_count: 3921
+tfidf_keyword_count: 12
+tfidf_keywords: "navisworks | navisworks simulate | navisworks manage | subscription | construction | simulate | subscription price | use navisworks | simulate subscription | price | project | model"
 ---
 
 # Navisworks | Get Prices & Buy Navisworks 2023 | Autodesk

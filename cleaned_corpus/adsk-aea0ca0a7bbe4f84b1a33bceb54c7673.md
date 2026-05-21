@@ -4,8 +4,17 @@ relative_source_path: "adsk-aea0ca0a7bbe4f84b1a33bceb54c7673.html"
 title: "Autodesk Options File | Administrator Installation"
 cleaned_format: "markdown"
 extraction_method: "trafilatura"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 20
+subheading_count: 18
+headings: "h1: Autodesk Options File | Administrator Installation | h2: Create an options file | h2: Set a license timeout | h2: Configure license borrowing | h3: Maintain a pool of available licenses | h3: Set the borrowing period | h3: Exclude license borrowing | h3: Include license borrowing | h2: Use package and feature codes | h2: Enter comments in the options file | h2: Define groups | h2: Disable case sensitivity for user and computer names | h2: Reserve licenses | h2: Restrict maximum license use | h2: Exclude license usage | h2: Include license usage | h2: Create a report log | h2: Define product association | h2: Options file example | h1: Company A - Options File # # Last updated: Jan 5, 2021 by John Smith # Sets inactivity timeout for all products to 90..."
+subheadings: "Create an options file | Set a license timeout | Configure license borrowing | Maintain a pool of available licenses | Set the borrowing period | Exclude license borrowing | Include license borrowing | Use package and feature codes | Enter comments in the options file | Define groups | Disable case sensitivity for user and computer names | Reserve licenses | Restrict maximum license use | Exclude license usage | Include license usage | Create a report log | Define product association | Options file example"
 raw_char_count: 147642
 cleaned_char_count: 15452
+tfidf_keyword_count: 12
+tfidf_keywords: "license | reserve | options file | group | file | exclude | licenses | borrowing | multi-user access | options | multi-user | internet"
 ---
 
 # Autodesk Options File | Administrator Installation

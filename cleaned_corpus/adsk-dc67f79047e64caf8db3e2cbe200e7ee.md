@@ -4,8 +4,17 @@ relative_source_path: "adsk-dc67f79047e64caf8db3e2cbe200e7ee.html"
 title: "Autodesk Life | Autodesk"
 cleaned_format: "markdown"
 extraction_method: "beautifulsoup_rich_fallback"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 10
+subheading_count: 9
+headings: "h1: Autodesk Life | Autodesk | h3: Shape the world, shape your future | h3: An inside look at #AutodeskLife | h3: More than just a workplace | h3: Diversity & Inclusion | h3: Autodesk Foundation | h3: Sustainability | h2: Resources | h3: Subheading | h3: Subheading"
+subheadings: "Shape the world, shape your future | An inside look at #AutodeskLife | More than just a workplace | Diversity & Inclusion | Autodesk Foundation | Sustainability | Resources | Subheading | Subheading"
 raw_char_count: 97827
 cleaned_char_count: 3587
+tfidf_keyword_count: 12
+tfidf_keywords: "world | optional | applicants | equitable | reasonable | workplace | culture | diverse | subheading | gender | text link | sustainability"
 ---
 
 # Autodesk Life | Autodesk

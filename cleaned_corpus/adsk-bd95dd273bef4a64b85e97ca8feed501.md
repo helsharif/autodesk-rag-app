@@ -4,8 +4,17 @@ relative_source_path: "adsk-bd95dd273bef4a64b85e97ca8feed501.html"
 title: "Character Generator | 3D Character Creator Software | Autodesk"
 cleaned_format: "markdown"
 extraction_method: "beautifulsoup_fallback"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 6
+subheading_count: 4
+headings: "h1: Character Generator | 3D Character Creator Software | Autodesk | h1: Character Generator is no longer available for purchase as a standalone product | h2: Continued support for Character Generator | h2: Consider moving to these alternate products | h2: Character Generator features | h2: Frequently asked questions"
+subheadings: "Continued support for Character Generator | Consider moving to these alternate products | Character Generator features | Frequently asked questions"
 raw_char_count: 93931
 cleaned_char_count: 2140
+tfidf_keyword_count: 12
+tfidf_keywords: "character | character generator | generator | 3d character | characters | engines | longer available | animation | packages | game | standalone | longer"
 ---
 
 # Character Generator | 3D Character Creator Software | Autodesk

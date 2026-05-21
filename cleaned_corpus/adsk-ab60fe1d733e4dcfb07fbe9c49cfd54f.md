@@ -4,8 +4,17 @@ relative_source_path: "adsk-ab60fe1d733e4dcfb07fbe9c49cfd54f.html"
 title: "CQADI | Highway reconstruction | Autodesk"
 cleaned_format: "markdown"
 extraction_method: "beautifulsoup_rich_fallback"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 10
+subheading_count: 9
+headings: "h1: CQADI | Highway reconstruction | Autodesk | h2: BIM helps deliver multi-layered solution to highway reconstruction project in China | h2: Finding the right solution for multi-layered challenges | h2: Populating a 3D model from scratch | h2: Meeting strict environmental regulations with BIM | h2: Collaboration through the cloud | h2: BIM execution in challenging environment | h2: Key takeaways | h2: BIM FOR CIVIL ENGINEERING | h2: Share this story"
+subheadings: "BIM helps deliver multi-layered solution to highway reconstruction project in China | Finding the right solution for multi-layered challenges | Populating a 3D model from scratch | Meeting strict environmental regulations with BIM | Collaboration through the cloud | BIM execution in challenging environment | Key takeaways | BIM FOR CIVIL ENGINEERING | Share this story"
 raw_char_count: 93029
 cleaned_char_count: 7212
+tfidf_keyword_count: 12
+tfidf_keywords: "project | institute | bim | china | design | reconstruction | architectural design | highway | architectural | civil | traffic | infrastructure"
 ---
 
 # CQADI | Highway reconstruction | Autodesk

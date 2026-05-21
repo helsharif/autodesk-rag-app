@@ -4,8 +4,17 @@ relative_source_path: "adsk-08c8abf1b5fb425db2fd3c1aafe0da82.html"
 title: "Strategies for Business Growth in the Next Normal"
 cleaned_format: "markdown"
 extraction_method: "beautifulsoup_fallback"
+document_language: "en"
+document_language_name: "English"
+document_language_confidence: 1.0
+heading_count: 1
+subheading_count: 0
+headings: "h1: Strategies for Business Growth in the Next Normal"
+subheadings: ""
 raw_char_count: 58656
 cleaned_char_count: 765
+tfidf_keyword_count: 4
+tfidf_keywords: "normal | growth | strategies | business"
 ---
 
 # Strategies for Business Growth in the Next Normal
