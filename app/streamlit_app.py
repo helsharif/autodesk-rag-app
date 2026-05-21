@@ -21,7 +21,16 @@ if str(ROOT_DIR) not in sys.path:
     sys.path.insert(0, str(ROOT_DIR))
 
 from src.agent import AutodeskRAGAgent, NO_ANSWER
-from src.config import COLLECTION_OPTIONS, HYBRID_BACKEND_NAME, OPTION_3_LABEL, get_settings
+from src.config import (
+    AUTODESK_WEB_MODE,
+    COLLECTION_OPTIONS,
+    HYBRID_BACKEND_NAME,
+    LOCAL_ONLY_MODE,
+    OPEN_WEB_MODE,
+    OPTION_1_LABEL,
+    SEARCH_MODE_OPTIONS,
+    get_settings,
+)
 from src.retriever import bm25_index_exists, vectorstore_exists
 
 
@@ -83,7 +92,7 @@ st.markdown(
     unsafe_allow_html=True,
 )
 st.title("Autodesk Agentic RAG")
-st.caption("Hybrid BM25 keyword plus Chroma vector retrieval over an Autodesk corpus, with strict evidence gating and web fallback.")
+st.caption("Hybrid BM25 keyword plus Chroma vector retrieval over an Autodesk corpus, with selectable web-search policy.")
 
 PAGE_OPTIONS = ["Ask", "Settings & Eval", "About the App"]
 EVAL_AUTO_REFRESH_SECONDS = 20
@@ -92,12 +101,14 @@ EVAL_AUTO_REFRESH_SECONDS = 20
 def _init_state() -> None:
     st.session_state.setdefault("selected_page", "Ask")
     st.session_state.setdefault("collection_name", HYBRID_BACKEND_NAME)
+    st.session_state.setdefault("search_mode_label", OPTION_1_LABEL)
+    st.session_state.setdefault("search_mode", LOCAL_ONLY_MODE)
     st.session_state.setdefault("messages", [])
 
 
 @st.cache_resource(show_spinner=False)
-def _agent(collection_name: str):
-    return AutodeskRAGAgent(collection_name=collection_name)
+def _agent(collection_name: str, search_mode: str):
+    return AutodeskRAGAgent(collection_name=collection_name, search_mode=search_mode)
 
 
 @st.cache_data(ttl=60, show_spinner=False)
@@ -106,7 +117,9 @@ def _indexes_ready() -> tuple[bool, bool]:
 
 
 def render_ask() -> None:
-    st.caption(f"Retrieval backend: {OPTION_3_LABEL}")
+    mode_label = st.session_state.get("search_mode_label", OPTION_1_LABEL)
+    st.caption(f"Search mode: {mode_label}")
+    st.caption("Local backend: Docling + Chroma + BM25 Hybrid Search")
     chroma_ready, bm25_ready = _indexes_ready()
     if not chroma_ready or not bm25_ready:
         st.warning("Local Chroma or BM25 indexes are missing. Rebuild with `python scripts/build_retrieval_indexes.py` before expecting grounded answers.")
@@ -124,9 +137,9 @@ def render_ask() -> None:
         st.session_state.messages.append({"role": "user", "content": question})
         try:
             with st.spinner("Routing, retrieving, checking evidence..."):
-                result = _agent(st.session_state.collection_name).answer(question)
-            source_mode = "local documents + web search" if result.used_local and result.used_web else "local documents" if result.used_local else "web search" if result.used_web else "error" if result.answer.startswith("Unable") else "no reliable source"
-            st.session_state.messages.append({"role": "assistant", "content": result.answer or NO_ANSWER, "sources": result.sources, "source_mode": source_mode, "route_reason": result.route_reason, "web_search_attempted": result.web_search_attempted, "web_query": result.web_query, "web_search_error": result.web_search_error})
+                result = _agent(st.session_state.collection_name, st.session_state.search_mode).answer(question)
+            source_mode = _source_mode_label(result.used_local, result.used_web, st.session_state.search_mode)
+            st.session_state.messages.append({"role": "assistant", "content": result.answer or NO_ANSWER, "sources": result.sources, "source_mode": source_mode, "route_reason": result.route_reason, "web_search_attempted": result.web_search_attempted, "web_query": result.web_query, "web_search_error": result.web_search_error, "search_mode_label": mode_label})
         except Exception as exc:
             st.session_state.messages.append({"role": "assistant", "content": f"Unable to answer right now: {exc}", "sources": [], "source_mode": "error"})
 
@@ -136,6 +149,8 @@ def render_ask() -> None:
                 st.markdown(message["content"])
                 if message["role"] == "assistant":
                     st.caption(f"Answer source: {message.get('source_mode', 'unknown')}")
+                    if message.get("search_mode_label"):
+                        st.caption(f"Search mode: {message['search_mode_label']}")
                     if message.get("route_reason"):
                         st.caption(f"Routing note: {message['route_reason']}")
                     if message.get("web_search_attempted"):
@@ -161,19 +176,50 @@ def _exchanges(messages: list[dict]) -> list[list[dict]]:
     return exchanges
 
 
+def _source_mode_label(used_local: bool, used_web: bool, search_mode: str) -> str:
+    if used_local and used_web and search_mode == AUTODESK_WEB_MODE:
+        return "local documents + autodesk.com web search"
+    if used_local and used_web and search_mode == OPEN_WEB_MODE:
+        return "local documents + open web search"
+    if used_local:
+        return "local documents"
+    if used_web and search_mode == AUTODESK_WEB_MODE:
+        return "autodesk.com web search"
+    if used_web and search_mode == OPEN_WEB_MODE:
+        return "open web search"
+    return "no reliable source"
+
+
 def render_settings_eval() -> None:
     settings = get_settings()
     st.subheader("Settings & Eval")
-    selected = st.radio("Retrieval configuration", list(COLLECTION_OPTIONS), index=0, horizontal=False)
+    labels = list(SEARCH_MODE_OPTIONS)
+    current_label = st.session_state.get("search_mode_label", OPTION_1_LABEL)
+    selected = st.radio(
+        "Retrieval configuration",
+        labels,
+        index=labels.index(current_label) if current_label in labels else 0,
+        horizontal=False,
+    )
+    st.session_state.search_mode_label = selected
+    st.session_state.search_mode = SEARCH_MODE_OPTIONS[selected]
     st.session_state.collection_name = COLLECTION_OPTIONS[selected]
-    st.info("Option 3 uses the existing Autodesk Docling Chroma index for dense semantic retrieval and the persisted local BM25 index for keyword retrieval. Results are fused with Reciprocal Rank Fusion, deduplicated, then expanded with same-document neighbors before the strict adequacy gate.")
+    st.info(_mode_explanation(st.session_state.search_mode))
+    st.caption("All three options use the same local Docling + Chroma + BM25 Hybrid Search backend. The radio button controls whether web evidence is disabled, scoped to autodesk.com, or open web.")
     st.caption(f"Context expansion: enabled={settings.context_expansion_enabled}, mode={settings.context_expansion_mode}, neighbor_window=1, max_blocks={settings.context_max_expanded_docs}, max_chars={settings.context_max_chars}.")
+    st.caption(
+        f"Cross-encoder reranker: enabled={settings.reranker_enabled}, "
+        f"model={settings.reranker_model}, top_n={settings.reranker_top_n}."
+    )
 
-    status = _load_json(settings.eval_status_dir / "docling_chroma_bm25_hybrid_status.json")
-    results = _load_json(settings.eval_results_dir / "docling_chroma_bm25_hybrid_results.json")
+    status = _load_json(settings.eval_status_dir / _eval_status_filename(st.session_state.search_mode))
+    results = _load_json(settings.eval_results_dir / _eval_results_filename(st.session_state.search_mode))
     st.divider()
     st.subheader("Evaluation Metrics")
-    st.caption("Saved metrics load from `eval_results/docling_chroma_bm25_hybrid_results.json`. Evaluation runs the fixed 50-question `eval_testset/autodesk_testset.csv` dataset in a background process.")
+    st.caption(
+        f"Saved metrics load from `eval_results/{_eval_results_filename(st.session_state.search_mode)}`. "
+        "Evaluation runs the fixed 50-question `eval_testset/autodesk_testset.csv` dataset in a background process."
+    )
     if results:
         _render_metrics(results)
         button_label = "Re-run Evaluation"
@@ -184,9 +230,42 @@ def render_settings_eval() -> None:
         _render_status(status)
     disabled = bool(status and status.get("status") == "running")
     if st.button(button_label, type="primary", disabled=disabled):
-        _start_eval()
+        _start_eval(st.session_state.search_mode)
         st.success("Evaluation started in the background.")
         st.rerun()
+
+
+def _mode_explanation(search_mode: str) -> str:
+    if search_mode == LOCAL_ONLY_MODE:
+        return (
+            "Option 1: Local Document Search uses only indexed local Autodesk corpus documents. "
+            "The router does not evaluate whether web search is suitable, and web search is disabled."
+        )
+    if search_mode == AUTODESK_WEB_MODE:
+        return (
+            "Option 2: Local Document Search + Autodesk.com uses local documents first and always incorporates "
+            "SerpAPI Google results restricted to autodesk.com pages."
+        )
+    return (
+        "Option 3: Local Document Search + Open Web Search uses local documents first and always incorporates broader "
+        "web search. Open web search is capped at three results to keep latency and noise lower."
+    )
+
+
+def _eval_results_filename(search_mode: str) -> str:
+    if search_mode == AUTODESK_WEB_MODE:
+        return "docling_chroma_bm25_hybrid_autodesk_web_results.json"
+    if search_mode == OPEN_WEB_MODE:
+        return "docling_chroma_bm25_hybrid_open_web_results.json"
+    return "docling_chroma_bm25_hybrid_results.json"
+
+
+def _eval_status_filename(search_mode: str) -> str:
+    if search_mode == AUTODESK_WEB_MODE:
+        return "docling_chroma_bm25_hybrid_autodesk_web_status.json"
+    if search_mode == OPEN_WEB_MODE:
+        return "docling_chroma_bm25_hybrid_open_web_status.json"
+    return "docling_chroma_bm25_hybrid_status.json"
 
 
 def _render_metrics(results: dict) -> None:
@@ -228,7 +307,7 @@ def _render_status(status: dict) -> None:
         st.error(f"Last evaluation failed: {status.get('error', 'Unknown error')}")
 
 
-def _start_eval() -> None:
+def _start_eval(search_mode: str) -> None:
     settings = get_settings()
     settings.eval_status_dir.mkdir(parents=True, exist_ok=True)
     executable = sys.executable
@@ -239,7 +318,18 @@ def _start_eval() -> None:
     kwargs = {"cwd": str(ROOT_DIR), "stdout": subprocess.DEVNULL, "stderr": subprocess.DEVNULL}
     if sys.platform.startswith("win"):
         kwargs["creationflags"] = subprocess.CREATE_NO_WINDOW
-    subprocess.Popen([executable, "-m", "src.evaluation_runner", "--collection-name", HYBRID_BACKEND_NAME], **kwargs)
+    subprocess.Popen(
+        [
+            executable,
+            "-m",
+            "src.evaluation_runner",
+            "--collection-name",
+            HYBRID_BACKEND_NAME,
+            "--search-mode",
+            search_mode,
+        ],
+        **kwargs,
+    )
 
 
 def _load_json(path: Path) -> dict | None:
@@ -259,13 +349,15 @@ def _num(value) -> float | None:
 def render_about() -> None:
     settings = get_settings()
     st.subheader("About the App")
-    st.write("This portfolio app answers Autodesk-related questions with an agentic RAG workflow: a lightweight router classifies the question, local hybrid retrieval searches Chroma and BM25, deterministic neighbor expansion reduces chunk-boundary misses, and a strict adequacy gate refuses unsupported answers.")
-    st.write("Local retrieval stays primary. Web search is used when the router sees current/latest/recent signals or when local evidence is weak. The final answer model receives only supplied excerpts, web snippets, and runtime date context.")
+    st.write("This portfolio app answers Autodesk-related questions with an agentic RAG workflow: local hybrid retrieval searches Chroma and BM25, deterministic neighbor expansion reduces chunk-boundary misses, and a strict adequacy gate refuses unsupported answers.")
+    st.write("The Settings & Eval tab controls the web policy. Option 1 is local-only. Option 2 always adds autodesk.com web evidence. Option 3 always adds open web evidence. The final answer model receives only supplied excerpts, web snippets when enabled, and runtime date context.")
     st.table([
         {"Layer": "Retrieval", "Implementation": "Chroma dense semantic search + BM25 keyword search + Reciprocal Rank Fusion"},
         {"Layer": "Context", "Implementation": "Previous/current/next same-document chunk expansion with budget limits"},
+        {"Layer": "Reranking", "Implementation": "SentenceTransformers CrossEncoder `cross-encoder/ms-marco-MiniLM-L6-v2` after the local adequacy gate"},
         {"Layer": "Generation", "Implementation": f"OpenAI `{settings.openai_model}` with strict source-grounded prompt"},
         {"Layer": "Evaluation", "Implementation": f"50-question golden dataset with five-point LLM judge scoring using `{settings.eval_judge_model}`"},
+        {"Layer": "Web policy", "Implementation": "Autodesk.com mode uses up to 5 web results; open-web mode uses up to 3."},
     ])
     st.info("Portfolio demonstration only. Verify product, pricing, system requirement, and release information directly with Autodesk.")
 

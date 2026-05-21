@@ -10,8 +10,9 @@ from datetime import date
 
 from langchain_core.prompts import ChatPromptTemplate
 
-from src.config import HYBRID_BACKEND_NAME, get_chat_model, get_settings
+from src.config import AUTODESK_WEB_MODE, HYBRID_BACKEND_NAME, LOCAL_ONLY_MODE, OPEN_WEB_MODE, get_chat_model, get_settings
 from src.context_expansion import expand_retrieved_docs
+from src.reranker import rerank_documents
 from src.retriever import RetrievedSource, has_sufficient_retrieval, search_documents
 from src.tools import web_search
 
@@ -43,8 +44,9 @@ class QueryRoute:
 
 
 class AutodeskRAGAgent:
-    def __init__(self, collection_name: str = HYBRID_BACKEND_NAME, llm=None) -> None:
+    def __init__(self, collection_name: str = HYBRID_BACKEND_NAME, search_mode: str = LOCAL_ONLY_MODE, llm=None) -> None:
         self.collection_name = collection_name
+        self.search_mode = search_mode
         self.llm = llm or get_chat_model(temperature=0.0)
         self.router_prompt = ChatPromptTemplate.from_messages(
             [
@@ -75,24 +77,46 @@ class AutodeskRAGAgent:
         local_context = self._format_local_context(docs, sources)
         local_ok = has_sufficient_retrieval(sources)
         local_answerable = self._evidence_is_answerable(question, local_context) if local_ok else False
-        use_web = force_web or route.needs_web or (not local_ok) or (local_ok and not local_answerable)
+        if local_answerable:
+            docs, sources = rerank_documents(question, docs, sources)
+            local_context = self._format_local_context(docs, sources)
+        web_allowed = self.search_mode in {AUTODESK_WEB_MODE, OPEN_WEB_MODE}
+        use_web = web_allowed or force_web
         web_context = ""
         web_error = ""
         web_query = ""
         if use_web:
             web_query = self._web_query(question)
             try:
-                web_context = web_search(web_query)
+                web_context = web_search(web_query, max_results=self._web_result_limit())
             except Exception as exc:
                 web_error = str(exc)
                 logger.warning("Web search failed: %s", exc)
         has_web = bool(web_context.strip()) and "No web search results found" not in web_context
+        web_answerable = self._evidence_is_answerable(question, web_context) if has_web else False
+        web_primary = web_answerable and self._needs_web(question)
 
-        evidence = "\n\n".join(part for part in (local_context if local_answerable else "", web_context if has_web else "") if part.strip())
+        evidence_parts: list[str] = []
+        if web_primary:
+            evidence_parts.append(web_context)
+        else:
+            if local_answerable:
+                evidence_parts.append(local_context)
+            if web_answerable:
+                evidence_parts.append(web_context)
+        evidence = "\n\n".join(evidence_parts)
         if self._is_current_date_question(question):
             evidence = f"Runtime current date: {date.today().strftime('%A, %B %d, %Y')}\n\n{evidence}"
-        if not evidence.strip() or not self._evidence_is_answerable(question, evidence):
-            return AgentResult(NO_ANSWER, [], False, False, [doc.page_content for doc in docs], route.reason, route.needs_web, use_web, web_error, web_query)
+
+        final_answerable = bool(evidence.strip()) and (
+            web_primary
+            or (local_answerable and not web_answerable)
+            or (web_answerable and not local_answerable)
+            or self._evidence_is_answerable(question, evidence)
+        )
+        result_contexts = self._result_contexts(docs, web_context if has_web else "")
+        if not final_answerable:
+            return AgentResult(NO_ANSWER, [], False, False, result_contexts, route.reason, route.needs_web, use_web, web_error, web_query)
 
         response = (self.answer_prompt | self.llm).invoke(
             {
@@ -103,14 +127,24 @@ class AutodeskRAGAgent:
             }
         )
         answer = getattr(response, "content", str(response)).strip() or NO_ANSWER
-        source_labels = self._source_labels(sources) if local_answerable else []
+        source_labels = []
         if has_web:
             source_labels.extend(self._web_source_labels(web_context))
+        if local_answerable:
+            source_labels.extend(self._source_labels(sources))
         if self._is_current_date_question(question):
             source_labels.append("Runtime context: current system date")
-        return AgentResult(answer, source_labels[:8], local_answerable, has_web, [doc.page_content for doc in docs], route.reason, route.needs_web, use_web, web_error, web_query)
+        return AgentResult(answer, source_labels[:8], local_answerable, has_web, result_contexts, route.reason, route.needs_web, use_web, web_error, web_query)
 
     def _route_query(self, question: str) -> QueryRoute:
+        if self.search_mode == LOCAL_ONLY_MODE:
+            return QueryRoute(
+                needs_local=True,
+                needs_web=False,
+                abstain=not self._looks_autodesk_related(question),
+                reason="Local-only mode: web search disabled.",
+            )
+
         fallback = QueryRoute(True, self._needs_web(question), not self._looks_autodesk_related(question), "Keyword fallback route.")
         try:
             response = (self.router_prompt | self.llm).invoke({"question": question})
@@ -168,7 +202,14 @@ class AutodeskRAGAgent:
         return "today" in normalized and "date" in normalized
 
     def _web_query(self, question: str) -> str:
+        if self.search_mode == OPEN_WEB_MODE:
+            return f"Autodesk {question}"
         return f"site:autodesk.com Autodesk {question}"
+
+    def _web_result_limit(self) -> int:
+        if self.search_mode == OPEN_WEB_MODE:
+            return 3
+        return 5
 
     @staticmethod
     def _source_labels(sources: list[RetrievedSource]) -> list[str]:
@@ -177,3 +218,10 @@ class AutodeskRAGAgent:
     @staticmethod
     def _web_source_labels(web_context: str) -> list[str]:
         return [line.strip() for line in web_context.splitlines() if line.startswith("http")]
+
+    @staticmethod
+    def _result_contexts(docs: list, web_context: str = "") -> list[str]:
+        contexts = [doc.page_content for doc in docs]
+        if web_context.strip():
+            contexts.append(web_context)
+        return contexts

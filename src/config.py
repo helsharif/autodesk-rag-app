@@ -12,12 +12,25 @@ from dotenv import load_dotenv
 ROOT_DIR = Path(__file__).resolve().parents[1]
 os.environ.setdefault("ANONYMIZED_TELEMETRY", "False")
 os.environ.setdefault("CHROMA_ANONYMIZED_TELEMETRY", "False")
+os.environ.setdefault("HF_HUB_DISABLE_SYMLINKS_WARNING", "1")
+os.environ.setdefault("HF_HUB_DISABLE_XET", "1")
+os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
 load_dotenv(ROOT_DIR / ".env")
 
 AUTODESK_COLLECTION_NAME = os.getenv("CHROMA_COLLECTION_NAME", "autodesk-rag")
 HYBRID_BACKEND_NAME = "docling_chroma_bm25_hybrid"
-OPTION_3_LABEL = "Option 3: Docling + Chroma + BM25 Hybrid Search"
-COLLECTION_OPTIONS = {OPTION_3_LABEL: HYBRID_BACKEND_NAME}
+LOCAL_ONLY_MODE = "local_only"
+AUTODESK_WEB_MODE = "autodesk_web"
+OPEN_WEB_MODE = "open_web"
+OPTION_1_LABEL = "Option 1: Local Document Search"
+OPTION_2_LABEL = "Option 2: Local Document Search + Autodesk.com"
+OPTION_3_LABEL = "Option 3: Local Document Search + Open Web Search"
+SEARCH_MODE_OPTIONS = {
+    OPTION_1_LABEL: LOCAL_ONLY_MODE,
+    OPTION_2_LABEL: AUTODESK_WEB_MODE,
+    OPTION_3_LABEL: OPEN_WEB_MODE,
+}
+COLLECTION_OPTIONS = {label: HYBRID_BACKEND_NAME for label in SEARCH_MODE_OPTIONS}
 COLLECTION_SLUGS = {HYBRID_BACKEND_NAME: "docling_chroma_bm25_hybrid"}
 
 
@@ -62,6 +75,10 @@ class Settings:
     context_neighbor_window: int = field(default_factory=lambda: _env_int("CONTEXT_NEIGHBOR_WINDOW", "1"))
     context_max_expanded_docs: int = field(default_factory=lambda: _env_int("CONTEXT_MAX_EXPANDED_DOCS", "8"))
     context_max_chars: int = field(default_factory=lambda: _env_int("CONTEXT_MAX_CHARS", "18000"))
+    reranker_enabled: bool = field(default_factory=lambda: _env_bool("RERANKER_ENABLED", "true"))
+    reranker_model: str = field(default_factory=lambda: _env_str("RERANKER_MODEL", "cross-encoder/ms-marco-MiniLM-L6-v2"))
+    reranker_top_n: int = field(default_factory=lambda: _env_int("RERANKER_TOP_N", "5"))
+    reranker_batch_size: int = field(default_factory=lambda: _env_int("RERANKER_BATCH_SIZE", "16"))
     serpapi_api_key: str | None = field(default_factory=lambda: os.getenv("SERPAPI_API_KEY") or None)
     eval_judge_model: str = field(default_factory=lambda: _env_str("EVAL_JUDGE_MODEL", "gpt-5.1"))
     eval_judge_delay_seconds: float = field(default_factory=lambda: _env_float("EVAL_JUDGE_DELAY_SECONDS", "1.0"))
@@ -76,6 +93,9 @@ def get_settings() -> Settings:
         os.environ.setdefault("SERPAPI_API_KEY", settings.serpapi_api_key)
     os.environ.setdefault("ANONYMIZED_TELEMETRY", "False")
     os.environ.setdefault("CHROMA_ANONYMIZED_TELEMETRY", "False")
+    os.environ.setdefault("HF_HUB_DISABLE_SYMLINKS_WARNING", "1")
+    os.environ.setdefault("HF_HUB_DISABLE_XET", "1")
+    os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
     return settings
 
 

@@ -13,16 +13,17 @@ from typing import Any, Callable
 from langchain_core.prompts import ChatPromptTemplate
 
 from src.agent import AutodeskRAGAgent, NO_ANSWER
-from src.config import HYBRID_BACKEND_NAME, get_chat_model, get_settings
+from src.config import HYBRID_BACKEND_NAME, LOCAL_ONLY_MODE, get_chat_model, get_settings
 
 
 def run_evaluation(
     collection_name: str = HYBRID_BACKEND_NAME,
+    search_mode: str = LOCAL_ONLY_MODE,
     progress_callback: Callable[[dict[str, Any]], None] | None = None,
 ) -> dict[str, Any]:
     settings = get_settings()
     rows = _load_testset(settings.eval_testset_path)
-    agent = AutodeskRAGAgent(collection_name=collection_name)
+    agent = AutodeskRAGAgent(collection_name=collection_name, search_mode=search_mode)
     judge = get_chat_model(settings, temperature=0.0, model=settings.eval_judge_model)
     latencies: list[float] = []
     scored_rows: list[dict[str, Any]] = []
@@ -56,20 +57,21 @@ def run_evaluation(
     result_payload = {
         "timestamp_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "evaluation_backend": collection_name,
+        "search_mode": search_mode,
         "question_count": len(rows),
         "metrics": metrics,
         "rows": scored_rows,
         "dataset_name": str(settings.eval_testset_path.relative_to(settings.root_dir)),
     }
-    save_results(result_payload, collection_name)
+    save_results(result_payload, collection_name, search_mode)
     append_eval_results_log(result_payload)
     return result_payload
 
 
-def save_results(payload: dict[str, Any], collection_name: str) -> Path:
+def save_results(payload: dict[str, Any], collection_name: str, search_mode: str = LOCAL_ONLY_MODE) -> Path:
     settings = get_settings()
     settings.eval_results_dir.mkdir(parents=True, exist_ok=True)
-    path = settings.eval_results_dir / "docling_chroma_bm25_hybrid_results.json"
+    path = settings.eval_results_dir / _result_filename(search_mode)
     path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
     return path
 
@@ -82,6 +84,7 @@ def append_eval_results_log(payload: dict[str, Any]) -> None:
     row = {
         "timestamp_utc": payload.get("timestamp_utc"),
         "evaluation_backend": payload.get("evaluation_backend"),
+        "search_mode": payload.get("search_mode"),
         "question_count": payload.get("question_count"),
         "faithfulness": metrics.get("faithfulness"),
         "answer_relevancy": metrics.get("answer_relevancy"),
@@ -158,3 +161,11 @@ def _aggregate(rows: list[dict[str, Any]], latencies: list[float]) -> dict[str, 
     else:
         metrics.update({"average_latency": 0.0, "p50_latency": 0.0, "p99_latency": 0.0})
     return metrics
+
+
+def _result_filename(search_mode: str) -> str:
+    if search_mode == "autodesk_web":
+        return "docling_chroma_bm25_hybrid_autodesk_web_results.json"
+    if search_mode == "open_web":
+        return "docling_chroma_bm25_hybrid_open_web_results.json"
+    return "docling_chroma_bm25_hybrid_results.json"

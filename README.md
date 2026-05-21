@@ -51,16 +51,34 @@ http://localhost:8502
 The interface has three tabs:
 
 - **Ask** — chat with the Autodesk RAG agent.
-- **Settings & Eval** — view the active retrieval configuration and launch background evaluation.
+- **Settings & Eval** — choose the active search mode and launch background evaluation.
 - **About the App** — explain the architecture and guardrails.
 
-The default retrieval backend is **Option 3: Docling + Chroma + BM25 Hybrid Search**. It searches the existing Chroma index at `retrieval_indexes/chroma_autodesk_cleaned_corpus`, searches the BM25 artifacts at `retrieval_indexes/bm25_autodesk_cleaned_corpus`, fuses rankings with Reciprocal Rank Fusion, expands same-document neighboring chunks, runs a strict evidence adequacy gate, and uses SerpAPI web fallback when local evidence is incomplete or freshness is required.
+All three search modes use the same local hybrid retrieval backend: the app searches the existing Chroma index at `retrieval_indexes/chroma_autodesk_cleaned_corpus`, searches the BM25 artifacts at `retrieval_indexes/bm25_autodesk_cleaned_corpus`, fuses rankings with Reciprocal Rank Fusion, expands same-document neighboring chunks, and runs a strict evidence adequacy gate.
+
+After the local adequacy gate passes, the app reranks the expanded local context blocks with the open-source SentenceTransformers cross-encoder `cross-encoder/ms-marco-MiniLM-L6-v2`. This second-stage reranker runs only over the small expanded candidate set and keeps the best `RERANKER_TOP_N` blocks for final answer generation.
+
+The Settings & Eval radio button controls the web policy:
+
+| Option | Label | Behavior |
+|---|---|---|
+| 1 | Local Document Search | Default. Uses only local Autodesk corpus documents. The lightweight router does not assess whether web search is suitable, and web search is disabled. |
+| 2 | Local Document Search + Autodesk.com | Uses local documents and always incorporates SerpAPI Google results restricted to `autodesk.com/*` pages. This mode keeps web evidence official-source focused. |
+| 3 | Local Document Search + Open Web Search | Uses local documents and always incorporates open web search results. Open-web retrieval is capped at 3 results to reduce latency and noise. |
+
+For Option 2, web search uses up to 5 `autodesk.com` results. For Option 3, open web search uses up to 3 results. Local document retrieval remains the primary evidence source in every mode.
+
+Option 3 is useful when an answer may require broader web evidence, but it is less authoritative than Option 2 because open-web results can mix official Autodesk pages with third-party or stale pages. For current/latest questions, the adequacy gate checks web evidence separately; if the web evidence independently contains the exact current fact, it is allowed to override older local corpus evidence rather than letting stale local context cause a false refusal. Option 2 remains the preferred mode for official Autodesk product/version/pricing answers.
 
 Evaluation uses the fixed dataset at `eval_testset/autodesk_testset.csv` and persists results under:
 
 ```text
 eval_results/docling_chroma_bm25_hybrid_results.json
+eval_results/docling_chroma_bm25_hybrid_autodesk_web_results.json
+eval_results/docling_chroma_bm25_hybrid_open_web_results.json
 eval_status/docling_chroma_bm25_hybrid_status.json
+eval_status/docling_chroma_bm25_hybrid_autodesk_web_status.json
+eval_status/docling_chroma_bm25_hybrid_open_web_status.json
 eval_results/eval_results_log.csv
 ```
 
@@ -222,6 +240,17 @@ CHUNK_OVERLAP=500
 RETRIEVER_K=10
 MIN_RELEVANCE_SCORE=0.30
 
+CONTEXT_EXPANSION_ENABLED=true
+CONTEXT_EXPANSION_MODE=neighbors
+CONTEXT_NEIGHBOR_WINDOW=1
+CONTEXT_MAX_EXPANDED_DOCS=8
+CONTEXT_MAX_CHARS=18000
+
+RERANKER_ENABLED=true
+RERANKER_MODEL=cross-encoder/ms-marco-MiniLM-L6-v2
+RERANKER_TOP_N=5
+RERANKER_BATCH_SIZE=16
+
 DOCLING_ACCELERATOR_DEVICE=cuda
 DOCLING_NUM_THREADS=4
 DOCLING_DO_OCR=false
@@ -258,6 +287,22 @@ BM25 is useful for exact Autodesk terminology, product names, API names, error c
 ### Hybrid Retrieval
 
 Hybrid retrieval combines dense vector results and BM25 results, preferably using reciprocal rank fusion (RRF). This follows the Cobb County RAG lesson that BM25 often catches exact technical terms that embeddings can miss, while dense retrieval improves semantic recall.
+
+### Cross-Encoder Reranking
+
+After retrieval, deterministic context expansion, and the local adequacy gate, the app reranks local evidence with `cross-encoder/ms-marco-MiniLM-L6-v2` from the `sentence-transformers` library. The reranker scores `(query, passage)` pairs and sorts the expanded local context blocks by cross-encoder relevance before final generation.
+
+This is a second-stage reranker, not a retriever. Chroma and BM25 still find the initial candidate set; Reciprocal Rank Fusion still combines dense and lexical rankings; neighbor expansion still protects chunk-boundary context. The cross-encoder then selects the strongest local evidence blocks from that small candidate set.
+
+### Runtime Search Modes
+
+The Streamlit app exposes three runtime search modes:
+
+- **Option 1: Local Document Search** — local Chroma + BM25 only. This is the default and fastest mode.
+- **Option 2: Local Document Search + Autodesk.com** — local Chroma + BM25 plus official Autodesk web results on every query.
+- **Option 3: Local Document Search + Open Web Search** — local Chroma + BM25 plus capped open-web results on every query.
+
+The same strict answer-generation rules apply in all modes: every factual claim must be supported by supplied local excerpts, supplied web snippets, or runtime context. If the supplied evidence is insufficient, the app returns the fixed no-answer response.
 
 ## Docling Chunking
 
@@ -402,10 +447,10 @@ Based on lessons from the Cobb County RAG app, the proposed system includes:
   - Reciprocal rank fusion or similar score/rank fusion.
 - Configurable retrieval depth using `RETRIEVER_K`.
 - Minimum relevance filtering using `MIN_RELEVANCE_SCORE`.
-- Optional re-ranking.
+- Cross-encoder re-ranking with `cross-encoder/ms-marco-MiniLM-L6-v2`.
 - Strict evidence checking and guardrails.
 - Grounded answer generation using OpenAI model settings from `.env`.
-- A separate web-search-only option limited to Autodesk domain websites, if needed.
+- Three runtime search modes: local-only, local plus `autodesk.com`, and local plus capped open-web retrieval.
 
 ## Evaluation And Monitoring
 
