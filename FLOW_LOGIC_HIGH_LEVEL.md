@@ -298,10 +298,8 @@ flowchart TD
     C --> D["Load 50-question golden dataset"]
     D --> E["Run selected RAG mode"]
     E --> F["Send experiment to LangSmith"]
-    F --> G["Judge faithfulness, relevance, precision, recall"]
-    E --> H["Measure latency"]
+    F --> G["Judge faithfulness, relevance, precision, & recall. Measure latency"]
     G --> I["Save eval_results JSON"]
-    H --> I
     I --> J["Dashboard refreshes progress"]
     J --> K["Show metric cards and full results table"]
 ```
