@@ -84,6 +84,22 @@ eval_results/eval_results_log.csv
 
 When evaluation is launched from Settings & Eval, the app now creates or reuses a LangSmith dataset named from the golden dataset hash, runs the selected search mode as a LangSmith experiment, applies LLM-as-judge evaluators for faithfulness, answer relevance, context precision, and context recall, and then caches the resulting scores locally for the Streamlit dashboard. The dashboard status file is updated during the background run so progress can be refreshed while the 50 questions are being answered and scored.
 
+## Results & Performance
+
+All three search modes were evaluated against the 50-question golden dataset in `eval_testset/autodesk_testset.csv`. The saved result JSON files in `eval_results/` report quality metrics on a 0.00-1.00 scale and latency in seconds.
+
+| Option | Search Mode | Faithfulness | Answer Relevance | Context Precision | Context Recall | Avg Latency | P50 Latency | P99 Latency |
+|---|---|---:|---:|---:|---:|---:|---:|---:|
+| 1 | Local Document Search | 0.91 | 0.66 | 0.72 | 0.58 | 6.31s | 6.55s | 15.11s |
+| 2 | Local Document Search + Autodesk.com | 0.87 | 0.85 | 0.81 | 0.74 | 12.99s | 12.43s | 22.87s |
+| 3 | Local Document Search + Open Web Search | 0.84 | 0.78 | 0.86 | 0.62 | 14.11s | 12.34s | 73.17s |
+
+Option 2 is the strongest overall performer. It has the best answer relevance and context recall, while maintaining solid faithfulness and context precision. The official Autodesk.com web evidence appears to help the app answer current product, plan, version, and subscription questions more completely than local-only retrieval, without introducing as much authority risk as open-web search.
+
+Option 1 is the fastest and has the highest faithfulness, which makes sense because it is constrained to local indexed documents. Its weaker recall and answer relevance show the tradeoff: local-only evidence can be incomplete or stale for questions that benefit from current Autodesk web verification.
+
+Option 3 has the highest context precision, but it is slower and has a much worse P99 latency. Open-web search can retrieve useful corroborating snippets, but it is less predictable than Autodesk.com-restricted search and can introduce third-party, stale, or less authoritative evidence. Based on these results, Option 2 is the preferred default for portfolio demonstration and review, while Option 1 remains useful as a fast local baseline and Option 3 is best treated as an exploratory broader-web mode.
+
 The `example_app/` folder is reference material only. The production app code for this project is under `app/` and `src/`.
 
 ### 1. Corpus Cleaning
