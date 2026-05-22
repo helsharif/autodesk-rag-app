@@ -10,6 +10,8 @@ short_description: Evidence-grounded Autodesk answers with hybrid RAG
 ---
 # Autodesk Agentic RAG App
 
+**Live demo:** [Autodesk RAG Assistant on Hugging Face Spaces](https://huggingface.co/spaces/helsharif/autodesk-rag-assistant)
+
 ![Autodesk Agentic RAG application flow](figures/Infographic%20Logic%20Final.png)
 
 This repository contains a completed retrieval-augmented generation application for answering Autodesk product and workflow questions with grounded evidence. The app cleans a raw Autodesk HTML corpus, builds local dense and lexical retrieval indexes, optionally adds web evidence, reranks candidate evidence, checks whether the evidence is sufficient, and then returns a concise sourced answer or a conservative no-answer response.
@@ -495,6 +497,10 @@ retrieval_indexes/bm25_autodesk_cleaned_corpus/
 ```
 
 ## Deployment
+
+The live demo is deployed on Hugging Face Spaces:
+
+[https://huggingface.co/spaces/helsharif/autodesk-rag-assistant](https://huggingface.co/spaces/helsharif/autodesk-rag-assistant)
 
 The app is configured for Hugging Face Spaces using Docker. The root `Dockerfile` installs `requirements.txt`, copies the application into `/app`, exposes port `7860`, and starts:
 
