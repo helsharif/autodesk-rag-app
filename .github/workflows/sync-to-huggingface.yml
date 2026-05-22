@@ -57,4 +57,4 @@ jobs:
           huggingface_repo_id: helsharif/autodesk-rag-assistant
           repo_type: space
           hf_token: ${{ secrets.HF_TOKEN }}
-          source_dir: hf_space
+          subdirectory: hf_space
