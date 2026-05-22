@@ -486,4 +486,12 @@ retrieval_indexes/bm25_autodesk_cleaned_corpus/
 
 ## Deployment
 
-The app is designed for Streamlit Community Cloud with a private GitHub repository and optional password protection. Supabase can be used as durable monitoring storage for hosted demos.
+The app is configured for Hugging Face Spaces using Docker. The root `Dockerfile` installs `requirements.txt`, copies the application into `/app`, exposes port `7860`, and starts:
+
+```bash
+streamlit run app/streamlit_app.py --server.address=0.0.0.0 --server.port=7860
+```
+
+For Hugging Face deployment, create a Docker Space and configure required values such as `OPENAI_API_KEY`, `SERPAPI_API_KEY`, `LANGSMITH_API_KEY`, `SUPABASE_URL`, and `SUPABASE_KEY` as Space secrets. Do not commit `.env` or local secret files. Supabase can be used as durable monitoring storage for hosted demos.
+
+The `.dockerignore` file excludes local secrets, raw corpus HTML, notebooks checkpoints, temporary files, and other local-only artifacts from the Docker build context.
