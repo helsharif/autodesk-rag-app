@@ -248,6 +248,8 @@ EMBEDDING_PROVIDER=openai
 
 OPENAI_MODEL=gpt-4.1-mini
 OPENAI_EMBEDDING_MODEL=text-embedding-3-small
+OPENAI_INPUT_COST_PER_1M=
+OPENAI_OUTPUT_COST_PER_1M=
 
 EMBEDDING_BATCH_SIZE=32
 EMBEDDING_BATCH_DELAY_SECONDS=3.0
@@ -284,9 +286,40 @@ DOCLING_MAX_PAGES=250
 DOCLING_PAGE_CHUNK_SIZE=30
 DOCLING_PAGE_OVERLAP=5
 DOCLING_USE_HYBRID_CHUNKER=false
+
+SUPABASE_URL=
+SUPABASE_KEY=
+MONITORING_ADMIN_PASSWORD=
 ```
 
 The indexing workflow should respect these values before falling back to defaults.
+
+## Runtime Monitoring
+
+The app can optionally log runtime interactions to Supabase for hosted monitoring. Each RAG request records the full submitted question, generated response, anonymous session/request IDs, selected search policy, routing decision, local/web usage, web fallback details, answerability/no-answer outcome, source count, retrieved context size, top source names and scores, pipeline latency, model names, token/cost metadata when available, success/error status, and LangSmith project metadata.
+
+The Streamlit Monitoring tab provides a lightweight production-observability view over those rows:
+
+- Summary metrics show total logged questions, average/P50/P99 latency, no-answer rate, web fallback rate, adequacy pass rate, error rate, average source count, average tokens, and total estimated cost when token/cost data exists. These metrics help separate answer-quality symptoms, retrieval behavior, operational reliability, and cost trends.
+- Backend usage and web-usage donut charts show how often users exercise local-only search, Autodesk.com-assisted search, open-web search, and web-backed responses. This helps validate that the selectable retrieval policies are being used as expected.
+- The Top Source Documents table ranks the most frequently surfaced source titles. This helps identify which documents are carrying the demo, whether source diversity looks reasonable, and which content might deserve closer review.
+- The Recent Interactions table shows the latest logged requests with retrieval backend, routing decision, web use, adequacy outcome, no-answer flag, source count, total latency, success status, question, generated response, and error type. This is useful for debugging individual responses without leaving the app.
+- Latency diagnostics show average time by RAG pipeline stage and total latency over time. This makes it easier to see whether routing, retrieval, context expansion, adequacy checks, web search, or generation are the dominant contributors to response time.
+
+This is a portfolio proof-of-concept and logs full questions and generated responses. Users should not enter sensitive, private, or confidential information.
+
+Current monitoring screenshots and metrics may be driven by synthetically generated queries, so the dashboard is intended to demonstrate instrumentation and observability rather than draw conclusions from the current values.
+
+Supabase local file persistence is not required. Streamlit Community Cloud can use Supabase as the durable monitoring store.
+
+Optional monitoring environment variables:
+
+```text
+SUPABASE_URL=<your Supabase project URL>
+SUPABASE_KEY=<server-side Supabase service role key>
+MONITORING_ADMIN_PASSWORD=<optional password for clearing logs from the Monitoring tab>
+APP_ENVIRONMENT=streamlit
+```
 
 ## Embedding And Retrieval Design
 

@@ -57,3 +57,6 @@ transformers>=4.49,<5.0
 
 # Tokenizer backend used by Transformers and embedding models.
 tokenizers>=0.21,<0.22
+
+# Supabase for monitoring.
+supabase
