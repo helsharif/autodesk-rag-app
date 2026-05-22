@@ -1,0 +1,60 @@
+name: Sync to Hugging Face Space
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  sync-to-huggingface:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout private GitHub repo
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: Prepare Hugging Face Space folder
+        run: |
+          mkdir -p hf_space
+
+          cp Dockerfile hf_space/Dockerfile
+          cp requirements.txt hf_space/requirements.txt
+
+          cp -r app hf_space/app
+          cp -r src hf_space/src || true
+          cp -r eval_results hf_space/eval_results || true
+          cp autodesk_testset.csv hf_space/autodesk_testset.csv || true
+          cp -r retrieval_indexes hf_space/retrieval_indexes || true
+          cp -r .streamlit hf_space/.streamlit || true
+
+          rm -f hf_space/.env
+          rm -f hf_space/app/.env
+
+          cat > hf_space/README.md <<'EOF'
+          ---
+          title: Autodesk RAG Assistant
+          emoji: 🧠
+          colorFrom: blue
+          colorTo: indigo
+          sdk: docker
+          pinned: false
+          ---
+
+          # Autodesk RAG Assistant
+
+          Streamlit demo for the Autodesk RAG application. Developed by Husayn El Sharif.
+
+          The source repository is private. This Space contains the deployment version of the app.
+          EOF
+
+      - name: Sync to Hugging Face Space
+        uses: huggingface/hub-sync@main
+        with:
+          github_repo_id: helsharif/autodesk-rag-app
+          huggingface_repo_id: helsharif/autodesk-rag-assistant
+          repo_type: space
+          hf_token: ${{ secrets.HF_TOKEN }}
+          source_dir: hf_space
