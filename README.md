@@ -1,3 +1,13 @@
+---
+title: Autodesk RAG Assistant
+emoji: 🔎
+colorFrom: blue
+colorTo: indigo
+sdk: docker
+app_port: 7860
+pinned: false
+short_description: Evidence-grounded Autodesk answers with hybrid RAG
+---
 # Autodesk Agentic RAG App
 
 ![Autodesk Agentic RAG application flow](figures/Infographic%20Logic%20Final.png)
