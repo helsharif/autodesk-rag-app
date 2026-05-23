@@ -196,6 +196,12 @@ st.caption("Hybrid BM25 keyword plus Chroma vector retrieval over an Autodesk co
 PAGE_OPTIONS = ["Ask", "Settings & Eval", "Monitoring", "About the App"]
 EVAL_AUTO_REFRESH_SECONDS = 20
 NO_ANSWER_TEXT = "I could not find a reliable answer in the available documents or web sources."
+BACKEND_LABELS = {
+    "docling_chroma_bm25_hybrid_local_only": "Local only",
+    "docling_chroma_bm25_hybrid_autodesk_web": "Local + Autodesk.com",
+    "docling_chroma_bm25_hybrid_open_web": "Local + open web",
+    "docling_chroma_bm25_hybrid": "Local only",
+}
 
 
 def get_query_param(name: str, default: str) -> str:
@@ -985,7 +991,12 @@ def _filter_monitoring_frame(df):
                 ]
 
         backends = sorted(str(value) for value in filtered.get("retrieval_backend", pd.Series(dtype=str)).dropna().unique())
-        backend_choice = cols[1].selectbox("Backend", ["All", *backends])
+        backend_options = ["All", *backends]
+        backend_choice = cols[1].selectbox(
+            "Backend",
+            backend_options,
+            format_func=lambda value: BACKEND_LABELS.get(value, value),
+        )
         if backend_choice != "All":
             filtered = filtered[filtered["retrieval_backend"].astype(str) == backend_choice]
 
@@ -1056,12 +1067,7 @@ def _render_monitoring_charts(df) -> None:
             backend_series.fillna("unknown").value_counts(),
             "Backend",
             "Requests",
-            label_map={
-                "docling_chroma_bm25_hybrid_local_only": "Local only",
-                "docling_chroma_bm25_hybrid_autodesk_web": "Local + Autodesk.com",
-                "docling_chroma_bm25_hybrid_open_web": "Local + open web",
-                "docling_chroma_bm25_hybrid": "Local only",
-            },
+            label_map=BACKEND_LABELS,
             color_map={
                 "Local only": "#ef4444",
                 "Local + Autodesk.com": "#8b5cf6",
