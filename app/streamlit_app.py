@@ -202,6 +202,12 @@ BACKEND_LABELS = {
     "docling_chroma_bm25_hybrid_open_web": "Local + open web",
     "docling_chroma_bm25_hybrid": "Local only",
 }
+BACKEND_FILTER_ORDER = [
+    "docling_chroma_bm25_hybrid_local_only",
+    "docling_chroma_bm25_hybrid",
+    "docling_chroma_bm25_hybrid_autodesk_web",
+    "docling_chroma_bm25_hybrid_open_web",
+]
 
 
 def get_query_param(name: str, default: str) -> str:
@@ -990,8 +996,10 @@ def _filter_monitoring_frame(df):
                     & (filtered["created_at"].dt.date <= end_date)
                 ]
 
-        backends = sorted(str(value) for value in filtered.get("retrieval_backend", pd.Series(dtype=str)).dropna().unique())
-        backend_options = ["All", *backends]
+        backends = {str(value) for value in filtered.get("retrieval_backend", pd.Series(dtype=str)).dropna().unique()}
+        ordered_backends = [backend for backend in BACKEND_FILTER_ORDER if backend in backends]
+        ordered_backends.extend(sorted(backends - set(ordered_backends)))
+        backend_options = ["All", *ordered_backends]
         backend_choice = cols[1].selectbox(
             "Backend",
             backend_options,
