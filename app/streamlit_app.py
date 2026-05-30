@@ -1406,7 +1406,10 @@ def render_about() -> None:
     st.subheader("Runtime Flow")
     st.write(
         "A user question enters the Ask tab with one of three search modes selected. All modes use the same local "
-        "Docling + Chroma + BM25 hybrid retrieval backbone. Option 1 stays local-only, Option 2 adds official Autodesk.com "
+        "Docling + Chroma + BM25 hybrid retrieval backbone. Before routing, a deterministic security screen blocks "
+        "obvious prompt-injection, prompt-reveal, secret-exfiltration, and unsafe security-abuse attempts. Search-oriented "
+        "steps use a sanitized retrieval query, while the original question remains available for answer semantics. "
+        "Option 1 stays local-only, Option 2 adds official Autodesk.com "
         "web evidence, and Option 3 adds capped open-web evidence. The agent also detects compare/contrast and "
         "product-selection questions, then improves local retrieval with focused product and comparison subqueries that run in parallel. "
         "Local chunks and web snippets are reranked together, then a strict adequacy gate checks whether the supplied "
@@ -1424,7 +1427,8 @@ def render_about() -> None:
     st.table(
         [
             {"Stage": "Question intake", "What happens": "Streamlit captures the user question and active search mode."},
-            {"Stage": "Routing and planning", "What happens": "The router applies Autodesk/web policy. Compare/contrast questions trigger focused local subqueries for each mentioned product and direct comparison evidence."},
+            {"Stage": "Security screening", "What happens": "Deterministic checks block obvious prompt injection, hidden-prompt or secret exfiltration, and unsafe cyber/security abuse before the LLM router."},
+            {"Stage": "Routing and planning", "What happens": "The router applies Autodesk/web policy. A sanitized retrieval query is used for search, and compare/contrast questions trigger focused local subqueries for each mentioned product and direct comparison evidence."},
             {"Stage": "Local retrieval", "What happens": f"Chroma semantic search and BM25 keyword search run in parallel, then weighted RRF combines them with {settings.hybrid_vector_weight:.2f} vector / {settings.hybrid_bm25_weight:.2f} BM25 weighting. Compare subqueries are also retrieved in parallel."},
             {"Stage": "Comparison balancing", "What happens": "When comparison mode is active, retrieved chunks are deduplicated and selected to keep evidence balanced across the compared products."},
             {"Stage": "Context expansion", "What happens": "Neighbor chunks from the same source document are added within the context budget to reduce chunk-boundary misses."},
@@ -1438,22 +1442,25 @@ def render_about() -> None:
     st.subheader("Flowchart")
     st.write(
         "The flowchart below is the reviewer-friendly version of the runtime pipeline. It shows the three search modes "
-        "branching early, compare/contrast planning improving local evidence retrieval when needed, and all evidence "
+        "branching after deterministic security screening, compare/contrast planning improving local evidence retrieval when needed, and all evidence "
         "converging around the same quality-control layer. The key idea is that neither focused comparison retrieval nor "
-        "web search bypasses the RAG discipline: evidence blocks still compete in the reranker and must pass the same "
+        "web search bypasses the RAG discipline: user text and evidence are treated as untrusted data, evidence blocks still compete in the reranker and must pass the same "
         "adequacy gate before generation."
     )
     _render_mermaid(
         """
 flowchart TD
     A["User asks Autodesk question"] --> B["Streamlit app"]
-    B --> C["Selected search mode"]
+    B --> SEC["Deterministic security screen"]
+    SEC -->|Blocked| N["Fixed no-answer response"]
+    SEC -->|Allowed| SAN["Sanitized retrieval query"]
+    SAN --> C["Selected search mode"]
 
     C --> D1["Option 1: Local only"]
     C --> D2["Option 2: Local + Autodesk.com"]
     C --> D3["Option 3: Local + open web"]
 
-    D1 --> P["Router and compare/contrast detector"]
+    D1 --> P["Security-aware router and compare/contrast detector"]
     D2 --> P
     D3 --> P
 

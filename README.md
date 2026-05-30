@@ -16,6 +16,8 @@ short_description: Evidence-grounded Autodesk answers with hybrid RAG
 
 This repository contains a completed retrieval-augmented generation application for answering Autodesk product and workflow questions with grounded evidence. The app cleans a raw Autodesk HTML corpus, builds local dense and lexical retrieval indexes, optionally adds web evidence, reranks candidate evidence, checks whether the evidence is sufficient, and then returns a concise sourced answer or a conservative no-answer response.
 
+The runtime path includes prompt-injection hardening: the initial router treats the user query as untrusted data, a deterministic security screen blocks obvious jailbreak, prompt-reveal, secret-exfiltration, and unsafe cyber requests before the router LLM, and retrieval/web search use a sanitized retrieval query so malicious instruction text does not steer search. Retrieved local excerpts and web snippets are also treated as untrusted evidence; they can support facts, but they cannot override routing, grounding, citation, or answer-generation rules.
+
 The production application is a Streamlit app in `app/streamlit_app.py`. The core RAG logic lives in `src/`, with reproducible corpus cleaning, indexing, evaluation, and monitoring artifacts included for reviewers.
 
 ## Reviewer Guide
@@ -48,6 +50,8 @@ All modes use the same local retrieval backbone:
 - BM25 keyword search over chunk text plus enriched metadata.
 - Weighted reciprocal rank fusion to combine dense and lexical rankings.
 - Per-source caps to prevent one document from dominating the candidate set.
+- Deterministic security screening before the LLM router.
+- Retrieval-query sanitization for local search, compare/contrast planning, web query construction, and reranking.
 - Compare/contrast query planning that extracts mentioned products, retrieves focused subqueries in parallel, deduplicates chunks, and balances context across the compared entities.
 - Same-document neighbor expansion to restore chunk-boundary context.
 - Cross-encoder reranking with `cross-encoder/ms-marco-MiniLM-L6-v2`.

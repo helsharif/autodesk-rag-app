@@ -22,6 +22,8 @@ I could not find a reliable answer in the available documents or web sources.
 
 All three options use the same local retrieval backend:
 
+- Deterministic security screening before any LLM router call
+- Retrieval-query sanitization for local retrieval, compare/contrast planning, web query construction, and reranking
 - Chroma dense vector search
 - BM25 lexical search
 - Weighted Reciprocal Rank Fusion
@@ -56,7 +58,17 @@ All three options use the same local retrieval backend:
 - The app displays newest conversations above older conversations.
 - The app passes the question and selected search mode to the RAG agent.
 
-### Step 4: Search Mode Policy Is Applied
+### Step 4: Security Screen and Retrieval Sanitization
+
+- The agent treats the user query as untrusted data.
+- A deterministic security screen runs before local-only routing and before the LLM router.
+- Obvious prompt-injection, jailbreak, prompt-reveal, secret-exfiltration, source/config-exfiltration, and unsafe cyber/security abuse requests fail closed with the fixed no-answer response.
+- Normal Autodesk questions that mention harmless terms such as `instructions`, `steps`, or `commands` are not blocked.
+- The agent creates a sanitized retrieval query that removes obvious prompt-injection phrases while preserving the Autodesk information need.
+- Local retrieval, compare/contrast planning, web query construction, and reranking use the sanitized retrieval query. The original question remains available for routing semantics, adequacy checking, and final answer generation.
+- Security-block logging records a concise reason and a truncated, redacted query preview only.
+
+### Step 5: Search Mode Policy Is Applied
 
 Option 1:
 
@@ -84,7 +96,7 @@ Option 3:
 
 Local retrieval runs in every option.
 
-Before local retrieval, the agent checks whether the user question is a compare/contrast, product-selection, difference, or `X vs Y` style query. This branch is deterministic and lives in `src/agent.py`; it preserves the normal router behavior for non-comparison questions.
+Before local retrieval, the agent sanitizes the retrieval query and checks whether the sanitized query is a compare/contrast, product-selection, difference, or `X vs Y` style query. This branch is deterministic and lives in `src/agent.py`; it preserves the normal router behavior for non-comparison questions.
 
 Compare/contrast detection includes patterns such as:
 
@@ -101,10 +113,10 @@ Compare/contrast detection includes patterns such as:
 
 If a compare/contrast query is detected:
 
-- The agent extracts product or entity names from the user query without hardcoding a specific product pair.
-- The original user query remains part of the retrieval strategy.
+- The agent extracts product or entity names from the sanitized retrieval query without hardcoding a specific product pair.
+- The sanitized user query remains part of the retrieval strategy.
 - Up to four focused retrieval subqueries are generated for product-specific evidence, direct comparison evidence, and comparison dimensions such as use cases, workflows, industries, features, interoperability, BIM/CAD differences, 2D/3D modeling, design documentation, collaboration, and target users.
-- The original question and focused subqueries are retrieved separately and in parallel through the existing local hybrid Chroma plus BM25 flow.
+- The sanitized retrieval query and focused subqueries are retrieved separately and in parallel through the existing local hybrid Chroma plus BM25 flow.
 - Retrieved local chunks are deduplicated before final local context selection.
 - Context selection prefers balance across the compared products so one product's highest-scoring pages do not dominate the evidence passed downstream.
 
@@ -151,7 +163,7 @@ The vector-heavy weighting helps reduce cases where BM25 over-rewards title keyw
 - Duplicate chunks are removed.
 - The fused list preserves high-quality semantic matches while allowing strong lexical matches to surface.
 - The final local candidate list is capped before context expansion.
-- In compare/contrast mode, this retrieval process runs separately and in parallel for the original question and each focused subquery, then local candidates are deduplicated and balanced by mentioned product/entity where possible.
+- In compare/contrast mode, this retrieval process runs separately and in parallel for the sanitized retrieval query and each focused subquery, then local candidates are deduplicated and balanced by mentioned product/entity where possible.
 
 ## Deterministic Context Expansion
 
@@ -202,6 +214,7 @@ Web evidence is controlled by the selected option.
 
 - SerpAPI Google Search runs for every question.
 - Results are restricted to Autodesk.com pages.
+- The query is composed as `site:autodesk.com Autodesk {sanitized retrieval query}`.
 - Up to 5 Autodesk.com web results are used.
 - Web snippets and URLs are converted into evidence blocks.
 - Official Autodesk web evidence can help answer current, latest, pricing, plan, version, or support questions.
@@ -210,6 +223,7 @@ Web evidence is controlled by the selected option.
 
 - SerpAPI Google Search runs for every question.
 - Results are not restricted to Autodesk.com.
+- The query is composed as `Autodesk {sanitized retrieval query}`.
 - Open-web results are capped at 3 to reduce latency and noise.
 - Snippets and URLs are converted into evidence blocks.
 - The adequacy gate may reject an answer if the evidence is too thin, stale, third-party, or not explicit enough.
@@ -249,18 +263,22 @@ The adequacy gate is a strict evidence sufficiency checker. It does not answer t
 
 Current order:
 
-1. Apply the router and selected web policy.
-2. Detect compare/contrast intent when present.
-3. Retrieve local candidates, using parallel focused subquery retrieval for compare/contrast questions.
-4. Expand same-document local neighbors.
-5. Add web snippets if Option 2 or Option 3 is selected.
-6. Rerank all evidence blocks with the cross-encoder.
-7. Run the adequacy gate on the best reranked evidence.
-8. Generate an answer only if the gate finds sufficient evidence.
+1. Run deterministic security screening before the LLM router.
+2. Apply the router and selected web policy.
+3. Build a sanitized retrieval query for search-oriented steps.
+4. Detect compare/contrast intent when present.
+5. Retrieve local candidates, using parallel focused subquery retrieval for compare/contrast questions.
+6. Expand same-document local neighbors.
+7. Add web snippets if Option 2 or Option 3 is selected.
+8. Rerank all evidence blocks with the cross-encoder.
+9. Run the adequacy gate on the best reranked evidence.
+10. Generate an answer only if the gate finds sufficient evidence.
 
 Gate behavior:
 
 - Uses only supplied evidence.
+- Treats retrieved local excerpts and web snippets as untrusted evidence.
+- Ignores any instruction-like text found inside retrieved evidence.
 - Does not use memory, prior turns, outside knowledge, or likely values.
 - For numeric, date, fee, version, plan, procedural, or current-information questions, it expects the exact fact to appear in evidence.
 - For broad descriptive questions, it can accept concise context that directly describes the requested product, service, or plan.

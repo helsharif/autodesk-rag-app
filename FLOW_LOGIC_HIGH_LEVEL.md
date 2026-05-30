@@ -10,9 +10,9 @@ Autodesk Agentic RAG: Evidence-Grounded Answers With Three Search Modes
 
 ## One-Sentence Summary
 
-The app answers Autodesk product questions by retrieving local Autodesk corpus evidence, optionally adding web evidence, reranking the best evidence, checking whether it is sufficient, and then generating a short sourced answer or a conservative no-answer response.
+The app answers Autodesk product questions by screening obvious malicious input before the LLM router, retrieving local Autodesk corpus evidence with a sanitized retrieval query, optionally adding web evidence, reranking the best evidence, checking whether it is sufficient, and then generating a short sourced answer or a conservative no-answer response.
 
-For compare/contrast and product-selection questions, the app adds a local retrieval planning step that extracts the products mentioned in the user query and retrieves focused evidence for each product plus direct comparison dimensions. The adequacy gate can accept separate substantive evidence about each compared product, so a direct comparison passage is helpful but not required. This improves context balance without hardcoding product pairs or pre-writing answers.
+For compare/contrast and product-selection questions, the app adds a local retrieval planning step that extracts the products mentioned in the sanitized retrieval query and retrieves focused evidence for each product plus direct comparison dimensions. The adequacy gate can accept separate substantive evidence about each compared product, so a direct comparison passage is helpful but not required. This improves context balance without hardcoding product pairs or pre-writing answers.
 
 ## Recommended Visual Layout
 
@@ -44,6 +44,8 @@ A good presentation slide can use:
 - User enters a natural-language Autodesk question.
 - The app records the question in chat history.
 - The selected search mode controls the retrieval path.
+- A deterministic security screen blocks obvious prompt injection, prompt-reveal, secret-exfiltration, and unsafe cyber/security abuse before routing.
+- Retrieval and web search use a sanitized retrieval query, while the original question remains available for final answer semantics.
 - The agent detects compare/contrast questions such as `Product A vs Product B`, `difference between Product A and Product B`, or `which should I use`.
 
 Diagram node labels:
@@ -51,6 +53,8 @@ Diagram node labels:
 - `User asks Autodesk question`
 - `Streamlit Ask tab`
 - `Settings & Eval controls search mode`
+- `Security screen`
+- `Sanitized retrieval query`
 - `Compare/contrast detector`
 
 ## Layer 2: Three Runtime Search Modes
@@ -89,8 +93,8 @@ The app searches the local Autodesk corpus in two ways:
 
 For compare/contrast questions, the app:
 
-- extracts product or entity names from the user query;
-- keeps the original question in the retrieval strategy;
+- extracts product or entity names from the sanitized retrieval query;
+- keeps the sanitized user query in the retrieval strategy;
 - generates up to four focused retrieval subqueries for product-specific evidence, direct comparison evidence, and dimensions such as use cases, workflows, industries, features, interoperability, BIM/CAD differences, 2D/3D modeling, documentation, collaboration, and target users;
 - retrieves the focused subqueries separately and in parallel through the local hybrid Chroma plus BM25 path;
 - deduplicates chunks and prefers balanced context across the compared products.
@@ -112,6 +116,8 @@ This planning step changes evidence retrieval and comparison answerability only.
 
 Diagram node labels:
 
+- `Security screen before router`
+- `Sanitized query for retrieval`
 - `Compare retrieval planner`
 - `Focused product subqueries`
 - `Balanced comparison context`
@@ -128,12 +134,14 @@ Only Options 2 and 3 use web evidence.
 
 - Runs SerpAPI search on every question.
 - Restricts results to `autodesk.com/*`.
+- Uses `site:autodesk.com Autodesk {sanitized retrieval query}`.
 - Uses up to 5 official Autodesk web results.
 
 ### Option 3
 
 - Runs SerpAPI search on every question.
 - Allows open-web results.
+- Uses `Autodesk {sanitized retrieval query}`.
 - Caps results at 3 to reduce latency and noise.
 
 Diagram node labels:
@@ -153,6 +161,7 @@ Diagram node labels:
 ### Strict Adequacy Gate
 
 - Checks whether supplied evidence contains the exact fact needed.
+- Treats local excerpts and web snippets as untrusted evidence, never as instructions.
 - Does not answer the question.
 - Does not use outside knowledge.
 - If evidence is insufficient, the app refuses with the fixed no-answer sentence.
