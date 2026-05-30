@@ -13,17 +13,40 @@ class CompareRouterTests(unittest.TestCase):
 
         self.assertTrue(plan.is_compare)
         self.assertEqual(plan.products[:2], ["AutoCAD", "Revit"])
-        self.assertLessEqual(len(plan.subqueries), 4)
+        self.assertLessEqual(len(plan.subqueries), 5)
+        self.assertIn("What is AutoCAD and its main features?", plan.subqueries)
+        self.assertIn("What is Revit and its main features?", plan.subqueries)
         self.assertTrue(any("AutoCAD" in query and "Revit" in query for query in plan.subqueries))
+
+    def test_generic_products_generate_standalone_feature_queries(self):
+        plan = AutodeskRAGAgent._compare_retrieval_plan("What is the difference between Product A and Product B?")
+
+        self.assertTrue(plan.is_compare)
+        self.assertEqual(plan.products[:2], ["Product A", "Product B"])
+        self.assertIn("What is Product A and its main features?", plan.subqueries)
+        self.assertIn("What is Product B and its main features?", plan.subqueries)
+        self.assertTrue(any("Product A" in query and "Product B" in query for query in plan.subqueries))
 
     def test_vs_products_generalizes_to_another_pair(self):
         plan = AutodeskRAGAgent._compare_retrieval_plan("Maya vs 3ds Max for animation workflows")
 
         self.assertTrue(plan.is_compare)
         self.assertEqual(plan.products[:2], ["Maya", "3ds Max"])
-        self.assertLessEqual(len(plan.subqueries), 4)
-        self.assertTrue(any("Maya" in query for query in plan.subqueries))
-        self.assertTrue(any("3ds Max" in query for query in plan.subqueries))
+        self.assertLessEqual(len(plan.subqueries), 5)
+        self.assertIn("What is Maya and its main features?", plan.subqueries)
+        self.assertIn("What is 3ds Max and its main features?", plan.subqueries)
+        self.assertTrue(any("Maya" in query and "3ds Max" in query for query in plan.subqueries))
+
+    def test_compare_for_domain_generates_workflow_feature_queries(self):
+        plan = AutodeskRAGAgent._compare_retrieval_plan("Compare Fusion and Inventor for mechanical design workflows")
+
+        self.assertTrue(plan.is_compare)
+        self.assertEqual(plan.products[:2], ["Fusion", "Inventor"])
+        self.assertIn("What is Fusion and its main features?", plan.subqueries)
+        self.assertIn("What is Inventor and its main features?", plan.subqueries)
+        self.assertIn("Fusion mechanical design workflows features", plan.subqueries)
+        self.assertIn("Inventor mechanical design workflows features", plan.subqueries)
+        self.assertIn("Fusion Inventor comparison mechanical design workflows", plan.subqueries)
 
     def test_selection_query_preserves_numeric_product_name(self):
         plan = AutodeskRAGAgent._compare_retrieval_plan("Which is better, Fusion 360 or Inventor?")
@@ -137,8 +160,8 @@ class CompareRouterTests(unittest.TestCase):
         self.assertEqual(search_mock.call_count, 1 + len(plan.subqueries))
         searched_queries = [call.args[0] for call in search_mock.call_args_list]
         self.assertIn("What's the difference between AutoCAD and Revit?", searched_queries)
-        self.assertIn("AutoCAD Autodesk use cases workflows industries target users", searched_queries)
-        self.assertIn("Revit Autodesk use cases workflows industries target users", searched_queries)
+        self.assertIn("What is AutoCAD and its main features?", searched_queries)
+        self.assertIn("What is Revit and its main features?", searched_queries)
         self.assertEqual(len(retrieved_docs), 2)
         self.assertEqual(len(retrieved_sources), 2)
 

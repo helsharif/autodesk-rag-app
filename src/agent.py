@@ -564,8 +564,8 @@ class AutodeskRAGAgent:
 
     @staticmethod
     def _clean_compare_entity(value: str) -> str:
-        cleaned = re.sub(r"(?i)\b(autodesk|product|software|tool|tools)\b", " ", value)
-        cleaned = re.sub(r"(?i)\b(what|which|how|does|do|is|are|the|a|an|use|using|for|when|if|i|we|my|our)\b", " ", cleaned)
+        cleaned = re.sub(r"(?i)\b(autodesk|software|tool|tools)\b", " ", value)
+        cleaned = re.sub(r"(?i)\b(what|which|how|does|do|is|are|the|use|using|for|when|if|i|we|my|our)\b", " ", cleaned)
         cleaned = re.sub(r"[\"'`“”‘’()\[\]{}:;]", " ", cleaned)
         cleaned = re.sub(r"\s+", " ", cleaned).strip(" ,.?/")
         return cleaned
@@ -574,18 +574,44 @@ class AutodeskRAGAgent:
     def _generate_compare_subqueries(cls, question: str, products: list[str]) -> list[str]:
         if len(products) >= 2:
             left, right = products[0], products[1]
+            domain = cls._extract_compare_domain(question, products)
             candidates = [
-                f"{left} Autodesk use cases workflows industries target users",
-                f"{right} Autodesk use cases workflows industries target users",
-                f"{left} {right} Autodesk compare difference interoperability workflow",
-                f"{left} {right} Autodesk features 2D 3D modeling documentation collaboration BIM CAD",
+                f"What is {left} and its main features?",
+                f"What is {right} and its main features?",
             ]
+            if domain:
+                candidates.extend(
+                    [
+                        f"{left} {domain} features",
+                        f"{right} {domain} features",
+                        f"{left} {right} comparison {domain}",
+                    ]
+                )
+            else:
+                candidates.extend(
+                    [
+                        f"{left} {right} Autodesk comparison differences workflows use cases",
+                        f"{left} {right} features capabilities target users industries",
+                    ]
+                )
         else:
             candidates = [
                 f"{question} Autodesk product comparison use cases workflows",
                 f"{question} Autodesk features target users industries",
             ]
-        return cls._unique_nonempty(candidates)[:4]
+        return cls._unique_nonempty(candidates)[:5]
+
+    @classmethod
+    def _extract_compare_domain(cls, question: str, products: list[str]) -> str:
+        compact = re.sub(r"\s+", " ", question).strip(" ?!.")
+        match = re.search(r"\bfor\s+(.+?)(?:\?|$|,| when | if )", compact, flags=re.IGNORECASE)
+        if not match:
+            return ""
+        domain = cls._clean_compare_entity(match.group(1))
+        for product in products:
+            domain = re.sub(rf"(?i)\b{re.escape(product)}\b", " ", domain)
+        domain = re.sub(r"(?i)\b(compare|comparison|difference|differences|between|versus|vs)\b", " ", domain)
+        return re.sub(r"\s+", " ", domain).strip(" ,.?/")
 
     @staticmethod
     def _unique_nonempty(values) -> list[str]:
