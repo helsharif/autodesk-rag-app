@@ -1408,7 +1408,7 @@ def render_about() -> None:
         "A user question enters the Ask tab with one of three search modes selected. All modes use the same local "
         "Docling + Chroma + BM25 hybrid retrieval backbone. Option 1 stays local-only, Option 2 adds official Autodesk.com "
         "web evidence, and Option 3 adds capped open-web evidence. The agent also detects compare/contrast and "
-        "product-selection questions, then improves local retrieval with focused product and comparison subqueries. "
+        "product-selection questions, then improves local retrieval with focused product and comparison subqueries that run in parallel. "
         "Local chunks and web snippets are reranked together, then a strict adequacy gate checks whether the supplied "
         "evidence explicitly supports the requested answer. For comparisons, the gate can accept separate substantive "
         "evidence about each product rather than requiring one source to compare them directly. If the evidence is "
@@ -1425,7 +1425,7 @@ def render_about() -> None:
         [
             {"Stage": "Question intake", "What happens": "Streamlit captures the user question and active search mode."},
             {"Stage": "Routing and planning", "What happens": "The router applies Autodesk/web policy. Compare/contrast questions trigger focused local subqueries for each mentioned product and direct comparison evidence."},
-            {"Stage": "Local retrieval", "What happens": f"Chroma semantic search and BM25 keyword search retrieve candidates, then weighted RRF combines them with {settings.hybrid_vector_weight:.2f} vector / {settings.hybrid_bm25_weight:.2f} BM25 weighting."},
+            {"Stage": "Local retrieval", "What happens": f"Chroma semantic search and BM25 keyword search run in parallel, then weighted RRF combines them with {settings.hybrid_vector_weight:.2f} vector / {settings.hybrid_bm25_weight:.2f} BM25 weighting. Compare subqueries are also retrieved in parallel."},
             {"Stage": "Comparison balancing", "What happens": "When comparison mode is active, retrieved chunks are deduplicated and selected to keep evidence balanced across the compared products."},
             {"Stage": "Context expansion", "What happens": "Neighbor chunks from the same source document are added within the context budget to reduce chunk-boundary misses."},
             {"Stage": "Optional web evidence", "What happens": "Option 2 searches Autodesk.com; Option 3 searches the open web with a smaller result cap."},

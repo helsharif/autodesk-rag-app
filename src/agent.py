@@ -7,6 +7,7 @@ import logging
 import re
 import os
 import time
+from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass
 from datetime import date
 
@@ -246,21 +247,32 @@ class AutodeskRAGAgent:
             return docs, sources, compare_plan
 
         settings = get_settings()
-        retrieval_query = self._expanded_compare_retrieval_query(question, compare_plan)
-        retrieval_k = min(max(settings.retriever_k * 2, settings.retriever_k), settings.hybrid_candidate_k)
+        retrieval_queries = [question, *compare_plan.subqueries]
+        per_query_k = max(3, min(settings.retriever_k, (settings.retriever_k // max(len(retrieval_queries), 1)) + 3))
         logger.info(
-            "Compare/contrast retrieval triggered. products=%s expanded_subqueries=%s",
+            "Compare/contrast retrieval triggered. products=%s subqueries=%s",
             compare_plan.products,
             compare_plan.subqueries,
         )
 
         pairs: list[tuple[Document, RetrievedSource]] = []
-        docs, sources = search_documents(retrieval_query, k=retrieval_k, collection_name=self.collection_name)
-        for doc, source in zip(docs, sources):
-            metadata = dict(doc.metadata or {})
-            metadata["compare_retrieval_query"] = retrieval_query
-            metadata["compare_retrieval_subqueries"] = " | ".join(compare_plan.subqueries)
-            pairs.append((Document(page_content=doc.page_content, metadata=metadata), source))
+        with ThreadPoolExecutor(max_workers=min(4, len(retrieval_queries))) as executor:
+            retrieval_results = list(
+                executor.map(
+                    lambda retrieval_query: search_documents(
+                        retrieval_query,
+                        k=per_query_k,
+                        collection_name=self.collection_name,
+                    ),
+                    retrieval_queries,
+                )
+            )
+        for query_index, (retrieval_query, (docs, sources)) in enumerate(zip(retrieval_queries, retrieval_results)):
+            for doc, source in zip(docs, sources):
+                metadata = dict(doc.metadata or {})
+                metadata["compare_retrieval_query"] = retrieval_query
+                metadata["compare_retrieval_query_index"] = query_index
+                pairs.append((Document(page_content=doc.page_content, metadata=metadata), source))
 
         deduped_pairs = self._dedupe_document_pairs(pairs)
         balanced_pairs = self._select_balanced_compare_pairs(deduped_pairs, compare_plan.products, settings.retriever_k)
@@ -509,14 +521,6 @@ class AutodeskRAGAgent:
         products = cls._extract_compare_entities(question)
         subqueries = cls._generate_compare_subqueries(question, products)
         return CompareRetrievalPlan(True, products, subqueries)
-
-    @staticmethod
-    def _expanded_compare_retrieval_query(question: str, compare_plan: CompareRetrievalPlan) -> str:
-        parts = [
-            question,
-            *compare_plan.subqueries,
-        ]
-        return "\n".join(part for part in parts if part.strip())
 
     @staticmethod
     def _is_compare_contrast_query(question: str) -> bool:

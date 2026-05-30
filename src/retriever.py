@@ -5,6 +5,7 @@ from __future__ import annotations
 import json
 import pickle
 import re
+from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass
 from functools import lru_cache
 from typing import Any
@@ -57,8 +58,11 @@ def search_documents(query: str, k: int | None = None, collection_name: str | No
     settings = get_settings()
     top_k = k or settings.retriever_k
     candidate_k = max(top_k, settings.hybrid_candidate_k)
-    dense_ranked = _search_dense(query, candidate_k, settings)
-    bm25_ranked = _search_bm25(query, candidate_k, settings)
+    with ThreadPoolExecutor(max_workers=2) as executor:
+        dense_future = executor.submit(_search_dense, query, candidate_k, settings)
+        bm25_future = executor.submit(_search_bm25, query, candidate_k, settings)
+        dense_ranked = dense_future.result()
+        bm25_ranked = bm25_future.result()
     return _fuse_ranked_results(
         [
             (dense_ranked, settings.hybrid_vector_weight),

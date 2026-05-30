@@ -92,7 +92,7 @@ For compare/contrast questions, the app:
 - extracts product or entity names from the user query;
 - keeps the original question in the retrieval strategy;
 - generates up to four focused retrieval subqueries for product-specific evidence, direct comparison evidence, and dimensions such as use cases, workflows, industries, features, interoperability, BIM/CAD differences, 2D/3D modeling, documentation, collaboration, and target users;
-- folds the focused subqueries into one expanded local hybrid Chroma plus BM25 retrieval query;
+- retrieves the focused subqueries separately and in parallel through the local hybrid Chroma plus BM25 path;
 - deduplicates chunks and prefers balanced context across the compared products.
 
 This planning step changes evidence retrieval and comparison answerability only. It does not add product claims or answer templates.

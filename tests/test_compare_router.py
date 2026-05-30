@@ -118,7 +118,7 @@ class CompareRouterTests(unittest.TestCase):
             )
         )
 
-    def test_compare_retrieval_uses_single_expanded_search_call(self):
+    def test_compare_retrieval_searches_each_focused_query(self):
         agent = AutodeskRAGAgent.__new__(AutodeskRAGAgent)
         agent.collection_name = "test"
         docs = [
@@ -134,11 +134,11 @@ class CompareRouterTests(unittest.TestCase):
             retrieved_docs, retrieved_sources, plan = agent._retrieve_local_documents("What's the difference between AutoCAD and Revit?")
 
         self.assertTrue(plan.is_compare)
-        self.assertEqual(search_mock.call_count, 1)
-        expanded_query = search_mock.call_args.args[0]
-        self.assertIn("What's the difference between AutoCAD and Revit?", expanded_query)
-        self.assertIn("AutoCAD Autodesk use cases", expanded_query)
-        self.assertIn("Revit Autodesk use cases", expanded_query)
+        self.assertEqual(search_mock.call_count, 1 + len(plan.subqueries))
+        searched_queries = [call.args[0] for call in search_mock.call_args_list]
+        self.assertIn("What's the difference between AutoCAD and Revit?", searched_queries)
+        self.assertIn("AutoCAD Autodesk use cases workflows industries target users", searched_queries)
+        self.assertIn("Revit Autodesk use cases workflows industries target users", searched_queries)
         self.assertEqual(len(retrieved_docs), 2)
         self.assertEqual(len(retrieved_sources), 2)
 
