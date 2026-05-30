@@ -248,6 +248,7 @@ class AutodeskRAGAgent:
 
         settings = get_settings()
         retrieval_queries = [question, *compare_plan.subqueries]
+        retrieval_targets = [None, *self._compare_subquery_targets(compare_plan)]
         per_query_k = max(3, min(settings.retriever_k, (settings.retriever_k // max(len(retrieval_queries), 1)) + 3))
         logger.info(
             "Compare/contrast retrieval triggered. products=%s subqueries=%s",
@@ -272,6 +273,8 @@ class AutodeskRAGAgent:
                 metadata = dict(doc.metadata or {})
                 metadata["compare_retrieval_query"] = retrieval_query
                 metadata["compare_retrieval_query_index"] = query_index
+                if retrieval_targets[query_index]:
+                    metadata["compare_target_product"] = retrieval_targets[query_index]
                 pairs.append((Document(page_content=doc.page_content, metadata=metadata), source))
 
         deduped_pairs = self._dedupe_document_pairs(pairs)
@@ -330,7 +333,7 @@ class AutodeskRAGAgent:
             if len(body) < 80:
                 continue
             for product in compare_products[:2]:
-                if cls._entity_in_text(product, haystack):
+                if cls._pair_targets_product(doc, product) or cls._entity_in_text(product, haystack):
                     covered.add(cls._normalize_entity_name(product))
         return all(cls._normalize_entity_name(product) in covered for product in compare_products[:2])
 
@@ -602,6 +605,17 @@ class AutodeskRAGAgent:
         return cls._unique_nonempty(candidates)[:5]
 
     @classmethod
+    def _compare_subquery_targets(cls, compare_plan: CompareRetrievalPlan) -> list[str | None]:
+        targets: list[str | None] = []
+        for subquery in compare_plan.subqueries:
+            targets.append(next((product for product in compare_plan.products[:4] if cls._is_product_feature_subquery(subquery, product)), None))
+        return targets
+
+    @staticmethod
+    def _is_product_feature_subquery(subquery: str, product: str) -> bool:
+        return subquery.strip().lower() == f"What is {product} and its main features?".lower()
+
+    @classmethod
     def _extract_compare_domain(cls, question: str, products: list[str]) -> str:
         compact = re.sub(r"\s+", " ", question).strip(" ?!.")
         match = re.search(r"\bfor\s+(.+?)(?:\?|$|,| when | if )", compact, flags=re.IGNORECASE)
@@ -640,6 +654,34 @@ class AutodeskRAGAgent:
                 )
             )
             current = by_id.get(key)
+            if current is not None:
+                current_doc, current_source = current
+                current_metadata = current_doc.metadata or {}
+                current_target = current_metadata.get("compare_target_product")
+                incoming_target = metadata.get("compare_target_product")
+                keep_current_target = bool(current_target)
+                target_metadata = {
+                    "compare_target_product": current_target or incoming_target,
+                    "compare_retrieval_query": current_metadata.get("compare_retrieval_query")
+                    if keep_current_target
+                    else metadata.get("compare_retrieval_query") or current_metadata.get("compare_retrieval_query"),
+                    "compare_retrieval_query_index": current_metadata.get("compare_retrieval_query_index")
+                    if keep_current_target
+                    else (
+                        metadata.get("compare_retrieval_query_index")
+                        if metadata.get("compare_retrieval_query_index") is not None
+                        else current_metadata.get("compare_retrieval_query_index")
+                    ),
+                }
+                if source.score > current_source.score:
+                    doc.metadata = {**(doc.metadata or {}), **{key: value for key, value in target_metadata.items() if value is not None}}
+                    by_id[key] = (doc, source)
+                elif target_metadata["compare_target_product"]:
+                    current_doc.metadata = {
+                        **(current_doc.metadata or {}),
+                        **{key: value for key, value in target_metadata.items() if value is not None},
+                    }
+                continue
             if current is None or source.score > current[1].score:
                 by_id[key] = (doc, source)
         return list(by_id.values())
@@ -661,7 +703,8 @@ class AutodeskRAGAgent:
         for pair in pairs:
             doc, source = pair
             haystack = cls._document_search_text(doc, source)
-            matched_products = [product for product in products[:4] if cls._entity_in_text(product, haystack)]
+            targeted_products = [product for product in products[:4] if cls._pair_targets_product(doc, product)]
+            matched_products = targeted_products or [product for product in products[:4] if cls._entity_in_text(product, haystack)]
             if len(matched_products) >= 2:
                 buckets["direct"].append(pair)
             elif len(matched_products) == 1:
@@ -709,8 +752,8 @@ class AutodeskRAGAgent:
             return [doc for doc, _ in selected], [source for _, source in selected]
 
         selected_keys = {cls._doc_pair_key(doc, source) for doc, source in selected}
-        product_counts = cls._compare_product_counts(selected, products)
-        missing_products = [product for product in products[:2] if product_counts.get(product, 0) == 0]
+        target_counts = cls._compare_target_counts(selected, products)
+        missing_products = [product for product in products[:2] if target_counts.get(product, 0) == 0]
         if not missing_products:
             return [doc for doc, _ in selected], [source for _, source in selected]
 
@@ -721,25 +764,54 @@ class AutodeskRAGAgent:
                     (doc, source)
                     for doc, source in candidates
                     if cls._doc_pair_key(doc, source) not in selected_keys
-                    and cls._entity_in_text(missing_product, cls._document_search_text(doc, source))
+                    and cls._pair_targets_product(doc, missing_product)
                 ),
                 None,
             )
+            if replacement is None:
+                replacement = next(
+                    (
+                        (doc, source)
+                        for doc, source in candidates
+                        if cls._doc_pair_key(doc, source) not in selected_keys
+                        and cls._entity_in_text(missing_product, cls._document_search_text(doc, source))
+                    ),
+                    None,
+                )
             if replacement is None:
                 continue
             if len(selected) < limit:
                 selected.append(replacement)
             else:
-                replace_at = cls._least_needed_compare_index(selected, products, product_counts)
+                replace_at = cls._untargeted_compare_index(selected)
+                if replace_at is None:
+                    replace_at = cls._least_needed_compare_index(selected, products, cls._compare_product_counts(selected, products))
                 if replace_at is None:
                     continue
                 removed_doc, removed_source = selected[replace_at]
                 selected_keys.discard(cls._doc_pair_key(removed_doc, removed_source))
                 selected[replace_at] = replacement
             selected_keys.add(cls._doc_pair_key(*replacement))
-            product_counts = cls._compare_product_counts(selected, products)
+            target_counts = cls._compare_target_counts(selected, products)
 
         return [doc for doc, _ in selected], [source for _, source in selected]
+
+    @staticmethod
+    def _untargeted_compare_index(selected: list[tuple[Document, RetrievedSource]]) -> int | None:
+        for index in range(len(selected) - 1, -1, -1):
+            doc, _ = selected[index]
+            if not (doc.metadata or {}).get("compare_target_product"):
+                return index
+        return None
+
+    @classmethod
+    def _compare_target_counts(cls, pairs: list[tuple[Document, RetrievedSource]], products: list[str]) -> dict[str, int]:
+        counts = {product: 0 for product in products[:4]}
+        for doc, _ in pairs:
+            for product in products[:4]:
+                if cls._pair_targets_product(doc, product):
+                    counts[product] += 1
+        return counts
 
     @classmethod
     def _compare_product_counts(cls, pairs: list[tuple[Document, RetrievedSource]], products: list[str]) -> dict[str, int]:
@@ -747,7 +819,7 @@ class AutodeskRAGAgent:
         for doc, source in pairs:
             haystack = cls._document_search_text(doc, source)
             for product in products[:4]:
-                if cls._entity_in_text(product, haystack):
+                if cls._pair_targets_product(doc, product) or cls._entity_in_text(product, haystack):
                     counts[product] += 1
         return counts
 
@@ -760,7 +832,11 @@ class AutodeskRAGAgent:
     ) -> int | None:
         for index in range(len(selected) - 1, -1, -1):
             doc, source = selected[index]
-            matched = [product for product in products[:4] if cls._entity_in_text(product, cls._document_search_text(doc, source))]
+            matched = [
+                product
+                for product in products[:4]
+                if cls._pair_targets_product(doc, product) or cls._entity_in_text(product, cls._document_search_text(doc, source))
+            ]
             if not matched:
                 return index
             if all(product_counts.get(product, 0) > 1 for product in matched):
@@ -779,6 +855,12 @@ class AutodeskRAGAgent:
                 (doc.page_content or "")[:120],
             )
         )
+
+    @classmethod
+    def _pair_targets_product(cls, doc: Document, product: str) -> bool:
+        metadata = doc.metadata or {}
+        target = metadata.get("compare_target_product")
+        return bool(target) and cls._normalize_entity_name(str(target)) == cls._normalize_entity_name(product)
 
     @staticmethod
     def _document_search_text(doc: Document, source: RetrievedSource) -> str:

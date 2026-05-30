@@ -165,6 +165,83 @@ class CompareRouterTests(unittest.TestCase):
         self.assertEqual(len(retrieved_docs), 2)
         self.assertEqual(len(retrieved_sources), 2)
 
+    def test_compare_retrieval_tags_product_feature_subquery_results(self):
+        agent = AutodeskRAGAgent.__new__(AutodeskRAGAgent)
+        agent.collection_name = "test"
+        doc = Document(page_content="AutoCAD creates precise 2D drawings and 3D models for design and documentation workflows.", metadata={"title": "AutoCAD overview", "chunk_id": "a"})
+        source = RetrievedSource("AutoCAD source", None, 0.9, doc.page_content)
+
+        with patch("src.agent.search_documents", return_value=([doc], [source])):
+            retrieved_docs, _, plan = agent._retrieve_local_documents("What's the difference between AutoCAD and Revit?")
+
+        target_products = {doc.metadata.get("compare_target_product") for doc in retrieved_docs if doc.metadata.get("compare_target_product")}
+        self.assertTrue(plan.is_compare)
+        self.assertIn("AutoCAD", target_products)
+
+    def test_post_rerank_balance_prefers_targeted_product_evidence(self):
+        revit_doc = Document(
+            page_content="Bring AutoCAD files in or out of Revit for project stakeholders.",
+            metadata={"chunk_id": "r", "compare_target_product": "Revit"},
+        )
+        incidental_autocad_doc = Document(
+            page_content="AutoCAD vs Fusion 360 includes reusable block libraries and other modeling software capabilities.",
+            metadata={"chunk_id": "af"},
+        )
+        targeted_autocad_doc = Document(
+            page_content="AutoCAD creates precise 2D drawings and 3D models for design and documentation workflows.",
+            metadata={"chunk_id": "a", "compare_target_product": "AutoCAD"},
+        )
+        sources = [
+            RetrievedSource("Revit source", None, 0.9, revit_doc.page_content),
+            RetrievedSource("AutoCAD vs Fusion source", None, 0.8, incidental_autocad_doc.page_content),
+            RetrievedSource("AutoCAD source", None, 0.7, targeted_autocad_doc.page_content),
+        ]
+
+        docs, _ = AutodeskRAGAgent._ensure_compare_balance_after_rerank(
+            [revit_doc, incidental_autocad_doc],
+            sources[:2],
+            [revit_doc, incidental_autocad_doc, targeted_autocad_doc],
+            sources,
+            ["AutoCAD", "Revit"],
+            limit=2,
+        )
+
+        target_products = {doc.metadata.get("compare_target_product") for doc in docs}
+        self.assertIn("AutoCAD", target_products)
+        self.assertIn("Revit", target_products)
+
+    def test_targeted_feature_evidence_generalizes_to_other_product_pairs(self):
+        fusion_doc = Document(
+            page_content="Fusion provides integrated CAD, CAM, CAE, and PCB tools for product development workflows.",
+            metadata={"chunk_id": "f", "compare_target_product": "Fusion"},
+        )
+        inventor_doc = Document(
+            page_content="Inventor provides mechanical design, 3D CAD, simulation, and documentation capabilities.",
+            metadata={"chunk_id": "i", "compare_target_product": "Inventor"},
+        )
+        incidental_doc = Document(
+            page_content="Fusion appears in a broad comparison table with other products.",
+            metadata={"chunk_id": "x"},
+        )
+        sources = [
+            RetrievedSource("Fusion incidental source", None, 0.95, incidental_doc.page_content),
+            RetrievedSource("Inventor source", None, 0.9, inventor_doc.page_content),
+            RetrievedSource("Fusion source", None, 0.8, fusion_doc.page_content),
+        ]
+
+        docs, _ = AutodeskRAGAgent._ensure_compare_balance_after_rerank(
+            [incidental_doc, inventor_doc],
+            sources[:2],
+            [incidental_doc, inventor_doc, fusion_doc],
+            sources,
+            ["Fusion", "Inventor"],
+            limit=2,
+        )
+
+        target_products = {doc.metadata.get("compare_target_product") for doc in docs}
+        self.assertIn("Fusion", target_products)
+        self.assertIn("Inventor", target_products)
+
 
 if __name__ == "__main__":
     unittest.main()
