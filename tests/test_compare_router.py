@@ -85,6 +85,38 @@ class CompareRouterTests(unittest.TestCase):
         self.assertIn("Maya", combined_text)
         self.assertEqual(len(balanced_sources), 2)
 
+    def test_compare_evidence_coverage_accepts_separate_product_chunks(self):
+        docs = [
+            Document(page_content="AutoCAD creates precise 2D drawings and 3D models for design and documentation workflows.", metadata={"title": "AutoCAD overview"}),
+            Document(page_content="Revit supports BIM workflows for architecture and engineering projects with modeling and documentation tools.", metadata={"title": "Revit overview"}),
+        ]
+        sources = [
+            RetrievedSource("AutoCAD source", None, 0.9, docs[0].page_content),
+            RetrievedSource("Revit source", None, 0.8, docs[1].page_content),
+        ]
+
+        self.assertTrue(
+            AutodeskRAGAgent._compare_evidence_has_entity_coverage(
+                docs,
+                sources,
+                ["AutoCAD", "Revit"],
+            )
+        )
+
+    def test_compare_evidence_coverage_requires_both_products(self):
+        docs = [
+            Document(page_content="AutoCAD creates precise 2D drawings and 3D models for design and documentation workflows.", metadata={"title": "AutoCAD overview"}),
+        ]
+        sources = [RetrievedSource("AutoCAD source", None, 0.9, docs[0].page_content)]
+
+        self.assertFalse(
+            AutodeskRAGAgent._compare_evidence_has_entity_coverage(
+                docs,
+                sources,
+                ["AutoCAD", "Revit"],
+            )
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

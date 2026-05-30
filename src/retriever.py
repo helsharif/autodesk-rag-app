@@ -113,10 +113,7 @@ def _search_dense(query: str, k: int, settings: Settings) -> list[tuple[str, Doc
 def _search_bm25(query: str, k: int, settings: Settings) -> list[tuple[str, Document, RetrievedSource]]:
     if not bm25_index_exists(settings):
         return []
-    with (settings.bm25_dir / "bm25_index.pkl").open("rb") as file:
-        bm25_index = pickle.load(file)
-    chunk_ids = json.loads((settings.bm25_dir / "bm25_chunk_ids.json").read_text(encoding="utf-8"))
-    metadata_by_id = json.loads((settings.bm25_dir / "bm25_chunk_metadata.json").read_text(encoding="utf-8"))
+    bm25_index, chunk_ids, metadata_by_id = _load_bm25_artifacts(str(settings.bm25_dir))
     scores = bm25_index.get_scores(_tokenize(query))
     if len(scores) == 0:
         return []
@@ -139,6 +136,18 @@ def _search_bm25(query: str, k: int, settings: Settings) -> list[tuple[str, Docu
         source = _source_from_document(doc, float(scores[idx]) / max_score if max_score else 0.0)
         ranked.append((_document_identity(doc, source), doc, source))
     return ranked
+
+
+@lru_cache(maxsize=2)
+def _load_bm25_artifacts(bm25_dir: str):
+    from pathlib import Path
+
+    path = Path(bm25_dir)
+    with (path / "bm25_index.pkl").open("rb") as file:
+        bm25_index = pickle.load(file)
+    chunk_ids = json.loads((path / "bm25_chunk_ids.json").read_text(encoding="utf-8"))
+    metadata_by_id = json.loads((path / "bm25_chunk_metadata.json").read_text(encoding="utf-8"))
+    return bm25_index, chunk_ids, metadata_by_id
 
 
 def _fetch_chroma_by_ids(ids: list[str], settings: Settings) -> dict[str, Document]:

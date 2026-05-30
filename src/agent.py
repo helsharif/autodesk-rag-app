@@ -159,9 +159,13 @@ class AutodeskRAGAgent:
         local_context = self._format_local_context(local_docs, local_sources)
         web_context = self._format_web_context(web_docs)
         compare_products = compare_plan.products if compare_plan.is_compare else None
-        local_answerable = self._timed_evidence_is_answerable(question, local_context, timings, compare_products) if local_ok and local_context.strip() else False
+        local_answerable = False
+        if local_ok and local_context.strip():
+            local_answerable = self._compare_evidence_has_entity_coverage(local_docs, local_sources, compare_products) if compare_products else self._timed_evidence_is_answerable(question, local_context, timings)
         include_web_context = bool(web_context.strip()) and use_web
-        web_answerable = self._timed_evidence_is_answerable(question, web_context, timings, compare_products) if include_web_context else False
+        web_answerable = False
+        if include_web_context:
+            web_answerable = self._compare_evidence_has_entity_coverage(web_docs, web_sources, compare_products) if compare_products else self._timed_evidence_is_answerable(question, web_context, timings)
         web_primary = web_answerable and self._needs_web(question)
         include_local_context = local_answerable or (has_web and local_ok)
 
@@ -181,7 +185,7 @@ class AutodeskRAGAgent:
             web_primary
             or local_answerable
             or web_answerable
-            or self._timed_evidence_is_answerable(question, evidence, timings, compare_products)
+            or self._timed_evidence_is_answerable(question, evidence, timings)
         )
         result_contexts = self._result_contexts(docs)
         if not final_answerable:
@@ -298,6 +302,26 @@ class AutodeskRAGAgent:
             return self._evidence_is_answerable(question, evidence, compare_products)
         finally:
             timings["adequacy"] += time.perf_counter() - started
+
+    @classmethod
+    def _compare_evidence_has_entity_coverage(
+        cls,
+        docs: list[Document],
+        sources: list[RetrievedSource],
+        compare_products: list[str] | None,
+    ) -> bool:
+        if not compare_products or len(compare_products) < 2:
+            return False
+        covered: set[str] = set()
+        for doc, source in zip(docs, sources):
+            haystack = cls._document_search_text(doc, source)
+            body = re.sub(r"\s+", " ", doc.page_content or "").strip()
+            if len(body) < 80:
+                continue
+            for product in compare_products[:2]:
+                if cls._entity_in_text(product, haystack):
+                    covered.add(cls._normalize_entity_name(product))
+        return all(cls._normalize_entity_name(product) in covered for product in compare_products[:2])
 
     def _agent_result(
         self,
