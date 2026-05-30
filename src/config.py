@@ -73,6 +73,7 @@ class Settings:
     hybrid_vector_weight: float = field(default_factory=lambda: _env_float("HYBRID_VECTOR_WEIGHT", "0.65"))
     hybrid_bm25_weight: float = field(default_factory=lambda: _env_float("HYBRID_BM25_WEIGHT", "0.35"))
     hybrid_max_per_source: int = field(default_factory=lambda: _env_int("HYBRID_MAX_PER_SOURCE", "3"))
+    compare_retrieval_max_workers: int = field(default_factory=lambda: _env_int("COMPARE_RETRIEVAL_MAX_WORKERS", "2"))
     min_relevance_score: float = field(default_factory=lambda: _env_float("MIN_RELEVANCE_SCORE", "0.30"))
     context_expansion_enabled: bool = field(default_factory=lambda: _env_bool("CONTEXT_EXPANSION_ENABLED", "true"))
     context_expansion_mode: str = field(default_factory=lambda: _env_str("CONTEXT_EXPANSION_MODE", "neighbors").lower())

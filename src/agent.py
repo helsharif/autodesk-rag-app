@@ -364,14 +364,18 @@ class AutodeskRAGAgent:
         retrieval_queries = [retrieval_query, *[self._sanitize_retrieval_query(query) for query in compare_plan.subqueries]]
         retrieval_targets = [None, *self._compare_subquery_targets(compare_plan)]
         per_query_k = max(3, min(settings.retriever_k, (settings.retriever_k // max(len(retrieval_queries), 1)) + 3))
+        max_workers = max(1, min(settings.compare_retrieval_max_workers, len(retrieval_queries)))
         logger.info(
-            "Compare/contrast retrieval triggered. products=%s subqueries=%s",
+            "Compare/contrast retrieval triggered. products=%s subqueries=%s retrieval_queries=%s max_workers=%s",
             compare_plan.products,
             compare_plan.subqueries,
+            len(retrieval_queries),
+            max_workers,
         )
 
         pairs: list[tuple[Document, RetrievedSource]] = []
-        with ThreadPoolExecutor(max_workers=min(4, len(retrieval_queries))) as executor:
+        started = time.perf_counter()
+        with ThreadPoolExecutor(max_workers=max_workers) as executor:
             retrieval_results = list(
                 executor.map(
                     lambda retrieval_query: search_documents(
@@ -382,6 +386,12 @@ class AutodeskRAGAgent:
                     retrieval_queries,
                 )
             )
+        logger.info(
+            "Compare/contrast retrieval completed. products=%s retrieval_queries=%s elapsed_sec=%.2f",
+            compare_plan.products,
+            len(retrieval_queries),
+            time.perf_counter() - started,
+        )
         for query_index, (retrieval_query, (docs, sources)) in enumerate(zip(retrieval_queries, retrieval_results)):
             for doc, source in zip(docs, sources):
                 metadata = dict(doc.metadata or {})
