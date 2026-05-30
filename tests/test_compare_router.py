@@ -1,6 +1,9 @@
 import unittest
 
+from langchain_core.documents import Document
+
 from src.agent import AutodeskRAGAgent
+from src.retriever import RetrievedSource
 
 
 class CompareRouterTests(unittest.TestCase):
@@ -33,6 +36,54 @@ class CompareRouterTests(unittest.TestCase):
         self.assertFalse(plan.is_compare)
         self.assertEqual(plan.products, [])
         self.assertEqual(plan.subqueries, [])
+
+    def test_compare_entity_support_accepts_autodesk_prefixes(self):
+        self.assertTrue(
+            AutodeskRAGAgent._compare_entities_supported(
+                ["AutoCAD", "Maya"],
+                ["Autodesk AutoCAD", "Autodesk Maya"],
+            )
+        )
+
+    def test_compare_entity_support_accepts_entity_objects(self):
+        self.assertTrue(
+            AutodeskRAGAgent._compare_entities_supported(
+                ["AutoCAD", "Maya"],
+                [{"entity": "Autodesk AutoCAD"}, {"name": "Autodesk Maya"}],
+            )
+        )
+
+    def test_compare_entity_support_requires_both_products(self):
+        self.assertFalse(
+            AutodeskRAGAgent._compare_entities_supported(
+                ["AutoCAD", "Maya"],
+                ["Autodesk AutoCAD"],
+            )
+        )
+
+    def test_post_rerank_balance_reinserts_missing_product(self):
+        autocad_doc = Document(page_content="AutoCAD creates precise 2D drawings and 3D models.", metadata={"chunk_id": "a"})
+        autocad_doc_2 = Document(page_content="AutoCAD includes drafting and documentation workflows.", metadata={"chunk_id": "b"})
+        maya_doc = Document(page_content="Maya provides 3D animation, modeling, simulation, and rendering tools.", metadata={"chunk_id": "c"})
+        sources = [
+            RetrievedSource("AutoCAD source 1", None, 0.9, "AutoCAD creates precise 2D drawings and 3D models."),
+            RetrievedSource("AutoCAD source 2", None, 0.8, "AutoCAD includes drafting and documentation workflows."),
+            RetrievedSource("Maya source", None, 0.7, "Maya provides 3D animation, modeling, simulation, and rendering tools."),
+        ]
+
+        docs, balanced_sources = AutodeskRAGAgent._ensure_compare_balance_after_rerank(
+            [autocad_doc, autocad_doc_2],
+            sources[:2],
+            [autocad_doc, autocad_doc_2, maya_doc],
+            sources,
+            ["AutoCAD", "Maya"],
+            limit=2,
+        )
+
+        combined_text = " ".join(doc.page_content for doc in docs)
+        self.assertIn("AutoCAD", combined_text)
+        self.assertIn("Maya", combined_text)
+        self.assertEqual(len(balanced_sources), 2)
 
 
 if __name__ == "__main__":

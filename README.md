@@ -356,7 +356,7 @@ At runtime, the app follows this flow:
 10. The LLM generates a concise sourced answer, or the app returns the fixed no-answer message.
 11. Optional monitoring records request, retrieval, latency, source, model, and outcome metadata.
 
-The compare/contrast branch only improves what local evidence is retrieved. It does not inject product claims, hardcode product pairs, or pre-write final answers; answer generation remains grounded in retrieved local and optional web evidence.
+The compare/contrast branch improves what local evidence is retrieved and uses a compare-aware adequacy check. A direct comparison passage is not required when the retrieved evidence separately provides substantive facts about each compared product. It does not inject product claims, hardcode product pairs, or pre-write final answers; answer generation remains grounded in retrieved local and optional web evidence.
 
 Core modules:
 

@@ -12,7 +12,7 @@ Autodesk Agentic RAG: Evidence-Grounded Answers With Three Search Modes
 
 The app answers Autodesk product questions by retrieving local Autodesk corpus evidence, optionally adding web evidence, reranking the best evidence, checking whether it is sufficient, and then generating a short sourced answer or a conservative no-answer response.
 
-For compare/contrast and product-selection questions, the app adds a local retrieval planning step that extracts the products mentioned in the user query and retrieves focused evidence for each product plus direct comparison dimensions. This improves context balance without hardcoding product pairs or pre-writing answers.
+For compare/contrast and product-selection questions, the app adds a local retrieval planning step that extracts the products mentioned in the user query and retrieves focused evidence for each product plus direct comparison dimensions. The adequacy gate can accept separate substantive evidence about each compared product, so a direct comparison passage is helpful but not required. This improves context balance without hardcoding product pairs or pre-writing answers.
 
 ## Recommended Visual Layout
 
@@ -95,7 +95,7 @@ For compare/contrast questions, the app:
 - retrieves each focused query through the same local hybrid Chroma plus BM25 path;
 - deduplicates chunks and prefers balanced context across the compared products.
 
-This planning step only changes evidence retrieval. It does not add product claims or answer templates.
+This planning step changes evidence retrieval and comparison answerability only. It does not add product claims or answer templates.
 
 ### Fusion
 

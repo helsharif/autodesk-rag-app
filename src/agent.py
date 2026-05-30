@@ -80,9 +80,15 @@ class AutodeskRAGAgent:
                 ("human", "Question:\n{question}\n\nEvidence:\n{evidence}\n\nIs the exact answer present?"),
             ]
         )
+        self.compare_adequacy_prompt = ChatPromptTemplate.from_messages(
+            [
+                ("system", "You are a strict evidence sufficiency checker for Autodesk compare/contrast questions. Use only supplied evidence. Do not answer the user. Return valid JSON with answerable, supported_entities, missing_entities, supporting_quotes, source_ids, direct_comparison_present. A direct comparison passage is helpful but not required. Set answerable=true when the evidence explicitly provides substantive facts about each compared entity, even if those facts appear in separate excerpts. Set answerable=false if any compared entity is only mentioned in passing or lacks concrete supported facts. Do not infer product capabilities, industries, or recommendations beyond the evidence."),
+                ("human", "Question:\n{question}\n\nCompared entities:\n{entities}\n\nEvidence:\n{evidence}\n\nCan a grounded comparison be synthesized from this evidence?"),
+            ]
+        )
         self.answer_prompt = ChatPromptTemplate.from_messages(
             [
-                ("system", f"You answer questions about Autodesk and Autodesk products using only the supplied local excerpts, web results, and runtime context. Every factual claim must be supported by the supplied context. Do not use memory, prior turns, outside knowledge, assumptions, or likely values. Keep answers to 2-3 short paragraphs. Cite source names, local source IDs, or URLs inline when available. When evidence is a search snippet with an ellipsis, use only the facts stated before the ellipsis and do not imply the snippet is complete. If evidence is insufficient, output exactly: {NO_ANSWER}"),
+                ("system", f"You answer questions about Autodesk and Autodesk products using only the supplied local excerpts, web results, and runtime context. Every factual claim must be supported by the supplied context. Do not use memory, prior turns, outside knowledge, assumptions, or likely values. For compare/contrast questions, you may synthesize a side-by-side comparison from separate evidence about each product; if the supplied evidence does not directly compare them, say that the comparison is synthesized from separate retrieved evidence. Do not rank products or recommend one unless the supplied evidence supports the use-case criteria. Keep answers to 2-3 short paragraphs. Cite source names, local source IDs, or URLs inline when available. When evidence is a search snippet with an ellipsis, use only the facts stated before the ellipsis and do not imply the snippet is complete. If evidence is insufficient, output exactly: {NO_ANSWER}"),
                 ("human", "Runtime context:\nCurrent date: {current_date}\n\nQuestion:\n{question}\n\nLocal document evidence:\n{local_context}\n\nWeb evidence:\n{web_context}\n\nGrounded answer:"),
             ]
         )
@@ -134,6 +140,15 @@ class AutodeskRAGAgent:
         combined_docs = [*local_docs, *web_docs]
         combined_sources = [*local_sources, *web_sources]
         docs, sources = rerank_documents(question, combined_docs, combined_sources)
+        if compare_plan.is_compare and len(compare_plan.products) >= 2:
+            docs, sources = self._ensure_compare_balance_after_rerank(
+                docs,
+                sources,
+                combined_docs,
+                combined_sources,
+                compare_plan.products,
+                max(1, min(get_settings().reranker_top_n, len(combined_docs))),
+            )
         local_pairs = [(doc, source) for doc, source in zip(docs, sources) if (doc.metadata or {}).get("evidence_type") != "web"]
         web_pairs = [(doc, source) for doc, source in zip(docs, sources) if (doc.metadata or {}).get("evidence_type") == "web"]
         local_docs = [doc for doc, _ in local_pairs]
@@ -143,9 +158,10 @@ class AutodeskRAGAgent:
         local_ok = bool(local_sources)
         local_context = self._format_local_context(local_docs, local_sources)
         web_context = self._format_web_context(web_docs)
-        local_answerable = self._timed_evidence_is_answerable(question, local_context, timings) if local_ok and local_context.strip() else False
+        compare_products = compare_plan.products if compare_plan.is_compare else None
+        local_answerable = self._timed_evidence_is_answerable(question, local_context, timings, compare_products) if local_ok and local_context.strip() else False
         include_web_context = bool(web_context.strip()) and use_web
-        web_answerable = self._timed_evidence_is_answerable(question, web_context, timings) if include_web_context else False
+        web_answerable = self._timed_evidence_is_answerable(question, web_context, timings, compare_products) if include_web_context else False
         web_primary = web_answerable and self._needs_web(question)
         include_local_context = local_answerable or (has_web and local_ok)
 
@@ -165,7 +181,7 @@ class AutodeskRAGAgent:
             web_primary
             or local_answerable
             or web_answerable
-            or self._timed_evidence_is_answerable(question, evidence, timings)
+            or self._timed_evidence_is_answerable(question, evidence, timings, compare_products)
         )
         result_contexts = self._result_contexts(docs)
         if not final_answerable:
@@ -247,8 +263,22 @@ class AutodeskRAGAgent:
         balanced_pairs = self._select_balanced_compare_pairs(deduped_pairs, compare_plan.products, settings.retriever_k)
         return [doc for doc, _ in balanced_pairs], [source for _, source in balanced_pairs], compare_plan
 
-    def _evidence_is_answerable(self, question: str, evidence: str) -> bool:
+    def _evidence_is_answerable(self, question: str, evidence: str, compare_products: list[str] | None = None) -> bool:
         try:
+            if compare_products and len(compare_products) >= 2:
+                response = (self.compare_adequacy_prompt | self.llm).invoke(
+                    {
+                        "question": question,
+                        "entities": ", ".join(compare_products[:4]),
+                        "evidence": evidence[: get_settings().context_max_chars],
+                    }
+                )
+                data = self._parse_json(getattr(response, "content", str(response)))
+                return (
+                    bool(data.get("answerable"))
+                    and bool(data.get("supporting_quotes"))
+                    and self._compare_entities_supported(compare_products, data.get("supported_entities"))
+                )
             response = (self.adequacy_prompt | self.llm).invoke({"question": question, "evidence": evidence[: get_settings().context_max_chars]})
             data = self._parse_json(getattr(response, "content", str(response)))
             return bool(data.get("answerable")) and bool(str(data.get("supporting_quote") or "").strip())
@@ -256,10 +286,16 @@ class AutodeskRAGAgent:
             logger.warning("Adequacy gate failed closed: %s", exc)
             return False
 
-    def _timed_evidence_is_answerable(self, question: str, evidence: str, timings: dict[str, float]) -> bool:
+    def _timed_evidence_is_answerable(
+        self,
+        question: str,
+        evidence: str,
+        timings: dict[str, float],
+        compare_products: list[str] | None = None,
+    ) -> bool:
         started = time.perf_counter()
         try:
-            return self._evidence_is_answerable(question, evidence)
+            return self._evidence_is_answerable(question, evidence, compare_products)
         finally:
             timings["adequacy"] += time.perf_counter() - started
 
@@ -400,6 +436,48 @@ class AutodeskRAGAgent:
             content = re.sub(r"^```(?:json)?\s*|\s*```$", "", content, flags=re.IGNORECASE | re.DOTALL).strip()
         match = re.search(r"\{.*\}", content, flags=re.DOTALL)
         return json.loads(match.group(0) if match else content)
+
+    @classmethod
+    def _compare_entities_supported(cls, compare_products: list[str], supported_entities) -> bool:
+        if len(compare_products) < 2:
+            return False
+        if isinstance(supported_entities, str):
+            supported_values = [supported_entities]
+        else:
+            supported_values = cls._supported_entity_values(supported_entities)
+        normalized_supported = [cls._normalize_entity_name(value) for value in supported_values]
+        for product in compare_products[:2]:
+            normalized_product = cls._normalize_entity_name(product)
+            if not any(
+                normalized_product == supported
+                or normalized_product in supported
+                or supported in normalized_product
+                for supported in normalized_supported
+                if supported
+            ):
+                return False
+        return True
+
+    @staticmethod
+    def _supported_entity_values(supported_entities) -> list[str]:
+        values: list[str] = []
+        for item in list(supported_entities or []):
+            if isinstance(item, dict):
+                for key in ("entity", "name", "product", "product_name"):
+                    if item.get(key):
+                        values.append(str(item[key]))
+                        break
+                else:
+                    values.extend(str(value) for value in item.values() if value)
+            else:
+                values.append(str(item))
+        return values
+
+    @staticmethod
+    def _normalize_entity_name(value: str) -> str:
+        normalized = re.sub(r"(?i)\bautodesk\b", " ", str(value or ""))
+        normalized = re.sub(r"[^a-z0-9]+", " ", normalized.lower())
+        return re.sub(r"\s+", " ", normalized).strip()
 
     @classmethod
     def _compare_retrieval_plan(cls, question: str) -> CompareRetrievalPlan:
@@ -554,6 +632,92 @@ class AutodeskRAGAgent:
             if not added_this_round:
                 break
         return selected
+
+    @classmethod
+    def _ensure_compare_balance_after_rerank(
+        cls,
+        reranked_docs: list[Document],
+        reranked_sources: list[RetrievedSource],
+        candidate_docs: list[Document],
+        candidate_sources: list[RetrievedSource],
+        products: list[str],
+        limit: int,
+    ) -> tuple[list[Document], list[RetrievedSource]]:
+        selected = list(zip(reranked_docs, reranked_sources))[:limit]
+        if len(products) < 2 or not selected:
+            return [doc for doc, _ in selected], [source for _, source in selected]
+
+        selected_keys = {cls._doc_pair_key(doc, source) for doc, source in selected}
+        product_counts = cls._compare_product_counts(selected, products)
+        missing_products = [product for product in products[:2] if product_counts.get(product, 0) == 0]
+        if not missing_products:
+            return [doc for doc, _ in selected], [source for _, source in selected]
+
+        candidates = list(zip(candidate_docs, candidate_sources))
+        for missing_product in missing_products:
+            replacement = next(
+                (
+                    (doc, source)
+                    for doc, source in candidates
+                    if cls._doc_pair_key(doc, source) not in selected_keys
+                    and cls._entity_in_text(missing_product, cls._document_search_text(doc, source))
+                ),
+                None,
+            )
+            if replacement is None:
+                continue
+            if len(selected) < limit:
+                selected.append(replacement)
+            else:
+                replace_at = cls._least_needed_compare_index(selected, products, product_counts)
+                if replace_at is None:
+                    continue
+                removed_doc, removed_source = selected[replace_at]
+                selected_keys.discard(cls._doc_pair_key(removed_doc, removed_source))
+                selected[replace_at] = replacement
+            selected_keys.add(cls._doc_pair_key(*replacement))
+            product_counts = cls._compare_product_counts(selected, products)
+
+        return [doc for doc, _ in selected], [source for _, source in selected]
+
+    @classmethod
+    def _compare_product_counts(cls, pairs: list[tuple[Document, RetrievedSource]], products: list[str]) -> dict[str, int]:
+        counts = {product: 0 for product in products[:4]}
+        for doc, source in pairs:
+            haystack = cls._document_search_text(doc, source)
+            for product in products[:4]:
+                if cls._entity_in_text(product, haystack):
+                    counts[product] += 1
+        return counts
+
+    @classmethod
+    def _least_needed_compare_index(
+        cls,
+        selected: list[tuple[Document, RetrievedSource]],
+        products: list[str],
+        product_counts: dict[str, int],
+    ) -> int | None:
+        for index in range(len(selected) - 1, -1, -1):
+            doc, source = selected[index]
+            matched = [product for product in products[:4] if cls._entity_in_text(product, cls._document_search_text(doc, source))]
+            if not matched:
+                return index
+            if all(product_counts.get(product, 0) > 1 for product in matched):
+                return index
+        return None
+
+    @staticmethod
+    def _doc_pair_key(doc: Document, source: RetrievedSource) -> str:
+        metadata = doc.metadata or {}
+        return "::".join(
+            str(part)
+            for part in (
+                metadata.get("chunk_id") or "",
+                metadata.get("source_file") or metadata.get("relative_source_path") or source.source,
+                metadata.get("chunk_index") or "",
+                (doc.page_content or "")[:120],
+            )
+        )
 
     @staticmethod
     def _document_search_text(doc: Document, source: RetrievedSource) -> str:

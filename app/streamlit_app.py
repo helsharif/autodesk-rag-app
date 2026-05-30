@@ -1410,8 +1410,9 @@ def render_about() -> None:
         "web evidence, and Option 3 adds capped open-web evidence. The agent also detects compare/contrast and "
         "product-selection questions, then improves local retrieval with focused product and comparison subqueries. "
         "Local chunks and web snippets are reranked together, then a strict adequacy gate checks whether the supplied "
-        "evidence explicitly supports the requested answer. If the evidence is sufficient, the answer model generates "
-        "a short sourced response; otherwise the app returns the fixed no-answer response."
+        "evidence explicitly supports the requested answer. For comparisons, the gate can accept separate substantive "
+        "evidence about each product rather than requiring one source to compare them directly. If the evidence is "
+        "sufficient, the answer model generates a short sourced response; otherwise the app returns the fixed no-answer response."
     )
     st.write(
         "In everyday use, the flow starts in **Ask**. The user chooses a retrieval policy in **Settings & Eval**, returns "
@@ -1429,7 +1430,7 @@ def render_about() -> None:
             {"Stage": "Context expansion", "What happens": "Neighbor chunks from the same source document are added within the context budget to reduce chunk-boundary misses."},
             {"Stage": "Optional web evidence", "What happens": "Option 2 searches Autodesk.com; Option 3 searches the open web with a smaller result cap."},
             {"Stage": "Reranking", "What happens": "A cross-encoder reranks local and web evidence blocks before answerability checking."},
-            {"Stage": "Adequacy gate", "What happens": "The app verifies that the evidence explicitly supports the needed fact and refuses unsupported answers."},
+            {"Stage": "Adequacy gate", "What happens": "The app verifies that the evidence explicitly supports the needed fact. For comparisons, separate support for each product can be sufficient."},
             {"Stage": "Generation and logging", "What happens": "The final answer is generated from supplied evidence only, then interaction metadata is logged to Supabase when configured."},
         ]
     )

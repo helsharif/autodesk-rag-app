@@ -108,7 +108,7 @@ If a compare/contrast query is detected:
 - Retrieved local chunks are deduplicated before final local context selection.
 - Context selection prefers balance across the compared products so one product's highest-scoring pages do not dominate the evidence passed downstream.
 
-This branch improves evidence retrieval only. It does not create canned answers, inject product claims, or special-case pairs such as AutoCAD and Revit. The adequacy gate and answer generator still require explicit support from retrieved evidence.
+This branch improves evidence retrieval and uses a compare-aware adequacy check. A direct comparison passage is not required when retrieved evidence separately provides substantive facts about each compared product. It does not create canned answers, inject product claims, or special-case pairs such as AutoCAD and Revit. The answer generator still requires explicit support from retrieved evidence.
 
 ### Step 1: Dense Vector Retrieval
 
@@ -263,6 +263,7 @@ Gate behavior:
 - Does not use memory, prior turns, outside knowledge, or likely values.
 - For numeric, date, fee, version, plan, procedural, or current-information questions, it expects the exact fact to appear in evidence.
 - For broad descriptive questions, it can accept concise context that directly describes the requested product, service, or plan.
+- For compare/contrast questions, it can accept separate substantive evidence about each compared product; it does not require a single source to explicitly compare the products.
 - If evidence is related but incomplete, vague, stale, or missing the requested fact, the gate fails.
 
 The gate returns structured JSON with:
