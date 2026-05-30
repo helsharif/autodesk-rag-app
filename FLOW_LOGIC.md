@@ -25,6 +25,7 @@ All three options use the same local retrieval backend:
 - Chroma dense vector search
 - BM25 lexical search
 - Weighted Reciprocal Rank Fusion
+- Compare/contrast retrieval planning for product comparison and product-selection questions
 - Same-document neighbor context expansion
 - Cross-encoder reranking before the adequacy gate
 
@@ -62,6 +63,7 @@ Option 1:
 - The app uses only local documents.
 - The lightweight router does not decide whether web search is needed.
 - Web search is not attempted.
+- Compare/contrast questions can still trigger local compare retrieval planning.
 
 Option 2:
 
@@ -81,6 +83,32 @@ Option 3:
 ## Local Hybrid Retrieval Flow
 
 Local retrieval runs in every option.
+
+Before local retrieval, the agent checks whether the user question is a compare/contrast, product-selection, difference, or `X vs Y` style query. This branch is deterministic and lives in `src/agent.py`; it preserves the normal router behavior for non-comparison questions.
+
+Compare/contrast detection includes patterns such as:
+
+- `compare`
+- `contrast`
+- `difference between`
+- `differences between`
+- `vs`
+- `versus`
+- `which is better`
+- `which should I use`
+- `should I use`
+- `how does X differ from Y`
+
+If a compare/contrast query is detected:
+
+- The agent extracts product or entity names from the user query without hardcoding a specific product pair.
+- The original user query remains part of the retrieval strategy.
+- Up to four focused retrieval subqueries are generated for product-specific evidence, direct comparison evidence, and comparison dimensions such as use cases, workflows, industries, features, interoperability, BIM/CAD differences, 2D/3D modeling, design documentation, collaboration, and target users.
+- Each query is retrieved separately through the existing local hybrid Chroma plus BM25 flow.
+- Retrieved local chunks are deduplicated before final local context selection.
+- Context selection prefers balance across the compared products so one product's highest-scoring pages do not dominate the evidence passed downstream.
+
+This branch improves evidence retrieval only. It does not create canned answers, inject product claims, or special-case pairs such as AutoCAD and Revit. The adequacy gate and answer generator still require explicit support from retrieved evidence.
 
 ### Step 1: Dense Vector Retrieval
 
@@ -122,6 +150,7 @@ The vector-heavy weighting helps reduce cases where BM25 over-rewards title keyw
 - Duplicate chunks are removed.
 - The fused list preserves high-quality semantic matches while allowing strong lexical matches to surface.
 - The final local candidate list is capped before context expansion.
+- In compare/contrast mode, this retrieval process is repeated for the original question and the generated focused subqueries, then the combined local candidates are deduplicated and balanced by mentioned product/entity where possible.
 
 ## Deterministic Context Expansion
 
@@ -219,12 +248,14 @@ The adequacy gate is a strict evidence sufficiency checker. It does not answer t
 
 Current order:
 
-1. Retrieve local candidates.
-2. Expand same-document local neighbors.
-3. Add web snippets if Option 2 or Option 3 is selected.
-4. Rerank all evidence blocks with the cross-encoder.
-5. Run the adequacy gate on the best reranked evidence.
-6. Generate an answer only if the gate finds sufficient evidence.
+1. Apply the router and selected web policy.
+2. Detect compare/contrast intent when present.
+3. Retrieve local candidates, using focused balanced subquery retrieval for compare/contrast questions.
+4. Expand same-document local neighbors.
+5. Add web snippets if Option 2 or Option 3 is selected.
+6. Rerank all evidence blocks with the cross-encoder.
+7. Run the adequacy gate on the best reranked evidence.
+8. Generate an answer only if the gate finds sufficient evidence.
 
 Gate behavior:
 
@@ -491,7 +522,10 @@ This gives BM25 access to enriched lexical signals while keeping embeddings focu
 
 - Receive user question
 - Apply selected web policy
+- Detect compare/contrast product-selection intent
+- Generate focused local retrieval subqueries when comparison mode is triggered
 - Run local hybrid retrieval
+- Deduplicate and balance comparison evidence when applicable
 - Expand local neighbor chunks
 - Retrieve web evidence if Option 2 or Option 3
 - Rerank local and web evidence together
@@ -504,6 +538,8 @@ This gives BM25 access to enriched lexical signals while keeping embeddings focu
 - Chroma vector retrieval
 - BM25 keyword retrieval with enriched metadata text
 - Weighted Reciprocal Rank Fusion
+- Compare/contrast subquery retrieval
+- Deduplication and balanced context selection
 - Per-source result cap
 - Neighbor-only context expansion
 - Autodesk.com web retrieval
@@ -534,15 +570,21 @@ flowchart TD
     C --> O2["Option 2: Local + Autodesk.com"]
     C --> O3["Option 3: Local + Open Web"]
 
-    O1 --> L["Local hybrid retrieval"]
-    O2 --> L
-    O3 --> L
+    O1 --> P["Router and compare/contrast detector"]
+    O2 --> P
+    O3 --> P
+
+    P --> Cmp{"Compare/contrast query?"}
+    Cmp -->|Yes| SQ["Generate focused product and comparison subqueries"]
+    Cmp -->|No| L
+    SQ --> L
 
     L --> V["Chroma vector search"]
     L --> K["BM25 keyword search with enriched metadata"]
     V --> F["Weighted RRF fusion"]
     K --> F
-    F --> N["Neighbor context expansion"]
+    F --> B["Deduplicate and balance local evidence when applicable"]
+    B --> N["Neighbor context expansion"]
 
     O2 --> W2["Autodesk.com web search"]
     O3 --> W3["Capped open-web search"]

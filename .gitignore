@@ -12,6 +12,7 @@ data/**/*.pdf
 .streamlit/secrets.toml
 streamlit*.log
 ~$*.pptx
+Husayn El Sharif Autodesk RAG App.zip
 eval_status/
 /cobb_county_testset.csv
 instructions/

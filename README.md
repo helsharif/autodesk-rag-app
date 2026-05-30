@@ -48,6 +48,7 @@ All modes use the same local retrieval backbone:
 - BM25 keyword search over chunk text plus enriched metadata.
 - Weighted reciprocal rank fusion to combine dense and lexical rankings.
 - Per-source caps to prevent one document from dominating the candidate set.
+- Compare/contrast query planning that extracts mentioned products, generates focused retrieval subqueries, deduplicates chunks, and balances context across the compared entities.
 - Same-document neighbor expansion to restore chunk-boundary context.
 - Cross-encoder reranking with `cross-encoder/ms-marco-MiniLM-L6-v2`.
 - A strict adequacy gate before answer generation.
@@ -345,14 +346,17 @@ At runtime, the app follows this flow:
 
 1. The user asks a natural-language Autodesk question in Streamlit.
 2. The selected search mode determines whether retrieval is local-only, local plus Autodesk.com, or local plus capped open web.
-3. Local retrieval searches both Chroma and BM25.
-4. Results are merged with weighted reciprocal rank fusion.
-5. Neighboring chunks from the same document are added for context continuity.
-6. Web snippets, when enabled, are converted into evidence blocks.
-7. Local and web evidence are reranked together with the cross-encoder.
-8. The adequacy gate checks whether the retrieved evidence explicitly supports the answer.
-9. The LLM generates a concise sourced answer, or the app returns the fixed no-answer message.
-10. Optional monitoring records request, retrieval, latency, source, model, and outcome metadata.
+3. The agent applies its router. Non-Autodesk questions can abstain, current/latest/pricing questions can request web in web-enabled modes, and compare/contrast questions trigger local compare retrieval planning.
+4. Local retrieval searches both Chroma and BM25. For compare/contrast questions, the agent also retrieves separately over focused subqueries for each mentioned product and direct comparison dimensions.
+5. Results are merged with weighted reciprocal rank fusion, deduplicated, and capped. Compare/contrast retrieval additionally prefers balanced local context so one product does not crowd out the other.
+6. Neighboring chunks from the same document are added for context continuity.
+7. Web snippets, when enabled, are converted into evidence blocks.
+8. Local and web evidence are reranked together with the cross-encoder.
+9. The adequacy gate checks whether the retrieved evidence explicitly supports the answer.
+10. The LLM generates a concise sourced answer, or the app returns the fixed no-answer message.
+11. Optional monitoring records request, retrieval, latency, source, model, and outcome metadata.
+
+The compare/contrast branch only improves what local evidence is retrieved. It does not inject product claims, hardcode product pairs, or pre-write final answers; answer generation remains grounded in retrieved local and optional web evidence.
 
 Core modules:
 

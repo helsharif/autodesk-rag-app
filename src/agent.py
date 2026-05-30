@@ -56,6 +56,13 @@ class QueryRoute:
     reason: str
 
 
+@dataclass
+class CompareRetrievalPlan:
+    is_compare: bool
+    products: list[str]
+    subqueries: list[str]
+
+
 class AutodeskRAGAgent:
     def __init__(self, collection_name: str = HYBRID_BACKEND_NAME, search_mode: str = LOCAL_ONLY_MODE, llm=None) -> None:
         self.collection_name = collection_name
@@ -96,8 +103,11 @@ class AutodeskRAGAgent:
             return self._agent_result(NO_ANSWER, [], False, False, timings=timings, route_reason=route.reason, route_needs_web=route.needs_web)
 
         stage_started = time.perf_counter()
-        local_docs, local_sources = search_documents(question, collection_name=self.collection_name)
+        local_docs, local_sources, compare_plan = self._retrieve_local_documents(question)
         timings["retrieval"] += time.perf_counter() - stage_started
+        route_reason = route.reason
+        if compare_plan.is_compare:
+            route_reason = f"{route.reason} Compare/contrast retrieval for: {', '.join(compare_plan.products) or 'detected entities'}."
         stage_started = time.perf_counter()
         local_docs, local_sources = expand_retrieved_docs(local_docs, local_sources, collection_name=self.collection_name)
         timings["expansion"] += time.perf_counter() - stage_started
@@ -159,7 +169,7 @@ class AutodeskRAGAgent:
         )
         result_contexts = self._result_contexts(docs)
         if not final_answerable:
-            return self._agent_result(NO_ANSWER, [], False, False, result_contexts, route.reason, route.needs_web, use_web, web_error, web_query, timings=timings)
+            return self._agent_result(NO_ANSWER, [], False, False, result_contexts, route_reason, route.needs_web, use_web, web_error, web_query, timings=timings)
 
         stage_started = time.perf_counter()
         response = (self.answer_prompt | self.llm).invoke(
@@ -183,7 +193,7 @@ class AutodeskRAGAgent:
             include_local_context,
             include_web_context,
             result_contexts,
-            route.reason,
+            route_reason,
             route.needs_web,
             use_web,
             web_error,
@@ -208,6 +218,34 @@ class AutodeskRAGAgent:
             return QueryRoute(bool(data.get("needs_local", True)), bool(data.get("needs_web", fallback.needs_web)) or fallback.needs_web, bool(data.get("abstain", fallback.abstain)), str(data.get("reason") or fallback.reason)[:180])
         except Exception:
             return fallback
+
+    def _retrieve_local_documents(self, question: str) -> tuple[list[Document], list[RetrievedSource], CompareRetrievalPlan]:
+        compare_plan = self._compare_retrieval_plan(question)
+        if not compare_plan.is_compare:
+            docs, sources = search_documents(question, collection_name=self.collection_name)
+            return docs, sources, compare_plan
+
+        settings = get_settings()
+        retrieval_queries = [question, *compare_plan.subqueries]
+        per_query_k = max(3, min(settings.retriever_k, (settings.retriever_k // max(len(retrieval_queries), 1)) + 3))
+        logger.info(
+            "Compare/contrast retrieval triggered. products=%s subqueries=%s",
+            compare_plan.products,
+            compare_plan.subqueries,
+        )
+
+        pairs: list[tuple[Document, RetrievedSource]] = []
+        for query_index, retrieval_query in enumerate(retrieval_queries):
+            docs, sources = search_documents(retrieval_query, k=per_query_k, collection_name=self.collection_name)
+            for doc, source in zip(docs, sources):
+                metadata = dict(doc.metadata or {})
+                metadata["compare_retrieval_query"] = retrieval_query
+                metadata["compare_retrieval_query_index"] = query_index
+                pairs.append((Document(page_content=doc.page_content, metadata=metadata), source))
+
+        deduped_pairs = self._dedupe_document_pairs(pairs)
+        balanced_pairs = self._select_balanced_compare_pairs(deduped_pairs, compare_plan.products, settings.retriever_k)
+        return [doc for doc, _ in balanced_pairs], [source for _, source in balanced_pairs], compare_plan
 
     def _evidence_is_answerable(self, question: str, evidence: str) -> bool:
         try:
@@ -362,6 +400,171 @@ class AutodeskRAGAgent:
             content = re.sub(r"^```(?:json)?\s*|\s*```$", "", content, flags=re.IGNORECASE | re.DOTALL).strip()
         match = re.search(r"\{.*\}", content, flags=re.DOTALL)
         return json.loads(match.group(0) if match else content)
+
+    @classmethod
+    def _compare_retrieval_plan(cls, question: str) -> CompareRetrievalPlan:
+        if not cls._is_compare_contrast_query(question):
+            return CompareRetrievalPlan(False, [], [])
+        products = cls._extract_compare_entities(question)
+        subqueries = cls._generate_compare_subqueries(question, products)
+        return CompareRetrievalPlan(True, products, subqueries)
+
+    @staticmethod
+    def _is_compare_contrast_query(question: str) -> bool:
+        normalized = question.lower()
+        patterns = (
+            r"\bcompare\b",
+            r"\bcontrast\b",
+            r"\bdifferences?\s+between\b",
+            r"\bvs\.?\b",
+            r"\bversus\b",
+            r"\bwhich\s+is\s+better\b",
+            r"\bwhich\s+should\s+i\s+use\b",
+            r"\bshould\s+i\s+use\b",
+            r"\bhow\s+does\b.+\bdiffer\s+from\b",
+        )
+        return any(re.search(pattern, normalized) for pattern in patterns)
+
+    @classmethod
+    def _extract_compare_entities(cls, question: str) -> list[str]:
+        compact = re.sub(r"\s+", " ", question).strip(" ?!.")
+        capture_patterns = (
+            r"\bdifferences?\s+between\s+(.+?)\s+and\s+(.+?)(?:\?|$|,| for | when | in )",
+            r"\bcompare\s+(.+?)\s+(?:and|with|to)\s+(.+?)(?:\?|$|,| for | when | in )",
+            r"\bwhich\s+is\s+better[:,]?\s+(.+?)\s+or\s+(.+?)(?:\?|$|,| for | when | in )",
+            r"\bshould\s+i\s+use\s+(.+?)\s+or\s+(.+?)(?:\?|$|,| for | when | in )",
+            r"\bwhich\s+should\s+i\s+use[:,]?\s+(.+?)\s+or\s+(.+?)(?:\?|$|,| for | when | in )",
+            r"\bhow\s+does\s+(.+?)\s+differ\s+from\s+(.+?)(?:\?|$|,| for | when | in )",
+            r"(.+?)\s+(?:vs\.?|versus)\s+(.+?)(?:\?|$|,| for | when | in )",
+        )
+        for pattern in capture_patterns:
+            match = re.search(pattern, compact, flags=re.IGNORECASE)
+            if match:
+                entities = [cls._clean_compare_entity(group) for group in match.groups()]
+                return cls._unique_nonempty(entities)[:4]
+
+        candidates = re.findall(
+            r"\b(?:[A-Z][A-Za-z0-9]+|[A-Z]{2,}|[0-9]+ds)(?:\s+(?:[A-Z][A-Za-z0-9]+|[A-Z]{2,}|[0-9]+|3D|LT|Max|Cloud))*",
+            compact,
+        )
+        return cls._unique_nonempty(cls._clean_compare_entity(candidate) for candidate in candidates)[:4]
+
+    @staticmethod
+    def _clean_compare_entity(value: str) -> str:
+        cleaned = re.sub(r"(?i)\b(autodesk|product|software|tool|tools)\b", " ", value)
+        cleaned = re.sub(r"(?i)\b(what|which|how|does|do|is|are|the|a|an|use|using|for|when|if|i|we|my|our)\b", " ", cleaned)
+        cleaned = re.sub(r"[\"'`“”‘’()\[\]{}:;]", " ", cleaned)
+        cleaned = re.sub(r"\s+", " ", cleaned).strip(" ,.?/")
+        return cleaned
+
+    @classmethod
+    def _generate_compare_subqueries(cls, question: str, products: list[str]) -> list[str]:
+        if len(products) >= 2:
+            left, right = products[0], products[1]
+            candidates = [
+                f"{left} Autodesk use cases workflows industries target users",
+                f"{right} Autodesk use cases workflows industries target users",
+                f"{left} {right} Autodesk compare difference interoperability workflow",
+                f"{left} {right} Autodesk features 2D 3D modeling documentation collaboration BIM CAD",
+            ]
+        else:
+            candidates = [
+                f"{question} Autodesk product comparison use cases workflows",
+                f"{question} Autodesk features target users industries",
+            ]
+        return cls._unique_nonempty(candidates)[:4]
+
+    @staticmethod
+    def _unique_nonempty(values) -> list[str]:
+        unique: list[str] = []
+        seen: set[str] = set()
+        for value in values:
+            normalized = re.sub(r"\s+", " ", str(value or "")).strip()
+            key = normalized.lower()
+            if normalized and key not in seen:
+                seen.add(key)
+                unique.append(normalized)
+        return unique
+
+    @staticmethod
+    def _dedupe_document_pairs(pairs: list[tuple[Document, RetrievedSource]]) -> list[tuple[Document, RetrievedSource]]:
+        by_id: dict[str, tuple[Document, RetrievedSource]] = {}
+        for doc, source in pairs:
+            metadata = doc.metadata or {}
+            key = "::".join(
+                str(part)
+                for part in (
+                    metadata.get("chunk_id") or "",
+                    metadata.get("source_file") or metadata.get("relative_source_path") or source.source,
+                    metadata.get("chunk_index") or "",
+                    (doc.page_content or "")[:120],
+                )
+            )
+            current = by_id.get(key)
+            if current is None or source.score > current[1].score:
+                by_id[key] = (doc, source)
+        return list(by_id.values())
+
+    @classmethod
+    def _select_balanced_compare_pairs(
+        cls,
+        pairs: list[tuple[Document, RetrievedSource]],
+        products: list[str],
+        limit: int,
+    ) -> list[tuple[Document, RetrievedSource]]:
+        if limit <= 0 or len(products) < 2:
+            return pairs[:limit]
+
+        buckets: dict[str, list[tuple[Document, RetrievedSource]]] = {"direct": [], "other": []}
+        for product in products[:4]:
+            buckets[product] = []
+
+        for pair in pairs:
+            doc, source = pair
+            haystack = cls._document_search_text(doc, source)
+            matched_products = [product for product in products[:4] if cls._entity_in_text(product, haystack)]
+            if len(matched_products) >= 2:
+                buckets["direct"].append(pair)
+            elif len(matched_products) == 1:
+                buckets[matched_products[0]].append(pair)
+            else:
+                buckets["other"].append(pair)
+
+        selected: list[tuple[Document, RetrievedSource]] = []
+        selected_ids: set[int] = set()
+
+        # Compare/contrast questions need entity-balanced evidence, otherwise the
+        # highest-scoring product page can crowd out the other product before the
+        # evidence gate and answer generator ever see it.
+        bucket_order = ["direct", *products[:4], "other"]
+        while len(selected) < limit:
+            added_this_round = False
+            for bucket_name in bucket_order:
+                bucket = buckets.get(bucket_name, [])
+                while bucket and id(bucket[0][0]) in selected_ids:
+                    bucket.pop(0)
+                if not bucket:
+                    continue
+                pair = bucket.pop(0)
+                selected.append(pair)
+                selected_ids.add(id(pair[0]))
+                added_this_round = True
+                if len(selected) >= limit:
+                    break
+            if not added_this_round:
+                break
+        return selected
+
+    @staticmethod
+    def _document_search_text(doc: Document, source: RetrievedSource) -> str:
+        metadata = doc.metadata or {}
+        metadata_text = " ".join(str(metadata.get(key) or "") for key in ("title", "heading_path", "source_file", "relative_source_path"))
+        return f"{metadata_text} {source.source} {source.snippet} {doc.page_content}".lower()
+
+    @staticmethod
+    def _entity_in_text(entity: str, text: str) -> bool:
+        normalized_entity = re.sub(r"\s+", " ", entity.lower()).strip()
+        return bool(normalized_entity) and normalized_entity in text
 
     @staticmethod
     def _needs_web(question: str) -> bool:

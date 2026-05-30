@@ -1407,10 +1407,11 @@ def render_about() -> None:
     st.write(
         "A user question enters the Ask tab with one of three search modes selected. All modes use the same local "
         "Docling + Chroma + BM25 hybrid retrieval backbone. Option 1 stays local-only, Option 2 adds official Autodesk.com "
-        "web evidence, and Option 3 adds capped open-web evidence. Local chunks and web snippets are reranked together, "
-        "then a strict adequacy gate checks whether the supplied evidence explicitly supports the requested answer. "
-        "If the evidence is sufficient, the answer model generates a short sourced response; otherwise the app returns "
-        "the fixed no-answer response."
+        "web evidence, and Option 3 adds capped open-web evidence. The agent also detects compare/contrast and "
+        "product-selection questions, then improves local retrieval with focused product and comparison subqueries. "
+        "Local chunks and web snippets are reranked together, then a strict adequacy gate checks whether the supplied "
+        "evidence explicitly supports the requested answer. If the evidence is sufficient, the answer model generates "
+        "a short sourced response; otherwise the app returns the fixed no-answer response."
     )
     st.write(
         "In everyday use, the flow starts in **Ask**. The user chooses a retrieval policy in **Settings & Eval**, returns "
@@ -1422,7 +1423,9 @@ def render_about() -> None:
     st.table(
         [
             {"Stage": "Question intake", "What happens": "Streamlit captures the user question and active search mode."},
+            {"Stage": "Routing and planning", "What happens": "The router applies Autodesk/web policy. Compare/contrast questions trigger focused local subqueries for each mentioned product and direct comparison evidence."},
             {"Stage": "Local retrieval", "What happens": f"Chroma semantic search and BM25 keyword search retrieve candidates, then weighted RRF combines them with {settings.hybrid_vector_weight:.2f} vector / {settings.hybrid_bm25_weight:.2f} BM25 weighting."},
+            {"Stage": "Comparison balancing", "What happens": "When comparison mode is active, retrieved chunks are deduplicated and selected to keep evidence balanced across the compared products."},
             {"Stage": "Context expansion", "What happens": "Neighbor chunks from the same source document are added within the context budget to reduce chunk-boundary misses."},
             {"Stage": "Optional web evidence", "What happens": "Option 2 searches Autodesk.com; Option 3 searches the open web with a smaller result cap."},
             {"Stage": "Reranking", "What happens": "A cross-encoder reranks local and web evidence blocks before answerability checking."},
@@ -1434,9 +1437,10 @@ def render_about() -> None:
     st.subheader("Flowchart")
     st.write(
         "The flowchart below is the reviewer-friendly version of the runtime pipeline. It shows the three search modes "
-        "branching early, then converging around the same evidence quality-control layer. The key idea is that web search "
-        "does not bypass the RAG discipline: web snippets still become evidence blocks, compete with local chunks in the "
-        "reranker, and must pass the same adequacy gate before generation."
+        "branching early, compare/contrast planning improving local evidence retrieval when needed, and all evidence "
+        "converging around the same quality-control layer. The key idea is that neither focused comparison retrieval nor "
+        "web search bypasses the RAG discipline: evidence blocks still compete in the reranker and must pass the same "
+        "adequacy gate before generation."
     )
     _render_mermaid(
         """
@@ -1448,15 +1452,21 @@ flowchart TD
     C --> D2["Option 2: Local + Autodesk.com"]
     C --> D3["Option 3: Local + open web"]
 
-    D1 --> E["Local hybrid retrieval"]
-    D2 --> E
-    D3 --> E
+    D1 --> P["Router and compare/contrast detector"]
+    D2 --> P
+    D3 --> P
+
+    P --> CMP{"Compare/contrast query?"}
+    CMP -->|Yes| S["Focused product and comparison subqueries"]
+    CMP -->|No| E
+    S --> E
 
     E --> F1["Chroma semantic search"]
     E --> F2["BM25 keyword search"]
     F1 --> G["Weighted RRF fusion"]
     F2 --> G
-    G --> H["Neighbor chunk expansion"]
+    G --> BAL["Deduplicate and balance comparison context"]
+    BAL --> H["Neighbor chunk expansion"]
 
     D2 --> W1["Autodesk.com web evidence"]
     D3 --> W2["Capped open-web evidence"]

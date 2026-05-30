@@ -12,6 +12,8 @@ Autodesk Agentic RAG: Evidence-Grounded Answers With Three Search Modes
 
 The app answers Autodesk product questions by retrieving local Autodesk corpus evidence, optionally adding web evidence, reranking the best evidence, checking whether it is sufficient, and then generating a short sourced answer or a conservative no-answer response.
 
+For compare/contrast and product-selection questions, the app adds a local retrieval planning step that extracts the products mentioned in the user query and retrieves focused evidence for each product plus direct comparison dimensions. This improves context balance without hardcoding product pairs or pre-writing answers.
+
 ## Recommended Visual Layout
 
 Use a horizontal or vertical five-layer diagram:
@@ -42,12 +44,14 @@ A good presentation slide can use:
 - User enters a natural-language Autodesk question.
 - The app records the question in chat history.
 - The selected search mode controls the retrieval path.
+- The agent detects compare/contrast questions such as `Product A vs Product B`, `difference between Product A and Product B`, or `which should I use`.
 
 Diagram node labels:
 
 - `User asks Autodesk question`
 - `Streamlit Ask tab`
 - `Settings & Eval controls search mode`
+- `Compare/contrast detector`
 
 ## Layer 2: Three Runtime Search Modes
 
@@ -81,11 +85,24 @@ The app searches the local Autodesk corpus in two ways:
 - **Chroma vector search** for semantic similarity.
 - **BM25 keyword search** for exact product names, technical phrases, and enriched metadata keywords.
 
+### Compare/Contrast Retrieval Planning
+
+For compare/contrast questions, the app:
+
+- extracts product or entity names from the user query;
+- keeps the original question in the retrieval strategy;
+- generates up to four focused retrieval subqueries for product-specific evidence, direct comparison evidence, and dimensions such as use cases, workflows, industries, features, interoperability, BIM/CAD differences, 2D/3D modeling, documentation, collaboration, and target users;
+- retrieves each focused query through the same local hybrid Chroma plus BM25 path;
+- deduplicates chunks and prefers balanced context across the compared products.
+
+This planning step only changes evidence retrieval. It does not add product claims or answer templates.
+
 ### Fusion
 
 - Dense and BM25 rankings are merged with weighted Reciprocal Rank Fusion.
 - Vector retrieval receives more weight than BM25.
 - Results are capped per source document to prevent one document from dominating.
+- Compare/contrast results are deduplicated and balanced so one product does not dominate the context.
 
 ### Neighbor Expansion
 
@@ -95,6 +112,9 @@ The app searches the local Autodesk corpus in two ways:
 
 Diagram node labels:
 
+- `Compare retrieval planner`
+- `Focused product subqueries`
+- `Balanced comparison context`
 - `Chroma semantic search`
 - `BM25 keyword search`
 - `Weighted RRF fusion`
@@ -268,11 +288,16 @@ flowchart TD
     D2 --> E
     D3 --> E
 
-    E --> F1["Chroma semantic search"]
-    E --> F2["BM25 keyword search"]
+    E --> P{"Compare/contrast query?"}
+    P -->|Yes| S["Focused product and comparison subqueries"]
+    P -->|No| F1["Chroma semantic search"]
+    S --> F1
+    S --> F2["BM25 keyword search"]
+    P -->|No| F2
     F1 --> G["Weighted RRF fusion"]
     F2 --> G
-    G --> H["Neighbor chunk expansion"]
+    G --> B["Deduplicate and balance context when applicable"]
+    B --> H["Neighbor chunk expansion"]
 
     D2 --> W1["Autodesk.com web evidence"]
     D3 --> W2["Capped open-web evidence"]
@@ -325,6 +350,9 @@ Broader, but less authoritative
 - Local Autodesk corpus
 - Chroma vector search
 - BM25 keyword search
+- Compare/contrast retrieval planning
+- Focused product subqueries
+- Balanced comparison context
 - Enriched metadata keywords
 - Weighted RRF fusion
 - Neighbor context expansion
