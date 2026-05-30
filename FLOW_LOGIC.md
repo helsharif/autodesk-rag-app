@@ -104,7 +104,7 @@ If a compare/contrast query is detected:
 - The agent extracts product or entity names from the user query without hardcoding a specific product pair.
 - The original user query remains part of the retrieval strategy.
 - Up to four focused retrieval subqueries are generated for product-specific evidence, direct comparison evidence, and comparison dimensions such as use cases, workflows, industries, features, interoperability, BIM/CAD differences, 2D/3D modeling, design documentation, collaboration, and target users.
-- Each query is retrieved separately through the existing local hybrid Chroma plus BM25 flow.
+- The original question and focused subqueries are folded into one expanded local retrieval query.
 - Retrieved local chunks are deduplicated before final local context selection.
 - Context selection prefers balance across the compared products so one product's highest-scoring pages do not dominate the evidence passed downstream.
 
@@ -150,7 +150,7 @@ The vector-heavy weighting helps reduce cases where BM25 over-rewards title keyw
 - Duplicate chunks are removed.
 - The fused list preserves high-quality semantic matches while allowing strong lexical matches to surface.
 - The final local candidate list is capped before context expansion.
-- In compare/contrast mode, this retrieval process is repeated for the original question and the generated focused subqueries, then the combined local candidates are deduplicated and balanced by mentioned product/entity where possible.
+- In compare/contrast mode, this retrieval process runs once with the expanded comparison query, then local candidates are deduplicated and balanced by mentioned product/entity where possible.
 
 ## Deterministic Context Expansion
 
@@ -250,7 +250,7 @@ Current order:
 
 1. Apply the router and selected web policy.
 2. Detect compare/contrast intent when present.
-3. Retrieve local candidates, using focused balanced subquery retrieval for compare/contrast questions.
+3. Retrieve local candidates, using one expanded focused query for compare/contrast questions.
 4. Expand same-document local neighbors.
 5. Add web snippets if Option 2 or Option 3 is selected.
 6. Rerank all evidence blocks with the cross-encoder.
@@ -539,7 +539,7 @@ This gives BM25 access to enriched lexical signals while keeping embeddings focu
 - Chroma vector retrieval
 - BM25 keyword retrieval with enriched metadata text
 - Weighted Reciprocal Rank Fusion
-- Compare/contrast subquery retrieval
+- Compare/contrast query expansion
 - Deduplication and balanced context selection
 - Per-source result cap
 - Neighbor-only context expansion

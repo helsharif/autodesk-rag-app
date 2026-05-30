@@ -347,7 +347,7 @@ At runtime, the app follows this flow:
 1. The user asks a natural-language Autodesk question in Streamlit.
 2. The selected search mode determines whether retrieval is local-only, local plus Autodesk.com, or local plus capped open web.
 3. The agent applies its router. Non-Autodesk questions can abstain, current/latest/pricing questions can request web in web-enabled modes, and compare/contrast questions trigger local compare retrieval planning.
-4. Local retrieval searches both Chroma and BM25. For compare/contrast questions, the agent also retrieves separately over focused subqueries for each mentioned product and direct comparison dimensions.
+4. Local retrieval searches both Chroma and BM25. For compare/contrast questions, focused product and comparison subqueries are folded into one expanded local retrieval query rather than running the whole retrieval pipeline once per subquery.
 5. Results are merged with weighted reciprocal rank fusion, deduplicated, and capped. Compare/contrast retrieval additionally prefers balanced local context so one product does not crowd out the other.
 6. Neighboring chunks from the same document are added for context continuity.
 7. Web snippets, when enabled, are converted into evidence blocks.

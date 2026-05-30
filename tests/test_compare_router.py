@@ -1,4 +1,5 @@
 import unittest
+from unittest.mock import patch
 
 from langchain_core.documents import Document
 
@@ -116,6 +117,30 @@ class CompareRouterTests(unittest.TestCase):
                 ["AutoCAD", "Revit"],
             )
         )
+
+    def test_compare_retrieval_uses_single_expanded_search_call(self):
+        agent = AutodeskRAGAgent.__new__(AutodeskRAGAgent)
+        agent.collection_name = "test"
+        docs = [
+            Document(page_content="AutoCAD creates precise 2D drawings and 3D models for design and documentation workflows.", metadata={"title": "AutoCAD overview", "chunk_id": "a"}),
+            Document(page_content="Revit supports BIM workflows for architecture and engineering projects with modeling and documentation tools.", metadata={"title": "Revit overview", "chunk_id": "b"}),
+        ]
+        sources = [
+            RetrievedSource("AutoCAD source", None, 0.9, docs[0].page_content),
+            RetrievedSource("Revit source", None, 0.8, docs[1].page_content),
+        ]
+
+        with patch("src.agent.search_documents", return_value=(docs, sources)) as search_mock:
+            retrieved_docs, retrieved_sources, plan = agent._retrieve_local_documents("What's the difference between AutoCAD and Revit?")
+
+        self.assertTrue(plan.is_compare)
+        self.assertEqual(search_mock.call_count, 1)
+        expanded_query = search_mock.call_args.args[0]
+        self.assertIn("What's the difference between AutoCAD and Revit?", expanded_query)
+        self.assertIn("AutoCAD Autodesk use cases", expanded_query)
+        self.assertIn("Revit Autodesk use cases", expanded_query)
+        self.assertEqual(len(retrieved_docs), 2)
+        self.assertEqual(len(retrieved_sources), 2)
 
 
 if __name__ == "__main__":
