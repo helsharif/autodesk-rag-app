@@ -81,7 +81,7 @@ class Settings:
     context_max_chars: int = field(default_factory=lambda: _env_int("CONTEXT_MAX_CHARS", "18000"))
     reranker_enabled: bool = field(default_factory=lambda: _env_bool("RERANKER_ENABLED", "true"))
     reranker_model: str = field(default_factory=lambda: _env_str("RERANKER_MODEL", "cross-encoder/ms-marco-MiniLM-L6-v2"))
-    reranker_top_n: int = field(default_factory=lambda: _env_int("RERANKER_TOP_N", "5"))
+    reranker_top_n: int = field(default_factory=lambda: _env_int("RERANKER_TOP_N", "8"))
     reranker_batch_size: int = field(default_factory=lambda: _env_int("RERANKER_BATCH_SIZE", "16"))
     serpapi_api_key: str | None = field(default_factory=lambda: os.getenv("SERPAPI_API_KEY") or None)
     langsmith_api_key: str | None = field(default_factory=lambda: os.getenv("LANGSMITH_API_KEY") or None)
