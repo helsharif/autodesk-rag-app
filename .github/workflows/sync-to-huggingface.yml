@@ -21,6 +21,7 @@ jobs:
           mkdir -p hf_space
 
           cp Dockerfile hf_space/Dockerfile
+          cp .gitattributes hf_space/.gitattributes
           cp requirements.txt hf_space/requirements.txt
 
           cp -r app hf_space/app
@@ -66,6 +67,8 @@ jobs:
 
           cd hf_repo
           git lfs install
+          git check-attr filter -- retrieval_indexes/bm25_autodesk_cleaned_corpus/bm25_index.pkl
+          git check-attr filter -- retrieval_indexes/chroma_autodesk_cleaned_corpus/chroma.sqlite3
           git add -A
 
           if git diff --cached --quiet; then
