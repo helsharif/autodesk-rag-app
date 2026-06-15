@@ -30,10 +30,10 @@ from src.agent import AutodeskRAGAgent, NO_ANSWER
 from src.config import (
     AUTODESK_WEB_MODE,
     COLLECTION_OPTIONS,
+    DEFAULT_SEARCH_MODE_LABEL,
     HYBRID_BACKEND_NAME,
     LOCAL_ONLY_MODE,
     OPEN_WEB_MODE,
-    OPTION_1_LABEL,
     SEARCH_MODE_OPTIONS,
     get_settings,
 )
@@ -223,9 +223,9 @@ def _init_state() -> None:
         query_page = "Ask"
     st.session_state.setdefault("selected_page", query_page)
 
-    query_mode = get_query_param("mode", OPTION_1_LABEL)
+    query_mode = get_query_param("mode", DEFAULT_SEARCH_MODE_LABEL)
     if query_mode not in SEARCH_MODE_OPTIONS:
-        query_mode = OPTION_1_LABEL
+        query_mode = DEFAULT_SEARCH_MODE_LABEL
     st.session_state.setdefault("search_mode_label", query_mode)
     st.session_state.setdefault("search_mode", SEARCH_MODE_OPTIONS[query_mode])
     st.session_state.setdefault("collection_name", COLLECTION_OPTIONS[query_mode])
@@ -245,7 +245,7 @@ def _mode_label_for_search_mode(search_mode: str | None) -> str:
     for label, mode in SEARCH_MODE_OPTIONS.items():
         if mode == search_mode:
             return label
-    return OPTION_1_LABEL
+    return DEFAULT_SEARCH_MODE_LABEL
 
 
 def _retrieval_backend_label(search_mode: str | None) -> str:
@@ -264,7 +264,7 @@ def _normalize_search_mode_state() -> str:
     elif mode_label in SEARCH_MODE_OPTIONS:
         search_mode = SEARCH_MODE_OPTIONS[mode_label]
     else:
-        mode_label = OPTION_1_LABEL
+        mode_label = DEFAULT_SEARCH_MODE_LABEL
         search_mode = SEARCH_MODE_OPTIONS[mode_label]
 
     st.session_state.search_mode_label = mode_label
@@ -281,9 +281,9 @@ def on_page_change() -> None:
 
 
 def on_search_mode_change() -> None:
-    selected_label = st.session_state.get("search_mode_label", OPTION_1_LABEL)
+    selected_label = st.session_state.get("search_mode_label", DEFAULT_SEARCH_MODE_LABEL)
     if selected_label not in SEARCH_MODE_OPTIONS:
-        selected_label = OPTION_1_LABEL
+        selected_label = DEFAULT_SEARCH_MODE_LABEL
     st.session_state.search_mode_label = selected_label
     st.session_state.search_mode = SEARCH_MODE_OPTIONS[selected_label]
     st.session_state.collection_name = COLLECTION_OPTIONS[selected_label]
@@ -483,7 +483,7 @@ def render_settings_eval() -> None:
         key="search_mode_label",
         on_change=on_search_mode_change,
     )
-    selected = st.session_state.get("search_mode_label", OPTION_1_LABEL)
+    selected = st.session_state.get("search_mode_label", DEFAULT_SEARCH_MODE_LABEL)
     st.session_state.search_mode = SEARCH_MODE_OPTIONS[selected]
     st.session_state.collection_name = COLLECTION_OPTIONS[selected]
     sync_query_state(page="Settings & Eval", mode_label=selected)
