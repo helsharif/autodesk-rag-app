@@ -51,10 +51,26 @@ jobs:
           EOF
 
       - name: Sync to Hugging Face Space
-        uses: huggingface/hub-sync@main
-        with:
-          github_repo_id: helsharif/autodesk-rag-app
-          huggingface_repo_id: helsharif/autodesk-rag-assistant
-          repo_type: space
-          hf_token: ${{ secrets.HF_TOKEN }}
-          subdirectory: hf_space
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          set -euo pipefail
+
+          git config --global user.email "actions@github.com"
+          git config --global user.name "github-actions[bot]"
+
+          git clone "https://helsharif:${HF_TOKEN}@huggingface.co/spaces/helsharif/autodesk-rag-assistant" hf_repo
+
+          find hf_repo -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
+          cp -a hf_space/. hf_repo/
+
+          cd hf_repo
+          git lfs install
+          git add -A
+
+          if git diff --cached --quiet; then
+            echo "No Hugging Face Space changes to sync."
+          else
+            git commit -m "Sync Space from GitHub ${GITHUB_SHA}"
+            git push
+          fi
