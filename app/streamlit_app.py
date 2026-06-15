@@ -34,6 +34,7 @@ from src.config import (
     HYBRID_BACKEND_NAME,
     LOCAL_ONLY_MODE,
     OPEN_WEB_MODE,
+    OPTION_1_LABEL,
     SEARCH_MODE_OPTIONS,
     get_settings,
 )
@@ -208,6 +209,7 @@ BACKEND_FILTER_ORDER = [
     "docling_chroma_bm25_hybrid_autodesk_web",
     "docling_chroma_bm25_hybrid_open_web",
 ]
+DEFAULT_SEARCH_MODE_STATE_VERSION = "2026-06-15-autodesk-web-default"
 
 
 def get_query_param(name: str, default: str) -> str:
@@ -223,12 +225,30 @@ def _init_state() -> None:
         query_page = "Ask"
     st.session_state.setdefault("selected_page", query_page)
 
+    query_mode_was_supplied = "mode" in st.query_params
     query_mode = get_query_param("mode", DEFAULT_SEARCH_MODE_LABEL)
     if query_mode not in SEARCH_MODE_OPTIONS:
         query_mode = DEFAULT_SEARCH_MODE_LABEL
-    st.session_state.setdefault("search_mode_label", query_mode)
-    st.session_state.setdefault("search_mode", SEARCH_MODE_OPTIONS[query_mode])
-    st.session_state.setdefault("collection_name", COLLECTION_OPTIONS[query_mode])
+
+    has_current_default_marker = st.session_state.get("search_mode_default_version") == DEFAULT_SEARCH_MODE_STATE_VERSION
+    has_user_selected_mode = bool(st.session_state.get("search_mode_user_selected"))
+    should_migrate_legacy_default = (
+        not has_current_default_marker
+        and not has_user_selected_mode
+        and (not query_mode_was_supplied or query_mode == OPTION_1_LABEL)
+    )
+    if should_migrate_legacy_default:
+        query_mode = DEFAULT_SEARCH_MODE_LABEL
+        st.session_state.search_mode_label = query_mode
+        st.session_state.search_mode = SEARCH_MODE_OPTIONS[query_mode]
+        st.session_state.collection_name = COLLECTION_OPTIONS[query_mode]
+        st.session_state.search_mode_default_version = DEFAULT_SEARCH_MODE_STATE_VERSION
+    else:
+        st.session_state.setdefault("search_mode_label", query_mode)
+        st.session_state.setdefault("search_mode", SEARCH_MODE_OPTIONS[query_mode])
+        st.session_state.setdefault("collection_name", COLLECTION_OPTIONS[query_mode])
+        st.session_state.setdefault("search_mode_default_version", DEFAULT_SEARCH_MODE_STATE_VERSION)
+
     st.session_state.setdefault("messages", [])
     st.session_state.setdefault("session_id", str(uuid.uuid4()))
     _normalize_search_mode_state()
@@ -287,6 +307,8 @@ def on_search_mode_change() -> None:
     st.session_state.search_mode_label = selected_label
     st.session_state.search_mode = SEARCH_MODE_OPTIONS[selected_label]
     st.session_state.collection_name = COLLECTION_OPTIONS[selected_label]
+    st.session_state.search_mode_user_selected = True
+    st.session_state.search_mode_default_version = DEFAULT_SEARCH_MODE_STATE_VERSION
     sync_query_state(mode_label=selected_label)
 
 

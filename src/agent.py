@@ -14,7 +14,7 @@ from datetime import date
 from langchain_core.documents import Document
 from langchain_core.prompts import ChatPromptTemplate
 
-from src.config import AUTODESK_WEB_MODE, HYBRID_BACKEND_NAME, LOCAL_ONLY_MODE, OPEN_WEB_MODE, get_chat_model, get_settings
+from src.config import AUTODESK_WEB_MODE, DEFAULT_SEARCH_MODE, HYBRID_BACKEND_NAME, LOCAL_ONLY_MODE, OPEN_WEB_MODE, get_chat_model, get_settings
 from src.context_expansion import expand_retrieved_docs
 from src.reranker import rerank_documents
 from src.retriever import RetrievedSource, search_documents
@@ -103,7 +103,7 @@ class AutodeskRAGAgent:
         r"\bsite:(?!autodesk\.com\b)\S+",
     )
 
-    def __init__(self, collection_name: str = HYBRID_BACKEND_NAME, search_mode: str = LOCAL_ONLY_MODE, llm=None) -> None:
+    def __init__(self, collection_name: str = HYBRID_BACKEND_NAME, search_mode: str = DEFAULT_SEARCH_MODE, llm=None) -> None:
         self.collection_name = collection_name
         self.search_mode = search_mode
         self.llm = llm or get_chat_model(temperature=0.0)
