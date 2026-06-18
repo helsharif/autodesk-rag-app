@@ -1553,7 +1553,9 @@ def _knowledge_graph_pyvis_html(subgraph, selected: str, show_edge_labels: bool 
         net.add_node(
             node,
             label=_truncate_text(label, 34),
-            title=_node_tooltip(node, data),
+            title="Click to inspect entity details",
+            details_html=_node_tooltip(node, data),
+            details_heading=label,
             color=_entity_color(entity_type, node == selected),
             size=26 if node == selected else 12 + min(subgraph.degree(node), 16),
             group=entity_type,
@@ -1562,7 +1564,9 @@ def _knowledge_graph_pyvis_html(subgraph, selected: str, show_edge_labels: bool 
         net.add_edge(
             source,
             target,
-            title=_edge_tooltip(data),
+            title="Click to inspect relationship details",
+            details_html=_edge_tooltip(data),
+            details_heading=f"{_graph_node_label(subgraph, source)} - {_graph_node_label(subgraph, target)}",
             value=max(1.0, float(data.get("weight") or 1.0)),
             label=_truncate_text(str(data.get("keywords") or ""), 30) if show_edge_labels else "",
             color="#94a3b8",
@@ -1578,7 +1582,59 @@ def _knowledge_graph_pyvis_html(subgraph, selected: str, show_edge_labels: bool 
         }
         """
     )
-    return net.generate_html(notebook=False)
+    return _inject_graph_detail_panel(net.generate_html(notebook=False))
+
+
+def _inject_graph_detail_panel(graph_html: str) -> str:
+    panel_html = """
+    <aside id="kg-detail-panel">
+      <div class="kg-panel-eyebrow">Selected item</div>
+      <h2 id="kg-detail-title">Click a node or edge</h2>
+      <div id="kg-detail-body">Select an entity or relationship in the graph to read its metadata here.</div>
+    </aside>
+    <style>
+      body { margin: 0; display: flex; min-height: 680px; overflow: hidden; }
+      #mynetwork { flex: 1 1 auto; width: calc(100% - 390px) !important; height: 680px !important; border-right: 1px solid #e5e7eb; }
+      #kg-detail-panel {
+        box-sizing: border-box;
+        width: 390px;
+        height: 680px;
+        overflow: auto;
+        padding: 16px 18px;
+        background: #ffffff;
+        color: #1f2937;
+        font-family: Inter, Arial, sans-serif;
+        line-height: 1.45;
+      }
+      .kg-panel-eyebrow { color: #64748b; font-size: 11px; font-weight: 700; letter-spacing: .06em; margin-bottom: 6px; text-transform: uppercase; }
+      #kg-detail-title { color: #111827; font-size: 18px; line-height: 1.25; margin: 0 0 12px; }
+      #kg-detail-body { font-size: 13px; overflow-wrap: anywhere; }
+      #kg-detail-body b { color: #0f172a; }
+      #kg-detail-body br { display: block; margin-bottom: 7px; content: ""; }
+    </style>
+    <script>
+      function kgSetPanel(item) {
+        const title = document.getElementById("kg-detail-title");
+        const body = document.getElementById("kg-detail-body");
+        if (!title || !body || !item) return;
+        title.textContent = item.details_heading || item.label || item.id || "Selected item";
+        body.innerHTML = item.details_html || "No details available.";
+      }
+      network.on("selectNode", function(params) {
+        if (!params.nodes.length) return;
+        kgSetPanel(nodes.get(params.nodes[0]));
+      });
+      network.on("selectEdge", function(params) {
+        if (!params.edges.length) return;
+        kgSetPanel(edges.get(params.edges[0]));
+      });
+      network.on("deselectNode", function(params) {
+        if (!params.edges || !params.edges.length) return;
+        kgSetPanel(edges.get(params.edges[0]));
+      });
+    </script>
+    """
+    return graph_html.replace("</body>", f"{panel_html}</body>")
 
 
 def _graph_node_label(graph, node: str) -> str:
