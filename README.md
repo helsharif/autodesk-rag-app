@@ -36,15 +36,16 @@ The production application is a Streamlit app in `app/streamlit_app.py`. The cor
 
 ## Completed System
 
-The app supports three runtime search modes:
+The app supports four runtime search modes:
 
 | Option | Search mode | Behavior | Best use |
 |---|---|---|---|
 | 1 | Local Document Search | Uses only local Autodesk corpus chunks from Chroma and BM25. | Fast, controlled local-corpus baseline. |
 | 2 | Local Document Search + Autodesk.com | Combines local retrieval with official `autodesk.com` web evidence. | Preferred review/demo mode for current official Autodesk facts. |
 | 3 | Local Document Search + Open Web Search | Combines local retrieval with capped open-web evidence. | Broader corroboration when official-only search may miss context. |
+| 4 | LightRAG mixed mode + Autodesk.com | Combines a separate LightRAG mixed-mode index with the same official `autodesk.com` web search used by Option 2. | Experimental graph/vector retrieval path without changing existing indexes. |
 
-All modes use the same local retrieval backbone:
+Options 1-3 use the same local retrieval backbone:
 
 - Chroma vector search with OpenAI `text-embedding-3-small` embeddings.
 - BM25 keyword search over chunk text plus enriched metadata.
@@ -56,6 +57,45 @@ All modes use the same local retrieval backbone:
 - Same-document neighbor expansion to restore chunk-boundary context.
 - Cross-encoder reranking with `cross-encoder/ms-marco-MiniLM-L6-v2`.
 - A strict adequacy gate before answer generation.
+
+Option 4 uses a separate LightRAG index under `retrieval_indexes/lightrag_autodesk_mixed/` and does not use the context-expansion step from Options 1-3.
+
+## Option 4 LightRAG Setup
+
+Install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+Build the LightRAG index from the cleaned Markdown corpus:
+
+```bash
+python scripts/ingest_lightrag_autodesk.py
+```
+
+The ingestion script reads `cleaned_corpus/*.md`, writes only to `retrieval_indexes/lightrag_autodesk_mixed/`, batches ingestion at `LIGHTRAG_INGEST_CONCURRENCY=2` files by default, and records checksums in `ingestion_manifest.json` so repeated runs skip unchanged files. You can use `--concurrency 3` to allow three-file insert batches. To intentionally recreate only the LightRAG index:
+
+```bash
+python scripts/ingest_lightrag_autodesk.py --rebuild
+```
+
+Validate Option 4:
+
+```bash
+python scripts/validate_option4_lightrag.py
+python scripts/validate_option4_lightrag.py --query "What is AutoCAD used for?"
+```
+
+Example validation questions:
+
+```text
+What is AutoCAD used for?
+What is the difference between AutoCAD and Revit?
+What Autodesk products support BIM workflows?
+```
+
+Option 4 uses `LIGHTRAG_LLM_MODEL=gpt-4.1-mini`, `LIGHTRAG_EMBEDDING_MODEL=text-embedding-3-small`, and `LIGHTRAG_RETRIEVAL_MODE=mixed` by default. The official LightRAG SDK names this mode `mix`; the app accepts `mixed` and normalizes it internally.
 
 If the supplied evidence does not explicitly support an answer, the app returns:
 

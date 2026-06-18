@@ -32,6 +32,7 @@ from src.config import (
     COLLECTION_OPTIONS,
     DEFAULT_SEARCH_MODE_LABEL,
     HYBRID_BACKEND_NAME,
+    LIGHTRAG_AUTODESK_WEB_MODE,
     LOCAL_ONLY_MODE,
     OPEN_WEB_MODE,
     OPTION_1_LABEL,
@@ -201,6 +202,7 @@ BACKEND_LABELS = {
     "docling_chroma_bm25_hybrid_local_only": "Local only",
     "docling_chroma_bm25_hybrid_autodesk_web": "Local + Autodesk.com",
     "docling_chroma_bm25_hybrid_open_web": "Local + open web",
+    "option_4_lightrag_mixed_autodesk_web": "LightRAG mixed + Autodesk.com",
     "docling_chroma_bm25_hybrid": "Local only",
 }
 BACKEND_FILTER_ORDER = [
@@ -208,6 +210,7 @@ BACKEND_FILTER_ORDER = [
     "docling_chroma_bm25_hybrid",
     "docling_chroma_bm25_hybrid_autodesk_web",
     "docling_chroma_bm25_hybrid_open_web",
+    "option_4_lightrag_mixed_autodesk_web",
 ]
 DEFAULT_SEARCH_MODE_STATE_VERSION = "2026-06-15-autodesk-web-default"
 
@@ -269,6 +272,8 @@ def _mode_label_for_search_mode(search_mode: str | None) -> str:
 
 
 def _retrieval_backend_label(search_mode: str | None) -> str:
+    if search_mode == LIGHTRAG_AUTODESK_WEB_MODE:
+        return "option_4_lightrag_mixed_autodesk_web"
     if search_mode == AUTODESK_WEB_MODE:
         return "docling_chroma_bm25_hybrid_autodesk_web"
     if search_mode == OPEN_WEB_MODE:
@@ -412,6 +417,12 @@ def _exchanges(messages: list[dict]) -> list[list[dict]]:
 
 
 def _source_mode_label(used_local: bool, used_web: bool, search_mode: str) -> str:
+    if used_local and used_web and search_mode == LIGHTRAG_AUTODESK_WEB_MODE:
+        return "LightRAG mixed local corpus + autodesk.com web search"
+    if used_local and search_mode == LIGHTRAG_AUTODESK_WEB_MODE:
+        return "LightRAG mixed local corpus"
+    if used_web and search_mode == LIGHTRAG_AUTODESK_WEB_MODE:
+        return "autodesk.com web search"
     if used_local and used_web and search_mode == AUTODESK_WEB_MODE:
         return "local documents + autodesk.com web search"
     if used_local and used_web and search_mode == OPEN_WEB_MODE:
@@ -510,7 +521,7 @@ def render_settings_eval() -> None:
     st.session_state.collection_name = COLLECTION_OPTIONS[selected]
     sync_query_state(page="Settings & Eval", mode_label=selected)
     st.info(_mode_explanation(st.session_state.search_mode))
-    st.caption("All three options use the same local Docling + Chroma + BM25 Hybrid Search backend. The radio button controls whether web evidence is disabled, scoped to autodesk.com, or open web.")
+    st.caption("Options 1-3 use the local Docling + Chroma + BM25 hybrid backend. Option 4 uses a separate LightRAG mixed-mode index plus Autodesk.com web evidence.")
     st.caption(f"Context expansion: enabled={settings.context_expansion_enabled}, mode={settings.context_expansion_mode}, neighbor_window=1, max_blocks={settings.context_max_expanded_docs}, max_chars={settings.context_max_chars}.")
     st.caption(
         f"Cross-encoder reranker: enabled={settings.reranker_enabled}, "
@@ -551,6 +562,11 @@ def _mode_explanation(search_mode: str) -> str:
             "Option 2: Local Document Search + Autodesk.com uses local documents first and always incorporates "
             "SerpAPI Google results restricted to autodesk.com pages."
         )
+    if search_mode == LIGHTRAG_AUTODESK_WEB_MODE:
+        return (
+            "Option 4: LightRAG mixed mode + Autodesk.com queries the separate LightRAG index under retrieval_indexes "
+            "and incorporates the same Autodesk.com web search behavior used by Option 2. Context expansion is disabled for this mode."
+        )
     return (
         "Option 3: Local Document Search + Open Web Search uses local documents first and always incorporates broader "
         "web search. Open web search is capped at three results to keep latency and noise lower."
@@ -558,6 +574,8 @@ def _mode_explanation(search_mode: str) -> str:
 
 
 def _eval_results_filename(search_mode: str) -> str:
+    if search_mode == LIGHTRAG_AUTODESK_WEB_MODE:
+        return "option_4_lightrag_mixed_autodesk_web_results.json"
     if search_mode == AUTODESK_WEB_MODE:
         return "docling_chroma_bm25_hybrid_autodesk_web_results.json"
     if search_mode == OPEN_WEB_MODE:
@@ -566,6 +584,8 @@ def _eval_results_filename(search_mode: str) -> str:
 
 
 def _eval_status_filename(search_mode: str) -> str:
+    if search_mode == LIGHTRAG_AUTODESK_WEB_MODE:
+        return "option_4_lightrag_mixed_autodesk_web_status.json"
     if search_mode == AUTODESK_WEB_MODE:
         return "docling_chroma_bm25_hybrid_autodesk_web_status.json"
     if search_mode == OPEN_WEB_MODE:
@@ -1427,13 +1447,15 @@ def render_about() -> None:
 
     st.subheader("Runtime Flow")
     st.write(
-        "A user question enters the Ask tab with one of three search modes selected. All modes use the same local "
-        "Docling + Chroma + BM25 hybrid retrieval backbone. Before routing, a deterministic security screen blocks "
+        "A user question enters the Ask tab with one of four search modes selected. Options 1-3 use the local "
+        "Docling + Chroma + BM25 hybrid retrieval backbone, while Option 4 uses a separate Knowledge Graph LightRAG "
+        "mixed-mode index. Before routing, a deterministic security screen blocks "
         "obvious prompt-injection, prompt-reveal, secret-exfiltration, and unsafe security-abuse attempts. Search-oriented "
         "steps use a sanitized retrieval query, while the original question remains available for answer semantics. "
         "Option 1 stays local-only, Option 2 adds official Autodesk.com "
-        "web evidence, and Option 3 adds capped open-web evidence. The agent also detects compare/contrast and "
-        "product-selection questions, then improves local retrieval with focused product and comparison subqueries that run in parallel. "
+        "web evidence, Option 3 adds capped open-web evidence, and Option 4 combines LightRAG graph/vector retrieval "
+        "with the same official Autodesk.com web evidence policy used by Option 2. The agent also detects compare/contrast and "
+        "product-selection questions, then improves Options 1-3 local retrieval with focused product and comparison subqueries that run in parallel. "
         "Local chunks and web snippets are reranked together, then a strict adequacy gate checks whether the supplied "
         "evidence explicitly supports the requested answer. For comparisons, the gate can accept separate substantive "
         "evidence about each product rather than requiring one source to compare them directly. If the evidence is "
@@ -1451,10 +1473,10 @@ def render_about() -> None:
             {"Stage": "Question intake", "What happens": "Streamlit captures the user question and active search mode."},
             {"Stage": "Security screening", "What happens": "Deterministic checks block obvious prompt injection, hidden-prompt or secret exfiltration, and unsafe cyber/security abuse before the LLM router."},
             {"Stage": "Routing and planning", "What happens": "The router applies Autodesk/web policy. A sanitized retrieval query is used for search, and compare/contrast questions trigger focused local subqueries for each mentioned product and direct comparison evidence."},
-            {"Stage": "Local retrieval", "What happens": f"Chroma semantic search and BM25 keyword search run in parallel, then weighted RRF combines them with {settings.hybrid_vector_weight:.2f} vector / {settings.hybrid_bm25_weight:.2f} BM25 weighting. Compare subqueries are also retrieved in parallel."},
+            {"Stage": "Local retrieval", "What happens": f"Options 1-3 run Chroma semantic search and BM25 keyword search in parallel, then weighted RRF combines them with {settings.hybrid_vector_weight:.2f} vector / {settings.hybrid_bm25_weight:.2f} BM25 weighting. Option 4 queries the dedicated LightRAG Knowledge Graph mixed-mode index."},
             {"Stage": "Comparison balancing", "What happens": "When comparison mode is active, retrieved chunks are deduplicated and selected to keep evidence balanced across the compared products."},
-            {"Stage": "Context expansion", "What happens": "Neighbor chunks from the same source document are added within the context budget to reduce chunk-boundary misses."},
-            {"Stage": "Optional web evidence", "What happens": "Option 2 searches Autodesk.com; Option 3 searches the open web with a smaller result cap."},
+            {"Stage": "Context expansion", "What happens": "For Options 1-3, neighbor chunks from the same source document are added within the context budget to reduce chunk-boundary misses. Option 4 uses the LightRAG mixed context directly."},
+            {"Stage": "Optional web evidence", "What happens": "Option 2 searches Autodesk.com; Option 3 searches the open web with a smaller result cap; Option 4 searches Autodesk.com alongside Knowledge Graph evidence."},
             {"Stage": "Reranking", "What happens": "A cross-encoder reranks local and web evidence blocks before answerability checking."},
             {"Stage": "Adequacy gate", "What happens": "The app verifies that the evidence explicitly supports the needed fact. For comparisons, separate support for each product can be sufficient."},
             {"Stage": "Generation and logging", "What happens": "The final answer is generated from supplied evidence only, then interaction metadata is logged to Supabase when configured."},
@@ -1463,10 +1485,10 @@ def render_about() -> None:
 
     st.subheader("Flowchart")
     st.write(
-        "The flowchart below is the reviewer-friendly version of the runtime pipeline. It shows the three search modes "
-        "branching after deterministic security screening, compare/contrast planning improving local evidence retrieval when needed, and all evidence "
+        "The flowchart below is the reviewer-friendly version of the runtime pipeline. It shows the four search modes "
+        "branching after deterministic security screening, compare/contrast planning improving hybrid local evidence retrieval when needed, and all evidence "
         "converging around the same quality-control layer. The key idea is that neither focused comparison retrieval nor "
-        "web search bypasses the RAG discipline: user text and evidence are treated as untrusted data, evidence blocks still compete in the reranker and must pass the same "
+        "web or Knowledge Graph retrieval bypasses the RAG discipline: user text and evidence are treated as untrusted data, evidence blocks still compete in the reranker and must pass the same "
         "adequacy gate before generation."
     )
     _render_mermaid(
@@ -1481,10 +1503,12 @@ flowchart TD
     C --> D1["Option 1: Local only"]
     C --> D2["Option 2: Local + Autodesk.com"]
     C --> D3["Option 3: Local + open web"]
+    C --> D4["Option 4: Knowledge Graph LightRAG + Autodesk.com"]
 
     D1 --> P["Security-aware router and compare/contrast detector"]
     D2 --> P
     D3 --> P
+    D4 --> KG["LightRAG mixed graph/vector retrieval"]
 
     P --> CMP{"Compare/contrast query?"}
     CMP -->|Yes| S["Focused product and comparison subqueries"]
@@ -1500,8 +1524,10 @@ flowchart TD
 
     D2 --> W1["Autodesk.com web evidence"]
     D3 --> W2["Capped open-web evidence"]
+    D4 --> W1
 
     H --> R["Cross-encoder reranker"]
+    KG --> R
     W1 --> R
     W2 --> R
 

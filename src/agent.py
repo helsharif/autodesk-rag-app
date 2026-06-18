@@ -14,8 +14,18 @@ from datetime import date
 from langchain_core.documents import Document
 from langchain_core.prompts import ChatPromptTemplate
 
-from src.config import AUTODESK_WEB_MODE, DEFAULT_SEARCH_MODE, HYBRID_BACKEND_NAME, LOCAL_ONLY_MODE, OPEN_WEB_MODE, get_chat_model, get_settings
+from src.config import (
+    AUTODESK_WEB_MODE,
+    DEFAULT_SEARCH_MODE,
+    HYBRID_BACKEND_NAME,
+    LIGHTRAG_AUTODESK_WEB_MODE,
+    LOCAL_ONLY_MODE,
+    OPEN_WEB_MODE,
+    get_chat_model,
+    get_settings,
+)
 from src.context_expansion import expand_retrieved_docs
+from src.lightrag_adapter import search_lightrag_mixed
 from src.reranker import rerank_documents
 from src.retriever import RetrievedSource, search_documents
 from src.tools import web_search
@@ -214,10 +224,11 @@ class AutodeskRAGAgent:
         route_reason = route.reason
         if compare_plan.is_compare:
             route_reason = f"{route.reason} Compare/contrast retrieval for: {', '.join(compare_plan.products) or 'detected entities'}."
-        stage_started = time.perf_counter()
-        local_docs, local_sources = expand_retrieved_docs(local_docs, local_sources, collection_name=self.collection_name)
-        timings["expansion"] += time.perf_counter() - stage_started
-        web_allowed = self.search_mode in {AUTODESK_WEB_MODE, OPEN_WEB_MODE}
+        if self.search_mode != LIGHTRAG_AUTODESK_WEB_MODE:
+            stage_started = time.perf_counter()
+            local_docs, local_sources = expand_retrieved_docs(local_docs, local_sources, collection_name=self.collection_name)
+            timings["expansion"] += time.perf_counter() - stage_started
+        web_allowed = self.search_mode in {AUTODESK_WEB_MODE, OPEN_WEB_MODE, LIGHTRAG_AUTODESK_WEB_MODE}
         use_web = web_allowed or force_web
         raw_web_context = ""
         web_error = ""
@@ -356,6 +367,9 @@ class AutodeskRAGAgent:
     def _retrieve_local_documents(self, question: str) -> tuple[list[Document], list[RetrievedSource], CompareRetrievalPlan]:
         retrieval_query = self._sanitize_retrieval_query(question)
         compare_plan = self._compare_retrieval_plan(retrieval_query)
+        if getattr(self, "search_mode", DEFAULT_SEARCH_MODE) == LIGHTRAG_AUTODESK_WEB_MODE:
+            docs, sources = search_lightrag_mixed(retrieval_query)
+            return docs, sources, compare_plan
         if not compare_plan.is_compare:
             docs, sources = search_documents(retrieval_query, collection_name=self.collection_name)
             return docs, sources, compare_plan
@@ -574,8 +588,14 @@ class AutodeskRAGAgent:
             metadata = doc.metadata or {}
             section = f" | section={metadata.get('heading_path')}" if metadata.get("heading_path") else ""
             chunk = f" | chunk_id={metadata.get('chunk_id')}" if metadata.get("chunk_id") else ""
+            retrieval_mode = f" | retrieval_mode={metadata.get('retrieval_mode')}" if metadata.get("retrieval_mode") else ""
+            source_url = f" | source_url={metadata.get('source_url')}" if metadata.get("source_url") else ""
+            relative_path = f" | path={metadata.get('relative_source_path')}" if metadata.get("relative_source_path") else ""
             text = doc.page_content[:remaining]
-            blocks.append(f"[Local {index}] {source.source} | relevance={source.score:.2f}{chunk}{section}\n{text}")
+            blocks.append(
+                f"[Local {index}] {source.source} | relevance={source.score:.2f}"
+                f"{retrieval_mode}{chunk}{section}{relative_path}{source_url}\n{text}"
+            )
             remaining -= len(text)
         return "\n\n".join(blocks)
 

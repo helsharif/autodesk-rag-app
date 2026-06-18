@@ -14,8 +14,14 @@ langchain-openai>=0.1.20,<0.4
 langchain-chroma>=0.1.2,<0.3
 langchain-text-splitters>=0.2.2,<0.4
 
+# LightRAG SDK for Option 4 mixed-mode graph/vector retrieval.
+lightrag-hku>=1.5,<2.0
+
 # Experiment tracking and evaluation run logging.
 langsmith>=0.3,<1.0
+
+# Test runner for local validation.
+pytest>=8.0,<9.0
 
 # Local vector database for dense semantic retrieval.
 chromadb>=0.6.3,<0.7.0

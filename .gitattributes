@@ -13,3 +13,4 @@ retrieval_indexes/bm25_autodesk_cleaned_corpus/** filter=lfs diff=lfs merge=lfs 
 *.sqlite3 filter=lfs diff=lfs merge=lfs -text
 *.mp4 filter=lfs diff=lfs merge=lfs -text
 *.pptx filter=lfs diff=lfs merge=lfs -text
+retrieval_indexes/lightrag_autodesk_mixed/** filter=lfs diff=lfs merge=lfs -text

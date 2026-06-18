@@ -22,13 +22,16 @@ HYBRID_BACKEND_NAME = "docling_chroma_bm25_hybrid"
 LOCAL_ONLY_MODE = "local_only"
 AUTODESK_WEB_MODE = "autodesk_web"
 OPEN_WEB_MODE = "open_web"
+LIGHTRAG_AUTODESK_WEB_MODE = "option_4_lightrag_mixed_autodesk_web"
 OPTION_1_LABEL = "Option 1: Local Document Search"
 OPTION_2_LABEL = "Option 2: Local Document Search + Autodesk.com"
 OPTION_3_LABEL = "Option 3: Local Document Search + Open Web Search"
+OPTION_4_LABEL = "Option 4: LightRAG mixed mode + Autodesk.com"
 SEARCH_MODE_OPTIONS = {
     OPTION_1_LABEL: LOCAL_ONLY_MODE,
     OPTION_2_LABEL: AUTODESK_WEB_MODE,
     OPTION_3_LABEL: OPEN_WEB_MODE,
+    OPTION_4_LABEL: LIGHTRAG_AUTODESK_WEB_MODE,
 }
 DEFAULT_SEARCH_MODE_LABEL = OPTION_2_LABEL
 DEFAULT_SEARCH_MODE = SEARCH_MODE_OPTIONS[DEFAULT_SEARCH_MODE_LABEL]
@@ -52,6 +55,11 @@ def _env_bool(name: str, default: str = "false") -> bool:
     return os.getenv(name, default).lower() in {"1", "true", "yes", "on"}
 
 
+def _env_path(name: str, default: Path) -> Path:
+    value = Path(os.getenv(name, str(default))).expanduser()
+    return value if value.is_absolute() else ROOT_DIR / value
+
+
 def _openai_api_key() -> str | None:
     return os.getenv("OPENAI_API_KEY") or os.getenv("OPEN_API_KEY")
 
@@ -62,6 +70,8 @@ class Settings:
     retrieval_indexes_dir: Path = ROOT_DIR / "retrieval_indexes"
     chroma_dir: Path = ROOT_DIR / "retrieval_indexes" / "chroma_autodesk_cleaned_corpus"
     bm25_dir: Path = ROOT_DIR / "retrieval_indexes" / "bm25_autodesk_cleaned_corpus"
+    lightrag_index_dir: Path = field(default_factory=lambda: _env_path("LIGHTRAG_INDEX_DIR", ROOT_DIR / "retrieval_indexes" / "lightrag_autodesk_mixed"))
+    lightrag_working_dir: Path = field(default_factory=lambda: _env_path("LIGHTRAG_WORKING_DIR", ROOT_DIR / "retrieval_indexes" / "lightrag_autodesk_mixed"))
     chunk_manifest_path: Path = ROOT_DIR / "retrieval_indexes" / "manifests" / "chunk_manifest.csv"
     eval_results_dir: Path = ROOT_DIR / "eval_results"
     eval_status_dir: Path = ROOT_DIR / "eval_status"
@@ -70,6 +80,12 @@ class Settings:
     openai_api_key: str | None = field(default_factory=_openai_api_key)
     openai_model: str = field(default_factory=lambda: _env_str("OPENAI_MODEL", "gpt-4.1-mini"))
     openai_embedding_model: str = field(default_factory=lambda: _env_str("OPENAI_EMBEDDING_MODEL", "text-embedding-3-small"))
+    lightrag_llm_model: str = field(default_factory=lambda: _env_str("LIGHTRAG_LLM_MODEL", "gpt-4.1-mini"))
+    lightrag_embedding_model: str = field(default_factory=lambda: _env_str("LIGHTRAG_EMBEDDING_MODEL", "text-embedding-3-small"))
+    lightrag_retrieval_mode: str = field(default_factory=lambda: _env_str("LIGHTRAG_RETRIEVAL_MODE", "mix").lower())
+    lightrag_top_k: int = field(default_factory=lambda: _env_int("LIGHTRAG_TOP_K", "10"))
+    lightrag_chunk_top_k: int = field(default_factory=lambda: _env_int("LIGHTRAG_CHUNK_TOP_K", "8"))
+    lightrag_ingest_concurrency: int = field(default_factory=lambda: _env_int("LIGHTRAG_INGEST_CONCURRENCY", "2"))
     retriever_k: int = field(default_factory=lambda: _env_int("RETRIEVER_K", "10"))
     hybrid_candidate_k: int = field(default_factory=lambda: _env_int("HYBRID_CANDIDATE_K", "30"))
     hybrid_vector_weight: float = field(default_factory=lambda: _env_float("HYBRID_VECTOR_WEIGHT", "0.65"))

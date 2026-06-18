@@ -17,7 +17,7 @@ from langsmith import Client, traceable
 from pydantic import BaseModel, Field
 
 from src.agent import AutodeskRAGAgent, NO_ANSWER
-from src.config import HYBRID_BACKEND_NAME, LOCAL_ONLY_MODE, get_settings
+from src.config import HYBRID_BACKEND_NAME, LIGHTRAG_AUTODESK_WEB_MODE, LOCAL_ONLY_MODE, get_settings
 
 
 logger = logging.getLogger(__name__)
@@ -447,6 +447,8 @@ def _json_safe(value: Any) -> Any:
 
 
 def _result_filename(search_mode: str) -> str:
+    if search_mode == LIGHTRAG_AUTODESK_WEB_MODE:
+        return "option_4_lightrag_mixed_autodesk_web_results.json"
     if search_mode == "autodesk_web":
         return "docling_chroma_bm25_hybrid_autodesk_web_results.json"
     if search_mode == "open_web":
