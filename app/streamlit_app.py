@@ -1696,8 +1696,6 @@ def _node_tooltip(node: str, data: dict) -> str:
             ("Entity", data.get("entity_id") or node),
             ("Type", data.get("entity_type")),
             ("Description", data.get("description")),
-            ("Source file", data.get("file_path")),
-            ("Source ID", data.get("source_id")),
         ]
     )
 
@@ -1708,8 +1706,6 @@ def _edge_tooltip(data: dict) -> str:
             ("Relationship", data.get("description")),
             ("Keywords", data.get("keywords")),
             ("Weight", data.get("weight")),
-            ("Source file", data.get("file_path")),
-            ("Source ID", data.get("source_id")),
         ]
     )
 
