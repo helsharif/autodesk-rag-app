@@ -5,7 +5,7 @@ Use this file as a reviewer-friendly blueprint for infographics, presentation di
 ## Suggested Infographic Title
 
 ```text
-Autodesk Agentic RAG: Evidence-Grounded Answers With Three Search Modes
+Autodesk Agentic RAG: Evidence-Grounded Answers With Five Search Modes
 ```
 
 ## One-Sentence Summary
@@ -27,7 +27,7 @@ Use a horizontal or vertical five-layer diagram:
 A good presentation slide can use:
 
 - left side: main question-to-answer flow
-- right side: three option comparison panel
+- right side: five option comparison panel
 - bottom ribbon: evaluation and reliability layer
 
 ## Layer 1: User Interface
@@ -57,30 +57,36 @@ Diagram node labels:
 - `Sanitized retrieval query`
 - `Compare/contrast detector`
 
-## Layer 2: Three Runtime Search Modes
+## Layer 2: Five Runtime Search Modes
 
-Show these as three parallel branches.
+Show these as five parallel branches.
 
 | Option | Name | Web Policy | Best Use |
 |---|---|---|---|
 | 1 | Local Document Search | No web search | Fast local-corpus answers |
 | 2 | Local + Autodesk.com | Always adds official Autodesk.com web evidence | Current official product, plan, version, pricing, and support information |
 | 3 | Local + Open Web | Always adds capped open-web evidence | Broader corroboration when official-only web search may miss context |
+| 4 | Knowledge Graph LightRAG | No web search | Isolating graph/vector retrieval performance |
+| 5 | Knowledge Graph LightRAG + Autodesk.com | Always adds official Autodesk.com web evidence | Testing whether official web evidence improves graph retrieval |
 
 Diagram node labels:
 
 - `Option 1: Local only`
 - `Option 2: Local + Autodesk.com`
 - `Option 3: Local + capped open web`
+- `Option 4: Knowledge Graph LightRAG`
+- `Option 5: Knowledge Graph LightRAG + Autodesk.com`
 
 Important visual note:
 
 - Option 2 should look more authoritative than Option 3.
 - Option 3 should show a small cap or filter icon to communicate latency/noise control.
+- Option 4 should visibly omit web evidence.
+- Option 5 should reuse the Option 2 Autodesk.com web cue.
 
-## Layer 3: Local Evidence Retrieval
+## Layer 3: Evidence Retrieval
 
-All three options use the same local retrieval backbone.
+Options 1-3 use the same local retrieval backbone. Options 4-5 use the dedicated LightRAG knowledge graph/vector index under `retrieval_indexes/lightrag_autodesk_mixed/`.
 
 ### Local Hybrid Retrieval
 
@@ -113,6 +119,13 @@ This planning step changes evidence retrieval and comparison answerability only.
 - The app expands each selected local chunk with nearby chunks from the same document.
 - It adds previous chunk, current chunk, and next chunk when available.
 - It does not use full-page expansion.
+- Neighbor expansion applies to Options 1-3 only; Options 4-5 use the LightRAG mixed context directly.
+
+### Knowledge Graph LightRAG Retrieval
+
+- Option 4 queries only the LightRAG mixed-mode knowledge graph/vector index.
+- Option 5 queries the same LightRAG index and adds Autodesk.com web evidence.
+- Both modes skip local Chroma/BM25 retrieval and same-document neighbor expansion.
 
 Diagram node labels:
 
@@ -292,10 +305,14 @@ flowchart TD
     C --> D1["Option 1: Local only"]
     C --> D2["Option 2: Local + Autodesk.com"]
     C --> D3["Option 3: Local + open web"]
+    C --> D4["Option 4: Knowledge Graph LightRAG"]
+    C --> D5["Option 5: Knowledge Graph LightRAG + Autodesk.com"]
 
     D1 --> E["Local hybrid retrieval"]
     D2 --> E
     D3 --> E
+    D4 --> KG["LightRAG mixed graph/vector retrieval"]
+    D5 --> KG
 
     E --> P{"Compare/contrast query?"}
     P -->|Yes| S["Focused product and comparison subqueries"]
@@ -310,8 +327,10 @@ flowchart TD
 
     D2 --> W1["Autodesk.com web evidence"]
     D3 --> W2["Capped open-web evidence"]
+    D5 --> W1
 
     H --> R["Cross-encoder reranker"]
+    KG --> R
     W1 --> R
     W2 --> R
 
@@ -327,7 +346,7 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    A["Settings & Eval"] --> B["Choose Option 1, 2, or 3"]
+    A["Settings & Eval"] --> B["Choose search option"]
     B --> C["Run Evaluation Metrics"]
     C --> D["Load 50-question golden dataset"]
     D --> E["Run selected RAG mode"]
@@ -352,6 +371,14 @@ Best for official current Autodesk facts
 Option 3
 Local + capped open web
 Broader, but less authoritative
+
+Option 4
+Knowledge Graph LightRAG
+Graph-only benchmark
+
+Option 5
+Knowledge Graph LightRAG + Autodesk.com
+Graph retrieval with official web support
 ```
 
 ## Keywords for Diagram Callouts
@@ -365,6 +392,7 @@ Broader, but less authoritative
 - Enriched metadata keywords
 - Weighted RRF fusion
 - Neighbor context expansion
+- Knowledge Graph LightRAG
 - Autodesk.com web evidence
 - Capped open web
 - Cross-encoder reranking

@@ -19,8 +19,10 @@ I could not find a reliable answer in the available documents or web sources.
 | 1 | Local Document Search | Chroma vector search plus BM25 keyword search over the local Autodesk corpus | Disabled | Fastest, most controlled local-corpus mode |
 | 2 | Local Document Search + Autodesk.com | Same local hybrid retrieval | SerpAPI Google Search restricted to `autodesk.com/*`, always included | Best mode for current official Autodesk product, version, pricing, support, or subscription information |
 | 3 | Local Document Search + Open Web Search | Same local hybrid retrieval | SerpAPI open web search, capped at a small result count, always included | Useful for broad web corroboration, but less authoritative than Option 2 |
+| 4 | Knowledge Graph LightRAG | LightRAG mixed-mode knowledge graph/vector index | Disabled | Tests graph retrieval without web-search help |
+| 5 | Knowledge Graph LightRAG + Autodesk.com | LightRAG mixed-mode knowledge graph/vector index | SerpAPI Google Search restricted to `autodesk.com/*`, always included | Tests graph retrieval with official Autodesk web evidence |
 
-All three options use the same local retrieval backend:
+Options 1-3 use the same local retrieval backend:
 
 - Deterministic security screening before any LLM router call
 - Retrieval-query sanitization for local retrieval, compare/contrast planning, web query construction, and reranking
@@ -30,6 +32,8 @@ All three options use the same local retrieval backend:
 - Parallel compare/contrast retrieval planning for product comparison and product-selection questions
 - Same-document neighbor context expansion
 - Cross-encoder reranking before the adequacy gate
+
+Options 4 and 5 use the dedicated LightRAG index under `retrieval_indexes/lightrag_autodesk_mixed/` and skip same-document neighbor context expansion.
 
 ## Main User-Facing Flow
 
@@ -46,9 +50,9 @@ All three options use the same local retrieval backend:
 ### Step 2: User Selects Search Mode
 
 - The user opens **Settings & Eval**.
-- A vertical radio button group presents the three options.
+- A vertical radio button group presents the five options.
 - The selected option is stored in Streamlit session state.
-- The selected mode controls whether web evidence is disabled, restricted to Autodesk.com, or open web.
+- The selected mode controls whether retrieval uses the local hybrid backend or LightRAG knowledge graph, and whether web evidence is disabled, restricted to Autodesk.com, or open web.
 - The selection persists across app reruns and evaluation auto-refreshes.
 
 ### Step 3: User Asks a Question
@@ -92,9 +96,23 @@ Option 3:
 - The lower result cap reduces latency and noise.
 - The adequacy gate can still reject an answer if the open-web evidence is not authoritative or explicit enough.
 
+Option 4:
+
+- The app uses the LightRAG mixed-mode knowledge graph/vector index.
+- Autodesk.com web search is not attempted.
+- This mode isolates graph performance without web-search help.
+- Same-document neighbor context expansion is disabled for this mode.
+
+Option 5:
+
+- The app uses the LightRAG mixed-mode knowledge graph/vector index.
+- The app also always retrieves web evidence from Autodesk.com through SerpAPI.
+- Web results are restricted to official Autodesk pages.
+- Same-document neighbor context expansion is disabled for this mode.
+
 ## Local Hybrid Retrieval Flow
 
-Local retrieval runs in every option.
+Local hybrid retrieval runs in Options 1-3. Options 4-5 use LightRAG mixed-mode graph/vector retrieval from the dedicated knowledge graph index.
 
 Before local retrieval, the agent sanitizes the retrieval query and checks whether the sanitized query is a compare/contrast, product-selection, difference, or `X vs Y` style query. This branch is deterministic and lives in `src/agent.py`; it preserves the normal router behavior for non-comparison questions.
 
@@ -349,7 +367,7 @@ The Ask tab displays:
 
 The dashboard shows:
 
-- vertical radio buttons for the three search modes
+- vertical radio buttons for the five search modes
 - selected pipeline explanation
 - saved metrics if available
 - evaluation status if a run is active
@@ -562,6 +580,7 @@ This gives BM25 access to enriched lexical signals while keeping embeddings focu
 - Deduplication and balanced context selection
 - Per-source result cap
 - Neighbor-only context expansion
+- LightRAG knowledge graph/vector retrieval
 - Autodesk.com web retrieval
 - Open-web retrieval
 - Cross-encoder reranking
@@ -589,10 +608,14 @@ flowchart TD
     C --> O1["Option 1: Local Document Search"]
     C --> O2["Option 2: Local + Autodesk.com"]
     C --> O3["Option 3: Local + Open Web"]
+    C --> O4["Option 4: Knowledge Graph LightRAG"]
+    C --> O5["Option 5: Knowledge Graph LightRAG + Autodesk.com"]
 
     O1 --> P["Router and compare/contrast detector"]
     O2 --> P
     O3 --> P
+    O4 --> KG["LightRAG mixed graph/vector retrieval"]
+    O5 --> KG
 
     P --> Cmp{"Compare/contrast query?"}
     Cmp -->|Yes| SQ["Generate focused product and comparison subqueries"]
@@ -608,7 +631,9 @@ flowchart TD
 
     O2 --> W2["Autodesk.com web search"]
     O3 --> W3["Capped open-web search"]
+    O5 --> W2
     N --> R["Cross-encoder reranking"]
+    KG --> R
     W2 --> R
     W3 --> R
 

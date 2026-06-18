@@ -19,6 +19,7 @@ from src.config import (
     DEFAULT_SEARCH_MODE,
     HYBRID_BACKEND_NAME,
     LIGHTRAG_AUTODESK_WEB_MODE,
+    LIGHTRAG_MODES,
     LOCAL_ONLY_MODE,
     OPEN_WEB_MODE,
     get_chat_model,
@@ -224,7 +225,7 @@ class AutodeskRAGAgent:
         route_reason = route.reason
         if compare_plan.is_compare:
             route_reason = f"{route.reason} Compare/contrast retrieval for: {', '.join(compare_plan.products) or 'detected entities'}."
-        if self.search_mode != LIGHTRAG_AUTODESK_WEB_MODE:
+        if self.search_mode not in LIGHTRAG_MODES:
             stage_started = time.perf_counter()
             local_docs, local_sources = expand_retrieved_docs(local_docs, local_sources, collection_name=self.collection_name)
             timings["expansion"] += time.perf_counter() - stage_started
@@ -367,7 +368,7 @@ class AutodeskRAGAgent:
     def _retrieve_local_documents(self, question: str) -> tuple[list[Document], list[RetrievedSource], CompareRetrievalPlan]:
         retrieval_query = self._sanitize_retrieval_query(question)
         compare_plan = self._compare_retrieval_plan(retrieval_query)
-        if getattr(self, "search_mode", DEFAULT_SEARCH_MODE) == LIGHTRAG_AUTODESK_WEB_MODE:
+        if getattr(self, "search_mode", DEFAULT_SEARCH_MODE) in LIGHTRAG_MODES:
             docs, sources = search_lightrag_mixed(retrieval_query)
             return docs, sources, compare_plan
         if not compare_plan.is_compare:

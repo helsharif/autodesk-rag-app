@@ -12,7 +12,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-from src.config import LIGHTRAG_AUTODESK_WEB_MODE, get_settings
+from src.config import LIGHTRAG_AUTODESK_WEB_MODE, LIGHTRAG_ONLY_MODE, get_settings
 from src.evaluation import run_evaluation
 
 
@@ -85,8 +85,10 @@ def _now() -> str:
 
 
 def _status_filename(search_mode: str) -> str:
+    if search_mode == LIGHTRAG_ONLY_MODE:
+        return "option_4_lightrag_mixed_status.json"
     if search_mode == LIGHTRAG_AUTODESK_WEB_MODE:
-        return "option_4_lightrag_mixed_autodesk_web_status.json"
+        return "option_5_lightrag_mixed_autodesk_web_status.json"
     if search_mode == "autodesk_web":
         return "docling_chroma_bm25_hybrid_autodesk_web_status.json"
     if search_mode == "open_web":

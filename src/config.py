@@ -22,16 +22,20 @@ HYBRID_BACKEND_NAME = "docling_chroma_bm25_hybrid"
 LOCAL_ONLY_MODE = "local_only"
 AUTODESK_WEB_MODE = "autodesk_web"
 OPEN_WEB_MODE = "open_web"
-LIGHTRAG_AUTODESK_WEB_MODE = "option_4_lightrag_mixed_autodesk_web"
+LIGHTRAG_ONLY_MODE = "option_4_lightrag_mixed"
+LIGHTRAG_AUTODESK_WEB_MODE = "option_5_lightrag_mixed_autodesk_web"
+LIGHTRAG_MODES = {LIGHTRAG_ONLY_MODE, LIGHTRAG_AUTODESK_WEB_MODE}
 OPTION_1_LABEL = "Option 1: Local Document Search"
 OPTION_2_LABEL = "Option 2: Local Document Search + Autodesk.com"
 OPTION_3_LABEL = "Option 3: Local Document Search + Open Web Search"
-OPTION_4_LABEL = "Option 4: LightRAG mixed mode + Autodesk.com"
+OPTION_4_LABEL = "Option 4: Knowledge Graph LightRAG"
+OPTION_5_LABEL = "Option 5: Knowledge Graph LightRAG + Autodesk.com"
 SEARCH_MODE_OPTIONS = {
     OPTION_1_LABEL: LOCAL_ONLY_MODE,
     OPTION_2_LABEL: AUTODESK_WEB_MODE,
     OPTION_3_LABEL: OPEN_WEB_MODE,
-    OPTION_4_LABEL: LIGHTRAG_AUTODESK_WEB_MODE,
+    OPTION_4_LABEL: LIGHTRAG_ONLY_MODE,
+    OPTION_5_LABEL: LIGHTRAG_AUTODESK_WEB_MODE,
 }
 DEFAULT_SEARCH_MODE_LABEL = OPTION_2_LABEL
 DEFAULT_SEARCH_MODE = SEARCH_MODE_OPTIONS[DEFAULT_SEARCH_MODE_LABEL]

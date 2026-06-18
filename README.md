@@ -30,20 +30,21 @@ The production application is a Streamlit app in `app/streamlit_app.py`. The cor
 | Corpus cleaning | `scripts/corpus_cleaning_pipeline.py`, `notebook_01_corpus_cleaning.ipynb` | HTML-to-Markdown cleaning and metadata enrichment |
 | Index building | `scripts/build_retrieval_indexes.py`, `notebook_02_build_retrieval_indexes.ipynb` | Docling-aware chunking, Chroma embeddings, BM25 artifacts |
 | Golden dataset | `eval_testset/autodesk_testset.csv` | Fixed 50-question evaluation set |
-| Evaluation outputs | `eval_results/` | Saved metrics for all three search modes |
+| Evaluation outputs | `eval_results/` | Saved metrics for the configured search modes |
 | Cleaning diagnostics | `cleaned_corpus_info/` | Corpus EDA, before/after stats, purge manifest, repeated-line candidates |
 | Index manifests | `retrieval_indexes/manifests/` | Chunk and indexing reproducibility metadata |
 
 ## Completed System
 
-The app supports four runtime search modes:
+The app supports five runtime search modes:
 
 | Option | Search mode | Behavior | Best use |
 |---|---|---|---|
 | 1 | Local Document Search | Uses only local Autodesk corpus chunks from Chroma and BM25. | Fast, controlled local-corpus baseline. |
 | 2 | Local Document Search + Autodesk.com | Combines local retrieval with official `autodesk.com` web evidence. | Preferred review/demo mode for current official Autodesk facts. |
 | 3 | Local Document Search + Open Web Search | Combines local retrieval with capped open-web evidence. | Broader corroboration when official-only search may miss context. |
-| 4 | LightRAG mixed mode + Autodesk.com | Combines a separate LightRAG mixed-mode index with the same official `autodesk.com` web search used by Option 2. | Experimental graph/vector retrieval path without changing existing indexes. |
+| 4 | Knowledge Graph LightRAG | Uses only the separate LightRAG mixed-mode knowledge graph/vector index, with no Autodesk.com web search. | Tests how the graph performs without web-search help. |
+| 5 | Knowledge Graph LightRAG + Autodesk.com | Combines the separate LightRAG mixed-mode index with the same official `autodesk.com` web search used by Option 2. | Tests whether official web evidence improves the graph retrieval path. |
 
 Options 1-3 use the same local retrieval backbone:
 
@@ -58,9 +59,9 @@ Options 1-3 use the same local retrieval backbone:
 - Cross-encoder reranking with `cross-encoder/ms-marco-MiniLM-L6-v2`.
 - A strict adequacy gate before answer generation.
 
-Option 4 uses a separate LightRAG index under `retrieval_indexes/lightrag_autodesk_mixed/` and does not use the context-expansion step from Options 1-3.
+Options 4 and 5 use a separate LightRAG index under `retrieval_indexes/lightrag_autodesk_mixed/` and do not use the context-expansion step from Options 1-3. Option 4 is graph-only; Option 5 adds Autodesk.com web evidence.
 
-## Option 4 LightRAG Setup
+## Option 4/5 LightRAG Setup
 
 Install dependencies:
 
@@ -80,11 +81,17 @@ The ingestion script reads `cleaned_corpus/*.md`, writes only to `retrieval_inde
 python scripts/ingest_lightrag_autodesk.py --rebuild
 ```
 
-Validate Option 4:
+Validate Option 4 graph-only retrieval:
 
 ```bash
 python scripts/validate_option4_lightrag.py
 python scripts/validate_option4_lightrag.py --query "What is AutoCAD used for?"
+```
+
+Validate Option 5 graph retrieval plus Autodesk.com:
+
+```bash
+python scripts/validate_option4_lightrag.py --with-web
 ```
 
 Example validation questions:
@@ -95,7 +102,7 @@ What is the difference between AutoCAD and Revit?
 What Autodesk products support BIM workflows?
 ```
 
-Option 4 uses `LIGHTRAG_LLM_MODEL=gpt-4.1-mini`, `LIGHTRAG_EMBEDDING_MODEL=text-embedding-3-small`, and `LIGHTRAG_RETRIEVAL_MODE=mixed` by default. The official LightRAG SDK names this mode `mix`; the app accepts `mixed` and normalizes it internally.
+Options 4 and 5 use `LIGHTRAG_LLM_MODEL=gpt-4.1-mini`, `LIGHTRAG_EMBEDDING_MODEL=text-embedding-3-small`, and `LIGHTRAG_RETRIEVAL_MODE=mixed` by default. The official LightRAG SDK names this mode `mix`; the app accepts `mixed` and normalizes it internally.
 
 If the supplied evidence does not explicitly support an answer, the app returns:
 
@@ -144,7 +151,7 @@ The interface has four user-facing areas:
 
 ## Results
 
-All three search modes were evaluated against the fixed 50-question golden dataset in `eval_testset/autodesk_testset.csv`. Metrics are saved in `eval_results/` and scored on a 0.00 to 1.00 scale, with latency in seconds.
+The original three hybrid search modes were evaluated against the fixed 50-question golden dataset in `eval_testset/autodesk_testset.csv`. Metrics are saved in `eval_results/` and scored on a 0.00 to 1.00 scale, with latency in seconds. Options 4 and 5 can be evaluated from the app after the LightRAG index is available.
 
 | Option | Search mode | Faithfulness | Answer relevance | Context precision | Context recall | Avg latency | P50 latency | P99 latency |
 |---|---|---:|---:|---:|---:|---:|---:|---:|
@@ -389,9 +396,9 @@ Docling is used for document-aware parsing where available, followed by the proj
 At runtime, the app follows this flow:
 
 1. The user asks a natural-language Autodesk question in Streamlit.
-2. The selected search mode determines whether retrieval is local-only, local plus Autodesk.com, or local plus capped open web.
-3. The agent applies its router. Non-Autodesk questions can abstain, current/latest/pricing questions can request web in web-enabled modes, and compare/contrast questions trigger local compare retrieval planning.
-4. Local retrieval searches both Chroma and BM25 in parallel. For compare/contrast questions, focused product and comparison subqueries are retrieved separately and in parallel, then merged.
+2. The selected search mode determines whether retrieval is local-only, local plus Autodesk.com, local plus capped open web, Knowledge Graph only, or Knowledge Graph plus Autodesk.com.
+3. The agent applies its router. Non-Autodesk questions can abstain, current/latest/pricing questions can request web in web-enabled modes, and compare/contrast questions trigger local compare retrieval planning for Options 1-3.
+4. Options 1-3 search both Chroma and BM25 in parallel. Options 4-5 query the LightRAG mixed-mode knowledge graph/vector index.
 5. Results are merged with weighted reciprocal rank fusion, deduplicated, and capped. Compare/contrast retrieval additionally prefers balanced local context so one product does not crowd out the other.
 6. Neighboring chunks from the same document are added for context continuity.
 7. Web snippets, when enabled, are converted into evidence blocks.

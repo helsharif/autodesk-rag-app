@@ -1,4 +1,4 @@
-"""Smoke-test Option 4 LightRAG + Autodesk.com retrieval."""
+"""Smoke-test Option 4 LightRAG graph-only retrieval."""
 
 from __future__ import annotations
 
@@ -14,7 +14,7 @@ if str(ROOT_DIR) not in sys.path:
     sys.path.insert(0, str(ROOT_DIR))
 
 from src.agent import AutodeskRAGAgent
-from src.config import HYBRID_BACKEND_NAME, LIGHTRAG_AUTODESK_WEB_MODE, get_settings
+from src.config import HYBRID_BACKEND_NAME, LIGHTRAG_AUTODESK_WEB_MODE, LIGHTRAG_ONLY_MODE, get_settings
 from src.lightrag_adapter import lightrag_index_exists
 
 
@@ -26,9 +26,10 @@ EXAMPLE_QUERIES = (
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Validate Option 4 LightRAG mixed mode + Autodesk.com.")
+    parser = argparse.ArgumentParser(description="Validate Option 4 LightRAG mixed mode without web search.")
     parser.add_argument("--query", action="append", help="Query to test. Can be supplied more than once.")
     parser.add_argument("--skip-answer", action="store_true", help="Only check index/config readiness.")
+    parser.add_argument("--with-web", action="store_true", help="Validate Option 5 LightRAG mixed mode + Autodesk.com instead.")
     return parser.parse_args()
 
 
@@ -48,7 +49,9 @@ def main() -> int:
     if args.skip_answer:
         return 0
 
-    agent = AutodeskRAGAgent(collection_name=HYBRID_BACKEND_NAME, search_mode=LIGHTRAG_AUTODESK_WEB_MODE)
+    search_mode = LIGHTRAG_AUTODESK_WEB_MODE if args.with_web else LIGHTRAG_ONLY_MODE
+    print(f"Search mode: {search_mode}")
+    agent = AutodeskRAGAgent(collection_name=HYBRID_BACKEND_NAME, search_mode=search_mode)
     for query in args.query or EXAMPLE_QUERIES:
         started = time.perf_counter()
         result = agent.answer(query)
