@@ -20,6 +20,7 @@ from src.config import (
     HYBRID_BACKEND_NAME,
     LIGHTRAG_AUTODESK_WEB_MODE,
     LIGHTRAG_MODES,
+    LIGHTRAG_ONLY_MODE,
     LOCAL_ONLY_MODE,
     OPEN_WEB_MODE,
     get_chat_model,
@@ -355,6 +356,14 @@ class AutodeskRAGAgent:
                 needs_web=False,
                 abstain=not self._looks_autodesk_related(question),
                 reason="Local-only mode: web search disabled.",
+            )
+
+        if self.search_mode == LIGHTRAG_ONLY_MODE:
+            return QueryRoute(
+                needs_local=True,
+                needs_web=False,
+                abstain=not self._looks_autodesk_related(question),
+                reason="Knowledge Graph LightRAG mode: web search disabled.",
             )
 
         fallback = QueryRoute(True, self._needs_web(question), not self._looks_autodesk_related(question), "Keyword fallback route.")

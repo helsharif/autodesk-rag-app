@@ -33,6 +33,17 @@ class Option4LightRAGTests(unittest.TestCase):
         self.assertEqual(docs, [doc])
         self.assertEqual(sources, [source])
 
+    def test_option4_route_never_requests_web(self):
+        agent = AutodeskRAGAgent.__new__(AutodeskRAGAgent)
+        agent.search_mode = LIGHTRAG_ONLY_MODE
+
+        route = agent._route_query("What's the difference between AutoCAD and Maya?")
+
+        self.assertTrue(route.needs_local)
+        self.assertFalse(route.needs_web)
+        self.assertFalse(route.abstain)
+        self.assertIn("web search disabled", route.reason)
+
     def test_option5_uses_lightrag_retrieval_without_context_expansion(self):
         agent = AutodeskRAGAgent.__new__(AutodeskRAGAgent)
         agent.collection_name = "test"
