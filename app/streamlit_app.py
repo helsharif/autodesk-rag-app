@@ -335,6 +335,7 @@ def _indexes_ready() -> tuple[bool, bool]:
 
 
 def render_ask() -> None:
+    settings = get_settings()
     mode_label = _normalize_search_mode_state()
     sync_query_state(page="Ask", mode_label=mode_label)
     search_mode = st.session_state.get("search_mode")
