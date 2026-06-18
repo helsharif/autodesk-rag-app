@@ -1596,10 +1596,16 @@ def _inject_graph_detail_panel(graph_html: str) -> str:
       <div id="kg-detail-body">Select an entity or relationship in the graph to read its metadata here.</div>
     </aside>
     <style>
-      body { margin: 0; display: flex; min-height: 680px; overflow: hidden; }
-      #mynetwork { flex: 1 1 auto; width: calc(100% - 390px) !important; height: 680px !important; border-right: 1px solid #e5e7eb; }
+      body { margin: 0; display: flex; align-items: stretch; min-height: 680px; overflow: hidden; }
+      #mynetwork {
+        flex: 0 1 min(68%, 1120px, calc(100% - 390px));
+        width: min(68%, 1120px, calc(100% - 390px)) !important;
+        height: 680px !important;
+        border-right: 1px solid #e5e7eb;
+      }
       #kg-detail-panel {
         box-sizing: border-box;
+        flex: 0 0 390px;
         width: 390px;
         height: 680px;
         overflow: auto;
@@ -1622,6 +1628,7 @@ def _inject_graph_detail_panel(graph_html: str) -> str:
         }
         #mynetwork {
           display: block;
+          flex: none;
           width: 100% !important;
           min-width: 100% !important;
           height: 460px !important;
@@ -1629,6 +1636,7 @@ def _inject_graph_detail_panel(graph_html: str) -> str:
           border-bottom: 1px solid #e5e7eb;
         }
         #kg-detail-panel {
+          flex: none;
           width: 100%;
           height: 300px;
           padding: 14px 16px 18px;
