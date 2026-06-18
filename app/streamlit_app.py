@@ -1597,11 +1597,18 @@ def _inject_graph_detail_panel(graph_html: str) -> str:
     </aside>
     <style>
       body { margin: 0; display: flex; align-items: stretch; min-height: 680px; overflow: hidden; }
-      #mynetwork {
+      .card {
         flex: 0 1 min(68%, 1120px, calc(100% - 390px));
         width: min(68%, 1120px, calc(100% - 390px)) !important;
+        min-width: 0;
+        margin: 0 !important;
+        border: 0 !important;
+      }
+      #mynetwork {
+        width: 100% !important;
         height: 680px !important;
         border-right: 1px solid #e5e7eb;
+        float: none !important;
       }
       #kg-detail-panel {
         box-sizing: border-box;
@@ -1626,9 +1633,14 @@ def _inject_graph_detail_panel(graph_html: str) -> str:
           min-height: 780px;
           overflow: auto;
         }
-        #mynetwork {
+        .card {
           display: block;
           flex: none;
+          width: 100% !important;
+          min-width: 100% !important;
+        }
+        #mynetwork {
+          display: block;
           width: 100% !important;
           min-width: 100% !important;
           height: 460px !important;
