@@ -1,10 +1,12 @@
 import unittest
+import asyncio
 from unittest.mock import patch
 
 from langchain_core.documents import Document
 
 from src.agent import AutodeskRAGAgent
 from src.config import LIGHTRAG_AUTODESK_WEB_MODE, LIGHTRAG_ONLY_MODE, OPTION_4_LABEL, OPTION_5_LABEL, SEARCH_MODE_OPTIONS
+from src.lightrag_adapter import _run_async
 from src.retriever import RetrievedSource
 
 
@@ -70,6 +72,12 @@ class Option4LightRAGTests(unittest.TestCase):
             agent._web_query("What Autodesk products support BIM workflows?"),
             "site:autodesk.com Autodesk What Autodesk products support BIM workflows?",
         )
+
+    def test_lightrag_async_runner_reuses_event_loop(self):
+        async def loop_id():
+            return id(asyncio.get_running_loop())
+
+        self.assertEqual(_run_async(loop_id()), _run_async(loop_id()))
 
 
 if __name__ == "__main__":

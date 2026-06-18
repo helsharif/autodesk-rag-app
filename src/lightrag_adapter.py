@@ -22,6 +22,9 @@ logger = logging.getLogger(__name__)
 _ATOMIC_WRITE_PATCHED = False
 _ATOMIC_WRITE_PATCH_LOCK = threading.Lock()
 _ATOMIC_WRITE_FILE_LOCKS: dict[str, threading.Lock] = {}
+_LIGHTRAG_LOOP: asyncio.AbstractEventLoop | None = None
+_LIGHTRAG_LOOP_THREAD: threading.Thread | None = None
+_LIGHTRAG_LOOP_LOCK = threading.Lock()
 
 
 def lightrag_index_exists(settings: Settings | None = None) -> bool:
@@ -244,13 +247,33 @@ def _snippet_from_lightrag_context(text: str, limit: int = 350) -> str:
 
 
 def _run_async(coro):
-    try:
-        asyncio.get_running_loop()
-    except RuntimeError:
-        return asyncio.run(coro)
+    loop = _lightrag_event_loop()
+    future = asyncio.run_coroutine_threadsafe(coro, loop)
+    return future.result()
 
-    loop = asyncio.new_event_loop()
-    try:
-        return loop.run_until_complete(coro)
-    finally:
-        loop.close()
+
+def _lightrag_event_loop() -> asyncio.AbstractEventLoop:
+    """Return one process-wide event loop for LightRAG runtime calls.
+
+    LightRAG and NanoVectorDB keep async locks in process-global state. Creating
+    a fresh event loop for each Streamlit query can leave those locks bound to a
+    closed or different loop, producing "Lock is bound to a different event
+    loop" errors on later queries.
+    """
+
+    global _LIGHTRAG_LOOP, _LIGHTRAG_LOOP_THREAD
+    with _LIGHTRAG_LOOP_LOCK:
+        if _LIGHTRAG_LOOP is not None and _LIGHTRAG_LOOP.is_running():
+            return _LIGHTRAG_LOOP
+
+        loop = asyncio.new_event_loop()
+
+        def run_loop() -> None:
+            asyncio.set_event_loop(loop)
+            loop.run_forever()
+
+        thread = threading.Thread(target=run_loop, name="lightrag-event-loop", daemon=True)
+        thread.start()
+        _LIGHTRAG_LOOP = loop
+        _LIGHTRAG_LOOP_THREAD = thread
+        return loop
