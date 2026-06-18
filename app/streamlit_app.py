@@ -48,6 +48,7 @@ from src.monitoring import (
     monitoring_admin_password,
     supabase_monitoring_enabled,
 )
+from src.lightrag_adapter import lightrag_index_exists
 from src.retriever import bm25_index_exists, vectorstore_exists
 
 
@@ -336,11 +337,16 @@ def _indexes_ready() -> tuple[bool, bool]:
 def render_ask() -> None:
     mode_label = _normalize_search_mode_state()
     sync_query_state(page="Ask", mode_label=mode_label)
+    search_mode = st.session_state.get("search_mode")
     st.caption(f"Search mode: {mode_label}")
-    st.caption("Local backend: Docling + Chroma + BM25 Hybrid Search")
-    chroma_ready, bm25_ready = _indexes_ready()
-    if not chroma_ready or not bm25_ready:
-        st.warning("Local Chroma or BM25 indexes are missing. Rebuild with `python scripts/build_retrieval_indexes.py` before expecting grounded answers.")
+    st.caption(f"Retrieval backend: {_ask_backend_caption(search_mode)}")
+    if search_mode in LIGHTRAG_MODES:
+        if not lightrag_index_exists(settings):
+            st.warning("LightRAG knowledge graph index is missing. Rebuild with `python scripts/ingest_lightrag_autodesk.py` before expecting grounded answers.")
+    else:
+        chroma_ready, bm25_ready = _indexes_ready()
+        if not chroma_ready or not bm25_ready:
+            st.warning("Local Chroma or BM25 indexes are missing. Rebuild with `python scripts/build_retrieval_indexes.py` before expecting grounded answers.")
 
     with st.form("ask_form", clear_on_submit=True):
         question = st.text_input("Ask a question", placeholder="Ask about Autodesk products, subscription options, system requirements, or product comparisons", label_visibility="collapsed")
@@ -420,6 +426,18 @@ def _exchanges(messages: list[dict]) -> list[list[dict]]:
     if current:
         exchanges.append(current)
     return exchanges
+
+
+def _ask_backend_caption(search_mode: str | None) -> str:
+    if search_mode == LIGHTRAG_ONLY_MODE:
+        return "Knowledge Graph LightRAG mixed-mode index"
+    if search_mode == LIGHTRAG_AUTODESK_WEB_MODE:
+        return "Knowledge Graph LightRAG mixed-mode index + Autodesk.com web search"
+    if search_mode == AUTODESK_WEB_MODE:
+        return "Docling + Chroma + BM25 Hybrid Search + Autodesk.com web search"
+    if search_mode == OPEN_WEB_MODE:
+        return "Docling + Chroma + BM25 Hybrid Search + capped open-web search"
+    return "Docling + Chroma + BM25 Hybrid Search"
 
 
 def _source_mode_label(used_local: bool, used_web: bool, search_mode: str) -> str:
