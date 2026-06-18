@@ -1506,7 +1506,7 @@ def render_knowledge_graph_explorer(settings) -> None:
         f"Showing a 1-hop neighborhood with {subgraph.number_of_nodes():,} entities and {subgraph.number_of_edges():,} relationships around "
         f"`{_graph_node_label(graph, selected)}`."
     )
-    components.html(_knowledge_graph_pyvis_html(subgraph, selected, show_edge_labels=show_edge_labels), height=700, scrolling=False)
+    components.html(_knowledge_graph_pyvis_html(subgraph, selected, show_edge_labels=show_edge_labels), height=820, scrolling=True)
 
 
 def _graph_entity_matches(graph, query: str, limit: int = 50) -> list[str]:
@@ -1614,6 +1614,29 @@ def _inject_graph_detail_panel(graph_html: str) -> str:
       #kg-detail-body { font-size: 13px; overflow-wrap: anywhere; }
       #kg-detail-body b { color: #0f172a; }
       #kg-detail-body br { display: block; margin-bottom: 7px; content: ""; }
+      @media (max-width: 720px) {
+        body {
+          display: block;
+          min-height: 780px;
+          overflow: auto;
+        }
+        #mynetwork {
+          display: block;
+          width: 100% !important;
+          min-width: 100% !important;
+          height: 460px !important;
+          border-right: 0;
+          border-bottom: 1px solid #e5e7eb;
+        }
+        #kg-detail-panel {
+          width: 100%;
+          height: 300px;
+          padding: 14px 16px 18px;
+        }
+        #kg-detail-title {
+          font-size: 16px;
+        }
+      }
     </style>
     <script>
       function kgSetPanel(item) {
