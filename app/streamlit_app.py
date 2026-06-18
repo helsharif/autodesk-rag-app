@@ -1544,7 +1544,7 @@ def _knowledge_graph_pyvis_html(subgraph, selected: str, show_edge_labels: bool 
     from pyvis.network import Network
 
     net = Network(height="680px", width="100%", bgcolor="#ffffff", font_color="#1f2937", notebook=False, cdn_resources="in_line")
-    net.force_atlas_2based(gravity=-75, central_gravity=0.02, spring_length=170, spring_strength=0.06, damping=0.55)
+    net.force_atlas_2based(gravity=-45, central_gravity=0.015, spring_length=210, spring_strength=0.025, damping=0.86)
     for node, data in subgraph.nodes(data=True):
         entity_type = str(data.get("entity_type") or "entity")
         label = _graph_node_label(subgraph, node)
@@ -1573,7 +1573,12 @@ def _knowledge_graph_pyvis_html(subgraph, selected: str, show_edge_labels: bool 
         """
         {
           "interaction": {"hover": true, "tooltipDelay": 120, "navigationButtons": true, "keyboard": true, "dragNodes": true},
-          "physics": {"enabled": true, "stabilization": {"iterations": 160}},
+          "physics": {
+            "enabled": true,
+            "minVelocity": 0.5,
+            "maxVelocity": 28,
+            "stabilization": {"enabled": true, "iterations": 600, "updateInterval": 40, "fit": true}
+          },
           "nodes": {"shape": "dot", "borderWidth": 1, "font": {"size": 16, "face": "Inter, Arial"}},
           "edges": {"smooth": {"type": "dynamic"}, "font": {"size": 9, "align": "middle"}, "arrows": {"to": {"enabled": false}}},
           "layout": {"improvedLayout": true}
@@ -1629,6 +1634,9 @@ def _inject_graph_detail_panel(graph_html: str) -> str:
       network.on("deselectNode", function(params) {
         if (!params.edges || !params.edges.length) return;
         kgSetPanel(edges.get(params.edges[0]));
+      });
+      network.once("stabilized", function() {
+        network.stopSimulation();
       });
       network.on("dragStart", function(params) {
         if (!params.nodes || !params.nodes.length) return;
