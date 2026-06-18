@@ -1486,7 +1486,13 @@ def render_knowledge_graph_explorer(settings) -> None:
         return
 
     search_query = st.text_input("Search entity", placeholder="AutoCAD, Maya, Revit, BIM, Fusion...")
-    depth = st.radio("Neighborhood depth", [1, 2, 3], index=0, horizontal=True, format_func=lambda value: f"{value}-hop")
+    control_cols = st.columns([1, 1, 1])
+    with control_cols[0]:
+        depth = st.radio("Neighborhood depth", [1, 2, 3], index=0, horizontal=True, format_func=lambda value: f"{value}-hop")
+    with control_cols[1]:
+        max_nodes = st.slider("Visible entity limit", min_value=25, max_value=120, value=60, step=5)
+    with control_cols[2]:
+        show_edge_labels = st.toggle("Edge labels", value=False)
     if not search_query.strip():
         st.caption(f"Graph loaded: {graph.number_of_nodes():,} entities and {graph.number_of_edges():,} relationships. Search for an entity to render its local neighborhood.")
         return
@@ -1497,12 +1503,12 @@ def render_knowledge_graph_explorer(settings) -> None:
         return
 
     selected = st.selectbox("Matching entities", matches, format_func=lambda node: _graph_node_label(graph, node))
-    subgraph = _graph_neighborhood(graph, selected, int(depth), max_nodes=180)
+    subgraph = _graph_neighborhood(graph, selected, int(depth), max_nodes=max_nodes)
     st.caption(
         f"Showing {subgraph.number_of_nodes():,} entities and {subgraph.number_of_edges():,} relationships around "
         f"`{_graph_node_label(graph, selected)}`."
     )
-    components.html(_knowledge_graph_pyvis_html(subgraph, selected), height=760, scrolling=False)
+    components.html(_knowledge_graph_pyvis_html(subgraph, selected, show_edge_labels=show_edge_labels), height=700, scrolling=False)
 
 
 def _graph_entity_matches(graph, query: str, limit: int = 50) -> list[str]:
@@ -1536,11 +1542,11 @@ def _graph_neighborhood(graph, selected: str, depth: int, max_nodes: int):
     return graph.subgraph(kept_nodes).copy()
 
 
-def _knowledge_graph_pyvis_html(subgraph, selected: str) -> str:
+def _knowledge_graph_pyvis_html(subgraph, selected: str, show_edge_labels: bool = False) -> str:
     from pyvis.network import Network
 
-    net = Network(height="740px", width="100%", bgcolor="#ffffff", font_color="#1f2937", notebook=False, cdn_resources="in_line")
-    net.force_atlas_2based(gravity=-45, central_gravity=0.015, spring_length=135, spring_strength=0.08, damping=0.45)
+    net = Network(height="680px", width="100%", bgcolor="#ffffff", font_color="#1f2937", notebook=False, cdn_resources="in_line")
+    net.force_atlas_2based(gravity=-75, central_gravity=0.02, spring_length=170, spring_strength=0.06, damping=0.55)
     for node, data in subgraph.nodes(data=True):
         entity_type = str(data.get("entity_type") or "entity")
         label = _graph_node_label(subgraph, node)
@@ -1558,7 +1564,7 @@ def _knowledge_graph_pyvis_html(subgraph, selected: str) -> str:
             target,
             title=_edge_tooltip(data),
             value=max(1.0, float(data.get("weight") or 1.0)),
-            label=_truncate_text(str(data.get("keywords") or ""), 30),
+            label=_truncate_text(str(data.get("keywords") or ""), 30) if show_edge_labels else "",
             color="#94a3b8",
         )
     net.set_options(
@@ -1567,7 +1573,7 @@ def _knowledge_graph_pyvis_html(subgraph, selected: str) -> str:
           "interaction": {"hover": true, "tooltipDelay": 120, "navigationButtons": true, "keyboard": true},
           "physics": {"enabled": true, "stabilization": {"iterations": 160}},
           "nodes": {"shape": "dot", "borderWidth": 1, "font": {"size": 16, "face": "Inter, Arial"}},
-          "edges": {"smooth": {"type": "dynamic"}, "font": {"size": 10, "align": "middle"}, "arrows": {"to": {"enabled": false}}},
+          "edges": {"smooth": {"type": "dynamic"}, "font": {"size": 9, "align": "middle"}, "arrows": {"to": {"enabled": false}}},
           "layout": {"improvedLayout": true}
         }
         """
@@ -1742,6 +1748,11 @@ flowchart TD
         """.strip()
     )
 
+    if st.button("Explore Knowledge Graph", type="secondary"):
+        st.session_state.show_knowledge_graph_explorer = True
+    if st.session_state.get("show_knowledge_graph_explorer"):
+        render_knowledge_graph_explorer(settings)
+
     st.subheader("Evaluation Metrics as of May 21, 2026")
     st.write(
         "These static values come from the saved 50-question golden-set evaluation runs completed on May 21, 2026. "
@@ -1787,11 +1798,6 @@ flowchart TD
             },
         ]
     )
-
-    if st.button("Explore Knowledge Graph", type="secondary"):
-        st.session_state.show_knowledge_graph_explorer = True
-    if st.session_state.get("show_knowledge_graph_explorer"):
-        render_knowledge_graph_explorer(settings)
 
     st.markdown(
         """
