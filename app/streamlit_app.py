@@ -1551,7 +1551,7 @@ def _knowledge_graph_pyvis_html(subgraph, selected: str, show_edge_labels: bool 
         net.add_node(
             node,
             label=_truncate_text(label, 34),
-            title="Click to inspect entity details",
+            title="Click to inspect entity details. Drag to pin this entity.",
             details_html=_node_tooltip(node, data),
             details_heading=label,
             color=_entity_color(entity_type, node == selected),
@@ -1572,7 +1572,7 @@ def _knowledge_graph_pyvis_html(subgraph, selected: str, show_edge_labels: bool 
     net.set_options(
         """
         {
-          "interaction": {"hover": true, "tooltipDelay": 120, "navigationButtons": true, "keyboard": true},
+          "interaction": {"hover": true, "tooltipDelay": 120, "navigationButtons": true, "keyboard": true, "dragNodes": true},
           "physics": {"enabled": true, "stabilization": {"iterations": 160}},
           "nodes": {"shape": "dot", "borderWidth": 1, "font": {"size": 16, "face": "Inter, Arial"}},
           "edges": {"smooth": {"type": "dynamic"}, "font": {"size": 9, "align": "middle"}, "arrows": {"to": {"enabled": false}}},
@@ -1629,6 +1629,25 @@ def _inject_graph_detail_panel(graph_html: str) -> str:
       network.on("deselectNode", function(params) {
         if (!params.edges || !params.edges.length) return;
         kgSetPanel(edges.get(params.edges[0]));
+      });
+      network.on("dragStart", function(params) {
+        if (!params.nodes || !params.nodes.length) return;
+        nodes.update(params.nodes.map(function(nodeId) {
+          return { id: nodeId, fixed: { x: false, y: false } };
+        }));
+      });
+      network.on("dragEnd", function(params) {
+        if (!params.nodes || !params.nodes.length) return;
+        const positions = network.getPositions(params.nodes);
+        nodes.update(params.nodes.map(function(nodeId) {
+          return {
+            id: nodeId,
+            x: positions[nodeId].x,
+            y: positions[nodeId].y,
+            fixed: { x: true, y: true }
+          };
+        }));
+        network.redraw();
       });
     </script>
     """
