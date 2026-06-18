@@ -1835,9 +1835,9 @@ flowchart TD
     if st.session_state.get("show_knowledge_graph_explorer"):
         render_knowledge_graph_explorer(settings)
 
-    st.subheader("Evaluation Metrics as of May 21, 2026")
+    st.subheader("Evaluation Metrics as of June 18, 2026")
     st.write(
-        "These static values come from the saved 50-question golden-set evaluation runs completed on May 21, 2026. "
+        "These static values come from the saved 50-question golden-set evaluation runs completed on June 18, 2026. "
         "They are intentionally fixed for this About tab and will not change when a new evaluation is run."
     )
     st.write(
@@ -1878,14 +1878,39 @@ flowchart TD
                 "P50 Latency": "12.335s",
                 "P99 Latency": "73.169s",
             },
+            {
+                "Search Option": "Option 4: Knowledge Graph LightRAG",
+                "Faithfulness": "0.865",
+                "Answer Relevance": "0.81",
+                "Context Precision": "0.80",
+                "Context Recall": "0.745",
+                "Avg Latency": "15.214s",
+                "P50 Latency": "15.725s",
+                "P99 Latency": "23.370s",
+            },
+            {
+                "Search Option": "Option 5: Knowledge Graph LightRAG + Autodesk.com",
+                "Faithfulness": "0.83",
+                "Answer Relevance": "0.935",
+                "Context Precision": "0.80",
+                "Context Recall": "0.670",
+                "Avg Latency": "20.945s",
+                "P50 Latency": "21.528s",
+                "P99 Latency": "31.602s",
+            },
         ]
+    )
+    st.write(
+        "Takeaway: the Knowledge Graph LightRAG options perform in a comparable range to Option 2, but Option 2 remains "
+        "the best overall choice because it balances quality, latency, authoritative Autodesk.com evidence, and lower "
+        "index-building cost better than the knowledge graph modes."
     )
 
     st.markdown(
         """
 ## Sample Answers
 
-The examples below show generated answers to sample questions as of May 21, 2026, alongside the reference answers from the evaluation test set. These examples are static and are not automatically updated when evaluations are re-run.
+The examples below show generated answers to sample questions as of June 18, 2026, alongside the reference answers from the evaluation test set. These examples are static and are not automatically updated when evaluations are re-run.
 
 ### 1. What does Fusion 360 do?
 
@@ -1915,6 +1940,17 @@ Fusion 360 is an integrated platform by Autodesk that combines 3D CAD, CAM, CAE,
 
 In summary, Fusion 360 enables users to design, simulate, and manufacture products within a single platform, streamlining the product development process from concept through production.
 
+
+**Option 4: Knowledge Graph LightRAG**
+
+Fusion 360 is a cloud-based software by Autodesk that integrates CAD (computer-aided design), CAM (computer-aided manufacturing), and CAE (computer-aided engineering) capabilities. It is used for product design, engineering, and manufacturing, allowing users to design, simulate, and produce prototypes and finished products within a single platform. Fusion 360 supports parametric design, direct modeling, and includes tools for machining and additive manufacturing, making it suitable for complex product development workflows. It also offers collaboration and data management features to facilitate teamwork and project sharing across devices and locations (Local 1).
+
+**Option 5: Knowledge Graph LightRAG + Autodesk.com**
+
+Fusion 360 is a cloud-based software platform by Autodesk that integrates 3D CAD (computer-aided design), CAM (computer-aided manufacturing), CAE (computer-aided engineering), and PCB (printed circuit board) design into a single, unified environment. It enables users to create 3D models, run simulations to validate designs, generate toolpaths for manufacturing, and manage product data collaboratively. Fusion 360 supports product design, industrial design, mechanical engineering, and electronics development, making it a comprehensive tool for product development workflows (Local 1, Web 1, Web 2, Web 3, Web 4).
+
+In addition to design and modeling, Fusion 360 includes features for manufacturing such as CNC machining and additive manufacturing preparation, as well as collaboration tools for team-based project sharing and data management. This makes it suitable for both individual designers and product development organizations aiming to innovate, reduce costs, and accelerate manufacturing processes (Local 1).
+
 ### 2. What's the difference between AutoCAD and Revit?
 
 **Reference Answer**
@@ -1940,6 +1976,23 @@ Additionally, Revit can import and export AutoCAD files, allowing integration be
 The main difference between AutoCAD and Revit is their core purpose and functionality. AutoCAD is a general CAD (Computer-Aided Design) software used for creating 2D and 3D drawings across various industries, serving as a broad drawing tool. In contrast, Revit is specialized BIM (Building Information Modeling) software designed specifically for the AEC (Architecture, Engineering, and Construction) industry to create intelligent 3D models that contain real information about the building components (Web 2, Web 3).
 
 Revit enables faster project creation with integrated data, making it more efficient for building design and documentation workflows. AutoCAD, while versatile, is more focused on drafting and detailing, whereas Revit supports a more comprehensive design-to-documentation process with real-time information embedded in the model (Web 1, Local 1, Local 2). Together, they complement each other by offering effective workflows from design to documentation.
+
+
+**Option 4: Knowledge Graph LightRAG**
+
+The key difference between AutoCAD and Revit lies in their core purpose and functionality within design workflows. AutoCAD is a general-purpose CAD software primarily used for precise 2D drafting and 3D modeling across various design disciplines. It enables users to create detailed technical drawings and documentation, serving a broad range of industries and design needs.
+
+In contrast, Autodesk Revit is a specialized Building Information Modeling (BIM) software tailored for the architecture, engineering, and construction (AEC) industry. Revit supports the entire building project lifecycle by enabling the creation of intelligent 3D models with parametric accuracy that integrate architectural, structural, and MEP (mechanical, electrical, plumbing) systems. It facilitates multidisciplinary collaboration, project coordination, and management through a shared data environment, helping reduce errors and improve project delivery. Revit also supports advanced workflows such as model validation, construction simulation, and integration with other Autodesk tools for infrastructure and fabrication (Local 1).
+
+In summary, AutoCAD is focused on detailed drafting and design documentation, while Revit provides a comprehensive BIM platform for integrated building design, modeling, and collaboration in construction projects.
+
+**Option 5: Knowledge Graph LightRAG + Autodesk.com**
+
+The key difference between AutoCAD and Revit lies in their core purposes and functionalities. AutoCAD is a general-purpose CAD (Computer-Aided Design) software primarily used for creating precise 2D drawings and 3D models. It is a versatile drafting tool suitable for a wide range of design and documentation tasks across various industries. In contrast, Revit is a comprehensive Building Information Modeling (BIM) software designed specifically for the architecture, engineering, and construction (AEC) industry. Revit enables users to create detailed, parametric 3D models of buildings and infrastructure that integrate multidisciplinary data, support collaboration, and facilitate project management throughout the entire building lifecycle (Local 1, Web 2, Web 4).
+
+While AutoCAD focuses on drafting and modeling as separate elements, Revit provides an intelligent, structured model that stores building information, allowing for coordinated workflows among architects, engineers, and construction professionals. Revit supports advanced features such as real-time collaboration, model validation, and interoperability with other specialized Autodesk tools, making it ideal for integrated BIM workflows. AutoCAD, on the other hand, remains a powerful tool for precise 2D drafting and general design tasks but does not inherently support BIM processes (Local 1, Web 1, Web 4).
+
+In summary, AutoCAD is best suited for detailed 2D drafting and flexible 3D modeling, while Revit is tailored for creating and managing comprehensive BIM models that enhance collaboration and project coordination in the AEC sector. Both tools are interoperable and often used together to leverage their respective strengths in design and documentation workflows.
 
 ### 3. Does AutoCAD LT do 3d?
 
@@ -1969,6 +2022,17 @@ AutoCAD LT does not support 3D modeling or 3D functionalities. It is designed pr
 
 Therefore, if you need to work with 3D models or perform 3D design tasks, AutoCAD LT would not be suitable, and you would need the full AutoCAD software instead.
 
+
+**Option 4: Knowledge Graph LightRAG**
+
+AutoCAD LT is designed specifically for precise 2D drafting, design, and documentation. It focuses exclusively on 2D workflows and does not support 3D modeling or 3D design features. Unlike the full version of AutoCAD, AutoCAD LT lacks the capability to create or edit 3D models, making it suitable primarily for professionals who need detailed 2D technical drawings such as floor plans, elevations, and layouts (Local 1).
+
+For 3D modeling, Autodesk offers other products like Autodesk Maya, Fusion 360, and the full AutoCAD software, which provide comprehensive 3D design and modeling tools. AutoCAD LT remains a streamlined, cost-effective solution tailored to 2D drafting without the complexity or expense of 3D modeling capabilities.
+
+**Option 5: Knowledge Graph LightRAG + Autodesk.com**
+
+AutoCAD LT does not support 3D modeling or 3D workspace functionality. It is specifically designed for precise 2D drafting, design, and documentation. While AutoCAD LT can open and view 3D models created in the full version of AutoCAD or other software, it lacks the tools to create, edit, or navigate 3D objects effectively. Its focus is exclusively on 2D workflows, making it suitable for professionals who need detailed 2D technical drawings but not 3D capabilities (Local 1, Web 1, Web 2, Web 4, Web 5).
+
 ### 4. What's the latest release for Maya?
 
 **Reference Answer**
@@ -1990,6 +2054,19 @@ While the local documents highlight features for Maya 2024, such as integrated A
 **Option 3: Local Document Search + Open Web Search**
 
 The latest release for Maya is Maya 2026. This version includes new features and updated workflows, and it is accessible through your Autodesk Account (Web 2). Additionally, the 2024 features highlight performance acceleration with interactive workflows and the availability of the Maya USD plug-in as an open-source project (Local 1, Local 2).
+
+
+**Option 4: Knowledge Graph LightRAG**
+
+The latest release of Autodesk Maya is Maya 2024. This version is available for trial download and installation, representing the most recent major release of the software as of now. Maya 2024 continues to offer the comprehensive 3D modeling, animation, and rendering toolsets that the software is known for, supporting professional workflows in film, TV, and game production (Local 1).
+
+**Option 5: Knowledge Graph LightRAG + Autodesk.com**
+
+The latest release of Autodesk Maya is Maya 2027. This version includes new features such as MotionMaker for horses, a modernized sequencer, Smart Bevel, and deeper USD support, reflecting ongoing enhancements in animation and modeling workflows (Web 4). 
+
+Prior to this, Maya 2026 was available with updates like Substance for Maya version 3.0.4 and new tutorial content (Web 3). The progression from Maya 2024 through 2026 to 2027 shows Autodesk's continuous development of the software's capabilities.
+
+Therefore, as of now, Maya 2027 is the most current release.
 
 ### 5. Can I use fusion 360 on a Mac?
 
@@ -2014,6 +2091,15 @@ Furthermore, Autodesk also supports running some of its products on Mac through 
 Yes, you can use Fusion 360 on a Mac. Fusion 360 is a versatile CAM software that supports various machining operations and is available as an integrated engineering and design solution. While the local documents do not explicitly state Mac compatibility, user reports from web sources indicate that Fusion 360 runs well on Mac devices, including newer models like the M3 MacBook (Web 3). Additionally, Autodesk supports running some of its products on Mac through virtualized environments such as Parallels Desktop and VMware Fusion (Web 1).
 
 Therefore, whether natively or via virtualization, Fusion 360 is accessible for Mac users. For more detailed assistance, you can also contact a Fusion 360 expert at Autodesk (Local 3).
+
+
+**Option 4: Knowledge Graph LightRAG**
+
+Yes, you can use Fusion 360 on a Mac. Fusion 360 is a cloud-based software platform developed by Autodesk that supports both Mac and PC systems through a lightweight desktop client. This allows Mac users to access the full range of Fusion 360's integrated CAD, CAM, CAE, and electronics design capabilities in a unified environment (Local 1).
+
+**Option 5: Knowledge Graph LightRAG + Autodesk.com**
+
+Yes, you can use Fusion 360 on a Mac. Fusion 360 is a cloud-based software platform by Autodesk that supports both Microsoft Windows and Apple macOS as supported platforms. Users can run Fusion 360 natively on Mac systems, and Autodesk also supports running some of its products on Mac through virtualized environments like Parallels Desktop and VMware Fusion if needed. Additionally, Fusion 360 requires an Apple-supported OS and hardware configuration, especially after updates such as the one in March 2025 (Web 3, Web 1, Web 4).
 
 ### 6. What are the differences between Standard, Premium, and Enterprise subscription plans?
 
@@ -2046,6 +2132,23 @@ The differences between the Standard, Premium, and Enterprise Autodesk subscript
 All three plans provide access to products through dedicated single-user subscriptions (Standard and Premium) or Flex tokens (Enterprise), and all support subscription usage reporting and Flex usage reporting. However, Enterprise uniquely allows adding your own metadata to enrich reports and offers API access to connect data to third-party tools, which Premium also supports but Standard does not. Enterprise also supports control over user access to downloads and directory synchronization, which Premium supports but Standard does not. Additionally, Enterprise and Premium allow automating user additions and directory sync, while Standard does not. Enterprise includes all Premium features plus these enhanced administrative and integration capabilities (Locals 1, 2, 3, 4, 5).
 
 In summary, Standard covers basic subscription and usage reporting with essential user management, Premium adds automation and directory sync, and Enterprise includes all Premium features plus advanced reporting metadata, API integrations, and stricter user access controls.
+
+
+**Option 4: Knowledge Graph LightRAG**
+
+I could not find a reliable answer in the available documents or web sources.
+
+**Option 5: Knowledge Graph LightRAG + Autodesk.com**
+
+The differences between Autodesk's Standard, Premium, and Enterprise subscription plans primarily lie in the features, support levels, and administrative capabilities they offer.
+
+The Standard Plan is the basic subscription tier designed for individuals and smaller teams. It includes essential features such as product usage reporting, single sign-on (SSO), and 8x5 live support during business hours. It provides foundational access and support for Autodesk products and is the default plan for users without existing subscriptions (Local 1).
+
+The Premium Plan builds on the Standard Plan by adding advanced features targeted at medium to large teams (50+ subscriptions). It includes all Standard features plus directory synchronization, enhanced automation tools, advanced data insights, and more comprehensive reporting capabilities. Premium also offers 24x7 live support, expert coaching for end users, and supports single sign-on with group synchronization. This plan is suited for organizations needing advanced administrative controls, security, and premium customer support (Local 1, Web 2, Web 3).
+
+The Enterprise tier represents the highest license level, offering comprehensive professional tools, extended features, and premium pricing. It is tailored for large-scale organizations requiring extensive network license management, advanced support services, and additional capabilities beyond Premium. Enterprise plans often include multi-user contracts and network license products with enhanced support for large deployments (Local 1).
+
+In summary, Standard provides basic access and support, Premium adds advanced features and 24x7 support for larger teams, and Enterprise delivers the most comprehensive tools and support for large organizations with complex needs. (Local 1, Web 2, Web 4)
 
 **More example answers can be reviewed in the app under the Settings and Eval tab.**
         """
