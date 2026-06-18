@@ -1,6 +1,10 @@
 # Web app UI for the RAG prototype.
 streamlit>=1.40,<1.41
 
+# Interactive knowledge graph visualization in the About tab.
+pyvis>=0.3.2,<0.4
+networkx>=3.0,<4.0
+
 # Local configuration and secret loading from .env files.
 python-dotenv>=1.0,<2.0
 

@@ -1465,6 +1465,170 @@ def _render_mermaid(diagram: str, height: int = 720) -> None:
     )
 
 
+@st.cache_resource(show_spinner=False)
+def _load_lightrag_graph(graph_path: str):
+    import networkx as nx
+
+    return nx.read_graphml(graph_path)
+
+
+def render_knowledge_graph_explorer(settings) -> None:
+    graph_path = settings.lightrag_working_dir / "graph_chunk_entity_relation.graphml"
+    st.subheader("Knowledge Graph Explorer")
+    if not graph_path.exists():
+        st.warning("Knowledge graph file is missing. Build it with `python scripts/ingest_lightrag_autodesk.py`.")
+        return
+
+    try:
+        graph = _load_lightrag_graph(str(graph_path))
+    except Exception as exc:
+        st.error(f"Could not load the knowledge graph: {exc}")
+        return
+
+    search_query = st.text_input("Search entity", placeholder="AutoCAD, Maya, Revit, BIM, Fusion...")
+    depth = st.radio("Neighborhood depth", [1, 2, 3], index=0, horizontal=True, format_func=lambda value: f"{value}-hop")
+    if not search_query.strip():
+        st.caption(f"Graph loaded: {graph.number_of_nodes():,} entities and {graph.number_of_edges():,} relationships. Search for an entity to render its local neighborhood.")
+        return
+
+    matches = _graph_entity_matches(graph, search_query, limit=50)
+    if not matches:
+        st.warning("No matching entities found.")
+        return
+
+    selected = st.selectbox("Matching entities", matches, format_func=lambda node: _graph_node_label(graph, node))
+    subgraph = _graph_neighborhood(graph, selected, int(depth), max_nodes=180)
+    st.caption(
+        f"Showing {subgraph.number_of_nodes():,} entities and {subgraph.number_of_edges():,} relationships around "
+        f"`{_graph_node_label(graph, selected)}`."
+    )
+    components.html(_knowledge_graph_pyvis_html(subgraph, selected), height=760, scrolling=False)
+
+
+def _graph_entity_matches(graph, query: str, limit: int = 50) -> list[str]:
+    normalized_query = query.strip().lower()
+    exact: list[str] = []
+    prefix: list[str] = []
+    contains: list[str] = []
+    for node, data in graph.nodes(data=True):
+        label = str(data.get("entity_id") or node)
+        normalized_label = label.lower()
+        if normalized_label == normalized_query:
+            exact.append(node)
+        elif normalized_label.startswith(normalized_query):
+            prefix.append(node)
+        elif normalized_query in normalized_label:
+            contains.append(node)
+    return [*sorted(exact, key=_graph_sort_key), *sorted(prefix, key=_graph_sort_key), *sorted(contains, key=_graph_sort_key)][:limit]
+
+
+def _graph_sort_key(value: str) -> str:
+    return str(value).lower()
+
+
+def _graph_neighborhood(graph, selected: str, depth: int, max_nodes: int):
+    import networkx as nx
+
+    lengths = nx.single_source_shortest_path_length(graph, selected, cutoff=depth)
+    ranked_nodes = sorted(lengths, key=lambda node: (lengths[node], -graph.degree(node), str(node).lower()))
+    kept_nodes = set(ranked_nodes[:max_nodes])
+    kept_nodes.add(selected)
+    return graph.subgraph(kept_nodes).copy()
+
+
+def _knowledge_graph_pyvis_html(subgraph, selected: str) -> str:
+    from pyvis.network import Network
+
+    net = Network(height="740px", width="100%", bgcolor="#ffffff", font_color="#1f2937", notebook=False, cdn_resources="in_line")
+    net.force_atlas_2based(gravity=-45, central_gravity=0.015, spring_length=135, spring_strength=0.08, damping=0.45)
+    for node, data in subgraph.nodes(data=True):
+        entity_type = str(data.get("entity_type") or "entity")
+        label = _graph_node_label(subgraph, node)
+        net.add_node(
+            node,
+            label=_truncate_text(label, 34),
+            title=_node_tooltip(node, data),
+            color=_entity_color(entity_type, node == selected),
+            size=26 if node == selected else 12 + min(subgraph.degree(node), 16),
+            group=entity_type,
+        )
+    for source, target, data in subgraph.edges(data=True):
+        net.add_edge(
+            source,
+            target,
+            title=_edge_tooltip(data),
+            value=max(1.0, float(data.get("weight") or 1.0)),
+            label=_truncate_text(str(data.get("keywords") or ""), 30),
+            color="#94a3b8",
+        )
+    net.set_options(
+        """
+        {
+          "interaction": {"hover": true, "tooltipDelay": 120, "navigationButtons": true, "keyboard": true},
+          "physics": {"enabled": true, "stabilization": {"iterations": 160}},
+          "nodes": {"shape": "dot", "borderWidth": 1, "font": {"size": 16, "face": "Inter, Arial"}},
+          "edges": {"smooth": {"type": "dynamic"}, "font": {"size": 10, "align": "middle"}, "arrows": {"to": {"enabled": false}}},
+          "layout": {"improvedLayout": true}
+        }
+        """
+    )
+    return net.generate_html(notebook=False)
+
+
+def _graph_node_label(graph, node: str) -> str:
+    data = graph.nodes[node] if node in graph else {}
+    return str(data.get("entity_id") or node)
+
+
+def _node_tooltip(node: str, data: dict) -> str:
+    return _html_tooltip(
+        [
+            ("Entity", data.get("entity_id") or node),
+            ("Type", data.get("entity_type")),
+            ("Description", data.get("description")),
+            ("Source file", data.get("file_path")),
+            ("Source ID", data.get("source_id")),
+        ]
+    )
+
+
+def _edge_tooltip(data: dict) -> str:
+    return _html_tooltip(
+        [
+            ("Relationship", data.get("description")),
+            ("Keywords", data.get("keywords")),
+            ("Weight", data.get("weight")),
+            ("Source file", data.get("file_path")),
+            ("Source ID", data.get("source_id")),
+        ]
+    )
+
+
+def _html_tooltip(fields: list[tuple[str, object]]) -> str:
+    parts = []
+    for label, value in fields:
+        if value in (None, ""):
+            continue
+        text = html.escape(str(value)).replace("&lt;SEP&gt;", "<br>")
+        parts.append(f"<b>{html.escape(label)}:</b> {text}")
+    return "<br>".join(parts)
+
+
+def _entity_color(entity_type: str, selected: bool) -> str:
+    if selected:
+        return "#dc2626"
+    palette = {
+        "product": "#2563eb",
+        "software": "#2563eb",
+        "organization": "#7c3aed",
+        "person": "#db2777",
+        "concept": "#059669",
+        "location": "#d97706",
+        "event": "#0891b2",
+    }
+    return palette.get(entity_type.lower(), "#64748b")
+
+
 def render_about() -> None:
     settings = get_settings()
     st.subheader("About the App")
@@ -1623,6 +1787,11 @@ flowchart TD
             },
         ]
     )
+
+    if st.button("Explore Knowledge Graph", type="secondary"):
+        st.session_state.show_knowledge_graph_explorer = True
+    if st.session_state.get("show_knowledge_graph_explorer"):
+        render_knowledge_graph_explorer(settings)
 
     st.markdown(
         """
