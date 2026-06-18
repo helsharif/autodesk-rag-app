@@ -158,8 +158,8 @@ All five search modes were evaluated against the fixed 50-question golden datase
 | 1 | Local Document Search | 0.91 | 0.66 | 0.72 | 0.58 | 6.31s | 6.55s | 15.11s |
 | 2 | Local Document Search + Autodesk.com | 0.87 | 0.85 | 0.81 | 0.74 | 12.99s | 12.43s | 22.87s |
 | 3 | Local Document Search + Open Web Search | 0.84 | 0.78 | 0.86 | 0.62 | 14.11s | 12.34s | 73.17s |
-| 4 | Knowledge Graph LightRAG | 0.865 | 0.81 | 0.80 | 0.745 | 15.21s | 15.73s | 23.37s |
-| 5 | Knowledge Graph LightRAG + Autodesk.com | 0.83 | 0.935 | 0.80 | 0.67 | 20.95s | 21.53s | 31.60s |
+| 4 | Knowledge Graph LightRAG | 0.87 | 0.81 | 0.80 | 0.75 | 15.21s | 15.73s | 23.37s |
+| 5 | Knowledge Graph LightRAG + Autodesk.com | 0.83 | 0.94 | 0.80 | 0.67 | 20.95s | 21.53s | 31.60s |
 
 Option 2 remains the strongest overall mode. Options 4 and 5 show that the LightRAG knowledge graph approach performs in a comparable range to Option 2: Option 4 slightly improves context recall over Option 2, and Option 5 posts the highest answer relevance. However, Option 2 keeps the best overall balance of answer quality, latency, authority, and build practicality because the Docling + Chroma + BM25 hybrid indexes are faster and less costly to create and maintain than the knowledge graph. Option 1 remains the fastest and most faithful local-only baseline. Option 3 can retrieve useful broader evidence, but it has less predictable latency and authority.
 
