@@ -1,7 +1,7 @@
 import unittest
 
 from src.agent import AutodeskRAGAgent
-from src.config import AUTODESK_WEB_MODE, DEFAULT_SEARCH_MODE, OPEN_WEB_MODE
+from src.config import AUTODESK_WEB_MODE, DEFAULT_SEARCH_MODE, LOCAL_ONLY_MODE, OPEN_WEB_MODE
 
 
 class ExplodingLLM:
@@ -58,6 +58,17 @@ class SecurityHardeningTests(unittest.TestCase):
         self.assertFalse(route.needs_local)
         self.assertFalse(route.needs_web)
         self.assertIn("Blocked", route.reason)
+
+    def test_option1_route_never_requests_web(self):
+        agent = AutodeskRAGAgent.__new__(AutodeskRAGAgent)
+        agent.search_mode = LOCAL_ONLY_MODE
+
+        route = agent._route_query("What's the difference between AutoCAD and Maya?")
+
+        self.assertTrue(route.needs_local)
+        self.assertFalse(route.needs_web)
+        self.assertFalse(route.abstain)
+        self.assertIn("web search disabled", route.reason)
 
     def test_sanitize_retrieval_query_removes_prompt_injection_but_keeps_need(self):
         sanitized = AutodeskRAGAgent._sanitize_retrieval_query(
