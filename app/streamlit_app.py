@@ -1804,6 +1804,7 @@ flowchart TD
         """.strip()
     )
 
+    st.subheader("Knowledge Graph")
     if st.button("Explore Knowledge Graph", type="secondary"):
         st.session_state.show_knowledge_graph_explorer = True
     if st.session_state.get("show_knowledge_graph_explorer"):
